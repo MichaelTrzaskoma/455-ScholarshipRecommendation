@@ -7,3 +7,5 @@ config.py
 node_modules/**
 
 __pycache__/**
+
+.vscode/**
