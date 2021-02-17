@@ -12,16 +12,14 @@ from tqdm import tqdm
 from pymongo import MongoClient
 ################# Mongo ####################
 
-#Directory towards the mongo db 
-#Modify <UserName>, <Password>, <ClusterName> with db credentials
+# Directory towards the mongo db
+# Modify <UserName>, <Password>, <ClusterName> with db credentials
 # client = MongoClient("mongodb+srv://<UserName>:<Password>@testcluster.otnrl.mongodb.net/<ClusterName>?retryWrites=true&w=majority")
 client = MongoClient("mongodb://localhost:27017/")
 scholarDb = client.test
 
 
-
-
-#Old filter lists 
+# Old filter lists
 #categoryList = ['Academic Major', 'Age', 'Ethnicity', 'Gender', 'Grade Point Average', 'Physical Disabilities', 'Race', 'Religion', 'Residence State', 'SAT Score', 'Military Affiliation']
 #subCatList = ['Business', 'Nursing/Nurse Practitioner', 'Psychology/Counseling', 'Biology', 'Engineering', 'Education', 'Communications', 'Accounting', 'Finance', 'Criminal Justice', 'Anthropology', 'Computer Science', 'English', 'Economics', 'Political Science']
 
@@ -182,64 +180,63 @@ def test_write2file(item):
 ########################### Update Insert Method for Mongo ###########################################
 
 
-#Inputs new scholarship into the mongo
-#Input -> All attributes of scholarship
-#Output -> None
+# Inputs new scholarship into the mongo
+# Input -> All attributes of scholarship
+# Output -> None
 def addScholarship(name, amount, deadline, ava, dir_link, description,
                    contact_info, binary):
-    
+
     scholarDb.scholarships.insert_one(
         {
-        'name': name,
-        'amount': amount,
-        'deadline': deadline,
-        'awards available': ava,
-        'direct Link': dir_link,
-        'description': description,
-        'contact Info': contact_info,
-        'binary': binary,
-        'terms': [] 
+            'name': name,
+            'amount': amount,
+            'deadline': deadline,
+            'awards available': ava,
+            'direct Link': dir_link,
+            'description': description,
+            'contact Info': contact_info,
+            'binary': binary,
+            'terms': []
         }
     )
-   
 
 
-#Updates the term array in mongo
-#Input-> id to locate the scholarship, term
-#Output-> None
+# Updates the term array in mongo
+# Input-> id to locate the scholarship, term
+# Output-> None
 def updateTerms(schol_name, term):
-    termCursor = scholarDb.scholarships.find({"name": schol_name}, {"terms": 1, "_id": 0})
-    termDict= termCursor[0]
+    termCursor = scholarDb.scholarships.find(
+        {"name": schol_name}, {"terms": 1, "_id": 0})
+    termDict = termCursor[0]
     termList = termDict.get("terms")
-    if term not in termList: 
+    if term not in termList:
         termList.append(term)
 
     scholarDb.scholarships.update_one({"name": schol_name}, {"$set": {"terms": termList},
-    "$currentDate": {"lastModified": True}})
-
-    
+                                                             "$currentDate": {"lastModified": True}})
 
 
-#splits the string to array
-#input -> string
-#output -> char array
+# splits the string to array
+# input -> string
+# output -> char array
 def split(word):
     return [char for char in word]
 
 
-#converts list to string
-#Input -> list
-#output -> array
+# converts list to string
+# Input -> list
+# output -> array
 def toString(list):
     str = ""
     return (str.join(list))
 
 
-#Finds the index of the word based on a table generated from the driver
-#Input -> string, the word
-#output -> int, the index
+# Finds the index of the word based on a table generated from the driver
+# Input -> string, the word
+# output -> int, the index
 def catIndex(word):
-    subCatCursor = scholarDb.subcatlist.find({"subCat" : word}, {"subCat": 1, "_id": 0})
+    subCatCursor = scholarDb.subcatlist.find(
+        {"subCat": word}, {"subCat": 1, "_id": 0})
     refListDict = subCatCursor[0]
     refList = refListDict.get("subCat")
     # print(type(refList))
@@ -247,12 +244,13 @@ def catIndex(word):
     return ind
 
 
-#Updates the binary based on the word in mongo
-#Input -> int, string, the id of the scholarship and the term
-#Output -> none
-#Modify this 
+# Updates the binary based on the word in mongo
+# Input -> int, string, the id of the scholarship and the term
+# Output -> none
+# Modify this
 def updateBin(schol_name, word):
-    scholarCursor = scholarDb.scholarships.find({"name": schol_name}, {"binary": 1, "_id":0})
+    scholarCursor = scholarDb.scholarships.find(
+        {"name": schol_name}, {"binary": 1, "_id": 0})
     scholarBinDict = scholarCursor[0]
     scholarBin = scholarBinDict.get("binary")
     ind = catIndex(word)
@@ -260,16 +258,18 @@ def updateBin(schol_name, word):
     list[ind] = "1"
     binaryStr = toString(list)
     scholarDb.scholarships.update_one({"name": schol_name}, {"$set": {"binary": binaryStr},
-    "$currentDate": {"lastModified": True}})
+                                                             "$currentDate": {"lastModified": True}})
 
 
-#String to generate the inital binary array of 807  bits because I'm lazy to type it out =D
+# String to generate the inital binary array of 807  bits because I'm lazy to type it out =D
 binaryInitial = '0' * 807
 
 ############# If any filtering needed ####################################
-#Checks the string and changes / to &
-#Input -> String
-#Output -> Changed string if at all
+# Checks the string and changes / to &
+# Input -> String
+# Output -> Changed string if at all
+
+
 def charCheck(string):
     charList = split(string)
     for i in range(len(charList)):
@@ -279,6 +279,7 @@ def charCheck(string):
     newString = newString.join(charList)
     return newString
 #######################################################
+
 
 try:
     # config firefox profile
@@ -296,10 +297,10 @@ try:
 
     # create a driver
     global driver
-    
-    #Remove path if not needed
+
+    # Remove path if not needed
     path = './chromedriver_v88'
-    driver = webdriver.Chrome(executable_path = path, options=fo)
+    driver = webdriver.Chrome(executable_path=path, options=fo)
 
     # simulation login
     simulate_login()
@@ -312,43 +313,43 @@ try:
     L1_link, L1_title = scraping_levels(level_1_tbl)
 
     ################ Subcat Reference Maker  ##########################
-    #Following snipbit creates a table of subcategories in mongo db used 
-    #for reference of indexs in binary string
+    # Following snipbit creates a table of subcategories in mongo db used
+    # for reference of indexs in binary string
 
     # FIRST TIME SCRAPPING SHOULD RUN BELOW BLOCK OF CODE!
-    
+
     # subCatList1 = []
     # for x in range(0, len(L1_link)):
     #    if "Military Affiliation" == L1_title[x]:
     #        subCatList1.append(L1_title[x])
     #        # special case, no sub-category
     #        continue
-        ## New
-        
+    ## New
+
     #    driver.get(L1_link[x])
 
-        ## scraping level 2
+    # scraping level 2
     #    level2_tbl = search_level_tbl()
     #    L2_link, L2_title = scraping_levels(level2_tbl)
     #    subCatList1.extend(L2_title)
 
     # scholarDb.subcatlist.insert_one({
     #        'subCat':subCatList1
-    #    })    
-    #exit()
-        
-        
+    #    })
+    ## exit()
+
     ##################################
     # counter = 1
-    for x in range(0, len(L1_link)):
-        if "Military Affiliation" == L1_title[x]:
-             #special case, no sub-category
+    for x in range(2, len(L1_link)):
+        if "Military Affiliation" == L1_title[x] :
+            # special case, no sub-category
+            #  or already scrapped
             continue
-        
-        #OLD: Used to only work with specific categories 
-        #if categoryList.count(L1_title[x]) == 0:
+
+        # OLD: Used to only work with specific categories
+        # if categoryList.count(L1_title[x]) == 0:
         #    continue
-            
+
         driver.get(L1_link[x])
 
         # scraping level 2
@@ -356,40 +357,42 @@ try:
         L2_link, L2_title = scraping_levels(level2_tbl)
 
         for y in range(0, len(L2_link)):
-            #OLD: Used for starting at a specific point
-            #if (L1_title[x] == 'Academic Major') & (subCatList.count(L2_title[y]) == 0):
+            # OLD: Used for starting at a specific point
+            # if (L1_title[x] == 'Academic Major') & (subCatList.count(L2_title[y]) == 0):
             #    continue
-                
+
+            if "Community Foundation for Palm Beach and Martin Counties Scholarships" == L2_title[y]:
+                continue
+
             driver.get(L2_link[y])
             L3_link, L3_title = get_scholar_tbl()
-            
-            #OLD: Used for limiting amount of scholarships per sub category
-            #if len(L3_link) > 15: 
+
+            # OLD: Used for limiting amount of scholarships per sub category
+            # if len(L3_link) > 15:
             #    limit = 15
-            #else:
+            # else:
             limit = len(L3_link)
-            
+
             print("\n")
             logging.info(f"Scrapping at: {L1_title[x]} - {L2_title[y]}")
             # counter = counter + 1
 
             # scraping for level 3
             for z in tqdm(range(0, limit)):
-                #used to check for illegal characters 
+                # used to check for illegal characters
                 #L3_title[z] = charCheck(L3_title[z])
 
                 ################# RECENTLY Updated #################
-                #If statement for if scholarship exists
-                #Updated for mongo 
-                if scholarDb.scholarships.count_documents({ 'name': L3_title[z]}, limit = 1) == 0:
+                # If statement for if scholarship exists
+                # Updated for mongo
+                if scholarDb.scholarships.count_documents({'name': L3_title[z]}, limit=1) == 0:
                     driver.get(L3_link[z])
                     amount, deadline, ava, dir_link, description, contact_info = get_specific()
                     addScholarship(L3_title[z], amount, deadline, ava,
-                                    dir_link, description, contact_info,
-                                    binaryInitial)
+                                   dir_link, description, contact_info,
+                                   binaryInitial)
 
-            
-                #Updates term list and binary string, now with scholarship name
+                # Updates term list and binary string, now with scholarship name
                 updateTerms(L3_title[z], L2_title[y])
                 updateBin(L3_title[z], L2_title[y])
                 #################################################

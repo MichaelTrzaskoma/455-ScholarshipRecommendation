@@ -1,0 +1,27 @@
+ 
+====================================================================================================================================================================================
+ Log Date: 02/17/2021
+ Log stop URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/age/age-17/community-foundation-for-palm-beach-and-martin-counties-scholarships
+
+ Log Detail:
+ 
+ 2021-02-17 15:26:46,937 - Scrapping at: Age - Age 17
+ 20%|███████████▊                                                | 511/2606 [08:27<34:42,  1.01it/s]
+
+Traceback (most recent call last):
+  File "scholarship.py", line 385, in <module>
+    amount, deadline, ava, dir_link, description, contact_info = get_specific()
+  File "scholarship.py", line 122, in get_specific
+    award_info = driver.find_element_by_class_name("award-info-row")
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 564, in find_element_by_class_name
+    return self.find_element(by=By.CLASS_NAME, value=name)
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":".award-info-row"}
+  (Session info: headless chrome=88.0.4324.182)
+
+====================================================================================================================================================================================
