@@ -1,5 +1,8 @@
  
 ====================================================================================================================================================================================
+####################################################################################################################################################################################
+====================================================================================================================================================================================
+
  Log Date: 02/17/2021
  Log stop URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/age/age-17/community-foundation-for-palm-beach-and-martin-counties-scholarships
 
@@ -25,3 +28,166 @@ selenium.common.exceptions.NoSuchElementException: Message: no such element: Una
   (Session info: headless chrome=88.0.4324.182)
 
 ====================================================================================================================================================================================
+####################################################################################################################################################################################
+====================================================================================================================================================================================
+
+ Log Date: 02/17/2021
+ Log stop URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/deadline/deadline-in-april/the-jewel-continuum-foundation
+
+ Log Detail:
+
+2021-02-17 19:30:52,818 - Scrapping at: Age - Age 17
+ 85%|██████████████████████████████████████████████████▏        | 2214/2603 [52:48<09:16,  1.43s/it]
+Traceback (most recent call last):
+  File "scholarship.py", line 391, in <module>
+    driver.get(L3_link[z])
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 333, in get
+    self.execute(Command.GET, {'url': url})
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_CLOSED
+  (Session info: headless chrome=88.0.4324.182)
+
+====================================================================================================================================================================================
+####################################################################################################################################################################################
+====================================================================================================================================================================================
+
+ Log Date: 02/17/2021
+ Log stop URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/special-attributes/transfer-students/colorado-christian-university-recognition-scholarship
+
+ Log Detail:
+
+2021-02-18 01:43:46,560 - Scrapping at: Age - Age 18
+ 20%|███████████▋                                                | 622/3183 [01:54<07:50,  5.45it/s]
+Traceback (most recent call last):
+  File "scholarship.py", line 395, in <module>
+    amount, deadline, ava, dir_link, description, contact_info = get_specific()
+  File "scholarship.py", line 123, in get_specific
+    award_info = driver.find_element_by_class_name("award-info-row")
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 564, in find_element_by_class_name
+    return self.find_element(by=By.CLASS_NAME, value=name)
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":".award-info-row"}
+  (Session info: headless chrome=88.0.4324.182)
+
+====================================================================================================================================================================================
+####################################################################################################################################################################################
+====================================================================================================================================================================================
+
+ Log Date: 02/17/2021
+ Log stop URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/age/age-21/college-womens-club-of-pasadena-scholarship
+
+ Log Detail:
+
+2021-02-18 02:04:47,491 - Scrapping at: Age - Age 19
+ 20%|███████████▋                                                | 638/3271 [00:33<02:18, 19.02it/s]
+Traceback (most recent call last):
+  File "scholarship.py", line 395, in <module>
+    amount, deadline, ava, dir_link, description, contact_info = get_specific()
+  File "scholarship.py", line 123, in get_specific
+    award_info = driver.find_element_by_class_name("award-info-row")
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 564, in find_element_by_class_name
+    return self.find_element(by=By.CLASS_NAME, value=name)
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":".award-info-row"}
+  (Session info: headless chrome=88.0.4324.182)
+
+
+====================================================================================================================================================================================
+####################################################################################################################################################################################
+====================================================================================================================================================================================
+
+ Log Date: 02/17/2021
+ Log stop URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/deadline/deadline-in-april/aka-eaf-financial-need-undergraduate-scholarship
+
+ Log Detail:
+
+2021-02-18 03:12:56,031 - Scrapping at: Age - Age 20
+ 20%|███████████▊                                                | 462/2345 [03:11<13:00,  2.41it/s]
+Traceback (most recent call last):
+  File "scholarship.py", line 395, in <module>
+    amount, deadline, ava, dir_link, description, contact_info = get_specific()
+  File "scholarship.py", line 123, in get_specific
+    award_info = driver.find_element_by_class_name("award-info-row")
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 564, in find_element_by_class_name
+    return self.find_element(by=By.CLASS_NAME, value=name)
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":".award-info-row"}
+  (Session info: headless chrome=88.0.4324.182)
+
+====================================================================================================================================================================================
+####################################################################################################################################################################################
+====================================================================================================================================================================================
+
+ Log Date: 02/17/2021
+ Log stop URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/athletic-ability/any-sport/carolina-panthers-graduate-scholarship
+
+ Log Detail:
+
+  2021-02-18 04:09:28,733 - Scrapping at: Age - Age 21
+ 20%|████████████                                                | 489/2434 [02:37<10:26,  3.11it/s]
+Traceback (most recent call last):
+  File "scholarship.py", line 395, in <module>
+    amount, deadline, ava, dir_link, description, contact_info = get_specific()
+  File "scholarship.py", line 123, in get_specific
+    award_info = driver.find_element_by_class_name("award-info-row")
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 564, in find_element_by_class_name
+    return self.find_element(by=By.CLASS_NAME, value=name)
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":".award-info-row"}
+  (Session info: headless chrome=88.0.4324.182)
+
+
+====================================================================================================================================================================================
+####################################################################################################################################################################################
+====================================================================================================================================================================================
+
+ Log Date: 02/17/2021
+ Log stop URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/athletic-ability/any-sport/carolina-panthers-graduate-scholarship
+
+ Log Detail:
+
+  2021-02-18 08:14:50,089 - Scrapping at: Employer - Abbott Laboratories
+100%|█████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  4.84it/s]
+Traceback (most recent call last):
+  File "scholarship.py", line 371, in <module>
+    L3_link, L3_title = get_scholar_tbl()
+  File "scholarship.py", line 87, in get_scholar_tbl
+    scholar_tbl = driver.find_element_by_tag_name("tbody")
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 530, in find_element_by_tag_name
+    return self.find_element(by=By.TAG_NAME, value=name)
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/home/ec2-user/test1/455-ScholarshipRecommendation/backend/env/lib/python3.7/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"tbody"}
+  (Session info: headless chrome=88.0.4324.182)
+
+
+==================================================================================================
+
+
