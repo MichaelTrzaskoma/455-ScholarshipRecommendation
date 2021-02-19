@@ -3,14 +3,14 @@
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.common.exception import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException
 import time
 import random
 import logging
 from tqdm import tqdm
 
 # log the exception when an element is not found
-from scrap_log import writeLog_exception_noEle
+from scrap_log import writeLog_exception_noEle, writeLog_scrapped_data
 
 from pymongo import MongoClient
 ################# Mongo ####################
@@ -58,49 +58,99 @@ def exception_handler(driver, mode, ele):
     # :ele --> name of the element
     # OUTPUT: return true if the element does exist, else false
     try:
+
+        def elements_by_name(driver, ele):
+            driver.find_elements_by_name(ele)
+
+        def elements_by_xpath(driver, ele):
+            driver.find_elements_by_xpath(ele)
+
+        def elements_by_link_text(driver, ele):
+            driver.find_elements_by_link_text(ele)
+
+        def elements_by_partial_link_text(driver, ele):
+            driver.find_elements_by_partial_link_text(ele)
+
+        def elements_by_tag_name(driver, ele):
+            driver.find_elements_by_tag_name(ele)
+
+        def elements_by_class_name(driver, ele):
+            driver.find_elements_by_class_name(ele)
+
+        def elements_by_css_selector(driver, ele):
+            driver.find_elements_by_css_selector(ele)
+
+        def elements_by_css_selector(driver, ele):
+            driver.find_elements_by_css_selector(ele)
+
+        def element_by_id(driver, ele):
+            driver.find_element_by_id(ele)
+
+        def element_by_name(driver, ele):
+            driver.find_element_by_name(ele)
+
+        def element_by_xpath(driver, ele):
+            driver.find_element_by_xpath(ele)
+
+        def element_by_link_text(driver, ele):
+            driver.find_element_by_link_text(ele)
+
+        def element_by_partial_link_text(driver, ele):
+            driver.find_element_by_partial_link_text(ele)
+
+        def element_by_tag_name(driver, ele):
+            driver.find_element_by_tag_name(ele)
+
+        def element_by_class_name(driver, ele):
+            driver.find_element_by_class_name(ele)
+
+        def element_by_css_selector(driver, ele):
+            driver.find_element_by_css_selector(ele)
+
         DEFAULT_MODE = {
             # multiple elements
-            0: driver.find_elements_by_name(ele),
-            1: driver.find_elements_by_xpath(ele),
-            2: driver.find_elements_by_link_text(ele),
-            3: driver.find_elements_by_partial_link_text(ele),
-            4: driver.find_elements_by_tag_name(ele),
-            5: driver.find_elements_by_class_name(ele),
-            6: driver.find_elements_by_css_selector(ele),
+            0: elements_by_name,
+            1: elements_by_xpath,
+            2: elements_by_link_text,
+            3: elements_by_partial_link_text,
+            4: elements_by_tag_name,
+            5: elements_by_class_name,
+            6: elements_by_css_selector,
             # single element
-            7: driver.find_element_by_id(ele),
-            8: driver.find_element_by_name(ele),
-            9: driver.find_element_by_xpath(ele),
-            10: driver.find_element_by_link_text(ele),
-            11: driver.find_element_by_partial_link_text(ele),
-            12: driver.find_element_by_tag_name(ele),
-            13: driver.find_element_by_class_name(ele),
-            14: driver.find_element_by_css_selector(ele)
+            7: element_by_id,
+            8: element_by_name,
+            9: element_by_xpath,
+            10: element_by_link_text,
+            11: element_by_partial_link_text,
+            12: element_by_tag_name,
+            13: element_by_class_name,
+            14: element_by_css_selector
         }
-        DEFAULT_MODE.get(mode, False)
+
+        DEFAULT_MODE[mode](driver, ele)
+
     except NoSuchElementException:
         logging.info("An exception occurred!")
         # capture the exception in a txt file
-        writeLog_exception_noEle(f"No such \"{ele}\" element in the page on the URL: {driver.current_url}.")
+        writeLog_exception_noEle(
+            f"No such \"{ele}\" element in the page on the URL: {driver.current_url}.")
         return False
-    
+
     return True
 
 
 def search_level_tbl():
     # search scholarship categoery table
     # OUTPUT: seleiunm <a> list
-    
-    if exception_handler(driver, 7, "ullist"):
-        # locate the table of scholarship
-        root_tbl = driver.find_element_by_id("ullist")
 
-        if exception_handler(driver, 4, "a"):
-            # locate the element by categories
-            a_tag_tbl = root_tbl.find_elements_by_tag_name("a")
-            return a_tag_tbl
-    
-    return None
+    # if exception_handler(driver, 7, "ullist"):
+    # locate the table of scholarship
+    root_tbl = driver.find_element_by_id("ullist")
+
+    # if exception_handler(driver, 4, "a"):
+    # locate the element by categories
+    a_tag_tbl = root_tbl.find_elements_by_tag_name("a")
+    return a_tag_tbl
 
 
 def scraping_levels(sele_ele):
@@ -142,30 +192,8 @@ def get_scholar_tbl():
                     # print(x.get_attribute("href"))
 
             return link, title
-    
+
     return None, None
-
-
-def scraping_scholar_tbl(tr_ele):
-    # get the item inside the scholar table on level 3
-    # INPUT: selenium <tr> ele
-
-    scholar_tit = []
-    scholar_link = []
-
-    for item in tr_ele:
-        # nested tag here, locate <td> then <a>
-        temp = driver.find_element_by_tag_name("td a")
-
-        if temp:
-            L3_link = temp.get_attribute("href")
-            scholar_tit.append(temp.text)
-            scholar_link.append(L3_link)
-            # print(temp.text, ":\n", L3_link, "\n\n")
-            # sleep to ensure IP address is not blocked
-            time.sleep(random.randint(1, 6))
-
-    return scholar_link, scholar_tit
 
 
 def get_specific():
@@ -196,11 +224,13 @@ def get_specific():
 
                 if exception_handler(driver, 13, "scholdescrip"):
                     # get abstract scholarship description
-                    description = driver.find_element_by_class_name("scholdescrip").text
+                    description = driver.find_element_by_class_name(
+                        "scholdescrip").text
 
                     if exception_handler(driver, 7, "ulScholDetails"):
                         # scholarship contact info
-                        temp2 = driver.find_element_by_id("ulScholDetails").text
+                        temp2 = driver.find_element_by_id(
+                            "ulScholDetails").text
                         lines = temp2.splitlines()
                         flag = False
                         contact_info = ""
@@ -224,25 +254,13 @@ def get_specific():
                         test.append(description)
                         test.append(contact_info)
 
-                        test_write2file(test)
+                        writeLog_scrapped_data(test)
                         return amount, deadline, ava_num, dir_link, description, contact_info
-    
+
     return None, None, None, None, None, None
 
 
-def test_write2file(item):
-    # testing func: write the scraping data to a txt
-    # INPUT: scraping array
-    with open("test_output.txt", "a+", encoding="utf-8") as writer:
-        for x in item:
-            writer.write(str(x) + "\n")
-
-        writer.write("======================================\n\n")
-        writer.close()
-
-
 ########################### Update Insert Method for Mongo ###########################################
-
 
 
 def addScholarship(name, amount, deadline, ava, dir_link, description,
@@ -329,6 +347,8 @@ def updateBin(schol_name, word):
 binaryInitial = '0' * 807
 
 ############# If any filtering needed ##################
+
+
 def charCheck(string):
     # Checks the string and changes / to &
     # Input -> String
@@ -343,139 +363,140 @@ def charCheck(string):
 #######################################################
 
 
-try:
-    # config firefox profile
-    # fp = webdriver.FirefoxProfile()
-    # fp.set_preference("http.response.timeout", 5)
-    # fp.set_preference("dom.max_scrit_run_time", 2)
-    # fp.set_preference("javascript.enabled", False)
+if __name__ == "__main__":
+    try:
+        # config firefox profile
+        # fp = webdriver.FirefoxProfile()
+        # fp.set_preference("http.response.timeout", 5)
+        # fp.set_preference("dom.max_scrit_run_time", 2)
+        # fp.set_preference("javascript.enabled", False)
 
-    fo = webdriver.ChromeOptions()
-    # set headless so that no browser is displayed
-    fo.headless = True
-    fo.add_argument('--disable-extensions')
-    fo.add_argument('--disable-infobars')
-    fo.add_argument('--disable-javascript')
+        fo = webdriver.ChromeOptions()
+        # set headless so that no browser is displayed
+        fo.headless = True
+        fo.add_argument('--disable-extensions')
+        fo.add_argument('--disable-infobars')
+        fo.add_argument('--disable-javascript')
 
-    # create a driver
-    global driver
+        # create a driver
+        global driver
 
-    # Remove path if not needed
-    path = './chromedriver_v88'
-    driver = webdriver.Chrome(executable_path=path, options=fo)
+        # Remove path if not needed
+        path = './chromedriver_v88'
+        driver = webdriver.Chrome(executable_path=path, options=fo)
 
-    # simulation login
-    simulate_login()
+        # simulation login
+        simulate_login()
 
-    # open the root page
-    driver.get(ROOT_URL)
+        # open the root page
+        driver.get(ROOT_URL)
 
-    # scraping level 1
-    level_1_tbl = search_level_tbl()
-    
-    # general test except case
-    # this will always be true
-    if level_1_tbl != None:
+        # scraping level 1
+        level_1_tbl = search_level_tbl()
+
+        # general test except case
+        # this will always be true
+        # if level_1_tbl is not None:
         L1_link, L1_title = scraping_levels(level_1_tbl)
 
-    ################ Subcat Reference Maker  ##########################
-    # Following snipbit creates a table of subcategories in mongo db used
-    # for reference of indexs in binary string
+        ################ Subcat Reference Maker  ##########################
+        # Following snipbit creates a table of subcategories in mongo db used
+        # for reference of indexs in binary string
 
-    # FIRST TIME SCRAPPING SHOULD RUN BELOW BLOCK OF CODE!
+        # FIRST TIME SCRAPPING SHOULD RUN BELOW BLOCK OF CODE!
 
-    # subCatList1 = []
-    # for x in range(0, len(L1_link)):
-    #    if "Military Affiliation" == L1_title[x]:
-    #        subCatList1.append(L1_title[x])
-    #        # special case, no sub-category
-    #        continue
-    # New
+        # subCatList1 = []
+        # for x in range(0, len(L1_link)):
+        #    if "Military Affiliation" == L1_title[x]:
+        #        subCatList1.append(L1_title[x])
+        #        # special case, no sub-category
+        #        continue
+        # New
 
-    #    driver.get(L1_link[x])
-
-    # scraping level 2
-    #    level2_tbl = search_level_tbl()
-    #    L2_link, L2_title = scraping_levels(level2_tbl)
-    #    subCatList1.extend(L2_title)
-
-    # scholarDb.subcatlist.insert_one({
-    #        'subCat':subCatList1
-    #    })
-    # exit()
-
-    ##################################################################
-    # counter = 1
-    for x in range(0, len(L1_link)):
-        if L1_title[x] in filter1:
-            # special case, no sub-category
-            #  or already scrapped
-            continue
-
-        # OLD: Used to only work with specific categories
-        # if categoryList.count(L1_title[x]) == 0:
-        #    continue
-
-        driver.get(L1_link[x])
+        #    driver.get(L1_link[x])
 
         # scraping level 2
-        level2_tbl = search_level_tbl()
-        L2_link, L2_title = scraping_levels(level2_tbl)
+        #    level2_tbl = search_level_tbl()
+        #    L2_link, L2_title = scraping_levels(level2_tbl)
+        #    subCatList1.extend(L2_title)
 
-        for y in range(0, len(L2_link)):
-            # OLD: Used for starting at a specific point
-            # if (L1_title[x] == 'Academic Major') & (subCatList.count(L2_title[y]) == 0):
+        # scholarDb.subcatlist.insert_one({
+        #        'subCat':subCatList1
+        #    })
+        # exit()
+
+        ##################################################################
+        # counter = 1
+        for x in range(0, len(L1_link)):
+            if L1_title[x] in filter1:
+                # special case, no sub-category
+                #  or already scrapped
+                continue
+
+            # OLD: Used to only work with specific categories
+            # if categoryList.count(L1_title[x]) == 0:
             #    continue
 
-            if L2_title[y] in filter2:
-                continue
+            driver.get(L1_link[x])
 
-            driver.get(L2_link[y])
-            L3_link, L3_title = get_scholar_tbl()
+            # scraping level 2
+            level2_tbl = search_level_tbl()
+            L2_link, L2_title = scraping_levels(level2_tbl)
 
-            # except trapped, skip this one
-            if L3_link == None:
-                continue
+            for y in range(0, len(L2_link)):
+                # OLD: Used for starting at a specific point
+                # if (L1_title[x] == 'Academic Major') & (subCatList.count(L2_title[y]) == 0):
+                #    continue
 
-            # OLD: Used for limiting amount of scholarships per sub category
-            # if len(L3_link) > 15:
-            #    limit = 15
-            # else:
-            limit = len(L3_link)
+                if L2_title[y] in filter2:
+                    continue
 
-            print("\n")
-            logging.info(f"Scrapping at: {L1_title[x]} - {L2_title[y]}")
-            # counter = counter + 1
+                driver.get(L2_link[y])
+                L3_link, L3_title = get_scholar_tbl()
 
-            # scraping for level 3
-            for z in tqdm(range(0, limit)):
-                # used to check for illegal characters
-                #L3_title[z] = charCheck(L3_title[z])
+                # except trapped, skip this one
+                if L3_link == None:
+                    continue
 
-                # if z == 511:
-                #     continue
+                # OLD: Used for limiting amount of scholarships per sub category
+                # if len(L3_link) > 15:
+                #    limit = 15
+                # else:
+                limit = len(L3_link)
 
-                ################# RECENTLY Updated #################
-                # If statement for if scholarship exists
-                # Updated for mongo
-                if scholarDb.scholarships.count_documents({'name': L3_title[z]}, limit=1) == 0:
-                    driver.get(L3_link[z])
-                    amount, deadline, ava, dir_link, description, contact_info = get_specific()
+                print("\n")
+                logging.info(f"Scrapping at: {L1_title[x]} - {L2_title[y]}")
+                # counter = counter + 1
 
-                    if amount != None:
-                        addScholarship(L3_title[z], amount, deadline, ava,
-                                    dir_link, description, contact_info,
-                                    binaryInitial)
-                    else:
-                        continue
+                # scraping for level 3
+                for z in tqdm(range(0, limit)):
+                    # used to check for illegal characters
+                    #L3_title[z] = charCheck(L3_title[z])
 
-                # Updates term list and binary string, now with scholarship name
-                updateTerms(L3_title[z], L2_title[y])
-                updateBin(L3_title[z], L2_title[y])
-                ###################################################
+                    # if z == 511:
+                    #     continue
 
-finally:
-    try:
-        driver.close()
-    except:
-        pass
+                    ################# RECENTLY Updated #################
+                    # If statement for if scholarship exists
+                    # Updated for mongo
+                    if scholarDb.scholarships.count_documents({'name': L3_title[z]}, limit=1) == 0:
+                        driver.get(L3_link[z])
+                        amount, deadline, ava, dir_link, description, contact_info = get_specific()
+
+                        if amount != None:
+                            addScholarship(L3_title[z], amount, deadline, ava,
+                                           dir_link, description, contact_info,
+                                           binaryInitial)
+                        else:
+                            continue
+
+                    # Updates term list and binary string, now with scholarship name
+                    updateTerms(L3_title[z], L2_title[y])
+                    updateBin(L3_title[z], L2_title[y])
+                    ###################################################
+
+    finally:
+        try:
+            driver.close()
+        except:
+            pass

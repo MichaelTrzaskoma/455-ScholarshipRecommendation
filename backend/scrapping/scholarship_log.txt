@@ -191,3 +191,36 @@ selenium.common.exceptions.NoSuchElementException: Message: no such element: Una
 ==================================================================================================
 
 
+No such "ullist" element in the page on the URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory.
+==================================================================================================
+
+No such "ullist" element in the page on the URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory.
+==================================================================================================
+
+No such "ullist" element in the page on the URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory.
+==================================================================================================
+
+No such "ullist" element in the page on the URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory.
+==================================================================================================
+
+No such "tbody" element in the page on the URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/age/age-17.
+==================================================================================================
+
+No such "tbody" element in the page on the URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/age/age-18.
+==================================================================================================
+
+No such "tbody" element in the page on the URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/age/age-19.
+==================================================================================================
+
+No such "tbody" element in the page on the URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/age/age-20.
+==================================================================================================
+
+No such "tbody" element in the page on the URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/age/age-21.
+==================================================================================================
+
+No such "tbody" element in the page on the URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/age/age-22.
+==================================================================================================
+
+No such "tbody" element in the page on the URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/age/age-23.
+==================================================================================================
+
