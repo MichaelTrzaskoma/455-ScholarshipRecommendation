@@ -224,3 +224,12 @@ No such "tbody" element in the page on the URL: https://www.scholarships.com/fin
 No such "tbody" element in the page on the URL: https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/age/age-23.
 ==================================================================================================
 
+2021-02-19 04:47:30,641 - Scrapping at: Student Organization - Society of Women Engineers
+  0%|                                                                       | 0/4 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "scholarship.py", line 495, in <module>
+    updateBin(L3_title[z], L2_title[y])
+  File "scholarship.py", line 340, in updateBin
+    list[ind] = "1"
+IndexError: list assignment index out of range
+==================================================================================================

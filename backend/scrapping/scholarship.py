@@ -26,7 +26,7 @@ scholarDb = client.test
 #categoryList = ['Academic Major', 'Age', 'Ethnicity', 'Gender', 'Grade Point Average', 'Physical Disabilities', 'Race', 'Religion', 'Residence State', 'SAT Score', 'Military Affiliation']
 #subCatList = ['Business', 'Nursing/Nurse Practitioner', 'Psychology/Counseling', 'Biology', 'Engineering', 'Education', 'Communications', 'Accounting', 'Finance', 'Criminal Justice', 'Anthropology', 'Computer Science', 'English', 'Economics', 'Political Science']
 
-filter1 = ["Academic Major", "ACT Score", "Military Affiliation"]
+filter1 = ["Student Organization"]
 filter2 = ["Age 13", "Age 14", "Age 15", "Age 15", "Age 16"]
 ######################################################
 
@@ -344,7 +344,7 @@ def updateBin(schol_name, word):
 
 
 # String to generate the inital binary array of 807  bits because I'm lazy to type it out =D
-binaryInitial = '0' * 807
+binaryInitial = '0' * 810
 
 ############# If any filtering needed ##################
 
@@ -428,7 +428,7 @@ if __name__ == "__main__":
         ##################################################################
         # counter = 1
         for x in range(0, len(L1_link)):
-            if L1_title[x] in filter1:
+            if L1_title[x] not in filter1:
                 # special case, no sub-category
                 #  or already scrapped
                 continue
@@ -448,8 +448,9 @@ if __name__ == "__main__":
                 # if (L1_title[x] == 'Academic Major') & (subCatList.count(L2_title[y]) == 0):
                 #    continue
 
-                if L2_title[y] in filter2:
-                    continue
+                # use to pause the scraping
+                # if L2_title[y] in filter2:
+                #     continue
 
                 driver.get(L2_link[y])
                 L3_link, L3_title = get_scholar_tbl()
