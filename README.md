@@ -30,6 +30,8 @@
     uwsgi dev.ini
     ```
 
+    - Access the URL: <a href="localhost:9090">localhost:9090</a>
+
 * frontend:
 
     ```
@@ -38,6 +40,9 @@
 
     # install all libs
     npm install
+
+    # install expo cli
+    sudo npm install --global expo-cli
 
     # start the project through expo
     expo start
