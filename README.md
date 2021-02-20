@@ -30,7 +30,7 @@
     uwsgi dev.ini
     ```
 
-    - Access the URL: <a href="localhost:9090">localhost:9090</a>
+    - Access the URL: <a href="http://localhost:9090/">localhost:9090</a>
 
 * frontend:
 
