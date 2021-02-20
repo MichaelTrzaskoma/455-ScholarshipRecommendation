@@ -95,28 +95,28 @@ export default class App extends Component {
 
   signIn = async () => {
     try {
-      const result = await Google.logInAsync({
-        androidClientId:
-          "117030962609-9mblopptuccmm9fqhi2uv7eeea9bk1vh.apps.googleusercontent.com",
+      //const result = await Google.logInAsync({
+        //androidClientId:
+          //"117030962609-9mblopptuccmm9fqhi2uv7eeea9bk1vh.apps.googleusercontent.com",
         // iosClientId: "<YOUR_CLIENT_ID_HERE>",
         // scopes: ["profile", "email"],
-      });
+      
 
-      if (result.type === "success") {
+      //if (result.type === "success") {
         this.setState({
           usrProfile: {
             signedIn: true,
-            full_name: result.user.name,
-            last_name: result.user.familyName,
-            first_name: result.user.givenName,
-            photoUrl: result.user.photoUrl,
-            email: result.user.email,
+            full_name: "dummyFUllName",
+            last_name: "dummyLastName",
+            first_name: "dummyFirstName",
+            photoUrl: "https://i.pinimg.com/originals/e9/73/46/e9734614f73b4766546ceee1d7778827.jpg",
+            email: "zkhan15@nyit.edu",
           },
         });
-      } else {
+      //} else {
         console.log("\nLog failed due to: \n", result);
       }
-    } catch (e) {
+     catch (e) {
       console.log("\nError due to: \n", e);
       // console.log(type(value));
     }
