@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, StatusBar, TextInput, View, Button, Image } from "react-native";
 import { AppRegistry } from "react-native";
 import "react-native-gesture-handler";
 import * as Google from "expo-google-app-auth";
@@ -20,17 +20,48 @@ import ViewSubCate from "./components/ViewSubCate";
 import ViewScholarTbl from "./components/ViewScholarTbl";
 import ViewScholarDetail from "./components/ViewScholarDetail";
 import ViewRecommendTbl from "./components/ViewRecommendTbl";
-import AddProfile from "./ui/AddProfile"
+import AddProfile from "./ui/AddProfile";
+import RequiredInfoNextButton from "./components/RequiredInfoNextButton";
+import SignUpScreen from "./components/SignUpScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function LoginPage(props) {
+function LoginPage( {props, navigation}) {
   // init landing page for the Google Signin
   return (
     <View>
-      <Text style={styles.header}>Sign In With Your Credentials</Text>
-      <Button title="Sign in" onPress={() => props.signIn()} />
+      {/* <Text style={styles.header}>Sign In With Your Credentials</Text>
+      <Button title="Sign in" onPress={() => props.signIn()} /> */}
+      <StatusBar hidden/>
+      <TextInput
+        placeholder="Email"
+        keyboardAppearance="light"
+        textBreakStrategy="simple"
+        keyboardType="email-address"
+        selectTextOnFocus={true}
+        style={styles.loginEmailTextBox}
+      ></TextInput>
+      <TextInput
+        placeholder="Password"
+        keyboardAppearance="light"
+        secureTextEntry={true}
+        selectTextOnFocus={true}
+        style={styles.loginPasswordTextBox}
+      ></TextInput>
+      <RequiredInfoNextButton
+        next="Sign-In"
+        style={styles.LoginSignInButton}
+      ></RequiredInfoNextButton>
+      <RequiredInfoNextButton
+        next="Sign-Up"
+        style={styles.LoginSignUpButton}
+      ></RequiredInfoNextButton>
+      <Image
+        source={require("./images/AppLogo.png")}
+        resizeMode="contain"
+        style={styles.image}
+      ></Image>
     </View>
   );
 }
@@ -97,7 +128,7 @@ export default class App extends Component {
     try {
       //const result = await Google.logInAsync({
         //androidClientId:
-          //"117030962609-9mblopptuccmm9fqhi2uv7eeea9bk1vh.apps.googleusercontent.com",
+        //"117030962609-9mblopptuccmm9fqhi2uv7eeea9bk1vh.apps.googleusercontent.com",
         // iosClientId: "<YOUR_CLIENT_ID_HERE>",
         // scopes: ["profile", "email"],
       
@@ -131,6 +162,11 @@ export default class App extends Component {
             <Stack.Screen name={"Home"}>
               {() => <TabScreens usr={this.state.usrProfile} navigation={this.props.navigation}/>}
             </Stack.Screen>
+
+            <Stack.Screen
+              name={"SignUpScreen"}
+              Component={SignUpScreen}
+            />
             
             <Stack.Screen
               name={"InputScreen1"}
@@ -197,14 +233,57 @@ export default class App extends Component {
 }
 
 AppRegistry.registerComponent("App", () => App);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "rgba(255,255,255,1)"
   },
-  header: {
-    fontSize: 20,
+  loginEmailTextBox: {
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    height: 37,
+    width: 240,
+    borderWidth: 1,
+    borderColor: "#000000",
+    textAlign: "left",
+    letterSpacing: 0,
+    fontSize: 16,
+    marginTop: 372,
+    marginLeft: 65
   },
+  loginPasswordTextBox: {
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    height: 37,
+    width: 240,
+    borderWidth: 1,
+    borderColor: "#000000",
+    fontSize: 16,
+    marginTop: 38,
+    marginLeft: 65
+  },
+  LoginSignInButton: {
+    height: 36,
+    width: 168,
+    backgroundColor: "#4a76ff",
+    borderRadius: 16,
+    marginTop: 47,
+    marginLeft: 98
+  },
+  LoginSignUpButton: {
+    height: 36,
+    width: 168,
+    borderRadius: 16,
+    backgroundColor: "#4a76ff",
+    marginTop: 27,
+    marginLeft: 98
+  },
+  image: {
+    width: 221,
+    height: 231,
+    borderRadius: 36,
+    marginTop: -555,
+    marginLeft: 76
+  }
 });
