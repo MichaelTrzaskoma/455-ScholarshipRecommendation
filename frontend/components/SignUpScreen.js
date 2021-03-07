@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, StatusBar, Text, TextInput } from "react-native";
 import SignUpScreenButton from "./SignUpScreenButton";
 
+
 function SignUpScreen(props) {
   return (
     <View style={styles.container}>

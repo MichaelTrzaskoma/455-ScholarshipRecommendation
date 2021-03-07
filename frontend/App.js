@@ -1,9 +1,10 @@
 import React, { useState, useEffect, Component } from "react";
-import { StyleSheet, StatusBar, TextInput, View, Button, Image } from "react-native";
+import { StyleSheet, StatusBar, TextInput, View, Image, TouchableOpacity, Text } from "react-native";
 import { AppRegistry } from "react-native";
 import "react-native-gesture-handler";
 import * as Google from "expo-google-app-auth";
 import { NavigationContainer } from "@react-navigation/native";
+// import { useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
@@ -21,18 +22,22 @@ import ViewScholarTbl from "./components/ViewScholarTbl";
 import ViewScholarDetail from "./components/ViewScholarDetail";
 import ViewRecommendTbl from "./components/ViewRecommendTbl";
 import AddProfile from "./ui/AddProfile";
-import RequiredInfoNextButton from "./components/RequiredInfoNextButton";
 import SignUpScreen from "./components/SignUpScreen";
+import ScholarshipScreen from "./components/ScholarshipScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+//const navigation = useNavigation(); 
 
-function LoginPage( {props, navigation}) {
-  // init landing page for the Google Signin
+function LoginPage(props) {
+ 
+  // const navigation = useNavigation(); 
   return (
     <View>
-      {/* <Text style={styles.header}>Sign In With Your Credentials</Text>
-      <Button title="Sign in" onPress={() => props.signIn()} /> */}
+       {/* <Text style={styles.header}>Sign In With Your Credentials</Text>
+       <Button title="Sign in" onPress={() => props.signIn()} /> */}
+      
+      {/* init landing page for Login Page */}
       <StatusBar hidden/>
       <TextInput
         placeholder="Email"
@@ -49,20 +54,21 @@ function LoginPage( {props, navigation}) {
         selectTextOnFocus={true}
         style={styles.loginPasswordTextBox}
       ></TextInput>
-      <RequiredInfoNextButton
-        next="Sign-In"
-        style={styles.LoginSignInButton}
-      ></RequiredInfoNextButton>
-      <RequiredInfoNextButton
-        next="Sign-Up"
-        style={styles.LoginSignUpButton}
-      ></RequiredInfoNextButton>
+      
+      {/* Sign-in & Sign-Up Login buttons */}
+      <TouchableOpacity style={[styles.containerLoginButton, styles.LoginSignInButton]} onPress={() => console.log(props.signIn())}>
+        <Text style={styles.next}>Sign-In</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={[styles.containerLoginButton, styles.LoginSignUpButton]} onPress={() => alert("Sig")}>
+        <Text style={styles.next}>Sign-Up</Text>
+      </TouchableOpacity>
       <Image
         source={require("./images/AppLogo.png")}
         resizeMode="contain"
         style={styles.image}
       ></Image>
     </View>
+
   );
 }
 
@@ -74,6 +80,7 @@ function TabScreens({ usr, navigation }) {
           let iconName;
 
           if (route.name === "Home") {
+            console.log(route);
             iconName = focused ? "home" : "home";
             return <FeatherIcon name="home" size={size} color={color} />;
           } else if (route.name === "Account") {
@@ -93,7 +100,9 @@ function TabScreens({ usr, navigation }) {
       })}
     >
       <Tab.Screen name="Home" options={{ title: "Home" }}>
-        {() => <HomeContainer email={usr.email} />}
+
+        {/* ScholarshipScreem component belong to first home navi */}
+        {() => <ScholarshipScreen/>}
       </Tab.Screen>
 
       <Tab.Screen
@@ -131,7 +140,6 @@ export default class App extends Component {
         //"117030962609-9mblopptuccmm9fqhi2uv7eeea9bk1vh.apps.googleusercontent.com",
         // iosClientId: "<YOUR_CLIENT_ID_HERE>",
         // scopes: ["profile", "email"],
-      
 
       //if (result.type === "success") {
         this.setState({
@@ -158,6 +166,12 @@ export default class App extends Component {
       return (
         <NavigationContainer>
           <Stack.Navigator>
+
+            {/* <Stack.Screen 
+            name={"LoginPage"}
+            component={LoginPage}
+            /> */}
+
             
             <Stack.Screen name={"Home"}>
               {() => <TabScreens usr={this.state.usrProfile} navigation={this.props.navigation}/>}
@@ -165,7 +179,7 @@ export default class App extends Component {
 
             <Stack.Screen
               name={"SignUpScreen"}
-              Component={SignUpScreen}
+              component={SignUpScreen}
             />
             
             <Stack.Screen
@@ -222,10 +236,11 @@ export default class App extends Component {
           </Stack.Navigator>
         </NavigationContainer>
       );
-    } else {
+    } 
+    else {
       return (
         <View style={styles.container}>
-          <LoginPage signIn={this.signIn} />
+          <LoginPage signIn={this.signIn}/>
         </View>
       );
     }
@@ -285,5 +300,29 @@ const styles = StyleSheet.create({
     borderRadius: 36,
     marginTop: -555,
     marginLeft: 76
+  },
+  containerLoginButton: {
+    backgroundColor: "#2196F3",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    borderRadius: 2,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.35,
+    shadowRadius: 5,
+    elevation: 2,
+    minWidth: 88,
+    paddingLeft: 16,
+    paddingRight: 16
+  },
+  next: {
+    color: "#fff",
+    fontSize: 16,
+    fontFamily: "roboto-regular",
+    alignSelf: "center"
   }
 });
