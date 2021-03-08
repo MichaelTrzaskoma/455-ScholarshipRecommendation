@@ -119,7 +119,7 @@ function TabScreens({ usr, navigation }) {
       <Tab.Screen
         name="Search"
         component={SearchScreen}
-        options={{ title: "Scholarship" }}
+        options={{ title: "College" }}
       />
 
       <Tab.Screen
