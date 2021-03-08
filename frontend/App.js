@@ -14,8 +14,8 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 
 import HomeContainer from "./components/HomeContainer";
-import SearchScreen from "./components/SearchScreen";
-import AccScreen from "./components/AccScreen";
+import AccuntScreen from "./components/AccuntScreen";
+
 import InputScreen1 from "./components/InputInfoScreen1";
 import InputScreen2 from "./components/InputInfoScreen2";
 import ViewAllScholar from "./components/ViewAllScholar";
@@ -28,6 +28,8 @@ import SignUpScreen from "./components/SignUpScreen";
 import ScholarshipScreen from "./components/ScholarshipScreen";
 import MajorScreen from "./components/MajorScreen";
 ;;import { TouchableNativeFeedbackBase } from "react-native";
+import CollegeScreen from "./components/CollegeScreen";
+import { TapGestureHandler } from "react-native-gesture-handler";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -111,25 +113,23 @@ function TabScreens({ usr, navigation }) {
       })}
     >
       <Tab.Screen name="Home" options={{ title: "Scholarship" }}>
-
-        {/* ScholarshipScreem component belong to first home navi */}
+        {/* ScholarshipScreen component belong to first Tap navi */}
         {() => <ScholarshipScreen/>}
       </Tab.Screen>
+      
+      <Tab.Screen name="Search" options={{ title: "College" }}>
+        {/* CollegeScreen component belong to second Tap navi */}
+        {() => <CollegeScreen/>}
+      </Tab.Screen>
 
-      <Tab.Screen
-        name="Search"
-        component={SearchScreen}
-        options={{ title: "College" }}
-      />
-
-      <Tab.Screen
-        name="Major"
-        component={MajorScreen}
-        options={{ title: "Major"}}
-      />
+      <Tab.Screen name="Major" options={{ title: "Major"}}>
+        {/* MajorScreen component belong to third Tap navi */}
+        {() => <MajorScreen/>}
+      </Tab.Screen>
 
       <Tab.Screen name="Account">
-        {() => <AccScreen usr_info={usr} />}
+        {/* AccountScreen component belong to fourth Tap navi */}
+        {() => <AccuntScreen/>}
       </Tab.Screen>
     </Tab.Navigator>
   );
@@ -208,7 +208,6 @@ export default class App extends Component {
             component={LoginPage}
             /> */}
 
-            
             <Stack.Screen name={"Home"}>
               {() => <TabScreens usr={this.state.usrProfile} navigation={this.props.navigation}/>}
             </Stack.Screen>
@@ -360,5 +359,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "roboto-regular",
     alignSelf: "center"
+  },
+
+  bottomNaviContainer:{
+    backgroundColor: "#3f51b5",
+    flexDirection: "row",
+    alignItems: "center",
+    shadowColor: "#111",
+    shadowOffset: {
+      width: 0,
+      height: -2
   }
+}
 });

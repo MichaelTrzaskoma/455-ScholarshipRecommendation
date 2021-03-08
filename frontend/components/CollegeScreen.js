@@ -10,11 +10,11 @@ import {
 
 import EntypoIcon from "react-native-vector-icons/Entypo";
 
-function ScholarshipScreen(props) {
+function CollegeScreen(props) {
   return (
     <View style={styles.container}>
       <StatusBar hidden />
-      
+
       {/* Catagory Text & ScrollView belont to categoryGroup */}
       <View style={styles.categoryGroup}>
         <Text style={styles.category}>Category</Text>
@@ -23,49 +23,42 @@ function ScholarshipScreen(props) {
             horizontal={true}
             contentContainerStyle={styles.scrollArea_contentContainerStyle}
           >
-            <View style={styles.aMGroupRow}>
-              <TouchableOpacity style={styles.aMGroup}>
-                <TouchableOpacity style={styles.button}>
-                  <Text style={styles.academicMajor}>Academic{"\n"}Major</Text>
-                </TouchableOpacity>
+            <View style={styles.nYGroupRow}>
+              <TouchableOpacity style={styles.nYGroup}>
+                <View style={styles.rect}>
+                  <Text style={styles.newYork}>New York</Text>
+                </View>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.gPAGroup}>
-                <TouchableOpacity style={styles.button1}>
-                  <Text style={styles.gpa}>GPA</Text>
-                </TouchableOpacity>
+              <TouchableOpacity style={styles.nJGroup}>
+                <View style={styles.rect1}>
+                  <Text style={styles.newJersey}>New Jersey</Text>
+                </View>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.ageGroup}>
-                <TouchableOpacity style={styles.button2}>
-                  <Text style={styles.age}>Age</Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.aAGroup}>
-                <TouchableOpacity style={styles.button3}>
-                  <Text style={styles.artisticAbility}>
-                    Artistic{"\n"}Ability
-                  </Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.viewAllCataGroup}>
+              <TouchableOpacity style={styles.iAGroup}>
                 <View style={styles.rect2}>
+                  <Text style={styles.lowa}>Lowa</Text>
+                </View>
+              </TouchableOpacity>
+              <View style={styles.viewAllCataGroup}>
+                <View style={styles.rect5}>
                   <EntypoIcon
                     name="arrow-with-circle-right"
                     style={styles.icon2}
                   ></EntypoIcon>
                   <Text style={styles.viewAll1}>View All</Text>
                 </View>
-              </TouchableOpacity>
+              </View>
             </View>
           </ScrollView>
         </View>
       </View>
 
-       {/* Recommend Text & ViewAll and Recent View button belong to recommendGroup */}
+      {/* Recommend Text & ViewAll and Recent View button belong to recommendGroup */}
       <View style={styles.recommendGroup}>
         <Text style={styles.recommend}>Recommend</Text>
         <View style={styles.viewAllGroupRow}>
           <TouchableOpacity style={styles.viewAllGroup}>
-            <View style={styles.rect}>
+            <View style={styles.rect3}>
               <EntypoIcon
                 name="arrow-with-circle-right"
                 style={styles.icon}
@@ -74,14 +67,9 @@ function ScholarshipScreen(props) {
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={styles.recentViewGroup}>
-            <View style={styles.rect1}>
-              <View style={styles.icon1Stack}>
-                <EntypoIcon
-                  name="back-in-time"
-                  style={styles.icon1}
-                ></EntypoIcon>
-                <Text style={styles.recentView}>Recent View</Text>
-              </View>
+            <View style={styles.rect4}>
+              <EntypoIcon name="back-in-time" style={styles.icon1}></EntypoIcon>
+              <Text style={styles.recentView}>Recent{"\n"}View</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -92,47 +80,38 @@ function ScholarshipScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#ffffff"
   },
-  materialBasicFooter1: {
-    width: 360,
+  materialBasicFooter4: {
     height: 56,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    backgroundColor: "#3f51b5",
+    width: 360,
     marginTop: 684
   },
   categoryGroup: {
     width: 360,
-    height: 223,
+    height: 224,
     marginTop: 20
   },
   category: {
     fontFamily: "lemonada-700",
     color: "#4a76ff",
     fontSize: 30,
-    width: 177,
-    height: 35,
-    marginLeft: 18
+    width: 158,
+    height: 60,
+    marginLeft: 22
   },
   scrollArea: {
     width: 360,
-    height: 168,
-    backgroundColor: "#ffffff",
-    marginTop: 20
+    height: 164,
+    backgroundColor: "rgba(255,255,255,1)"
   },
   scrollArea_contentContainerStyle: {
-    width: 657,
-    height: 168,
+    width: 526,
+    height: 164,
     flexDirection: "row"
   },
-  aMGroup: {
+  nYGroup: {
     width: 117,
     height: 104,
     shadowColor: "rgba(0,0,0,1)",
@@ -144,75 +123,40 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.16,
     shadowRadius: 0
   },
-  button: {
+  rect: {
     width: 117,
     height: 104,
-    backgroundColor: "#e9ebe9"
+    backgroundColor: "#E6E6E6"
   },
-  academicMajor: {
+  newYork: {
     fontFamily: "roboto-regular",
     color: "#121212",
-    height: 37,
-    width: 99,
+    height: 63,
+    width: 93,
     fontSize: 16,
-    marginTop: 15,
-    marginLeft: 9
-  },
-  gPAGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0,
-    marginLeft: 17
-  },
-  button1: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#e9ebe9"
-  },
-  gpa: {
-    fontFamily: "roboto-regular",
-    color: "#121212",
-    height: 18,
-    width: 49,
-    fontSize: 16,
-    marginTop: 17,
-    marginLeft: 17
-  },
-  ageGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0,
+    marginTop: 21,
     marginLeft: 12
   },
-  button2: {
+  nJGroup: {
     width: 117,
     height: 104,
-    backgroundColor: "#e9ebe9"
+    marginLeft: 15
   },
-  age: {
+  rect1: {
+    width: 117,
+    height: 104,
+    backgroundColor: "#E6E6E6"
+  },
+  newJersey: {
     fontFamily: "roboto-regular",
     color: "#121212",
-    height: 23,
-    width: 49,
+    height: 63,
+    width: 93,
     fontSize: 16,
-    marginTop: 14,
-    marginLeft: 9
+    marginTop: 21,
+    marginLeft: 12
   },
-  aAGroup: {
+  iAGroup: {
     width: 117,
     height: 104,
     shadowColor: "rgba(0,0,0,1)",
@@ -223,77 +167,66 @@ const styles = StyleSheet.create({
     elevation: 5,
     shadowOpacity: 0.16,
     shadowRadius: 0,
-    marginLeft: 12
+    marginLeft: 14
   },
-  button3: {
+  rect2: {
     width: 117,
     height: 104,
-    backgroundColor: "#e9ebe9"
+    backgroundColor: "#E6E6E6"
   },
-  artisticAbility: {
+  lowa: {
     fontFamily: "roboto-regular",
     color: "#121212",
-    height: 34,
-    width: 76,
+    height: 63,
+    width: 93,
     fontSize: 16,
-    marginTop: 12,
+    marginTop: 21,
     marginLeft: 12
   },
   viewAllCataGroup: {
     width: 117,
     height: 104,
-    marginLeft: 15
+    marginLeft: 17
   },
-  rect2: {
+  rect5: {
     width: 117,
     height: 104,
-    backgroundColor: "#E6E6E6",
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.17,
-    shadowRadius: 0
+    backgroundColor: "#E6E6E6"
   },
   icon2: {
     color: "rgba(128,128,128,1)",
     fontSize: 52,
     height: 58,
     width: 52,
-    marginTop: 12,
-    marginLeft: 49
+    marginTop: 13,
+    marginLeft: 46
   },
   viewAll1: {
     fontFamily: "roboto-regular",
     color: "#121212",
-    height: 21,
-    width: 79,
     fontSize: 16,
-    marginTop: 8,
-    marginLeft: 10
+    marginTop: 7,
+    marginLeft: 8
   },
-  aMGroupRow: {
+  nYGroupRow: {
     height: 104,
     flexDirection: "row",
     flex: 1,
-    marginRight: -297,
-    marginLeft: 16,
-    marginTop: 32
+    marginRight: -166,
+    marginLeft: 12,
+    marginTop: 30
   },
   recommendGroup: {
-    width: 309,
-    height: 176,
-    marginTop: 11,
-    marginLeft: 18
+    width: 299,
+    height: 188,
+    marginLeft: 22
   },
   recommend: {
     fontFamily: "lemonada-700",
     color: "#4a76ff",
-    height: 48,
-    width: 309,
-    fontSize: 30
+    fontSize: 30,
+    width: 216,
+    height: 60
   },
   viewAllGroup: {
     width: 117,
@@ -305,30 +238,26 @@ const styles = StyleSheet.create({
     },
     elevation: 5,
     shadowOpacity: 0.16,
-    shadowRadius: 0,
-    justifyContent: "center"
+    shadowRadius: 0
   },
-  rect: {
+  rect3: {
     width: 117,
     height: 104,
-    backgroundColor: "#E6E6E6",
-    alignSelf: "center"
+    backgroundColor: "#E6E6E6"
   },
   icon: {
     color: "rgba(128,128,128,1)",
     fontSize: 52,
     height: 58,
     width: 52,
-    marginTop: 11,
-    marginLeft: 35
+    marginTop: 12,
+    marginLeft: 39
   },
   viewAll: {
     fontFamily: "roboto-regular",
     color: "#121212",
-    height: 21,
-    width: 79,
     fontSize: 16,
-    marginTop: 3,
+    marginTop: 6,
     marginLeft: 7
   },
   recentViewGroup: {
@@ -342,45 +271,34 @@ const styles = StyleSheet.create({
     elevation: 5,
     shadowOpacity: 0.16,
     shadowRadius: 0,
-    marginLeft: 47
+    marginLeft: 53
   },
-  rect1: {
+  rect4: {
     width: 117,
     height: 104,
     backgroundColor: "#E6E6E6"
   },
   icon1: {
-    top: 0,
-    left: 27,
-    position: "absolute",
     color: "rgba(128,128,128,1)",
     fontSize: 52,
     height: 58,
-    width: 52
+    width: 52,
+    marginTop: 8,
+    marginLeft: 33
   },
   recentView: {
-    top: 55,
-    left: 0,
-    position: "absolute",
     fontFamily: "roboto-regular",
     color: "#121212",
-    height: 21,
-    width: 79,
-    fontSize: 16
-  },
-  icon1Stack: {
-    width: 79,
-    height: 76,
-    marginTop: 11,
-    marginLeft: 8
+    fontSize: 16,
+    marginLeft: 10
   },
   viewAllGroupRow: {
     height: 104,
     flexDirection: "row",
     marginTop: 24,
-    marginLeft: 21,
-    marginRight: 7
+    marginLeft: 11,
+    marginRight: 1
   }
 });
 
-export default ScholarshipScreen;
+export default CollegeScreen;

@@ -7,42 +7,43 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
-//import MaterialBasicFooter5 from "../components/MaterialBasicFooter5";
+
 import EntypoIcon from "react-native-vector-icons/Entypo";
 
 function MajorScreen(props) {
   return (
     <View style={styles.container}>
       <StatusBar hidden />
-      <Text style={styles.category}>Category</Text>
-      <Text style={styles.recommend}>Recommend</Text>
-      <View style={styles.scrollArea}>
-        <ScrollView
-          horizontal={true}
-          contentContainerStyle={styles.scrollArea_contentContainerStyle}
-        >
-          <View style={styles.buttonRow}>
-            <TouchableOpacity style={styles.button}>
-              <View style={styles.rect}>
-                <Text style={styles.artsAndHumanities}>
-                  Arts{"\n"}and{"\n"}Humanities
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button2}>
-              <View style={styles.rect1}>
-                <Text style={styles.artsAndHumanities1}>
-                  Science,{"\n"}Math, and{"\n"}Technology
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button3}>
-              <View style={styles.rect2}>
-                <Text style={styles.buiness}>Buiness</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button6}>
-              <TouchableOpacity style={styles.button6}>
+     
+      {/* Catagory Text & ScrollView belont to categoryGroup */}
+      <View style={styles.categoryGroup}>
+        <Text style={styles.category}>Category</Text>
+        <View style={styles.scrollArea}>
+          <ScrollView
+            horizontal={true}
+            contentContainerStyle={styles.scrollArea_contentContainerStyle}
+          >
+            <View style={styles.aHGroupRow}>
+              <TouchableOpacity style={styles.aHGroup}>
+                <View style={styles.rect}>
+                  <Text style={styles.artsAndHumanities}>
+                    Arts{"\n"}and{"\n"}Humanities
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.sMTGroup}>
+                <View style={styles.rect1}>
+                  <Text style={styles.artsAndHumanities1}>
+                    Science,{"\n"}Math, and{"\n"}Technology
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buineGroup}>
+                <View style={styles.rect2}>
+                  <Text style={styles.buiness}>Buiness</Text>
+                </View>
+              </TouchableOpacity>
+              <View style={styles.viewAllCataGroup}>
                 <View style={styles.rect5}>
                   <EntypoIcon
                     name="arrow-with-circle-right"
@@ -50,29 +51,37 @@ function MajorScreen(props) {
                   ></EntypoIcon>
                   <Text style={styles.viewAll1}>View All</Text>
                 </View>
-              </TouchableOpacity>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-      </View>
-      <View style={styles.button5Row}>
-        <TouchableOpacity style={styles.button5}>
-          <View style={styles.rect3}>
-            <EntypoIcon
-              name="arrow-with-circle-right"
-              style={styles.icon}
-            ></EntypoIcon>
-            <Text style={styles.viewAll}>View All</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button4}>
-          <View style={styles.rect4}>
-            <View style={styles.recentViewStack}>
-              <Text style={styles.recentView}>Recent{"\n"}View</Text>
-              <EntypoIcon name="back-in-time" style={styles.icon1}></EntypoIcon>
+              </View>
             </View>
-          </View>
-        </TouchableOpacity>
+          </ScrollView>
+        </View>
+      </View>
+
+      {/* Recommend Text & ViewAll and Recent View button belong to recommendGroup */}
+      <View style={styles.recommendGroup}>
+        <Text style={styles.recommend}>Recommend</Text>
+        <View style={styles.viewAllGroupRow}>
+          <TouchableOpacity style={styles.viewAllGroup}>
+            <View style={styles.rect3}>
+              <EntypoIcon
+                name="arrow-with-circle-right"
+                style={styles.icon}
+              ></EntypoIcon>
+              <Text style={styles.viewAll}>View All</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.recentViewGroup}>
+            <View style={styles.rect4}>
+              <View style={styles.recentViewStack}>
+                <Text style={styles.recentView}>Recent{"\n"}View</Text>
+                <EntypoIcon
+                  name="back-in-time"
+                  style={styles.icon1}
+                ></EntypoIcon>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -87,36 +96,30 @@ const styles = StyleSheet.create({
     width: 360,
     marginTop: 684
   },
+  categoryGroup: {
+    width: 360,
+    height: 216,
+    marginTop: 20
+  },
   category: {
     fontFamily: "lemonada-700",
     color: "#4a76ff",
     height: 51,
     width: 229,
     fontSize: 30,
-    marginTop: -655,
-    marginLeft: 22
-  },
-  recommend: {
-    fontFamily: "lemonada-700",
-    color: "#4a76ff",
-    height: 51,
-    width: 229,
-    fontSize: 30,
-    marginTop: 173,
     marginLeft: 22
   },
   scrollArea: {
     width: 360,
     height: 165,
-    backgroundColor: "#ffffff",
-    marginTop: -224
+    backgroundColor: "#ffffff"
   },
   scrollArea_contentContainerStyle: {
     width: 540,
     height: 165,
     flexDirection: "row"
   },
-  button: {
+  aHGroup: {
     width: 117,
     height: 104,
     shadowColor: "rgba(0,0,0,1)",
@@ -142,7 +145,7 @@ const styles = StyleSheet.create({
     marginTop: 23,
     marginLeft: 16
   },
-  button2: {
+  sMTGroup: {
     width: 117,
     height: 104,
     shadowColor: "rgba(0,0,0,1)",
@@ -169,7 +172,7 @@ const styles = StyleSheet.create({
     marginTop: 23,
     marginLeft: 12
   },
-  button3: {
+  buineGroup: {
     width: 117,
     height: 104,
     shadowColor: "rgba(0,0,0,1)",
@@ -196,17 +199,10 @@ const styles = StyleSheet.create({
     marginTop: 23,
     marginLeft: 12
   },
-  button6: {
+  viewAllCataGroup: {
     width: 117,
     height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0
+    marginLeft: 18
   },
   rect5: {
     width: 117,
@@ -230,7 +226,7 @@ const styles = StyleSheet.create({
     marginTop: 3,
     marginLeft: 8
   },
-  buttonRow: {
+  aHGroupRow: {
     height: 104,
     flexDirection: "row",
     flex: 1,
@@ -238,7 +234,20 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 31
   },
-  button5: {
+  recommendGroup: {
+    width: 295,
+    height: 186,
+    marginTop: 8,
+    marginLeft: 22
+  },
+  recommend: {
+    fontFamily: "lemonada-700",
+    color: "#4a76ff",
+    height: 51,
+    width: 229,
+    fontSize: 30
+  },
+  viewAllGroup: {
     width: 117,
     height: 104,
     shadowColor: "rgba(0,0,0,1)",
@@ -271,7 +280,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 8
   },
-  button4: {
+  recentViewGroup: {
     width: 117,
     height: 104,
     shadowColor: "rgba(0,0,0,1)",
@@ -314,12 +323,11 @@ const styles = StyleSheet.create({
     marginTop: 12,
     marginLeft: 9
   },
-  button5Row: {
+  viewAllGroupRow: {
     height: 104,
     flexDirection: "row",
-    marginTop: 90,
-    marginLeft: 38,
-    marginRight: 42
+    marginTop: 31,
+    marginLeft: 15
   }
 });
 
