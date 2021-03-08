@@ -10,6 +10,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+
 
 import HomeContainer from "./components/HomeContainer";
 import SearchScreen from "./components/SearchScreen";
@@ -24,6 +26,8 @@ import ViewRecommendTbl from "./components/ViewRecommendTbl";
 import AddProfile from "./ui/AddProfile";
 import SignUpScreen from "./components/SignUpScreen";
 import ScholarshipScreen from "./components/ScholarshipScreen";
+import MajorScreen from "./components/MajorScreen";
+;;import { TouchableNativeFeedbackBase } from "react-native";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -31,7 +35,8 @@ const Stack = createStackNavigator();
 
 function LoginPage(props) {
  
-  // const navigation = useNavigation(); 
+  // const navigation = useNavigation();
+
   return (
     <View>
        {/* <Text style={styles.header}>Sign In With Your Credentials</Text>
@@ -40,6 +45,7 @@ function LoginPage(props) {
       {/* init landing page for Login Page */}
       <StatusBar hidden/>
       <TextInput
+        onChangeText = {this.handleEmail}
         placeholder="Email"
         keyboardAppearance="light"
         textBreakStrategy="simple"
@@ -48,6 +54,7 @@ function LoginPage(props) {
         style={styles.loginEmailTextBox}
       ></TextInput>
       <TextInput
+        onChangeText = {this.handlePassword}
         placeholder="Password"
         keyboardAppearance="light"
         secureTextEntry={true}
@@ -81,8 +88,8 @@ function TabScreens({ usr, navigation }) {
 
           if (route.name === "Home") {
             console.log(route);
-            iconName = focused ? "home" : "home";
-            return <FeatherIcon name="home" size={size} color={color} />;
+            iconName = focused ? "school" : "school";
+            return <Icon name="school" size={size} color={color} />;
           } else if (route.name === "Account") {
             iconName = focused ? "account-outline" : "account-outline";
             return (
@@ -93,13 +100,17 @@ function TabScreens({ usr, navigation }) {
               />
             );
           } else if (route.name === "Search") {
-            iconName = focused ? "ios-search" : "ios-search";
-            return <Ionicons name={iconName} size={size} color={color} />;
+            iconName = focused ? "bank" : "bank";
+            return <Icon name={iconName} size={size} color={color} />;
+          }
+          else if (route.name == "Major") {
+            iconName = focused ? "book-open-page-variant" : "book-open-page-variant";
+            return <Icon name = {iconName} size = {size} color = {color} />;
           }
         },
       })}
     >
-      <Tab.Screen name="Home" options={{ title: "Home" }}>
+      <Tab.Screen name="Home" options={{ title: "Scholarship" }}>
 
         {/* ScholarshipScreem component belong to first home navi */}
         {() => <ScholarshipScreen/>}
@@ -108,7 +119,13 @@ function TabScreens({ usr, navigation }) {
       <Tab.Screen
         name="Search"
         component={SearchScreen}
-        options={{ title: "Search" }}
+        options={{ title: "Scholarship" }}
+      />
+
+      <Tab.Screen
+        name="Major"
+        component={MajorScreen}
+        options={{ title: "Major"}}
       />
 
       <Tab.Screen name="Account">
@@ -128,11 +145,27 @@ export default class App extends Component {
         last_name: "",
         first_name: "",
         email: "",
+        password: "",
         photoUrl: "",
       },
     };
+    this.handleEmail = this.handleEmail.bind(this);
+    this.handlePassword = this.handlePassword.bind(this);
+    
+    
   }
-
+  handleEmail(text)
+  {
+    this.setState({
+      email: text,
+    });
+  }
+  handlePassword(text)
+  {
+    this.setState({
+      password: text,
+    });
+  }  
   signIn = async () => {
     try {
       //const result = await Google.logInAsync({
@@ -142,6 +175,9 @@ export default class App extends Component {
         // scopes: ["profile", "email"],
 
       //if (result.type === "success") {
+        //alert(this.email)
+        //alert(this.password)
+
         this.setState({
           usrProfile: {
             signedIn: true,
