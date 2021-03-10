@@ -30,7 +30,15 @@
     uwsgi dev.ini
     ```
 
-    - Access the URL: <a href="http://localhost:9090/">localhost:9090</a>
+    * Access the URL: <a href="http://localhost:9090/">localhost:9090</a>
+
+    * Flask development env:
+        ```
+        export FLASK_APP=run.py
+        export FLASK_ENV=development
+        python run.py
+        ```
+
 
 * frontend:
 

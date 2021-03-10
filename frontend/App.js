@@ -89,7 +89,7 @@ function TabScreens({ usr, navigation }) {
           let iconName;
 
           if (route.name === "Home") {
-            console.log(route);
+            // console.log(route);
             iconName = focused ? "school" : "school";
             return <Icon name="school" size={size} color={color} />;
           } else if (route.name === "Account") {

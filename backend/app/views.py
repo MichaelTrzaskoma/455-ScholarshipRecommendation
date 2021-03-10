@@ -1,15 +1,19 @@
 from werkzeug.datastructures import Authorization
 from app import app
 from flask import json, render_template, jsonify, request, make_response
+# from app.auth import authOutput
 
 
 @app.route("/")
 def index():
+    # print(authOutput)
     return render_template("public/index.html")
 
 
 
-
+@app.route("/signup")
+def signUp():
+    return render_template("public/signup.html")
 
 
 
