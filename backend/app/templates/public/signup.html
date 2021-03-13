@@ -4,11 +4,40 @@
 
 {% block main %}
 
+<script type="text/javascript">
+    function confirm() {
+        var email = document.getElementById("inputEmail").value.trim().toLowerCase();
+        var password = document.getElementById("inputPassword").value;
+        if(email == "" || password == "") {
+            alert("Please enter a value for email and password");
+            return;
+        }
+        
+        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        
+        if(!email.match(mailformat)) {
+            alert("You have entered an invalid email address!");
+            return;
+        }
+
+        if (!(password.match(/[a-z]/g) && 
+            password.match(/[A-Z]/g) && 
+            password.match(/[0-9]/g) && 
+            password.length >= 8)) {
+            alert("Your password must have 1 uppercase character, 1 lowercase character, 1 digit, and be at least 8 characters long");
+            return;
+        }
+        var link = '/thankyou'
+        window.location.href = link;
+
+    }
+</script>
 <div class="container mt-3">
   <div class="row">
     <div class="col">
-      <h5 class="text-center" style="letter-spacing: 1px">Sign up DEMO</h5>
-      <p class="text-center text-muted">You are viewing sign up page!</p>
+      <img class="rounded mx-auto d-block" height="150px" width="150px" src="/static/img/AppLogo.png" />
+      <br>
+      <h5 class="text-center" style="letter-spacing: 1px">Sign Up</h5>
       <br>
       <div class="mb-3 row">
         <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
@@ -22,8 +51,12 @@
           <input type="password" class="form-control" id="inputPassword">
         </div>
       </div>
+      <div class="mb-3 row">
+        <input class ="btn btn-primary" onclick="confirm()" type="submit" value="Register">
+      </div>
     </div>
   </div>
 </div>
 
 {% endblock %}
+

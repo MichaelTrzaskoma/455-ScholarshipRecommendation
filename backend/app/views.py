@@ -9,13 +9,13 @@ def index():
     # print(authOutput)
     return render_template("public/index.html")
 
-
-
 @app.route("/signup")
 def signUp():
     return render_template("public/signup.html")
 
-
+@app.route("/thankyou")
+def thankYou():
+    return render_template("public/thankyou.html")
 
 
 
