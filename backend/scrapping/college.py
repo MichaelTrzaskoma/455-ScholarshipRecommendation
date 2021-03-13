@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from fake_useragent import UserAgent
+import undetected_chromedriver as uc
 
 import requests
 import time
@@ -117,7 +118,7 @@ if __name__ == "__main__":
 
     ua = UserAgent()
     userAgent = ua.random
-    print(userAgent)
+    print(f"User Agent: {userAgent}")
 
     userProfile = "/home/hui/.config/google-chrome/Default"
 
@@ -126,8 +127,8 @@ if __name__ == "__main__":
     # co.headless = True
     co.add_argument("start-maximized")
     co.add_argument(f'user-agent={userAgent}')
-    co.add_experimental_option('excludeSwitches', ['enable-automation'])
-    co.add_argument('--incognito')
+    # co.add_experimental_option('excludeSwitches', ['enable-automation'])
+    # co.add_argument('--incognito')
     # co.add_argument("user-data-dir={}".format(userProfile))
     # co.add_experimental_option("excludeSwitches", ["ignore-certificate-errors", "safebrowsing-disable-download-protection", "safebrowsing-disable-auto-update", "disable-client-side-phishing-detection"])
     # co.add_argument("--hide-scrollbars")
@@ -149,23 +150,24 @@ if __name__ == "__main__":
     # fo.add_argument('--disable-extensions')
     # fo.add_argument('--disable-infobars')
 
-    capabilities = {
-        'useAutomationExtension': False
-    }
+    # capabilities = {
+    #     'useAutomationExtension': False
+    # }
 
     global driver
     DRIVER_PATH = "./chromedriver_v88_2"
-    driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=co)
+    # driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=co)
+    driver = uc.Chrome(options=co)
 
-    driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
-        "source": """
-        Object.defineProperty(navigator, 'webdriver', {
-          get: () => undefined
-        })
-      """
-    })
+    # driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+    #     "source": """
+    #     Object.defineProperty(navigator, 'webdriver', {
+    #       get: () => undefined
+    #     })
+    #   """
+    # })
 
-    driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+    # driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 
     # driver = webdriver.Firefox(firefox_profile=fp, options=fo)
 

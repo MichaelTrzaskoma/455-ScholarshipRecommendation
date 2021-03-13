@@ -92,7 +92,8 @@ function ScholarshipScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#ffffff"
   },
   materialBasicFooter1: {
     width: 360,
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   category: {
-    fontFamily: "lemonada-700",
+    
     color: "#4a76ff",
     fontSize: 30,
     width: 177,
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#e9ebe9"
   },
   academicMajor: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 37,
     width: 99,
@@ -177,7 +178,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#e9ebe9"
   },
   gpa: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 18,
     width: 49,
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#e9ebe9"
   },
   age: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 23,
     width: 49,
@@ -231,7 +232,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#e9ebe9"
   },
   artisticAbility: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 34,
     width: 76,
@@ -266,7 +267,7 @@ const styles = StyleSheet.create({
     marginLeft: 49
   },
   viewAll1: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 21,
     width: 79,
@@ -289,7 +290,7 @@ const styles = StyleSheet.create({
     marginLeft: 18
   },
   recommend: {
-    fontFamily: "lemonada-700",
+    
     color: "#4a76ff",
     height: 48,
     width: 309,
@@ -323,7 +324,7 @@ const styles = StyleSheet.create({
     marginLeft: 35
   },
   viewAll: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 21,
     width: 79,
@@ -362,7 +363,7 @@ const styles = StyleSheet.create({
     top: 55,
     left: 0,
     position: "absolute",
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 21,
     width: 79,

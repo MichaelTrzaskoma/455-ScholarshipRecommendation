@@ -85,7 +85,8 @@ function AccuntScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#ffffff"
   },
   materialBasicFooter1: {
     height: 56,
@@ -104,12 +105,12 @@ const styles = StyleSheet.create({
     fontSize: 140
   },
   name3: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     fontSize: 20
   },
   email3: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     fontSize: 16,
     marginTop: 21
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
     fontSize: 40
   },
   addProfileDetail1: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     fontSize: 18,
     marginLeft: 22,
@@ -192,7 +193,7 @@ const styles = StyleSheet.create({
     fontSize: 40
   },
   collegePreferences: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     fontSize: 18,
     marginLeft: 22,
@@ -231,7 +232,7 @@ const styles = StyleSheet.create({
     fontSize: 40
   },
   bookmarks: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     fontSize: 18,
     marginLeft: 22,
@@ -271,7 +272,7 @@ const styles = StyleSheet.create({
     width: 37
   },
   signOut: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     fontSize: 18,
     marginLeft: 25,
