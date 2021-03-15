@@ -33,7 +33,7 @@ global VERY
 VERY = True
 
 @app.route("/api/v1.2/test", methods=["POST", "GET"])
-def text_index():
+def T_index():
     # API TEST
     # accept: GET, POST
     # OUTPUT: return mesg string
