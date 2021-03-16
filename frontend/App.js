@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component } from "react";
-import { StyleSheet, StatusBar, TextInput, View, Image, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, TextInput, View, Image, TouchableOpacity, Text } from "react-native";
 import { AppRegistry } from "react-native";
 import "react-native-gesture-handler";
 import * as Google from "expo-google-app-auth";
@@ -12,7 +12,7 @@ import FeatherIcon from "react-native-vector-icons/Feather";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-
+import LoginScreen from "./components/LoginScreen";
 import HomeContainer from "./components/HomeContainer";
 import AccuntScreen from "./components/AccuntScreen";
 
@@ -27,9 +27,9 @@ import AddProfile from "./ui/AddProfile";
 import SignUpScreen from "./components/SignUpScreen";
 import ScholarshipScreen from "./components/ScholarshipScreen";
 import MajorScreen from "./components/MajorScreen";
-;; import { TouchableNativeFeedbackBase } from "react-native";
 import CollegeScreen from "./components/CollegeScreen";
-import { TapGestureHandler } from "react-native-gesture-handler";
+
+import { WebView } from 'react-native-webview';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -39,13 +39,14 @@ function LoginPage(props) {
 
   // const navigation = useNavigation();
 
+  function load_signUp(){
+    console.log("Pressed");
+    return <WebView source={{ uri: 'http://6b72a2f03f47.ngrok.io/' }} style={{ margin: 20 }} />;
+  }
+
   return (
     <View>
-      {/* <Text style={styles.header}>Sign In With Your Credentials</Text>
-       <Button title="Sign in" onPress={() => props.signIn()} /> */}
-
-      {/* init landing page for Login Page */}
-      <StatusBar hidden />
+      
       <TextInput
         onChangeText={props.handleEmail}
         placeholder="Email"
@@ -68,7 +69,7 @@ function LoginPage(props) {
       <TouchableOpacity style={[styles.containerLoginButton, styles.LoginSignInButton]} onPress={() => console.log(props.signIn())}>
         <Text style={styles.next}>Sign-In</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.containerLoginButton, styles.LoginSignUpButton]} onPress={() => alert("Sig")}>
+      <TouchableOpacity style={[styles.containerLoginButton, styles.LoginSignUpButton]} onPress={() => load_signUp()}>
         <Text style={styles.next}>Sign-Up</Text>
       </TouchableOpacity>
       <Image
@@ -273,7 +274,7 @@ export default class App extends Component {
     else {
       return (
         <View style={styles.container}>
-          <LoginPage signIn={this.signIn} />
+          <LoginScreen signIn={this.signIn} />
         </View>
       );
     }

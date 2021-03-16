@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, View, StatusBar, Text, TextInput } from "react-native";
+import { StyleSheet, View, Text, TextInput } from "react-native";
 import SignUpScreenButton from "./SignUpScreenButton";
 
 
 function SignUpScreen(props) {
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
       <Text style={styles.signUpPage}>Sign-Up Page</Text>
       <TextInput
         placeholder="Email Address"

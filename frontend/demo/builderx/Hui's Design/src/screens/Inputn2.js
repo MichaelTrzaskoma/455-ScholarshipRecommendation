@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  StatusBar,
   Text,
   TextInput,
   TouchableOpacity
@@ -11,7 +10,6 @@ import {
 function Inputn2(props) {
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
       <View style={styles.containerGrp1}>
         <View style={styles.containerBkground1}>
           <Text style={styles.optionalDetails}>Optional Details</Text>

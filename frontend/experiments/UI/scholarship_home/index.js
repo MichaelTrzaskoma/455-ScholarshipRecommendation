@@ -1,0 +1,1 @@
+export { default as ScholarshipScreen } from "./src/screens/ScholarshipScreen.js";

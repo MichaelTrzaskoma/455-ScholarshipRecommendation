@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  StatusBar,
   Text,
   TouchableOpacity
 } from "react-native";
@@ -14,7 +13,6 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 function AccuntScreen(props) {
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
 
       {/* UserInfo Containter Component */}
       <View style={styles.userInfoContainer}>

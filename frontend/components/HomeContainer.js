@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import firebase from "../db/firebaseDB";
+// import firebase from "../db/firebaseDB";
 import HomeCategory from "../ui/HomeCategory";
 import HomeRecommend from "../ui/HomeRecommend";
 // import firebase from "../db/firebaseDB_test";

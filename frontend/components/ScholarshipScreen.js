@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  StatusBar,
   Text,
   ScrollView,
   TouchableOpacity
@@ -13,7 +12,6 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 function ScholarshipScreen(props) {
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
       
       {/* Catagory Text & ScrollView belont to categoryGroup */}
       <View style={styles.categoryGroup}>
