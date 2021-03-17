@@ -25,10 +25,29 @@ def thankYou():
     return render_template("public/thankyou.html")
 
 
+@app.route("/api/v1.2/scholarship/view/category/general")
+def view_scholarship_generalCategory():
+    # view a list of scholarship general category
+    # OUTPUT: (list) return a list of scholarship general category
+
+    # NOTE: need an exception handler to handle when no resule is returned!
+
+    result = scholarDb.scholarDirectory.find({}, {"term": 1})
+    i = []
+    for item in result:
+        i.append(item.get("term"))
+
+    return make_response(jsonify(i), 202)
+
+
 @app.route("/api/v1.2/scholarship/view/category/<cater>")
 def view_scholarshipCategory(cater):
     # view scholarship info
+    # INPUT: (string) general category of the scholarships
     # OUTPUT: return a scholarship category's sub-category info
+
+    # NOTE: need an exception handler to handle when no resule is returned!
+
     result = list(scholarDb.scholarDirectory.find(
         {"term": cater}, {"subTerm": 1})[0].get("subTerm"))
 
@@ -39,15 +58,17 @@ def view_scholarshipCategory(cater):
 def view_scholarship_index(cater):
     # view a list of sub-category scholarship info
     # INPUT: (string) name of the category
-    # OUTPUT: (array) return a list of scholarship under a specific sub-category
-    indexing = [{}]
+    # OUTPUT: (array) return a list of dictionary of scholarship under a specific sub-category
+
+    # NOTE: need an exception handler to handle when no resule is returned!
+
+    indexing = []
     result = scholarDb.scholarships.find(
         {"terms": {'$in': [cater]}}, {"name": 1, "amount": 1, "deadline": 1})
 
     for item in result:
-        indexing["name"] = item.get("name")
-        indexing["amount"] = item.get("amount")
-        indexing["deadline"] = item.get("deadline")
+        indexing.append({"name": item.get("name"), "amount": item.get(
+            "amount"), "deadline": item.get("deadline")})
 
     return make_response(jsonify(indexing), 202)
 
@@ -57,15 +78,10 @@ def view_scholarship_single(scholarship_title):
     # get a specific scholarship info
     # INPUT: (string) scholarship title
     # OUTPUT: (key-value pair) return a key-val pair of scholarship info
-    scholarship = {
-        "name": "",
-        "amount": "",
-        "deadline": "",
-        "awards_available": "",
-        "direct_link": "",
-        "description": "",
-        "contact Info": "",
-    }
+
+    # NOTE: need an exception handler to handle when no resule is returned!
+    
+    scholarship = {}
 
     result = scholarDb.scholarships.find({"name": scholarship_title}, {
         "name": 1, "amount": 1, "deadline": 1, "awards available": 1, "direct Link": 1, "description": 1, "contact Info": 1})[0]
