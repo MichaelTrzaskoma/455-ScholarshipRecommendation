@@ -8,6 +8,7 @@ import {
   Text,
 } from 'react-native';
 import BeautyWebView from 'react-native-beauty-webview';
+import App from '../App';
 
 export default function LoginScreen(props) {
   // sign up
@@ -26,6 +27,9 @@ export default function LoginScreen(props) {
     setVisible2(true);
   }
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <View style={styles.container}>
       <View style={styles.content_container}>
@@ -36,6 +40,7 @@ export default function LoginScreen(props) {
         <View style={styles.inputGrp}>
           <View style={styles.inputEmail_container}>
             <TextInput
+              onChangeText = {(value) => setEmail(value)}
               placeholder="Email"
               keyboardAppearance="light"
               textBreakStrategy="simple"
@@ -43,10 +48,12 @@ export default function LoginScreen(props) {
               selectTextOnFocus={true}
               clearButtonMode="while-editing"
               maxLength={125}
-              style={styles.inputEmail}></TextInput>
+              style={styles.inputEmail}>  
+              </TextInput>
           </View>
           <View style={styles.inputPasswrd_container}>
             <TextInput
+              onChangeText = {(value) => setPassword(value)}
               placeholder="Password"
               keyboardAppearance="light"
               secureTextEntry={true}
@@ -55,7 +62,7 @@ export default function LoginScreen(props) {
           </View>
         </View>
         <View style={styles.btnGrp}>
-          <TouchableOpacity style={styles.loginBtn}>
+          <TouchableOpacity style={styles.loginBtn} onPress = {() => {App.signIn();}}>
             <Text style={styles.logInBtn_Txt}>Log In</Text>
           </TouchableOpacity>
           <BeautyWebView

@@ -100,20 +100,7 @@ export default class App extends Component {
         photoUrl: "",
       },
     };
-    this.handleEmail = this.handleEmail.bind(this);
-    this.handlePassword = this.handlePassword.bind(this);
-
-
-  }
-  handleEmail(text) {
-    this.setState({
-      email: text,
-    });
-  }
-  handlePassword(text) {
-    this.setState({
-      password: text,
-    });
+    
   }
   signIn = async () => {
     try {
@@ -134,7 +121,8 @@ export default class App extends Component {
           last_name: "dummyLastName",
           first_name: "dummyFirstName",
           photoUrl: "https://i.pinimg.com/originals/e9/73/46/e9734614f73b4766546ceee1d7778827.jpg",
-          email: "zkhan15@nyit.edu",
+          email: LoginScreen.email,
+          password: LoginScreen.password,
         },
       });
       //} else {
