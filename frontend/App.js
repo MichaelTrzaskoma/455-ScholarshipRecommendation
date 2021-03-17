@@ -29,58 +29,8 @@ import ScholarshipScreen from "./components/ScholarshipScreen";
 import MajorScreen from "./components/MajorScreen";
 import CollegeScreen from "./components/CollegeScreen";
 
-import { WebView } from 'react-native-webview';
-
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-//const navigation = useNavigation(); 
-
-function LoginPage(props) {
-
-  // const navigation = useNavigation();
-
-  function load_signUp(){
-    console.log("Pressed");
-    return <WebView source={{ uri: 'http://6b72a2f03f47.ngrok.io/' }} style={{ margin: 20 }} />;
-  }
-
-  return (
-    <View>
-      
-      <TextInput
-        onChangeText={props.handleEmail}
-        placeholder="Email"
-        keyboardAppearance="light"
-        textBreakStrategy="simple"
-        keyboardType="email-address"
-        selectTextOnFocus={true}
-        style={styles.loginEmailTextBox}
-      ></TextInput>
-      <TextInput
-        onChangeText={props.handlePassword}
-        placeholder="Password"
-        keyboardAppearance="light"
-        secureTextEntry={true}
-        selectTextOnFocus={true}
-        style={styles.loginPasswordTextBox}
-      ></TextInput>
-
-      {/* Sign-in & Sign-Up Login buttons */}
-      <TouchableOpacity style={[styles.containerLoginButton, styles.LoginSignInButton]} onPress={() => console.log(props.signIn())}>
-        <Text style={styles.next}>Sign-In</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={[styles.containerLoginButton, styles.LoginSignUpButton]} onPress={() => load_signUp()}>
-        <Text style={styles.next}>Sign-Up</Text>
-      </TouchableOpacity>
-      <Image
-        source={require("./images/AppLogo.png")}
-        resizeMode="contain"
-        style={styles.image}
-      ></Image>
-    </View>
-
-  );
-}
 
 function TabScreens({ usr, navigation }) {
   return (
