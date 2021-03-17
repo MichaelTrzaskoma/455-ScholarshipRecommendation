@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -7,8 +7,25 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
+import BeautyWebView from 'react-native-beauty-webview';
 
 export default function LoginScreen(props) {
+  // sign up
+  const [visible, setVisible] = useState(false);
+
+  // forgot password
+  const [visible2, setVisible2] = useState(false);
+
+  const signUpBtnHandler = () => {
+    // sign up button handler
+    setVisible(true);
+  };
+
+  const forgotPaswrdBtnHandler = () => {
+    // forgot password handler
+    setVisible2(true);
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.content_container}>
@@ -41,14 +58,30 @@ export default function LoginScreen(props) {
           <TouchableOpacity style={styles.loginBtn}>
             <Text style={styles.logInBtn_Txt}>Log In</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.forgotPasswrdBtn}>
+          <BeautyWebView
+              // Reguired for open and close
+              visible={visible2}
+              // Reguired for closing the modal
+              onPressClose={() => setVisible2(false)}
+              // use tunnel network here to local test env
+              url={'http://6b72a2f03f47.ngrok.io'}
+            />
+          <TouchableOpacity style={styles.forgotPasswrdBtn} onPress={forgotPaswrdBtnHandler}>
             <Text style={styles.forgotPasswrd_txt}>Forgot Password?</Text>
           </TouchableOpacity>
           <View style={styles.footer_divider_grp}>
             <Text style={styles.footer_divider_txt}>──────── OR ────────</Text>
           </View>
           <View style={styles.footer_container}>
-            <TouchableOpacity style={styles.signupBtn}>
+            <BeautyWebView
+              // Reguired for open and close
+              visible={visible}
+              // Reguired for closing the modal
+              onPressClose={() => setVisible(false)}
+              // use tunnel network here to local test env
+              url={'http://6b72a2f03f47.ngrok.io'}
+            />
+            <TouchableOpacity style={styles.signupBtn} onPress={signUpBtnHandler}>
               <Text style={styles.foot_txt}>Don't have an account? <Text style={styles.signUp_txt}>Sign Up</Text></Text>
             </TouchableOpacity>
           </View>
