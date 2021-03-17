@@ -62,7 +62,7 @@ export default function LoginScreen(props) {
           </View>
         </View>
         <View style={styles.btnGrp}>
-          <TouchableOpacity style={styles.loginBtn} onPress = {() => {App.signIn();}}>
+          <TouchableOpacity style={styles.loginBtn} onPress = {() => {alert(email)}}>
             <Text style={styles.logInBtn_Txt}>Log In</Text>
           </TouchableOpacity>
           <BeautyWebView
