@@ -102,7 +102,9 @@ export default class App extends Component {
     };
     
   }
-  signIn = async () => {
+
+
+  signIn = async (inputEmail, inputPassword) => {
     try {
       //const result = await Google.logInAsync({
       //androidClientId:
@@ -121,18 +123,21 @@ export default class App extends Component {
           last_name: "dummyLastName",
           first_name: "dummyFirstName",
           photoUrl: "https://i.pinimg.com/originals/e9/73/46/e9734614f73b4766546ceee1d7778827.jpg",
-          email: LoginScreen.email,
-          password: LoginScreen.password,
+          email: inputEmail,
+          password: inputPassword,
         },
       });
+      console.log(this.state.usrProfile.email);
+      console.log(this.state.usrProfile.password);
       //} else {
-      console.log("\nLog failed due to: \n", result);
+      //console.log("\nLog failed due to: \n", result);
     }
     catch (e) {
       console.log("\nError due to: \n", e);
       // console.log(type(value));
     }
   };
+  
 
   render() {
     if (this.state.usrProfile.signedIn) {

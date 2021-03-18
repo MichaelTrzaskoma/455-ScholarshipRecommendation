@@ -27,8 +27,10 @@ export default function LoginScreen(props) {
     setVisible2(true);
   }
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [inputEmail, setEmail] = useState('');
+  const [inputPassword, setPassword] = useState('');
+
+  
 
   return (
     <View style={styles.container}>
@@ -62,7 +64,7 @@ export default function LoginScreen(props) {
           </View>
         </View>
         <View style={styles.btnGrp}>
-          <TouchableOpacity style={styles.loginBtn} onPress = {() => {alert(email)}}>
+          <TouchableOpacity style={styles.loginBtn} onPress = {() => {props.signIn(inputEmail, inputPassword)}}>
             <Text style={styles.logInBtn_Txt}>Log In</Text>
           </TouchableOpacity>
           <BeautyWebView
