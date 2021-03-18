@@ -100,44 +100,33 @@ export default class App extends Component {
         photoUrl: "",
       },
     };
-    
+
   }
 
 
   signIn = async (inputEmail, inputPassword) => {
     try {
-      //const result = await Google.logInAsync({
-      //androidClientId:
-      //"117030962609-9mblopptuccmm9fqhi2uv7eeea9bk1vh.apps.googleusercontent.com",
-      // iosClientId: "<YOUR_CLIENT_ID_HERE>",
-      // scopes: ["profile", "email"],
+      if (!inputEmail == "" || !inputPassword == "") {
+        this.setState({
+          usrProfile: {
+            full_name: "dummyFUllName",
+            last_name: "dummyLastName",
+            first_name: "dummyFirstName",
+            photoUrl: "https://i.pinimg.com/originals/e9/73/46/e9734614f73b4766546ceee1d7778827.jpg",
+            email: inputEmail,
+            password: inputPassword,
+            signedIn: true,
+          },
+        });
+      }
 
-      //if (result.type === "success") {
-      //alert(this.email)
-      //alert(this.password)
-
-      this.setState({
-        usrProfile: {
-          signedIn: true,
-          full_name: "dummyFUllName",
-          last_name: "dummyLastName",
-          first_name: "dummyFirstName",
-          photoUrl: "https://i.pinimg.com/originals/e9/73/46/e9734614f73b4766546ceee1d7778827.jpg",
-          email: inputEmail,
-          password: inputPassword,
-        },
-      });
-      console.log(this.state.usrProfile.email);
-      console.log(this.state.usrProfile.password);
-      //} else {
-      //console.log("\nLog failed due to: \n", result);
     }
     catch (e) {
       console.log("\nError due to: \n", e);
       // console.log(type(value));
     }
   };
-  
+
 
   render() {
     if (this.state.usrProfile.signedIn) {
@@ -232,7 +221,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,1)"
   },
   loginEmailTextBox: {
-    
+
     color: "#121212",
     height: 37,
     width: 240,
@@ -245,7 +234,7 @@ const styles = StyleSheet.create({
     marginLeft: 65
   },
   loginPasswordTextBox: {
-    
+
     color: "#121212",
     height: 37,
     width: 240,
@@ -299,7 +288,7 @@ const styles = StyleSheet.create({
   next: {
     color: "#fff",
     fontSize: 16,
-    
+
     alignSelf: "center"
   },
 
