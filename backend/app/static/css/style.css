@@ -1,3 +1,11 @@
 body {
     background-color: #f1f1f1;
   }
+
+.container {
+    margin-top:15px;
+}
+
+.hide {
+    visibility: hidden;
+}

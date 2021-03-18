@@ -2,7 +2,7 @@ from werkzeug.datastructures import Authorization
 from app import app
 from flask import json, render_template, jsonify, request, make_response
 # from app.auth import authOutput
-
+import hashlib
 
 @app.route("/")
 def index():
@@ -13,13 +13,36 @@ def index():
 def signUp():
     return render_template("public/signup.html")
 
-@app.route("/thankyou")
+@app.route("/thankyou", methods=["POST", "GET"])
 def thankYou():
-    return render_template("public/thankyou.html")
+    if(request.method == "POST"):
+        page = request.form['pagePost']
+        if(page == "signup"):
+            email = request.form['inputEmail']
+            password = request.form['inputPassword'] 
+            #salt and hash password
+            saltedPass = password + app.config['SALT_VALUE']
+            hashPass = hashlib.md5(saltedPass.encode()).hexdigest()
+            #TODO: Try to enter new user's information into database
+             
+            #TODO: Send user back to /signup if an email conflict exists or if DB can't be reached
 
+            #TODO: Send confirmation email to user if successful
+            return render_template("public/thankyou.html")
+        else:
+            email = request.form['email']
+            print(email)
+            #TODO: Try to look up email in database
 
+            #TODO: Send user back to /forgotpassword if no email found or if DB can't be reached
 
+            #TODO: Send reset password email to user if successful 
 
+            return render_template("public/thankyou2.html")
+
+@app.route("/forgotpassword")
+def forgot():
+    return render_template("public/forgotpass.html")
 # ============================================================================================================================================
 # =================================================================  TEST  ===================================================================
 # ============================================================================================================================================
@@ -41,7 +64,6 @@ def text_index():
         return make_response(jsonify({"message": f"CSCI 455/ Spring 2021 - RESTful API test index with request method of {request.method}"}), 200)
     else:
         return make_response(jsonify({"message": f"Error due to request method of: {request.method}"}), 400)
-
 
 @app.route("/api/v1.2/test/users/<email>", methods=["POST", "GET"])
 def getUserInfo(email):
@@ -98,7 +120,6 @@ def getUserInfo(email):
     else:
         return make_response(jsonify(DEFAULT_CLIENT), 400)
 
-
 @app.route("/api/v1.2/test/resources/scholarships", methods=["GET"])
 def getAll_scholarships():
     # TEST API
@@ -115,7 +136,6 @@ def getAll_scholarships():
         return make_response(jsonify(SCHOLARSHIPS), 200)
     else:
         return make_response(f"Error due to incorrect request method of {request.method}", 400)
-
 
 @app.route("/api/v1.2/test/resources/scholarships/<cate>", methods=["GET"])
 def get_scholarship_sub(cate):
@@ -138,7 +158,6 @@ def get_scholarship_sub(cate):
     else:
         return make_response(f"Error due to incorrect request method of {request.method}", 400)
 
-
 @app.route("/api/v1.2/test/resources/scholarships/<cate>/index", methods=["GET"])
 def get_scholarship_sub_index(cate):
     # TEST API
@@ -159,7 +178,6 @@ def get_scholarship_sub_index(cate):
         return make_response(jsonify(SCHOLARSHIP), 200)
     else:
         return make_response(f"Error due to incorrect request method of {request.method}", 400)
-
 
 @app.route("/api/v1.2/test/users/<email>/college", methods=["GET"])
 def get_recom_college(email):

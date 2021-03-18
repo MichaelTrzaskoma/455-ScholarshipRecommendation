@@ -1,6 +1,6 @@
 {% extends "public/templates/public_template.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Sign Up{% endblock %}
 
 {% block main %}
 
@@ -27,9 +27,8 @@
             alert("Your password must have 1 uppercase character, 1 lowercase character, 1 digit, and be at least 8 characters long");
             return;
         }
-        var link = '/thankyou'
-        window.location.href = link;
 
+        document.getElementById("signupform").submit();
     }
 </script>
 <div class="container mt-3">
@@ -39,21 +38,24 @@
       <br>
       <h5 class="text-center" style="letter-spacing: 1px">Sign Up</h5>
       <br>
-      <div class="mb-3 row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-        <div class="col-sm-10">
-          <input type="email" class="form-control" id="inputEmail">
+      <form action="/thankyou" method="post" id="signupform">
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" name="inputEmail" id="inputEmail">
+            </div>
         </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword">
+        <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" name="inputPassword" id="inputPassword">
+            </div>
         </div>
-      </div>
-      <div class="mb-3 row">
-        <input class ="btn btn-primary" onclick="confirm()" type="submit" value="Register">
-      </div>
+        <div class="mb-3 row">
+            <input class ="btn btn-primary" onclick="confirm()" type="button" value="Register">
+        </div>
+        <input name="pagePost" id="pagePost" value="signup" class="hide">
+      </form>
     </div>
   </div>
 </div>
