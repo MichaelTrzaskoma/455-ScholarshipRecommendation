@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, ScrollView, View, Text } from "react-native";
-import firebase from "../db/firebaseDB";
+// import firebase from "../db/firebaseDB";
 
 export default class ViewScholarDetail extends React.Component {
   constructor(props) {

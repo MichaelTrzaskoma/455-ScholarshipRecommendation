@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
-import firebase from "../db/firebaseDB";
+// import firebase from "../db/firebaseDB";
 
 export default function HomeCategory(props) {
   const navigation = useNavigation();

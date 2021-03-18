@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 // import firebase from "../db/firebaseDB";
-import firebase from "../db/firebaseDB_test";
+// import firebase from "../db/firebaseDB_test";
 
 class UserDetailScreen extends Component {
   constructor() {

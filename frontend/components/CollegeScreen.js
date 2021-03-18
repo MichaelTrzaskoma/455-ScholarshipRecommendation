@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  StatusBar,
   Text,
   ScrollView,
   TouchableOpacity
@@ -13,7 +12,6 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 function CollegeScreen(props) {
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
 
       {/* Catagory Text & ScrollView belont to categoryGroup */}
       <View style={styles.categoryGroup}>
@@ -94,7 +92,7 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   category: {
-    fontFamily: "lemonada-700",
+    
     color: "#4a76ff",
     fontSize: 30,
     width: 158,
@@ -129,7 +127,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E6E6E6"
   },
   newYork: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 63,
     width: 93,
@@ -148,7 +146,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E6E6E6"
   },
   newJersey: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 63,
     width: 93,
@@ -175,7 +173,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E6E6E6"
   },
   lowa: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 63,
     width: 93,
@@ -202,7 +200,7 @@ const styles = StyleSheet.create({
     marginLeft: 46
   },
   viewAll1: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     fontSize: 16,
     marginTop: 7,
@@ -222,7 +220,7 @@ const styles = StyleSheet.create({
     marginLeft: 22
   },
   recommend: {
-    fontFamily: "lemonada-700",
+    
     color: "#4a76ff",
     fontSize: 30,
     width: 216,
@@ -254,7 +252,7 @@ const styles = StyleSheet.create({
     marginLeft: 39
   },
   viewAll: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     fontSize: 16,
     marginTop: 6,
@@ -287,7 +285,7 @@ const styles = StyleSheet.create({
     marginLeft: 33
   },
   recentView: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     fontSize: 16,
     marginLeft: 10

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  StatusBar,
   Text,
   TouchableOpacity
 } from "react-native";
@@ -13,7 +12,6 @@ import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 function AccScreen(props) {
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
       <View style={styles.rect}>
         <View style={styles.grp1}>
           <View style={styles.iconRow}>

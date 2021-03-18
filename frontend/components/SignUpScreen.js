@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, View, StatusBar, Text, TextInput } from "react-native";
+import { StyleSheet, View, Text, TextInput } from "react-native";
 import SignUpScreenButton from "./SignUpScreenButton";
 
 
 function SignUpScreen(props) {
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
       <Text style={styles.signUpPage}>Sign-Up Page</Text>
       <TextInput
         placeholder="Email Address"
@@ -43,14 +42,14 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,1)"
   },
   signUpPage: {
-    fontFamily: "lemonada-700",
+    
     color: "#4a76ff",
     fontSize: 30,
     marginTop: 85,
     marginLeft: 36
   },
   emailTextbook: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 39,
     width: 268,
@@ -60,7 +59,7 @@ const styles = StyleSheet.create({
     marginLeft: 36
   },
   usernameTextbook: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 39,
     width: 268,
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
     marginLeft: 36
   },
   newPasswordTextbook: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 39,
     width: 268,
@@ -80,7 +79,7 @@ const styles = StyleSheet.create({
     marginLeft: 36
   },
   verifyPasswordTextbook: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 39,
     width: 268,

@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
   signUp: {
     color: "#fff",
     fontSize: 16,
-    fontFamily: "roboto-700",
     alignSelf: "flex-start"
   }
 });

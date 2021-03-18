@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component } from "react";
-import { StyleSheet, StatusBar, TextInput, View, Image, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, TextInput, View, Image, TouchableOpacity, Text } from "react-native";
 import { AppRegistry } from "react-native";
 import "react-native-gesture-handler";
 import * as Google from "expo-google-app-auth";
@@ -12,7 +12,7 @@ import FeatherIcon from "react-native-vector-icons/Feather";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-
+import LoginScreen from "./components/LoginScreen";
 import HomeContainer from "./components/HomeContainer";
 import AccuntScreen from "./components/AccuntScreen";
 
@@ -27,59 +27,10 @@ import AddProfile from "./ui/AddProfile";
 import SignUpScreen from "./components/SignUpScreen";
 import ScholarshipScreen from "./components/ScholarshipScreen";
 import MajorScreen from "./components/MajorScreen";
-;;import { TouchableNativeFeedbackBase } from "react-native";
 import CollegeScreen from "./components/CollegeScreen";
-import { TapGestureHandler } from "react-native-gesture-handler";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-//const navigation = useNavigation(); 
-
-function LoginPage(props) {
- 
-  // const navigation = useNavigation();
-
-  return (
-    <View>
-       {/* <Text style={styles.header}>Sign In With Your Credentials</Text>
-       <Button title="Sign in" onPress={() => props.signIn()} /> */}
-      
-      {/* init landing page for Login Page */}
-      <StatusBar hidden/>
-      <TextInput
-        onChangeText = {this.handleEmail}
-        placeholder="Email"
-        keyboardAppearance="light"
-        textBreakStrategy="simple"
-        keyboardType="email-address"
-        selectTextOnFocus={true}
-        style={styles.loginEmailTextBox}
-      ></TextInput>
-      <TextInput
-        onChangeText = {this.handlePassword}
-        placeholder="Password"
-        keyboardAppearance="light"
-        secureTextEntry={true}
-        selectTextOnFocus={true}
-        style={styles.loginPasswordTextBox}
-      ></TextInput>
-      
-      {/* Sign-in & Sign-Up Login buttons */}
-      <TouchableOpacity style={[styles.containerLoginButton, styles.LoginSignInButton]} onPress={() => console.log(props.signIn())}>
-        <Text style={styles.next}>Sign-In</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={[styles.containerLoginButton, styles.LoginSignUpButton]} onPress={() => alert("Sig")}>
-        <Text style={styles.next}>Sign-Up</Text>
-      </TouchableOpacity>
-      <Image
-        source={require("./images/AppLogo.png")}
-        resizeMode="contain"
-        style={styles.image}
-      ></Image>
-    </View>
-
-  );
-}
 
 function TabScreens({ usr, navigation }) {
   return (
@@ -107,29 +58,29 @@ function TabScreens({ usr, navigation }) {
           }
           else if (route.name == "Major") {
             iconName = focused ? "book-open-page-variant" : "book-open-page-variant";
-            return <Icon name = {iconName} size = {size} color = {color} />;
+            return <Icon name={iconName} size={size} color={color} />;
           }
         },
       })}
     >
       <Tab.Screen name="Home" options={{ title: "Scholarship" }}>
         {/* ScholarshipScreen component belong to first Tap navi */}
-        {() => <ScholarshipScreen/>}
-      </Tab.Screen>
-      
-      <Tab.Screen name="Search" options={{ title: "College" }}>
-        {/* CollegeScreen component belong to second Tap navi */}
-        {() => <CollegeScreen/>}
+        {() => <ScholarshipScreen />}
       </Tab.Screen>
 
-      <Tab.Screen name="Major" options={{ title: "Major"}}>
+      <Tab.Screen name="Search" options={{ title: "College" }}>
+        {/* CollegeScreen component belong to second Tap navi */}
+        {() => <CollegeScreen />}
+      </Tab.Screen>
+
+      <Tab.Screen name="Major" options={{ title: "Major" }}>
         {/* MajorScreen component belong to third Tap navi */}
-        {() => <MajorScreen/>}
+        {() => <MajorScreen />}
       </Tab.Screen>
 
       <Tab.Screen name="Account">
         {/* AccountScreen component belong to fourth Tap navi */}
-        {() => <AccuntScreen/>}
+        {() => <AccuntScreen />}
       </Tab.Screen>
     </Tab.Navigator>
   );
@@ -149,53 +100,33 @@ export default class App extends Component {
         photoUrl: "",
       },
     };
-    this.handleEmail = this.handleEmail.bind(this);
-    this.handlePassword = this.handlePassword.bind(this);
-    
-    
+
   }
-  handleEmail(text)
-  {
-    this.setState({
-      email: text,
-    });
-  }
-  handlePassword(text)
-  {
-    this.setState({
-      password: text,
-    });
-  }  
-  signIn = async () => {
+
+
+  signIn = async (inputEmail, inputPassword) => {
     try {
-      //const result = await Google.logInAsync({
-        //androidClientId:
-        //"117030962609-9mblopptuccmm9fqhi2uv7eeea9bk1vh.apps.googleusercontent.com",
-        // iosClientId: "<YOUR_CLIENT_ID_HERE>",
-        // scopes: ["profile", "email"],
-
-      //if (result.type === "success") {
-        //alert(this.email)
-        //alert(this.password)
-
+      if (!inputEmail == "" || !inputPassword == "") {
         this.setState({
           usrProfile: {
-            signedIn: true,
             full_name: "dummyFUllName",
             last_name: "dummyLastName",
             first_name: "dummyFirstName",
             photoUrl: "https://i.pinimg.com/originals/e9/73/46/e9734614f73b4766546ceee1d7778827.jpg",
-            email: "zkhan15@nyit.edu",
+            email: inputEmail,
+            password: inputPassword,
+            signedIn: true,
           },
         });
-      //} else {
-        console.log("\nLog failed due to: \n", result);
       }
-     catch (e) {
+
+    }
+    catch (e) {
       console.log("\nError due to: \n", e);
       // console.log(type(value));
     }
   };
+
 
   render() {
     if (this.state.usrProfile.signedIn) {
@@ -209,73 +140,73 @@ export default class App extends Component {
             /> */}
 
             <Stack.Screen name={"Home"}>
-              {() => <TabScreens usr={this.state.usrProfile} navigation={this.props.navigation}/>}
+              {() => <TabScreens usr={this.state.usrProfile} navigation={this.props.navigation} />}
             </Stack.Screen>
 
             <Stack.Screen
               name={"SignUpScreen"}
               component={SignUpScreen}
             />
-            
+
             <Stack.Screen
               name={"InputScreen1"}
               component={InputScreen1}
               options={{ title: "Required Info" }}
             />
-            
+
             <Stack.Screen
               name={"InputScreen2"}
               component={InputScreen2}
               options={{ title: "Optional Info" }}
               initialParams={{ email: this.state.usrProfile.email }}
             />
-            
+
             <Stack.Screen
               name={"ViewSubCate"}
               component={ViewSubCate}
               // pass down the screen header bar title
               options={({ route }) => ({ title: route.params.title })}
             />
-            
+
             <Stack.Screen
               name={"ViewAllScholar"}
               component={ViewAllScholar}
               options={{ title: "Scholarship Categories" }}
             />
-            
+
             <Stack.Screen
               name={"ViewScholarTbl"}
               component={ViewScholarTbl}
               options={({ route }) => ({ title: route.params.title })}
             />
-            
+
             <Stack.Screen
               name={"ViewScholarDetail"}
               component={ViewScholarDetail}
               options={({ route }) => ({ title: route.params.title })}
             />
-          
+
             <Stack.Screen
               name={"AddProfile"}
               component={AddProfile}
               options={({ route }) => ({ title: route.params.title })}
             />
-          
+
             <Stack.Screen
               name={"ViewRecommendTbl"}
               component={ViewRecommendTbl}
               options={({ route }) => ({ title: route.params.title })}
               initialParams={{ email: this.state.usrProfile.email }}
             />
-          
+
           </Stack.Navigator>
         </NavigationContainer>
       );
-    } 
+    }
     else {
       return (
         <View style={styles.container}>
-          <LoginPage signIn={this.signIn}/>
+          <LoginScreen signIn={this.signIn} />
         </View>
       );
     }
@@ -290,7 +221,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,1)"
   },
   loginEmailTextBox: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     height: 37,
     width: 240,
@@ -303,7 +234,7 @@ const styles = StyleSheet.create({
     marginLeft: 65
   },
   loginPasswordTextBox: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     height: 37,
     width: 240,
@@ -357,11 +288,11 @@ const styles = StyleSheet.create({
   next: {
     color: "#fff",
     fontSize: 16,
-    fontFamily: "roboto-regular",
+
     alignSelf: "center"
   },
 
-  bottomNaviContainer:{
+  bottomNaviContainer: {
     backgroundColor: "#3f51b5",
     flexDirection: "row",
     alignItems: "center",
@@ -369,6 +300,6 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 0,
       height: -2
+    }
   }
-}
 });

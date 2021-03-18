@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { StyleSheet, ScrollView, ActivityIndicator, View } from "react-native";
 import { ListItem } from "react-native-elements";
 // import firebase from "../db/firebaseDB";
-import firebase from "../db/firebaseDB_test";
+// import firebase from "../db/firebaseDB_test";
 
 class UserScreen extends Component {
   constructor() {

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  StatusBar,
   Text,
   TextInput,
   TouchableOpacity
@@ -11,7 +10,6 @@ import {
 function InpuInfo1(props) {
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
       <View style={styles.container_grp}>
         <View style={styles.container_bkground}>
           <Text style={styles.requiredDetails}>Required Details</Text>

@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import firebase from "../db/firebaseDB";
+// import firebase from "../db/firebaseDB";
 
 export default class ViewScholarTbl extends React.Component {
   constructor(props) {

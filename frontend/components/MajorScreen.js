@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  StatusBar,
   Text,
   ScrollView,
   TouchableOpacity
@@ -13,7 +12,6 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 function MajorScreen(props) {
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
      
       {/* Catagory Text & ScrollView belont to categoryGroup */}
       <View style={styles.categoryGroup}>
@@ -89,7 +87,8 @@ function MajorScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#ffffff"
   },
   materialBasicFooter5: {
     height: 56,
@@ -102,7 +101,7 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   category: {
-    fontFamily: "lemonada-700",
+    
     color: "#4a76ff",
     height: 51,
     width: 229,
@@ -137,7 +136,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E6E6E6"
   },
   artsAndHumanities: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 57,
     width: 93,
@@ -164,7 +163,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E6E6E6"
   },
   artsAndHumanities1: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 57,
     width: 93,
@@ -191,7 +190,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E6E6E6"
   },
   buiness: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 57,
     width: 93,
@@ -218,7 +217,7 @@ const styles = StyleSheet.create({
     marginLeft: 49
   },
   viewAll1: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 23,
     width: 68,
@@ -241,7 +240,7 @@ const styles = StyleSheet.create({
     marginLeft: 22
   },
   recommend: {
-    fontFamily: "lemonada-700",
+    
     color: "#4a76ff",
     height: 51,
     width: 229,
@@ -273,7 +272,7 @@ const styles = StyleSheet.create({
     marginLeft: 47
   },
   viewAll: {
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 23,
     width: 68,
@@ -302,7 +301,7 @@ const styles = StyleSheet.create({
     top: 52,
     left: 0,
     position: "absolute",
-    fontFamily: "roboto-regular",
+    
     color: "#121212",
     height: 40,
     width: 68,

@@ -52,7 +52,6 @@ export default class InputScreen1 extends React.Component {
     // console.log("Input 1 Screen: " + JSON.stringify(this.props));
     return (
       <View style={styles.container}>
-        {/* <StatusBar hidden /> */}
         <View style={styles.container_grp}>
           <View style={styles.container_bkground}>
             <Text style={styles.requiredDetails}>Required Details</Text>
