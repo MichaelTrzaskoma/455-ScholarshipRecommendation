@@ -9,9 +9,7 @@ import {
   Alert,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { NavigationActions } from "react-navigation";
-// import App from "../App";
-// import { useNavigation } from '@react-navigation/native';
+import { Card } from 'react-native-elements';
 
 export default class InputScreen2 extends React.Component {
   constructor(props) {
@@ -170,18 +168,21 @@ export default class InputScreen2 extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <KeyboardAwareScrollView
+        {/* <KeyboardAwareScrollView
           enableOnAndroid
           enableAutomaticScroll
           keyboardOpeningTime={0}
           // extraHeight={Platform.select({ android: (Dimensions.get('window').height + 450 ) })}
           style={styles.AwardView}
-        >
-          <View style={styles.containerGrp1}>
-            <View style={styles.containerBkground1}>
-              <Text style={styles.optionalDetails}>Optional Details</Text>
+        > */}
+
+        <Card>
+          {/* <View style={styles.containerGrp1}>
+            <View style={styles.containerBkground1}> */}
+              {/* <Text style={styles.optionalDetails}>Optional Details</Text> */}
+              
               <View style={styles.grp1}>
-                <Text style={styles.txt_major}>Academic Major</Text>
+                <Text style={styles.txt_major}>Academic Major:</Text>
                 <TextInput
                   onChangeText={this.handleAcamajor}
                   placeholder="Major here"
@@ -189,7 +190,7 @@ export default class InputScreen2 extends React.Component {
                 ></TextInput>
               </View>
               <View style={styles.grp2}>
-                <Text style={styles.txt_race}>Race</Text>
+                <Text style={styles.txt_race}>Race:</Text>
                 <TextInput
                   onChangeText={this.handleRace}
                   placeholder="Race here"
@@ -198,7 +199,7 @@ export default class InputScreen2 extends React.Component {
                 ></TextInput>
               </View>
               <View style={styles.grp3}>
-                <Text style={styles.txt_religion}>Religion</Text>
+                <Text style={styles.txt_religion}>Religion:</Text>
                 <TextInput
                   onChangeText={this.handleReligion}
                   placeholder="Religion here"
@@ -207,7 +208,7 @@ export default class InputScreen2 extends React.Component {
                 ></TextInput>
               </View>
               <View style={styles.grp4}>
-                <Text style={styles.txt_disability}>Disabilities</Text>
+                <Text style={styles.txt_disability}>Disabilities:</Text>
                 <TextInput
                   onChangeText={this.handleDisability}
                   placeholder="Disabilities here"
@@ -216,7 +217,7 @@ export default class InputScreen2 extends React.Component {
                 ></TextInput>
               </View>
               <View style={styles.grp5}>
-                <Text style={styles.txt_testScore}>Test Score</Text>
+                <Text style={styles.txt_testScore}>Test Score:</Text>
                 <TextInput
                   onChangeText={this.handleSAT}
                   placeholder="SAT"
@@ -225,7 +226,7 @@ export default class InputScreen2 extends React.Component {
                 ></TextInput>
               </View>
               <View style={styles.grp6}>
-                <Text style={styles.txt_testScore}>Ethnicity</Text>
+                <Text style={styles.txt_testScore}>Ethnicity:</Text>
                 <TextInput
                   onChangeText={this.handleethnicity}
                   placeholder="Ethnicity here"
@@ -234,7 +235,7 @@ export default class InputScreen2 extends React.Component {
                 ></TextInput>
               </View>
               <View style={styles.grp7}>
-                <Text style={styles.txt_adres}>Residential Address</Text>
+                <Text style={styles.txt_adres}>Residential Address:</Text>
                 <TextInput
                   onChangeText={this.handleAdd01}
                   placeholder="Address Line 1"
@@ -262,9 +263,11 @@ export default class InputScreen2 extends React.Component {
                   <Text style={styles.btn_submit}>Submit</Text>
                 </TouchableOpacity>
               </View>
-            </View>
-          </View>
-        </KeyboardAwareScrollView>
+            
+            {/* </View>
+          </View> */}
+        {/* </KeyboardAwareScrollView> */}
+        </Card>
       </View>
     );
   }
@@ -295,10 +298,10 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   grp1: {
-    width: "93%",
+    width: "100%",
     height: 50,
-    marginTop: 22,
-    marginLeft: 10,
+    // marginTop: 22,
+    // marginLeft: 10,
   },
   txt_major: {
     fontWeight: "bold",
@@ -314,10 +317,10 @@ const styles = StyleSheet.create({
     marginLeft: 9,
   },
   grp2: {
-    width: "95%",
+    width: "100%",
     height: 50,
     marginTop: 20,
-    marginLeft: 10,
+    // marginLeft: 10,
   },
   txt_race: {
     fontWeight: "bold",
@@ -333,10 +336,10 @@ const styles = StyleSheet.create({
     marginLeft: 9,
   },
   grp3: {
-    width: "95%",
+    width: "100%",
     height: 50,
     marginTop: 20,
-    marginLeft: 10,
+    // marginLeft: 10,
   },
   txt_religion: {
     fontWeight: "bold",
@@ -352,10 +355,10 @@ const styles = StyleSheet.create({
     marginLeft: 9,
   },
   grp4: {
-    width: "95%",
+    width: "100%",
     height: 50,
     marginTop: 20,
-    marginLeft: 10,
+    // marginLeft: 10,
   },
   txt_disability: {
     fontWeight: "bold",
@@ -371,16 +374,16 @@ const styles = StyleSheet.create({
     marginLeft: 9,
   },
   grp5: {
-    width: "95%",
+    width: "100%",
     height: 50,
     marginTop: 20,
-    marginLeft: 10,
+    // marginLeft: 10,
   },
   grp6: {
-    width: "95%",
+    width: "100%",
     height: 50,
     marginTop: 20,
-    marginLeft: 10,
+    // marginLeft: 10,
   },
   txt_testScore: {
     fontWeight: "bold",
@@ -403,10 +406,10 @@ const styles = StyleSheet.create({
     marginLeft: 9,
   },
   grp7: {
-    width: "93%",
+    width: "100%",
     height: 120,
     marginTop: 20,
-    marginLeft: 10,
+    // marginLeft: 10,
   },
   txt_adres: {
     fontWeight: "bold",
@@ -436,10 +439,10 @@ const styles = StyleSheet.create({
     marginLeft: 9,
   },
   submit_grp: {
-    width: "93%",
+    width: "100%",
     height: 40,
     marginTop: 16,
-    marginLeft: 15,
+    // marginLeft: 15,
   },
   txt_submit: {
     width: "100%",

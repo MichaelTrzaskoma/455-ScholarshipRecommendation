@@ -47,6 +47,8 @@ export default function LoginScreen(props) {
 							keyboardType="email-address"
 							selectTextOnFocus={true}
 							clearButtonMode="while-editing"
+							clearTextOnFocus={true}
+							autoFocus={true}
 							maxLength={125}
 							style={styles.inputEmail}>
 						</TextInput>

@@ -1,1 +1,1 @@
-export { default as AccountScreen2B } from "./src/screens/AccountScreen2B.js";
+export { default as AccountScreen1 } from "./src/screens/AccountScreen1.js";

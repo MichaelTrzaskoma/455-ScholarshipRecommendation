@@ -3,21 +3,21 @@ import {
   StyleSheet,
   View,
   StatusBar,
-  Text,
-  TouchableOpacity
+  TouchableOpacity,
+  Text
 } from "react-native";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 import EntypoIcon from "react-native-vector-icons/Entypo";
-import IoniconsIcon from "react-native-vector-icons/Ionicons";
+import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
+import OcticonsIcon from "react-native-vector-icons/Octicons";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
-function AccountScreen2B(props) {
+function AccountScreen1(props) {
   return (
     <View style={styles.container}>
       <StatusBar hidden />
       <View style={styles.content_container}>
-        <View style={styles.usrInfoContainer}>
+        <TouchableOpacity style={styles.userInfoContainer}>
           <View style={styles.usrIconRow}>
             <MaterialCommunityIconsIcon
               name="account-outline"
@@ -27,12 +27,18 @@ function AccountScreen2B(props) {
               <Text style={styles.nameTxt}>Name:</Text>
               <Text style={styles.emailTxt}>Email:</Text>
             </View>
-            <View style={styles.namePlaceHolderColumn}>
-              <Text style={styles.namePlaceHolder}>Name Place Holder</Text>
+            <View style={styles.namePlaceHolderStackStack}>
+              <View style={styles.namePlaceHolderStack}>
+                <Text style={styles.namePlaceHolder}>Name Place Holder</Text>
+                <EntypoIcon
+                  name="chevron-small-right"
+                  style={styles.icon}
+                ></EntypoIcon>
+              </View>
               <Text style={styles.usrEmailTxt_display}>Email Place Holder</Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
         <View style={styles.accBtnGrp}>
           <TouchableOpacity style={styles.addScholarshipQuizBtn}>
             <View style={styles.addScholarshipQuizIconRow}>
@@ -82,10 +88,10 @@ function AccountScreen2B(props) {
           </TouchableOpacity>
           <TouchableOpacity style={styles.bookmarksBtn}>
             <View style={styles.bookmarksIconRow}>
-              <IoniconsIcon
-                name="md-bookmarks"
+              <OcticonsIcon
+                name="bookmark"
                 style={styles.bookmarksIcon}
-              ></IoniconsIcon>
+              ></OcticonsIcon>
               <Text style={styles.bookmarksTxt}>Bookmarks</Text>
             </View>
             <View style={styles.bookmarksIconRowFiller}></View>
@@ -116,17 +122,13 @@ function AccountScreen2B(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    borderTopWidth: 0,
-    justifyContent: "center"
+    flex: 1
   },
   content_container: {
     backgroundColor: "rgba(255,255,255,1)",
-    width: 360,
-    height: 740,
-    alignSelf: "center"
+    flex: 1
   },
-  usrInfoContainer: {
+  userInfoContainer: {
     height: 113,
     backgroundColor: "#e6e6e6",
     marginTop: 51
@@ -153,33 +155,51 @@ const styles = StyleSheet.create({
     marginBottom: 19
   },
   namePlaceHolder: {
+    top: 0,
+    left: 0,
+    position: "absolute",
     fontFamily: "roboto-regular",
     color: "#121212",
     height: 20,
     width: 153,
-    fontSize: 16,
-    marginLeft: 2
+    fontSize: 16
+  },
+  icon: {
+    position: "absolute",
+    color: "rgba(155,155,155,1)",
+    fontSize: 40,
+    right: 0,
+    top: 4
+  },
+  namePlaceHolderStack: {
+    top: 0,
+    left: 2,
+    width: 185,
+    height: 48,
+    position: "absolute"
   },
   usrEmailTxt_display: {
+    left: 0,
+    position: "absolute",
     fontFamily: "roboto-regular",
     color: "#121212",
     height: 20,
     width: 153,
     fontSize: 16,
-    marginTop: 10
+    top: 30
   },
-  namePlaceHolderColumn: {
-    width: 155,
+  namePlaceHolderStackStack: {
+    width: 187,
+    height: 50,
     marginLeft: 7,
-    marginTop: 17,
-    marginBottom: 20
+    marginTop: 17
   },
   usrIconRow: {
     height: 87,
     flexDirection: "row",
     marginTop: 13,
     marginLeft: 15,
-    marginRight: 38
+    marginRight: 6
   },
   accBtnGrp: {
     height: 282,
@@ -188,7 +208,6 @@ const styles = StyleSheet.create({
   addScholarshipQuizBtn: {
     height: 50,
     backgroundColor: "rgba(230, 230, 230,1)",
-    borderBottomWidth: 0,
     flexDirection: "row"
   },
   addScholarshipQuizIcon: {
@@ -236,7 +255,7 @@ const styles = StyleSheet.create({
     color: "#121212",
     fontSize: 16,
     marginLeft: 15,
-    marginTop: 6
+    marginTop: 7
   },
   addCollegeQuizIconRow: {
     height: 35,
@@ -298,22 +317,20 @@ const styles = StyleSheet.create({
   },
   bookmarksIcon: {
     color: "rgba(48,132,188,1)",
-    fontSize: 35,
-    width: 26,
-    height: 38
+    fontSize: 30
   },
   bookmarksTxt: {
     fontFamily: "roboto-regular",
     color: "#121212",
     fontSize: 16,
-    marginLeft: 24,
-    marginTop: 8
+    marginLeft: 15,
+    marginTop: 7
   },
   bookmarksIconRow: {
-    height: 38,
+    height: 33,
     flexDirection: "row",
     marginLeft: 15,
-    marginTop: 8
+    marginTop: 9
   },
   bookmarksIconRowFiller: {
     flex: 1,
@@ -360,4 +377,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AccountScreen2B;
+export default AccountScreen1;

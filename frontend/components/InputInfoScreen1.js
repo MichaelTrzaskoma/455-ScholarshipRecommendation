@@ -54,8 +54,9 @@ export default class InputScreen1 extends React.Component {
 		// console.log("Input 1 Screen: " + JSON.stringify(this.props));
 		return (
 			<View style={styles.container}>
-				<Card title="Required Information" elevation={7}>
-					<Text style={styles.requiredDetails}>Required Details</Text>
+				<Card elevation={7}>
+					{/* <Card.Title>Required Information</Card.Title> */}
+					{/* <Text style={styles.requiredDetails}>Required Details</Text> */}
 					<View style={styles.input1_grp}>
 						<Text style={styles.txt_gender}>Gender</Text>
 						<TextInput
@@ -126,10 +127,10 @@ const styles = StyleSheet.create({
 		marginLeft: 20,
 	},
 	input1_grp: {
-		width: "93%",
+		width: "100%",
 		height: 50,
-		marginTop: 37,
-		marginLeft: 10,
+		// marginTop: 37,
+		// marginLeft: 10,
 	},
 	txt_gender: {
 		fontWeight: "bold",
@@ -145,10 +146,9 @@ const styles = StyleSheet.create({
 		marginLeft: 9,
 	},
 	input2_grp: {
-		width: "93%",
+		width: "100%",
 		height: 50,
 		marginTop: 15,
-		marginLeft: 10,
 	},
 	txt_dob: {
 		fontWeight: "bold",
@@ -164,10 +164,10 @@ const styles = StyleSheet.create({
 		marginLeft: 9,
 	},
 	input3_grp: {
-		width: "93%",
+		width: "100%",
 		height: 50,
 		marginTop: 15,
-		marginLeft: 10,
+		// marginLeft: 10,
 	},
 	txt_zip: {
 		fontWeight: "bold",
@@ -183,10 +183,10 @@ const styles = StyleSheet.create({
 		marginLeft: 9,
 	},
 	input4_grp: {
-		width: "93%",
+		width: "100%",
 		height: 50,
 		marginTop: 15,
-		marginLeft: 10,
+		// marginLeft: 10,
 	},
 	txt_gpa: {
 		fontWeight: "bold",
@@ -202,10 +202,10 @@ const styles = StyleSheet.create({
 		marginLeft: 9,
 	},
 	submit_grp: {
-		width: "93%",
+		width: "100%",
 		height: 40,
 		marginTop: 20,
-		marginLeft: 15,
+		// marginLeft: 15,
 	},
 	btn_submit: {
 		width: "100%",

@@ -31,9 +31,9 @@ export default function AccScreen2({ usrInfo }) {
 					</View>
 				</View>
 				<View style={styles.accBtnGrp}>
-					<AddProfile emailer={usrInfo.email} />
-
-
+				<AddProfile emailer={usrInfo.email} />
+					
+					
 					<TouchableOpacity style={styles.addCollegeQuizBtn}>
 						<View style={styles.addCollegeQuizIconRow}>
 							<MaterialIconsIcon

@@ -84,7 +84,10 @@ def view_scholarshipCategory(cater):
 def view_scholarship_index(cater):
     # view a list of sub-category scholarship info
     # INPUT: (string) name of the category
-    # OUTPUT: (array) return a list of dictionary of scholarship under a specific sub-category
+    # OUTPUT - (array) return a list of dictionary of scholarship under a specific sub-category
+    # :amount (string) scholarship amount
+    # :deadline (string) date of the scholarships/ 'Deadline Varies'
+    # :name: (string) title of the scholarships
 
     # NOTE: need an exception handler to handle when no resule is returned!
 
