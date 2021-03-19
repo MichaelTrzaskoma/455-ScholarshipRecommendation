@@ -2,88 +2,171 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
+  StatusBar,
   Text,
   ScrollView,
   TouchableOpacity
 } from "react-native";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import FeatherIcon from "react-native-vector-icons/Feather";
+import IoniconsIcon from "react-native-vector-icons/Ionicons";
 
-import EntypoIcon from "react-native-vector-icons/Entypo";
-
-function ScholarshipScreen({usrInfo}) {
-
-  // console.log(usrInfo)
+function ScholarshipScreen(props) {
   return (
     <View style={styles.container}>
-      
-      {/* Catagory Text & ScrollView belont to categoryGroup */}
-      <View style={styles.categoryGroup}>
-        <Text style={styles.category}>Category</Text>
-        <View style={styles.scrollArea}>
-          <ScrollView
-            horizontal={true}
-            contentContainerStyle={styles.scrollArea_contentContainerStyle}
-          >
-            <View style={styles.aMGroupRow}>
-              <TouchableOpacity style={styles.aMGroup}>
-                <TouchableOpacity style={styles.button}>
-                  <Text style={styles.academicMajor}>Academic{"\n"}Major</Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.gPAGroup}>
-                <TouchableOpacity style={styles.button1}>
-                  <Text style={styles.gpa}>GPA</Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.ageGroup}>
-                <TouchableOpacity style={styles.button2}>
-                  <Text style={styles.age}>Age</Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.aAGroup}>
-                <TouchableOpacity style={styles.button3}>
-                  <Text style={styles.artisticAbility}>
-                    Artistic{"\n"}Ability
-                  </Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.viewAllCataGroup}>
-                <View style={styles.rect2}>
-                  <EntypoIcon
-                    name="arrow-with-circle-right"
-                    style={styles.icon2}
-                  ></EntypoIcon>
-                  <Text style={styles.viewAll1}>View All</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </ScrollView>
-        </View>
-      </View>
+      <StatusBar hidden />
 
-       {/* Recommend Text & ViewAll and Recent View button belong to recommendGroup */}
-      <View style={styles.recommendGroup}>
-        <Text style={styles.recommend}>Recommend</Text>
-        <View style={styles.viewAllGroupRow}>
-          <TouchableOpacity style={styles.viewAllGroup}>
-            <View style={styles.rect}>
-              <EntypoIcon
-                name="arrow-with-circle-right"
-                style={styles.icon}
-              ></EntypoIcon>
-              <Text style={styles.viewAll}>View All</Text>
+      {/* This is a group which embrace whole category, recommend, and recent view scroll view*/}
+      <View style={styles.scholarContainerGrp}>
+
+        {/* This is a group that contain the category scroll view */}
+        <View style={styles.scholarCategoryContainer}>
+          <View style={styles.categoryGrp}>
+            <Text style={styles.categoryTxt}>Category</Text>
+            <View style={styles.scrollArea2}>
+              <ScrollView
+                horizontal={true}
+                contentContainerStyle={styles.scrollArea2_contentContainerStyle}
+              >
+                <View style={styles.amBtnRow}>
+                  <TouchableOpacity style={styles.amBtn}>
+                    <FontAwesomeIcon
+                      name="university"
+                      style={styles.amIcon}
+                    ></FontAwesomeIcon>
+                    <View style={styles.amIconFiller}></View>
+                    <Text style={styles.amTxt}>Academic{"\n"}Major</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.gpaBtn}>
+                    <MaterialCommunityIconsIcon
+                      name="google-spreadsheet"
+                      style={styles.gpaIcon}
+                    ></MaterialCommunityIconsIcon>
+                    <View style={styles.gpaIconFiller}></View>
+                    <Text style={styles.gpaTxt}>GPA</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.ageBtn}>
+                    <FeatherIcon
+                      name="target"
+                      style={styles.ageIcon}
+                    ></FeatherIcon>
+                    <View style={styles.ageIconFiller}></View>
+                    <Text style={styles.ageTxt}>Age</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.stateBtn}>
+                    <MaterialCommunityIconsIcon
+                      name="city-variant-outline"
+                      style={styles.stateIcon}
+                    ></MaterialCommunityIconsIcon>
+                    <View style={styles.stateIconFiller}></View>
+                    <Text style={styles.stateTxt}>State</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.deadlineBtn}>
+                    <FontAwesomeIcon
+                      name="calendar"
+                      style={styles.deadlineIcon}
+                    ></FontAwesomeIcon>
+                    <View style={styles.deadlineIconFiller}></View>
+                    <Text style={styles.deadlineTxt}>Deadline</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.viewAllBtn1}>
+                    <IoniconsIcon
+                      name="ios-arrow-dropright-circle"
+                      style={styles.viewAllIcon1}
+                    ></IoniconsIcon>
+                    <View style={styles.viewAllIcon1Filler}></View>
+                    <Text style={styles.viewAllTxt1}>View All</Text>
+                  </TouchableOpacity>
+                </View>
+              </ScrollView>
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.recentViewGroup}>
-            <View style={styles.rect1}>
-              <View style={styles.icon1Stack}>
-                <EntypoIcon
-                  name="back-in-time"
-                  style={styles.icon1}
-                ></EntypoIcon>
-                <Text style={styles.recentView}>Recent View</Text>
+          </View>
+        </View>
+
+        {/* This is a group that contain the recommend scroll view */}
+        <View style={styles.scholarRecommendContainerStack}>
+          <View style={styles.scholarRecommendContainer}>
+            <View style={styles.recommendGrp}>
+              <Text style={styles.recommendTxt}>Recommend</Text>
+              <View style={styles.customContainer}>
+                <TouchableOpacity style={styles.customBtn}>
+                  <IoniconsIcon
+                    name="ios-arrow-dropright-circle"
+                    style={styles.customIcon}
+                  ></IoniconsIcon>
+                  <View style={styles.customIconFiller}></View>
+                  <Text style={styles.customTxt}>Custom View</Text>
+                </TouchableOpacity>
               </View>
             </View>
-          </TouchableOpacity>
+          </View>
+
+           {/* This is a group that contain the recent viewed scroll view */}
+          <View style={styles.scholarRecentContainer}>
+            <View style={styles.recentGrp}>
+              <Text style={styles.recentTxt}>Recent Viewed</Text>
+              <View style={styles.scrollArea1}>
+                <ScrollView
+                  horizontal={true}
+                  contentContainerStyle={
+                    styles.scrollArea1_contentContainerStyle
+                  }
+                >
+                  <View style={styles.rvBtn1Row}>
+                    <TouchableOpacity style={styles.rvBtn1}>
+                      <MaterialCommunityIconsIcon
+                        name="table-of-contents"
+                        style={styles.rvIcon1}
+                      ></MaterialCommunityIconsIcon>
+                      <View style={styles.rvIcon1Filler}></View>
+                      <Text style={styles.rvTxt1}>Place{"\n"}Holder 1</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.rvBtn2}>
+                      <MaterialCommunityIconsIcon
+                        name="table-of-contents"
+                        style={styles.rvIcon2}
+                      ></MaterialCommunityIconsIcon>
+                      <View style={styles.rvIcon2Filler}></View>
+                      <Text style={styles.rvTxt2}>Place{"\n"}Holder 2</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.rvBtn3}>
+                      <MaterialCommunityIconsIcon
+                        name="table-of-contents"
+                        style={styles.rvIcon3}
+                      ></MaterialCommunityIconsIcon>
+                      <View style={styles.rvIcon3Filler}></View>
+                      <Text style={styles.rvTxt3}>Place{"\n"}Holder 3</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.rvBtn4}>
+                      <MaterialCommunityIconsIcon
+                        name="table-of-contents"
+                        style={styles.rvIcon4}
+                      ></MaterialCommunityIconsIcon>
+                      <View style={styles.rvIcon4Filler}></View>
+                      <Text style={styles.rvTxt4}>Place{"\n"}Holder 4</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.rvBtn5}>
+                      <MaterialCommunityIconsIcon
+                        name="table-of-contents"
+                        style={styles.rvIcon5}
+                      ></MaterialCommunityIconsIcon>
+                      <View style={styles.rvIcon5Filler}></View>
+                      <Text style={styles.rvTxt5}>Place{"\n"}Holder 5</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.viewAllBtn2}>
+                      <IoniconsIcon
+                        name="ios-arrow-dropright-circle"
+                        style={styles.viewAllIcon2}
+                      ></IoniconsIcon>
+                      <View style={styles.viewAllIcon2Filler}></View>
+                      <Text style={styles.viewAllTxt2}>View All</Text>
+                    </TouchableOpacity>
+                  </View>
+                </ScrollView>
+              </View>
+            </View>
+          </View>
         </View>
       </View>
     </View>
@@ -92,295 +175,487 @@ function ScholarshipScreen({usrInfo}) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#ffffff"
+    flex: 1
   },
-  materialBasicFooter1: {
-    width: 360,
-    height: 56,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    backgroundColor: "#3f51b5",
-    marginTop: 684
+  scholarContainerGrp: {
+    flex: 1
   },
-  categoryGroup: {
-    width: 360,
-    height: 223,
-    marginTop: 20
+  scholarCategoryContainer: {
+    height: 173,
+    justifyContent: "center"
   },
-  category: {
-    
+  categoryGrp: {
+    width: 332,
+    height: 167,
+    alignSelf: "center"
+  },
+  categoryTxt: {
+    fontFamily: "lemonada-700",
     color: "#4a76ff",
     fontSize: 30,
     width: 177,
-    height: 35,
-    marginLeft: 18
+    height: 35
   },
-  scrollArea: {
-    width: 360,
-    height: 168,
-    backgroundColor: "#ffffff",
-    marginTop: 20
+  scrollArea2: {
+    width: 332,
+    height: 123,
+    marginTop: 4
   },
-  scrollArea_contentContainerStyle: {
-    width: 657,
-    height: 168,
+  scrollArea2_contentContainerStyle: {
+    width: 720,
+    height: 123,
     flexDirection: "row"
   },
-  aMGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0
+  amBtn: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)"
   },
-  button: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#e9ebe9"
-  },
-  academicMajor: {
-    
-    color: "#121212",
-    height: 37,
-    width: 99,
-    fontSize: 16,
-    marginTop: 15,
-    marginLeft: 9
-  },
-  gPAGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0,
-    marginLeft: 17
-  },
-  button1: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#e9ebe9"
-  },
-  gpa: {
-    
-    color: "#121212",
-    height: 18,
-    width: 49,
-    fontSize: 16,
-    marginTop: 17,
-    marginLeft: 17
-  },
-  ageGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0,
-    marginLeft: 12
-  },
-  button2: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#e9ebe9"
-  },
-  age: {
-    
-    color: "#121212",
-    height: 23,
-    width: 49,
-    fontSize: 16,
-    marginTop: 14,
-    marginLeft: 9
-  },
-  aAGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0,
-    marginLeft: 12
-  },
-  button3: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#e9ebe9"
-  },
-  artisticAbility: {
-    
-    color: "#121212",
-    height: 34,
-    width: 76,
-    fontSize: 16,
-    marginTop: 12,
-    marginLeft: 12
-  },
-  viewAllCataGroup: {
-    width: 117,
-    height: 104,
-    marginLeft: 15
-  },
-  rect2: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#E6E6E6",
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.17,
-    shadowRadius: 0
-  },
-  icon2: {
+  amIcon: {
     color: "rgba(128,128,128,1)",
-    fontSize: 52,
-    height: 58,
-    width: 52,
-    marginTop: 12,
-    marginLeft: 49
-  },
-  viewAll1: {
-    
-    color: "#121212",
-    height: 21,
-    width: 79,
-    fontSize: 16,
-    marginTop: 8,
+    fontSize: 35,
+    marginTop: 14,
     marginLeft: 10
   },
-  aMGroupRow: {
-    height: 104,
-    flexDirection: "row",
-    flex: 1,
-    marginRight: -297,
-    marginLeft: 16,
-    marginTop: 32
+  amIconFiller: {
+    flex: 1
   },
-  recommendGroup: {
-    width: 309,
-    height: 176,
-    marginTop: 11,
-    marginLeft: 18
-  },
-  recommend: {
-    
-    color: "#4a76ff",
-    height: 48,
-    width: 309,
-    fontSize: 30
-  },
-  viewAllGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0,
-    justifyContent: "center"
-  },
-  rect: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#E6E6E6",
+  amTxt: {
+    fontFamily: "arial-regular",
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 32,
+    marginBottom: 8,
     alignSelf: "center"
   },
-  icon: {
+  gpaBtn: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  gpaIcon: {
     color: "rgba(128,128,128,1)",
-    fontSize: 52,
-    height: 58,
-    width: 52,
-    marginTop: 11,
-    marginLeft: 35
+    fontSize: 40,
+    width: 40,
+    height: 44,
+    marginTop: 10,
+    marginLeft: 10
   },
-  viewAll: {
-    
+  gpaIconFiller: {
+    flex: 1
+  },
+  gpaTxt: {
+    fontFamily: "arial-regular",
     color: "#121212",
-    height: 21,
-    width: 79,
-    fontSize: 16,
-    marginTop: 3,
-    marginLeft: 7
+    fontSize: 14,
+    width: 90,
+    height: 16,
+    marginBottom: 8,
+    alignSelf: "center"
   },
-  recentViewGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0,
-    marginLeft: 47
+  ageBtn: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
   },
-  rect1: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#E6E6E6"
-  },
-  icon1: {
-    top: 0,
-    left: 27,
-    position: "absolute",
+  ageIcon: {
     color: "rgba(128,128,128,1)",
-    fontSize: 52,
-    height: 58,
-    width: 52
+    fontSize: 35,
+    marginTop: 14,
+    marginLeft: 10
   },
-  recentView: {
-    top: 55,
-    left: 0,
-    position: "absolute",
-    
+  ageIconFiller: {
+    flex: 1
+  },
+  ageTxt: {
+    fontFamily: "arial-regular",
     color: "#121212",
-    height: 21,
-    width: 79,
-    fontSize: 16
+    fontSize: 14,
+    width: 90,
+    height: 16,
+    marginBottom: 8,
+    alignSelf: "center"
   },
-  icon1Stack: {
-    width: 79,
-    height: 76,
-    marginTop: 11,
-    marginLeft: 8
+  stateBtn: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
   },
-  viewAllGroupRow: {
-    height: 104,
+  stateIcon: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 35,
+    marginTop: 14,
+    marginLeft: 10
+  },
+  stateIconFiller: {
+    flex: 1
+  },
+  stateTxt: {
+    fontFamily: "arial-regular",
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 16,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  deadlineBtn: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  deadlineIcon: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 35,
+    marginTop: 14,
+    marginLeft: 10
+  },
+  deadlineIconFiller: {
+    flex: 1
+  },
+  deadlineTxt: {
+    fontFamily: "arial-regular",
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 16,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  viewAllBtn1: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  viewAllIcon1: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 35,
+    marginTop: 14,
+    marginLeft: 10
+  },
+  viewAllIcon1Filler: {
+    flex: 1
+  },
+  viewAllTxt1: {
+    fontFamily: "arial-regular",
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 16,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  amBtnRow: {
+    height: 110,
     flexDirection: "row",
-    marginTop: 24,
-    marginLeft: 21,
-    marginRight: 7
+    flex: 1,
+    marginRight: -388,
+    marginTop: 7
+  },
+  scholarRecommendContainer: {
+    top: 0,
+    left: 0,
+    height: 173,
+    position: "absolute",
+    right: 0,
+    justifyContent: "center"
+  },
+  recommendGrp: {
+    width: 332,
+    height: 167,
+    alignSelf: "center"
+  },
+  recommendTxt: {
+    fontFamily: "lemonada-700",
+    color: "#4a76ff",
+    fontSize: 30,
+    width: 177,
+    height: 35
+  },
+  customContainer: {
+    width: 332,
+    height: 123,
+    justifyContent: "center",
+    marginTop: 4
+  },
+  customBtn: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)"
+  },
+  customIcon: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 35,
+    marginTop: 14,
+    marginLeft: 10
+  },
+  customIconFiller: {
+    flex: 1
+  },
+  customTxt: {
+    fontFamily: "arial-regular",
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 16,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  scholarRecentContainer: {
+    top: 172,
+    left: 0,
+    height: 173,
+    position: "absolute",
+    right: 0,
+    justifyContent: "center"
+  },
+  recentGrp: {
+    width: 332,
+    height: 167,
+    alignSelf: "center"
+  },
+  recentTxt: {
+    fontFamily: "lemonada-700",
+    color: "#4a76ff",
+    fontSize: 30,
+    width: 205,
+    height: 35
+  },
+  scrollArea1: {
+    width: 332,
+    height: 123,
+    marginTop: 4
+  },
+  scrollArea1_contentContainerStyle: {
+    width: 720,
+    height: 123,
+    flexDirection: "row"
+  },
+  rvBtn1: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)"
+  },
+  rvIcon1: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 40,
+    width: 35,
+    height: 38,
+    marginTop: 10,
+    marginLeft: 10
+  },
+  rvIcon1Filler: {
+    flex: 1
+  },
+  rvTxt1: {
+    fontFamily: "arial-regular",
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 32,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  rvBtn2: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  rvIcon2: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 40,
+    marginTop: 10,
+    marginLeft: 10
+  },
+  rvIcon2Filler: {
+    flex: 1
+  },
+  rvTxt2: {
+    fontFamily: "arial-regular",
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 32,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  rvBtn3: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  rvIcon3: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 40,
+    marginTop: 10,
+    marginLeft: 10
+  },
+  rvIcon3Filler: {
+    flex: 1
+  },
+  rvTxt3: {
+    fontFamily: "arial-regular",
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 32,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  rvBtn4: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  rvIcon4: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 40,
+    marginTop: 10,
+    marginLeft: 10
+  },
+  rvIcon4Filler: {
+    flex: 1
+  },
+  rvTxt4: {
+    fontFamily: "arial-regular",
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 32,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  rvBtn5: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  rvIcon5: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 40,
+    marginTop: 10,
+    marginLeft: 10
+  },
+  rvIcon5Filler: {
+    flex: 1
+  },
+  rvTxt5: {
+    fontFamily: "arial-regular",
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 32,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  viewAllBtn2: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  viewAllIcon2: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 35,
+    marginTop: 14,
+    marginLeft: 10
+  },
+  viewAllIcon2Filler: {
+    flex: 1
+  },
+  viewAllTxt2: {
+    fontFamily: "arial-regular",
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 16,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  rvBtn1Row: {
+    height: 110,
+    flexDirection: "row",
+    flex: 1,
+    marginRight: -388,
+    marginTop: 7
+  },
+  scholarRecommendContainerStack: {
+    height: 345
   }
 });
 
