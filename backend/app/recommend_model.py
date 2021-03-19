@@ -12,9 +12,9 @@ zcdb = ZipCodeDatabase()
 db = MongoClient('localhost', 27017)
 
 scholar_ref = db.test.scholarships
-user_Ref = db.client_profile
-table_Ref = db.collection("Index Table").document("Terms")
-refList = table_Ref.get().to_dict().get('Terms')
+user_Ref = db.test.client_profile
+#table_Ref = db.collection("Index Table").document("Terms")
+#refList = table_Ref.get().to_dict().get('Terms')
 
 
 def updtUser(userEmail,
@@ -62,8 +62,8 @@ def updtUser(userEmail,
         'Address 1': address1,
         'Address 2': address2,
         'Address 3': address3,
-        'Binary': binary,
-        'Terms': list1
+        'binary': binary,
+        'terms': list1
     })
 
 
@@ -203,12 +203,16 @@ def catIndex(word):
     # Finds the index of the word based on a table generated from the driver
     # Input -> string, the word
     # output -> int, the index
+    subCatCursor = db.test.subcatlist.find(
+        {"subCat": word}, {"subCat": 1, "_id": 0})
+    refListDict = subCatCursor[0]
+    refList = refListDict.get("subCat")
     ind = refList.index(word)
     return ind
 
 
 def setBin(list):
-    binaryInitial = '0' * 807
+    binaryInitial = '0' * 810 #Changed to 810 to match scholarship binary length
     usrList = splitStr(binaryInitial)
     for i in range(len(list)):
         ind = catIndex(list[i])
@@ -263,22 +267,27 @@ def filter_results(userId):
     # For filtereing after a query is done, returns a list of id's that we can loop through to pull info of those scholarships
     # Input -> Query generator object, string user id, filtering float number
     # Output -> List of strings, these are id's that can be used to pull information
-    filterVal = 0.4
-    user = user_Ref.document(userId).get().to_dict()
-    userTerms = user.get('Terms')
-    query = scholar_ref.where(
-        u'Terms', u'array_contains_any', userTerms).stream()
+    filterVal = 0.13 #Need to do more testing for best value
+    userCursor = user_Ref[userId].find(
+        {"Email": userId}, {"_id": 0})
+    userProf = userCursor[0]
+    
+    userTerms = userProf.get('terms')
+    userBin = userProf.get('binary')
+
     filteredScholar = []
-    userBin = user.get('Binary')
-    for i in query:
-        scholarBin = i.get('Binary')
-        if binCompare(userBin, scholarBin) == True:
+
+    query = list(scholar_ref.find({'terms': userTerms[0]}).limit(500))#Need to modify for better query methodology
+    for i in range(len(query)):
+        curr_scholar = query[i]
+        scholarBin = curr_scholar.get('binary')
+        if binCompare(userBin, scholarBin) == False: #Need to change method for check set to false for now 
             value = comparison(scholarBin, userBin)
             if(value >= filterVal):
                 scholarInfo = {
-                    'ID': i.id,
-                    'Amount': i.get('Amount'),
-                    'Deadline': i.get('Deadline'),
+                    'ID': curr_scholar.get('_id'),
+                    'Amount': curr_scholar.get('Amount'),
+                    'Deadline': curr_scholar.get('Deadline'),
                     'Val': value
                 }
                 filteredScholar.append(scholarInfo)
@@ -303,7 +312,10 @@ def getInfo(scholarId):
     # Input -> String, Scholarship id
     # Output -> List, filled of the scholarship's contents
     scholarInfo = []
-    scholarDir = scholar_ref.document(scholarId).get().to_dict()
+    scholarCursor = scholar_ref.find(
+        {"_id": scholarId}, {"_id": 0})
+    scholarDir = scholarCursor[0]
+    
     scholarInfo.append(scholarDir.get('Name'))
     scholarInfo.append(scholarDir.get('Amount'))
     scholarInfo.append(scholarDir.get('Deadline'))
@@ -312,3 +324,7 @@ def getInfo(scholarId):
     scholarInfo.append(scholarDir.get('Description'))
     scholarInfo.append(scholarDir.get('Contact Info'))
     return scholarInfo
+
+  
+  #Test run of compare 
+  print(filter_results('hchen60@nyit.edu'))
