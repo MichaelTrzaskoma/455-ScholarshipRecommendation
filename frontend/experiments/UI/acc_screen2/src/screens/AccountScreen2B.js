@@ -9,10 +9,10 @@ import {
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 import EntypoIcon from "react-native-vector-icons/Entypo";
-import OcticonsIcon from "react-native-vector-icons/Octicons";
+import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
-function AccountScreen1(props) {
+function AccountScreen2B(props) {
   return (
     <View style={styles.container}>
       <StatusBar hidden />
@@ -82,10 +82,10 @@ function AccountScreen1(props) {
           </TouchableOpacity>
           <TouchableOpacity style={styles.bookmarksBtn}>
             <View style={styles.bookmarksIconRow}>
-              <OcticonsIcon
-                name="bookmark"
+              <IoniconsIcon
+                name="md-bookmarks"
                 style={styles.bookmarksIcon}
-              ></OcticonsIcon>
+              ></IoniconsIcon>
               <Text style={styles.bookmarksTxt}>Bookmarks</Text>
             </View>
             <View style={styles.bookmarksIconRowFiller}></View>
@@ -116,11 +116,15 @@ function AccountScreen1(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    borderTopWidth: 0,
+    justifyContent: "center"
   },
   content_container: {
     backgroundColor: "rgba(255,255,255,1)",
-    flex: 1
+    width: 360,
+    height: 740,
+    alignSelf: "center"
   },
   usrInfoContainer: {
     height: 113,
@@ -184,6 +188,7 @@ const styles = StyleSheet.create({
   addScholarshipQuizBtn: {
     height: 50,
     backgroundColor: "rgba(230, 230, 230,1)",
+    borderBottomWidth: 0,
     flexDirection: "row"
   },
   addScholarshipQuizIcon: {
@@ -216,24 +221,28 @@ const styles = StyleSheet.create({
   addCollegeQuizBtn: {
     height: 50,
     backgroundColor: "rgba(230, 230, 230,1)",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderTopWidth: 1,
     flexDirection: "row"
   },
   addCollegeQuizIcon: {
     color: "rgba(107,164,39,1)",
-    fontSize: 35
+    fontSize: 35,
+    marginTop: -1
   },
   addCollegeQuizTxt: {
     fontFamily: "roboto-regular",
     color: "#121212",
     fontSize: 16,
     marginLeft: 15,
-    marginTop: 8
+    marginTop: 6
   },
   addCollegeQuizIconRow: {
     height: 35,
     flexDirection: "row",
     marginLeft: 15,
-    marginTop: 8
+    marginTop: 9
   },
   addCollegeQuizIconRowFiller: {
     flex: 1,
@@ -248,25 +257,28 @@ const styles = StyleSheet.create({
   addMajorQuizBtn: {
     height: 50,
     backgroundColor: "rgba(230, 230, 230,1)",
-    flexDirection: "row",
-    marginTop: 1
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderTopWidth: 1,
+    flexDirection: "row"
   },
   addMajorQuizIcon: {
     color: "rgba(107,164,39,1)",
-    fontSize: 35
+    fontSize: 35,
+    marginTop: -1
   },
   addMajorQuizTxt: {
     fontFamily: "roboto-regular",
     color: "#121212",
     fontSize: 16,
     marginLeft: 15,
-    marginTop: 8
+    marginTop: 7
   },
   addMajorQuizIconRow: {
     height: 35,
     flexDirection: "row",
     marginLeft: 15,
-    marginTop: 8
+    marginTop: 9
   },
   addMajorQuizIconRowFiller: {
     flex: 1,
@@ -282,24 +294,26 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: "rgba(230, 230, 230,1)",
     flexDirection: "row",
-    marginTop: 15
+    marginTop: 16
   },
   bookmarksIcon: {
     color: "rgba(48,132,188,1)",
-    fontSize: 30
+    fontSize: 35,
+    width: 26,
+    height: 38
   },
   bookmarksTxt: {
     fontFamily: "roboto-regular",
     color: "#121212",
     fontSize: 16,
-    marginLeft: 15,
-    marginTop: 7
+    marginLeft: 24,
+    marginTop: 8
   },
   bookmarksIconRow: {
-    height: 33,
+    height: 38,
     flexDirection: "row",
     marginLeft: 15,
-    marginTop: 9
+    marginTop: 8
   },
   bookmarksIconRowFiller: {
     flex: 1,
@@ -315,7 +329,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: "rgba(230, 230, 230,1)",
     flexDirection: "row",
-    marginTop: 15
+    marginTop: 16
   },
   signOutIcon: {
     color: "rgba(236,78,96,1)",
@@ -346,4 +360,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AccountScreen1;
+export default AccountScreen2B;
