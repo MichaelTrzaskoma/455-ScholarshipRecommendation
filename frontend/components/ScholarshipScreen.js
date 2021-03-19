@@ -9,86 +9,25 @@ import {
 } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import FeatherIcon from 'react-native-vector-icons/Feather';
-import IoniconsIcon from 'react-native-vector-icons/Ionicons';
+
+import ScholarCategory from "../ui/ScholarCategory";
+import ScholarRecommend from '../ui/ScholarRecommend';
 
 function ScholarshipScreen(props) {
   return (
     <View style={styles.container}>
+
+
       <View style={styles.container_grp}>
-        <View style={styles.category_container}>
-          <View style={styles.categoryGrp}>
-            <Text style={styles.category_txt}>Category</Text>
-            <View style={styles.scrollArea}>
-              <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.scrollArea_contentContainerStyle}>
-                <View style={styles.amGrpRow}>
-                  <TouchableOpacity style={styles.amGrp}>
-                    <FontAwesomeIcon
-                      name="university"
-                      style={styles.gridItemIcon}></FontAwesomeIcon>
-                    <View style={styles.gridItemIconFiller}></View>
-                    <Text style={styles.gridItemTxt_2lines}>
-                      Academic{'\n'}Major
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.gridItemBtn}>
-                    <MaterialCommunityIconsIcon
-                      name="google-spreadsheet"
-                      style={styles.gpa_icon}></MaterialCommunityIconsIcon>
-                    <View style={styles.gridItemIconFiller}></View>
-                    <Text style={styles.gridItemTxt_1line}>GPA</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.gridItemBtn}>
-                    <FeatherIcon
-                      name="target"
-                      style={styles.gridItemIcon}></FeatherIcon>
-                    <View style={styles.gridItemIconFiller}></View>
-                    <Text style={styles.gridItemTxt_1line}>Age</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.gridItemBtn}>
-                    <MaterialCommunityIconsIcon
-                      name="city-variant-outline"
-                      style={styles.gridItemIcon}></MaterialCommunityIconsIcon>
-                    <View style={styles.gridItemIconFiller}></View>
-                    <Text style={styles.gridItemTxt_1line}>State</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.gridItemBtn}>
-                    <FontAwesomeIcon
-                      name="calendar"
-                      style={styles.gridItemIcon}></FontAwesomeIcon>
-                    <View style={styles.gridItemIconFiller}></View>
-                    <Text style={styles.gridItemTxt_1line}>Deadline</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.gridItemBtn}>
-                    <FontAwesomeIcon
-                      name="arrow-circle-right"
-                      style={styles.gridItemIcon}></FontAwesomeIcon>
-                    <View style={styles.gridItemIconFiller}></View>
-                    <Text style={styles.gridItemTxt_1line}>View All</Text>
-                  </TouchableOpacity>
-                </View>
-              </ScrollView>
-            </View>
-          </View>
-        </View>
+        
+        {/* Scholarship Category */}
+        <ScholarCategory/>
+        
         <View style={styles.recommendGrpStack}>
-          <View style={styles.recommendGrp}>
-            <View style={styles.rect2}>
-              <Text style={styles.recommendTxt}>Recommend</Text>
-              <View style={styles.recommendContainer}>
-                <TouchableOpacity style={styles.recommendBtn}>
-                  <FontAwesomeIcon
-                    name="arrow-circle-right"
-                    style={styles.gridItemIcon}></FontAwesomeIcon>
-                  <View style={styles.gridItemIconFiller}></View>
-                  <Text style={styles.gridItemTxt_1line}>Custom View</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
+          
+         {/* Scholarship Recommend */}
+         <ScholarRecommend/>
+
           <View style={styles.recent_container}>
             <View style={styles.recentGrp}>
               <Text style={styles.recentTxt}>Recent Viewed</Text>
@@ -370,7 +309,7 @@ const styles = StyleSheet.create({
   recommendGrpStack: {
     height: 345,
     width: '100%',
-  },
+  }
 });
 
 export default ScholarshipScreen;
