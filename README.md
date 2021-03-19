@@ -7,10 +7,15 @@
 
 ---
 
-<br>
+## Project File Structure
 
-* backend - all necessary files for the Flask
+* backend - all necessary files for the backend and cloud (AWS)
 * frontend - all necessary files for the React Native
+* db - all databases needed for the project
+    * scholarDirectory - categorical scholarship term
+    * scholarships - detailed scholarships
+    * subcatList - a list of scholarship sub-category
+
 
 ## Get Started
 
