@@ -1,20 +1,18 @@
-import React, { useState, useEffect, Component } from "react";
-import { StyleSheet, TextInput, View, Image, TouchableOpacity, Text } from "react-native";
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
 import { AppRegistry } from "react-native";
 import "react-native-gesture-handler";
-import * as Google from "expo-google-app-auth";
 import { NavigationContainer } from "@react-navigation/native";
-// import { useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Ionicons } from "@expo/vector-icons";
-import FeatherIcon from "react-native-vector-icons/Feather";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import LoginScreen from "./components/LoginScreen";
 import HomeContainer from "./components/HomeContainer";
-import AccuntScreen from "./components/AccuntScreen";
+import AccScreen from "./components/AccScreen2";
+// for account screen style 2, pls use the following
+// import InputScreen2 from "./components/InputInfoScreen2";
 
 import InputScreen1 from "./components/InputInfoScreen1";
 import InputScreen2 from "./components/InputInfoScreen2";
@@ -24,7 +22,6 @@ import ViewScholarTbl from "./components/ViewScholarTbl";
 import ViewScholarDetail from "./components/ViewScholarDetail";
 import ViewRecommendTbl from "./components/ViewRecommendTbl";
 import AddProfile from "./ui/AddProfile";
-import SignUpScreen from "./components/SignUpScreen";
 import ScholarshipScreen from "./components/ScholarshipScreen";
 import MajorScreen from "./components/MajorScreen";
 import CollegeScreen from "./components/CollegeScreen";
@@ -65,7 +62,7 @@ function TabScreens({ usr, navigation }) {
     >
       <Tab.Screen name="Home" options={{ title: "Scholarship" }}>
         {/* ScholarshipScreen component belong to first Tap navi */}
-        {() => <ScholarshipScreen />}
+        {() => <ScholarshipScreen usrInfo={usr}/>}
       </Tab.Screen>
 
       <Tab.Screen name="Search" options={{ title: "College" }}>
@@ -78,9 +75,9 @@ function TabScreens({ usr, navigation }) {
         {() => <MajorScreen />}
       </Tab.Screen>
 
-      <Tab.Screen name="Account">
+      <Tab.Screen name="Account" options={{ title: "Account" }}>
         {/* AccountScreen component belong to fourth Tap navi */}
-        {() => <AccuntScreen />}
+        {() => <AccScreen usrInfo={usr}/>}
       </Tab.Screen>
     </Tab.Navigator>
   );
@@ -104,9 +101,9 @@ export default class App extends Component {
   }
 
 
-  signIn = async (inputEmail, inputPassword) => {
+  signIn = (inputEmail, inputPassword) => {
     try {
-      if (!inputEmail == "" || !inputPassword == "") {
+      if (!inputEmail == "" && !inputPassword == "") {
         this.setState({
           usrProfile: {
             full_name: "dummyFUllName",
@@ -118,6 +115,8 @@ export default class App extends Component {
             signedIn: true,
           },
         });
+      } else {
+        alert("Please input your email or password!");
       }
 
     }
@@ -134,19 +133,9 @@ export default class App extends Component {
         <NavigationContainer>
           <Stack.Navigator>
 
-            {/* <Stack.Screen 
-            name={"LoginPage"}
-            component={LoginPage}
-            /> */}
-
             <Stack.Screen name={"Home"}>
               {() => <TabScreens usr={this.state.usrProfile} navigation={this.props.navigation} />}
             </Stack.Screen>
-
-            <Stack.Screen
-              name={"SignUpScreen"}
-              component={SignUpScreen}
-            />
 
             <Stack.Screen
               name={"InputScreen1"}

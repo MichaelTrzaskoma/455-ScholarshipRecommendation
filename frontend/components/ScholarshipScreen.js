@@ -9,7 +9,9 @@ import {
 
 import EntypoIcon from "react-native-vector-icons/Entypo";
 
-function ScholarshipScreen(props) {
+function ScholarshipScreen({usrInfo}) {
+
+  // console.log(usrInfo)
   return (
     <View style={styles.container}>
       
