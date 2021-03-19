@@ -5,8 +5,25 @@ config.py
 **/node_modules
 node_modules/**
 
+/backend/__pycache__/**
 __pycache__/**
-
-.vscode/**
+__pycache__/**/*
+/backend/.vscode/**
 
 *.swp
+
+/frontend/node_modules/**/*
+/frontend/.expo/*
+/frontend/.vscode/**
+
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# macOS
+.DS_Store
