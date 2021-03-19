@@ -8,6 +8,7 @@ import {
 } from "react-native";
 // import InputScreen2 from "./InputInfoScreen2";
 
+import DropDownPicker from 'react-native-dropdown-picker';
 import { Card } from 'react-native-elements';
 
 export default class InputScreen1 extends React.Component {
@@ -59,11 +60,19 @@ export default class InputScreen1 extends React.Component {
 					{/* <Text style={styles.requiredDetails}>Required Details</Text> */}
 					<View style={styles.input1_grp}>
 						<Text style={styles.txt_gender}>Gender</Text>
-						<TextInput
-							onChangeText={this.handleGender}
-							placeholder="Male"
-							style={styles.input1}
-						></TextInput>
+						<DropDownPicker
+    					items={[
+        					{label: 'Male', value: 'male'},
+							{label: 'Female', value: 'female'},
+							{label: 'Non-Binary', value: 'non-binary'},
+    						]}
+    					defaultIndex={0}
+						containerStyle={{height: 30, marginTop: 8}}
+						//dropDownStyle={{marginTop: 2}}
+						//dropDownStyle={{backgroundColor: '#fafafa', borderBottomLeftRadius: 20, borderBottomRightRadius: 20}}
+						onChangeItem={item => this.handleGender(item.value)}
+						
+					/>		
 					</View>
 					<View style={styles.input2_grp}>
 						<Text style={styles.txt_dob}>Date of Birth</Text>
@@ -129,6 +138,7 @@ const styles = StyleSheet.create({
 	input1_grp: {
 		width: "100%",
 		height: 50,
+		zIndex: 1,
 		// marginTop: 37,
 		// marginLeft: 10,
 	},
