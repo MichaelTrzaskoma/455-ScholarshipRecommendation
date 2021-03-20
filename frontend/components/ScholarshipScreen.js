@@ -26,7 +26,7 @@ function ScholarshipScreen(props) {
         <View style={styles.recommendGrpStack}>
           
          {/* Scholarship Recommend */}
-         <ScholarRecommend/>
+         <ScholarRecommend email={this.state.email}/>
 
           <View style={styles.recent_container}>
             <View style={styles.recentGrp}>

@@ -9,7 +9,7 @@ import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommun
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import LoginScreen from "./components/LoginScreen";
-import HomeContainer from "./components/HomeContainer";
+// import HomeContainer from "./components/HomeContainer";
 import AccScreen from "./components/AccScreen2";
 // for account screen style 2, pls use the following
 // import InputScreen2 from "./components/InputInfoScreen2";
