@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 50,
 		// zIndex: 1,
+		position: 'relative',
 		// marginTop: 37,
 		// marginLeft: 10,
 	},
@@ -161,6 +162,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 50,
 		marginTop: 15,
+		// zIndex: -1,
 	},
 	txt_dob: {
 		fontWeight: "bold",
@@ -180,6 +182,7 @@ const styles = StyleSheet.create({
 		height: 50,
 		marginTop: 15,
 		// marginLeft: 10,
+		// zIndex: -1,
 	},
 	txt_zip: {
 		fontWeight: "bold",
@@ -199,6 +202,7 @@ const styles = StyleSheet.create({
 		height: 50,
 		marginTop: 15,
 		// marginLeft: 10,
+		// zIndex: -1,
 	},
 	txt_gpa: {
 		fontWeight: "bold",
@@ -218,6 +222,7 @@ const styles = StyleSheet.create({
 		height: 40,
 		marginTop: 20,
 		// marginLeft: 15,
+		// zIndex: -1,
 	},
 	btn_submit: {
 		width: "100%",
