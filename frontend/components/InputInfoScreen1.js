@@ -5,6 +5,7 @@ import {
 	Text,
 	TextInput,
 	TouchableOpacity,
+	Platform,
 } from "react-native";
 // import InputScreen2 from "./InputInfoScreen2";
 
@@ -140,8 +141,10 @@ const styles = StyleSheet.create({
 	input1_grp: {
 		width: "100%",
 		height: 50,
-		// zIndex: 1,
-		position: 'relative',
+		...Platform.OS !== 'android' && {
+			zIndex: 1,
+		},
+		// position: 'relative',
 		// marginTop: 37,
 		// marginLeft: 10,
 	},
