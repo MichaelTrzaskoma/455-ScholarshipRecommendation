@@ -61,18 +61,20 @@ export default class InputScreen1 extends React.Component {
 					<View style={styles.input1_grp}>
 						<Text style={styles.txt_gender}>Gender</Text>
 						<DropDownPicker
-    					items={[
-        					{label: 'Male', value: 'male'},
-							{label: 'Female', value: 'female'},
-							{label: 'Non-Binary', value: 'non-binary'},
-    						]}
-    					defaultIndex={0}
-						containerStyle={{height: 30, marginTop: 8}}
-						//dropDownStyle={{marginTop: 2}}
-						//dropDownStyle={{backgroundColor: '#fafafa', borderBottomLeftRadius: 20, borderBottomRightRadius: 20}}
-						onChangeItem={item => this.handleGender(item.value)}
-						
-					/>		
+							items={[
+								{ label: 'Male', value: 'Male' },
+								{ label: 'Female', value: 'Female' },
+								{ label: 'Transgender', value: 'Transgender' },
+								{ label: 'Other', value: 'Other' },
+							]}
+							defaultIndex={0}
+							containerStyle={{ height: 30, marginTop: 8 }}
+							itemStyle={{ justifyContent: 'flex-start' }}
+							//dropDownStyle={{marginTop: 2}}
+							//dropDownStyle={{backgroundColor: '#fafafa', borderBottomLeftRadius: 20, borderBottomRightRadius: 20}}
+							onChangeItem={item => this.handleGender(item.value)}
+
+						/>
 					</View>
 					<View style={styles.input2_grp}>
 						<Text style={styles.txt_dob}>Date of Birth</Text>
@@ -138,7 +140,7 @@ const styles = StyleSheet.create({
 	input1_grp: {
 		width: "100%",
 		height: 50,
-		zIndex: 1,
+		// zIndex: 1,
 		// marginTop: 37,
 		// marginLeft: 10,
 	},
