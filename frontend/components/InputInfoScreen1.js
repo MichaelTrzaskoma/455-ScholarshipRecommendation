@@ -9,6 +9,8 @@ import {
 } from "react-native";
 // import InputScreen2 from "./InputInfoScreen2";
 
+import DatePicker from "@dietime/react-native-date-picker";
+//import DatePicker from 'react-native-datepicker'
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Card } from 'react-native-elements';
 
@@ -78,13 +80,14 @@ export default class InputScreen1 extends React.Component {
 						/>
 					</View>
 					<View style={styles.input2_grp}>
-						<Text style={styles.txt_dob}>Date of Birth</Text>
-						<TextInput
-							onChangeText={this.handleDOB}
-							placeholder="mm/dd/yyyy"
-							// keyboardType="phone-pad"
-							style={styles.input2}
-						></TextInput>
+						<Text style={styles.txt_dob}>Date of Birth (mm-dd-yyyy)</Text>
+						<DatePicker
+						 value={"1970-01-01"}
+						 format = "mm-dd-yyyy"
+						 onChange={(value) => this.handleDOB(value)}
+						 height ={50}
+						 fontSize = {10}
+						/>
 					</View>
 					<View style={styles.input3_grp}>
 						<Text style={styles.txt_zip}>Zip Code</Text>
