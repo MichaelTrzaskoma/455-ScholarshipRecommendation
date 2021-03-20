@@ -151,6 +151,14 @@ export default class App extends Component {
               initialParams={{ email: this.state.usrProfile.email }}
             />
 
+            {/* CollegeSurvey component stacked */}
+            <Stack.Screen
+              name={"CollegeSurvey"}
+              component={CollegeSurvey}
+              options={{ title: "College Info" }}
+              initialParams={{ email: this.state.usrProfile.email }}
+            />
+
             <Stack.Screen
               name={"ViewSubCate"}
               component={ViewSubCate}

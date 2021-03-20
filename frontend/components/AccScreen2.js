@@ -7,6 +7,7 @@ import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import AddProfile from "../ui/AddProfile";
+import AddCollege from "../ui/AddCollege";
 
 export default function AccScreen2({ usrInfo }) {
 
@@ -31,23 +32,13 @@ export default function AccScreen2({ usrInfo }) {
 					</View>
 				</View>
 				<View style={styles.accBtnGrp}>
+
+				{/* Sub Add Profile Detail btn Component */}
 				<AddProfile emailer={usrInfo.email} />
-					
-					
-					<TouchableOpacity style={styles.addCollegeQuizBtn}>
-						<View style={styles.addCollegeQuizIconRow}>
-							<MaterialIconsIcon
-								name="playlist-add"
-								style={styles.addCollegeQuizIcon}></MaterialIconsIcon>
-							<Text style={styles.addCollegeQuizTxt}>
-								Add College Preferences
-              </Text>
-						</View>
-						<View style={styles.addCollegeQuizIconRowFiller}></View>
-						<EntypoIcon
-							name="chevron-small-right"
-							style={styles.rightArrowIcon2}></EntypoIcon>
-					</TouchableOpacity>
+				
+				{/* Sub Add College Preferences btn Component */}
+				<AddCollege/>
+
 					<TouchableOpacity style={styles.addMajorQuizBtn}>
 						<View style={styles.addMajorQuizIconRow}>
 							<MaterialIconsIcon

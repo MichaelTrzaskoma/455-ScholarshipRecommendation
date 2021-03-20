@@ -50,7 +50,7 @@ const items = [
   },
 ];
 
-export default class regionProfile extends React.Component{
+export default class CollegeSurvey extends React.Component{
   constructor(props)
   {
     super(props);
