@@ -234,27 +234,8 @@ export default class InputScreen2 extends React.Component {
                   style={styles.input7}
                 ></TextInput>
               </View>
-              <View style={styles.grp7}>
-                <Text style={styles.txt_adres}>Residential Address:</Text>
-                <TextInput
-                  onChangeText={this.handleAdd01}
-                  placeholder="Address Line 1"
-                  keyboardType="default"
-                  style={styles.input8}
-                ></TextInput>
-                <TextInput
-                  onChangeText={this.handleAdd02}
-                  placeholder="Address Line 2"
-                  keyboardType="default"
-                  style={styles.input9}
-                ></TextInput>
-                <TextInput
-                  onChangeText={this.handleAdd03}
-                  placeholder="Address Line 3"
-                  keyboardType="default"
-                  style={styles.input10}
-                ></TextInput>
-              </View>
+              
+              
               <View style={styles.submit_grp}>
                 <TouchableOpacity
                   onPress={() => this.upload2sever()}
@@ -403,18 +384,6 @@ const styles = StyleSheet.create({
     height: 30,
     width: "95%",
     marginTop: 5,
-    marginLeft: 9,
-  },
-  grp7: {
-    width: "100%",
-    height: 120,
-    marginTop: 20,
-    // marginLeft: 10,
-  },
-  txt_adres: {
-    fontWeight: "bold",
-    color: "#121212",
-    fontSize: 15,
     marginLeft: 9,
   },
   input8: {
