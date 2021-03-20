@@ -6,25 +6,44 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from "@react-navigation/native";
 
-export default function ScholarRecommend() {
-    return (
-        <View style={styles.recommendGrp}>
-            <View style={styles.rect2}>
-                <Text style={styles.recommendTxt}>Recommend</Text>
-                <View style={styles.recommendContainer}>
-                    <TouchableOpacity style={styles.recommendBtn}>
-                        <FontAwesomeIcon
-                            name="arrow-circle-right"
-                            style={styles.gridItemIcon}></FontAwesomeIcon>
-                        <View style={styles.gridItemIconFiller}></View>
-                        <Text style={styles.gridItemTxt_1line}>Custom View</Text>
-                    </TouchableOpacity>
+// export default function ScholarCategory(props) {
+//     const navigation = useNavigation();
+
+//     // {... props} is to pass down the previous props to Category class
+//     return <Category {...props} navigation={navigation} />;
+// }
+
+export default class ScholarRecommend extends Component {
+
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          email: this.props.email,
+        };
+      }
+
+    render() {
+        return (
+            <View style={styles.recommendGrp}>
+                <View style={styles.rect2}>
+                    <Text style={styles.recommendTxt}>Recommend</Text>
+                    <View style={styles.recommendContainer}>
+                        <TouchableOpacity style={styles.recommendBtn}>
+                            <FontAwesomeIcon
+                                name="arrow-circle-right"
+                                style={styles.gridItemIcon}></FontAwesomeIcon>
+                            <View style={styles.gridItemIconFiller}></View>
+                            <Text style={styles.gridItemTxt_1line}>Custom View</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
-        </View>
-    )
-} 
+        );
+    }
+}
 
 const styles = StyleSheet.create({
 

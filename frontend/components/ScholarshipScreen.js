@@ -13,7 +13,15 @@ import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommun
 import ScholarCategory from "../ui/ScholarCategory";
 import ScholarRecommend from '../ui/ScholarRecommend';
 
-function ScholarshipScreen(props) {
+export default class ScholarshipScreen extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: this.props.email,
+    };
+  }
+  
+  render(){
   return (
     <View style={styles.container}>
 
@@ -24,8 +32,8 @@ function ScholarshipScreen(props) {
         <ScholarCategory/>
         
         <View style={styles.recommendGrpStack}>
-          
-         {/* Scholarship Recommend */}
+        
+         {/* Scholarship Recommend: passing down email as prop */}
          <ScholarRecommend email={this.state.email}/>
 
           <View style={styles.recent_container}>
@@ -108,6 +116,7 @@ function ScholarshipScreen(props) {
       </View>
     </View>
   );
+}
 }
 
 const styles = StyleSheet.create({
@@ -312,4 +321,3 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ScholarshipScreen;
