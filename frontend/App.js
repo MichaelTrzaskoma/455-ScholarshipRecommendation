@@ -14,6 +14,7 @@ import AccScreen from "./components/AccScreen2";
 // for account screen style 2, pls use the following
 // import InputScreen2 from "./components/InputInfoScreen2";
 
+import CollegeSurvey from "./components/CollegeSurvey";
 import InputScreen1 from "./components/InputInfoScreen1";
 import InputScreen2 from "./components/InputInfoScreen2";
 import ViewAllScholar from "./components/ViewAllScholar";
