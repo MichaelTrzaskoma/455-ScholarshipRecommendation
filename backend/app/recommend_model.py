@@ -267,7 +267,7 @@ def filter_results(userId):
     # For filtereing after a query is done, returns a list of id's that we can loop through to pull info of those scholarships
     # Input -> Query generator object, string user id, filtering float number
     # Output -> List of strings, these are id's that can be used to pull information
-    filterVal = 0.13 #Need to do more testing for best value
+    filterVal = 0.17 #Need to do more testing for best value
     userCursor = user_Ref[userId].find(
         {"Email": userId}, {"_id": 0})
     userProf = userCursor[0]
@@ -275,11 +275,26 @@ def filter_results(userId):
     userTerms = userProf.get('terms')
     userBin = userProf.get('binary')
 
-    filteredScholar = []
+    queryTotal = []
 
-    query = list(scholar_ref.find({'terms': userTerms[0]}).limit(500))#Need to modify for better query methodology
-    for i in range(len(query)):
-        curr_scholar = query[i]
+    #Pulls any scholarship that contains a term that the User Profile has 
+    for i in range(len(userTerms)):
+        subQuery = list(scholar_ref.find({'terms': userTerms[i]}, {'terms': 0})) 
+        queryTotal = queryTotal + subQuery
+   
+    #Removes duplates, O(n^2)
+    seen = set()
+    queryRes = []
+    for d in queryTotal:
+        t = tuple(sorted(d.items()))
+        if t not in seen:
+            seen.add(t)
+            queryRes.append(d)
+    
+    #Binary Comparision
+    filteredScholar = []
+    for i in range(len(queryRes)):
+        curr_scholar = queryRes[i]
         scholarBin = curr_scholar.get('binary')
         if binCompare(userBin, scholarBin) == False: #Need to change method for check set to false for now 
             value = comparison(scholarBin, userBin)
