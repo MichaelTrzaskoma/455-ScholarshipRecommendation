@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     category_container: {
         height: 173,
         justifyContent: 'center',
-        marginTop: 30,
+        // marginTop: 30,
         width: '100%',
     },
     categoryGrp: {

@@ -15,7 +15,6 @@ def index():
     # print(authOutput)
     return render_template("public/index.html")
 
-
 @app.route("/signup")
 def signUp():
     return render_template("public/signup.html")
@@ -121,9 +120,23 @@ def view_scholarship_single(scholarship_title):
     scholarship["awards_available"] = result.get("awards available")
     scholarship["direct_link"] = result.get("direct Link")
     scholarship["description"] = result.get("description")
-    scholarship["contact Info"] = result.get("contact Info")
+    scholarship["contact_info"] = result.get("contact Info")
 
     return make_response(jsonify(scholarship), 202)
+
+
+# @app.route("/api/v1.2/usr/<email>/survey/scholarship",  methods=["POST"])
+# def usrSurvey_scholarship(email):
+#     # add user survey to it's profile
+#     # INPUT
+#     # :email (string)
+#     # :POST data
+#     if request.method == "POST":
+
+
+
+
+
 # ============================================================================================================================================
 # =================================================================  TEST  ===================================================================
 # ============================================================================================================================================

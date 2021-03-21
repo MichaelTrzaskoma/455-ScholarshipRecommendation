@@ -1,3 +1,5 @@
+// Bug: some view are displaying the content from the API properly.
+
 import React from "react";
 import { StyleSheet, ScrollView, View, Text } from "react-native";
 // import firebase from "../db/firebaseDB";
@@ -18,33 +20,43 @@ export default class ViewScholarDetail extends React.Component {
     };
   }
 
+  // URL: http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/Kentucky%20Tuition%20Grant
+
   componentDidMount() {
     console.log("The Key: " + this.props.route.params.itemKey);
-    const firestoreRef = firebase
-      .firestore()
-      .collection("ScholarshipHub")
-      .doc(this.props.route.params.itemKey);
+    // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
+    let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/Kentucky%20Tuition%20Grant";
 
-    firestoreRef.get().then((res) => {
-      if (res.exists) {
-        const scholarship = res.data();
-        // console.log(res.data());
-        this.setState({
-          scholarshipObj: {
-            amount: scholarship.Amount,
-            ava: scholarship["Awards Available"],
-            contact: scholarship["Contact Info"],
-            deadline: scholarship.Deadline,
-            description: scholarship.Description,
-            applyLink: scholarship["Direct Link"],
-            title: scholarship.Name,
-          },
-        });
-      } else {
-        // this should not happen
-        console.log("Data does not exists!");
-      }
-    });
+    fetch(URL, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+    // format the API response into json
+    .then((response) => response.json())
+    .then((json) => {
+      // set the val to state
+      this.setState({
+        scholarshipObj: {
+          amount: json.amount,
+          ava: json.amountamountamount,
+          contact: json.contact_info,
+          deadline: json.deadline,
+          applyLink: json.direct_link,
+          title: json.name,
+        }
+      })
+      .catch((error) => {
+        console.log("An error happened: " + error);
+      })
+      ;
+
+
+    })
+    
+
   }
 
   render() {

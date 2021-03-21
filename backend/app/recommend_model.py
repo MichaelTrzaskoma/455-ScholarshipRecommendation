@@ -342,4 +342,4 @@ def getInfo(scholarId):
 
   
   #Test run of compare 
-  print(filter_results('hchen60@nyit.edu'))
+#   print(filter_results('hchen60@nyit.edu'))

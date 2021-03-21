@@ -167,15 +167,7 @@ export default class InputScreen2 extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        {/* <KeyboardAwareScrollView
-          enableOnAndroid
-          enableAutomaticScroll
-          keyboardOpeningTime={0}
-          // extraHeight={Platform.select({ android: (Dimensions.get('window').height + 450 ) })}
-          style={styles.AwardView}
-        > */}
-
+      <KeyboardAwareScrollView style={styles.container}>
         <Card>
           {/* <View style={styles.containerGrp1}>
             <View style={styles.containerBkground1}> */}
@@ -223,6 +215,7 @@ export default class InputScreen2 extends React.Component {
                   placeholder="SAT"
                   keyboardType="numeric"
                   style={styles.input6}
+                  maxLength = {4}
                 ></TextInput>
               </View>
               <View style={styles.grp6}>
@@ -249,7 +242,7 @@ export default class InputScreen2 extends React.Component {
           </View> */}
         {/* </KeyboardAwareScrollView> */}
         </Card>
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }

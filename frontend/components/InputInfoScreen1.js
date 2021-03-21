@@ -96,6 +96,7 @@ export default class InputScreen1 extends React.Component {
 							placeholder="12345"
 							keyboardType="numeric"
 							style={styles.input3}
+							maxLength = {5}
 						></TextInput>
 					</View>
 					<View style={styles.input4_grp}>
@@ -105,6 +106,7 @@ export default class InputScreen1 extends React.Component {
 							placeholder="4.0"
 							keyboardType="numeric"
 							style={styles.input4}
+							maxLength = {3}
 						></TextInput>
 					</View>
 					<View style={styles.submit_grp}>

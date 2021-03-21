@@ -8,7 +8,7 @@ import {
 	Text,
 } from 'react-native';
 import BeautyWebView from 'react-native-beauty-webview';
-import App from '../App';
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function LoginScreen(props) {
 	// sign up
@@ -31,7 +31,8 @@ export default function LoginScreen(props) {
 	const [inputPassword, setPassword] = useState('');
 
 	return (
-		<View style={styles.container}>
+		<KeyboardAwareScrollView
+			style={styles.container}>
 			<View style={styles.content_container}>
 				<Image
 					source={require('../assets/AppLogo.png')}
@@ -40,6 +41,7 @@ export default function LoginScreen(props) {
 				<View style={styles.inputGrp}>
 					<View style={styles.inputEmail_container}>
 						<TextInput
+							adaptKeyboard
 							onChangeText={(value) => setEmail(value)}
 							placeholder="Email"
 							keyboardAppearance="light"
@@ -55,6 +57,7 @@ export default function LoginScreen(props) {
 					</View>
 					<View style={styles.inputPasswrd_container}>
 						<TextInput
+							adaptKeyboard
 							onChangeText={(value) => setPassword(value)}
 							placeholder="Password"
 							keyboardAppearance="light"
@@ -96,7 +99,7 @@ export default function LoginScreen(props) {
 					</View>
 				</View>
 			</View>
-		</View>
+		</KeyboardAwareScrollView>
 	);
 }
 
