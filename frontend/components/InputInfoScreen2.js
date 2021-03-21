@@ -9,7 +9,259 @@ import {
   Alert,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import {MaterialIcons} from '@expo/vector-icons';
+import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { Card } from 'react-native-elements';
+
+const items = [
+  // this is the parent or 'item'
+  {
+    name: 'Arts',
+    id: 0,
+    // these are the children or 'sub items'
+    children: [
+      {
+        name: 'Art',
+        id: 11,
+      },
+      {
+        name: 'Design',
+        id: 12,
+      },
+      {
+        name: 'Film and Photography',
+        id: 13,
+      },
+      {
+        name: 'Film',
+        id: 14,
+      },
+      {
+        name: 'Photography',
+        id: 15,
+      },
+      {
+        name: 'Music',
+        id: 16,
+      },
+    ],
+  },
+  {
+    name: 'Business',
+    id: 2,
+    children: [
+      {
+        name: 'Business Management',
+        id:21,
+      },
+      {
+        name: 'Business and Management',
+        id: 22,
+      },
+      {
+        name: 'Finance and Accounting',
+        id: 23,
+      },
+      {
+        name: 'Sports Management',
+        id: 24,
+      },
+    ],
+  },
+  {
+    name: 'Education',
+    id: 3,
+    children: [
+      {
+        name: 'Education',
+        id: 31
+      },
+    ],
+  },
+  {
+    name: 'Health Professions',
+    id: 4,
+    children: [
+      {
+        name: 'Dental',
+        id: 41,
+      },
+      {
+        name: 'Food and Nutrition',
+        id: 42,
+      },
+      {
+        name: 'Health Care',
+        id: 43,
+      },
+      {
+        name: 'Health',
+        id: 43,
+      },
+      {
+        name: 'Kinesiology',
+        id: 44,
+      },
+      {
+        name: 'Physical Therapy',
+        id: 45,
+      },
+      {
+        name: "Kinesiology and Physical Therapy",
+        id: 46,
+      },
+      {
+        name: 'Medical',
+        id: 47
+      },
+      {
+        name: 'Nursing',
+        id: 48,
+      },
+      {
+        name: 'Public Health',
+        id: 49,
+      },
+      {
+        name: 'Veterinary',
+        id: 491,
+      }
+    ],
+  },
+  {
+    name: 'Humanities',
+    id: 5,
+    children: [
+      {
+        name: 'Anthropology',
+        id: 51,
+      },
+      {
+        name: 'Communications',
+        id: 52,
+      },
+      {
+        name: 'Economics',
+        id: 53,
+      },
+      {
+        name: 'English',
+        id: 54,
+      },
+      {
+        name: 'Foreign Language',
+        id: 55,
+      },
+      {
+        name: 'History',
+        id: 56,
+      },
+      {
+        name: 'International Relations',
+        id: 57,
+      },
+      {
+        name: 'Legal Studies',
+        id: 58,
+      },
+      {
+        name: 'Philosophy',
+        id: 59,
+      },
+      {
+        name: 'Political Science',
+        id: 591,
+      },
+      {
+        name: 'Psychology',
+        id: 592,
+      },
+      {
+        name: 'Public Policy and Social Services',
+        id: 593,
+      },
+      {
+        name: 'Religious Studies',
+        id: 594,
+      }
+    ],
+  },
+  {
+    name: 'Protective Services',
+    id: 6,
+    children: [
+      {
+        name: 'Criminal Justice',
+        id: 61,
+      },
+      {
+        name: 'Protective Services',
+        id: 62,
+      },
+    ],
+  },
+  {
+    name: 'Science, Technology, & Math',
+    id: 7,
+    children: [
+      {
+        name: 'Agriculture',
+        id: 71,
+      },
+      {
+        name: 'Biology',
+        id: 72,
+      },
+      {
+        name: 'Chemistry',
+        id: 73,
+      },
+      {
+        name: 'Computer Science',
+        id: 74,
+      },
+      {
+        name: 'Environmental Science',
+        id: 75,
+      },
+      {
+        name: 'Engineering',
+        id: 76,
+      },
+      {
+        name: 'Information Technology',
+        id: 77,
+      },
+      {
+        name: 'Math', 
+        id: 78,
+      },
+      {
+        name: 'Physics',
+        id: 79,
+      }
+    ],    
+  },
+  {
+    name: 'Trades & Personal Services',
+    id: 8,
+    children: [
+      {
+        name: 'Cosmetology',
+        id: 81,
+      },
+      {
+        name: 'Culinary Arts',
+        id: 82.
+      },
+      {
+        name: 'Mechanics',
+        id: 83,
+      },
+    ],
+  },
+
+];
 
 export default class InputScreen2 extends React.Component {
   constructor(props) {
@@ -29,6 +281,7 @@ export default class InputScreen2 extends React.Component {
       address01: "",
       address02: "",
       address03: "",
+      selectedItems: [],
     };
     this.handleAcamajor = this.handleAcamajor.bind(this);
     this.handleRace = this.handleRace.bind(this);
@@ -41,6 +294,9 @@ export default class InputScreen2 extends React.Component {
     this.handleAdd03 = this.handleAdd03.bind(this);
     // this.navigation = useNavigation();
   }
+
+  onSelectedItemsChange = (selectedItems) => {
+    this.setState({selectedItems});};
 
   handleAcamajor(text) {
     this.setState({
@@ -165,7 +421,10 @@ export default class InputScreen2 extends React.Component {
       });
   };
 
+  
+
   render() {
+    const { selectedItems } = this.state;
     return (
       <KeyboardAwareScrollView style={styles.container}>
         <Card>
@@ -175,11 +434,17 @@ export default class InputScreen2 extends React.Component {
               
               <View style={styles.grp1}>
                 <Text style={styles.txt_major}>Academic Major:</Text>
-                <TextInput
-                  onChangeText={this.handleAcamajor}
-                  placeholder="Major here"
-                  style={styles.input1}
-                ></TextInput>
+                <SectionedMultiSelect style = {margin = 30}
+                  items={items}
+                  IconRenderer={MaterialIcons}
+                  uniqueKey="id"
+                  subKey="children"
+                  selectText="Choose your major"
+                  showDropDowns={true}
+                  readOnlyHeadings={true}
+                  onSelectedItemsChange={this.onSelectedItemsChange}
+                  selectedItems={this.state.selectedItems}
+                />
               </View>
               <View style={styles.grp2}>
                 <Text style={styles.txt_race}>Race:</Text>
@@ -293,7 +558,7 @@ const styles = StyleSheet.create({
   grp2: {
     width: "100%",
     height: 50,
-    marginTop: 20,
+    marginTop: 85,
     // marginLeft: 10,
   },
   txt_race: {
