@@ -15,6 +15,7 @@
     * scholarDirectory - categorical scholarship term
     * scholarships - detailed scholarships
     * subcatList - a list of scholarship sub-category
+    * auth - user profile data
 
 
 ## Get Started

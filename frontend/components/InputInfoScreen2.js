@@ -278,9 +278,6 @@ export default class InputScreen2 extends React.Component {
       Disabilities: "",
       Sat: "",
       ethnicity: "",
-      address01: "",
-      address02: "",
-      address03: "",
       selectedItems: [],
     };
     this.handleAcamajor = this.handleAcamajor.bind(this);
@@ -289,9 +286,6 @@ export default class InputScreen2 extends React.Component {
     this.handleDisability = this.handleDisability.bind(this);
     this.handleSAT = this.handleSAT.bind(this);
     this.handleethnicity = this.handleethnicity.bind(this);
-    this.handleAdd01 = this.handleAdd01.bind(this);
-    this.handleAdd02 = this.handleAdd02.bind(this);
-    this.handleAdd03 = this.handleAdd03.bind(this);
     // this.navigation = useNavigation();
   }
 
@@ -334,24 +328,6 @@ export default class InputScreen2 extends React.Component {
     });
   }
 
-  handleAdd01(text) {
-    this.setState({
-      address01: text,
-    });
-  }
-
-  handleAdd02(text) {
-    this.setState({
-      address02: text,
-    });
-  }
-
-  handleAdd03(text) {
-    this.setState({
-      address03: text,
-    });
-  }
-
   upload2sever = () => {
     console.log({
       "Email": this.state.email,
@@ -365,9 +341,6 @@ export default class InputScreen2 extends React.Component {
       "Religion": this.state.religion,
       "Disabilities": this.state.Disabilities,
       "SAT Score": this.state.Sat,
-      "Address 1": this.state.address01,
-      "Address 2": this.state.address02,
-      "Address 3": this.state.address03,
     });
     fetch("http://3.137.203.74:8080/api/v1/csci426/profileInput", {
       method: "POST",
@@ -376,20 +349,17 @@ export default class InputScreen2 extends React.Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        Email: this.state.email,
-        Gender: this.state.gender,
+        email: this.state.email,
+        gender: this.state.gender,
         dob: this.state.dob,
-        Zip: this.state.zip,
-        GPA: this.state.gpa,
-        Major: this.state.major,
-        Race: this.state.race,
+        zip: this.state.zip,
+        gpa: this.state.gpa,
+        major: this.state.major,
+        race: this.state.race,
         ethnicity: this.state.ethnicity,
-        Religion: this.state.religion,
-        Disabilities: this.state.Disabilities,
-        "SAT Score": this.state.Sat,
-        "Address 1": this.state.address01,
-        "Address 2": this.state.address02,
-        "Address 3": this.state.address03,
+        religion: this.state.religion,
+        disabilities: this.state.Disabilities,
+        sat_score: this.state.Sat,
       }),
 
       // bodu: usr_obj
