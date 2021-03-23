@@ -318,7 +318,7 @@ def sortKey(e):
     return e['Val']
 
 
-def filter_results(userId):
+def filter_results(user_Ref, scholar_ref, userId):
     # For filtereing after a query is done, returns a list of id's that we can loop through to pull info of those scholarships
     # Input -> Query generator object, string user id, filtering float number
     # Output -> List of strings, these are id's that can be used to pull information
@@ -396,7 +396,15 @@ def getInfo(scholarId):
     scholarInfo.append(scholarDir.get('Contact Info'))
     return scholarInfo
 
+
+from pymongo import MongoClient
+
+db = MongoClient("mongodb://localhost:27017/")
+scholarDb = db.test
+scholar_ref = db.test.scholarships
+user_Ref = db.test.client_profile
+
 #updtUser("mtrzasko@nyit.edu", "Male", "5/11/1999", 10308, "3.0")
-# print(filter_results('mtrzasko@nyit.edu'))
+print(filter_results(user_Ref, scholar_ref, 'mtrzasko@nyit.edu'))
 # Test run of compare
 #   print(filter_results('hchen60@nyit.edu'))

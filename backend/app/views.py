@@ -3,7 +3,7 @@ from app import app
 from flask import json, render_template, jsonify, request, make_response
 # from app.auth import authOutput
 
-from .recommend_model import updtUser
+from .recommend_model import updtUser, filter_results
 
 import hashlib
 
@@ -178,3 +178,15 @@ def usrSurvey_scholarship(email):
         return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
     else:
         return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
+
+
+@app.route("/api/v1.2/usr/<email>/recommend/scholarship",  methods=["GET"])
+def getRecommend_scholarship(email):
+    # get scholarship recommendations
+    # INPUT: email (string)
+    # OUTPUT: scholarship title, amount, and deadline
+    if request.method == "GET":
+        result = filter_results(user_Ref, scholar_ref, email)
+        return make_response(jsonify({result}), 202)
+    else:
+        return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
