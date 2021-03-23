@@ -21,17 +21,20 @@ zcdb = ZipCodeDatabase()
 # refList = table_Ref.get().to_dict().get('Terms')
 
 
-def updtUser(userEmail,
-             gender,
-             dob,
-             zipC,
-             gpa,
-             major='',
-             race='',
-             ethnicity='',
-             religion='',
-             dissabilities='',
-             sat='',):
+def updtUser(
+        db,
+        user_Ref,
+        userEmail,
+        gender,
+        dob,
+        zipC,
+        gpa,
+        major='',
+        race='',
+        ethnicity='',
+        religion='',
+        dissabilities='',
+        sat='',):
     # Used to initiation user or update their information, specify when using optional attributes
     list1 = [gender]
     list1.append(catAge(dob))
@@ -46,9 +49,9 @@ def updtUser(userEmail,
     if (sat != ''):
         list1.append(catSat(sat))
 
-    binary = setBin(list1)
+    binary = setBin(db, list1)
 
-    #user_Ref[userEmail].insert_one({
+    # user_Ref[userEmail].insert_one({
     #    'Email': userEmail,
     #    'Gender': gender,
     #    'Date of Birth': dob,
@@ -62,61 +65,61 @@ def updtUser(userEmail,
     #    'SAT Score': sat,
     #    'binary': binary,
     #    'terms': list1
-    #})
+    # })
     user_Ref.insert_one({
-    "_id": userEmail,
-    "email": userEmail,
-    "paswrd": "place holder 2",
-    "jwt": "place holder 3",
-    "recent_viewed": [
-        {
-            "type": "scholarship",
-            "title": "place holder 4",
+        "_id": userEmail,
+        "email": userEmail,
+        "paswrd": "place holder 2",
+        "jwt": "place holder 3",
+        "recent_viewed": [
+            {
+                "type": "scholarship",
+                "title": "place holder 4",
+            },
+            {
+                "type": "college",
+                "title": "place holder 5",
+            },
+            {
+                "type": "major",
+                "title": "place holder 6",
+            },
+        ],
+        "bookmarks": [
+            {
+                "type": "scholarship",
+                "title": "place holder 7",
+            },
+            {
+                "type": "college",
+                "title": "place holder 8",
+            },
+            {
+                "type": "major",
+                "title": "place holder 9",
+            },
+        ],
+        "survey_scholarship": {
+            "gender": gender,
+            "dob": dob,
+            "zip": zipC,
+            "gpa": gpa,
+            "major": major,
+            "race": race,
+            "ethnicity": ethnicity,
+            "religion": religion,
+            "disabilities": dissabilities,
+            "sat_score": sat,
+            "terms": list1,
+            "binary": binary,
         },
-        {
-            "type": "college",
-            "title": "place holder 5",
+        "survey_college": {
+            "x": "place holder 16",
         },
-        {
-            "type": "major",
-            "title": "place holder 6",
+        "survey_major": {
+            "y": "place holder 17",
         },
-    ],
-    "bookmarks": [
-        {
-            "type": "scholarship",
-            "title": "place holder 7",
-        },
-        {
-            "type": "college",
-            "title": "place holder 8",
-        },
-        {
-            "type": "major",
-            "title": "place holder 9",
-        },
-    ],
-    "survey_scholarship": {
-        "gender": gender,
-        "dob": dob,
-        "zip": zipC,
-        "gpa": gpa,
-        "major": major,
-        "race": race,
-        "ethnicity": ethnicity,
-        "religion": religion,
-        "disabilities": dissabilities,
-        "sat_score": sat,
-        "terms": list1,
-        "binary": binary,
-    },
-    "survey_college": {
-        "x": "place holder 16",
-    },
-    "survey_major": {
-        "y": "place holder 17",
-    },
-})
+    })
 
 
 # def binaryConvert():
@@ -251,7 +254,7 @@ def toString(list):
     return (str.join(list))
 
 
-def catIndex(word):
+def catIndex(db, word):
     # Finds the index of the word based on a table generated from the driver
     # Input -> string, the word
     # output -> int, the index
@@ -263,11 +266,11 @@ def catIndex(word):
     return ind
 
 
-def setBin(list):
+def setBin(db, list):
     binaryInitial = '0' * 810  # Changed to 810 to match scholarship binary length
     usrList = splitStr(binaryInitial)
     for i in range(len(list)):
-        ind = catIndex(list[i])
+        ind = catIndex(db, list[i])
         usrList[ind] = "1"
     binaryStr = toString(usrList)
     return binaryStr
@@ -281,8 +284,8 @@ def setBin(list):
 # print(setBin(['Accounting']))
 # updtUser('some email', 'Male', '5/11/1999', '10308', '3.6', sat='1400')
 # updtUser("hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
-        #  "Computer Science", "Asian/Pacific Islander", "Chinese",
-        #  "Buddhist")
+#          "Computer Science", "Asian/Pacific Islander", "Chinese",
+#          "Buddhist")
 
 
 #########################################     METHODS    #######################
@@ -293,8 +296,8 @@ def splitInt(word):
     # Split method
     # Input -> String, ideally the binary string
     # Output -> integer list to be used for CosSim
-    stringlist=[char for char in word]
-    intlist=[int(i) for i in stringlist]
+    stringlist = [char for char in word]
+    intlist = [int(i) for i in stringlist]
     return intlist
 
 
@@ -302,9 +305,9 @@ def comparison(user_bin, input_bin):
     # For the CosSim comparison
     # Input -> two strings, user binary and scholarship binary
     # Output -> float value, result of CosSim
-    queryList=splitInt(user_bin)
-    inputList=splitInt(input_bin)
-    cos_sim=dot(queryList, inputList)/(norm(queryList)*norm(inputList))
+    queryList = splitInt(user_bin)
+    inputList = splitInt(input_bin)
+    cos_sim = dot(queryList, inputList)/(norm(queryList)*norm(inputList))
     return cos_sim
 
 
@@ -319,8 +322,8 @@ def filter_results(userId):
     # For filtereing after a query is done, returns a list of id's that we can loop through to pull info of those scholarships
     # Input -> Query generator object, string user id, filtering float number
     # Output -> List of strings, these are id's that can be used to pull information
-    filterVal=0.20  # Need to do more testing for best value
-    userCursor=user_Ref.find(
+    filterVal = 0.20  # Need to do more testing for best value
+    userCursor = user_Ref.find(
         {"email": userId}, {"_id": 0})
     userProf = userCursor[0]
     userTerms = userProf.get('survey_scholarship').get('terms')
@@ -328,11 +331,12 @@ def filter_results(userId):
 
     queryTotal = []
 
-    # Pulls any scholarship that contains a term that the User Profile has 
+    # Pulls any scholarship that contains a term that the User Profile has
     for i in range(len(userTerms)):
-        subQuery = list(scholar_ref.find({'terms': userTerms[i]}, {'terms': 0})) 
+        subQuery = list(scholar_ref.find(
+            {'terms': userTerms[i]}, {'terms': 0}))
         queryTotal = queryTotal + subQuery
-   
+
     # Removes duplates, O(n^2)
     seen = set()
     queryRes = []
@@ -341,13 +345,14 @@ def filter_results(userId):
         if t not in seen:
             seen.add(t)
             queryRes.append(d)
-    
+
     # Binary Comparision
     filteredScholar = []
     for i in range(len(queryRes)):
         curr_scholar = queryRes[i]
         scholarBin = curr_scholar.get('binary')
-        if binCompare(userBin, scholarBin) == False: #Need to change method for check set to false for now 
+        # Need to change method for check set to false for now
+        if binCompare(userBin, scholarBin) == False:
             value = comparison(scholarBin, userBin)
             if(value >= filterVal):
                 scholarInfo = {
@@ -381,7 +386,7 @@ def getInfo(scholarId):
     scholarCursor = scholar_ref.find(
         {"_id": scholarId}, {"_id": 0})
     scholarDir = scholarCursor[0]
-    
+
     scholarInfo.append(scholarDir.get('Name'))
     scholarInfo.append(scholarDir.get('Amount'))
     scholarInfo.append(scholarDir.get('Deadline'))
@@ -392,6 +397,6 @@ def getInfo(scholarId):
     return scholarInfo
 
 #updtUser("mtrzasko@nyit.edu", "Male", "5/11/1999", 10308, "3.0")
-#print(filter_results('mtrzasko@nyit.edu'))
-# Test run of compare 
+# print(filter_results('mtrzasko@nyit.edu'))
+# Test run of compare
 #   print(filter_results('hchen60@nyit.edu'))

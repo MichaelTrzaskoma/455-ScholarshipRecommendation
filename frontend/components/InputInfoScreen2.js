@@ -330,20 +330,24 @@ export default class InputScreen2 extends React.Component {
   }
 
   upload2sever = () => {
-    console.log({
-      "Email": this.state.email,
-      "Gender": this.state.gender,
-      "dob": this.state.dob,
-      "Zip": this.state.zip,
-      "GPA": this.state.gpa,
-      "Major": this.state.major,
-      "Race": this.state.race,
-      "ethnicity": this.state.ethnicity,
-      "Religion": this.state.religion,
-      "Disabilities": this.state.Disabilities,
-      "SAT Score": this.state.Sat,
-    });
-    fetch("http://3.137.203.74:8080/api/v1/csci426/profileInput", {
+    console.log(      JSON.stringify({
+        email: this.state.email,
+        gender: this.state.gender,
+        dob: this.state.dob,
+        zip: this.state.zip,
+        gpa: this.state.gpa,
+        major: this.state.selectedItems,
+        race: this.state.race,
+        ethnicity: this.state.ethnicity,
+        religion: this.state.religion,
+        disabilities: this.state.Disabilities,
+        sat_score: this.state.Sat,
+      }));
+
+    // console.log("Email from InputScreen2: " + this.props);
+
+    let URL = "http://5144454dac7b.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
+    fetch(URL, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -355,21 +359,22 @@ export default class InputScreen2 extends React.Component {
         dob: this.state.dob,
         zip: this.state.zip,
         gpa: this.state.gpa,
-        major: this.state.major,
+        major: "Computer Science",
         race: this.state.race,
         ethnicity: this.state.ethnicity,
         religion: this.state.religion,
         disabilities: this.state.Disabilities,
         sat_score: this.state.Sat,
       }),
-
-      // bodu: usr_obj
     })
+
+      // =============================================
       // .then((response) => response.json())
       // .then((json) => {
       //   console.log("Email: " + this.state.email);
       //   console.log(json);
       // })
+      // =============================================
 
       .then((response) => {
         if (response.status == 202) {
@@ -384,7 +389,8 @@ export default class InputScreen2 extends React.Component {
           }, 2500);
 
         } else {
-          Alert.alert("An error occured!");
+          json_mesg = response.json();
+          Alert.alert("Error: " + json_mesg.mesg);
         }
       })
       .catch((error) => {
@@ -406,10 +412,10 @@ export default class InputScreen2 extends React.Component {
           <View style={styles.grp1}>
             <Text style={styles.txt_major}>Academic Major:</Text>
             <SectionedMultiSelect
-              style={{ margin: 30}}
+              style={{ margin: 30 }}
               items={items}
               IconRenderer={MaterialIcons}
-              uniqueKey="id"
+              uniqueKey="name"
               subKey="children"
               selectText="Choose your major"
               showDropDowns={true}

@@ -3,15 +3,17 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
-import InputScreen1 from "../components/InputInfoScreen1";
 
-export default function AddProfile(emailer) {
+export default function AddProfile(email) {
 	const navigation = useNavigation();
-	let email = emailer;
+	// console.log("Email from AddProfile: " + email.email);
 
 	return (
 		<TouchableOpacity style={styles.button}
-			onPress={() => navigation.navigate(InputScreen1, { title: "Input Required Info", emailx: email })}
+			onPress={() => navigation.navigate('InputScreen1', {
+				"title": "Input Required Info", 
+				"email": email.email,
+			})}
 		>
 			<View style={styles.addProfileDetailIconRow}>
 				<MaterialIconsIcon
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
 		fontSize: 35,
 	},
 	addProfileDetailTxt: {
-		
+
 		color: '#121212',
 		fontSize: 16,
 		marginLeft: 15,

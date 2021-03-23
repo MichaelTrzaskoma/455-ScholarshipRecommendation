@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import * as SecureStore from 'expo-secure-store';
 
 import LoginScreen from "./components/LoginScreen";
 // import HomeContainer from "./components/HomeContainer";
@@ -133,6 +134,7 @@ export default class App extends Component {
 
   render() {
     if (this.state.usrProfile.signedIn) {
+      // console.log("Email from App.js: " + this.state.usrProfile.email);
       return (
         <NavigationContainer>
           <Stack.Navigator>
@@ -145,12 +147,13 @@ export default class App extends Component {
               name={"InputScreen1"}
               component={InputScreen1}
               options={{ title: "Required Info" }}
+              // nitialParams={{ email: this.state.usrProfile.email }}
             />
 
             <Stack.Screen
               name={"InputScreen2"}
               component={InputScreen2}
-              options={{ title: "Optional Info" }}
+              options={{ title: "Optional Info", email: this.state.usrProfile.email }}
               initialParams={{ email: this.state.usrProfile.email }}
             />
 

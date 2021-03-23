@@ -34,7 +34,7 @@ export default function AccScreen2({ usrInfo }) {
 				<View style={styles.accBtnGrp}>
 
 					{/* Sub Add Profile Detail btn Component */}
-					<AddProfile emailer={usrInfo.email} />
+					<AddProfile email={usrInfo.email} />
 
 					{/* Sub Add College Preferences btn Component */}
 					<AddCollege />

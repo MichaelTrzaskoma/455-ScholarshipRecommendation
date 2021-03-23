@@ -14,11 +14,17 @@ import DatePicker from "@dietime/react-native-date-picker";
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Card } from 'react-native-elements';
 
-export default class InputScreen1 extends React.Component {
+export default function InputScreen1({ route, navigation }) {
+	// console.log("Email from InputScreen1: " + JSON.stringify(route.params.email));
+	// console.log("navigation from InputScreen1: " + JSON.stringify(navigation));
+	return <InputScreen1a email={route.params.email} navigation={navigation}/>;
+}
+
+class InputScreen1a extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			// email: this.props.emailx,
+			email: this.props.email,
 			gender: "",
 			dob: "",
 			zip: "",
@@ -38,40 +44,47 @@ export default class InputScreen1 extends React.Component {
 
 		//Retrieving semi-desired format for day
 		let day = dateStr.getDate();
+
 		//Converting date-day value to string value for purposes of checking length
 		let dayStr = String(day);
+
 		//If the lenth of the String is less than 2, ie the raw date value is one digit, like "5", it is to be converted to "05"
-		if(dayStr.length < 2)
-		{
+		if (dayStr.length < 2) {
 			dayStr = "0" + dayStr;
 		}
 		//Retrieving semi-desired format for month
-		let month = dateStr.getMonth()+1;
+		let month = dateStr.getMonth() + 1;
+
 		//Converting date-month value to String value ofr purposes of checking length
 		let monthStr = String(month);
+
 		//If the length of the String is less than 2, ie the raw date value is one digit, like "3", it is to be converted to "03"
-		if(monthStr.length < 2)
-		{
-			monthStr = "0"+ monthStr;
+		if (monthStr.length < 2) {
+			monthStr = "0" + monthStr;
 		}
 		//Retrieving the semi-desired format for year
 		let year = dateStr.getFullYear();
 		//Converting year to String value for reliable concatenation 
 		let yearStr = String(year);
-		let formattedString = monthStr + "-"+ dayStr + "-" + yearStr;
+		
+		// TODO: date must be in "mm/dd/yyyy" format.
+		let formattedString = dayStr + "/" + monthStr + "/" + yearStr;
 		return formattedString;
 	}
 
-	
+
 	assignReformatDate(dateStr) {
-	//Function Feeds converted date to DOBhandler
+		//Function Feeds converted date to DOBhandler
 		let formattedDate = this.reformatDate(dateStr);
 		//console.log(formattedDate);
 		let formattedDateStr = String(formattedDate);
-		this.handleDOB(formattedDateStr);
+		final_date = this.handleDOB(formattedDateStr);
+		this.setState({
+			dob: final_date,
+		});
 		console.log(this.state.dob);
 	}
-	
+
 
 	handleGender(text) {
 		this.setState({
@@ -98,7 +111,7 @@ export default class InputScreen1 extends React.Component {
 	}
 
 	render() {
-		// console.log("Input 1 Screen: " + JSON.stringify(this.props));
+		console.log("DOB is: " + this.state.dob);
 		return (
 			<View style={styles.container}>
 				<Card elevation={7}>
@@ -125,11 +138,11 @@ export default class InputScreen1 extends React.Component {
 					<View style={styles.input2_grp}>
 						<Text style={styles.txt_dob}>Date of Birth (mm-dd-yyyy)</Text>
 						<DatePicker
-						 //value={"1970-01-01"}
-						 format = "mm-dd-yyyy"
-						 onChange={(value) => this.assignReformatDate(value)}
-						 height ={50}
-						 fontSize = {10}
+							//value={"1970-01-01"}
+							format="mm-dd-yyyy"
+							onChange={(value) => this.assignReformatDate(value)}
+							height={50}
+							fontSize={10}
 						/>
 					</View>
 					<View style={styles.input3_grp}>
@@ -139,7 +152,7 @@ export default class InputScreen1 extends React.Component {
 							placeholder="12345"
 							keyboardType="numeric"
 							style={styles.input3}
-							maxLength = {5}
+							maxLength={5}
 						></TextInput>
 					</View>
 					<View style={styles.input4_grp}>
@@ -149,14 +162,14 @@ export default class InputScreen1 extends React.Component {
 							placeholder="4.0"
 							keyboardType="numeric"
 							style={styles.input4}
-							maxLength = {3}
+							maxLength={4}
 						></TextInput>
 					</View>
 					<View style={styles.submit_grp}>
 						<TouchableOpacity
 							onPress={() =>
 								this.props.navigation.navigate('InputScreen2', {
-									// email: this.state.email,
+									email: this.state.email,
 									gender: this.state.gender,
 									dob: this.state.dob,
 									zip: this.state.zip,

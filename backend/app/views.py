@@ -145,7 +145,7 @@ def usrSurvey_scholarship(email):
         income_data = request.json
         if income_data["email"] == "":
             return make_response(jsonify({"mesg": "Missing email address"}), 400)
-            
+
         if income_data["gender"] == "":
             return make_response(jsonify({"mesg": "Missing gender information"}), 400)
 
@@ -155,21 +155,29 @@ def usrSurvey_scholarship(email):
         if income_data["zip"] == "":
             return make_response(jsonify({"mesg": "Missing zip code"}), 400)
 
-        updtUser(income_data['email'],
-                 income_data['gender'],
-                 income_data['dob'],
-                 income_data['zip'],
-                 income_data['gpa'],
-                 major=income_data['major'],
-                 race=income_data['race'],
-                 ethnicity=income_data['ethnicity'],
-                 religion=income_data['religion'],
-                 dissabilities=income_data['disabilities'],
-                 sat=income_data['sat_score'],
-                 )
+        updtUser(
+            db,
+            user_Ref,
+            income_data['email'],
+            income_data['gender'],
+            income_data['dob'],
+            income_data['zip'],
+            income_data['gpa'],
+            major=income_data['major'],
+            race=income_data['race'],
+            ethnicity=income_data['ethnicity'],
+            religion=income_data['religion'],
+            dissabilities=income_data['disabilities'],
+            sat=income_data['sat_score'],
+        )
+
+        # updtUser(db, user_Ref, "hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
+        #          "Computer Science", "Asian/Pacific Islander", "Chinese",
+        #          "Buddhist")
+
         return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
     else:
-        return make_response(jsonify({"mesg": "Method is not allowed"}), 400)
+        return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
 
 
 # ============================================================================================================================================
