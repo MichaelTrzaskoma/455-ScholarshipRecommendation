@@ -9,14 +9,14 @@ from numpy.linalg import norm
 
 zcdb = ZipCodeDatabase()
 
-db = MongoClient('localhost', 27017)
+#db = MongoClient('localhost', 27017)
 
 # This file is gonna be imported by views.py
 # therefore, a db will be called in views.py
 # the db obj will be passed from the views.py
 # ===================================
-scholar_ref = db.test.scholarships
-user_Ref = db.test.client_profile
+#scholar_ref = db.test.scholarships
+#user_Ref = db.test.client_profile
 # table_Ref = db.collection("Index Table").document("Terms")
 # refList = table_Ref.get().to_dict().get('Terms')
 
@@ -319,13 +319,12 @@ def filter_results(userId):
     # For filtereing after a query is done, returns a list of id's that we can loop through to pull info of those scholarships
     # Input -> Query generator object, string user id, filtering float number
     # Output -> List of strings, these are id's that can be used to pull information
-    filterVal=0.17  # Need to do more testing for best value
-    userCursor=user_Ref[userId].find(
-        {"Email": userId}, {"_id": 0})
+    filterVal=0.20  # Need to do more testing for best value
+    userCursor=user_Ref.find(
+        {"email": userId}, {"_id": 0})
     userProf = userCursor[0]
-    
-    userTerms = userProf.get('terms')
-    userBin = userProf.get('binary')
+    userTerms = userProf.get('survey_scholarship').get('terms')
+    userBin = userProf.get('survey_scholarship').get('binary')
 
     queryTotal = []
 
@@ -392,6 +391,7 @@ def getInfo(scholarId):
     scholarInfo.append(scholarDir.get('Contact Info'))
     return scholarInfo
 
-updtUser("mtrzasko@nyit.edu", "Male", "5/11/1999", 10308, "4.0")
-  # Test run of compare 
+#updtUser("mtrzasko@nyit.edu", "Male", "5/11/1999", 10308, "3.0")
+#print(filter_results('mtrzasko@nyit.edu'))
+# Test run of compare 
 #   print(filter_results('hchen60@nyit.edu'))
