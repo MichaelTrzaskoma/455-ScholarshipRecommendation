@@ -44,7 +44,7 @@ export default function ScholarCategory() {
                                 onPress={() => {
                                     navigation.navigate("ViewSubCate", {
                                         title: "GPA List",
-                                        itemKey: "GPA",
+                                        itemKey: "Grade Point Average",
                                     });
                                 }}
                                 style={styles.gridItemBtn}>

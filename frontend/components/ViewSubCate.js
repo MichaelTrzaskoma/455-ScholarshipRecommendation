@@ -1,8 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, ActivityIndicator, LogBox } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-// import firebase from "../db/firebaseDB";
-// import firebase from "../db/firebaseDB_test";
 // import ViewScholarTbl from "./ViewScholarTbl";
 
 // disable the yellow warning message box
@@ -21,19 +19,34 @@ export default class ViewSubCate extends React.Component {
     };
   }
 
-  componentDidMount(){
-    this.unsubscribe = this.firestoreRef.onSnapshot(this.getDoc)
+  componentDidMount() {
+    this.getDoc();
   }
 
 
   getDoc = () => {
-    // 
-    const valArr = temp[this.state.subCate];
-    this.setState({
-      scholarArr: valArr,
-      isLoading: false,
-    });
+    let URL = "http://5144454dac7b.ngrok.io/api/v1.2/scholarship/view/category/" + this.state.subCate;
+
+    fetch(URL, {
+      method: "GET",
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        this.setState({
+          scholarArr: json,
+          isLoading: false,
+        });
+      })
+      .catch((e) => {
+        console.log("Ann error occured: " + e);
+      });
+
     console.log("The subcategory is: " + this.state.subCate);
+    console.log("The list is: " + this.state.scholarArr);
     // console.log(this.state.scholarArr);
   }
 
@@ -42,8 +55,8 @@ export default class ViewSubCate extends React.Component {
   };
 
   render() {
-    if(this.state.isLoading){
-      return(
+    if (this.state.isLoading) {
+      return (
         <View style={styles.preloader}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>

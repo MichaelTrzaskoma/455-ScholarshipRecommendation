@@ -1,22 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   StyleSheet,
   View,
   TouchableOpacity,
   Text,
-  ScrollView,
   ActivityIndicator,
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-// import firebase from "../db/firebaseDB";
 
 export default class ViewScholarTbl extends React.Component {
   constructor(props) {
     super(props);
-    this.firestoreRef = firebase
-      .firestore()
-      .collection("ScholarshipHub")
-      .where("Terms", "array-contains", this.props.route.params.itemKey);
+      // this.props.route.params.itemKey
 
     this.state = {
       isLoading: true,
@@ -25,11 +20,7 @@ export default class ViewScholarTbl extends React.Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = this.firestoreRef.onSnapshot(this.getDoc);
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
+    this.getDoc();
   }
 
   parseMonth(month) {
@@ -73,33 +64,49 @@ export default class ViewScholarTbl extends React.Component {
     }
   }
 
-  getDoc = (querySnapshot) => {
+  getDoc = () => {
     const scholarArr = [];
 
-    querySnapshot.forEach((res) => {
-      let deadline = "";
+    let URL = "http://5144454dac7b.ngrok.io/api/v1.2/scholarship/view/category/sub/" + this.props.route.params.itemKey;
 
-      if (res.data().Deadline == "Deadline Varies") {
-        deadline = "Varies";
-      } else {
-        const fields = res.data().Deadline.split(" ");
-        const sub_field = fields[1].split(",");
-        deadline =
-          this.parseMonth(fields[0]) + "/" + sub_field[0] + "/" + fields[2];
-      }
+    fetch(URL, {
+      method: "GET",
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then((json) => {
+      json.forEach((res) => {
+        let deadline = "";
 
-      scholarArr.push({
-        key: res.id,
-        amount: res.data().Amount,
-        deadline: deadline,
-        name: res.id,
+        if (res.deadline == "Deadline Varies"){
+          deadline = "Varies";
+        } else {
+          const fields = res.deadline.split(" ");
+          const sub_field = fields[1].split(",");
+          deadline = this.parseMonth(fields[0]) + "/" + sub_field[0] + "/" + fields[2];
+        }
+
+        scholarArr.push({
+          key: res.name,
+          amount: res.amount,
+          deadline: deadline,
+          name: res.name,
+        });
+
       });
+
+      this.setState({
+        scholarArr,
+        isLoading: false,
+      });
+
     });
 
-    this.setState({
-      scholarArr,
-      isLoading: false,
-    });
+    // console.log(this.state.scholarArr);
+
   };
 
   FlatListItemSeparator = () => {
@@ -181,7 +188,7 @@ const styles = StyleSheet.create({
   item_subTitle: {
     color: "#121212",
     fontSize: 12,
-    width: 120,
+    width: "auto",
     height: 15,
     marginTop: 10,
     marginLeft: 13,
