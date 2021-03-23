@@ -9,7 +9,7 @@ import {
   Alert,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import {MaterialIcons} from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { Card } from 'react-native-elements';
 
@@ -52,7 +52,7 @@ const items = [
     children: [
       {
         name: 'Business Management',
-        id:21,
+        id: 21,
       },
       {
         name: 'Business and Management',
@@ -233,14 +233,14 @@ const items = [
         id: 77,
       },
       {
-        name: 'Math', 
+        name: 'Math',
         id: 78,
       },
       {
         name: 'Physics',
         id: 79,
       }
-    ],    
+    ],
   },
   {
     name: 'Trades & Personal Services',
@@ -290,7 +290,8 @@ export default class InputScreen2 extends React.Component {
   }
 
   onSelectedItemsChange = (selectedItems) => {
-    this.setState({selectedItems});};
+    this.setState({ selectedItems });
+  };
 
   handleAcamajor(text) {
     this.setState({
@@ -372,10 +373,10 @@ export default class InputScreen2 extends React.Component {
 
       .then((response) => {
         if (response.status == 202) {
-          
+
           Alert.alert(
             "Your data have been successfully \ninserted! " +
-              "You will be navigated back!"
+            "You will be navigated back!"
           );
 
           setTimeout(() => {
@@ -391,7 +392,7 @@ export default class InputScreen2 extends React.Component {
       });
   };
 
-  
+
 
   render() {
     const { selectedItems } = this.state;
@@ -400,82 +401,80 @@ export default class InputScreen2 extends React.Component {
         <Card>
           {/* <View style={styles.containerGrp1}>
             <View style={styles.containerBkground1}> */}
-              {/* <Text style={styles.optionalDetails}>Optional Details</Text> */}
-              
-              <View style={styles.grp1}>
-                <Text style={styles.txt_major}>Academic Major:</Text>
-                <SectionedMultiSelect style = {margin = 30}
-                  items={items}
-                  IconRenderer={MaterialIcons}
-                  uniqueKey="id"
-                  subKey="children"
-                  selectText="Choose your major"
-                  showDropDowns={true}
-                  readOnlyHeadings={true}
-                  onSelectedItemsChange={this.onSelectedItemsChange}
-                  selectedItems={this.state.selectedItems}
-                />
-              </View>
-              <View style={styles.grp2}>
-                <Text style={styles.txt_race}>Race:</Text>
-                <TextInput
-                  onChangeText={this.handleRace}
-                  placeholder="Race here"
-                  keyboardType="default"
-                  style={styles.input2}
-                ></TextInput>
-              </View>
-              <View style={styles.grp3}>
-                <Text style={styles.txt_religion}>Religion:</Text>
-                <TextInput
-                  onChangeText={this.handleReligion}
-                  placeholder="Religion here"
-                  keyboardType="default"
-                  style={styles.input3}
-                ></TextInput>
-              </View>
-              <View style={styles.grp4}>
-                <Text style={styles.txt_disability}>Disabilities:</Text>
-                <TextInput
-                  onChangeText={this.handleDisability}
-                  placeholder="Disabilities here"
-                  keyboardType="default"
-                  style={styles.input5}
-                ></TextInput>
-              </View>
-              <View style={styles.grp5}>
-                <Text style={styles.txt_testScore}>Test Score:</Text>
-                <TextInput
-                  onChangeText={this.handleSAT}
-                  placeholder="SAT"
-                  keyboardType="numeric"
-                  style={styles.input6}
-                  maxLength = {4}
-                ></TextInput>
-              </View>
-              <View style={styles.grp6}>
-                <Text style={styles.txt_testScore}>Ethnicity:</Text>
-                <TextInput
-                  onChangeText={this.handleethnicity}
-                  placeholder="Ethnicity here"
-                  keyboardType="default"
-                  style={styles.input7}
-                ></TextInput>
-              </View>
-              
-              
-              <View style={styles.submit_grp}>
-                <TouchableOpacity
-                  onPress={() => this.upload2sever()}
-                  style={styles.txt_submit}
-                >
-                  <Text style={styles.btn_submit}>Submit</Text>
-                </TouchableOpacity>
-              </View>
-            
-            {/* </View>
+          {/* <Text style={styles.optionalDetails}>Optional Details</Text> */}
+
+          <View style={styles.grp1}>
+            <Text style={styles.txt_major}>Academic Major:</Text>
+            <SectionedMultiSelect
+              style={{ margin: 30}}
+              items={items}
+              IconRenderer={MaterialIcons}
+              uniqueKey="id"
+              subKey="children"
+              selectText="Choose your major"
+              showDropDowns={true}
+              readOnlyHeadings={true}
+              onSelectedItemsChange={this.onSelectedItemsChange}
+              selectedItems={this.state.selectedItems}
+            />
+          </View>
+          <View style={styles.grp2}>
+            <Text style={styles.txt_race}>Race:</Text>
+            <TextInput
+              onChangeText={this.handleRace}
+              placeholder="Race here"
+              keyboardType="default"
+              style={styles.input2}
+            ></TextInput>
+          </View>
+          <View style={styles.grp3}>
+            <Text style={styles.txt_religion}>Religion:</Text>
+            <TextInput
+              onChangeText={this.handleReligion}
+              placeholder="Religion here"
+              keyboardType="default"
+              style={styles.input3}
+            ></TextInput>
+          </View>
+          <View style={styles.grp4}>
+            <Text style={styles.txt_disability}>Disabilities:</Text>
+            <TextInput
+              onChangeText={this.handleDisability}
+              placeholder="Disabilities here"
+              keyboardType="default"
+              style={styles.input5}
+            ></TextInput>
+          </View>
+          <View style={styles.grp5}>
+            <Text style={styles.txt_testScore}>Test Score:</Text>
+            <TextInput
+              onChangeText={this.handleSAT}
+              placeholder="SAT"
+              keyboardType="numeric"
+              style={styles.input6}
+              maxLength={4}
+            ></TextInput>
+          </View>
+          <View style={styles.grp6}>
+            <Text style={styles.txt_testScore}>Ethnicity:</Text>
+            <TextInput
+              onChangeText={this.handleethnicity}
+              placeholder="Ethnicity here"
+              keyboardType="default"
+              style={styles.input7}
+            ></TextInput>
+          </View>
+          <View style={styles.submit_grp}>
+            <TouchableOpacity
+              onPress={() => this.upload2sever()}
+              style={styles.txt_submit}
+            >
+              <Text style={styles.btn_submit}>Submit</Text>
+            </TouchableOpacity>
+          </View>
+          {/* </View>
           </View> */}
-        {/* </KeyboardAwareScrollView> */}
+          {/* </KeyboardAwareScrollView> */}
         </Card>
       </KeyboardAwareScrollView>
     );
@@ -508,7 +507,7 @@ const styles = StyleSheet.create({
   },
   grp1: {
     width: "100%",
-    height: 50,
+    height: "auto",
     // marginTop: 22,
     // marginLeft: 10,
   },
@@ -528,7 +527,7 @@ const styles = StyleSheet.create({
   grp2: {
     width: "100%",
     height: 50,
-    marginTop: 85,
+    // marginTop: 85,
     // marginLeft: 10,
   },
   txt_race: {

@@ -33,11 +33,11 @@ export default function AccScreen2({ usrInfo }) {
 				</View>
 				<View style={styles.accBtnGrp}>
 
-				{/* Sub Add Profile Detail btn Component */}
-				<AddProfile emailer={usrInfo.email} />
-				
-				{/* Sub Add College Preferences btn Component */}
-				<AddCollege/>
+					{/* Sub Add Profile Detail btn Component */}
+					<AddProfile emailer={usrInfo.email} />
+
+					{/* Sub Add College Preferences btn Component */}
+					<AddCollege />
 
 					<TouchableOpacity style={styles.addMajorQuizBtn}>
 						<View style={styles.addMajorQuizIconRow}>
