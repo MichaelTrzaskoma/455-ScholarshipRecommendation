@@ -25,6 +25,7 @@ import ViewScholarTbl from "./components/ViewScholarTbl";
 import ViewScholarDetail from "./components/ViewScholarDetail";
 import ViewRecommendTbl from "./components/ViewRecommendTbl";
 import AddProfile from "./ui/AddProfile";
+import ScholarRecommend from "./ui/ScholarRecommend";
 import ScholarshipScreen from "./components/ScholarshipScreen";
 import MajorScreen from "./components/MajorScreen";
 import CollegeScreen from "./components/CollegeScreen";
@@ -166,6 +167,19 @@ export default class App extends Component {
               component={ViewSubCate}
               // pass down the screen header bar title
               options={({ route }) => ({ title: route.params.title })}
+            />
+
+            <Stack.Screen
+              name={"ScholarshipScreen"}
+              component = {ScholarshipScreen}
+              options = {({ route }) => ({ title: route.params.title})}
+              initialParams={{ email: this.state.usrProfile.email}}
+            />
+
+            <Stack.Screen
+              name={"ScholarRecommend"}
+              component = {ScholarRecommend}
+              options = {({route }) => ({ title: route.params.title})}
             />
 
             <Stack.Screen

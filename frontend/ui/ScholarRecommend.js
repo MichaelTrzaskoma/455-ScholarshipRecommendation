@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from "@react-navigation/native";
+//import ViewScholarDetail from "../components/ViewScholarDetail";
 
 // export default function ScholarCategory(props) {
 //     const navigation = useNavigation();
@@ -15,7 +16,12 @@ import { useNavigation } from "@react-navigation/native";
 //     return <Category {...props} navigation={navigation} />;
 // }
 
-export default class ScholarRecommend extends Component {
+export default function ScholarRecommend(props) {
+    const navigation = useNavigation();
+    return <ScholarRecommender {...props} navigation={navigation} />;
+}
+
+class ScholarRecommender extends Component {
 
     constructor(props) {
         super(props);
@@ -26,12 +32,13 @@ export default class ScholarRecommend extends Component {
       }
 
     render() {
+        const { navigation } = this.props;
         return (
             <View style={styles.recommendGrp}>
                 <View style={styles.rect2}>
                     <Text style={styles.recommendTxt}>Recommend</Text>
                     <View style={styles.recommendContainer}>
-                        <TouchableOpacity style={styles.recommendBtn}>
+                        <TouchableOpacity style={styles.recommendBtn} onPress={() => navigation.navigate("ViewScholarDetail", { title: "Scholarship Detail", })}>
                             <FontAwesomeIcon
                                 name="arrow-circle-right"
                                 style={styles.gridItemIcon}></FontAwesomeIcon>

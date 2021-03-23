@@ -18,11 +18,13 @@ export default class ScholarshipScreen extends Component{
     super(props);
     this.state = {
       email: this.props.email,
+      nav: this.props.navigation,
     };
   }
   
   render(){
   return (
+    
     <View style={styles.container}>
 
 
@@ -35,6 +37,7 @@ export default class ScholarshipScreen extends Component{
         
          {/* Scholarship Recommend: passing down email as prop */}
          <ScholarRecommend email={this.state.email}/>
+         <ScholarRecommend nav = {this.state.nav} />
 
           <View style={styles.recent_container}>
             <View style={styles.recentGrp}>

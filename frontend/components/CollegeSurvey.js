@@ -92,6 +92,7 @@ export default class CollegeSurvey extends React.Component{
                   uniqueKey="id"
                   subKey="children"
                   selectText="Choose all that apply"
+                  style = {"auto"}
                   showDropDowns={true}
                   readOnlyHeadings={true}
                   onSelectedItemsChange={this.onSelectedItemsChange}
