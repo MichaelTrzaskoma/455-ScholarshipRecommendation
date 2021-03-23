@@ -9,10 +9,10 @@ from numpy.linalg import norm
 
 zcdb = ZipCodeDatabase()
 
-db = MongoClient('localhost', 27017)
+# db = MongoClient('localhost', 27017)
 
-scholar_ref = db.test.scholarships
-user_Ref = db.test.client_profile
+# scholar_ref = db.test.scholarships
+# user_Ref = db.test.client_profile
 #table_Ref = db.collection("Index Table").document("Terms")
 #refList = table_Ref.get().to_dict().get('Terms')
 
@@ -27,10 +27,7 @@ def updtUser(userEmail,
              ethnicity='',
              religion='',
              dissabilities='',
-             sat='',
-             address1='',
-             address2='',
-             address3=''):
+             sat='',):
     # Used to initiation user or update their information, specify when using optional attributes
     list1 = [gender]
     list1.append(catAge(dob))
@@ -59,9 +56,6 @@ def updtUser(userEmail,
         'Ethnicity': ethnicity,
         'Dissabilities': dissabilities,
         'SAT Score': sat,
-        'Address 1': address1,
-        'Address 2': address2,
-        'Address 3': address3,
         'binary': binary,
         'terms': list1
     })
@@ -228,7 +222,7 @@ def setBin(list):
 #listA = table_Ref.get().to_dict().get('Terms')
 # print(setBin(['Accounting']))
 #updtUser('some email', 'Male', '5/11/1999', '10308', '3.6', sat='1400')
-updtUser("hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
+# updtUser("hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
          "Computer Science", "Asian/Pacific Islander", "Chinese",
          "Buddhist")
 
