@@ -9,14 +9,14 @@ from numpy.linalg import norm
 
 zcdb = ZipCodeDatabase()
 
-# db = MongoClient('localhost', 27017)
+db = MongoClient('localhost', 27017)
 
 # This file is gonna be imported by views.py
 # therefore, a db will be called in views.py
 # the db obj will be passed from the views.py
 # ===================================
-# scholar_ref = db.test.scholarships
-# user_Ref = db.test.client_profile
+scholar_ref = db.test.scholarships
+user_Ref = db.test.client_profile
 # table_Ref = db.collection("Index Table").document("Terms")
 # refList = table_Ref.get().to_dict().get('Terms')
 
@@ -48,21 +48,75 @@ def updtUser(userEmail,
 
     binary = setBin(list1)
 
-    user_Ref[userEmail].insert_one({
-        'Email': userEmail,
-        'Gender': gender,
-        'Date of Birth': dob,
-        'Zip': zipC,
-        'GPA': gpa,
-        'Major': major,
-        'Religion': religion,
-        'Race': race,
-        'Ethnicity': ethnicity,
-        'Dissabilities': dissabilities,
-        'SAT Score': sat,
-        'binary': binary,
-        'terms': list1
-    })
+    #user_Ref[userEmail].insert_one({
+    #    'Email': userEmail,
+    #    'Gender': gender,
+    #    'Date of Birth': dob,
+    #    'Zip': zipC,
+    #    'GPA': gpa,
+    #    'Major': major,
+    #    'Religion': religion,
+    #    'Race': race,
+    #    'Ethnicity': ethnicity,
+    #    'Dissabilities': dissabilities,
+    #    'SAT Score': sat,
+    #    'binary': binary,
+    #    'terms': list1
+    #})
+    user_Ref.insert_one({
+    "_id": userEmail,
+    "email": userEmail,
+    "paswrd": "place holder 2",
+    "jwt": "place holder 3",
+    "recent_viewed": [
+        {
+            "type": "scholarship",
+            "title": "place holder 4",
+        },
+        {
+            "type": "college",
+            "title": "place holder 5",
+        },
+        {
+            "type": "major",
+            "title": "place holder 6",
+        },
+    ],
+    "bookmarks": [
+        {
+            "type": "scholarship",
+            "title": "place holder 7",
+        },
+        {
+            "type": "college",
+            "title": "place holder 8",
+        },
+        {
+            "type": "major",
+            "title": "place holder 9",
+        },
+    ],
+    "survey_scholarship": {
+        "gender": gender,
+        "dob": dob,
+        "zip": zipC,
+        "gpa": gpa,
+        "major": major,
+        "race": race,
+        "ethnicity": ethnicity,
+        "religion": religion,
+        "disabilities": dissabilities,
+        "sat_score": sat,
+        "terms": list1,
+        "binary": binary,
+    },
+    "survey_college": {
+        "x": "place holder 16",
+    },
+    "survey_major": {
+        "y": "place holder 17",
+    },
+})
 
 
 # def binaryConvert():
@@ -338,6 +392,6 @@ def getInfo(scholarId):
     scholarInfo.append(scholarDir.get('Contact Info'))
     return scholarInfo
 
-  
+updtUser("mtrzasko@nyit.edu", "Male", "5/11/1999", 10308, "4.0")
   # Test run of compare 
 #   print(filter_results('hchen60@nyit.edu'))
