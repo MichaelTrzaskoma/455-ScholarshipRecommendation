@@ -3,14 +3,8 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-<<<<<<< HEAD
   "expoServerNgrokUrl": null,
   "packagerNgrokUrl": null,
   "ngrokPid": null,
-=======
-  "expoServerNgrokUrl": "https://j5-qru.anonymous.frontend.exp.direct",
-  "packagerNgrokUrl": "https://packager.j5-qru.anonymous.frontend.exp.direct",
-  "ngrokPid": 18580,
->>>>>>> aaaf9565a705963353d8f5b43ace527c2f5051ea
   "webpackServerPort": null
 }

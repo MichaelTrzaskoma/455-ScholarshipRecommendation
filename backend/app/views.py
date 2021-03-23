@@ -3,7 +3,7 @@ from app import app
 from flask import json, render_template, jsonify, request, make_response
 # from app.auth import authOutput
 
-from recommend_model import updtUser
+from .recommend_model import updtUser
 
 import hashlib
 
@@ -145,6 +145,15 @@ def usrSurvey_scholarship(email):
         income_data = request.json
         if income_data["email"] == "":
             return make_response(jsonify({"mesg": "Missing email address"}), 400)
+            
+        if income_data["gender"] == "":
+            return make_response(jsonify({"mesg": "Missing gender information"}), 400)
+
+        if income_data["dob"] == "":
+            return make_response(jsonify({"mesg": "Missing date of birth"}), 400)
+
+        if income_data["zip"] == "":
+            return make_response(jsonify({"mesg": "Missing zip code"}), 400)
 
         updtUser(income_data['email'],
                  income_data['gender'],

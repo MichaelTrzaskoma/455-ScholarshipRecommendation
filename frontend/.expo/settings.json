@@ -1,13 +1,9 @@
 {
-<<<<<<< HEAD
-  "hostType": "lan",
-=======
-  "hostType": "tunnel",
->>>>>>> aaaf9565a705963353d8f5b43ace527c2f5051ea
+  "hostType": "localhost",
   "lanType": "ip",
   "dev": true,
   "minify": false,
-  "urlRandomness": "j5-qru",
+  "urlRandomness": null,
   "https": false,
   "scheme": null,
   "devClient": false

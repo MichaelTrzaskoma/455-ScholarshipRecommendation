@@ -9,8 +9,11 @@ import {
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FeatherIcon from 'react-native-vector-icons/Feather';
+import { useNavigation } from "@react-navigation/native";
 
 export default function ScholarCategory() {
+    const navigation = useNavigation();
+
     return (
         <View style={styles.category_container}>
             <View style={styles.categoryGrp}>
@@ -21,7 +24,14 @@ export default function ScholarCategory() {
                         showsHorizontalScrollIndicator={false}
                         Å contentContainerStyle={styles.scrollArea_contentContainerStyle}>
                         <View style={styles.amGrpRow}>
-                            <TouchableOpacity style={styles.amGrp}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    navigation.navigate("ViewSubCate", {
+                                        title: "Academic Major List",
+                                        itemKey: "Academic Major",
+                                    });
+                                }}
+                                style={styles.amGrp}>
                                 <FontAwesomeIcon
                                     name="university"
                                     style={styles.gridItemIcon}></FontAwesomeIcon>
@@ -30,35 +40,69 @@ export default function ScholarCategory() {
                                     Academic{'\n'}Major
                     </Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.gridItemBtn}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    navigation.navigate("ViewSubCate", {
+                                        title: "GPA List",
+                                        itemKey: "GPA",
+                                    });
+                                }}
+                                style={styles.gridItemBtn}>
                                 <MaterialCommunityIconsIcon
                                     name="google-spreadsheet"
                                     style={styles.gpa_icon}></MaterialCommunityIconsIcon>
                                 <View style={styles.gridItemIconFiller}></View>
                                 <Text style={styles.gridItemTxt_1line}>GPA</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.gridItemBtn}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    navigation.navigate("ViewSubCate", {
+                                        title: "Age List",
+                                        itemKey: "Age",
+                                    });
+                                }}
+                                style={styles.gridItemBtn}>
                                 <FeatherIcon
                                     name="target"
                                     style={styles.gridItemIcon}></FeatherIcon>
                                 <View style={styles.gridItemIconFiller}></View>
                                 <Text style={styles.gridItemTxt_1line}>Age</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.gridItemBtn}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    navigation.navigate("ViewSubCate", {
+                                        title: "Residence State List",
+                                        itemKey: "Residence State",
+                                    });
+                                }}
+                                style={styles.gridItemBtn}>
                                 <MaterialCommunityIconsIcon
                                     name="city-variant-outline"
                                     style={styles.gridItemIcon}></MaterialCommunityIconsIcon>
                                 <View style={styles.gridItemIconFiller}></View>
                                 <Text style={styles.gridItemTxt_1line}>State</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.gridItemBtn}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    navigation.navigate("ViewSubCate", {
+                                        title: "Deadline List",
+                                        itemKey: "Deadline",
+                                    });
+                                }}
+                                style={styles.gridItemBtn}>
                                 <FontAwesomeIcon
                                     name="calendar"
                                     style={styles.gridItemIcon}></FontAwesomeIcon>
                                 <View style={styles.gridItemIconFiller}></View>
                                 <Text style={styles.gridItemTxt_1line}>Deadline</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.gridItemBtn}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    navigation.navigate("ViewAllScholar", {
+                                        title: "All Category List",
+                                    });
+                                }}
+                                style={styles.gridItemBtn}>
                                 <FontAwesomeIcon
                                     name="arrow-circle-right"
                                     style={styles.gridItemIcon}></FontAwesomeIcon>

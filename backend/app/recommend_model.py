@@ -17,8 +17,8 @@ zcdb = ZipCodeDatabase()
 # ===================================
 # scholar_ref = db.test.scholarships
 # user_Ref = db.test.client_profile
-#table_Ref = db.collection("Index Table").document("Terms")
-#refList = table_Ref.get().to_dict().get('Terms')
+# table_Ref = db.collection("Index Table").document("Terms")
+# refList = table_Ref.get().to_dict().get('Terms')
 
 
 def updtUser(userEmail,
@@ -210,7 +210,7 @@ def catIndex(word):
 
 
 def setBin(list):
-    binaryInitial = '0' * 810 #Changed to 810 to match scholarship binary length
+    binaryInitial = '0' * 810  # Changed to 810 to match scholarship binary length
     usrList = splitStr(binaryInitial)
     for i in range(len(list)):
         ind = catIndex(list[i])
@@ -223,12 +223,12 @@ def setBin(list):
 # Input -> int, string, the id of the scholarship and the term
 # Output -> none
 
-#listA = table_Ref.get().to_dict().get('Terms')
+# listA = table_Ref.get().to_dict().get('Terms')
 # print(setBin(['Accounting']))
-#updtUser('some email', 'Male', '5/11/1999', '10308', '3.6', sat='1400')
+# updtUser('some email', 'Male', '5/11/1999', '10308', '3.6', sat='1400')
 # updtUser("hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
-         "Computer Science", "Asian/Pacific Islander", "Chinese",
-         "Buddhist")
+        #  "Computer Science", "Asian/Pacific Islander", "Chinese",
+        #  "Buddhist")
 
 
 #########################################     METHODS    #######################
@@ -239,8 +239,8 @@ def splitInt(word):
     # Split method
     # Input -> String, ideally the binary string
     # Output -> integer list to be used for CosSim
-    stringlist = [char for char in word]
-    intlist = [int(i) for i in stringlist]
+    stringlist=[char for char in word]
+    intlist=[int(i) for i in stringlist]
     return intlist
 
 
@@ -248,9 +248,9 @@ def comparison(user_bin, input_bin):
     # For the CosSim comparison
     # Input -> two strings, user binary and scholarship binary
     # Output -> float value, result of CosSim
-    queryList = splitInt(user_bin)
-    inputList = splitInt(input_bin)
-    cos_sim = dot(queryList, inputList)/(norm(queryList)*norm(inputList))
+    queryList=splitInt(user_bin)
+    inputList=splitInt(input_bin)
+    cos_sim=dot(queryList, inputList)/(norm(queryList)*norm(inputList))
     return cos_sim
 
 
@@ -265,8 +265,8 @@ def filter_results(userId):
     # For filtereing after a query is done, returns a list of id's that we can loop through to pull info of those scholarships
     # Input -> Query generator object, string user id, filtering float number
     # Output -> List of strings, these are id's that can be used to pull information
-    filterVal = 0.17 #Need to do more testing for best value
-    userCursor = user_Ref[userId].find(
+    filterVal=0.17  # Need to do more testing for best value
+    userCursor=user_Ref[userId].find(
         {"Email": userId}, {"_id": 0})
     userProf = userCursor[0]
     
@@ -275,12 +275,12 @@ def filter_results(userId):
 
     queryTotal = []
 
-    #Pulls any scholarship that contains a term that the User Profile has 
+    # Pulls any scholarship that contains a term that the User Profile has 
     for i in range(len(userTerms)):
         subQuery = list(scholar_ref.find({'terms': userTerms[i]}, {'terms': 0})) 
         queryTotal = queryTotal + subQuery
    
-    #Removes duplates, O(n^2)
+    # Removes duplates, O(n^2)
     seen = set()
     queryRes = []
     for d in queryTotal:
@@ -289,7 +289,7 @@ def filter_results(userId):
             seen.add(t)
             queryRes.append(d)
     
-    #Binary Comparision
+    # Binary Comparision
     filteredScholar = []
     for i in range(len(queryRes)):
         curr_scholar = queryRes[i]
@@ -339,5 +339,5 @@ def getInfo(scholarId):
     return scholarInfo
 
   
-  #Test run of compare 
+  # Test run of compare 
 #   print(filter_results('hchen60@nyit.edu'))
