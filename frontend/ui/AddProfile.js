@@ -4,6 +4,7 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
 
+
 export default function AddProfile(email) {
 	const navigation = useNavigation();
 	// console.log("Email from AddProfile: " + email.email);

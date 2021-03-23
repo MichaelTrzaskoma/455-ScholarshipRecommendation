@@ -78,6 +78,7 @@ class InputScreen1a extends React.Component {
 		let formattedDate = this.reformatDate(dateStr);
 		//console.log(formattedDate);
 		let formattedDateStr = String(formattedDate);
+		console.log("Date: " + formattedDateStr);
 		final_date = this.handleDOB(formattedDateStr);
 		this.setState({
 			dob: final_date,
@@ -111,7 +112,7 @@ class InputScreen1a extends React.Component {
 	}
 
 	render() {
-		console.log("DOB is: " + this.state.dob);
+		// console.log("DOB is: " + this.state.dob);
 		return (
 			<View style={styles.container}>
 				<Card elevation={7}>
