@@ -44,7 +44,7 @@ class InputScreen1a extends React.Component {
 
 		//Retrieving semi-desired format for day
 		let day = dateStr.getDate();
-
+		console.log("Day is: "+day)
 		//Converting date-day value to string value for purposes of checking length
 		let dayStr = String(day);
 
@@ -69,6 +69,7 @@ class InputScreen1a extends React.Component {
 		
 		// TODO: date must be in "mm/dd/yyyy" format.
 		let formattedString = dayStr + "/" + monthStr + "/" + yearStr;
+		console.log("formattedString:"+ formattedString);
 		return formattedString;
 	}
 
@@ -79,9 +80,6 @@ class InputScreen1a extends React.Component {
 		//console.log(formattedDate);
 		let formattedDateStr = String(formattedDate);
 		final_date = this.handleDOB(formattedDateStr);
-		this.setState({
-			dob: final_date,
-		});
 		console.log(this.state.dob);
 	}
 
