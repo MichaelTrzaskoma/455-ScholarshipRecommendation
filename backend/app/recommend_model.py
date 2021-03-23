@@ -11,6 +11,10 @@ zcdb = ZipCodeDatabase()
 
 # db = MongoClient('localhost', 27017)
 
+# This file is gonna be imported by views.py
+# therefore, a db will be called in views.py
+# the db obj will be passed from the views.py
+# ===================================
 # scholar_ref = db.test.scholarships
 # user_Ref = db.test.client_profile
 #table_Ref = db.collection("Index Table").document("Terms")
