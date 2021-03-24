@@ -397,14 +397,14 @@ def getInfo(scholarId):
     return scholarInfo
 
 
-from pymongo import MongoClient
+# from pymongo import MongoClient
 
-db = MongoClient("mongodb://localhost:27017/")
-scholarDb = db.test
-scholar_ref = db.test.scholarships
-user_Ref = db.test.client_profile
+# db = MongoClient("mongodb://localhost:27017/")
+# scholarDb = db.test
+# scholar_ref = db.test.scholarships
+# user_Ref = db.test.client_profile
 
 #updtUser("mtrzasko@nyit.edu", "Male", "5/11/1999", 10308, "3.0")
-print(filter_results(user_Ref, scholar_ref, 'mtrzasko@nyit.edu'))
+# print(filter_results(user_Ref, scholar_ref, 'mtrzasko@nyit.edu'))
 # Test run of compare
 #   print(filter_results('hchen60@nyit.edu'))
