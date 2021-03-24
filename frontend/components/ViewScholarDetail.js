@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, ScrollView, View, Text } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, TouchableOpacity, } from 'react-native';
+import BeautyWebView from 'react-native-beauty-webview';
 
 export default class ViewScholarDetail extends React.Component {
   constructor(props) {
@@ -14,7 +15,15 @@ export default class ViewScholarDetail extends React.Component {
         applyLink: '',
         title: '',
       },
+      applyLinkVisible : false,
     };
+    this.handleApplyLinkVisible = this.handleApplyLinkVisible.bind(this);
+  }
+
+  handleApplyLinkVisible(boolean){
+    this.setState({
+      applyLinkVisible : boolean
+    });  
   }
 
   componentDidMount() {
@@ -89,10 +98,21 @@ export default class ViewScholarDetail extends React.Component {
         <View style={styles.card_grp2}>
           <View style={styles.apply_grp}>
             <View style={styles.txt_applyRow}>
+            <TouchableOpacity style={styles.applyRow} onPress={() => { this.handleApplyLinkVisible(true) }}>
               <Text style={styles.txt_apply}>Apply Link:</Text>
               <Text numberOfLines={5} style={styles.apply}>
                 {this.state.scholarshipObj.applyLink}
               </Text>
+              </TouchableOpacity>
+              <BeautyWebView
+                // Reguired for open and close
+                visible={this.state.applyLinkVisible}
+                // Reguired for closing the modal
+                onPressClose={() => this.handleApplyLinkVisible(false)}
+                // use tunnel network here to local test env
+                url={this.state.scholarshipObj.applyLink}
+				    	/>
+             
             </View>
           </View>
           <View style={styles.description_grp}>

@@ -34,10 +34,13 @@ class InputScreen1a extends React.Component {
 		this.handleDOB = this.handleDOB.bind(this);
 		this.handleZip = this.handleZip.bind(this);
 		this.handleGPA = this.handleGPA.bind(this);
+		/*
 		this.reformatDate = this.reformatDate.bind(this);
 		this.assignReformattDate = this.assignReformatDate.bind(this);
+		*/
 	}
 
+	/*
 	reformatDate(dateStr) {
 		//Function takes in date String as stored by external library and converts to format suitable for backend purposes
 		//Converts Date from "1925-05-04T23:00:00.000Z" format to "MM-DD-YYYY"
@@ -83,7 +86,7 @@ class InputScreen1a extends React.Component {
 		final_date = this.handleDOB(formattedDateStr);
 		console.log(this.state.dob);
 	}
-
+	*/
 
 	handleGender(text) {
 		this.setState({
@@ -135,14 +138,14 @@ class InputScreen1a extends React.Component {
 						/>
 					</View>
 					<View style={styles.input2_grp}>
-						<Text style={styles.txt_dob}>Date of Birth (mm-dd-yyyy)</Text>
-						<DatePicker
-							//value={"1970-01-01"}
-							format="mm-dd-yyyy"
-							onChange={(value) => this.assignReformatDate(value)}
-							height={50}
-							fontSize={10}
-						/>
+						<Text style={styles.txt_dob}>Please enter your age</Text>
+						<TextInput
+							onChangeText={this.handleDOB}
+							placeholder="16"
+							keyboardType="numeric"
+							maxLength={2}
+							style={styles.input2}
+              >			</TextInput>
 					</View>
 					<View style={styles.input3_grp}>
 						<Text style={styles.txt_zip}>Zip Code</Text>
