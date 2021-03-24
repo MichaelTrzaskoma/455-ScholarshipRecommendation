@@ -1,11 +1,16 @@
 import React, { Component } from "react";
-import { StyleSheet, View, StatusBar, Text, ScrollView } from "react-native";
-import MaterialIconTextbox from "../ui/MaterialIconTextbox";
-import CupertinoButtonInfo1 from "../ui/CupertinoButtonInfo1";
-import {MaterialIcons} from '@expo/vector-icons';
+import {
+  StyleSheet,
+  View,
+  StatusBar,
+  ScrollView,
+  Text,
+  TextInput
+} from "react-native";
+import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import CollegeSurveyBtn from "../ui/CollegeSurveyBtn";
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
-
-
+import { MaterialIcons } from '@expo/vector-icons';
 
 const items = [
   // this is the parent or 'item'
@@ -50,112 +55,157 @@ const items = [
   },
 ];
 
-export default class CollegeSurvey extends React.Component{
-  constructor(props)
-  {
+export default class CollegeSurvey extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       selectedItems: [],
     }
   }
   onSelectedItemsChange = (selectedItems) => {
-    this.setState({selectedItems});
+    this.setState({ selectedItems });
   };
-  render(){
+  render() {
     const { selectedItems } = this.state;
     return (
-      <View style={styles.container}>
-        <StatusBar hidden />
-        <View style={styles.collegeSurveyGroup1}>
-          <View style={styles.collegeSurveyRect1}>
-            <Text style={styles.findCollege}>To Find your college:</Text>
-            <Text style={styles.surveyDescription}>
-              Please Answer the Following Questions to the best of your ability.
-              You can select more than one of the criteria, using the results we
-              will recommend a best fit college. Remember to do your own followup
-              research!
-            </Text>
-          </View>
-        </View>
-        <View style={styles.collegeSurveyGroup2}>
+      <ScrollView
+        horizontal={false}
+        contentContainerStyle={styles.scrollArea_contentContainerStyle}
+      >
+        <View style={styles.container}>
+          <StatusBar hidden />
           <View style={styles.scrollArea}>
-            <ScrollView
-              horizontal={false}
-              contentContainerStyle={styles.scrollArea_contentContainerStyle}
-            >
-              <Text style={styles.collegeSurveyQA1}>
-                What is you regional preference {"\n"}for college location?
+            <View style={styles.collegeSurveyGrp1}>
+              <View style={styles.collegeSurveyRect1}>
+                <Text style={styles.findCollege}>To Find your college:</Text>
+                <Text style={styles.surveyDescription}>
+                  Please Answer the Following Questions to the best of your
+                  ability. You can select more than one of the criteria, using the
+                  results we will recommend a best fit college. Remember to do
+                  your own followup research!
               </Text>
-               <SectionedMultiSelect
-                  items={items}
-                  IconRenderer={MaterialIcons}
-                  uniqueKey="id"
-                  subKey="children"
-                  selectText="Choose all that apply"
-                  style = {"auto"}
-                  showDropDowns={true}
-                  readOnlyHeadings={true}
-                  onSelectedItemsChange={this.onSelectedItemsChange}
-                  selectedItems={this.state.selectedItems}
-                />
-              <Text style={styles.collegeSurveyQA2}>What is your SAT score?</Text>
-              <MaterialIconTextbox
-                inputStyle="Label"
-                inputStyle="If Not Applicable Leave Blank"
-                style={styles.satTextField}
-              ></MaterialIconTextbox>
-              <Text style={styles.collegeSurveyQA3}>What is your ACT score?</Text>
-              <MaterialIconTextbox
-                inputStyle="Label"
-                inputStyle="If Not Applicable Leave Blank"
-                style={styles.actTextField}
-              ></MaterialIconTextbox>
-              <Text style={styles.collegeSurveyQA4}>
-                What major are you interested in?
-              </Text>
-              <MaterialIconTextbox
-                inputStyle="Label"
-                iconStyleName="book-open-variant"
-                inputStyle="If Not Applicable Leave Blank"
-                style={styles.majorTextField}
-              ></MaterialIconTextbox>
-              <CupertinoButtonInfo1
-                style={styles.submitButton}
-              ></CupertinoButtonInfo1>
-            </ScrollView>
+              </View>
+              <View style={styles.collegeSurveyGrp2}>
+                <View style={styles.collegeSurveyRect2}>
+                  <Text style={styles.collegeSurveyQA1}>
+                    What is you regional preference {"\n"}for college location?
+                  </Text>
+
+                  <SectionedMultiSelect
+                    items={items}
+                    IconRenderer={MaterialIcons}
+                    uniqueKey="id"
+                    subKey="children"
+                    selectText="Choose all that apply"
+                    style={{ margin: 20 }}
+                    showDropDowns={true}
+                    readOnlyHeadings={true}
+                    onSelectedItemsChange={this.onSelectedItemsChange}
+                    selectedItems={this.state.selectedItems}
+                  />
+
+                  <View style={styles.satTextField}>
+                    <Text style={styles.collegeSurveyQA2}>
+                      What is your SAT score?
+                    </Text>
+                    <View style={styles.iconRow}>
+                      <MaterialCommunityIconsIcon
+                        name="book-open-variant"
+                        style={styles.icon}
+                      ></MaterialCommunityIconsIcon>
+                      <TextInput
+                        placeholder="If Not Applicable Leave Blank"
+                        keyboardAppearance="light"
+                        blurOnSubmit={false}
+                        style={styles.textInput}
+                      ></TextInput>
+                    </View>
+                  </View>
+                  <View style={styles.actTextField}>
+                    <Text style={styles.collegeSurveyQA3}>
+                      What is your ACT score?
+                    </Text>
+                    <View style={styles.icon1Row}>
+                      <MaterialCommunityIconsIcon
+                        name="book-open-variant"
+                        style={styles.icon1}
+                      ></MaterialCommunityIconsIcon>
+                      <TextInput
+                        placeholder="If Not Applicable Leave Blank"
+                        keyboardAppearance="light"
+                        blurOnSubmit={false}
+                        style={styles.textInput1}
+                      ></TextInput>
+                    </View>
+                  </View>
+                  <View style={styles.majorTextField}>
+                    <Text style={styles.collegeSurveyQA4}>
+                      What major are you interested in?
+                    </Text>
+                    <View style={styles.icon2Row}>
+                      <MaterialCommunityIconsIcon
+                        name="book-open-variant"
+                        style={styles.icon2}
+                      ></MaterialCommunityIconsIcon>
+                      <TextInput
+                        placeholder="If Not Applicable Leave Blank"
+                        keyboardAppearance="light"
+                        blurOnSubmit={false}
+                        style={styles.textInput2}
+                      ></TextInput>
+                    </View>
+                  </View>
+                  <CollegeSurveyBtn
+                    style={styles.submitBtn}
+                  ></CollegeSurveyBtn>
+
+                </View>
+              </View>
+            </View>
           </View>
+
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
 
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#e8e9e7"
+    backgroundColor: "#e8e9e7",
+
   },
-  collegeSurveyGroup1: {
+  scrollArea: {
     width: 321,
-    height: 180,
+    height: 709,
     marginTop: 18,
+
+  },
+  scrollArea_contentContainerStyle: {
+    height: 900,
+    width: 321,
+    alignSelf: "center"
+  },
+  collegeSurveyGrp1: {
+    width: 321,
+    flex: 1,
     alignSelf: "center"
   },
   collegeSurveyRect1: {
-    width: 321,
+    width: 318,
     height: 180,
-    backgroundColor: "#fefffd"
+    backgroundColor: "#fefffd",
+    alignSelf: "center"
   },
   findCollege: {
-    fontFamily: "lemonada-700",
+    fontFamily: "roboto-700",
     color: "#4a76ff",
     height: 37,
     width: 298,
-    fontSize: 18,
+    fontSize: 20,
     marginTop: 13,
-    marginLeft: 11
+    alignSelf: "center"
   },
   surveyDescription: {
     fontFamily: "roboto-700",
@@ -164,20 +214,22 @@ const styles = StyleSheet.create({
     width: 298,
     fontSize: 15,
     marginTop: 10,
-    marginLeft: 9
+    alignSelf: "center"
   },
-  collegeSurveyGroup2: {
+  collegeSurveyGrp2: {
     width: 321,
-    height: 508,
-    marginTop: 17,
-    marginLeft: 26
+    height: 600,
+    marginTop: 21,
+    alignSelf: "center"
   },
-  scrollArea: {
+  collegeSurveyRect2: {
     width: 321,
-    height: 508,
-    backgroundColor: "#fefffd"
+    height: 'auto',
+    backgroundColor: "#fefffd",
+    flex: 1,
+    alignSelf: "center"
   },
-  scrollArea_contentContainerStyle: {
+  collegeSurveyRect2_contentContainerStyle: {
     height: 508,
     width: 321
   },
@@ -185,52 +237,123 @@ const styles = StyleSheet.create({
     fontFamily: "roboto-700",
     color: "#121212",
     fontSize: 15,
+    width: 250,
+    height: 36,
     marginTop: 15,
     marginLeft: 8
+  },
+  satTextField: {
+    width: 247,
+    height: 32,
+    marginTop: 30,
+    marginLeft: 15
   },
   collegeSurveyQA2: {
     fontFamily: "roboto-700",
     color: "#121212",
     fontSize: 15,
-    marginTop: 5,
-    marginLeft: 11
+    marginTop: -27,
+    marginLeft: -4
   },
-  satTextField: {
-    height: 43,
-    width: 292,
-    marginTop: 3,
-    marginLeft: 6
+  icon: {
+    color: "#4a76ff",
+    fontSize: 25,
+    marginTop: 2
+  },
+  textInput: {
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    height: 32,
+    width: 212,
+    borderWidth: 1,
+    borderColor: "rgba(155,155,155,1)",
+    borderBottomWidth: 1,
+    borderTopWidth: 0,
+    borderRightWidth: 0,
+    borderLeftWidth: 0,
+    marginLeft: 10
+  },
+  iconRow: {
+    height: 32,
+    flexDirection: "row",
+    marginTop: 9
+  },
+  actTextField: {
+    width: 247,
+    height: 32,
+    marginTop: 47,
+    marginLeft: 15
   },
   collegeSurveyQA3: {
     fontFamily: "roboto-700",
     color: "#121212",
     fontSize: 15,
-    marginTop: 14,
+    marginTop: -29,
+    marginLeft: -5
+  },
+  icon1: {
+    color: "#4a76ff",
+    fontSize: 25
+  },
+  textInput1: {
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    height: 32,
+    width: 212,
+    borderWidth: 1,
+    borderColor: "rgba(155,155,155,1)",
+    borderBottomWidth: 1,
+    borderTopWidth: 0,
+    borderRightWidth: 0,
+    borderLeftWidth: 0,
     marginLeft: 10
   },
-  actTextField: {
-    height: 43,
-    width: 292,
-    marginLeft: 5
+  icon1Row: {
+    height: 32,
+    flexDirection: "row",
+    marginTop: 11
+  },
+  majorTextField: {
+    width: 247,
+    height: 32,
+    marginTop: 45,
+    marginLeft: 15
   },
   collegeSurveyQA4: {
     fontFamily: "roboto-700",
     color: "#121212",
     fontSize: 15,
-    marginTop: 17,
-    marginLeft: 8
+    marginTop: -28,
+    marginLeft: -7
   },
-  majorTextField: {
-    height: 43,
-    width: 292,
-    marginLeft: 4
+  icon2: {
+    color: "#4a76ff",
+    fontSize: 25
   },
-  submitButton: {
+  textInput2: {
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    height: 32,
+    width: 212,
+    borderWidth: 1,
+    borderColor: "rgba(155,155,155,1)",
+    borderBottomWidth: 1,
+    borderTopWidth: 0,
+    borderRightWidth: 0,
+    borderLeftWidth: 0,
+    marginLeft: 10
+  },
+  icon2Row: {
+    height: 32,
+    flexDirection: "row",
+    marginTop: 10
+  },
+  submitBtn: {
     width: 300,
     height: 36,
     backgroundColor: "#4a76ff",
-    marginTop: 28,
-    marginLeft: 10
+    marginTop: 29,
+    alignSelf: "center"
   }
 });
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
-function CupertinoButtonInfo1(props) {
+function CollegeSurveyBtn(props) {
   return (
     <TouchableOpacity style={[styles.container, props.style]}>
       <Text style={styles.submit}>Submit</Text>
@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
   submit: {
     color: "#fff",
     fontSize: 16,
-    fontFamily: "lemonada-700"
+    fontFamily: "roboto-700"
   }
 });
 
-export default CupertinoButtonInfo1;
+export default CollegeSurveyBtn;
