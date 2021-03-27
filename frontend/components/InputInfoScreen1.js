@@ -9,7 +9,7 @@ import {
 } from "react-native";
 // import InputScreen2 from "./InputInfoScreen2";
 
-import DatePicker from "@dietime/react-native-date-picker";
+//import DatePicker from "@dietime/react-native-date-picker";
 //import DatePicker from 'react-native-datepicker'
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Card } from 'react-native-elements';
