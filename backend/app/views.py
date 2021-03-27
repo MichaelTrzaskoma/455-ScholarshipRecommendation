@@ -59,7 +59,7 @@ def forgot():
     return render_template("public/forgotpass.html")
 
 
-@app.route("/api/v1.2/scholarship/view/category/general")
+@app.route("/api/v1.2/resources/scholarships/view/categories/general")
 def view_scholarship_generalCategory():
     # view a list of scholarship general category
     # OUTPUT: (list) return a list of scholarship general category
@@ -74,7 +74,7 @@ def view_scholarship_generalCategory():
     return make_response(jsonify(i), 202)
 
 
-@app.route("/api/v1.2/scholarship/view/category/<cater>")
+@app.route("/api/v1.2/resources/scholarships/view/categories/<cater>")
 def view_scholarshipCategory(cater):
     # view scholarship info
     # INPUT: (string) general category of the scholarships
@@ -88,7 +88,7 @@ def view_scholarshipCategory(cater):
     return make_response(jsonify(result), 202)
 
 
-@app.route("/api/v1.2/scholarship/view/category/sub/<cater>")
+@app.route("/api/v1.2/resources/scholarships/view/categories/sub/<cater>")
 def view_scholarship_index(cater):
     # view a list of sub-category scholarship info
     # INPUT: (string) name of the category
@@ -110,7 +110,7 @@ def view_scholarship_index(cater):
     return make_response(jsonify(indexing), 202)
 
 
-@app.route("/api/v1.2/scholarship/view/title/<scholarship_title>")
+@app.route("/api/v1.2/resources/scholarships/view/titles/<scholarship_title>")
 def view_scholarship_single(scholarship_title):
     # get a specific scholarship info
     # INPUT: (string) scholarship title
@@ -134,7 +134,7 @@ def view_scholarship_single(scholarship_title):
     return make_response(jsonify(scholarship), 202)
 
 
-@app.route("/api/v1.2/usr/<email>/survey/scholarship",  methods=["POST"])
+@app.route("/api/v1.2/users/id/<email>/surveys/scholarship",  methods=["POST"])
 def usrSurvey_scholarship(email):
     # add user survey to it's profile
     # REQUIREMENT: a registered user
@@ -180,13 +180,15 @@ def usrSurvey_scholarship(email):
         return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
 
 
-@app.route("/api/v1.2/usr/<email>/recommend/scholarship",  methods=["GET"])
+@app.route("/api/v1.2/users/id/<email>/recommends/scholarship",  methods=["GET"])
 def getRecommend_scholarship(email):
     # get scholarship recommendations
     # INPUT: email (string)
     # OUTPUT: scholarship title, amount, and deadline
     if request.method == "GET":
         result = filter_results(user_Ref, scholar_ref, email)
-        return make_response(jsonify({result}), 202)
+        return make_response(jsonify(result), 202)
     else:
         return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
+
+

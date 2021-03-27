@@ -1,11 +1,42 @@
-# 455-ScholarshipRecommendation
+<center>
+<p>
+<image
+src="./frontend/assets/AppLogo.png"
+alt="scholar seek logo"
+style="max-height: 300px; max-width: 300px"/>
 
+<br>
+<div style="font-size: 20px">CSCI 455 - Scholar Seek</div>
+<br>
+
+![](https://shields.io/badge/python-3.8.x-blue??style=flat&logo=python&logoColor=white) 
+![](https://img.shields.io/badge/JavaScript-blue?style=flat&logo=JavaScript&logoColor=white&color=blue)
+![](https://img.shields.io/badge/react-0.63.2-blue?style=flat&logo=react&logoColor=white&label=React%20Native)
+![](https://img.shields.io/badge/npm-7.6.3-blue?style=flat&logo=npm&logoColor=white)
+![](https://img.shields.io/badge/expo-40.0.1-blue?style=flat&logo=Expo&logoColor=white&color=blue)
+
+![](https://img.shields.io/badge/flask-1.1.2-blue?style=flat&logo=flask&logoColor=white)
+![](https://img.shields.io/badge/selenium-3.141.0-blue?style=flat&logo=selenium&logoColor=white)
+![](https://img.shields.io/badge/pytest-6.2.2-blue?style=flat&logo=pytest&logoColor=white)
+![](https://img.shields.io/badge/AWS%20EC2-blue?style=flat&logo=Amazon%20AWS&logoColor=white&color=blue)
+![](https://img.shields.io/badge/mongodb-3.6.8-blue?style=flat&logo=mongodb&logoColor=white&color=blue)
+
+</p>
+</center>
+
+---
 <b>College: </b>New York Institute of Technology<br>
 <b>Course:</b> CSCI 455 - M01/ Spring 2021<br>
 <b>Mentor:</b> <a href="https://www.nyit.edu/bio/wli20">Dr. Li</a><br>
-<b>Team Member:</b> <a href="https://hchen98.github.io/">Hui (Henry) Chen</a>, <a href="https://github.com/byjungy93">Jungi Park</a>, <b><a href="https://github.com/MichaelTrzaskoma">Micheal Trzaskoma</a></b>, <a href="https://github.com/THeKhanMann">Zakaria Khan</a>, and <a href="https://github.com/Greg-Salvesen2">Gregory Salvesen</a>
+<b>Team Lead:</b> <a href="https://github.com/MichaelTrzaskoma">Micheal Trzaskoma</a><br>
+<b>Team Member:</b> <a href="https://hchen98.github.io/">Hui (Henry) Chen</a>, <a href="https://github.com/byjungy93">Jungi Park</a>, <a href="https://github.com/MichaelTrzaskoma">Micheal Trzaskoma</a>, <a href="https://github.com/THeKhanMann">Zakaria Khan</a>, and <a href="https://github.com/Greg-Salvesen2">Gregory Salvesen</a>
 
 ---
+
+## Introduction
+This Scholar Seek project is a continuation of a project from CSCI426 (Information Retrieval). The continuation of this project will include the implementation of more robust features and an enhanced database, which will distinguish this project from its previous state. The new planned features will also expand the scope of the app. The project, in its state from CSCI426, serves as a scholarship recommendation service, using a user’s profile information to match them as best as possible with scholarships from scholarships.com. With the features planned for development in CSCI426, the app will also serve to help prospective college students find the higher education institution that best suits them and it will even help them explore potential majors. Our Scholar Seek will help students who are financially struggling find the best scholarship, explore potential majors, and find the college best suited for them by using their profile information to recommend likely candidates.
+
+<br>
 
 ## Project File Structure
 
@@ -17,11 +48,13 @@
     * subcatList - a list of scholarship sub-category
     * auth - user profile data
 
+<br>
 
 ## Get Started
 
 * backend:
     
+    > Create a virtual env:
     ```
     # navigate to the desired directory
     cd backend
@@ -31,20 +64,25 @@
 
     # install all libs
     pip install -r requirements.txt
+    ```
 
+    #### Production Env
+    ```
     # run the Flask through uWSGI
     uwsgi dev.ini
     ```
 
-    * Access the URL: <a href="http://localhost:9090/">localhost:9090</a>
+    * Access the URL: URL:9090
 
-    * Flask development env:
-        ```
-        export FLASK_APP=run.py
-        export FLASK_ENV=development
-        python run.py
-        ```
+    #### Dev Env:
+    ```
+    export FLASK_APP=run.py
+    export FLASK_ENV=development
+    python run.py
+    ```
 
+    * Access the URL: <a href="localhost:5000">localhost:5000</a>.
+<br><br>
 
 * frontend:
 
@@ -62,4 +100,21 @@
     expo start
     ```
 
+<br>
 
+## API
+
+* Resources
+    | Route | Method(s) | Description |
+    | :--- | :--- | :--- |
+    | /api/v1.2/resources/scholarships/view/categories/general | GET | View a list of scholarship general category terms. E.g. Acamdeic Major, Age, Gendder, and etc. |
+    | /api/v1.2/resources/scholarships/view/categories/<cater\> | GET | View a list of scholarship sub-category terms. E.g. Acamdeic Major has Accounting, Computer Science, and etc. |
+    | /api/v1.2/resources/scholarships/view/categories/sub/<cater\> | GET | View a list of scholarship that belongs to a specific sub-categories. |
+    | /api/v1.2/resources/scholarships/view/titles/<scholarship_title\> | GET | View a specific scholarship detail by providing the title of that scholarship. |
+
+    <br>
+* User Management
+    | Route | Method(s) | Description |
+    | :--- | :--- | :--- |
+    | /api/v1.2/users/id/<email\>/surveys/scholarship | POST | Insert client's scholarship survey detail into db. |
+    | /api/v1.2/users/id/<email\>/recommends/scholarship | GET | View a list of recommended scholarships by providing client's email. |

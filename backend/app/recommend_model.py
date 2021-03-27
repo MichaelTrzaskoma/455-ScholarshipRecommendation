@@ -51,21 +51,6 @@ def updtUser(
 
     binary = setBin(db, list1)
 
-    # user_Ref[userEmail].insert_one({
-    #    'Email': userEmail,
-    #    'Gender': gender,
-    #    'Date of Birth': dob,
-    #    'Zip': zipC,
-    #    'GPA': gpa,
-    #    'Major': major,
-    #    'Religion': religion,
-    #    'Race': race,
-    #    'Ethnicity': ethnicity,
-    #    'Dissabilities': dissabilities,
-    #    'SAT Score': sat,
-    #    'binary': binary,
-    #    'terms': list1
-    # })
     user_Ref.insert_one({
         "_id": userEmail,
         "email": userEmail,
@@ -356,10 +341,10 @@ def filter_results(user_Ref, scholar_ref, userId):
             value = comparison(scholarBin, userBin)
             if(value >= filterVal):
                 scholarInfo = {
-                    'ID': curr_scholar.get('_id'),
-                    'Amount': curr_scholar.get('amount'),
-                    'Deadline': curr_scholar.get('deadline'),
-                    'Val': value
+                    'Name': str(curr_scholar.get('name')),
+                    'Amount': str(curr_scholar.get('amount')),
+                    'Deadline': str(curr_scholar.get('deadline')),
+                    'Val': value,
                 }
                 filteredScholar.append(scholarInfo)
                 filteredScholar.sort(key=sortKey, reverse=True)
@@ -378,40 +363,12 @@ def binCompare(user_bin, scholar_bin):
     return True
 
 
-def getInfo(scholarId):
-    # Method to return content of a specific scholarship, id will be supplied from a list of id's that is from filtering in filter_reults method
-    # Input -> String, Scholarship id
-    # Output -> List, filled of the scholarship's contents
-    scholarInfo = []
-    scholarCursor = scholar_ref.find(
-        {"_id": scholarId}, {"_id": 0})
-    scholarDir = scholarCursor[0]
-
-    scholarInfo.append(scholarDir.get('name'))
-    scholarInfo.append(scholarDir.get('amount'))
-    scholarInfo.append(scholarDir.get('deadline'))
-    scholarInfo.append(scholarDir.get('awards available'))
-    scholarInfo.append(scholarDir.get('direct Link'))
-    scholarInfo.append(scholarDir.get('description'))
-    scholarInfo.append(scholarDir.get('contact Info'))
-    return scholarInfo
-
-
-<<<<<<< HEAD
 # from pymongo import MongoClient
 
 # db = MongoClient("mongodb://localhost:27017/")
 # scholarDb = db.test
 # scholar_ref = db.test.scholarships
 # user_Ref = db.test.client_profile
-=======
-#from pymongo import MongoClient
-
-#db = MongoClient("mongodb://localhost:27017/")
-#scholarDb = db.test
-#scholar_ref = db.test.scholarships
-#user_Ref = db.test.client_profile
->>>>>>> fb6c182873a44aec667e96d58390700126412671
 
 #updtUser("mtrzasko@nyit.edu", "Male", "5/11/1999", 10308, "3.0")
 # print(filter_results(user_Ref, scholar_ref, 'mtrzasko@nyit.edu'))
