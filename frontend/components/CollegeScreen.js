@@ -172,7 +172,6 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   categoryTxt: {
-    fontFamily: "lemonada-700",
     color: "#4a76ff",
     fontSize: 30,
     width: 177,
@@ -202,7 +201,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   nYTxt: {
-    fontFamily: "arial-regular",
     color: "#121212",
     fontSize: 14,
     width: 90,
@@ -225,7 +223,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   nJTxt: {
-    fontFamily: "arial-regular",
     color: "#121212",
     fontSize: 14,
     width: 90,
@@ -248,7 +245,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   nCTxt: {
-    fontFamily: "arial-regular",
     color: "#121212",
     fontSize: 14,
     width: 100,
@@ -271,7 +267,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   nDTxt: {
-    fontFamily: "arial-regular",
     color: "#121212",
     fontSize: 14,
     width: 90,
@@ -294,7 +289,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   oHTxt: {
-    fontFamily: "arial-regular",
     color: "#121212",
     fontSize: 14,
     width: 90,
@@ -323,7 +317,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   viewAllTxt1: {
-    fontFamily: "arial-regular",
     color: "#121212",
     fontSize: 14,
     width: 90,
@@ -352,7 +345,6 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   recommendTxt: {
-    fontFamily: "lemonada-700",
     color: "#4a76ff",
     fontSize: 30,
     width: 177,
@@ -384,7 +376,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   customTxt: {
-    fontFamily: "arial-regular",
     color: "#121212",
     fontSize: 14,
     width: 90,
@@ -406,7 +397,6 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   recentTxt: {
-    fontFamily: "lemonada-700",
     color: "#4a76ff",
     fontSize: 30,
     width: 205,
@@ -444,11 +434,10 @@ const styles = StyleSheet.create({
     flex: 1
   },
   rvTxt1: {
-    fontFamily: "arial-regular",
     color: "#121212",
     fontSize: 14,
     width: 90,
-    height: 32,
+    height: 34,
     marginBottom: 8,
     alignSelf: "center"
   },
@@ -473,11 +462,10 @@ const styles = StyleSheet.create({
     flex: 1
   },
   rvTxt2: {
-    fontFamily: "arial-regular",
     color: "#121212",
     fontSize: 14,
     width: 90,
-    height: 32,
+    height: 34,
     marginBottom: 8,
     alignSelf: "center"
   },
@@ -502,11 +490,10 @@ const styles = StyleSheet.create({
     flex: 1
   },
   rvTxt3: {
-    fontFamily: "arial-regular",
     color: "#121212",
     fontSize: 14,
     width: 90,
-    height: 32,
+    height: 34,
     marginBottom: 8,
     alignSelf: "center"
   },
@@ -531,11 +518,10 @@ const styles = StyleSheet.create({
     flex: 1
   },
   rvTxt4: {
-    fontFamily: "arial-regular",
     color: "#121212",
     fontSize: 14,
     width: 90,
-    height: 32,
+    height: 34,
     marginBottom: 8,
     alignSelf: "center"
   },
@@ -560,11 +546,10 @@ const styles = StyleSheet.create({
     flex: 1
   },
   rvTxt5: {
-    fontFamily: "arial-regular",
     color: "#121212",
     fontSize: 14,
     width: 90,
-    height: 32,
+    height: 34,
     marginBottom: 8,
     alignSelf: "center"
   },
@@ -589,7 +574,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   viewAllTxt2: {
-    fontFamily: "arial-regular",
     color: "#121212",
     fontSize: 14,
     width: 90,
