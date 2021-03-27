@@ -1,13 +1,16 @@
-<center>
-<p>
-<image
-src="./frontend/assets/AppLogo.png"
-alt="scholar seek logo"
-style="max-height: 300px; max-width: 300px"/>
+<p align="center">
+   <image
+   src="./frontend/assets/AppLogo.png"
+   alt="scholar seek logo"
+   height="250"
+          width="250"/>
+</p>
+<p align="center">
+   <b>CSCI 455 - Scholar Seek</b>
+</p>
 
-<br>
-<div style="font-size: 20px">CSCI 455 - Scholar Seek</div>
-<br>
+
+<p style="align: center;">
 
 ![](https://shields.io/badge/python-3.8.x-blue??style=flat&logo=python&logoColor=white) 
 ![](https://img.shields.io/badge/JavaScript-blue?style=flat&logo=JavaScript&logoColor=white&color=blue)
@@ -22,7 +25,6 @@ style="max-height: 300px; max-width: 300px"/>
 ![](https://img.shields.io/badge/mongodb-3.6.8-blue?style=flat&logo=mongodb&logoColor=white&color=blue)
 
 </p>
-</center>
 
 ---
 <b>College: </b>New York Institute of Technology<br>
