@@ -5,25 +5,25 @@
    height="250"
           width="250"/>
 </p>
+
 <p align="center">
    <b>CSCI 455 - Scholar Seek</b>
 </p>
 
+<p align="center">
+   <image src="https://shields.io/badge/python-3.8.x-blue??style=flat&logo=python&logoColor=white" />
+   <image src="https://img.shields.io/badge/JavaScript-blue?style=flat&logo=JavaScript&logoColor=white&color=blue" />
+   <image src="https://img.shields.io/badge/react-0.63.2-blue?style=flat&logo=react&logoColor=white&label=React%20Native" />
+   <image src="https://img.shields.io/badge/npm-7.6.3-blue?style=flat&logo=npm&logoColor=white" />
+   <image src="https://img.shields.io/badge/expo-40.0.1-blue?style=flat&logo=Expo&logoColor=white&color=blue" />
+</p>
 
-<p style="align: center;">
-
-![](https://shields.io/badge/python-3.8.x-blue??style=flat&logo=python&logoColor=white) 
-![](https://img.shields.io/badge/JavaScript-blue?style=flat&logo=JavaScript&logoColor=white&color=blue)
-![](https://img.shields.io/badge/react-0.63.2-blue?style=flat&logo=react&logoColor=white&label=React%20Native)
-![](https://img.shields.io/badge/npm-7.6.3-blue?style=flat&logo=npm&logoColor=white)
-![](https://img.shields.io/badge/expo-40.0.1-blue?style=flat&logo=Expo&logoColor=white&color=blue)
-
-![](https://img.shields.io/badge/flask-1.1.2-blue?style=flat&logo=flask&logoColor=white)
-![](https://img.shields.io/badge/selenium-3.141.0-blue?style=flat&logo=selenium&logoColor=white)
-![](https://img.shields.io/badge/pytest-6.2.2-blue?style=flat&logo=pytest&logoColor=white)
-![](https://img.shields.io/badge/AWS%20EC2-blue?style=flat&logo=Amazon%20AWS&logoColor=white&color=blue)
-![](https://img.shields.io/badge/mongodb-3.6.8-blue?style=flat&logo=mongodb&logoColor=white&color=blue)
-
+<p align="center">
+   <image src="https://img.shields.io/badge/flask-1.1.2-blue?style=flat&logo=flask&logoColor=white" />
+   <image src="https://img.shields.io/badge/selenium-3.141.0-blue?style=flat&logo=selenium&logoColor=white" />
+   <image src="https://img.shields.io/badge/pytest-6.2.2-blue?style=flat&logo=pytest&logoColor=white" />
+   <image src="https://img.shields.io/badge/AWS%20EC2-blue?style=flat&logo=Amazon%20AWS&logoColor=white&color=blue" />
+   <image src="https://img.shields.io/badge/mongodb-3.6.8-blue?style=flat&logo=mongodb&logoColor=white&color=blue" />
 </p>
 
 ---
@@ -38,8 +38,6 @@
 ## Introduction
 This Scholar Seek project is a continuation of a project from CSCI426 (Information Retrieval). The continuation of this project will include the implementation of more robust features and an enhanced database, which will distinguish this project from its previous state. The new planned features will also expand the scope of the app. The project, in its state from CSCI426, serves as a scholarship recommendation service, using a user’s profile information to match them as best as possible with scholarships from scholarships.com. With the features planned for development in CSCI426, the app will also serve to help prospective college students find the higher education institution that best suits them and it will even help them explore potential majors. Our Scholar Seek will help students who are financially struggling find the best scholarship, explore potential majors, and find the college best suited for them by using their profile information to recommend likely candidates.
 
-<br>
-
 ## Project File Structure
 
 * backend - all necessary files for the backend and cloud (AWS)
@@ -49,8 +47,6 @@ This Scholar Seek project is a continuation of a project from CSCI426 (Informati
     * scholarships - detailed scholarships
     * subcatList - a list of scholarship sub-category
     * auth - user profile data
-
-<br>
 
 ## Get Started
 
@@ -101,8 +97,6 @@ This Scholar Seek project is a continuation of a project from CSCI426 (Informati
     # start the project through expo
     expo start
     ```
-
-<br>
 
 ## API
 
