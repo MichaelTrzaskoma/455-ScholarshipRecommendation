@@ -12,7 +12,7 @@ export default function AddProfile(email) {
 
 	return (
 		<TouchableOpacity style={styles.button}
-			onPress={() => navigation.navigate('AddProfile', {
+			onPress={() => navigation.navigate('TabViewSurvey', {
 				"title": "Input Required Info", 
 				"email": email.email,
 			})}
@@ -21,7 +21,7 @@ export default function AddProfile(email) {
 				<MaterialIconsIcon
 					name="playlist-add"
 					style={styles.addProfileDetailIcon}></MaterialIconsIcon>
-				<Text style={styles.addProfileDetailTxt}>Add Profile Detail</Text>
+				<Text style={styles.addProfileDetailTxt}>Take Survey</Text>
 			</View>
 			<View style={styles.addProfileDetailIconRowFiller}></View>
 			<EntypoIcon

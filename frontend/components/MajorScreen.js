@@ -173,7 +173,8 @@ function MajorScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#ffffff"
   },
   container_grp: {
     flex: 1

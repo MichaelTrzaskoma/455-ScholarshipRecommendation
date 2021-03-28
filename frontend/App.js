@@ -25,11 +25,12 @@ import ViewSubCate from "./components/ViewSubCate";
 import ViewScholarTbl from "./components/ViewScholarTbl";
 import ViewScholarDetail from "./components/ViewScholarDetail";
 import ViewRecommendTbl from "./components/ViewRecommendTbl";
-import AddProfile from "./ui/AddProfile";
+// import AddProfile from "./ui/MultiSurvey";
 import ScholarRecommend from "./ui/ScholarRecommend";
 import ScholarshipScreen from "./components/ScholarshipScreen";
 import MajorScreen from "./components/MajorScreen";
 import CollegeScreen from "./components/CollegeScreen";
+import TabViewSurvey from "./components/TabViewSurvey";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -150,6 +151,13 @@ export default class App extends Component {
               // nitialParams={{ email: this.state.usrProfile.email }}
             />
 
+            {/* Multiple Survey component stacked  */}
+            <Stack.Screen
+              name={"TabViewSurvey"}
+              component={TabViewSurvey}
+              options={{ title: "Survey" }}
+            />
+
             <Stack.Screen
               name={"InputScreen2"}
               component={InputScreen2}
@@ -203,11 +211,11 @@ export default class App extends Component {
               options={({ route }) => ({ title: route.params.title })}
             />
 
-            <Stack.Screen
+            {/* <Stack.Screen
               name={"AddProfile"}
               component={AddProfile}
               options={({ route }) => ({ title: route.params.title })}
-            />
+            /> */}
 
             <Stack.Screen
               name={"ViewRecommendTbl"}

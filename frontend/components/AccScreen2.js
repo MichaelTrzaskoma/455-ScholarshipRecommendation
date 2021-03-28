@@ -5,9 +5,11 @@ import MaterialIconsIcon from 'react-native-vector-icons/MaterialIcons';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import TabViewSurvey from './TabViewSurvey';
 
-import AddProfile from "../ui/AddProfile";
-import AddCollege from "../ui/AddCollege";
+// import AddProfile from "../ui/MultiSurvey";
+// import AddCollege from "../ui/AddCollege";
+import MultiSurveyBtn from "../ui/MultiSurveyBtn";
 
 export default function AccScreen2({ usrInfo }) {
 
@@ -34,12 +36,12 @@ export default function AccScreen2({ usrInfo }) {
 				<View style={styles.accBtnGrp}>
 
 					{/* Sub Add Profile Detail btn Component */}
-					<AddProfile email={usrInfo.email} />
+					{/* <AddProfile email={usrInfo.email} /> */}
 
 					{/* Sub Add College Preferences btn Component */}
-					<AddCollege />
+					{/* <AddCollege /> */}
 
-					<TouchableOpacity style={styles.addMajorQuizBtn}>
+					{/* <TouchableOpacity style={styles.addMajorQuizBtn}>
 						<View style={styles.addMajorQuizIconRow}>
 							<MaterialIconsIcon
 								name="playlist-add"
@@ -50,7 +52,11 @@ export default function AccScreen2({ usrInfo }) {
 						<EntypoIcon
 							name="chevron-small-right"
 							style={styles.rightArrowIcon3}></EntypoIcon>
-					</TouchableOpacity>
+					</TouchableOpacity> */}
+
+					{/* This is displayed as "Take Survey" btn which will navigate to TabViewSurvey component */}
+					<MultiSurveyBtn/>
+
 					<TouchableOpacity style={styles.bookmarksBtn}>
 						<View style={styles.bookmarksIconRow}>
 							<IoniconsIcon
