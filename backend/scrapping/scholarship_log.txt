@@ -232,4 +232,9 @@ Traceback (most recent call last):
   File "scholarship.py", line 340, in updateBin
     list[ind] = "1"
 IndexError: list assignment index out of range
+==================================================================================================No such "bare-value" element in the page on the URL: https://www.niche.com/colleges/yale-university/.
 ==================================================================================================
+
+No such "bare-value" element in the page on the URL: https://www.niche.com/colleges/rice-university/.
+==================================================================================================
+
