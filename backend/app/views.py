@@ -136,7 +136,7 @@ def view_scholarship_single(scholarship_title):
 
 @app.route("/api/v1.2/users/id/<email>/surveys/scholarship",  methods=["POST"])
 def usrSurvey_scholarship(email):
-    # add user survey to it's profile
+    # add user survey to profile
     # REQUIREMENT: a registered user
     # INPUT
     # :email (string)

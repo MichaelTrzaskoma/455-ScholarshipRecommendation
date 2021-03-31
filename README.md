@@ -101,7 +101,7 @@ This Scholar Seek project is a continuation of a project from CSCI426 (Informati
 ## API
 
 * Resources
-    | Route | Method(s) | Description |
+    | Endpoint | Method(s) | Description |
     | :--- | :--- | :--- |
     | /api/v1.2/resources/scholarships/view/categories/general | GET | View a list of scholarship general category terms. E.g. Acamdeic Major, Age, Gendder, and etc. |
     | /api/v1.2/resources/scholarships/view/categories/<cater\> | GET | View a list of scholarship sub-category terms. E.g. Acamdeic Major has Accounting, Computer Science, and etc. |
@@ -110,7 +110,7 @@ This Scholar Seek project is a continuation of a project from CSCI426 (Informati
 
     <br>
 * User Management
-    | Route | Method(s) | Description |
+    | Endpoint | Method(s) | Description |
     | :--- | :--- | :--- |
     | /api/v1.2/users/id/<email\>/surveys/scholarship | POST | Insert client's scholarship survey detail into db. |
     | /api/v1.2/users/id/<email\>/recommends/scholarship | GET | View a list of recommended scholarships by providing client's email. |
