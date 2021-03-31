@@ -4,11 +4,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 // import AddCollege from '../ui/AddCollege';
 
+import InputInfoScreen1 from './InputInfoScreen1';
+import CollegeSurvey from './CollegeSurvey';
+
 
 function HomeScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
+      <InputInfoScreen1/>
     </View>
   );
 }
@@ -29,8 +32,8 @@ export default function TabViewSurvey() {
       independent={true}
     >
       <Tab.Navigator>
-        <Tab.Screen name="Scholarship" component={HomeScreen} />
-        <Tab.Screen name="College" component={SettingsScreen} />
+        <Tab.Screen name="Scholarship" component={InputInfoScreen1} />
+        <Tab.Screen name="College" component={CollegeSurvey} />
         <Tab.Screen name="Major" component={SettingsScreen} />
       </Tab.Navigator>
     </NavigationContainer>

@@ -14,10 +14,12 @@ import {
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Card } from 'react-native-elements';
 
-export default function InputScreen1({ route, navigation }) {
+export default function InputInfoScreen1({ route, navigation }) {
 	// console.log("Email from InputScreen1: " + JSON.stringify(route.params.email));
 	// console.log("navigation from InputScreen1: " + JSON.stringify(navigation));
-	return <InputScreen1a email={route.params.email} navigation={navigation}/>;
+
+	// Delete the email attribute to get rid of the error for now - email={route.params.email} 
+	return <InputScreen1a navigation={navigation}/>;
 }
 
 class InputScreen1a extends React.Component {
