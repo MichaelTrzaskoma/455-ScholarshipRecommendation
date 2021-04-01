@@ -1503,7 +1503,7 @@ const styles = StyleSheet.create({
   txt_submit: {
     width: "100%",
     height: 40,
-    backgroundColor: "rgba(0,149,47,1)",
+    backgroundColor: "#4a76ff",
     alignSelf: "center",
   },
   btn_submit: {

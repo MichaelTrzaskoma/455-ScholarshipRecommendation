@@ -19,7 +19,7 @@ export default function InputInfoScreen1({ route, navigation }) {
 	// console.log("navigation from InputScreen1: " + JSON.stringify(navigation));
 
 	// Delete the email attribute to get rid of the error for now - email={route.params.email} 
-	return <InputScreen1a navigation={navigation}/>;
+	return <InputScreen1a navigation={navigation} />;
 }
 
 class InputScreen1a extends React.Component {
@@ -147,7 +147,7 @@ class InputScreen1a extends React.Component {
 							keyboardType="numeric"
 							maxLength={2}
 							style={styles.input2}
-              >			</TextInput>
+						></TextInput>
 					</View>
 					<View style={styles.input3_grp}>
 						<Text style={styles.txt_zip}>Zip Code</Text>
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
 	btn_submit: {
 		width: "100%",
 		height: 40,
-		backgroundColor: "rgba(0,149,47,1)",
+		backgroundColor: "#4a76ff",
 		alignSelf: "center",
 	},
 	next: {
