@@ -103,6 +103,10 @@ class InputScreen1a extends React.Component {
 			})
 			console.log(this.state.zip);
 		}
+		else if(this.state.zip.localeCompare(noInput) == 0)
+		{
+			alert("Error, incomplete or invalid Zip code");
+		}
 		else
 		{
 			alert("Please Fill All Fields Before Submitting");

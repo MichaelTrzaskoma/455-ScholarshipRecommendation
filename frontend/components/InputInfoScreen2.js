@@ -1343,7 +1343,7 @@ export default class InputScreen2 extends React.Component {
           </View>
           <View style={styles.submit_grp}>
             <TouchableOpacity
-              onPress={() => console.log("actual SAT: "+this.state.Sat)/*this.upload2sever()*/}
+              onPress={() => this.upload2sever()}
               style={styles.txt_submit}
             >
               <Text style={styles.btn_submit}>Submit</Text>
