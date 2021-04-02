@@ -1148,9 +1148,26 @@ export default class InputScreen2 extends React.Component {
   }
 
   handleSAT(text) {
-    this.setState({
-      Sat: text,
-    });
+    let textInt = parseInt(text, 10);
+    if(text.length > 2 && textInt >=400 && textInt <= 1600)
+    {
+      this.setState({
+        Sat: text,
+      });
+      //console.log("SAT: "+this.state.Sat)
+    }
+    else if(text.substring(0,1).localeCompare("2") == 0 || text.substring(0,1).localeCompare("3") == 0 || text.substring(0,1).localeCompare("0") == 0)
+    {
+      alert("Please enter a valid SAT score");
+    }
+    else if (text.length < 3 || text.substring(0,1).localeCompare("1") == 0)
+    {
+      console.log("Waiting for User Input");
+    }
+    else
+    {
+      alert("Please enter a valid SAT score");
+    }
   }
 
   handleethnicity(text) {
@@ -1326,7 +1343,7 @@ export default class InputScreen2 extends React.Component {
           </View>
           <View style={styles.submit_grp}>
             <TouchableOpacity
-              onPress={() => this.upload2sever()}
+              onPress={() => console.log("actual SAT: "+this.state.Sat)/*this.upload2sever()*/}
               style={styles.txt_submit}
             >
               <Text style={styles.btn_submit}>Submit</Text>
