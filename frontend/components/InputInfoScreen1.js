@@ -90,6 +90,25 @@ class InputScreen1a extends React.Component {
 	}
 	*/
 
+	onSubmit(){
+		let noInput = "";
+		if(this.state.gender.localeCompare(noInput)!= 0 && this.state.dob.localeCompare(noInput) != 0 && this.state.zip.localeCompare(noInput) != 0 && this.state.gpa.localeCompare(noInput)!= 0)
+		{
+			this.props.navigation.navigate('InputScreen2', {
+				email: this.state.email,
+				gender: this.state.gender,
+				dob: this.state.dob,
+				zip: this.state.zip,
+				gpa: this.state.gpa,
+			})
+			console.log(this.state.zip);
+		}
+		else
+		{
+			alert("Please Fill All Fields Before Submitting");
+		}
+	}
+
 	handleGender(text) {
 		this.setState({
 			gender: text,
@@ -97,21 +116,56 @@ class InputScreen1a extends React.Component {
 	}
 
 	handleDOB(text) {
+		//let textStr = String(text);
+		let invalidVal1 = "0";
+		let invalidVal2 = "00";
+		if(text.localeCompare(invalidVal1) !=0 && text.localeCompare(invalidVal2) != 0)
+		{
 		this.setState({
 			dob: text,
 		});
+		}
+		else
+		{
+			alert("Please enter a valid age");
+		}
 	}
 
 	handleZip(text) {
-		this.setState({
+		//Error Checking for User Zip Code input
+		//Lowest US Zip code is 00501, Highest US Zip Code is 99950
+		let zipInt = parseInt(text, 10);
+		//console.log(zipInt);
+		if((zipInt >= 501) && (zipInt <= 99950) && (text.length > 4))
+		{
+			this.setState({
 			zip: text,
-		});
+			});
+		//console.log("ZipInt: "+zipInt +" Current Length: "+text.length+ " current state: " + this.state.zip);
+		}
+		else if(text.length < 5)
+		{
+			console.log("waiting for user input" + " "+text.length);
+		}
+		else
+		{
+			alert("Please enter a valid zip code")
+		}
+		//console.log(this.state.zip);
 	}
 
 	handleGPA(text) {
+		let gpaFloat = parseFloat(text);
+		if(gpaFloat >= 0.0 && gpaFloat <= 5.0)
+		{
 		this.setState({
 			gpa: text,
 		});
+		}
+		else
+		{
+			alert("Please enter a valid GPA");
+		}
 	}
 
 	render() {
@@ -172,13 +226,7 @@ class InputScreen1a extends React.Component {
 					<View style={styles.submit_grp}>
 						<TouchableOpacity
 							onPress={() =>
-								this.props.navigation.navigate('InputScreen2', {
-									email: this.state.email,
-									gender: this.state.gender,
-									dob: this.state.dob,
-									zip: this.state.zip,
-									gpa: this.state.gpa,
-								})
+								this.onSubmit()
 							}
 							style={styles.btn_submit}
 						>
