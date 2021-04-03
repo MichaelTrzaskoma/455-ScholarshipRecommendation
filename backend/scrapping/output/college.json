@@ -1,0 +1,27 @@
+{
+    "net_cost": "$20,465",
+    "financial_aid_url": "https://www.niche.com/colleges/massachusetts-institute-of-technology/scholarships-financial-aid/",
+    "loan": {
+        "avg_amount": "$8,568",
+        "take_out": "9%",
+        "default_rate": "1%"
+    },
+    "net_price": {
+        "net_price": "$20,465",
+        "avg_tot_aid_award": "74%",
+        "stud_receive_aid": "N\\A",
+        "calculator_url": "http://sfs.mit.edu/undergraduate-students/our-approach-to-aid/net-price-calculator/"
+    },
+    "tuition": {
+        "in_state": "$53,790",
+        "out_state": "$53,790",
+        "avg_housing": "$10,430",
+        "avg_meal_plan": "$5,960",
+        "book": "$820",
+        "plan": {
+            "guarantee": "No",
+            "payment": "Yes",
+            "prepaid": "No"
+        }
+    }
+}

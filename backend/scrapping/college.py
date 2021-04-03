@@ -190,7 +190,8 @@ def retrieve_college_general_info(section):
         "profile-breadcrumbs__item")
     for location in temp_location_tags:
         COLLEGE_LOCATION_TAGS.append(location.text)
-
+    
+    
     return COLLEGE_DESCRIPTION, COLLEGE_SITE, COLLEGE_ADDRESS, COLLEGE_TAGS, ATHLETICS_DIVISION, ATHLETICS_CONFERENCE, COLLEGE_LOCATION_TAGS
 
 
@@ -295,6 +296,12 @@ def check(key, target):
 
 
 def retrieve_admission_statistics(driver, section):
+    # scraping the college admission detail
+    # INPUT
+    # :driver (selenium webdriver obj)
+    # :section (selenium ele obj) - admission section of block from parent page
+    # OUPUT: return an admission dict
+
     admission_detail_url = section.find_element_by_class_name(
         "expansion-link__text").get_attribute('href')
 
@@ -364,18 +371,16 @@ def retrieve_admission_statistics(driver, section):
         ACT_RANGE = temp
 
     if check("—", act_temp2[0].text[11:]):
-        ACT_RANGE = act_temp2[0].text[11:]
+        ACT_ENG_SCORE = act_temp2[0].text[11:]
 
     if check("—", act_temp2[1].text[8:]):
-        ACT_RANGE = act_temp2[1].text[8:]
+        ACT_MATH_SCORE = act_temp2[1].text[8:]
 
     if check("—", act_temp2[2].text[11:]):
-        ACT_RANGE = act_temp2[2].text[11:]
+        ACT_WRITE_SCORE = act_temp2[2].text[11:]
 
     if check("—", act_temp2[3].text[23:]):
-        ACT_RANGE = act_temp2[3].text[23:]
-
-    # return ADMISSION_DESCRIPTION, ACCEPTANCE_RATE, ACCEPTANCE_RATE_EARLY, TOTAL_APPLICANTS, SAT_ACCEPTANCE_SCORE_RANGE, SAT_READING_SCORE, SAT_MATH_SCORE, SAT_SUBMIT_BY_STUDENT, ACT_RANGE, ACT_ENG_SCORE, ACT_MATH_SCORE, ACT_WRITE_SCORE, ACT_SUBMIT_BY_STUDENT
+        ACT_SUBMIT_BY_STUDENT = act_temp2[3].text[23:]
 
     # admission deadline group
     admission_deadline_grp = driver.find_element_by_id("admissions-deadlines")
@@ -424,16 +429,34 @@ def retrieve_admission_statistics(driver, section):
         APPLIC_WEBSITE = appli_temp2
     
     if check("—", appli_temp3[0].text[18:]):
-        APPLIC_WEBSITE = appli_temp3[0].text[18:]
+        APPLIC_COMM_APP = appli_temp3[0].text[18:]
     
     if check("—", appli_temp3[1].text[21:]):
-        APPLIC_WEBSITE = appli_temp3[1].text[21:]
+        APPLI_ACCEPT_COALITION_APP = appli_temp3[1].text[21:]
     
     # admission requirements
-    admission_requirement_grp = driver.find_element_by_id("admissions-requirements")
-    requirement_temp = admission_application_grp.find_elements_by_class_name("fact__table__row__value")
-
     HIGHSCHO_GPA, HIGHSCHO_RANK, HISHSCHO_TRANSCRIPT, COLLEGE_PRE_COURSE, SAT_OR_ACT, RECOMMENDATION = "N\A", "N\A", "N\A", "N\A", "N\A", "N\A"
+    
+    admission_requirement_grp = driver.find_element_by_id("admissions-requirements")
+    requirement_temp = admission_requirement_grp.find_elements_by_class_name("fact__table__row__value")
+
+    if check("—", requirement_temp[0].text):
+        HIGHSCHO_GPA = requirement_temp[0].text
+
+    if check("—", requirement_temp[1].text):
+        HIGHSCHO_RANK = requirement_temp[1].text
+
+    if check("—", requirement_temp[2].text):
+        HISHSCHO_TRANSCRIPT = requirement_temp[2].text
+
+    if check("—", requirement_temp[3].text):
+        COLLEGE_PRE_COURSE = requirement_temp[3].text
+
+    if check("—", requirement_temp[4].text):
+        SAT_OR_ACT = requirement_temp[4].text
+
+    if check("—", requirement_temp[5].text):
+        RECOMMENDATION = requirement_temp[5].text
 
     # admission poll results
     poll_temp = admission_requirement_grp.find_element_by_class_name("profile__bucket--2")
@@ -448,23 +471,124 @@ def retrieve_admission_statistics(driver, section):
     if check("—", temp):
         POLL_RESULT2 = temp
     
-    # return 
+    Admission = {
+        "description": str(ADMISSION_DESCRIPTION),
+        "acceptance": {
+            "rate": str(ACCEPTANCE_RATE),
+            "rate_early": str(ACCEPTANCE_RATE_EARLY),
+        },
+        "total_applicants": str(TOTAL_APPLICANTS),
+        "sat": {
+            "accept_score_range": str(SAT_ACCEPTANCE_SCORE_RANGE),
+            "reading_score": str(SAT_READING_SCORE),
+            "math_score": str(SAT_MATH_SCORE),
+            "submite_by_student": str(SAT_SUBMIT_BY_STUDENT)
+        },
+        "act": {
+            "accept_score_range": str(ACT_RANGE),
+            "eng_score": str(ACT_ENG_SCORE),
+            "math_score": str(ACT_MATH_SCORE),
+            "write_score": str(ACT_WRITE_SCORE),
+            "submite_by_student": str(ACT_SUBMIT_BY_STUDENT)
+        },
+        "deadline": {
+            "date": str(ADMISSION_DEADLINE_DATE),
+            "early_decision": str(DEADLINE_EARLY_DECISION),
+            "early_action": str(DEADLINE_EARLY_ACTION),
+            "early_offer_date": str(EARLY_OFFERE_DATE),
+            "early_action": str(EARLY_OFFER_ACTION)
+        },
+        "application": {
+            "fee": str(APPLIC_FEE),
+            "website": str(APPLIC_WEBSITE),
+            "comm_app": str(APPLIC_COMM_APP),
+            "accept_coalition_app": str(APPLI_ACCEPT_COALITION_APP)
+        },
+        "requirements": {
+            "highscho_gpa": str(HIGHSCHO_GPA),
+            "highscho_rank": str(HIGHSCHO_RANK),
+            "highscho_transcript": str(HISHSCHO_TRANSCRIPT),
+            "uni_precourse": str(COLLEGE_PRE_COURSE),
+            "sat_or_act": str(SAT_OR_ACT),
+            "recommendation": str(RECOMMENDATION),
+            "poll_uni_care_them": str(POLL_RESULT1),
+            "poll_uni_care_individual": str(POLL_RESULT2)
+        }
+    }
+    return Admission
+
 
 def retrieve_cost_data(driver, section):
     cost_detail_url = section.find_element_by_class_name("expansion-link__text").get_attribute("href")
     # navigate to the cost detail page
     driver.get(cost_detail_url)
 
+    # there are two element named id with "cost", so need to process them
     cost_info_temp = driver.find_elements_by_id("cost")
     cost_grp = cost_info_temp[1]
     cost_temp = cost_grp.find_element_by_class_name("profile__bucket--3")
     
     NET_COST = "N\A"
     temp = cost_temp.find_element_by_class_name("scalar__value").text
+    # parse the unnecessary info
     position = temp.index(" / ")
     if check("—", temp[:position]):
         NET_COST = temp[:position]
     
+    # locate financial loan and aid urls
+    student_loan_url, financial_aid_url = "N\A", "N\A"
+    loan_aid_temp = cost_grp.find_element_by_class_name("profile__bucket--4")
+    loan_aid_urls = loan_aid_temp.find_elements_by_class_name("expansion-link__text")
+    student_loan_url = loan_aid_urls[0].get_attribute("href")
+    financial_aid_url = loan_aid_urls[1].get_attribute("href")
+
+    # navigate to student loan page
+    driver.get(student_loan_url)
+
+    LOAN_AVG_AMOUNT, LOAN_TAKE_OUT, LOAN_DEFAULT_RATE = "N\A", "N\A", "N\A"
+    loan_grp = driver.find_element_by_id("about-student-loans")
+    loan_info_block = loan_grp.find_element_by_class_name("profile__bucket--1")
+    loan_infos = loan_info_block.find_elements_by_class_name("scalar__value")
+
+    position = loan_infos[0].text.index(" / ")
+    if check("—", loan_infos[0].text[:position]):
+        LOAN_AVG_AMOUNT = loan_infos[0].text[:position]
+    
+    if check("—", loan_infos[1].text):
+        LOAN_TAKE_OUT = loan_infos[1].text
+    
+    # there are words like "\n11%" in the string
+    temp = loan_infos[2].text[:3].replace("\n", "")
+    if check("—", temp):
+        LOAN_DEFAULT_RATE = temp
+    
+    # navigate back to the cost detail page
+    driver.get(cost_detail_url)
+
+    # locate net price breakdown
+    NET_PRICE, AVG_TOTAL_AID_AWARD, STUDENT_RECEIVE_AID, NET_PRICE_CALCULATE_URL = "N\A", "N\A", "N\A", "N\A"
+    net_price_grp = driver.find_element_by_id("net-price")
+    net_price_temp = net_price_grp.find_element_by_class_name("profile__bucket--1")
+    net_price_items = net_price_temp.find_elements_by_class_name("scalar__value")
+
+    temp = net_price_items[0].text
+    position = temp.index(" / ")
+    if check("—", temp[:position]):
+        NET_PRICE = temp[:position]
+    
+    temp = net_price_items[1].text
+    position = temp.index(" / ")
+    if check("—", temp[:position]):
+        AVG_TOTAL_AID_AWARD = temp[:position]
+    
+    temp = net_price_items[2].text
+    if check("—", temp):
+        AVG_TOTAL_AID_AWARD = temp
+    
+    temp = net_price_temp.find_element_by_class_name("profile__website__link").get_attribute("href")
+    if check("—", temp):
+        NET_PRICE_CALCULATE_URL = temp
+
     # locate sticker price
     sticker_price_grp = driver.find_element_by_id("sticker-price")
     tuition_temp = sticker_price_grp.find_element_by_class_name("profile__bucket--1")
@@ -488,57 +612,169 @@ def retrieve_cost_data(driver, section):
     other_cost_temp = other_cost_grp1.find_elements_by_class_name("scalar__value")
 
     AVG_HOUSING_COST, AVE_MEAL_PLAN_COST, BOOKS_SUPPLIES = "N\A", "N\A", "N\A"
-    position = temp.index(" / ")
+    position = other_cost_temp[0].text.index(" / ")
+    if check("—", other_cost_temp[0].text[:position]):
+        AVG_HOUSING_COST = other_cost_temp[0].text[:position]
+
+    position = other_cost_temp[1].text.index(" / ")
+    if check("—", other_cost_temp[1].text[:position]):
+        AVE_MEAL_PLAN_COST = other_cost_temp[1].text[:position]
+
+    position = other_cost_temp[2].text.index(" / ")
+    if check("—", other_cost_temp[2].text[:position]):
+        BOOKS_SUPPLIES = other_cost_temp[2].text[:position]
+
+    # locate tuition plan data
+    TUITION_GUARANTEE_PLAN, TUITION_PAYMENT_PLAN, TUITION_PREPAID_PLAN = "N\A", "N\A", "N\A"
+    tuition_plan_grp = sticker_price_grp.find_element_by_class_name("profile__bucket--4")
+    tuition_plan_items = tuition_plan_grp.find_elements_by_class_name("scalar__value")
+    
+    if check("—", tuition_plan_items[0].text):
+        TUITION_GUARANTEE_PLAN = tuition_plan_items[0].text
+
+    if check("—", tuition_plan_items[1].text):
+        TUITION_PAYMENT_PLAN = tuition_plan_items[1].text
+
+    if check("—", tuition_plan_items[2].text):
+        TUITION_PREPAID_PLAN = tuition_plan_items[2].text
+    
+    cost = {
+        "net_cost": str(NET_COST),
+        "financial_aid_url": str(financial_aid_url),
+        "loan": {
+            "avg_amount": str(LOAN_AVG_AMOUNT),
+            "take_out": str(LOAN_TAKE_OUT),
+            "default_rate": str(LOAN_DEFAULT_RATE)
+        },
+        "net_price": {
+            "net_price": str(NET_PRICE),
+            "avg_tot_aid_award": str(AVG_TOTAL_AID_AWARD),
+            "stud_receive_aid": str(STUDENT_RECEIVE_AID),
+            "calculator_url": str(NET_PRICE_CALCULATE_URL)
+        },
+        "tuition": {
+            "in_state": str(TUITION_IN_STATE),
+            "out_state": str(TUITION_OUT_STATE),
+            "avg_housing": str(AVG_HOUSING_COST),
+            "avg_meal_plan": str(AVE_MEAL_PLAN_COST),
+            "book": str(BOOKS_SUPPLIES),
+            "plan": {
+                "guarantee": str(TUITION_GUARANTEE_PLAN),
+                "payment": str(TUITION_PAYMENT_PLAN),
+                "prepaid": str(TUITION_PREPAID_PLAN)
+            }
+        }
+    }
+
+    return cost
+
+
+def retrieve_academic_data(driver, section):
+    
+    # get the academic detail page url
+    academic_detail_page_url = section.find_element_by_class_name("expansion-link__text").get_attribute("href")
+
+    # navigate to the academic detail page
+    driver.get(academic_detail_page_url)
+
+    # academic statistic group
+    academic_statisic_grp = driver.find_element_by_id("academic-statistics")
+
+    # locate graduation rate
+    GRADUATION_RATE = "N\A"
+    graduation_rate_temp = academic_statisic_grp.find_element_by_class_name("profile__bucket--2")
+    temp = graduation_rate_temp.find_element_by_class_name("scalar__value").text
+    position = temp.index("National")
+
     if check("—", temp[:position]):
-        TUITION_IN_STATE = temp[:position]
+        GRADUATION_RATE = temp[:position]
+    
+    # class statistics
+    class_grp = driver.find_element_by_id("about-the-classes")
+
+    # get class size
+    class_size_grp = class_grp.find_element_by_class_name("profile__bucket--1")
+
+    CLASS_SIZE_RATIO = {}
+    # get the tbl index key
+    class_size_key = class_size_grp.find_elements_by_class_name("fact__table__row__label")
+    # get the tbl val
+    class_size_val = class_size_grp.find_elements_by_class_name("fact__table__row__value")
+
+    # zip them and then form a list so that we can append into the dict
+    temp = list(zip(class_size_key, class_size_val))
+    for key, val in temp:
+        CLASS_SIZE_RATIO[key.text] = val.text
+    
+    # locate popular major listing
+    popular_major_grp = class_grp.find_element_by_class_name("profile__bucket--2")
+
+    # need to click a button in order to view more data from the tbl
+    popular_major_grp.find_element_by_class_name("toggle__content__link--profiles").click()
+
+    # locate the major tbl with key val pair
+    POPULAR_MAJOR = {}
+    # major name
+    popular_major_key = popular_major_grp.find_elements_by_class_name("popular-entity__name")
+    # major statistics
+    popular_major_val = popular_major_grp.find_elements_by_class_name("popular-entity-descriptor")
+
+    temp = list(zip(popular_major_key, popular_major_val))
+    for key, val in temp:
+        POPULAR_MAJOR[key.text] = val.text
+
+    # get professor statistics
+    prof_grp = driver.find_element_by_id("about-the-professors")
+
+    FACULTY_RATIO, FEMALE_PROF, MALE_PROF = "N\A", "N\A", "N\A"
+    # narrow down the ele
+    prof_info_grp = prof_grp.find_element_by_class_name("profile__bucket--1")
+    prof_info = prof_info_grp.find_elements_by_class_name("scalar__value")
+    
+    if check("—", prof_info[0].text):
+        FACULTY_RATIO = prof_info[0].text
+    if check("—", prof_info[1].text):
+        FEMALE_PROF = prof_info[1].text
+    if check("—", prof_info[2].text):
+        MALE_PROF = prof_info[2].text
+
+    # get faculty diversity
+    FACULTY_DIVERSITY = {}
+    prof_diversity_grp = prof_grp.find_element_by_class_name("profile__bucket--2")
+    prof_diversity_key = prof_diversity_grp.find_elements_by_class_name("fact__table__row__label")
+    prof_diversity_val = prof_diversity_grp.find_elements_by_class_name("fact__table__row__value")
+
+    temp = list(zip(prof_diversity_key, prof_diversity_val))
+    for key, val in temp:
+        FACULTY_DIVERSITY[key.text] = val.text
+    
+    academic = {
+        "graduation_rate": str(GRADUATION_RATE),
+        "class_size_ratio": str(CLASS_SIZE_RATIO),
+        "popular_major": POPULAR_MAJOR,
+        "faculty": {
+            "ratio": str(FACULTY_RATIO),
+            "female": str(FEMALE_PROF),
+            "male": str(MALE_PROF),
+            "diversity": FACULTY_DIVERSITY
+        },
+        
+    }
+
+    return academic
+
+
+def retrieve_students_data(section):
+    return False
+
 
 if __name__ == "__main__":
 
     ROOT_URL = "https://www.niche.com/colleges/search/best-colleges/?page="
     collegeURL = []
 
-    # ua = UserAgent()
-    # userAgent = ua.random
-    # print(f"User Agent: {userAgent}")
-
-    # userProfile = "/home/hui/.config/google-chrome/Default"
-
-    # config chrome driver options to speed up the scraping
-    # co = webdriver.ChromeOptions()
-    # co.headless = True
-    # co.add_argument("start-maximized")
-    # co.add_argument(f'user-agent={userAgent}')
-    # co.add_experimental_option('excludeSwitches', ['enable-automation'])
-    # co.add_argument('--incognito')
-    # co.add_argument("user-data-dir={}".format(userProfile))
-    # co.add_experimental_option("excludeSwitches", ["ignore-certificate-errors", "safebrowsing-disable-download-protection", "safebrowsing-disable-auto-update", "disable-client-side-phishing-detection"])
-    # co.add_argument("--hide-scrollbars")
-    # co.add_argument('--disable-gpu')
-    # co.add_argument("--disable-extensions")
-    # co.add_argument('--disable-infobars')
-    # co.add_argument('--disable-javascripts')
-    # co.add_argument('--no-sandbox')
-    # co.add_argument('--ignore-certificate-errors')
-
-    # config firefox profile
-    # fp = webdriver.FirefoxProfile()
-    # fp.set_preference("http.response.timeout", 5)
-    # fp.set_preference("dom.max_scrit_run_time", 5)
-
-    # fo = webdriver.FirefoxOptions()
-    # fo.headless = True
-    # fo.add_argument('--disable-extensions')
-    # fo.add_argument('--disable-infobars')
-
-    # capabilities = {
-    #     'useAutomationExtension': False
-    # }
-
     global driver
-    # DRIVER_PATH = "./chromedriver_v88_2"
-    # driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=co)
     driver = uc.Chrome()
-    # driver2 = uc.Chrome(options=co)
 
     # for the site's pagination
     for i in range(113):
@@ -589,15 +825,28 @@ if __name__ == "__main__":
 
             # ======== Admission info ========
             # section4 = driver.find_element_by_id("admissions")
-            # ADMISSION_DESCRIPTION, ACCEPTANCE_RATE, ACCEPTANCE_RATE_EARLY, TOTAL_APPLICANTS, SAT_ACCEPTANCE_SCORE_RANGE, SAT_READING_SCORE, SAT_MATH_SCORE, SAT_SUBMIT_BY_STUDENT, ACT_RANGE, ACT_ENG_SCORE, ACT_MATH_SCORE, ACT_WRITE_SCORE, ACT_SUBMIT_BY_STUDENT = retrieve_admission_statistics(driver, section4)
-            # retrieve_admission_statistics(driver, section4)
+            # print(retrieve_admission_statistics(driver, section4))
 
             # back to scholasrhip detail (previous) page
             # driver.get(temp)
 
             # ====== Uni Cost ========
-            section5 = driver.find_element_by_id("cost")
-            retrieve_cost_data(driver, section5)
+            # section5 = driver.find_element_by_id("cost")
+            # print(retrieve_cost_data(driver, section5))
+            
+            # back to scholasrhip detail (previous) page
+            # driver.get(temp)
+            
+            # ======== Academic info =========
+            # section6 = driver.find_element_by_id("academics")
+            # print(retrieve_academic_data(driver, section6))
+
+            # back to scholasrhip detail (previous) page
+            # driver.get(temp)
+
+            #  ======== Major data ========
+            section7 = driver.find_element_by_id("students")
+            retrieve_students_data(section7)
 
 
 # https://www.niche.com/graduate-schools/massachusetts-institute-of-technology/
