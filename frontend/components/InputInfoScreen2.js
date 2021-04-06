@@ -252,7 +252,7 @@ const items = [
       },
       {
         name: 'Culinary Arts',
-        id: 82.
+        id: 82,
       },
       {
         name: 'Mechanics',

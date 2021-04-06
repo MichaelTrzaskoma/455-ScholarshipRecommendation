@@ -225,6 +225,250 @@ const items = [
       },
     ],
   },
+  {
+    name: 'Arts',
+    id: 52,
+    children: [
+      {
+        name: 'Art',
+        id: 53,
+      },
+      {
+        name: 'Design',
+        id: 54,
+      },
+      {
+        name: 'Film and Photography',
+        id: 55,
+      },
+      {
+        name: 'Film',
+        id: 55,
+      },
+      {
+        name: 'Photography',
+        id: 56,
+      },
+      {
+        name: 'Music',
+        id: 57,
+      },
+    ],
+  },
+  {
+    name: 'Business',
+    id: 58,
+    children: [
+      {
+        name: 'Business Management',
+        id: 59,
+      },
+      {
+        name: 'Business and Management',
+        id: 60,
+      },
+      {
+        name: 'Finance and Accounting',
+        id: 61,
+      },
+      {
+        name: 'Sports Management',
+        id: 62,
+      },
+    ],
+  },
+  {
+    name: 'Education',
+    id: 63,
+    children: [
+      {
+        name: 'Education',
+        id: 64,
+      },
+    ],
+  },
+  {
+    name: 'Health Professions',
+    id: 65,
+    children: [
+      {
+        name: 'Dental',
+        id: 66,
+      },
+      {
+        name: 'Food and Nutrition',
+        id: 67,
+      },
+      {
+        name: 'Health Care',
+        id: 68,
+      },
+      {
+        name: 'Health',
+        id: 69,
+      },
+      {
+        name: 'Kinesiology',
+        id: 70,
+      },
+      {
+        name: 'Physical Therapy',
+        id: 71,
+      },
+      {
+        name: "Kinesiology and Physical Therapy",
+        id: 72,
+      },
+      {
+        name: 'Medical',
+        id: 73,
+      },
+      {
+        name: 'Nursing',
+        id: 74,
+      },
+      {
+        name: 'Public Health',
+        id: 75,
+      },
+      {
+        name: 'Veterinary',
+        id: 76,
+      }
+    ],
+  },
+  {
+    name: 'Humanities',
+    id: 77,
+    children: [
+      {
+        name: 'Anthropology',
+        id: 78,
+      },
+      {
+        name: 'Communications',
+        id: 79,
+      },
+      {
+        name: 'Economics',
+        id: 80,
+      },
+      {
+        name: 'English',
+        id: 81,
+      },
+      {
+        name: 'Foreign Language',
+        id: 82,
+      },
+      {
+        name: 'History',
+        id: 83,
+      },
+      {
+        name: 'International Relations',
+        id: 84,
+      },
+      {
+        name: 'Legal Studies',
+        id: 85,
+      },
+      {
+        name: 'Philosophy',
+        id: 86,
+      },
+      {
+        name: 'Political Science',
+        id: 87,
+      },
+      {
+        name: 'Psychology',
+        id: 88,
+      },
+      {
+        name: 'Public Policy and Social Services',
+        id: 89,
+      },
+      {
+        name: 'Religious Studies',
+        id: 90,
+      }
+    ],
+  },
+  {
+    name: 'Protective Services',
+    id: 91,
+    children: [
+      {
+        name: 'Criminal Justice',
+        id: 92,
+      },
+      {
+        name: 'Protective Services',
+        id: 93,
+      },
+    ],
+  },
+  {
+    name: 'Science, Technology, & Math',
+    id: 94,
+    children: [
+      {
+        name: 'Agriculture',
+        id: 95,
+      },
+      {
+        name: 'Biology',
+        id: 96,
+      },
+      {
+        name: 'Chemistry',
+        id: 97,
+      },
+      {
+        name: 'Computer Science',
+        id: 98,
+      },
+      {
+        name: 'Environmental Science',
+        id: 99,
+      },
+      {
+        name: 'Engineering',
+        id: 100,
+      },
+      {
+        name: 'Information Technology',
+        id: 101,
+      },
+      {
+        name: 'Math',
+        id: 102,
+      },
+      {
+        name: 'Physics',
+        id: 103,
+      }
+    ],
+  },
+  {
+    name: 'Trades & Personal Services',
+    id: 104,
+    children: [
+      {
+        name: 'Cosmetology',
+        id: 105,
+      },
+      {
+        name: 'Culinary Arts',
+        id: 106,
+      },
+      {
+        name: 'Mechanics',
+        id: 107,
+      },
+    ],
+  },
 ];
 
 export default class CollegeSurvey extends React.Component {
@@ -232,11 +476,18 @@ export default class CollegeSurvey extends React.Component {
     super(props);
     this.state = {
       selectedItems: [],
+      selectedItems2: [],
     }
   }
+
   onSelectedItemsChange = (selectedItems) => {
     this.setState({ selectedItems });
   };
+
+  onSelectedItemsChange2 = (selectedItems2) => {
+    this.setState({ selectedItems2});
+  };
+
   render() {
     const { selectedItems } = this.state;
     return (
@@ -312,19 +563,20 @@ export default class CollegeSurvey extends React.Component {
                   </View>
                   <View style={styles.majorTextField}>
                     <Text style={styles.collegeSurveyQA4}>
-                      What major are you interested in?
+                      What major(s) are you interested in?
                     </Text>
-                    <View style={styles.icon2Row}>
-                      <MaterialCommunityIconsIcon
-                        name="book-open-variant"
-                        style={styles.icon2}
-                      ></MaterialCommunityIconsIcon>
-                      <TextInput
-                        placeholder="If Not Applicable Leave Blank"
-                        keyboardAppearance="light"
-                        blurOnSubmit={false}
-                        style={styles.textInput2}
-                      ></TextInput>
+                    <SectionedMultiSelect
+                      style = {{ margin: 30}}
+                      items = {items.slice(1, items.length + 1)}
+                      IconRenderer = {MaterialIcons}
+                      uniqueKey = "name"
+                      subKey = "children"
+                      selectText = "Select Major(s)"
+                      showDropDowns = {true}
+                      readOnlyHeadings = {true}
+                      onSelectedItemsChange = {this.onSelectedItemsChange2}
+                      selectedItems = {this.state.selectedItems2}
+                    />
                     </View>
                   </View>
                   <CollegeSurveyBtn
@@ -336,7 +588,6 @@ export default class CollegeSurvey extends React.Component {
             </View>
           </View>
 
-        </View>
       </ScrollView>
     );
   }
@@ -487,7 +738,7 @@ const styles = StyleSheet.create({
   },
   majorTextField: {
     width: 247,
-    height: 32,
+    height: "auto",
     marginTop: 45,
     marginLeft: 15
   },
