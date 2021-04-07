@@ -9,3 +9,7 @@ https://www.niche.com/colleges/california-institute-of-technology/
 https://www.niche.com/colleges/brown-university/
 https://www.niche.com/colleges/university-of-pennsylvania/
 https://www.niche.com/colleges/vanderbilt-university/
+https://www.niche.com/colleges/columbia-university/
+https://www.niche.com/colleges/dartmouth-college/
+https://www.niche.com/colleges/northwestern-university/
+https://www.niche.com/colleges/washington-university-in-st-louis/

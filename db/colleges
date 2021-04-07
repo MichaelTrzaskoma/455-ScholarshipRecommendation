@@ -1,9 +1,9 @@
 [{
   "_id": {
-    "$oid": "606a65a83d400d8ff3f0f6b2"
+    "$oid": "606a8644e181e96ee28a4c78"
   },
-  "name": "Massachusetts Institute of Technology",
   "grad": 0,
+  "name": "Massachusetts Institute of Technology",
   "niche_grade": {
     "Academics": "A+",
     "Value": "A+",
@@ -272,7 +272,7 @@
     },
     "club": {
       "offered": [
-        "Campus Ministries",
+        "\nCampus Ministries",
         "Dance",
         "Drama/Theater",
         "International Student Organizations",
@@ -286,7 +286,7 @@
         "Yearbook"
       ],
       "music": [
-        "Choral Groups",
+        "\nChoral Groups",
         "Concert Band",
         "Jazz Band",
         "Marching Band",
@@ -319,10 +319,10 @@
   }
 },{
   "_id": {
-    "$oid": "606a65e83d400d8ff3f0f6b3"
+    "$oid": "606a867ae181e96ee28a4c79"
   },
-  "name": "Harvard University",
   "grad": 0,
+  "name": "Harvard University",
   "niche_grade": {
     "Academics": "A+",
     "Value": "A+",
@@ -509,6 +509,7 @@
       "Public_Health": "105 Graduates",
       "Psychology": "103 Graduates",
       "Statistics": "100 Graduates",
+      "English": "88 Graduates",
       "": ""
     },
     "faculty": {
@@ -609,7 +610,7 @@
     },
     "club": {
       "offered": [
-        "Campus Ministries",
+        "\nCampus Ministries",
         "Dance",
         "Drama/Theater",
         "International Student Organizations",
@@ -623,7 +624,7 @@
         "Yearbook"
       ],
       "music": [
-        "Choral Groups",
+        "\nChoral Groups",
         "Concert Band",
         "Jazz Band",
         "Marching Band",
@@ -658,10 +659,10 @@
   }
 },{
   "_id": {
-    "$oid": "606a66293d400d8ff3f0f6b4"
+    "$oid": "606a86b9e181e96ee28a4c7a"
   },
-  "name": "Stanford University",
   "grad": 0,
+  "name": "Stanford University",
   "niche_grade": {
     "Academics": "A+",
     "Value": "A+",
@@ -853,7 +854,7 @@
       "Liberal_Arts_and_Humanities": "63 Graduates",
       "Political_Science_and_Government": "57 Graduates",
       "Psychology": "56 Graduates",
-      "": ""
+      "Electrical_Engineering": "51 Graduates"
     },
     "faculty": {
       "ratio": "5:1",
@@ -950,7 +951,7 @@
     },
     "club": {
       "offered": [
-        "Campus Ministries",
+        "\nCampus Ministries",
         "Dance",
         "Drama/Theater",
         "International Student Organizations",
@@ -964,7 +965,7 @@
         "Yearbook"
       ],
       "music": [
-        "Choral Groups",
+        "\nChoral Groups",
         "Concert Band",
         "Jazz Band",
         "Marching Band",
@@ -999,10 +1000,10 @@
   }
 },{
   "_id": {
-    "$oid": "606a66663d400d8ff3f0f6b5"
+    "$oid": "606a86f1e181e96ee28a4c7b"
   },
-  "name": "Yale University",
   "grad": 0,
+  "name": "Yale University",
   "niche_grade": {
     "Academics": "A+",
     "Value": "A+",
@@ -1186,7 +1187,6 @@
       "English": "73 Graduates",
       "Liberal_Arts_and_Humanities": "73 Graduates",
       "Information_Science": "65 Graduates",
-      "Psychology": "61 Graduates",
       "": ""
     },
     "faculty": {
@@ -1281,7 +1281,7 @@
     },
     "club": {
       "offered": [
-        "Dance",
+        "\nDance",
         "Drama/Theater",
         "International Student Organizations",
         "Literary Magazine",
@@ -1293,7 +1293,7 @@
         "Yearbook"
       ],
       "music": [
-        "Choral Groups",
+        "\nChoral Groups",
         "Concert Band",
         "Jazz Band",
         "Marching Band",
@@ -1328,10 +1328,10 @@
   }
 },{
   "_id": {
-    "$oid": "606a669b3d400d8ff3f0f6b6"
+    "$oid": "606a872ae181e96ee28a4c7c"
   },
-  "name": "Duke University",
   "grad": 0,
+  "name": "Duke University",
   "niche_grade": {
     "Academics": "A+",
     "Value": "A+",
@@ -1608,7 +1608,7 @@
     },
     "club": {
       "offered": [
-        "Campus Ministries",
+        "\nCampus Ministries",
         "Dance",
         "Drama/Theater",
         "International Student Organizations",
@@ -1621,7 +1621,7 @@
         "Television Station"
       ],
       "music": [
-        "Choral Groups",
+        "\nChoral Groups",
         "Concert Band",
         "Jazz Band",
         "Marching Band",
@@ -1656,10 +1656,10 @@
   }
 },{
   "_id": {
-    "$oid": "606a66db3d400d8ff3f0f6b7"
+    "$oid": "606a8766e181e96ee28a4c7d"
   },
-  "name": "Princeton University",
   "grad": 0,
+  "name": "Princeton University",
   "niche_grade": {
     "Academics": "A+",
     "Value": "A+",
@@ -1841,7 +1841,7 @@
       "Engineering": "56 Graduates",
       "Mechanical_Engineering": "50 Graduates",
       "Chemical_Engineering": "49 Graduates",
-      "Ecology_and_Evolutionary_Biology": "48 Graduates"
+      "": ""
     },
     "faculty": {
       "ratio": "5:1",
@@ -1936,7 +1936,7 @@
     },
     "club": {
       "offered": [
-        "Campus Ministries",
+        "\nCampus Ministries",
         "Dance",
         "Drama/Theater",
         "International Student Organizations",
@@ -1950,7 +1950,7 @@
         "Yearbook"
       ],
       "music": [
-        "Choral Groups",
+        "\nChoral Groups",
         "Concert Band",
         "Jazz Band",
         "Marching Band",
@@ -1985,10 +1985,10 @@
   }
 },{
   "_id": {
-    "$oid": "606a67153d400d8ff3f0f6b8"
+    "$oid": "606a87a5e181e96ee28a4c7e"
   },
-  "name": "Rice University",
   "grad": 0,
+  "name": "Rice University",
   "niche_grade": {
     "Academics": "A+",
     "Value": "A+",
@@ -2178,7 +2178,6 @@
       "Mechanical_Engineering": "67 Graduates",
       "Biochemistry_and_Molecular_Biology": "54 Graduates",
       "Cognitive_Science": "51 Graduates",
-      "Psychology": "49 Graduates",
       "": ""
     },
     "faculty": {
@@ -2254,7 +2253,7 @@
     },
     "club": {
       "offered": [
-        "Campus Ministries",
+        "\nCampus Ministries",
         "Dance",
         "Drama/Theater",
         "International Student Organizations",
@@ -2267,7 +2266,7 @@
         "Yearbook"
       ],
       "music": [
-        "Choral Groups",
+        "\nChoral Groups",
         "Concert Band",
         "Jazz Band",
         "Marching Band",
@@ -2302,10 +2301,10 @@
   }
 },{
   "_id": {
-    "$oid": "606a674e3d400d8ff3f0f6b9"
+    "$oid": "606a87d5e181e96ee28a4c7f"
   },
-  "name": "California Institute of Technology",
   "grad": 0,
+  "name": "California Institute of Technology",
   "niche_grade": {
     "Academics": "A+",
     "Value": "A+",
@@ -2467,7 +2466,7 @@
       "Chemistry": "14 Graduates",
       "Mathematics": "12 Graduates",
       "Bioengineering_and_Biomedical_Engineering": "11 Graduates",
-      "Biology": "10 Graduates",
+      "": "10 Graduates",
       "Astronomy_and_Astrophysics": "9 Graduates"
     },
     "faculty": {
@@ -2550,7 +2549,7 @@
     },
     "club": {
       "offered": [
-        "Dance",
+        "\nDance",
         "Drama/Theater",
         "International Student Organizations",
         "Literary Magazine",
@@ -2559,7 +2558,7 @@
         "Yearbook"
       ],
       "music": [
-        "Choral Groups",
+        "\nChoral Groups",
         "Concert Band",
         "Jazz Band",
         "Music Ensembles",
@@ -2584,10 +2583,10 @@
   }
 },{
   "_id": {
-    "$oid": "606a67833d400d8ff3f0f6ba"
+    "$oid": "606a8810e181e96ee28a4c80"
   },
-  "name": "Brown University",
   "grad": 0,
+  "name": "Brown University",
   "niche_grade": {
     "Academics": "A+",
     "Value": "A+",
@@ -2876,7 +2875,7 @@
     },
     "club": {
       "offered": [
-        "Campus Ministries",
+        "\nCampus Ministries",
         "Dance",
         "Drama/Theater",
         "International Student Organizations",
@@ -2890,7 +2889,7 @@
         "Yearbook"
       ],
       "music": [
-        "Choral Groups",
+        "\nChoral Groups",
         "Concert Band",
         "Jazz Band",
         "Marching Band",
@@ -2925,10 +2924,10 @@
   }
 },{
   "_id": {
-    "$oid": "606a67b83d400d8ff3f0f6bb"
+    "$oid": "606a8846e181e96ee28a4c81"
   },
-  "name": "University of Pennsylvania",
   "grad": 0,
+  "name": "University of Pennsylvania",
   "niche_grade": {
     "Academics": "A+",
     "Value": "A+",
@@ -3126,6 +3125,7 @@
       "Biology": "157 Graduates",
       "Political_Science_and_Government": "134 Graduates",
       "Information_Science": "121 Graduates",
+      "Operations_Management": "117 Graduates",
       "": ""
     },
     "faculty": {
@@ -3218,7 +3218,7 @@
     },
     "club": {
       "offered": [
-        "Campus Ministries",
+        "\nCampus Ministries",
         "Dance",
         "Drama/Theater",
         "International Student Organizations",
@@ -3232,7 +3232,7 @@
         "Yearbook"
       ],
       "music": [
-        "Choral Groups",
+        "\nChoral Groups",
         "Concert Band",
         "Jazz Band",
         "Marching Band",
@@ -3267,10 +3267,10 @@
   }
 },{
   "_id": {
-    "$oid": "606a67f23d400d8ff3f0f6bc"
+    "$oid": "606a8882e181e96ee28a4c82"
   },
-  "name": "Vanderbilt University",
   "grad": 0,
+  "name": "Vanderbilt University",
   "niche_grade": {
     "Academics": "A+",
     "Value": "A+",
@@ -3538,7 +3538,7 @@
     },
     "club": {
       "offered": [
-        "Campus Ministries",
+        "\nCampus Ministries",
         "Dance",
         "Drama/Theater",
         "International Student Organizations",
@@ -3552,7 +3552,7 @@
         "Yearbook"
       ],
       "music": [
-        "Choral Groups",
+        "\nChoral Groups",
         "Concert Band",
         "Jazz Band",
         "Marching Band",
@@ -3584,5 +3584,1293 @@
       "6yr": "91%"
     },
     "debt_after_uni": "$8,934"
+  }
+},{
+  "_id": {
+    "$oid": "606a88c3e181e96ee28a4c83"
+  },
+  "grad": 0,
+  "name": "Columbia University",
+  "niche_grade": {
+    "Academics": "A+",
+    "Value": "A+",
+    "Diversity": "A+",
+    "Campus": "A",
+    "Athletics": "B+",
+    "Party Scene": "A",
+    "Professors": "A+",
+    "Location": "A+",
+    "Dorms": "A",
+    "Campus Food": "A",
+    "Student Life": "A+",
+    "Safety": "B+"
+  },
+  "description": "This is a place unlike any other. Where a renowned Core Curriculum is fueled by an incredibly diverse community. 6,000 undergraduate students from all 50 states and more than 100 countries find a home on our residential campus in Morningside Heights: your corner of New York City. Undergraduates in Columbia College and Columbia Engineering can choose from nearly 100 areas of study and enhance their classroom conversations through research at 200+ research centers and institutes. Your Columbia education will be the foundation for a lifetime of learning, collaboration, and the unending pursuit of truth and understanding.",
+  "site": "columbia.edu",
+  "address": "West 116 St and Broadway\nNew York, NY 10027",
+  "location_tags": [
+    "New York",
+    "Manhattan"
+  ],
+  "about": [
+    "Common App Accepted",
+    "Private",
+    "SAT/ACT Optional"
+  ],
+  "athletics": {
+    "division": "NCAA Division I-FCS",
+    "conference": "Ivy League"
+  },
+  "ranking": {
+    "Best_Colleges_for_English_in_America": "3/889",
+    "Best_Colleges_for_Global_Studies_in_America": "3/207",
+    "Best_Colleges_for_History_in_America": "4/895",
+    "Best_Colleges_for_Environmental_Science_in_America": "5/619",
+    "Best_Colleges_for_Philosophy_in_America": "5/444",
+    "Best_Colleges_for_Performing_Arts_in_America": "6/536",
+    "Best_Colleges_for_Religious_Studies_in_America": "6/411",
+    "Best_Colleges_for_Architecture_in_America": "6/157",
+    "Hardest_Colleges_to_Get_Into_in_America": "8/1,660",
+    "Best_Colleges_for_Business_in_America": "10/1,192",
+    "Best_Colleges_for_Computer_Science_in_America": "10/821",
+    "Best_Colleges_for_Public_Policy_in_America": "10/599",
+    "Best_Colleges_for_Physics_in_America": "10/451",
+    "Colleges_with_the_Best_Academics_in_America": "11/1,577",
+    "Best_Colleges_that_Accept_the_Common_App_in_America": "11/623",
+    "Best_Colleges_in_America": "12/1,619",
+    "Best_Test_Optional_Colleges_in_America": "12/1,137",
+    "Top_Private_Universities_in_America": "12/943",
+    "Best_Colleges_for_Education_in_America": "12/896",
+    "Best_Colleges_for_Anthropology_and_Sociology_in_America": "12/757",
+    "Most_Diverse_Colleges_in_America": "13/1,589",
+    "Best_Colleges_for_Math_in_America": "13/775",
+    "Best_Colleges_for_Engineering_in_America": "14/449",
+    "Best_Colleges_for_Psychology_in_America": "15/1,069",
+    "Best_Colleges_for_Political_Science_in_America": "15/793",
+    "Colleges_with_the_Best_Professors_in_America": "17/1,596",
+    "Best_Colleges_for_Economics_in_America": "18/567",
+    "Best_Colleges_for_Biology_in_America": "20/1,048",
+    "Best_Colleges_for_Chemistry_in_America": "24/655",
+    "Best_Value_Colleges_in_America": "32/1,572",
+    "Best_Colleges_for_Student_Athletes_in_America": "35/1,380",
+    "Colleges_with_the_Best_Student_Life_in_America": "47/1,580",
+    "Best_College_Campuses_in_America": "48/1,408",
+    "Best_College_Locations_in_America": "63/1,605",
+    "Best_College_Dorms_in_America": "97/1,376",
+    "Most_Liberal_Colleges_in_America": "100/1,674",
+    "Best_College_Food_in_America": "134/1,377",
+    "Top_Party_Schools_in_America": "186/1,587",
+    "Best_Greek_Life_Colleges_in_America": "377/817",
+    "Best_College_Athletics_in_America": "383/1,401",
+    "Safest_College_Campuses_in_America": "483/1,336",
+    "Best_Colleges_in_New_York": "1/130",
+    "Hardest_Colleges_to_Get_Into_in_New_York": "1/130",
+    "Colleges_with_the_Best_Academics_in_New_York": "1/128",
+    "Colleges_with_the_Best_Student_Life_in_New_York": "1/123",
+    "Best_Colleges_for_Student_Athletes_in_New_York": "1/108",
+    "Best_Test_Optional_Colleges_in_New_York": "1/104",
+    "Top_Private_Universities_in_New_York": "1/90",
+    "Best_Colleges_for_Psychology_in_New_York": "1/88",
+    "Best_Colleges_that_Accept_the_Common_App_in_New_York": "1/87",
+    "Best_Colleges_for_English_in_New_York": "1/76",
+    "Best_Colleges_for_History_in_New_York": "1/71",
+    "Best_Colleges_for_Political_Science_in_New_York": "1/68",
+    "Best_Colleges_for_Education_in_New_York": "1/67",
+    "Colleges_with_the_Best_Professors_in_New_York": "2/127",
+    "Best_College_Campuses_in_New_York": "2/108",
+    "Best_Colleges_for_Business_in_New_York": "2/101",
+    "Best_Colleges_for_Biology_in_New_York": "2/90",
+    "Best_Colleges_for_Computer_Science_in_New_York": "2/69",
+    "Best_Colleges_for_Economics_in_New_York": "2/57",
+    "Most_Diverse_Colleges_in_New_York": "4/126",
+    "Best_Value_Colleges_in_New_York": "6/124",
+    "Best_College_Dorms_in_New_York": "6/104",
+    "Best_College_Food_in_New_York": "8/103",
+    "Best_College_Locations_in_New_York": "14/123",
+    "Top_Party_Schools_in_New_York": "15/123",
+    "Most_Liberal_Colleges_in_New_York": "21/132",
+    "Best_College_Athletics_in_New_York": "22/110",
+    "Best_Greek_Life_Colleges_in_New_York": "22/59",
+    "Safest_College_Campuses_in_New_York": "41/91",
+    "Best_Colleges_in_New_York_City_Area": "1/89",
+    "Best_Value_Colleges_in_New_York_City_Area": "4/86"
+  },
+  "admission": {
+    "description": "Columbia admissions is extremely selective with an acceptance rate of 5%. Students that get into Columbia have an average SAT score between 1440-1570 or an average ACT score of 33-35. The regular admissions application deadline for Columbia is January 1.",
+    "acceptance": {
+      "rate": "5%",
+      "rate_early": "No data available  —"
+    },
+    "total_applicants": "42,823",
+    "sat": {
+      "accept_score_range": "1440-1570",
+      "reading_score": "700-770",
+      "math_score": "0-800",
+      "submite_by_student": "bmitting SAT64%"
+    },
+    "act": {
+      "accept_score_range": "33-35",
+      "eng_score": "34-36",
+      "math_score": "31-35",
+      "write_score": "8-10",
+      "submite_by_student": "44%"
+    },
+    "deadline": {
+      "date": "January 1",
+      "early_decision": "November 1",
+      "early_action": "No data available  —",
+      "early_offer_date": "Yes"
+    },
+    "application": {
+      "fee": "January 1",
+      "website": "https://www.columbia.edu/content/admissions-offices",
+      "comm_app": "Yes",
+      "accept_coalition_app": "Yes"
+    },
+    "requirements": {
+      "highscho_gpa": "Recommended",
+      "highscho_rank": "Recommended",
+      "highscho_transcript": "Required",
+      "uni_precourse": "Required",
+      "sat_or_act": "Considered but not required",
+      "recommendation": "Required",
+      "poll_uni_care_them": "74%",
+      "poll_uni_care_individual": "86%"
+    }
+  },
+  "cost": {
+    "net_cost": "$21,828",
+    "financial_aid_url": "https://www.niche.com/colleges/columbia-university/scholarships-financial-aid/",
+    "loan": {
+      "avg_amount": "$10,493",
+      "take_out": "10%",
+      "default_rate": "2%"
+    },
+    "net_price": {
+      "net_price": "$21,828",
+      "avg_tot_aid_award": "$55,071",
+      "stud_receive_aid": "59%",
+      "calculator_url": "http://cc-seas.financialaid.columbia.edu/estimate-cost"
+    },
+    "tuition": {
+      "in_state": "$61,788",
+      "out_state": "$61,788",
+      "avg_housing": "$8,718",
+      "avg_meal_plan": "$5,772",
+      "book": "$1,294",
+      "plan": {
+        "guarantee": "No",
+        "payment": "Yes",
+        "prepaid": "Yes"
+      }
+    }
+  },
+  "academic": {
+    "graduation_rate": "95%",
+    "class_size_ratio": {},
+    "popular_major": {
+      "Economics": "290 Graduates",
+      "Computer_Science": "255 Graduates",
+      "Political_Science_and_Government": "234 Graduates",
+      "Research_and_Experimental_Psychology": "155 Graduates",
+      "History": "106 Graduates",
+      "English": "93 Graduates",
+      "Engineering": "71 Graduates",
+      "": ""
+    },
+    "faculty": {
+      "ratio": "6:1",
+      "female": "44%",
+      "male": "56%",
+      "diversity": {
+        "African_American": "4%",
+        "Asian_American": "17%",
+        "Hispanic": "5%",
+        "International_(Non-Citizen)": "5%",
+        "Multiracial": "1%",
+        "Native_American": "0%",
+        "Pacific_Islander": "0%",
+        "Unknown": "3%",
+        "White": "65%"
+      }
+    }
+  },
+  "major": {
+    "gender_ratio": {
+      "female_undergrads": "47%",
+      "male_undergrads": "53%"
+    },
+    "residence": {
+      "In-State": "18%",
+      "Out-of-State": "65%",
+      "International": "14%",
+      "Unknown": "3%"
+    },
+    "age": {
+      "Under_18": "1%",
+      "18-19": "35%",
+      "20-21": "40%",
+      "22-24": "13%",
+      "Over_25": "11%"
+    },
+    "racial_diversity": {
+      "African_American": "8%",
+      "Asian": "17%",
+      "Hispanic": "13%",
+      "International_(Non-Citizen)": "17%",
+      "Multiracial": "6%",
+      "Native_American": "0%",
+      "Pacific_Islander": "0%",
+      "Unknown": "3%",
+      "White": "37%"
+    }
+  },
+  "campus_life": {
+    "sport": {
+      "varsity": {
+        "Almost_everything_on_campus_revolves_around_them": "2%",
+        "Varsity_sports_are_a_big_part_of_campus_life": "9%",
+        "Varsity_sporting_events_are_attended,_but_not_a_huge_part_of_campus_life": "59%",
+        "No_one_pays_attention_to_varsity_sports": "30%"
+      },
+      "male": [
+        "All Track Combined",
+        "Baseball",
+        "Basketball",
+        "Fencing",
+        "Football",
+        "Golf",
+        "Other Sports",
+        "Rowing",
+        "Soccer",
+        "Squash",
+        "Swimming and Diving",
+        "Tennis",
+        "Wrestling"
+      ],
+      "female": [
+        "All Track Combined",
+        "Archery",
+        "Basketball",
+        "Fencing",
+        "Field Hockey",
+        "Golf",
+        "Lacrosse",
+        "Rowing",
+        "Soccer",
+        "Softball",
+        "Squash",
+        "Swimming and Diving",
+        "Tennis",
+        "Volleyball"
+      ]
+    },
+    "club": {
+      "offered": [
+        "\nNo data available  \n—"
+      ],
+      "music": [
+        "\nNo data available  \n—"
+      ],
+      "survey_result": {
+        "Tree_Lighting_Ceremony": "30%",
+        "Bacchanal": "24%",
+        "Orgo_Night/Primal_Scream/Campus-Wide_Pillow_Fight": "18%",
+        "Varsity_Show": "14%",
+        "Football_games": "3%",
+        "Homecoming": "3%",
+        "Low_Steps_Sledding": "3%"
+      }
+    }
+  },
+  "after_uni": {
+    "graudation_rate": "95%",
+    "earning": {
+      "2yr": "$66,500",
+      "6yr": "$83,300"
+    },
+    "employment": {
+      "2yr": "89%",
+      "6yr": "87%"
+    },
+    "debt_after_uni": "$10,493"
+  }
+},{
+  "_id": {
+    "$oid": "606a88f4e181e96ee28a4c84"
+  },
+  "grad": 0,
+  "name": "Dartmouth College",
+  "niche_grade": {
+    "Academics": "A+",
+    "Value": "A+",
+    "Diversity": "A",
+    "Campus": "A",
+    "Athletics": "B+",
+    "Party Scene": "A",
+    "Professors": "A+",
+    "Location": "B-",
+    "Dorms": "A-",
+    "Campus Food": "A",
+    "Student Life": "A+",
+    "Safety": "B"
+  },
+  "description": "Dartmouth is an elite private college located in Hanover, New Hampshire. It is a small institution with an enrollment of 4,357 undergraduate students. Admissions is extremely competitive as the Dartmouth acceptance rate is only 8%. Popular majors include Economics, Political Science and Government, and Computer Science. Graduating 95% of students, Dartmouth alumni go on to earn a starting salary of $58,900.",
+  "site": "dartmouth.edu",
+  "address": "207 Parkhurst Hall\nHanover, NH 03755",
+  "location_tags": [
+    "New Hampshire",
+    "Hanover"
+  ],
+  "about": [
+    "Common App Accepted",
+    "Private",
+    "SAT/ACT Optional"
+  ],
+  "athletics": {
+    "division": "NCAA Division I-FCS",
+    "conference": "Ivy League"
+  },
+  "ranking": {
+    "Best_Colleges_for_Anthropology_and_Sociology_in_America": "3/757",
+    "Best_Colleges_for_Global_Studies_in_America": "4/207",
+    "Colleges_with_the_Best_Professors_in_America": "5/1,596",
+    "Best_Colleges_for_Film_and_Photography_in_America": "6/258",
+    "Best_Colleges_for_Psychology_in_America": "11/1,069",
+    "Best_Colleges_for_History_in_America": "11/895",
+    "Best_Colleges_for_Art_in_America": "11/734",
+    "Best_Colleges_for_Physics_in_America": "11/451",
+    "Best_Colleges_for_Philosophy_in_America": "11/444",
+    "Colleges_with_the_Best_Academics_in_America": "12/1,577",
+    "Best_Colleges_that_Accept_the_Common_App_in_America": "12/623",
+    "Best_Colleges_in_America": "13/1,619",
+    "Best_Test_Optional_Colleges_in_America": "13/1,137",
+    "Top_Private_Universities_in_America": "13/943",
+    "Hardest_Colleges_to_Get_Into_in_America": "14/1,660",
+    "Best_Colleges_for_Economics_in_America": "15/567",
+    "Best_Colleges_for_Computer_Science_in_America": "16/821",
+    "Best_Colleges_for_Environmental_Science_in_America": "16/619",
+    "Best_Colleges_for_Political_Science_in_America": "17/793",
+    "Best_Colleges_for_Biology_in_America": "18/1,048",
+    "Best_Colleges_for_Chemistry_in_America": "18/655",
+    "Best_Value_Colleges_in_America": "19/1,572",
+    "Best_Colleges_for_English_in_America": "19/889",
+    "Best_Colleges_for_Performing_Arts_in_America": "20/536",
+    "Best_Colleges_for_Math_in_America": "21/775",
+    "Best_Colleges_for_Student_Athletes_in_America": "25/1,380",
+    "Best_Colleges_for_Engineering_in_America": "25/449",
+    "Colleges_with_the_Best_Student_Life_in_America": "63/1,580",
+    "Best_Greek_Life_Colleges_in_America": "68/817",
+    "Best_College_Campuses_in_America": "107/1,408",
+    "Best_College_Food_in_America": "130/1,377",
+    "Best_College_Dorms_in_America": "133/1,376",
+    "Most_Diverse_Colleges_in_America": "146/1,589",
+    "Top_Party_Schools_in_America": "163/1,587",
+    "Best_College_Athletics_in_America": "216/1,401",
+    "Most_Liberal_Colleges_in_America": "325/1,674",
+    "Safest_College_Campuses_in_America": "790/1,336",
+    "Best_Colleges_in_New_Hampshire": "1/12",
+    "Best_Value_Colleges_in_New_Hampshire": "1/12",
+    "Colleges_with_the_Best_Academics_in_New_Hampshire": "1/12",
+    "Colleges_with_the_Best_Professors_in_New_Hampshire": "1/12",
+    "Hardest_Colleges_to_Get_Into_in_New_Hampshire": "1/12",
+    "Most_Diverse_Colleges_in_New_Hampshire": "1/12",
+    "Most_Liberal_Colleges_in_New_Hampshire": "1/12",
+    "Best_Test_Optional_Colleges_in_New_Hampshire": "1/11",
+    "Colleges_with_the_Best_Student_Life_in_New_Hampshire": "1/11",
+    "Best_Colleges_for_Psychology_in_New_Hampshire": "1/10",
+    "Best_Colleges_for_Student_Athletes_in_New_Hampshire": "1/10",
+    "Best_Colleges_that_Accept_the_Common_App_in_New_Hampshire": "1/10",
+    "Best_College_Dorms_in_New_Hampshire": "1/9",
+    "Best_Colleges_for_Biology_in_New_Hampshire": "1/9",
+    "Best_Colleges_for_English_in_New_Hampshire": "1/9",
+    "Best_Colleges_for_History_in_New_Hampshire": "1/9",
+    "Best_Colleges_for_Computer_Science_in_New_Hampshire": "1/7",
+    "Top_Private_Universities_in_New_Hampshire": "1/7",
+    "Best_Greek_Life_Colleges_in_New_Hampshire": "1/6",
+    "Best_College_Campuses_in_New_Hampshire": "3/11",
+    "Top_Party_Schools_in_New_Hampshire": "3/11",
+    "Best_College_Athletics_in_New_Hampshire": "3/10",
+    "Best_College_Food_in_New_Hampshire": "4/11",
+    "Safest_College_Campuses_in_New_Hampshire": "7/12"
+  },
+  "admission": {
+    "description": "Dartmouth admissions is extremely selective with an acceptance rate of 8%. Students that get into Dartmouth have an average SAT score between 1440-1560 or an average ACT score of 32-35. The regular admissions application deadline for Dartmouth is January 2. Interested students can apply for early decision, and the Dartmouth early decision deadline is November 1.",
+    "acceptance": {
+      "rate": "8%",
+      "rate_early": "26%"
+    },
+    "total_applicants": "23,650",
+    "sat": {
+      "accept_score_range": "1440-1560",
+      "reading_score": "710-770",
+      "math_score": "0-790",
+      "submite_by_student": "bmitting SAT57%"
+    },
+    "act": {
+      "accept_score_range": "32-35",
+      "eng_score": "33-36",
+      "math_score": "30-35",
+      "write_score": "No data available  —",
+      "submite_by_student": "43%"
+    },
+    "deadline": {
+      "date": "January 2",
+      "early_decision": "November 1",
+      "early_action": "No",
+      "early_offer_date": "Yes"
+    },
+    "application": {
+      "fee": "January 2",
+      "website": "http://admissions.dartmouth.edu/apply/apply-dartmouth",
+      "comm_app": "Yes",
+      "accept_coalition_app": "Yes"
+    },
+    "requirements": {
+      "highscho_gpa": "Required",
+      "highscho_rank": "Required",
+      "highscho_transcript": "Required",
+      "uni_precourse": "Recommended",
+      "sat_or_act": "Considered but not required",
+      "recommendation": "Required",
+      "poll_uni_care_them": "95%",
+      "poll_uni_care_individual": "90%"
+    }
+  },
+  "cost": {
+    "net_cost": "$23,869",
+    "financial_aid_url": "https://www.niche.com/colleges/dartmouth-college/scholarships-financial-aid/",
+    "loan": {
+      "avg_amount": "$5,412",
+      "take_out": "45%",
+      "default_rate": "1%"
+    },
+    "net_price": {
+      "net_price": "$23,869",
+      "avg_tot_aid_award": "$50,490",
+      "stud_receive_aid": "62%",
+      "calculator_url": "http://admissions.dartmouth.edu/afford/estimate-your-cost"
+    },
+    "tuition": {
+      "in_state": "$57,638",
+      "out_state": "$57,638",
+      "avg_housing": "$9,879",
+      "avg_meal_plan": "$6,495",
+      "book": "$1,100",
+      "plan": {
+        "guarantee": "No",
+        "payment": "Yes",
+        "prepaid": "Yes"
+      }
+    }
+  },
+  "academic": {
+    "graduation_rate": "95%",
+    "class_size_ratio": {
+      "2-19_students": "62%",
+      "20-39": "26%",
+      "40-99": "11%",
+      "100+": "1%"
+    },
+    "popular_major": {
+      "Economics": "197 Graduates",
+      "Political_Science_and_Government": "152 Graduates",
+      "Computer_Science": "96 Graduates",
+      "Engineering_Science": "93 Graduates",
+      "Biology": "66 Graduates",
+      "History": "62 Graduates",
+      "Psychology": "58 Graduates",
+      "Mathematics": "51 Graduates",
+      "": ""
+    },
+    "faculty": {
+      "ratio": "7:1",
+      "female": "36%",
+      "male": "64%",
+      "diversity": {
+        "African_American": "3%",
+        "Asian_American": "8%",
+        "Hispanic": "5%",
+        "International_(Non-Citizen)": "3%",
+        "Multiracial": "2%",
+        "Native_American": "1%",
+        "Pacific_Islander": "0%",
+        "Unknown": "0%",
+        "White": "78%"
+      }
+    }
+  },
+  "major": {
+    "gender_ratio": {
+      "female_undergrads": "49%",
+      "male_undergrads": "51%"
+    },
+    "residence": {
+      "In-State": "2%",
+      "Out-of-State": "84%",
+      "International": "11%",
+      "Unknown": "2%"
+    },
+    "age": {
+      "Under_18": "1%",
+      "18-19": "47%",
+      "20-21": "43%",
+      "22-24": "8%",
+      "Over_25": "1%"
+    },
+    "racial_diversity": {
+      "African_American": "6%",
+      "Asian": "15%",
+      "Hispanic": "10%",
+      "International_(Non-Citizen)": "9%",
+      "Multiracial": "5%",
+      "Native_American": "2%",
+      "Pacific_Islander": "0%",
+      "Unknown": "3%",
+      "White": "50%"
+    }
+  },
+  "campus_life": {
+    "sport": {
+      "varsity": {
+        "Almost_everything_on_campus_revolves_around_them": "1%",
+        "Varsity_sports_are_a_big_part_of_campus_life": "28%",
+        "Varsity_sporting_events_are_attended,_but_not_a_huge_part_of_campus_life": "66%",
+        "No_one_pays_attention_to_varsity_sports": "4%"
+      },
+      "male": [
+        "All Track Combined",
+        "Baseball",
+        "Basketball",
+        "Football",
+        "Golf",
+        "Ice Hockey",
+        "Lacrosse",
+        "Rowing",
+        "Skiing",
+        "Soccer",
+        "Squash",
+        "Swimming and Diving",
+        "Tennis"
+      ],
+      "female": [
+        "All Track Combined",
+        "Basketball",
+        "Equestrian",
+        "Field Hockey",
+        "Golf",
+        "Ice Hockey",
+        "Lacrosse",
+        "Other Sports",
+        "Rowing",
+        "Skiing",
+        "Soccer",
+        "Softball",
+        "Squash",
+        "Swimming and Diving",
+        "Tennis",
+        "Volleyball"
+      ]
+    },
+    "club": {
+      "offered": [
+        "\nCampus Ministries",
+        "Dance",
+        "Drama/Theater",
+        "International Student Organizations",
+        "Literary Magazine",
+        "Model UN",
+        "Radio Station",
+        "Student Government",
+        "Newspaper",
+        "Film Society",
+        "Television Station",
+        "Yearbook"
+      ],
+      "music": [
+        "\nChoral Groups",
+        "Concert Band",
+        "Jazz Band",
+        "Marching Band",
+        "Music Ensembles",
+        "Musical Theater",
+        "Opera",
+        "Pep Band",
+        "Symphony Orchestra"
+      ],
+      "survey_result": {
+        "DOC_trips": "21%",
+        "Winter_Carnival": "21%",
+        "Green_Key": "19%",
+        "Homecoming": "16%",
+        "Sophomore_Summer": "16%",
+        "Dartmouth_Indian": "3%",
+        "Pride_Week": "3%"
+      }
+    }
+  },
+  "after_uni": {
+    "graudation_rate": "95%",
+    "earning": {
+      "2yr": "$58,900",
+      "6yr": "$75,500"
+    },
+    "employment": {
+      "2yr": "94%",
+      "6yr": "91%"
+    },
+    "debt_after_uni": "$5,412"
+  }
+},{
+  "_id": {
+    "$oid": "606a8938e181e96ee28a4c85"
+  },
+  "grad": 0,
+  "name": "Northwestern University",
+  "niche_grade": {
+    "Academics": "A+",
+    "Value": "A+",
+    "Diversity": "A+",
+    "Campus": "A-",
+    "Athletics": "A",
+    "Party Scene": "A-",
+    "Professors": "A+",
+    "Location": "A-",
+    "Dorms": "B",
+    "Campus Food": "B",
+    "Student Life": "A+",
+    "Safety": "B"
+  },
+  "description": "Northwestern is an elite private university located in Evanston, Illinois in the Chicago Area. It is a mid-size institution with an enrollment of 8,161 undergraduate students. Admissions is extremely competitive as the Northwestern acceptance rate is only 9%. Popular majors include Economics, Psychology, and Journalism. Graduating 94% of students, Northwestern alumni go on to earn a starting salary of $58,900.",
+  "site": "northwestern.edu",
+  "address": "633 Clark St\nEvanston, IL 60208",
+  "location_tags": [
+    "Illinois",
+    "Evanston"
+  ],
+  "about": [
+    "Common App Accepted",
+    "Private",
+    "SAT/ACT Optional"
+  ],
+  "athletics": {
+    "division": "NCAA Division I-FBS",
+    "conference": "Big Ten Conference"
+  },
+  "ranking": {
+    "Best_Colleges_for_Communications_in_America": "1/878",
+    "Best_Colleges_for_Performing_Arts_in_America": "2/536",
+    "Best_Colleges_for_Education_in_America": "3/896",
+    "Best_Colleges_for_Music_in_America": "4/262",
+    "Most_Liberal_Colleges_in_America": "5/1,674",
+    "Best_Colleges_for_Public_Policy_in_America": "5/599",
+    "Best_Colleges_for_Economics_in_America": "6/567",
+    "Colleges_with_the_Best_Professors_in_America": "7/1,596",
+    "Best_Colleges_for_Public_Health_in_America": "8/222",
+    "Best_Colleges_for_Student_Athletes_in_America": "9/1,380",
+    "Best_Colleges_for_Psychology_in_America": "9/1,069",
+    "Best_Colleges_for_Biology_in_America": "9/1,048",
+    "Hardest_Colleges_to_Get_Into_in_America": "10/1,660",
+    "Colleges_with_the_Best_Academics_in_America": "10/1,577",
+    "Best_Colleges_for_Religious_Studies_in_America": "11/411",
+    "Best_Colleges_for_Business_in_America": "13/1,192",
+    "Best_Colleges_that_Accept_the_Common_App_in_America": "13/623",
+    "Best_Colleges_in_America": "14/1,619",
+    "Best_Test_Optional_Colleges_in_America": "14/1,137",
+    "Top_Private_Universities_in_America": "14/943",
+    "Best_Colleges_for_History_in_America": "14/895",
+    "Best_Colleges_for_Anthropology_and_Sociology_in_America": "15/757",
+    "Best_Colleges_for_Chemistry_in_America": "15/655",
+    "Best_Colleges_for_Engineering_in_America": "18/449",
+    "Best_Colleges_for_Philosophy_in_America": "18/444",
+    "Best_Colleges_for_Environmental_Science_in_America": "19/619",
+    "Best_Colleges_for_International_Relations_in_America": "19/394",
+    "Best_Colleges_for_Political_Science_in_America": "21/793",
+    "Best_Colleges_for_English_in_America": "22/889",
+    "Best_Colleges_for_Computer_Science_in_America": "23/821",
+    "Best_Colleges_for_Global_Studies_in_America": "26/207",
+    "Best_Colleges_for_Math_in_America": "27/775",
+    "Best_Colleges_for_Art_in_America": "27/734",
+    "Best_Value_Colleges_in_America": "28/1,572",
+    "Best_Colleges_for_Physics_in_America": "44/451",
+    "Colleges_with_the_Best_Student_Life_in_America": "68/1,580",
+    "Most_Diverse_Colleges_in_America": "80/1,589",
+    "Best_College_Athletics_in_America": "80/1,401",
+    "Best_College_Campuses_in_America": "188/1,408",
+    "Best_College_Locations_in_America": "255/1,605",
+    "Top_Party_Schools_in_America": "271/1,587",
+    "Best_Greek_Life_Colleges_in_America": "277/817",
+    "Best_College_Dorms_in_America": "545/1,376",
+    "Best_College_Food_in_America": "611/1,377",
+    "Safest_College_Campuses_in_America": "621/1,336",
+    "Most_Liberal_Colleges_in_Illinois": "1/56",
+    "Best_Colleges_in_Illinois": "1/54",
+    "Best_Value_Colleges_in_Illinois": "1/53",
+    "Best_College_Athletics_in_Illinois": "1/48",
+    "Best_Colleges_for_Student_Athletes_in_Illinois": "1/47",
+    "Best_Colleges_for_Business_in_Illinois": "1/46",
+    "Top_Private_Universities_in_Illinois": "1/43",
+    "Best_Colleges_for_Biology_in_Illinois": "1/40",
+    "Best_Colleges_for_Education_in_Illinois": "1/40",
+    "Best_Colleges_for_Communications_in_Illinois": "1/38",
+    "Best_Test_Optional_Colleges_in_Illinois": "1/35",
+    "Best_Colleges_that_Accept_the_Common_App_in_Illinois": "1/23",
+    "Hardest_Colleges_to_Get_Into_in_Illinois": "2/56",
+    "Colleges_with_the_Best_Professors_in_Illinois": "2/54",
+    "Colleges_with_the_Best_Academics_in_Illinois": "2/53",
+    "Colleges_with_the_Best_Student_Life_in_Illinois": "2/53",
+    "Best_Colleges_for_Psychology_in_Illinois": "2/43",
+    "Best_Colleges_for_History_in_Illinois": "2/36",
+    "Best_Colleges_for_English_in_Illinois": "2/35",
+    "Best_Colleges_for_Computer_Science_in_Illinois": "2/34",
+    "Best_Colleges_for_Political_Science_in_Illinois": "2/31",
+    "Best_Colleges_for_Economics_in_Illinois": "2/23",
+    "Best_College_Campuses_in_Illinois": "5/51",
+    "Most_Diverse_Colleges_in_Illinois": "6/55",
+    "Best_Greek_Life_Colleges_in_Illinois": "9/31",
+    "Best_College_Locations_in_Illinois": "10/54",
+    "Top_Party_Schools_in_Illinois": "10/53",
+    "Best_College_Dorms_in_Illinois": "15/51",
+    "Best_College_Food_in_Illinois": "18/50",
+    "Safest_College_Campuses_in_Illinois": "24/53",
+    "Best_Colleges_in_Chicago_Area": "1/32",
+    "Best_Value_Colleges_in_Chicago_Area": "1/31"
+  },
+  "admission": {
+    "description": "Northwestern admissions is extremely selective with an acceptance rate of 9%. Students that get into Northwestern have an average SAT score between 1440-1550 or an average ACT score of 33-35. The regular admissions application deadline for Northwestern is January 3.",
+    "acceptance": {
+      "rate": "9%",
+      "rate_early": "No data available  —"
+    },
+    "total_applicants": "40,585",
+    "sat": {
+      "accept_score_range": "1440-1550",
+      "reading_score": "700-760",
+      "math_score": "0-790",
+      "submite_by_student": "bmitting SAT64%"
+    },
+    "act": {
+      "accept_score_range": "33-35",
+      "eng_score": "34-36",
+      "math_score": "31-35",
+      "write_score": "8-10",
+      "submite_by_student": "53%"
+    },
+    "deadline": {
+      "date": "January 3",
+      "early_decision": "November 1",
+      "early_action": "No data available  —",
+      "early_offer_date": "Yes"
+    },
+    "application": {
+      "fee": "January 3",
+      "website": "http://www.northwestern.edu/admissions/",
+      "comm_app": "Yes",
+      "accept_coalition_app": "Yes"
+    },
+    "requirements": {
+      "highscho_gpa": "Required",
+      "highscho_rank": "Recommended",
+      "highscho_transcript": "Required",
+      "uni_precourse": "Required",
+      "sat_or_act": "Considered but not required",
+      "recommendation": "Required",
+      "poll_uni_care_them": "61%",
+      "poll_uni_care_individual": "68%"
+    }
+  },
+  "cost": {
+    "net_cost": "$26,196",
+    "financial_aid_url": "https://www.niche.com/colleges/northwestern-university/scholarships-financial-aid/",
+    "loan": {
+      "avg_amount": "$5,670",
+      "take_out": "26%",
+      "default_rate": "1%"
+    },
+    "net_price": {
+      "net_price": "$26,196",
+      "avg_tot_aid_award": "$48,438",
+      "stud_receive_aid": "64%",
+      "calculator_url": "https://npc.collegeboard.org/student/app/northwestern"
+    },
+    "tuition": {
+      "in_state": "$56,691",
+      "out_state": "$56,691",
+      "avg_housing": "$10,492",
+      "avg_meal_plan": "$6,527",
+      "book": "$1,638",
+      "plan": {
+        "guarantee": "No",
+        "payment": "Yes",
+        "prepaid": "No"
+      }
+    }
+  },
+  "academic": {
+    "graduation_rate": "94%",
+    "class_size_ratio": {
+      "2-19_students": "77%",
+      "20-39": "14%",
+      "40-99": "7%",
+      "100+": "2%"
+    },
+    "popular_major": {
+      "Economics": "384 Graduates",
+      "Psychology": "178 Graduates",
+      "": ""
+    },
+    "faculty": {
+      "ratio": "6:1",
+      "female": "40%",
+      "male": "60%",
+      "diversity": {
+        "African_American": "4%",
+        "Asian_American": "13%",
+        "Hispanic": "4%",
+        "International_(Non-Citizen)": "4%",
+        "Multiracial": "1%",
+        "Native_American": "0%",
+        "Pacific_Islander": "0%",
+        "Unknown": "2%",
+        "White": "72%"
+      }
+    }
+  },
+  "major": {
+    "gender_ratio": {
+      "female_undergrads": "51%",
+      "male_undergrads": "49%"
+    },
+    "residence": {
+      "In-State": "26%",
+      "Out-of-State": "62%",
+      "International": "12%",
+      "Unknown": "0%"
+    },
+    "age": {
+      "Under_18": "1%",
+      "18-19": "45%",
+      "20-21": "47%",
+      "22-24": "6%",
+      "Over_25": "1%"
+    },
+    "racial_diversity": {
+      "African_American": "6%",
+      "Asian": "16%",
+      "Hispanic": "12%",
+      "International_(Non-Citizen)": "8%",
+      "Multiracial": "5%",
+      "Native_American": "0%",
+      "Pacific_Islander": "0%",
+      "Unknown": "6%",
+      "White": "46%"
+    }
+  },
+  "campus_life": {
+    "sport": {
+      "varsity": {
+        "Almost_everything_on_campus_revolves_around_them": "1%",
+        "Varsity_sports_are_a_big_part_of_campus_life": "38%",
+        "Varsity_sporting_events_are_attended,_but_not_a_huge_part_of_campus_life": "57%",
+        "No_one_pays_attention_to_varsity_sports": "4%"
+      },
+      "male": [
+        "Baseball",
+        "Basketball",
+        "Football",
+        "Golf",
+        "Soccer",
+        "Swimming and Diving",
+        "Tennis",
+        "Wrestling"
+      ],
+      "female": [
+        "Basketball",
+        "Fencing",
+        "Field Hockey",
+        "Golf",
+        "Lacrosse",
+        "Soccer",
+        "Softball",
+        "Swimming and Diving",
+        "Tennis",
+        "Track and Field: X-Country",
+        "Volleyball"
+      ]
+    },
+    "club": {
+      "offered": [
+        "\nCampus Ministries",
+        "Dance",
+        "Drama/Theater",
+        "International Student Organizations",
+        "Literary Magazine",
+        "Model UN",
+        "Radio Station",
+        "Student Government",
+        "Newspaper",
+        "Film Society",
+        "Television Station",
+        "Yearbook"
+      ],
+      "music": [
+        "\nChoral Groups",
+        "Concert Band",
+        "Jazz Band",
+        "Marching Band",
+        "Music Ensembles",
+        "Musical Theater",
+        "Opera",
+        "Pep Band",
+        "Symphony Orchestra"
+      ],
+      "survey_result": {
+        "Dillo_Day": "28%",
+        "Painting_the_Rock": "17%",
+        "Dance_Marathon": "14%",
+        "Dolphin_Show": "12%",
+        "Primal_Scream": "12%",
+        "Occasional_on-campus_indie_rock_shows": "9%",
+        "Gone_Greek_Night": "3%"
+      }
+    }
+  },
+  "after_uni": {
+    "graudation_rate": "94%",
+    "earning": {
+      "2yr": "$58,900",
+      "6yr": "$69,000"
+    },
+    "employment": {
+      "2yr": "92%",
+      "6yr": "92%"
+    },
+    "debt_after_uni": "$5,670"
+  }
+},{
+  "_id": {
+    "$oid": "606a8aed260ec932c6563a7d"
+  },
+  "grad": 0,
+  "name": "Washington University in St. Louis",
+  "niche_grade": {
+    "Academics": "A+",
+    "Value": "A+",
+    "Diversity": "A",
+    "Campus": "A+",
+    "Athletics": "A-",
+    "Party Scene": "A-",
+    "Professors": "A+",
+    "Location": "A",
+    "Dorms": "A+",
+    "Campus Food": "A+",
+    "Student Life": "A+",
+    "Safety": "B"
+  },
+  "description": "At WashU, you will draw strength from a community of achievers who inspire each other with their creativity and tenacity. You’ll acquire the confidence and skills to succeed as a professional and as a person, ready to change the world. You’ll learn from faculty leading their fields, and you’ll have the opportunity to work side by side with them on independent projects.\n\nCollege isn’t just about academics. With more than 380 clubs and student-run organizations, you’ll have plenty of opportunities to get involved while having fun with your peers and friends.\n\nYou’ll find St. Louis offers the ideal balance of small-town feel and big city opportunities. Your first home will be located on campus on the South 40, a vibrant community, complete with residential colleges, great food, fitness center, study areas, and student-run businesses.\n\nCost should never be a barrier to an exceptional education. We meet 100% of the demonstrated financial need for all admitted students.",
+  "site": "wustl.edu",
+  "address": "One Brookings Drive\nSaint Louis, MO 63130",
+  "location_tags": [
+    "Missouri",
+    "Hadley Township"
+  ],
+  "about": [
+    "Common App Accepted",
+    "Private",
+    "SAT/ACT Optional"
+  ],
+  "athletics": {
+    "division": "NCAA Division III (with football)",
+    "conference": "University Athletic Association"
+  },
+  "ranking": {
+    "Best_College_Campuses_in_America": "2/1,408",
+    "Best_College_Dorms_in_America": "2/1,376",
+    "Best_Colleges_for_Design_in_America": "2/405",
+    "Best_Colleges_for_Business_in_America": "4/1,192",
+    "Best_Colleges_for_Psychology_in_America": "4/1,069",
+    "Best_Colleges_for_Accounting_and_Finance_in_America": "4/789",
+    "Best_Colleges_for_Architecture_in_America": "4/157",
+    "Best_Colleges_for_Education_in_America": "5/896",
+    "Best_Colleges_for_Chemistry_in_America": "7/655",
+    "Best_Colleges_for_Biology_in_America": "8/1,048",
+    "Best_College_Food_in_America": "9/1,377",
+    "Best_Colleges_for_Political_Science_in_America": "9/793",
+    "Best_Colleges_for_Anthropology_and_Sociology_in_America": "9/757",
+    "Best_Colleges_for_Environmental_Science_in_America": "11/619",
+    "Best_Colleges_for_International_Relations_in_America": "11/394",
+    "Best_Colleges_for_Film_and_Photography_in_America": "11/258",
+    "Best_Colleges_for_Art_in_America": "13/734",
+    "Best_Colleges_that_Accept_the_Common_App_in_America": "14/623",
+    "Best_Colleges_in_America": "15/1,619",
+    "Best_Test_Optional_Colleges_in_America": "15/1,137",
+    "Top_Private_Universities_in_America": "15/943",
+    "Best_Colleges_for_Engineering_in_America": "15/449",
+    "Best_Colleges_for_Religious_Studies_in_America": "16/411",
+    "Colleges_with_the_Best_Professors_in_America": "18/1,596",
+    "Colleges_with_the_Best_Academics_in_America": "18/1,577",
+    "Best_Colleges_for_History_in_America": "18/895",
+    "Best_Colleges_for_Public_Policy_in_America": "18/599",
+    "Best_Colleges_for_Physics_in_America": "20/451",
+    "Hardest_Colleges_to_Get_Into_in_America": "22/1,660",
+    "Best_Colleges_for_Math_in_America": "23/775",
+    "Best_Colleges_for_Global_Studies_in_America": "24/207",
+    "Colleges_with_the_Best_Student_Life_in_America": "25/1,580",
+    "Best_Colleges_for_Communications_in_America": "25/878",
+    "Best_Colleges_for_Computer_Science_in_America": "25/821",
+    "Best_Colleges_for_Economics_in_America": "26/567",
+    "Best_Colleges_for_Performing_Arts_in_America": "26/536",
+    "Best_Colleges_for_Philosophy_in_America": "26/444",
+    "Best_Colleges_for_Student_Athletes_in_America": "29/1,380",
+    "Best_Value_Colleges_in_America": "35/1,572",
+    "Best_Colleges_for_English_in_America": "37/889",
+    "Most_Liberal_Colleges_in_America": "139/1,674",
+    "Best_College_Locations_in_America": "157/1,605",
+    "Best_College_Athletics_in_America": "167/1,401",
+    "Most_Diverse_Colleges_in_America": "179/1,589",
+    "Top_Party_Schools_in_America": "242/1,587",
+    "Best_Greek_Life_Colleges_in_America": "291/817",
+    "Most_Liberal_Colleges_in_Missouri": "1/40",
+    "Hardest_Colleges_to_Get_Into_in_Missouri": "1/39",
+    "Best_Colleges_in_Missouri": "1/38",
+    "Best_Value_Colleges_in_Missouri": "1/38",
+    "Colleges_with_the_Best_Academics_in_Missouri": "1/38",
+    "Colleges_with_the_Best_Professors_in_Missouri": "1/37",
+    "Best_College_Campuses_in_Missouri": "1/36",
+    "Best_College_Food_in_Missouri": "1/36",
+    "Colleges_with_the_Best_Student_Life_in_Missouri": "1/36",
+    "Best_Colleges_for_Student_Athletes_in_Missouri": "1/35",
+    "Best_College_Dorms_in_Missouri": "1/34",
+    "Best_Colleges_for_Business_in_Missouri": "1/31",
+    "Best_Colleges_for_Psychology_in_Missouri": "1/25",
+    "Top_Private_Universities_in_Missouri": "1/25",
+    "Best_Colleges_for_Biology_in_Missouri": "1/24",
+    "Best_Colleges_for_Communications_in_Missouri": "1/24",
+    "Best_Test_Optional_Colleges_in_Missouri": "1/24",
+    "Best_Colleges_for_Education_in_Missouri": "1/23",
+    "Best_Colleges_for_Accounting_and_Finance_in_Missouri": "1/22",
+    "Best_Colleges_for_History_in_Missouri": "1/20",
+    "Best_Colleges_for_English_in_Missouri": "1/19",
+    "Best_Colleges_for_Computer_Science_in_Missouri": "1/18",
+    "Best_Colleges_for_Political_Science_in_Missouri": "1/15",
+    "Best_Colleges_that_Accept_the_Common_App_in_Missouri": "1/14",
+    "Best_Colleges_for_Economics_in_Missouri": "1/13",
+    "Most_Diverse_Colleges_in_Missouri": "4/38",
+    "Best_College_Locations_in_Missouri": "4/37",
+    "Best_College_Athletics_in_Missouri": "5/35",
+    "Top_Party_Schools_in_Missouri": "7/37",
+    "Best_Greek_Life_Colleges_in_Missouri": "11/22",
+    "Best_Colleges_in_St_Louis_Area": "1/11",
+    "Best_Value_Colleges_in_St_Louis_Area": "1/11"
+  },
+  "admission": {
+    "description": "WashU admissions is extremely selective with an acceptance rate of 14%. Students that get into WashU have an average SAT score between 1480-1560 or an average ACT score of 33-35. The regular admissions application deadline for WashU is January 4. Interested students can apply for early decision, and the WashU early decision deadline is November 1.",
+    "acceptance": {
+      "rate": "14%",
+      "rate_early": "38%"
+    },
+    "total_applicants": "25,426",
+    "sat": {
+      "accept_score_range": "1480-1560",
+      "reading_score": "720-760",
+      "math_score": "0-800",
+      "submite_by_student": "bmitting SAT37%"
+    },
+    "act": {
+      "accept_score_range": "33-35",
+      "eng_score": "34-35",
+      "math_score": "30-35",
+      "write_score": "8-10",
+      "submite_by_student": "68%"
+    },
+    "deadline": {
+      "date": "January 4",
+      "early_decision": "November 1",
+      "early_action": "No",
+      "early_offer_date": "Yes"
+    },
+    "application": {
+      "fee": "January 4",
+      "website": "http://admissions.wustl.edu/",
+      "comm_app": "Yes",
+      "accept_coalition_app": "Yes"
+    },
+    "requirements": {
+      "highscho_gpa": "Recommended",
+      "highscho_rank": "Recommended",
+      "highscho_transcript": "Required",
+      "uni_precourse": "Recommended",
+      "sat_or_act": "Considered but not required",
+      "recommendation": "Required",
+      "poll_uni_care_them": "86%",
+      "poll_uni_care_individual": "83%"
+    }
+  },
+  "cost": {
+    "net_cost": "$27,108",
+    "financial_aid_url": "https://www.niche.com/colleges/washington-university-in-st-louis/scholarships-financial-aid/",
+    "loan": {
+      "avg_amount": "$6,170",
+      "take_out": "16%",
+      "default_rate": "2%"
+    },
+    "net_price": {
+      "net_price": "$27,108",
+      "avg_tot_aid_award": "$47,253",
+      "stud_receive_aid": "51%",
+      "calculator_url": "https://netpricecalculator.sfs.wustl.edu/survey.aspx"
+    },
+    "tuition": {
+      "in_state": "$56,300",
+      "out_state": "$56,300",
+      "avg_housing": "$11,650",
+      "avg_meal_plan": "$5,250",
+      "book": "$1,126",
+      "plan": {
+        "guarantee": "No",
+        "payment": "Yes",
+        "prepaid": "Yes"
+      }
+    }
+  },
+  "academic": {
+    "graduation_rate": "95%",
+    "class_size_ratio": {
+      "2-19_students": "65%",
+      "20-39": "18%",
+      "40-99": "14%",
+      "100+": "3%"
+    },
+    "popular_major": {
+      "Finance": "184 Graduates",
+      "Computer_Science": "148 Graduates",
+      "Research_and_Experimental_Psychology": "148 Graduates",
+      "Marketing": "123 Graduates",
+      "Biology": "119 Graduates",
+      "Economics": "119 Graduates",
+      "Anthropology": "115 Graduates",
+      "": ""
+    },
+    "faculty": {
+      "ratio": "7:1",
+      "female": "33%",
+      "male": "67%",
+      "diversity": {
+        "African_American": "4%",
+        "Asian_American": "16%",
+        "Hispanic": "3%",
+        "International_(Non-Citizen)": "0%",
+        "Multiracial": "1%",
+        "Native_American": "0%",
+        "Pacific_Islander": "0%",
+        "Unknown": "0%",
+        "White": "76%"
+      }
+    }
+  },
+  "major": {
+    "gender_ratio": {
+      "female_undergrads": "53%",
+      "male_undergrads": "47%"
+    },
+    "residence": {
+      "In-State": "12%",
+      "Out-of-State": "81%",
+      "International": "8%",
+      "Unknown": "0%"
+    },
+    "age": {
+      "Under_18": "1%",
+      "18-19": "44%",
+      "20-21": "47%",
+      "22-24": "7%",
+      "Over_25": "1%"
+    },
+    "racial_diversity": {
+      "African_American": "9%",
+      "Asian": "16%",
+      "Hispanic": "8%",
+      "International_(Non-Citizen)": "10%",
+      "Multiracial": "4%",
+      "Native_American": "0%",
+      "Pacific_Islander": "0%",
+      "Unknown": "3%",
+      "White": "50%"
+    }
+  },
+  "campus_life": {
+    "sport": {
+      "varsity": {
+        "Almost_everything_on_campus_revolves_around_them": "1%",
+        "Varsity_sports_are_a_big_part_of_campus_life": "5%",
+        "Varsity_sporting_events_are_attended,_but_not_a_huge_part_of_campus_life": "43%",
+        "No_one_pays_attention_to_varsity_sports": "51%"
+      },
+      "male": [
+        "All Track Combined",
+        "Baseball",
+        "Basketball",
+        "Football",
+        "Soccer",
+        "Swimming and Diving",
+        "Tennis"
+      ],
+      "female": [
+        "All Track Combined",
+        "Basketball",
+        "Golf",
+        "Soccer",
+        "Softball",
+        "Swimming and Diving",
+        "Tennis",
+        "Volleyball"
+      ]
+    },
+    "club": {
+      "offered": [
+        "\nCampus Ministries",
+        "Dance",
+        "Drama/Theater",
+        "International Student Organizations",
+        "Literary Magazine",
+        "Model UN",
+        "Radio Station",
+        "Student Government",
+        "Newspaper",
+        "Film Society",
+        "Television Station"
+      ],
+      "music": [
+        "\nChoral Groups",
+        "Concert Band",
+        "Jazz Band",
+        "Music Ensembles",
+        "Musical Theater",
+        "Opera",
+        "Pep Band",
+        "Symphony Orchestra"
+      ],
+      "survey_result": {
+        "WILD": "27%",
+        "WILD_when_there_are_good_artists": "15%",
+        "Thurtene": "13%",
+        "Acapella_concerts!": "9%",
+        "Carnaval": "9%",
+        "Dance_Marathon": "9%",
+        "LNYF!": "7%"
+      }
+    }
+  },
+  "after_uni": {
+    "graudation_rate": "95%",
+    "earning": {
+      "2yr": "$56,500",
+      "6yr": "$70,100"
+    },
+    "employment": {
+      "2yr": "94%",
+      "6yr": "91%"
+    },
+    "debt_after_uni": "$6,170"
   }
 }]

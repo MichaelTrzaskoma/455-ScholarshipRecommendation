@@ -98,7 +98,7 @@ def exception_handler(driver, mode, ele):
 
         DEFAULT_MODE[mode](driver, ele)
 
-    except NoSuchElementException:
+    except:
         logging.info("An exception occurred!")
         # capture the exception in a txt file
         writeLog_exception_noEle(
@@ -254,6 +254,7 @@ def retrieve_college_ranking(driver, section):
             item_rank_outOF = item_rank_outOF[(position + 3):]
             
             key = str(item_title).replace(" ", "_")
+            key = str(key).replace(".", "")
             RANKING[key] = str(item_rank + "/" + item_rank_outOF)
     else:
         RANKING["N\A"] = "N\A"
@@ -420,11 +421,13 @@ def retrieve_admission_statistics(driver, section):
 
             if exception_handler(admission_deadline_grp, 13, "scalar"):
                 applic_temp1 = admission_deadline_grp.find_element_by_class_name("scalar")
-                temp = applic_temp1.find_element_by_class_name("scalar__value").text
 
-                if check("—", temp):
-                    i = str(temp).replace("\n", "")
-                    APPLIC_FEE = i
+                if exception_handler(applic_temp1, 13, "scalar__value"):
+                    temp = applic_temp1.find_element_by_class_name("scalar__value").text
+
+                    if check("—", temp):
+                        i = str(temp).replace("\n", "")
+                        APPLIC_FEE = i
 
             if exception_handler(admission_application_grp, 13, "profile__website__link"):
                 appli_temp2 = admission_application_grp.find_element_by_class_name("profile__website__link").get_attribute("href")
@@ -654,19 +657,19 @@ def retrieve_cost_data(driver, section):
         if exception_handler(sticker_price_grp, 13, "profile__bucket--3"):
             other_cost_grp1 = sticker_price_grp.find_element_by_class_name("profile__bucket--3")
 
-            if exception_handler(other_cost_grp1, 5, "scalar__value"):
-                other_cost_temp = other_cost_grp1.find_elements_by_class_name("scalar__value")
+            if exception_handler(other_cost_grp1, 5, "scalar--three"):
+                other_cost_temp = other_cost_grp1.find_elements_by_class_name("scalar--three")
                 
-                position = other_cost_temp[0].text.index(" / ")
-                if check("—", other_cost_temp[0].text[:position]):
+                if check("—", other_cost_temp[0].text):
+                    position = other_cost_temp[0].text.index(" / ")
                     AVG_HOUSING_COST = other_cost_temp[0].text[:position]
 
-                position = other_cost_temp[1].text.index(" / ")
-                if check("—", other_cost_temp[1].text[:position]):
+                if check("—", other_cost_temp[1].text):
+                    position = other_cost_temp[1].text.index(" / ")
                     AVE_MEAL_PLAN_COST = other_cost_temp[1].text[:position]
 
-                position = other_cost_temp[2].text.index(" / ")
-                if check("—", other_cost_temp[2].text[:position]):
+                if check("—", other_cost_temp[2].text):
+                    position = other_cost_temp[2].text.index(" / ")
                     BOOKS_SUPPLIES = other_cost_temp[2].text[:position]
 
         # locate tuition plan data
@@ -990,14 +993,14 @@ def retrieve_campus_life(driver, section):
             club_grp = club_activity.find_element_by_class_name("profile__bucket--1")
 
             # get available clubs and music
-            if exception_handler(club_grp, 13, "scalar__value") or exception_handler(club_grp, 5, "scalar__value"):
-                club_temp = club_grp.find_elements_by_class_name("scalar__value")
+            if exception_handler(club_grp, 5, "scalar--two"):
+                club_temp = club_grp.find_elements_by_class_name("scalar--two")
 
-                temp = club_temp[0].text
+                temp = str(club_temp[0].text[13:])
                 if check("—", temp):
                     OFFERED_CLUB = temp.split(", ")
                 
-                temp = club_temp[1].text
+                temp = str(club_temp[1].text[5:])
                 if check("—", temp):
                     OFFERED_MUSIC = temp.split(", ")
             else:
@@ -1189,12 +1192,13 @@ if __name__ == "__main__":
             file.close()
 
             if temp not in scraped_list:
-                # get college name
-                college["name"] = driver.find_element_by_class_name("postcard__title").text
+                
+                college = {}
+
                 college["grad"] = 0
-
+                
+                # check if there's grad school in this uni
                 graduate_url = form_graduateURL(temp)
-
                 if driver.get(graduate_url):
                     college["grad"] = 1
 
@@ -1202,7 +1206,8 @@ if __name__ == "__main__":
 
                 close_modal_message(driver)
 
-                college = {}
+                # get college name
+                college["name"] = driver.find_element_by_class_name("postcard__title").text
 
                 # ======== overall ranking list by the niche.com ========
                 NICHE_GRADES = {"N\A": "N\A"}
