@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  StatusBar,
   ScrollView,
   Text,
-  TextInput
+  TextInput,
 } from "react-native";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import CollegeSurveyBtn from "../ui/CollegeSurveyBtn";
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { MaterialIcons } from '@expo/vector-icons';
+
 
 const items = [
   // this is the parent or 'item'
@@ -485,109 +485,104 @@ export default class CollegeSurvey extends React.Component {
   };
 
   onSelectedItemsChange2 = (selectedItems2) => {
-    this.setState({ selectedItems2});
+    this.setState({ selectedItems2 });
   };
 
   render() {
     const { selectedItems } = this.state;
     return (
-      <ScrollView
-        horizontal={false}
-        contentContainerStyle={styles.scrollArea_contentContainerStyle}
-      >
-        <View style={styles.container}>
-          <StatusBar hidden />
-          <View style={styles.scrollArea}>
-            <View style={styles.collegeSurveyGrp1}>
-              <View style={styles.collegeSurveyRect1}>
-                <Text style={styles.findCollege}>To Find your college:</Text>
-                <Text style={styles.surveyDescription}>
-                  Please Answer the Following Questions to the best of your
-                  ability. You can select more than one of the criteria, using the
-                  results we will recommend a best fit college. Remember to do
-                  your own followup research!
-              </Text>
+      <ScrollView horizontal={false} style={styles.container}>
+
+        {/* 1st TextBox */}
+        <View style={styles.card_grp1}>
+          <Text style={styles.findCollege}>To Find your college:</Text>
+          <Text style={styles.surveyDescription}>
+            Please Answer the Following Questions to the best of your
+            ability. You can select more than one of the criteria, using the
+            results we will recommend a best fit college. Remember to do
+            your own followup research!
+               </Text>
+        </View>
+
+        {/* 2nd TextBox */}
+        <View style={styles.card_grp2}>
+
+          <View style={styles.collegeSurveyRect2}>
+            <Text style={styles.collegeSurveyQA1}>
+              What is you regional preference {"\n"}for college location?
+      </Text>
+            <SectionedMultiSelect
+              items={items}
+              IconRenderer={MaterialIcons}
+              uniqueKey="id"
+              subKey="children"
+              selectText="Choose all that apply"
+              style={{ margin: 20 }}
+              showDropDowns={true}
+              readOnlyHeadings={true}
+              onSelectedItemsChange={this.onSelectedItemsChange}
+              selectedItems={this.state.selectedItems}
+            />
+
+            <View style={styles.satTextField}>
+              <Text style={styles.collegeSurveyQA2}>
+                What is your SAT score?
+        </Text>
+              <View style={styles.iconRow}>
+                <MaterialCommunityIconsIcon
+                  name="book-open-variant"
+                  style={styles.icon}
+                ></MaterialCommunityIconsIcon>
+                <TextInput
+                  placeholder="If Not Applicable Leave Blank"
+                  keyboardAppearance="light"
+                  blurOnSubmit={false}
+                  style={styles.textInput}
+                ></TextInput>
               </View>
-              <View style={styles.collegeSurveyGrp2}>
-                <View style={styles.collegeSurveyRect2}>
-                  <Text style={styles.collegeSurveyQA1}>
-                    What is you regional preference {"\n"}for college location?
-                  </Text>
-
-                  <SectionedMultiSelect
-                    items={items}
-                    IconRenderer={MaterialIcons}
-                    uniqueKey="id"
-                    subKey="children"
-                    selectText="Choose all that apply"
-                    style={{ margin: 20 }}
-                    showDropDowns={true}
-                    readOnlyHeadings={true}
-                    onSelectedItemsChange={this.onSelectedItemsChange}
-                    selectedItems={this.state.selectedItems}
-                  />
-
-                  <View style={styles.satTextField}>
-                    <Text style={styles.collegeSurveyQA2}>
-                      What is your SAT score?
-                    </Text>
-                    <View style={styles.iconRow}>
-                      <MaterialCommunityIconsIcon
-                        name="book-open-variant"
-                        style={styles.icon}
-                      ></MaterialCommunityIconsIcon>
-                      <TextInput
-                        placeholder="If Not Applicable Leave Blank"
-                        keyboardAppearance="light"
-                        blurOnSubmit={false}
-                        style={styles.textInput}
-                      ></TextInput>
-                    </View>
-                  </View>
-                  <View style={styles.actTextField}>
-                    <Text style={styles.collegeSurveyQA3}>
-                      What is your ACT score?
-                    </Text>
-                    <View style={styles.icon1Row}>
-                      <MaterialCommunityIconsIcon
-                        name="book-open-variant"
-                        style={styles.icon1}
-                      ></MaterialCommunityIconsIcon>
-                      <TextInput
-                        placeholder="If Not Applicable Leave Blank"
-                        keyboardAppearance="light"
-                        blurOnSubmit={false}
-                        style={styles.textInput1}
-                      ></TextInput>
-                    </View>
-                  </View>
-                  <View style={styles.majorTextField}>
-                    <Text style={styles.collegeSurveyQA4}>
-                      What major(s) are you interested in?
-                    </Text>
-                    <SectionedMultiSelect
-                      style = {{ margin: 30}}
-                      items = {items.slice(1, items.length + 1)}
-                      IconRenderer = {MaterialIcons}
-                      uniqueKey = "name"
-                      subKey = "children"
-                      selectText = "Select Major(s)"
-                      showDropDowns = {true}
-                      readOnlyHeadings = {true}
-                      onSelectedItemsChange = {this.onSelectedItemsChange2}
-                      selectedItems = {this.state.selectedItems2}
-                    />
-                    </View>
-                  </View>
-                  <CollegeSurveyBtn
-                    style={styles.submitBtn}
-                  ></CollegeSurveyBtn>
-
-                </View>
+            </View>
+            <View style={styles.actTextField}>
+              <Text style={styles.collegeSurveyQA3}>
+                What is your ACT score?
+        </Text>
+              <View style={styles.icon1Row}>
+                <MaterialCommunityIconsIcon
+                  name="book-open-variant"
+                  style={styles.icon1}
+                ></MaterialCommunityIconsIcon>
+                <TextInput
+                  placeholder="If Not Applicable Leave Blank"
+                  keyboardAppearance="light"
+                  blurOnSubmit={false}
+                  style={styles.textInput1}
+                ></TextInput>
               </View>
+            </View>
+            <View style={styles.majorTextField}>
+              <Text style={styles.collegeSurveyQA4}>
+                What major(s) are you interested in?
+        </Text>
+              <SectionedMultiSelect
+                style={{ margin: 30 }}
+                items={items.slice(1, items.length + 1)}
+                IconRenderer={MaterialIcons}
+                uniqueKey="name"
+                subKey="children"
+                selectText="Select Major(s)"
+                showDropDowns={true}
+                readOnlyHeadings={true}
+                onSelectedItemsChange={this.onSelectedItemsChange2}
+                selectedItems={this.state.selectedItems2}
+              />
             </View>
           </View>
 
+          {/* Submit Button */}
+          <CollegeSurveyBtn
+            style={styles.submitBtn}
+          ></CollegeSurveyBtn>
+
+        </View>
       </ScrollView>
     );
   }
@@ -595,39 +590,41 @@ export default class CollegeSurvey extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#E6E6E6',
+    width: '100%',
+    height: '100%',
+  },
+  card_grp1: {
+    width: '90%',
+    height: 229,
+    backgroundColor: 'rgba(255,255,255,1)',
+    borderWidth: 0,
+    borderColor: '#000000',
+    borderRadius: 5,
+    overflow: 'hidden',
+    marginTop: 30,
+    alignSelf: 'center',
+  },
+  card_grp2: {
     flex: 1,
-    backgroundColor: "#e8e9e7",
+    width: '90%',
+    height: 'auto',
+    backgroundColor: 'rgba(255,255,255,1)',
+    borderWidth: 0,
+    borderColor: '#000000',
+    borderRadius: 5,
+    marginTop: 19,
+    alignSelf: 'center',
+  },
 
-  },
-  scrollArea: {
-    width: 321,
-    height: 709,
-    marginTop: 18,
-
-  },
-  scrollArea_contentContainerStyle: {
-    height: 900,
-    width: 321,
-    alignSelf: "center"
-  },
-  collegeSurveyGrp1: {
-    width: 321,
-    flex: 1,
-    alignSelf: "center"
-  },
-  collegeSurveyRect1: {
-    width: 318,
-    height: 180,
-    backgroundColor: "#fefffd",
-    alignSelf: "center"
-  },
   findCollege: {
     fontFamily: "roboto-700",
     color: "#4a76ff",
     height: 37,
     width: 298,
     fontSize: 20,
-    marginTop: 13,
+    fontWeight: 'bold',
+    marginTop: 30,
     alignSelf: "center"
   },
   surveyDescription: {
@@ -635,14 +632,8 @@ const styles = StyleSheet.create({
     color: "rgba(0,0,0,1)",
     height: 120,
     width: 298,
-    fontSize: 15,
-    marginTop: 10,
-    alignSelf: "center"
-  },
-  collegeSurveyGrp2: {
-    width: 321,
-    height: 600,
-    marginTop: 21,
+    fontSize: 16,
+    marginTop: 20,
     alignSelf: "center"
   },
   collegeSurveyRect2: {
@@ -652,16 +643,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: "center"
   },
-  collegeSurveyRect2_contentContainerStyle: {
-    height: 508,
-    width: 321
-  },
   collegeSurveyQA1: {
     fontFamily: "roboto-700",
     color: "#121212",
-    fontSize: 15,
-    width: 250,
-    height: 36,
+    fontSize: 16,
+    width: 260,
+    height: 39,
     marginTop: 15,
     marginLeft: 8
   },
@@ -674,7 +661,7 @@ const styles = StyleSheet.create({
   collegeSurveyQA2: {
     fontFamily: "roboto-700",
     color: "#121212",
-    fontSize: 15,
+    fontSize: 16,
     marginTop: -27,
     marginLeft: -4
   },
@@ -685,6 +672,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     fontFamily: "roboto-regular",
+    fontSize: 16,
     color: "#121212",
     height: 32,
     width: 212,
@@ -710,7 +698,7 @@ const styles = StyleSheet.create({
   collegeSurveyQA3: {
     fontFamily: "roboto-700",
     color: "#121212",
-    fontSize: 15,
+    fontSize: 16,
     marginTop: -29,
     marginLeft: -5
   },
@@ -720,6 +708,7 @@ const styles = StyleSheet.create({
   },
   textInput1: {
     fontFamily: "roboto-regular",
+    fontSize: 16,
     color: "#121212",
     height: 32,
     width: 212,
@@ -738,46 +727,24 @@ const styles = StyleSheet.create({
   },
   majorTextField: {
     width: 247,
-    height: "auto",
+    height: 'auto',
     marginTop: 45,
     marginLeft: 15
   },
   collegeSurveyQA4: {
     fontFamily: "roboto-700",
     color: "#121212",
-    fontSize: 15,
+    fontSize: 16,
     marginTop: -28,
     marginLeft: -7
-  },
-  icon2: {
-    color: "#4a76ff",
-    fontSize: 25
-  },
-  textInput2: {
-    fontFamily: "roboto-regular",
-    color: "#121212",
-    height: 32,
-    width: 212,
-    borderWidth: 1,
-    borderColor: "rgba(155,155,155,1)",
-    borderBottomWidth: 1,
-    borderTopWidth: 0,
-    borderRightWidth: 0,
-    borderLeftWidth: 0,
-    marginLeft: 10
-  },
-  icon2Row: {
-    height: 32,
-    flexDirection: "row",
-    marginTop: 10
   },
   submitBtn: {
     width: 300,
     height: 36,
     backgroundColor: "#4a76ff",
-    marginTop: 29,
+    marginTop: 20,
     alignSelf: "center"
-  }
+  },
 });
 
 
