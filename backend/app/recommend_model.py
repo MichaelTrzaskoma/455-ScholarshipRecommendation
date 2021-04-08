@@ -30,10 +30,10 @@ def updtUser(
         zipC,
         gpa,
         major='',
-        race='',
-        ethnicity='',
-        religion='',
-        dissabilities='',
+        race=[],
+        ethnicity=[],
+        religion=[],
+        dissabilities=[],
         sat='',):
     # Used to initiation user or update their information, specify when using optional attributes
     list1 = [gender]
@@ -41,10 +41,14 @@ def updtUser(
     list1.append(catState(zipC))
     list1.append(catGPA(gpa))
 
-    list2 = [major, race, religion, dissabilities, ethnicity]
+    if major != '':
+        list1.append(major)
+    
+    list2 = [race, religion, dissabilities, ethnicity]
     for i in range(len(list2)):
-        if list2[i] != '':
-            list1.append(list2[i])
+        if list2[i] != []:
+            list1.extend(list2[i])
+        
 
     if (sat != ''):
         list1.append(catSat(sat))
@@ -245,6 +249,7 @@ def catIndex(db, word):
     # output -> int, the index
     subCatCursor = db.test.subcatlist.find(
         {"subCat": word}, {"subCat": 1, "_id": 0})
+
     refListDict = subCatCursor[0]
     refList = refListDict.get("subCat")
     ind = refList.index(word)
@@ -370,7 +375,7 @@ def binCompare(user_bin, scholar_bin):
 # scholar_ref = db.test.scholarships
 # user_Ref = db.test.client_profile
 
-#updtUser("mtrzasko@nyit.edu", "Male", "5/11/1999", 10308, "3.0")
+#updtUser(db,user_Ref,"mtrzasko@nyit.edu", "Male", "5/11/1999", 10308, "3.0")
 # print(filter_results(user_Ref, scholar_ref, 'mtrzasko@nyit.edu'))
 # Test run of compare
 #   print(filter_results('hchen60@nyit.edu'))
