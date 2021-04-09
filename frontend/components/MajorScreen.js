@@ -174,30 +174,34 @@ function MajorScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff"
   },
   container_grp: {
-    flex: 1
+    flex: 1,
+    width: '100%',
+    backgroundColor: "#FFFFFF",
   },
   category_container: {
     height: 173,
-    justifyContent: "center"
+    justifyContent: 'center',
+    // marginTop: 30,
+    width: '100%',
   },
   categoryGrp: {
-    width: 332,
+    width: '90%',
     height: 167,
-    alignSelf: "center"
+    alignSelf: 'center',
+    marginTop: 5,
   },
   categoryTxt: {
-    color: "#4a76ff",
+    color: '#4a76ff',
     fontSize: 30,
     width: 177,
-    height: 35
+    height: 40,
   },
   scrollArea1: {
-    width: 332,
+    width: '100%',
     height: 123,
-    marginTop: 4
+    marginTop: 4,
   },
   scrollArea1_contentContainerStyle: {
     width: 720,
@@ -383,9 +387,9 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   recommendGrp: {
-    width: 332,
+    width: '90%',
     height: 167,
-    alignSelf: "center"
+    alignSelf: 'center',
   },
   recommendTxt: {
     color: "#4a76ff",
@@ -430,14 +434,16 @@ const styles = StyleSheet.create({
     top: 172,
     left: 0,
     height: 173,
-    position: "absolute",
+    position: 'absolute',
     right: 0,
-    justifyContent: "center"
+    justifyContent: 'center',
+    width: '100%',
   },
   recentGrp: {
-    width: 332,
+    width: '90%',
     height: 167,
-    alignSelf: "center"
+    alignSelf: 'center',
+    marginTop: 5,
   },
   recentTxt: {
     color: "#4a76ff",
@@ -446,9 +452,9 @@ const styles = StyleSheet.create({
     height: 35
   },
   scrollArea2: {
-    width: 332,
+    width: '100%',
     height: 123,
-    marginTop: 4
+    marginTop: 4,
   },
   scrollArea2_contentContainerStyle: {
     width: 720,
@@ -632,7 +638,8 @@ const styles = StyleSheet.create({
     marginTop: 7
   },
   recommend_containerStack: {
-    height: 345
+    height: 345,
+    width: '100%',
   }
 });
 
