@@ -114,7 +114,7 @@ export default function ScholarCategory() {
                 </View>
             </View>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({

@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  StatusBar,
   Text,
   ScrollView,
   TouchableOpacity
 } from "react-native";
-import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import CollegeCategory from "../ui/CollegeCategory";
+import CollegeRecommend from "../ui/CollegeRecommend";
 
 function CollegeScreen(props) {
   return (
@@ -17,67 +17,13 @@ function CollegeScreen(props) {
 
       <View style={styles.container_grp}>
 
-        {/* Cateogry ScrollView */}
-        <View style={styles.category_container}>
-          <View style={styles.categoryGrp}>
-            <Text style={styles.categoryTxt}>Category</Text>
-            <View style={styles.scrollArea1}>
-              <ScrollView
-                horizontal={true}
-                contentContainerStyle={styles.scrollArea1_contentContainerStyle}
-              >
-                <View style={styles.nYBtnRow}>
-                  <TouchableOpacity style={styles.nYBtn}>
-                    <View style={styles.nYTxtFiller}></View>
-                    <Text style={styles.nYTxt}>New York</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.nJBtn}>
-                    <View style={styles.nJTxtFiller}></View>
-                    <Text style={styles.nJTxt}>New Jersey</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.nCBtn}>
-                    <View style={styles.nCTxtFiller}></View>
-                    <Text style={styles.nCTxt}>North Carolina</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.nDBtn}>
-                    <View style={styles.nDTxtFiller}></View>
-                    <Text style={styles.nDTxt}>North Dakota</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.oHBtn}>
-                    <View style={styles.oHTxtFiller}></View>
-                    <Text style={styles.oHTxt}>Ohio</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.viewAllBtn1}>
-                    <FontAwesomeIcon
-                      name="arrow-circle-right"
-                      style={styles.viewAllIcon1}>
-                    </FontAwesomeIcon>
-                    <View style={styles.viewAllIcon1Filler}></View>
-                    <Text style={styles.viewAllTxt1}>View All</Text>
-                  </TouchableOpacity>
-                </View>
-              </ScrollView>
-            </View>
-          </View>
-        </View>
+        {/* College Category */}
+        <CollegeCategory />
+
         <View style={styles.recommend_containerStack}>
 
-          {/* Recommend ScrollView */}
-          <View style={styles.recommend_container}>
-            <View style={styles.recommendGrp}>
-              <Text style={styles.recommendTxt}>Recommend</Text>
-              <View style={styles.customContainer}>
-                <TouchableOpacity style={styles.customBtn}>
-                  <FontAwesomeIcon
-                    name="arrow-circle-right"
-                    style={styles.customIcon}>
-                  </FontAwesomeIcon>
-                  <View style={styles.customIconFiller}></View>
-                  <Text style={styles.customTxt}>Custom View</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
+          {/* College Recommend */}
+          <CollegeRecommend />
 
           {/* Recent View ScrollView */}
           <View style={styles.recent_container}>
