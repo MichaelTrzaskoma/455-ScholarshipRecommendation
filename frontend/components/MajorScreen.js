@@ -10,6 +10,8 @@ import {
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import MajorCategory from "../ui/MajorCategory";
+import MajorRecommend from "../ui/MajorRecommend";
 
 function MajorScreen(props) {
   return (
@@ -17,88 +19,13 @@ function MajorScreen(props) {
       <StatusBar hidden />
       <View style={styles.container_grp}>
 
-        {/* Cateogry ScrollView */}
-        <View style={styles.category_container}>
-          <View style={styles.categoryGrp}>
-            <Text style={styles.categoryTxt}>Category</Text>
-            <View style={styles.scrollArea1}>
-              <ScrollView
-                horizontal={true}
-                contentContainerStyle={styles.scrollArea1_contentContainerStyle}
-              >
-                <View style={styles.artBtnRow}>
-                  <TouchableOpacity style={styles.artBtn}>
-                    <IoniconsIcon
-                      name="ios-brush"
-                      style={styles.artIcon}
-                    ></IoniconsIcon>
-                    <View style={styles.artIconFiller}></View>
-                    <Text style={styles.artTxt}>Arts</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.bnBtn}>
-                    <IoniconsIcon
-                      name="md-business"
-                      style={styles.bnIcon}
-                    ></IoniconsIcon>
-                    <Text style={styles.bnTxt}>Business</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.edBtn}>
-                    <IoniconsIcon
-                      name="ios-school"
-                      style={styles.edIcon}
-                    ></IoniconsIcon>
-                    <View style={styles.edIconFiller}></View>
-                    <Text style={styles.edTxt}>Education</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.hPBtn}>
-                    <MaterialCommunityIconsIcon
-                      name="hospital-building"
-                      style={styles.hPIcon}
-                    ></MaterialCommunityIconsIcon>
-                    <View style={styles.hPIconFiller}></View>
-                    <Text style={styles.hPTxt}>North Dakota</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.sTMBtn}>
-                    <MaterialCommunityIconsIcon
-                      name="lightbulb-on-outline"
-                      style={styles.sTMIcon}
-                    ></MaterialCommunityIconsIcon>
-                    <View style={styles.sTMIconFiller}></View>
-                    <Text style={styles.sTMTxt}>
-                      Science,{"\n"}Technology {"\n"}&amp; Math
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.viewAllGrp1}>
-                    <FontAwesomeIcon
-                      name="arrow-circle-right"
-                      style={styles.customIcon}>
-                    </FontAwesomeIcon>
-                    <View style={styles.viewAllIcon1Filler}></View>
-                    <Text style={styles.viewAllTxt1}>View All</Text>
-                  </TouchableOpacity>
-                </View>
-              </ScrollView>
-            </View>
-          </View>
-        </View>
+        {/* Major Category */}
+        <MajorCategory/>
+
         <View style={styles.recommend_containerStack}>
 
-          {/* Recommend ScrollView */}
-          <View style={styles.recommend_container}>
-            <View style={styles.recommendGrp}>
-              <Text style={styles.recommendTxt}>Recommend</Text>
-              <View style={styles.customContainer}>
-                <TouchableOpacity style={styles.customBtn}>
-                  <FontAwesomeIcon
-                    name="arrow-circle-right"
-                    style={styles.customIcon}>
-                  </FontAwesomeIcon>
-                  <View style={styles.customIconFiller}></View>
-                  <Text style={styles.customTxt}>Custom View</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
+          {/* Major Recommend */}
+          <MajorRecommend/>
 
           {/* Recent View ScrollView */}
           <View style={styles.recent_container}>
