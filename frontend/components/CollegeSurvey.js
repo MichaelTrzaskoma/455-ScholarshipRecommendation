@@ -10,6 +10,7 @@ import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommun
 import CollegeSurveyBtn from "../ui/CollegeSurveyBtn";
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { MaterialIcons } from '@expo/vector-icons';
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 
 const items = [
@@ -491,7 +492,8 @@ export default class CollegeSurvey extends React.Component {
   render() {
     const { selectedItems } = this.state;
     return (
-      <ScrollView horizontal={false} style={styles.container}>
+      <KeyboardAwareScrollView
+        style={styles.container}>
 
         {/* 1st TextBox */}
         <View style={styles.card_grp1}>
@@ -583,14 +585,13 @@ export default class CollegeSurvey extends React.Component {
           ></CollegeSurveyBtn>
 
         </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#E6E6E6',
     width: '100%',
     height: '100%',
   },
