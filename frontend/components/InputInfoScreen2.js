@@ -1087,6 +1087,7 @@ export default class InputScreen2 extends React.Component {
       religion: "",
       Disabilities: "",
       Sat: "",
+      Act: "",
       ethnicity: "",
       selectedItems: [],
       selectedItems2: [],
@@ -1100,6 +1101,7 @@ export default class InputScreen2 extends React.Component {
     this.handleDisability = this.handleDisability.bind(this);
     this.handleSAT = this.handleSAT.bind(this);
     this.handleethnicity = this.handleethnicity.bind(this);
+    this.handleACT = this.handleACT.bind(this);
     // this.navigation = useNavigation();
   }
 
@@ -1167,6 +1169,20 @@ export default class InputScreen2 extends React.Component {
     else
     {
       alert("Please enter a valid SAT score");
+    }
+  }
+
+  handleACT(text) {
+    let textInt = parseInt(text, 10);
+    if(textInt >= 1 && textInt <= 36)
+    {
+      this.setState({ 
+        Act: text,
+      });
+    }
+    else
+    {
+      alert("Please Enter a Valid ACT Score");
     }
   }
 
@@ -1317,13 +1333,20 @@ export default class InputScreen2 extends React.Component {
               />
           </View>
           <View style={styles.grp5}>
-            <Text style={styles.txt_testScore}>Test Score:</Text>
+            <Text style={styles.txt_testScore}>Test Scores:</Text>
             <TextInput
               onChangeText={this.handleSAT}
               placeholder="SAT"
               keyboardType="numeric"
               style={styles.input6}
               maxLength={4}
+            ></TextInput>
+            <TextInput
+              onChangeText={this.handleACT}
+              placeholder="ACT"
+              keyboardType="numeric"
+              style={styles.input61}
+              maxLength={2}
             ></TextInput>
           </View>
           <View style={styles.grp6}>
@@ -1467,7 +1490,7 @@ const styles = StyleSheet.create({
   grp6: {
     width: "100%",
     height: "auto",
-    marginTop: 20,
+    marginTop: 40,
     // marginLeft: 10,
   },
   txt_testScore: {
@@ -1482,6 +1505,14 @@ const styles = StyleSheet.create({
     width: "93%",
     marginTop: 2,
     marginLeft: 9,
+  },
+  input61: {
+    color: "#121212",
+    height: 30,
+    width: "93%",
+    marginTop: 2,
+    marginLeft: 9,
+    marginBottom: 10,
   },
   input7: {
     color: "#121212",
