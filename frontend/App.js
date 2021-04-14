@@ -10,6 +10,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import * as SecureStore from 'expo-secure-store';
+// import DeviceInfo from 'react-native-device-info';
+// import { NativeModules } from 'react-native';
+import Constants from 'expo-constants';
 
 import LoginScreen from "./components/LoginScreen";
 // import HomeContainer from "./components/HomeContainer";
@@ -106,6 +109,27 @@ export default class App extends Component {
 
   }
 
+  saveSecureStorage = async (key, value) => {
+    // save the key and val pair data in secure storage
+    await SecureStore.setItemAsync(key, value);
+  }
+
+  getSecureStorage = async (key) => {
+    // retrieve val based on key from secure storage
+    // return "null" if the val does not exist
+    return await SecureStore.getItemAsync(key);
+  }
+
+  getDeviceID = () => {
+    // DeviceInfo.getUniqueId().then(uniqueId => {
+    //   console.log(uniqueId)
+    //   // iOS: "FCDBD8EF-62FC-4ECB-B2F5-92C9E79AC7F9"
+    //   // Android: "dd96dec43fb81c97"
+    // });
+
+    // console.log(NativeModules.PlatformConstants);
+    console.log(Constants.deviceId);
+  }
 
   signIn = (inputEmail, inputPassword) => {
     try {
@@ -134,6 +158,7 @@ export default class App extends Component {
 
 
   render() {
+    this.getDeviceID()
     if (this.state.usrProfile.signedIn) {
       // console.log("Email from App.js: " + this.state.usrProfile.email);
       return (

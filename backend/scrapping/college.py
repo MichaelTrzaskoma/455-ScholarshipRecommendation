@@ -1,18 +1,17 @@
 from selenium import webdriver
-# from selenium.webdriver.firefox.options import Options
-# from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
-from fake_useragent import UserAgent
+# from fake_useragent import UserAgent
 import undetected_chromedriver as uc
 
-import requests
+import re,requests,random
 import time
-import random
 import logging
 import json
 from tqdm import tqdm
 
-from scrap_log import writeLog_exception_noEle, write_collegeData, append_college, college_scraped
+from scrap_log import writeLog_exception_noEle, write_collegeData, append_college, college_scraped, read_url
 
 
 def exception_handler(driver, mode, ele):
@@ -318,11 +317,13 @@ def retrieve_admission_statistics(driver, section):
                 if exception_handler(sat_grp, 13, "scalar"):
                     sat_temp1 = sat_grp.find_element_by_class_name("scalar")
                      # locate the sat overall range score element
-                    temp = sat_temp1.find_element_by_class_name("scalar__value").text
 
-                    if "—" not in temp:
-                        i = str(temp).replace("\n", "")
-                        SAT_ACCEPTANCE_SCORE_RANGE = i
+                    if exception_handler(sat_temp1, 13, "scalar__value"):
+                        temp = sat_temp1.find_element_by_class_name("scalar__value").text
+
+                        if "—" not in temp:
+                            i = str(temp).replace("\n", "")
+                            SAT_ACCEPTANCE_SCORE_RANGE = i
 
                 if exception_handler(sat_grp, 5, "scalar--three"):
                     sat_temp2 = sat_grp.find_elements_by_class_name("scalar--three")
@@ -613,20 +614,20 @@ def retrieve_cost_data(driver, section):
         if exception_handler(net_price_grp, 13, "profile__bucket--1"):
             net_price_temp = net_price_grp.find_element_by_class_name("profile__bucket--1")
 
-            if exception_handler(net_price_temp, 5, "scalar__value"):
-                net_price_items = net_price_temp.find_elements_by_class_name("scalar__value")
+            if exception_handler(net_price_temp, 5, "scalar--three"):
+                net_price_items = net_price_temp.find_elements_by_class_name("scalar--three")
 
-                temp = net_price_items[0].text
-                position = temp.index(" / ")
-                if "—" not in temp[:position]:
+                temp = net_price_items[0].text[9:]
+                if "—" not in temp:
+                    position = temp.index(" / ")
                     NET_PRICE = temp[:position]
                 
-                temp = net_price_items[1].text
-                position = temp.index(" / ")
-                if "—" not in temp[:position]:
+                temp = net_price_items[1].text[25:]
+                if "—" not in temp:
+                    position = temp.index(" / ")
                     AVG_TOTAL_AID_AWARD = temp[:position]
                 
-                temp = net_price_items[2].text
+                temp = net_price_items[2].text[32:]
                 if "—" not in temp:
                     STUDENT_RECEIVE_AID = temp
                 
@@ -640,7 +641,7 @@ def retrieve_cost_data(driver, section):
     TUITION_GUARANTEE_PLAN, TUITION_PAYMENT_PLAN, TUITION_PREPAID_PLAN = "N\A", "N\A", "N\A"
     
     # locate sticker price
-    if exception_handler(driver, 15, "sticker-price"):
+    if exception_handler(driver, 7, "sticker-price"):
         sticker_price_grp = driver.find_element_by_id("sticker-price")
 
         if exception_handler(sticker_price_grp, 13, "profile__bucket--1"):
@@ -1117,14 +1118,14 @@ def retrieve_after_college(driver, section):
         if exception_handler(employment_grp, 13, "profile__bucket--1"):
             employment_temp = employment_grp.find_element_by_class_name("profile__bucket--1")
 
-            if exception_handler(employment_temp, 5, "scalar__value"):
-                employment_rates = employment_temp.find_elements_by_class_name("scalar__value")
+            if exception_handler(employment_temp, 5, "scalar"):
+                employment_rates = employment_temp.find_elements_by_class_name("scalar")
 
                 if "—" not in employment_rates[0].text:
-                    EMPLOY_AFTER_2YR = employment_rates[0].text
+                    EMPLOY_AFTER_2YR = employment_rates[0].text[33:]
 
                 if "—" not in employment_rates[1].text:
-                    EMPLOY_AFTER_6YR = employment_rates[1].text
+                    EMPLOY_AFTER_6YR = employment_rates[1].text[33:]
         
     # get student debt after college
     if exception_handler(driver, 7, "student-debt"):
@@ -1161,310 +1162,325 @@ if __name__ == "__main__":
     ROOT_URL = "https://www.niche.com/colleges/search/best-colleges/?page="
     collegeURL = []
 
+    # ua_list = []
+    # userlist=re.sub('\r\n', '\n', str(requests.get('http://pastebin.com/raw/VtUHCwE6').text)).splitlines()
+    # for x in userlist:ua_list.append(x)
+    # random.shuffle(ua_list)
+    # def get_useragent():return(str(random.choice(ua_list)))
+    # pers_UA=get_useragent()
+
+    # co = webdriver.ChromeOptions()
+    # co.headless = True
+    # co.add_argument("start-maximized")
+    # co.add_argument(f'user-agent={pers_UA}')
+
+    DRIVER_PATH = "./chromedriver"
     global driver
-    driver = uc.Chrome()
+    driver = uc.Chrome(executable_path=DRIVER_PATH)
+    # driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=co)
 
     # for the site's pagination
-    for i in range(113):
+    # for i in range(113):
 
-        parsedURL = ROOT_URL + str(i)
-        current_page = driver.get(parsedURL)
+    #     parsedURL = ROOT_URL + str(i)
+    #     current_page = driver.get(parsedURL)
 
-        # get a list of college item
-        collegeItem = driver.find_elements_by_class_name(
-            "search-results__list__item")
-        time.sleep(random.randint(1, 6))
+    #     # get a list of college item
+    #     collegeItem = driver.find_elements_by_class_name("search-results__list__item")
+    #     time.sleep(random.randint(1, 6))
 
-        # get the niche college URL
-        for item in collegeItem:
-            temp = item.find_element_by_class_name(
-                "search-result__link").get_attribute("href")
+    #     # get the niche college URL
+    #     for item in collegeItem:
+    #         temp = item.find_element_by_class_name("search-result__link").get_attribute("href")
 
-            # avoid the duplicate ones
-            if temp not in collegeURL:
-                collegeURL.append(temp)
-                write_collegeData(temp)
-
+    #         # avoid the duplicate ones
+    #         if temp not in collegeURL:
+    #             collegeURL.append(temp)
+    #             write_collegeData(temp)
                 # check if the uni has graduate academic course
                 # graduate_url = form_graduateURL(temp)
 
                 # if driver2.get(temp):
                 #     write_collegeData(graduate_url)
 
-        for temp in collegeURL:
-            # get the college data in detail
 
-            file = open("college_scraped_url.txt")
-            scraped_list = file.read()
-            scraped_list = scraped_list.split("\n")
-            file.close()
+    temp = read_url()
+    collegeURL = temp.split("\n")
 
-            if temp not in scraped_list:
-                
-                college = {}
+    for temp in tqdm(collegeURL):
+        # get the college data in detail
 
-                college["grad"] = 0
-                
-                # check if there's grad school in this uni
-                graduate_url = form_graduateURL(temp)
-                if driver.get(graduate_url):
-                    college["grad"] = 1
+        file = open("college_scraped_url.txt")
+        scraped_list = file.read()
+        scraped_list = scraped_list.split("\n")
+        file.close()
 
-                driver.get(temp)
+        if temp not in scraped_list:
+            
+            college = {}
 
-                close_modal_message(driver)
+            college["grad"] = 0
+            
+            # check if there's grad school in this uni
+            graduate_url = form_graduateURL(temp)
+            if driver.get(graduate_url):
+                college["grad"] = 1
 
-                # get college name
-                college["name"] = driver.find_element_by_class_name("postcard__title").text
+            driver.get(temp)
 
-                # ======== overall ranking list by the niche.com ========
-                NICHE_GRADES = {"N\A": "N\A"}
+            close_modal_message(driver)
 
-                if exception_handler(driver, 7, "report-card"):
-                    section1 = driver.find_element_by_id("report-card")
-                    NICHE_GRADES = retrieve_niche_grade(driver, section1)
+            # get college name
+            college["name"] = driver.find_element_by_class_name("postcard__title").text
 
-                college["niche_grade"] = NICHE_GRADES
+            # ======== overall ranking list by the niche.com ========
+            NICHE_GRADES = {"N\A": "N\A"}
 
-                time.sleep(random.randint(1, 6))
+            if exception_handler(driver, 7, "report-card"):
+                section1 = driver.find_element_by_id("report-card")
+                NICHE_GRADES = retrieve_niche_grade(driver, section1)
 
-                # ======== college info ========
-                COLLEGE_DESCRIPTION, COLLEGE_SITE, COLLEGE_ADDRESS, ATHLETICS_DIVISION, ATHLETICS_CONFERENCE = "N\A", "N\A", "N\A", "N\A", "N\A"
-                COLLEGE_TAGS, COLLEGE_LOCATION_TAGS = ["N\A"], ["N\A"]
+            college["niche_grade"] = NICHE_GRADES
 
-                if exception_handler(driver, 7, "about"):
-                    section2 = driver.find_element_by_id("about")
-                    COLLEGE_DESCRIPTION, COLLEGE_SITE, COLLEGE_ADDRESS, COLLEGE_TAGS, ATHLETICS_DIVISION, ATHLETICS_CONFERENCE, COLLEGE_LOCATION_TAGS = retrieve_college_general_info(driver, section2)
-                # print(retrieve_college_general_info(section2))
+            time.sleep(random.randint(1, 6))
 
-                college["description"] = COLLEGE_DESCRIPTION
-                college["site"] = COLLEGE_SITE
+            # ======== college info ========
+            COLLEGE_DESCRIPTION, COLLEGE_SITE, COLLEGE_ADDRESS, ATHLETICS_DIVISION, ATHLETICS_CONFERENCE = "N\A", "N\A", "N\A", "N\A", "N\A"
+            COLLEGE_TAGS, COLLEGE_LOCATION_TAGS = ["N\A"], ["N\A"]
 
-                college["address"] = COLLEGE_ADDRESS
-                college["location_tags"] = COLLEGE_LOCATION_TAGS
+            if exception_handler(driver, 7, "about"):
+                section2 = driver.find_element_by_id("about")
+                COLLEGE_DESCRIPTION, COLLEGE_SITE, COLLEGE_ADDRESS, COLLEGE_TAGS, ATHLETICS_DIVISION, ATHLETICS_CONFERENCE, COLLEGE_LOCATION_TAGS = retrieve_college_general_info(driver, section2)
+            # print(retrieve_college_general_info(section2))
 
-                college["about"] = []
-                for item in COLLEGE_TAGS:
-                    college["about"].append(str(item))
-                
-                college["athletics"] = {
-                    "division": ATHLETICS_DIVISION,
-                    "conference": ATHLETICS_CONFERENCE
+            college["description"] = COLLEGE_DESCRIPTION
+            college["site"] = COLLEGE_SITE
+
+            college["address"] = COLLEGE_ADDRESS
+            college["location_tags"] = COLLEGE_LOCATION_TAGS
+
+            college["about"] = []
+            for item in COLLEGE_TAGS:
+                college["about"].append(str(item))
+            
+            college["athletics"] = {
+                "division": ATHLETICS_DIVISION,
+                "conference": ATHLETICS_CONFERENCE
+            }
+
+            time.sleep(random.randint(1, 6))
+
+            # ======== ranking list ========
+            ranking = {"N\A": "N\A"}
+
+            if exception_handler(driver, 7, "rankings"):
+                section3 = driver.find_element_by_id("rankings")
+                ranking = retrieve_college_ranking(driver, section3)
+                # for item in RANKING:
+                #     print(item, end=" ")
+
+            college["ranking"] = ranking
+
+            # back to scholasrhip detail (previous) page
+            driver.get(temp)
+            
+            time.sleep(random.randint(1, 6))
+            close_modal_message(driver)
+
+            # ======== Admission info ========
+            admission_statistics = {
+                "description": str("N\A"),
+                "acceptance": {
+                    "rate": str("N\A"),
+                    "rate_early": str("N\A")
+                },
+                "total_applicants": str("N\A"),
+                "sat": {
+                    "accept_score_range": str("N\A"),
+                    "reading_score": str("N\A"),
+                    "math_score": str("N\A"),
+                    "submite_by_student": str("N\A")
+                },
+                "act": {
+                    "accept_score_range": str("N\A"),
+                    "eng_score": str("N\A"),
+                    "math_score": str("N\A"),
+                    "write_score": str("N\A"),
+                    "submite_by_student": str("N\A")
+                },
+                "deadline": {
+                    "date": str("N\A"),
+                    "early_decision": str("N\A"),
+                    "early_action": str("N\A"),
+                    "early_offer_date": str("N\A"),
+                    "early_action": str("N\A")
+                },
+                "application": {
+                    "fee": str("N\A"),
+                    "website": str("N\A"),
+                    "comm_app": str("N\A"),
+                    "accept_coalition_app": str("N\A")
+                },
+                "requirements": {
+                    "highscho_gpa": str("N\A"),
+                    "highscho_rank": str("N\A"),
+                    "highscho_transcript": str("N\A"),
+                    "uni_precourse": str("N\A"),
+                    "sat_or_act": str("N\A"),
+                    "recommendation": str("N\A"),
+                    "poll_uni_care_them": str("N\A"),
+                    "poll_uni_care_individual": str("N\A")
                 }
+            }
 
-                time.sleep(random.randint(1, 6))
+            if exception_handler(driver, 7, "admissions"):
+                section4 = driver.find_element_by_id("admissions")
+                admission_statistics = retrieve_admission_statistics(driver, section4)
 
-                # ======== ranking list ========
-                ranking = {"N\A": "N\A"}
+            college["admission"] = admission_statistics
 
-                if exception_handler(driver, 7, "rankings"):
-                    section3 = driver.find_element_by_id("rankings")
-                    ranking = retrieve_college_ranking(driver, section3)
-                    # for item in RANKING:
-                    #     print(item, end=" ")
+            # back to scholasrhip detail (previous) page
+            driver.get(temp)
+            time.sleep(random.randint(1, 6))
+            close_modal_message(driver)
 
-                college["ranking"] = ranking
-
-                # back to scholasrhip detail (previous) page
-                driver.get(temp)
-                
-                time.sleep(random.randint(1, 6))
-                close_modal_message(driver)
-
-                # ======== Admission info ========
-                admission_statistics = {
-                    "description": str("N\A"),
-                    "acceptance": {
-                        "rate": str("N\A"),
-                        "rate_early": str("N\A")
-                    },
-                    "total_applicants": str("N\A"),
-                    "sat": {
-                        "accept_score_range": str("N\A"),
-                        "reading_score": str("N\A"),
-                        "math_score": str("N\A"),
-                        "submite_by_student": str("N\A")
-                    },
-                    "act": {
-                        "accept_score_range": str("N\A"),
-                        "eng_score": str("N\A"),
-                        "math_score": str("N\A"),
-                        "write_score": str("N\A"),
-                        "submite_by_student": str("N\A")
-                    },
-                    "deadline": {
-                        "date": str("N\A"),
-                        "early_decision": str("N\A"),
-                        "early_action": str("N\A"),
-                        "early_offer_date": str("N\A"),
-                        "early_action": str("N\A")
-                    },
-                    "application": {
-                        "fee": str("N\A"),
-                        "website": str("N\A"),
-                        "comm_app": str("N\A"),
-                        "accept_coalition_app": str("N\A")
-                    },
-                    "requirements": {
-                        "highscho_gpa": str("N\A"),
-                        "highscho_rank": str("N\A"),
-                        "highscho_transcript": str("N\A"),
-                        "uni_precourse": str("N\A"),
-                        "sat_or_act": str("N\A"),
-                        "recommendation": str("N\A"),
-                        "poll_uni_care_them": str("N\A"),
-                        "poll_uni_care_individual": str("N\A")
+            # ====== Uni Cost ========
+            cost = {
+                "net_cost": str("N\A"),
+                "financial_aid_url": str("N\A"),
+                "loan": {
+                    "avg_amount": str("N\A"),
+                    "take_out": str("N\A"),
+                    "default_rate": str("N\A")
+                },
+                "net_price": {
+                    "net_price": str("N\A"),
+                    "avg_tot_aid_award": str("N\A"),
+                    "stud_receive_aid": str("N\A"),
+                    "calculator_url": str("N\A")
+                },
+                "tuition": {
+                    "in_state": str("N\A"),
+                    "out_state": str("N\A"),
+                    "avg_housing": str("N\A"),
+                    "avg_meal_plan": str("N\A"),
+                    "book": str("N\A"),
+                    "plan": {
+                        "guarantee": str("N\A"),
+                        "payment": str("N\A"),
+                        "prepaid": str("N\A")
                     }
                 }
+            }
 
-                if exception_handler(driver, 7, "admissions"):
-                    section4 = driver.find_element_by_id("admissions")
-                    admission_statistics = retrieve_admission_statistics(driver, section4)
+            if exception_handler(driver, 7, "cost"):
+                section5 = driver.find_element_by_id("cost")
+                cost = retrieve_cost_data(driver, section5)
 
-                college["admission"] = admission_statistics
-
-                # back to scholasrhip detail (previous) page
-                driver.get(temp)
-                time.sleep(random.randint(1, 6))
-                close_modal_message(driver)
-
-                # ====== Uni Cost ========
-                cost = {
-                    "net_cost": str("N\A"),
-                    "financial_aid_url": str("N\A"),
-                    "loan": {
-                        "avg_amount": str("N\A"),
-                        "take_out": str("N\A"),
-                        "default_rate": str("N\A")
-                    },
-                    "net_price": {
-                        "net_price": str("N\A"),
-                        "avg_tot_aid_award": str("N\A"),
-                        "stud_receive_aid": str("N\A"),
-                        "calculator_url": str("N\A")
-                    },
-                    "tuition": {
-                        "in_state": str("N\A"),
-                        "out_state": str("N\A"),
-                        "avg_housing": str("N\A"),
-                        "avg_meal_plan": str("N\A"),
-                        "book": str("N\A"),
-                        "plan": {
-                            "guarantee": str("N\A"),
-                            "payment": str("N\A"),
-                            "prepaid": str("N\A")
-                        }
-                    }
+            college["cost"] = cost
+            
+            # back to scholasrhip detail (previous) page
+            driver.get(temp)
+            time.sleep(random.randint(1, 6))
+            close_modal_message(driver)
+            
+            # ======== Academic info =========
+            academic = {
+                "graduation_rate": str("N\A"),
+                "class_size_ratio": "N\A",
+                "popular_major": "N\A",
+                "faculty": {
+                    "ratio": str("N\A"),
+                    "female": str("N\A"),
+                    "male": str("N\A"),
+                    "diversity": "N\A"
                 }
+            }
+            if exception_handler(driver, 7, "academics"):
+                section6 = driver.find_element_by_id("academics")
+                academic = retrieve_academic_data(driver, section6)
 
-                if exception_handler(driver, 7, "cost"):
-                    section5 = driver.find_element_by_id("cost")
-                    cost = retrieve_cost_data(driver, section5)
+            college["academic"] = academic
 
-                college["cost"] = cost
-                
-                # back to scholasrhip detail (previous) page
-                driver.get(temp)
-                time.sleep(random.randint(1, 6))
-                close_modal_message(driver)
-                
-                # ======== Academic info =========
-                academic = {
-                    "graduation_rate": str("N\A"),
-                    "class_size_ratio": "N\A",
-                    "popular_major": "N\A",
-                    "faculty": {
-                        "ratio": str("N\A"),
-                        "female": str("N\A"),
-                        "male": str("N\A"),
-                        "diversity": "N\A"
-                    }
+            # back to scholasrhip detail (previous) page
+            driver.get(temp)
+            time.sleep(random.randint(1, 6))
+            close_modal_message(driver)
+
+            #  ======== Major data ========
+            major = {
+                "gender_ratio": {
+                    "female_undergrads": str("N\A"),
+                    "male_undergrads": str("N\A")
+                },
+                "residence": {"N\A": "N\A"},
+                "age": {"N\A": "N\A"},
+                "racial_diversity": {"N\A": "N\A"}
+            }
+
+            if exception_handler(driver, 7, "students"):
+                section7 = driver.find_element_by_id("students")
+                major = retrieve_students_data(driver, section7)
+
+            college["major"] = major
+
+            # back to scholasrhip detail (previous) page
+            driver.get(temp)
+            time.sleep(random.randint(1, 6))
+            close_modal_message(driver)
+
+            # ======== Campus life ========
+            sport_club = {
+                "sport": {
+                    "varsity": {"N\A": "N\A"},
+                    "male": ["N\A"],
+                    "female": ["N\A"]
+                },
+                "club": {
+                    "offered": ["N\A"],
+                    "music": ["N\A"],
+                    "survey_result": {"N\A": "N\A"}
                 }
-                if exception_handler(driver, 7, "academics"):
-                    section6 = driver.find_element_by_id("academics")
-                    academic = retrieve_academic_data(driver, section6)
+            }
 
-                college["academic"] = academic
+            if exception_handler(driver, 7, "campus-life"):
+                section8 = driver.find_element_by_id("campus-life")
+                sport_club = retrieve_campus_life(driver, section8)
 
-                # back to scholasrhip detail (previous) page
-                driver.get(temp)
-                time.sleep(random.randint(1, 6))
-                close_modal_message(driver)
+            college["campus_life"] = sport_club
 
-                #  ======== Major data ========
-                major = {
-                    "gender_ratio": {
-                        "female_undergrads": str("N\A"),
-                        "male_undergrads": str("N\A")
-                    },
-                    "residence": {"N\A": "N\A"},
-                    "age": {"N\A": "N\A"},
-                    "racial_diversity": {"N\A": "N\A"}
-                }
+            # back to scholasrhip detail (previous) page
+            driver.get(temp)
+            time.sleep(random.randint(1, 6))
+            close_modal_message(driver)
 
-                if exception_handler(driver, 7, "students"):
-                    section7 = driver.find_element_by_id("students")
-                    major = retrieve_students_data(driver, section7)
+            # ======== After College ========
+            after_uni = {
+                "graudation_rate": str("N\A"),
+                "earning": {
+                    "2yr": str("N\A"),
+                    "6yr": str("N\A")
+                },
+                "employment": {
+                    "2y": str("N\A"),
+                    "6y": str("N\A")
+                },
+                "debt_after_uni": str("N\A")
+            }
 
-                college["major"] = major
+            if exception_handler(driver, 7, "after"):
+                section9 = driver.find_element_by_id("after")
+                after_uni = retrieve_after_college(driver, section9)
 
-                # back to scholasrhip detail (previous) page
-                driver.get(temp)
-                time.sleep(random.randint(1, 6))
-                close_modal_message(driver)
+            time.sleep(random.randint(1, 6))
 
-                # ======== Campus life ========
-                sport_club = {
-                    "sport": {
-                        "varsity": {"N\A": "N\A"},
-                        "male": ["N\A"],
-                        "female": ["N\A"]
-                    },
-                    "club": {
-                        "offered": ["N\A"],
-                        "music": ["N\A"],
-                        "survey_result": {"N\A": "N\A"}
-                    }
-                }
+            college["after_uni"] = after_uni
 
-                if exception_handler(driver, 7, "campus-life"):
-                    section8 = driver.find_element_by_id("campus-life")
-                    sport_club = retrieve_campus_life(driver, section8)
-
-                college["campus_life"] = sport_club
-
-                # back to scholasrhip detail (previous) page
-                driver.get(temp)
-                time.sleep(random.randint(1, 6))
-                close_modal_message(driver)
-
-                # ======== After College ========
-                after_uni = {
-                    "graudation_rate": str("N\A"),
-                    "earning": {
-                        "2yr": str("N\A"),
-                        "6yr": str("N\A")
-                    },
-                    "employment": {
-                        "2y": str("N\A"),
-                        "6y": str("N\A")
-                    },
-                    "debt_after_uni": str("N\A")
-                }
-
-                if exception_handler(driver, 7, "after"):
-                    section9 = driver.find_element_by_id("after")
-                    after_uni = retrieve_after_college(driver, section9)
-
-                time.sleep(random.randint(1, 6))
-
-                college["after_uni"] = after_uni
-
-                # insert the dict to mongodb
-                append_college(college)
-                college_scraped(temp)
-                
-                print("Done!")
+            # insert the dict to mongodb
+            append_college(college)
+            college_scraped(temp)
+            
+            # print("Done!")
 
 
 # https://www.niche.com/graduate-schools/massachusetts-institute-of-technology/

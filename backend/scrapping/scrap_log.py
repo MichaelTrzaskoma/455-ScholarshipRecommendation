@@ -43,3 +43,12 @@ def college_scraped(url):
     with open("college_scraped_url.txt", "a+", encoding="utf-8") as writer:
         writer.write(url + "\n")
         writer.close()
+    
+
+def read_url():
+    result = ""
+    with open("college_data.txt") as reader:
+        result = reader.read()
+        reader.close()
+    return result
+        
