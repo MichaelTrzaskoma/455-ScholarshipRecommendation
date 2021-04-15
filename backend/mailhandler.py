@@ -2,11 +2,6 @@ from flask import Flask
 from flask_mail import Mail, Message
 from app import app
 
-app.config['MAIL_SERVER'] = "smtp-relay.sendinblue.com"
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USERNAME'] = "gsalvesen165@gmail.com"
-app.config['MAIL_PASSWORD'] = "Od4s1Pg8fApny3tX"
-app.config['MAIL_SUPPRESS_SEND'] = False
 mail = Mail(app)
 
 def sendWelcomeEmail(email, activationCode):
