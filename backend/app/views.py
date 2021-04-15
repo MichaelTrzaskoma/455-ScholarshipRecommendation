@@ -1,3 +1,4 @@
+from typing_extensions import Required
 from werkzeug.datastructures import Authorization
 from app import app
 from flask import json, render_template, jsonify, request, make_response, redirect, url_for
@@ -25,7 +26,7 @@ def index():
     return render_template("public/index.html")
 
 
-@app.route("/signup")
+@app.route("/api/v1.2/managements/users/signup")
 def signUp():
     return render_template("public/signup.html")
 
@@ -35,7 +36,7 @@ def generateCode():
         code += random.choice(string.ascii_letters + string.digits) 
     return code
 
-@app.route("/thankyou", methods=["POST", "GET"])
+@app.route("/api/v1.2/managements/users/thankyou", methods=["POST", "GET"])
 def thankYou():
     if(request.method == "POST"):
         page = request.form['pagePost']
@@ -69,6 +70,43 @@ def thankYou():
             mailhandler.sendResetPasswordEmail(email)
             return render_template("public/thankyou2.html")
 
+
+@app.route("/api/v1.2/managements/users/<email>/login", methods=["POST"])
+def login(email, paswrd):
+    # user login feature
+    # REQUIRMENT: a registered user
+    # INPUT
+    # :email (str) user's email address
+    # :paswrd (str) user's password
+    # OUTPUT: result of login
+
+    if request.method == "POST":
+
+        # validate the inputs
+        len_e = len(email)
+        len_p = len(paswrd)
+
+        if len_e == 0 or len_e < 1:
+            return make_response(jsonify({"mesg": "Please enter an email"}), 400)
+        
+        if len_p == 0 or len_p < 1:
+            return make_response(jsonify({"mesg": "Please enter a password"}), 400)
+        
+        # check if the user's email verification is verified or not
+        # if not then either request users to verify or
+        # resend a new link for verification
+        r = user_Ref.find_one({"email": email}).count()
+        
+        # if r == 1:
+
+        # else:
+        #     return "aaa"
+
+
+    else:
+        return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
+
+
 @app.route("/activate", methods=["POST", "GET"])
 def activate():
     code = request.args.get('code')
@@ -87,9 +125,10 @@ def activate():
 
     return "Account activated"
     
-@app.route("/forgotpassword")
+@app.route("/api/v1.2/managements/users/forgotpassword")
 def forgot():
     return render_template("public/forgotpass.html")
+
 
 @app.route("/api/v1.2/resources/scholarships/view/categories/general")
 def view_scholarship_generalCategory():
