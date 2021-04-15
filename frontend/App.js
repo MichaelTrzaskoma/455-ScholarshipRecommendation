@@ -9,17 +9,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import * as SecureStore from 'expo-secure-store';
-// import DeviceInfo from 'react-native-device-info';
-// import { NativeModules } from 'react-native';
-import Constants from 'expo-constants';
+
+import {saveSecureStorage, getSecureStorage} from "./functions/secureStorage";
+import {getDeviceID} from "./functions/deviceUniqueID";
 
 import LoginScreen from "./components/LoginScreen";
-// import HomeContainer from "./components/HomeContainer";
 import AccScreen from "./components/AccScreen2";
-// for account screen style 2, pls use the following
-// import InputScreen2 from "./components/InputInfoScreen2";
-
 import CollegeSurvey from "./components/CollegeSurvey";
 import InputScreen1 from "./components/InputInfoScreen1";
 import InputScreen2 from "./components/InputInfoScreen2";
@@ -153,7 +148,10 @@ export default class App extends Component {
 
 
   render() {
-    this.getDeviceID()
+    
+    // print the device unique ID
+    // console.log(getDeviceID())
+
     if (this.state.usrProfile.signedIn) {
       // console.log("Email from App.js: " + this.state.usrProfile.email);
       return (
