@@ -1,14 +1,19 @@
 from werkzeug.datastructures import Authorization
 from app import app
-from flask import json, render_template, jsonify, request, make_response
+from flask import json, render_template, jsonify, request, make_response, redirect, url_for
+import mailhandler
 # from app.auth import authOutput
-
+import string
+import random
+from datetime import datetime
 import hashlib
 
 from pymongo import MongoClient
 
 client = MongoClient("mongodb://localhost:27017/")
 scholarDb = client.test
+ACTIVE_CODE_LENGTH = 64
+MINS_TIL_ACTIVE_CODE_EXPIRY = 15
 
 @app.route("/")
 def index():
@@ -20,6 +25,12 @@ def index():
 def signUp():
     return render_template("public/signup.html")
 
+def generateCode():
+    code = ""
+    for i in range(ACTIVE_CODE_LENGTH):
+        code += random.choice(string.ascii_letters + string.digits) 
+    return code
+
 @app.route("/thankyou", methods=["POST", "GET"])
 def thankYou():
     if(request.method == "POST"):
@@ -30,26 +41,53 @@ def thankYou():
             #salt and hash password
             saltedPass = password + app.config['SALT_VALUE']
             hashPass = hashlib.md5(saltedPass.encode()).hexdigest()
-            #TODO: Try to enter new user's information into database
-             
-            #TODO: Send user back to /signup if an email conflict exists or if DB can't be reached
-
-            #TODO: Send confirmation email to user if successful
+            #For debugging purposes
+            scholarDb.users.delete_one({"email" : email })
+            #Check if email already exists in database
+            results = scholarDb.users.find({ "email" : email })
+            if(results.count() != 0):
+               return redirect(url_for('signUp', error="dup"))
+            #Insert user into database
+            activationCode = generateCode()
+            scholarDb.users.insert_one({ "email": email, "password": password, "activationCode": activationCode, "activationDate": datetime.now(), "active": 0 })
+            #Send welcome email
+            mailhandler.sendWelcomeEmail(email, activationCode)
             return render_template("public/thankyou.html")
         else:
             email = request.form['email']
             print(email)
-            #TODO: Try to look up email in database
-
-            #TODO: Send user back to /forgotpassword if no email found or if DB can't be reached
-
-            #TODO: Send reset password email to user if successful 
-
+            #Try to look up email in database
+            results = scholarDb.users.find({ "email" : email })
+            #Send user back to /forgotpassword if no email found
+            if(results.count() == 0):
+                return redirect(url_for('forgotpassword', error="unfound"))
+            #Send reset password email to user if successful 
+            mailhandler.sendResetPasswordEmail(email)
             return render_template("public/thankyou2.html")
+
+@app.route("/activate", methods=["POST", "GET"])
+def activate():
+    code = request.args.get('code')
+    results = scholarDb.users.find({ "activationCode" : code })
+    if(len(code) != ACTIVE_CODE_LENGTH or results.count() != 1):
+        return "Error" #redirect(url_for('error', error="invalid"))
+    activationTime = results[0]["activationDate"]
+    email = results[0]["email"]
+    if((datetime.now() - activationTime).total_seconds() / 60 > MINS_TIL_ACTIVE_CODE_EXPIRY):
+        activationCode = generateCode()
+        scholarDb.users.update_one({"email" : email}, {"$set": {"activationCode": activationCode, "activationDate": datetime.now()}})
+        mailhandler.sendWelcomeEmail(email, activationCode)
+        return "Code Expired, sending new code"
+        
+    scholarDb.users.update_one({"email" : email }, {"$set": {"active": 1}})
+
+    return "Account activated"
+    
 
 @app.route("/forgotpassword")
 def forgot():
     return render_template("public/forgotpass.html")
+
 
 @app.route("/api/v1.2/scholarship/view/category/general")
 def view_scholarship_generalCategory():
