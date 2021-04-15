@@ -3,11 +3,12 @@ from pymongo import MongoClient
 client = MongoClient("mongodb://localhost:27017/")
 testDB = client.test
 
-profile_collection = testDB.auth
+profile_collection = testDB.client_profile
 insert_r = profile_collection.insert_one({
     "email": "place holder 1",
     "paswrd": "place holder 2",
-    "jwt": "place holder 3",
+    "jwt": ["place holder 3"],
+    "device_id": ["efefe", "23532423"],
     "recent_viewed": [
         {
             "type": "scholarship",
@@ -54,6 +55,7 @@ insert_r = profile_collection.insert_one({
     "survey_major": {
         "y": "place holder 17",
     },
+    "signUp": "date"
 })
 
 usrProfile_collection = testDB.auth

@@ -1,9 +1,10 @@
 from typing_extensions import Required
+import jwt
 from werkzeug.datastructures import Authorization
 from app import app
 from flask import json, render_template, jsonify, request, make_response, redirect, url_for
 import mailhandler
-# from app.auth import authOutput
+# from app.auths import authOutput
 import string
 import random
 from datetime import datetime
@@ -30,11 +31,13 @@ def index():
 def signUp():
     return render_template("public/signup.html")
 
+
 def generateCode():
     code = ""
     for i in range(ACTIVE_CODE_LENGTH):
         code += random.choice(string.ascii_letters + string.digits) 
     return code
+
 
 @app.route("/api/v1.2/managements/users/thankyou", methods=["POST", "GET"])
 def thankYou():
@@ -71,13 +74,14 @@ def thankYou():
             return render_template("public/thankyou2.html")
 
 
-@app.route("/api/v1.2/managements/users/<email>/login", methods=["POST"])
-def login(email, paswrd):
+@app.route("/api/v1.2/managements/users/<email>/auth", methods=["POST"])
+def auth(email, paswrd, uniqueID):
     # user login feature
     # REQUIRMENT: a registered user
     # INPUT
     # :email (str) user's email address
     # :paswrd (str) user's password
+    # :uniqueID (str) device unique id
     # OUTPUT: result of login
 
     if request.method == "POST":
@@ -85,6 +89,7 @@ def login(email, paswrd):
         # validate the inputs
         len_e = len(email)
         len_p = len(paswrd)
+        len_id = len(uniqueID)
 
         if len_e == 0 or len_e < 1:
             return make_response(jsonify({"mesg": "Please enter an email"}), 400)
@@ -92,15 +97,18 @@ def login(email, paswrd):
         if len_p == 0 or len_p < 1:
             return make_response(jsonify({"mesg": "Please enter a password"}), 400)
         
+        if len_id == 0 or len_id < 1:
+            return make_response(jsonify({"mesg": "Unsupport platform"}), 400)
+        
         # check if the user's email verification is verified or not
         # if not then either request users to verify or
         # resend a new link for verification
-        r = user_Ref.find_one({"email": email}).count()
+        r_email = user_Ref.count_documents({"email": email})
         
-        # if r == 1:
-
-        # else:
-        #     return "aaa"
+        if r_email == 1:
+            
+        else:
+            return make_response(jsonify({"mesg": "Please signup an account first!"}), 403)
 
 
     else:
@@ -124,7 +132,8 @@ def activate():
     scholarDb.users.update_one({"email" : email }, {"$set": {"active": 1}})
 
     return "Account activated"
-    
+
+
 @app.route("/api/v1.2/managements/users/forgotpassword")
 def forgot():
     return render_template("public/forgotpass.html")

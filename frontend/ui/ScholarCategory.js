@@ -22,7 +22,7 @@ export default function ScholarCategory() {
                     <ScrollView
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
-                        Å contentContainerStyle={styles.scrollArea_contentContainerStyle}>
+                        Å contentContainerStyle={styles.scrollArea_contentContaiclearnerStyle}>
                         <View style={styles.amGrpRow}>
                             <TouchableOpacity
                                 onPress={() => {
