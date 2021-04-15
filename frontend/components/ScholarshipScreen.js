@@ -1,387 +1,326 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
+  StatusBar,
   Text,
   ScrollView,
-  TouchableOpacity
-} from "react-native";
+  TouchableOpacity,
+} from 'react-native';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import EntypoIcon from "react-native-vector-icons/Entypo";
+import ScholarCategory from "../ui/ScholarCategory";
+import ScholarRecommend from '../ui/ScholarRecommend';
 
-function ScholarshipScreen({usrInfo}) {
-
-  // console.log(usrInfo)
+export default class ScholarshipScreen extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: this.props.email,
+      nav: this.props.navigation,
+    };
+  }
+  
+  render(){
   return (
+    
     <View style={styles.container}>
-      
-      {/* Catagory Text & ScrollView belont to categoryGroup */}
-      <View style={styles.categoryGroup}>
-        <Text style={styles.category}>Category</Text>
-        <View style={styles.scrollArea}>
-          <ScrollView
-            horizontal={true}
-            contentContainerStyle={styles.scrollArea_contentContainerStyle}
-          >
-            <View style={styles.aMGroupRow}>
-              <TouchableOpacity style={styles.aMGroup}>
-                <TouchableOpacity style={styles.button}>
-                  <Text style={styles.academicMajor}>Academic{"\n"}Major</Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.gPAGroup}>
-                <TouchableOpacity style={styles.button1}>
-                  <Text style={styles.gpa}>GPA</Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.ageGroup}>
-                <TouchableOpacity style={styles.button2}>
-                  <Text style={styles.age}>Age</Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.aAGroup}>
-                <TouchableOpacity style={styles.button3}>
-                  <Text style={styles.artisticAbility}>
-                    Artistic{"\n"}Ability
-                  </Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.viewAllCataGroup}>
-                <View style={styles.rect2}>
-                  <EntypoIcon
-                    name="arrow-with-circle-right"
-                    style={styles.icon2}
-                  ></EntypoIcon>
-                  <Text style={styles.viewAll1}>View All</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </ScrollView>
-        </View>
-      </View>
 
-       {/* Recommend Text & ViewAll and Recent View button belong to recommendGroup */}
-      <View style={styles.recommendGroup}>
-        <Text style={styles.recommend}>Recommend</Text>
-        <View style={styles.viewAllGroupRow}>
-          <TouchableOpacity style={styles.viewAllGroup}>
-            <View style={styles.rect}>
-              <EntypoIcon
-                name="arrow-with-circle-right"
-                style={styles.icon}
-              ></EntypoIcon>
-              <Text style={styles.viewAll}>View All</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.recentViewGroup}>
-            <View style={styles.rect1}>
-              <View style={styles.icon1Stack}>
-                <EntypoIcon
-                  name="back-in-time"
-                  style={styles.icon1}
-                ></EntypoIcon>
-                <Text style={styles.recentView}>Recent View</Text>
+
+      <View style={styles.container_grp}>
+        
+        {/* Scholarship Category */}
+        <ScholarCategory/>
+        
+        <View style={styles.recommendGrpStack}>
+        
+         {/* Scholarship Recommend: passing down email as prop */}
+         <ScholarRecommend email={this.state.email}/>
+         <ScholarRecommend nav = {this.state.nav} />
+
+          <View style={styles.recent_container}>
+            <View style={styles.recentGrp}>
+              <Text style={styles.recentTxt}>Recent Viewed</Text>
+              <View style={styles.scrollArea2}>
+                <ScrollView
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={
+                    styles.scrollArea2_contentContainerStyle
+                  }>
+                  <View style={styles.rvBtn1Row}>
+                    <TouchableOpacity style={styles.rvBtn1}>
+                      <MaterialCommunityIconsIcon
+                        name="table-of-contents"
+                        style={styles.rvIcon1}></MaterialCommunityIconsIcon>
+                      <View style={styles.gridItemIconFiller}></View>
+                      <Text style={styles.gridItemTxt_2lines}>
+                        Place{'\n'}Holder 1
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.gridItemBtn}>
+                      <MaterialCommunityIconsIcon
+                        name="table-of-contents"
+                        style={
+                          styles.rvGridItemIcon
+                        }></MaterialCommunityIconsIcon>
+                      <View style={styles.gridItemIconFiller}></View>
+                      <Text style={styles.gridItemTxt_2lines}>
+                        Place{'\n'}Holder 2
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.gridItemBtn}>
+                      <MaterialCommunityIconsIcon
+                        name="table-of-contents"
+                        style={
+                          styles.rvGridItemIcon
+                        }></MaterialCommunityIconsIcon>
+                      <View style={styles.gridItemIconFiller}></View>
+                      <Text style={styles.gridItemTxt_2lines}>
+                        Place{'\n'}Holder 3
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.gridItemBtn}>
+                      <MaterialCommunityIconsIcon
+                        name="table-of-contents"
+                        style={
+                          styles.rvGridItemIcon
+                        }></MaterialCommunityIconsIcon>
+                      <View style={styles.gridItemIconFiller}></View>
+                      <Text style={styles.gridItemTxt_2lines}>
+                        Place{'\n'}Holder 4
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.gridItemBtn}>
+                      <MaterialCommunityIconsIcon
+                        name="table-of-contents"
+                        style={
+                          styles.rvGridItemIcon
+                        }></MaterialCommunityIconsIcon>
+                      <View style={styles.gridItemIconFiller}></View>
+                      <Text style={styles.gridItemTxt_2lines}>
+                        Place{'\n'}Holder 5
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.gridItemBtn}>
+                      <FontAwesomeIcon
+                        name="arrow-circle-right"
+                        style={styles.gridItemIcon}></FontAwesomeIcon>
+                      <View style={styles.gridItemIconFiller}></View>
+                      <Text style={styles.gridItemTxt_1line}>View All</Text>
+                    </TouchableOpacity>
+                  </View>
+                </ScrollView>
               </View>
             </View>
-          </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
   );
 }
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff"
   },
-  materialBasicFooter1: {
-    width: 360,
-    height: 56,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    backgroundColor: "#3f51b5",
-    marginTop: 684
+  container_grp: {
+    flex: 1,
+    width: '100%',
+    backgroundColor: "#FFFFFF",
   },
-  categoryGroup: {
-    width: 360,
-    height: 223,
-    marginTop: 20
+  category_container: {
+    height: 173,
+    justifyContent: 'center',
+    marginTop: 30,
+    width: '100%',
   },
-  category: {
-    
-    color: "#4a76ff",
+  categoryGrp: {
+    width: '90%',
+    height: 167,
+    alignSelf: 'center',
+    marginTop: 5,
+  },
+  category_txt: {
+    color: '#4a76ff',
     fontSize: 30,
     width: 177,
-    height: 35,
-    marginLeft: 18
+    height: 40,
   },
   scrollArea: {
-    width: 360,
-    height: 168,
-    backgroundColor: "#ffffff",
-    marginTop: 20
+    width: '100%',
+    height: 123,
+    marginTop: 4,
   },
   scrollArea_contentContainerStyle: {
-    width: 657,
-    height: 168,
-    flexDirection: "row"
+    width: 720,
+    height: 123,
+    flexDirection: 'row',
   },
-  aMGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0
+  amGrp: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: 'hidden',
+    borderWidth: 0,
+    borderColor: '#000000',
+    borderLeftWidth: 0,
+    backgroundColor: 'rgba(230, 230, 230,1)',
   },
-  button: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#e9ebe9"
-  },
-  academicMajor: {
-    
-    color: "#121212",
-    height: 37,
-    width: 99,
-    fontSize: 16,
-    marginTop: 15,
-    marginLeft: 9
-  },
-  gPAGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0,
-    marginLeft: 17
-  },
-  button1: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#e9ebe9"
-  },
-  gpa: {
-    
-    color: "#121212",
-    height: 18,
-    width: 49,
-    fontSize: 16,
-    marginTop: 17,
-    marginLeft: 17
-  },
-  ageGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0,
-    marginLeft: 12
-  },
-  button2: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#e9ebe9"
-  },
-  age: {
-    
-    color: "#121212",
-    height: 23,
-    width: 49,
-    fontSize: 16,
+  gridItemIcon: {
+    color: 'rgba(128,128,128,1)',
+    fontSize: 35,
     marginTop: 14,
-    marginLeft: 9
+    marginLeft: 10,
   },
-  aAGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0,
-    marginLeft: 12
+  gridItemTxt_2lines: {
+    color: '#121212',
+    fontSize: 14,
+    width: 90,
+    height: 35,
+    marginBottom: 8,
+    alignSelf: 'center',
   },
-  button3: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#e9ebe9"
+  gridItemBtn: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: 'hidden',
+    borderWidth: 0,
+    borderColor: '#000000',
+    borderLeftWidth: 0,
+    backgroundColor: 'rgba(230, 230, 230,1)',
+    marginLeft: 12,
   },
-  artisticAbility: {
-    
-    color: "#121212",
-    height: 34,
-    width: 76,
-    fontSize: 16,
-    marginTop: 12,
-    marginLeft: 12
+  gpa_icon: {
+    color: 'rgba(128,128,128,1)',
+    fontSize: 40,
+    width: 40,
+    height: 44,
+    marginTop: 10,
+    marginLeft: 7,
   },
-  viewAllCataGroup: {
-    width: 117,
-    height: 104,
-    marginLeft: 15
+  gridItemIconFiller: {
+    flex: 1,
+  },
+  gridItemTxt_1line: {
+    color: '#121212',
+    fontSize: 14,
+    width: 90,
+    height: 20,
+    marginBottom: 8,
+    alignSelf: 'center',
+  },
+  amGrpRow: {
+    height: 110,
+    flexDirection: 'row',
+    flex: 1,
+    marginRight: -388,
+    marginTop: 7,
+  },
+  recommendGrp: {
+    top: 0,
+    left: 0,
+    height: 173,
+    position: 'absolute',
+    right: 0,
+    justifyContent: 'center',
+    marginTop: 5,
   },
   rect2: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#E6E6E6",
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.17,
-    shadowRadius: 0
+    width: '90%',
+    height: 167,
+    alignSelf: 'center',
   },
-  icon2: {
-    color: "rgba(128,128,128,1)",
-    fontSize: 52,
-    height: 58,
-    width: 52,
-    marginTop: 12,
-    marginLeft: 49
+  recommendTxt: {
+    color: '#4a76ff',
+    fontSize: 30,
+    width: 177,
+    height: 40,
   },
-  viewAll1: {
-    
-    color: "#121212",
-    height: 21,
-    width: 79,
-    fontSize: 16,
-    marginTop: 8,
-    marginLeft: 10
+  recommendContainer: {
+    width: 332,
+    height: 123,
+    justifyContent: 'center',
+    marginTop: 4,
   },
-  aMGroupRow: {
-    height: 104,
-    flexDirection: "row",
-    flex: 1,
-    marginRight: -297,
-    marginLeft: 16,
-    marginTop: 32
+  recommendBtn: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: 'hidden',
+    borderWidth: 0,
+    borderColor: '#000000',
+    borderLeftWidth: 0,
+    backgroundColor: 'rgba(230, 230, 230,1)',
   },
-  recommendGroup: {
-    width: 309,
-    height: 176,
-    marginTop: 11,
-    marginLeft: 18
-  },
-  recommend: {
-    
-    color: "#4a76ff",
-    height: 48,
-    width: 309,
-    fontSize: 30
-  },
-  viewAllGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0,
-    justifyContent: "center"
-  },
-  rect: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#E6E6E6",
-    alignSelf: "center"
-  },
-  icon: {
-    color: "rgba(128,128,128,1)",
-    fontSize: 52,
-    height: 58,
-    width: 52,
-    marginTop: 11,
-    marginLeft: 35
-  },
-  viewAll: {
-    
-    color: "#121212",
-    height: 21,
-    width: 79,
-    fontSize: 16,
-    marginTop: 3,
-    marginLeft: 7
-  },
-  recentViewGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0,
-    marginLeft: 47
-  },
-  rect1: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#E6E6E6"
-  },
-  icon1: {
-    top: 0,
-    left: 27,
-    position: "absolute",
-    color: "rgba(128,128,128,1)",
-    fontSize: 52,
-    height: 58,
-    width: 52
-  },
-  recentView: {
-    top: 55,
+  recent_container: {
+    top: 172,
     left: 0,
-    position: "absolute",
-    
-    color: "#121212",
-    height: 21,
-    width: 79,
-    fontSize: 16
+    height: 173,
+    position: 'absolute',
+    right: 0,
+    justifyContent: 'center',
+    width: '100%',
   },
-  icon1Stack: {
-    width: 79,
-    height: 76,
-    marginTop: 11,
-    marginLeft: 8
+  recentGrp: {
+    width: '90%',
+    height: 167,
+    alignSelf: 'center',
+    marginTop: 5,
   },
-  viewAllGroupRow: {
-    height: 104,
-    flexDirection: "row",
-    marginTop: 24,
-    marginLeft: 21,
-    marginRight: 7
+  recentTxt: {
+    color: '#4a76ff',
+    fontSize: 30,
+    width: 205,
+    height: 40,
+  },
+  scrollArea2: {
+    width: '100%',
+    height: 123,
+    marginTop: 4,
+  },
+  scrollArea2_contentContainerStyle: {
+    width: 720,
+    height: 123,
+    flexDirection: 'row',
+  },
+  rvBtn1: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: 'hidden',
+    borderWidth: 0,
+    borderColor: '#000000',
+    borderLeftWidth: 0,
+    backgroundColor: 'rgba(230, 230, 230,1)',
+  },
+  rvIcon1: {
+    color: 'rgba(128,128,128,1)',
+    fontSize: 40,
+    width: 35,
+    height: 38,
+    marginTop: 10,
+    marginLeft: 10,
+  },
+  rvGridItemIcon: {
+    color: 'rgba(128,128,128,1)',
+    fontSize: 40,
+    marginTop: 10,
+    marginLeft: 10,
+  },
+  rvBtn1Row: {
+    height: 110,
+    flexDirection: 'row',
+    flex: 1,
+    marginRight: -388,
+    marginTop: 7,
+  },
+  recommendGrpStack: {
+    height: 345,
+    width: '100%',
   }
 });
 
-export default ScholarshipScreen;

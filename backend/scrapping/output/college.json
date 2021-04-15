@@ -1,0 +1,459 @@
+{
+    "niche_grade": [
+      {
+        "Academics": "A+"
+      },
+      {
+        "Value": "A+"
+      },
+      {
+        "Diversity": "A+"
+      },
+      {
+        "Campus": "A-"
+      },
+      {
+        "Athletics": "B-"
+      },
+      {
+        "Party Scene": "A"
+      },
+      {
+        "Professors": "A+"
+      },
+      {
+        "Location": "A+"
+      },
+      {
+        "Dorms": "A"
+      },
+      {
+        "Campus Food": "B-"
+      },
+      {
+        "Student Life": "A+"
+      },
+      {
+        "Safety": "B+"
+      }
+    ],
+    "description": "MIT is an elite private college located in Cambridge, Massachusetts in the Boston Area. It is a small institution with an enrollment of 4,557 undergraduate students. Admissions is extremely competitive as the MIT acceptance rate is only 7%. Popular majors include Computer Science, Mechanical Engineering, and Mathematics. Graduating 95% of students, MIT alumni go on to earn a starting salary of $82,200.",
+    "site": "web.mit.edu",
+    "location": [
+      {
+        "address": "77 Massachusetts Avenue\nCambridge, MA 02139",
+        "tags": [
+          "Massachusetts",
+          "Cambridge"
+        ]
+      }
+    ],
+    "about": [
+      [
+        "Private",
+        "SAT/ACT Optional"
+      ]
+    ],
+    "athletics": {
+      "division": "NCAA Division III (with football)",
+      "conference": "New England Women's & Men's Athletic Conference"
+    },
+    "ranking": [
+      {
+        "Best Colleges in America": "1/1,619"
+      },
+      {
+        "Colleges with the Best Academics in America": "1/1,577"
+      },
+      {
+        "Best Test Optional Colleges in America": "1/1,137"
+      },
+      {
+        "Top Private Universities in America": "1/943"
+      },
+      {
+        "Best Colleges for Computer Science in America": "1/821"
+      },
+      {
+        "Best Colleges for Math in America": "1/775"
+      },
+      {
+        "Best Colleges for Engineering in America": "1/449"
+      },
+      {
+        "Best Value Colleges in America": "2/1,572"
+      },
+      {
+        "Best Colleges for Environmental Science in America": "2/619"
+      },
+      {
+        "Best Colleges for Physics in America": "2/451"
+      },
+      {
+        "Best Colleges for Architecture in America": "2/157"
+      },
+      {
+        "Hardest Colleges to Get Into in America": "3/1,660"
+      },
+      {
+        "Best Colleges for Business in America": "3/1,192"
+      },
+      {
+        "Best Colleges for Biology in America": "3/1,048"
+      },
+      {
+        "Best Colleges for Chemistry in America": "4/655"
+      },
+      {
+        "Colleges with the Best Professors in America": "12/1,596"
+      },
+      {
+        "Colleges with the Best Student Life in America": "13/1,580"
+      },
+      {
+        "Best Colleges for Economics in America": "13/567"
+      },
+      {
+        "Best Colleges for Philosophy in America": "14/444"
+      },
+      {
+        "Most Diverse Colleges in America": "16/1,589"
+      },
+      {
+        "Best Colleges for Psychology in America": "18/1,069"
+      },
+      {
+        "Best Colleges for Student Athletes in America": "32/1,380"
+      },
+      {
+        "Best Colleges for Political Science in America": "32/793"
+      },
+      {
+        "Best Colleges for English in America": "33/889"
+      },
+      {
+        "Best College Locations in America": "42/1,605"
+      },
+      {
+        "Top Party Schools in America": "102/1,587"
+      },
+      {
+        "Best College Dorms in America": "102/1,376"
+      },
+      {
+        "Best Greek Life Colleges in America": "106/817"
+      },
+      {
+        "Best College Campuses in America": "215/1,408"
+      },
+      {
+        "Most Liberal Colleges in America": "564/1,674"
+      },
+      {
+        "Safest College Campuses in America": "579/1,336"
+      },
+      {
+        "Best Colleges in Massachusetts": "1/59"
+      },
+      {
+        "Best Value Colleges in Massachusetts": "1/59"
+      },
+      {
+        "Colleges with the Best Academics in Massachusetts": "1/59"
+      },
+      {
+        "Best Test Optional Colleges in Massachusetts": "1/54"
+      },
+      {
+        "Best Colleges for Business in Massachusetts": "1/46"
+      },
+      {
+        "Top Private Universities in Massachusetts": "1/46"
+      },
+      {
+        "Best Colleges for Computer Science in Massachusetts": "1/40"
+      },
+      {
+        "Colleges with the Best Professors in Massachusetts": "2/59"
+      },
+      {
+        "Colleges with the Best Student Life in Massachusetts": "2/59"
+      },
+      {
+        "Hardest Colleges to Get Into in Massachusetts": "2/59"
+      },
+      {
+        "Top Party Schools in Massachusetts": "2/59"
+      },
+      {
+        "Most Diverse Colleges in Massachusetts": "2/56"
+      },
+      {
+        "Best Colleges for Psychology in Massachusetts": "2/49"
+      },
+      {
+        "Best Colleges for Biology in Massachusetts": "2/47"
+      },
+      {
+        "Best Colleges for Economics in Massachusetts": "2/30"
+      },
+      {
+        "Best Greek Life Colleges in Massachusetts": "2/22"
+      },
+      {
+        "Best College Dorms in Massachusetts": "4/58"
+      },
+      {
+        "Best Colleges for Student Athletes in Massachusetts": "4/51"
+      },
+      {
+        "Best Colleges for English in Massachusetts": "4/42"
+      },
+      {
+        "Best Colleges for Political Science in Massachusetts": "4/35"
+      },
+      {
+        "Best College Campuses in Massachusetts": "8/59"
+      },
+      {
+        "Best College Locations in Massachusetts": "11/59"
+      },
+      {
+        "Safest College Campuses in Massachusetts": "20/54"
+      },
+      {
+        "Most Liberal Colleges in Massachusetts": "36/59"
+      },
+      {
+        "Best Colleges in Boston Area": "1/36"
+      },
+      {
+        "Best Value Colleges in Boston Area": "1/36"
+      }
+    ],
+    "admission": {
+      "description": "MIT admissions is extremely selective with an acceptance rate of 7%. Students that get into MIT have an average SAT score between 1510-1570 or an average ACT score of 34-36. The regular admissions application deadline for MIT is January 1. Interested students can apply for early action, and the MIT early action deadline is November 1.",
+      "acceptance": {
+        "rate": "7%",
+        "rate_early": "\nNo data available  \n—"
+      },
+      "total_applicants": "21,312",
+      "sat": {
+        "accept_score_range": "1510-1570",
+        "reading_score": "\n730-770",
+        "math_score": "\n780-800",
+        "submite_by_student": "\n77%"
+      },
+      "act": {
+        "accept_score_range": "34-36",
+        "eng_score": "\n35-36",
+        "math_score": "\n34-36",
+        "write_score": "\n8-10",
+        "submite_by_student": "\n45%"
+      },
+      "deadline": {
+        "date": "January 1",
+        "early_decision": "\nNo data available  \n—",
+        "early_action": "\nYes",
+        "early_offer_date": "\nNo"
+      },
+      "application": {
+        "fee": "January 1",
+        "website": "http://my.mit.edu/",
+        "comm_app": "\nNo data available  \n—",
+        "accept_coalition_app": "\nNo"
+      },
+      "requirements": {
+        "highscho_gpa": "Recommended",
+        "highscho_rank": "Neither required nor recommended",
+        "highscho_transcript": "Required",
+        "uni_precourse": "Recommended",
+        "sat_or_act": "Considered but not required",
+        "recommendation": "Required",
+        "poll_uni_care_them": "85%",
+        "poll_uni_care_individual": "100%"
+      }
+    },
+    "cost": {
+      "net_cost": "$20,465",
+      "financial_aid_url": "https://www.niche.com/colleges/massachusetts-institute-of-technology/scholarships-financial-aid/",
+      "loan": {
+        "avg_amount": "$8,568",
+        "take_out": "9%",
+        "default_rate": "1%"
+      },
+      "net_price": {
+        "net_price": "$20,465",
+        "avg_tot_aid_award": "74%",
+        "stud_receive_aid": "N\\A",
+        "calculator_url": "http://sfs.mit.edu/undergraduate-students/our-approach-to-aid/net-price-calculator/"
+      },
+      "tuition": {
+        "in_state": "$53,790",
+        "out_state": "$53,790",
+        "avg_housing": "$10,430",
+        "avg_meal_plan": "$5,960",
+        "book": "$820",
+        "plan": {
+          "guarantee": "No",
+          "payment": "Yes",
+          "prepaid": "No"
+        }
+      }
+    },
+    "academic": {
+      "graduation_rate": "95%",
+      "class_size_ratio": {
+        "2-19 students": "64%",
+        "20-39": "18%",
+        "40-99": "14%",
+        "100+": "4%"
+      },
+      "popular_major": {
+        "Computer Science": "375 Graduates",
+        "Mechanical Engineering": "179 Graduates",
+        "Mathematics": "120 Graduates",
+        "Physics": "68 Graduates",
+        "Electrical Engineering": "60 Graduates",
+        "Chemical Engineering": "50 Graduates",
+        "Aerospace Engineering": "44 Graduates",
+        "Bioengineering and Biomedical Engineering": "39 Graduates",
+        "Computational and Applied Mathematics": "38 Graduates",
+        "Biology": "30 Graduates"
+      },
+      "faculty": {
+        "ratio": "3:1",
+        "female": "27%",
+        "male": "73%",
+        "diversity": {
+          "African American": "2%",
+          "Asian American": "10%",
+          "Hispanic": "4%",
+          "International (Non-Citizen)": "6%",
+          "Multiracial": "1%",
+          "Native American": "0%",
+          "Pacific Islander": "0%",
+          "Unknown": "11%",
+          "White": "64%"
+        }
+      }
+    },
+    "major": {
+      "gender_ratio": {
+        "female_undergrads": "47%",
+        "male_undergrads": "53%"
+      },
+      "residence": {
+        "In-State": "7%",
+        "Out-of-State": "84%",
+        "International": "9%",
+        "Unknown": "0%"
+      },
+      "age": {
+        "Under 18": "Under 18",
+        "18-19": "18-19",
+        "20-21": "20-21",
+        "22-24": "22-24",
+        "Over 25": "Over 25"
+      },
+      "racial_diversity": {
+        "African American": "6%",
+        "Asian": "26%",
+        "Hispanic": "14%",
+        "International (Non-Citizen)": "12%",
+        "Multiracial": "7%",
+        "Native American": "0%",
+        "Pacific Islander": "0%",
+        "Unknown": "2%",
+        "White": "33%"
+      }
+    },
+    "campus_life": {
+      "sport": {
+        "varsity": {
+          "Varsity sports are a big part of campus life": "7%",
+          "Varsity sporting events are attended, but not a huge part of campus life": "63%",
+          "No one pays attention to varsity sports": "30%"
+        },
+        "male": [
+          "Baseball",
+          "Basketball",
+          "Fencing",
+          "Football",
+          "Lacrosse",
+          "Rowing",
+          "Soccer",
+          "Squash",
+          "Swimming and Diving",
+          "Tennis",
+          "Track and Field: Indoor",
+          "Track and Field: Outdoor",
+          "Track and Field: X-Country",
+          "Volleyball",
+          "Water Polo"
+        ],
+        "female": [
+          "Basketball",
+          "Fencing",
+          "Field Hockey",
+          "Lacrosse",
+          "Rowing",
+          "Sailing",
+          "Soccer",
+          "Softball",
+          "Swimming and Diving",
+          "Tennis",
+          "Track and Field: Indoor",
+          "Track and Field: Outdoor",
+          "Track and Field: X-Country",
+          "Volleyball"
+        ]
+      },
+      "club": {
+        "offered": [
+          "Campus Ministries",
+          "Dance",
+          "Drama/Theater",
+          "International Student Organizations",
+          "Literary Magazine",
+          "Model UN",
+          "Radio Station",
+          "Student Government",
+          "Newspaper",
+          "Film Society",
+          "Television Station",
+          "Yearbook"
+        ],
+        "music": [
+          "Choral Groups",
+          "Concert Band",
+          "Jazz Band",
+          "Marching Band",
+          "Music Ensembles",
+          "Musical Theater",
+          "Symphony Orchestra"
+        ],
+        "survey_result": {
+          "CPW (Campus Preview Weekend)": "26%",
+          "IAP (Independent Activities Period)": "23%",
+          "Hacks": "18%",
+          "Ring Premiere": "11%",
+          "Frat Rush": "8%",
+          "Bad Taste": "3%",
+          "Plays": "3%"
+        }
+      }
+    },
+    "after_uni": {
+      "graudation_rate": "95%",
+      "earning": {
+        "2yr": "$82,200",
+        "6yr": "$104,700"
+      },
+      "employment": {
+        "2y": "94%",
+        "6y": "90%"
+      },
+      "debt_after_uni": "$8,568"
+    }
+  }

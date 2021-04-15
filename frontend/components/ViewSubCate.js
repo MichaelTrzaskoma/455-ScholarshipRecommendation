@@ -1,22 +1,17 @@
 import React from "react";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { StyleSheet, Text, View, ActivityIndicator, LogBox } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-// import firebase from "../db/firebaseDB";
-// import firebase from "../db/firebaseDB_test";
 // import ViewScholarTbl from "./ViewScholarTbl";
 
 // disable the yellow warning message box
-console.disableYellowBox = true;
+// console.disableYellowBox = true;
+LogBox.ignoreAllLogs(true);
 
 export default class ViewSubCate extends React.Component {
   // navigation.setOptions({ headerTitle: 'Search Screen' })
   constructor(props) {
     super(props);
-    this.firestoreRef = firebase
-      .firestore()
-      .collection("scholar_dir")
-      .doc(this.props.route.params.itemKey);
-
+    // this.props.route.params.itemKey
     this.state = {
       isLoading: true,
       scholarArr: [],
@@ -24,24 +19,34 @@ export default class ViewSubCate extends React.Component {
     };
   }
 
-  componentDidMount(){
-    this.unsubscribe = this.firestoreRef.onSnapshot(this.getDoc)
+  componentDidMount() {
+    this.getDoc();
   }
 
-  componentWillUnmount(){
-    this.unsubscribe();
-  }
 
-  getDoc = (querySnapshot) => {
-    const temp = querySnapshot.data();
-    // now the temp is key val pair
-    // temp => ("sub category title", ["i", "j", "k", ..., "n"])
-    const valArr = temp[this.state.subCate];
-    this.setState({
-      scholarArr: valArr,
-      isLoading: false,
-    });
+  getDoc = () => {
+    let URL = "http://5144454dac7b.ngrok.io/api/v1.2/scholarship/view/category/" + this.state.subCate;
+
+    fetch(URL, {
+      method: "GET",
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        this.setState({
+          scholarArr: json,
+          isLoading: false,
+        });
+      })
+      .catch((e) => {
+        console.log("Ann error occured: " + e);
+      });
+
     console.log("The subcategory is: " + this.state.subCate);
+    console.log("The list is: " + this.state.scholarArr);
     // console.log(this.state.scholarArr);
   }
 
@@ -50,8 +55,8 @@ export default class ViewSubCate extends React.Component {
   };
 
   render() {
-    if(this.state.isLoading){
-      return(
+    if (this.state.isLoading) {
+      return (
         <View style={styles.preloader}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>

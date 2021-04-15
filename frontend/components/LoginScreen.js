@@ -8,7 +8,7 @@ import {
 	Text,
 } from 'react-native';
 import BeautyWebView from 'react-native-beauty-webview';
-import App from '../App';
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function LoginScreen(props) {
 	// sign up
@@ -31,7 +31,8 @@ export default function LoginScreen(props) {
 	const [inputPassword, setPassword] = useState('');
 
 	return (
-		<View style={styles.container}>
+		<KeyboardAwareScrollView
+			style={styles.container}>
 			<View style={styles.content_container}>
 				<Image
 					source={require('../assets/AppLogo.png')}
@@ -40,6 +41,7 @@ export default function LoginScreen(props) {
 				<View style={styles.inputGrp}>
 					<View style={styles.inputEmail_container}>
 						<TextInput
+							adaptKeyboard
 							onChangeText={(value) => setEmail(value)}
 							placeholder="Email"
 							keyboardAppearance="light"
@@ -47,12 +49,15 @@ export default function LoginScreen(props) {
 							keyboardType="email-address"
 							selectTextOnFocus={true}
 							clearButtonMode="while-editing"
+							clearTextOnFocus={true}
+							autoFocus={true}
 							maxLength={125}
 							style={styles.inputEmail}>
 						</TextInput>
 					</View>
 					<View style={styles.inputPasswrd_container}>
 						<TextInput
+							adaptKeyboard
 							onChangeText={(value) => setPassword(value)}
 							placeholder="Password"
 							keyboardAppearance="light"
@@ -71,7 +76,7 @@ export default function LoginScreen(props) {
 						// Reguired for closing the modal
 						onPressClose={() => setVisible2(false)}
 						// use tunnel network here to local test env
-						url={'http://6b72a2f03f47.ngrok.io'}
+						url={'http://5144454dac7b.ngrok.io/forgotpassword'}
 					/>
 					<TouchableOpacity style={styles.forgotPasswrdBtn} onPress={forgotPaswrdBtnHandler}>
 						<Text style={styles.forgotPasswrd_txt}>Forgot Password?</Text>
@@ -86,7 +91,7 @@ export default function LoginScreen(props) {
 							// Reguired for closing the modal
 							onPressClose={() => setVisible(false)}
 							// use tunnel network here to local test env
-							url={'http://6b72a2f03f47.ngrok.io'}
+							url={'http://5144454dac7b.ngrok.io/signup'}
 						/>
 						<TouchableOpacity style={styles.signupBtn} onPress={signUpBtnHandler}>
 							<Text style={styles.foot_txt}>Don't have an account? <Text style={styles.signUp_txt}>Sign Up</Text></Text>
@@ -94,7 +99,7 @@ export default function LoginScreen(props) {
 					</View>
 				</View>
 			</View>
-		</View>
+		</KeyboardAwareScrollView>
 	);
 }
 

@@ -3,12 +3,12 @@ import {
   StyleSheet,
   View,
   StatusBar,
-  Text,
-  TouchableOpacity
+  TouchableOpacity,
+  Text
 } from "react-native";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 import EntypoIcon from "react-native-vector-icons/Entypo";
+import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 import OcticonsIcon from "react-native-vector-icons/Octicons";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
@@ -17,7 +17,7 @@ function AccountScreen1(props) {
     <View style={styles.container}>
       <StatusBar hidden />
       <View style={styles.content_container}>
-        <View style={styles.usrInfoContainer}>
+        <TouchableOpacity style={styles.userInfoContainer}>
           <View style={styles.usrIconRow}>
             <MaterialCommunityIconsIcon
               name="account-outline"
@@ -27,12 +27,18 @@ function AccountScreen1(props) {
               <Text style={styles.nameTxt}>Name:</Text>
               <Text style={styles.emailTxt}>Email:</Text>
             </View>
-            <View style={styles.namePlaceHolderColumn}>
-              <Text style={styles.namePlaceHolder}>Name Place Holder</Text>
+            <View style={styles.namePlaceHolderStackStack}>
+              <View style={styles.namePlaceHolderStack}>
+                <Text style={styles.namePlaceHolder}>Name Place Holder</Text>
+                <EntypoIcon
+                  name="chevron-small-right"
+                  style={styles.icon}
+                ></EntypoIcon>
+              </View>
               <Text style={styles.usrEmailTxt_display}>Email Place Holder</Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
         <View style={styles.accBtnGrp}>
           <TouchableOpacity style={styles.addScholarshipQuizBtn}>
             <View style={styles.addScholarshipQuizIconRow}>
@@ -122,7 +128,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,1)",
     flex: 1
   },
-  usrInfoContainer: {
+  userInfoContainer: {
     height: 113,
     backgroundColor: "#e6e6e6",
     marginTop: 51
@@ -149,33 +155,51 @@ const styles = StyleSheet.create({
     marginBottom: 19
   },
   namePlaceHolder: {
+    top: 0,
+    left: 0,
+    position: "absolute",
     fontFamily: "roboto-regular",
     color: "#121212",
     height: 20,
     width: 153,
-    fontSize: 16,
-    marginLeft: 2
+    fontSize: 16
+  },
+  icon: {
+    position: "absolute",
+    color: "rgba(155,155,155,1)",
+    fontSize: 40,
+    right: 0,
+    top: 4
+  },
+  namePlaceHolderStack: {
+    top: 0,
+    left: 2,
+    width: 185,
+    height: 48,
+    position: "absolute"
   },
   usrEmailTxt_display: {
+    left: 0,
+    position: "absolute",
     fontFamily: "roboto-regular",
     color: "#121212",
     height: 20,
     width: 153,
     fontSize: 16,
-    marginTop: 10
+    top: 30
   },
-  namePlaceHolderColumn: {
-    width: 155,
+  namePlaceHolderStackStack: {
+    width: 187,
+    height: 50,
     marginLeft: 7,
-    marginTop: 17,
-    marginBottom: 20
+    marginTop: 17
   },
   usrIconRow: {
     height: 87,
     flexDirection: "row",
     marginTop: 13,
     marginLeft: 15,
-    marginRight: 38
+    marginRight: 6
   },
   accBtnGrp: {
     height: 282,
@@ -216,24 +240,28 @@ const styles = StyleSheet.create({
   addCollegeQuizBtn: {
     height: 50,
     backgroundColor: "rgba(230, 230, 230,1)",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderTopWidth: 1,
     flexDirection: "row"
   },
   addCollegeQuizIcon: {
     color: "rgba(107,164,39,1)",
-    fontSize: 35
+    fontSize: 35,
+    marginTop: -1
   },
   addCollegeQuizTxt: {
     fontFamily: "roboto-regular",
     color: "#121212",
     fontSize: 16,
     marginLeft: 15,
-    marginTop: 8
+    marginTop: 7
   },
   addCollegeQuizIconRow: {
     height: 35,
     flexDirection: "row",
     marginLeft: 15,
-    marginTop: 8
+    marginTop: 9
   },
   addCollegeQuizIconRowFiller: {
     flex: 1,
@@ -248,25 +276,28 @@ const styles = StyleSheet.create({
   addMajorQuizBtn: {
     height: 50,
     backgroundColor: "rgba(230, 230, 230,1)",
-    flexDirection: "row",
-    marginTop: 1
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderTopWidth: 1,
+    flexDirection: "row"
   },
   addMajorQuizIcon: {
     color: "rgba(107,164,39,1)",
-    fontSize: 35
+    fontSize: 35,
+    marginTop: -1
   },
   addMajorQuizTxt: {
     fontFamily: "roboto-regular",
     color: "#121212",
     fontSize: 16,
     marginLeft: 15,
-    marginTop: 8
+    marginTop: 7
   },
   addMajorQuizIconRow: {
     height: 35,
     flexDirection: "row",
     marginLeft: 15,
-    marginTop: 8
+    marginTop: 9
   },
   addMajorQuizIconRowFiller: {
     flex: 1,
@@ -282,7 +313,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: "rgba(230, 230, 230,1)",
     flexDirection: "row",
-    marginTop: 15
+    marginTop: 16
   },
   bookmarksIcon: {
     color: "rgba(48,132,188,1)",
@@ -315,7 +346,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: "rgba(230, 230, 230,1)",
     flexDirection: "row",
-    marginTop: 15
+    marginTop: 16
   },
   signOutIcon: {
     color: "rgba(236,78,96,1)",

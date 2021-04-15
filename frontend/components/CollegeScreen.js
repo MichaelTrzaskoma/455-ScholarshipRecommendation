@@ -6,70 +6,92 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
-
-import EntypoIcon from "react-native-vector-icons/Entypo";
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import CollegeCategory from "../ui/CollegeCategory";
+import CollegeRecommend from "../ui/CollegeRecommend";
 
 function CollegeScreen(props) {
   return (
     <View style={styles.container}>
 
-      {/* Catagory Text & ScrollView belont to categoryGroup */}
-      <View style={styles.categoryGroup}>
-        <Text style={styles.category}>Category</Text>
-        <View style={styles.scrollArea}>
-          <ScrollView
-            horizontal={true}
-            contentContainerStyle={styles.scrollArea_contentContainerStyle}
-          >
-            <View style={styles.nYGroupRow}>
-              <TouchableOpacity style={styles.nYGroup}>
-                <View style={styles.rect}>
-                  <Text style={styles.newYork}>New York</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.nJGroup}>
-                <View style={styles.rect1}>
-                  <Text style={styles.newJersey}>New Jersey</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.iAGroup}>
-                <View style={styles.rect2}>
-                  <Text style={styles.lowa}>Lowa</Text>
-                </View>
-              </TouchableOpacity>
-              <View style={styles.viewAllCataGroup}>
-                <View style={styles.rect5}>
-                  <EntypoIcon
-                    name="arrow-with-circle-right"
-                    style={styles.icon2}
-                  ></EntypoIcon>
-                  <Text style={styles.viewAll1}>View All</Text>
-                </View>
+      <View style={styles.container_grp}>
+
+        {/* College Category */}
+        <CollegeCategory />
+
+        <View style={styles.recommend_containerStack}>
+
+          {/* College Recommend */}
+          <CollegeRecommend />
+
+          {/* Recent View ScrollView */}
+          <View style={styles.recent_container}>
+            <View style={styles.recentGrp}>
+              <Text style={styles.recentTxt}>Recent Viewed</Text>
+              <View style={styles.scrollArea2}>
+                <ScrollView
+                  horizontal={true}
+                  contentContainerStyle={
+                    styles.scrollArea2_contentContainerStyle
+                  }
+                >
+                  <View style={styles.rvBtn1Row}>
+                    <TouchableOpacity style={styles.rvBtn1}>
+                      <MaterialCommunityIconsIcon
+                        name="table-of-contents"
+                        style={styles.rvIcon1}
+                      ></MaterialCommunityIconsIcon>
+                      <View style={styles.rvIcon1Filler}></View>
+                      <Text style={styles.rvTxt1}>Place{"\n"}Holder 1</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.rvBtn2}>
+                      <MaterialCommunityIconsIcon
+                        name="table-of-contents"
+                        style={styles.rvIcon2}
+                      ></MaterialCommunityIconsIcon>
+                      <View style={styles.rvIcon2Filler}></View>
+                      <Text style={styles.rvTxt2}>Place{"\n"}Holder 2</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.rvBtn3}>
+                      <MaterialCommunityIconsIcon
+                        name="table-of-contents"
+                        style={styles.rvIcon3}
+                      ></MaterialCommunityIconsIcon>
+                      <View style={styles.rvIcon3Filler}></View>
+                      <Text style={styles.rvTxt3}>Place{"\n"}Holder 3</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.rvBtn4}>
+                      <MaterialCommunityIconsIcon
+                        name="table-of-contents"
+                        style={styles.rvIcon4}
+                      ></MaterialCommunityIconsIcon>
+                      <View style={styles.rvIcon4Filler}></View>
+                      <Text style={styles.rvTxt4}>Place{"\n"}Holder 4</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.rvBtn5}>
+                      <MaterialCommunityIconsIcon
+                        name="table-of-contents"
+                        style={styles.rvIcon5}
+                      ></MaterialCommunityIconsIcon>
+                      <View style={styles.rvIcon5Filler}></View>
+                      <Text style={styles.rvTxt5}>Place{"\n"}Holder 5</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.viewAlllBtn2}>
+
+                      <FontAwesomeIcon
+                        name="arrow-circle-right"
+                        style={styles.viewAllIcon2}>
+                      </FontAwesomeIcon>
+
+                      <View style={styles.viewAllIcon2Filler}></View>
+                      <Text style={styles.viewAllTxt2}>View All</Text>
+                    </TouchableOpacity>
+                  </View>
+                </ScrollView>
               </View>
             </View>
-          </ScrollView>
-        </View>
-      </View>
-
-      {/* Recommend Text & ViewAll and Recent View button belong to recommendGroup */}
-      <View style={styles.recommendGroup}>
-        <Text style={styles.recommend}>Recommend</Text>
-        <View style={styles.viewAllGroupRow}>
-          <TouchableOpacity style={styles.viewAllGroup}>
-            <View style={styles.rect3}>
-              <EntypoIcon
-                name="arrow-with-circle-right"
-                style={styles.icon}
-              ></EntypoIcon>
-              <Text style={styles.viewAll}>View All</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.recentViewGroup}>
-            <View style={styles.rect4}>
-              <EntypoIcon name="back-in-time" style={styles.icon1}></EntypoIcon>
-              <Text style={styles.recentView}>Recent{"\n"}View</Text>
-            </View>
-          </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
@@ -79,223 +101,446 @@ function CollegeScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff"
   },
-  materialBasicFooter4: {
-    height: 56,
-    width: 360,
-    marginTop: 684
+  container_grp: {
+    flex: 1,
+    width: '100%',
+    backgroundColor: "#FFFFFF",
   },
-  categoryGroup: {
-    width: 360,
-    height: 224,
-    marginTop: 20
+  category_container: {
+    height: 173,
+    justifyContent: 'center',
+    // marginTop: 30,
+    width: '100%',
   },
-  category: {
-    
-    color: "#4a76ff",
+  categoryGrp: {
+    width: '90%',
+    height: 167,
+    alignSelf: 'center',
+    marginTop: 5,
+  },
+  categoryTxt: {
+    color: '#4a76ff',
     fontSize: 30,
-    width: 158,
-    height: 60,
-    marginLeft: 22
+    width: 177,
+    height: 40,
   },
-  scrollArea: {
-    width: 360,
-    height: 164,
-    backgroundColor: "rgba(255,255,255,1)"
+  scrollArea1: {
+    width: '100%',
+    height: 123,
+    marginTop: 4,
   },
-  scrollArea_contentContainerStyle: {
-    width: 526,
-    height: 164,
+  scrollArea1_contentContainerStyle: {
+    width: 720,
+    height: 123,
     flexDirection: "row"
   },
-  nYGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0
+  nYBtn: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)"
   },
-  rect: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#E6E6E6"
+  nYTxtFiller: {
+    flex: 1
   },
-  newYork: {
-    
+  nYTxt: {
     color: "#121212",
-    height: 63,
-    width: 93,
-    fontSize: 16,
-    marginTop: 21,
+    fontSize: 14,
+    width: 90,
+    height: 32,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  nJBtn: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
     marginLeft: 12
   },
-  nJGroup: {
-    width: 117,
-    height: 104,
-    marginLeft: 15
+  nJTxtFiller: {
+    flex: 1
   },
-  rect1: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#E6E6E6"
-  },
-  newJersey: {
-    
+  nJTxt: {
     color: "#121212",
-    height: 63,
-    width: 93,
-    fontSize: 16,
-    marginTop: 21,
-    marginLeft: 12
-  },
-  iAGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0,
-    marginLeft: 14
-  },
-  rect2: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#E6E6E6"
-  },
-  lowa: {
-    
-    color: "#121212",
-    height: 63,
-    width: 93,
-    fontSize: 16,
-    marginTop: 21,
-    marginLeft: 12
-  },
-  viewAllCataGroup: {
-    width: 117,
-    height: 104,
-    marginLeft: 17
-  },
-  rect5: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#E6E6E6"
-  },
-  icon2: {
-    color: "rgba(128,128,128,1)",
-    fontSize: 52,
-    height: 58,
-    width: 52,
-    marginTop: 13,
-    marginLeft: 46
-  },
-  viewAll1: {
-    
-    color: "#121212",
-    fontSize: 16,
-    marginTop: 7,
-    marginLeft: 8
-  },
-  nYGroupRow: {
-    height: 104,
-    flexDirection: "row",
-    flex: 1,
-    marginRight: -166,
-    marginLeft: 12,
-    marginTop: 30
-  },
-  recommendGroup: {
-    width: 299,
-    height: 188,
-    marginLeft: 22
-  },
-  recommend: {
-    
-    color: "#4a76ff",
-    fontSize: 30,
-    width: 216,
-    height: 60
-  },
-  viewAllGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0
-  },
-  rect3: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#E6E6E6"
-  },
-  icon: {
-    color: "rgba(128,128,128,1)",
-    fontSize: 52,
-    height: 58,
-    width: 52,
-    marginTop: 12,
-    marginLeft: 39
-  },
-  viewAll: {
-    
-    color: "#121212",
-    fontSize: 16,
-    marginTop: 6,
-    marginLeft: 7
-  },
-  recentViewGroup: {
-    width: 117,
-    height: 104,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 0.16,
-    shadowRadius: 0,
-    marginLeft: 53
-  },
-  rect4: {
-    width: 117,
-    height: 104,
-    backgroundColor: "#E6E6E6"
-  },
-  icon1: {
-    color: "rgba(128,128,128,1)",
-    fontSize: 52,
-    height: 58,
-    width: 52,
-    marginTop: 8,
-    marginLeft: 33
-  },
-  recentView: {
-    
-    color: "#121212",
-    fontSize: 16,
+    fontSize: 14,
+    width: 90,
+    height: 36,
+    marginBottom: 6,
     marginLeft: 10
   },
-  viewAllGroupRow: {
-    height: 104,
+  nCBtn: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  nCTxtFiller: {
+    flex: 1
+  },
+  nCTxt: {
+    color: "#121212",
+    fontSize: 14,
+    width: 100,
+    height: 36,
+    marginBottom: 7,
+    marginLeft: 10
+  },
+  nDBtn: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  nDTxtFiller: {
+    flex: 1
+  },
+  nDTxt: {
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 36,
+    marginBottom: 7,
+    marginLeft: 10
+  },
+  oHBtn: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  oHTxtFiller: {
+    flex: 1
+  },
+  oHTxt: {
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 34,
+    marginBottom: 9,
+    marginLeft: 10
+  },
+  viewAllBtn1: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  viewAllIcon1: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 35,
+    marginTop: 14,
+    marginLeft: 10
+  },
+  viewAllIcon1Filler: {
+    flex: 1
+  },
+  viewAllTxt1: {
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 16,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  nYBtnRow: {
+    height: 110,
     flexDirection: "row",
-    marginTop: 24,
-    marginLeft: 11,
-    marginRight: 1
+    flex: 1,
+    marginRight: -388,
+    marginTop: 7
+  },
+  recommend_container: {
+    top: 0,
+    left: 0,
+    height: 173,
+    position: "absolute",
+    right: 0,
+    justifyContent: "center"
+  },
+  recommendGrp: {
+    width: '90%',
+    height: 167,
+    alignSelf: 'center',
+  },
+  recommendTxt: {
+    color: "#4a76ff",
+    fontSize: 30,
+    width: 177,
+    height: 35
+  },
+  customContainer: {
+    width: 332,
+    height: 123,
+    justifyContent: "center",
+    marginTop: 4
+  },
+  customBtn: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)"
+  },
+  customIcon: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 35,
+    marginTop: 14,
+    marginLeft: 10
+  },
+  customIconFiller: {
+    flex: 1
+  },
+  customTxt: {
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 16,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  recent_container: {
+    top: 172,
+    left: 0,
+    height: 173,
+    position: 'absolute',
+    right: 0,
+    justifyContent: 'center',
+    width: '100%',
+  },
+  recentGrp: {
+    width: '90%',
+    height: 167,
+    alignSelf: 'center',
+    marginTop: 5,
+  },
+  recentTxt: {
+    color: "#4a76ff",
+    fontSize: 30,
+    width: 205,
+    height: 35
+  },
+  scrollArea2: {
+    width: '100%',
+    height: 123,
+    marginTop: 4,
+  },
+  scrollArea2_contentContainerStyle: {
+    width: 720,
+    height: 123,
+    flexDirection: "row"
+  },
+  rvBtn1: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)"
+  },
+  rvIcon1: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 40,
+    width: 35,
+    height: 38,
+    marginTop: 10,
+    marginLeft: 10
+  },
+  rvIcon1Filler: {
+    flex: 1
+  },
+  rvTxt1: {
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 34,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  rvBtn2: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  rvIcon2: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 40,
+    marginTop: 10,
+    marginLeft: 10
+  },
+  rvIcon2Filler: {
+    flex: 1
+  },
+  rvTxt2: {
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 34,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  rvBtn3: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  rvIcon3: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 40,
+    marginTop: 10,
+    marginLeft: 10
+  },
+  rvIcon3Filler: {
+    flex: 1
+  },
+  rvTxt3: {
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 34,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  rvBtn4: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  rvIcon4: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 40,
+    marginTop: 10,
+    marginLeft: 10
+  },
+  rvIcon4Filler: {
+    flex: 1
+  },
+  rvTxt4: {
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 34,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  rvBtn5: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  rvIcon5: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 40,
+    marginTop: 10,
+    marginLeft: 10
+  },
+  rvIcon5Filler: {
+    flex: 1
+  },
+  rvTxt5: {
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 34,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  viewAlllBtn2: {
+    width: 110,
+    height: 110,
+    borderRadius: 5,
+    overflow: "hidden",
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderLeftWidth: 0,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    marginLeft: 12
+  },
+  viewAllIcon2: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 35,
+    marginTop: 14,
+    marginLeft: 10
+  },
+  viewAllIcon2Filler: {
+    flex: 1
+  },
+  viewAllTxt2: {
+    color: "#121212",
+    fontSize: 14,
+    width: 90,
+    height: 16,
+    marginBottom: 8,
+    alignSelf: "center"
+  },
+  rvBtn1Row: {
+    height: 110,
+    flexDirection: "row",
+    flex: 1,
+    marginRight: -388,
+    marginTop: 7
+  },
+  recommend_containerStack: {
+    height: 345,
+    width: '100%',
   }
 });
 

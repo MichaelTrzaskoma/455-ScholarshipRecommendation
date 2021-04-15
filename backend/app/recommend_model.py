@@ -9,61 +9,105 @@ from numpy.linalg import norm
 
 zcdb = ZipCodeDatabase()
 
-db = MongoClient('localhost', 27017)
+#db = MongoClient('localhost', 27017)
 
-scholar_ref = db.test.scholarships
-user_Ref = db.client_profile
-table_Ref = db.collection("Index Table").document("Terms")
-refList = table_Ref.get().to_dict().get('Terms')
+# This file is gonna be imported by views.py
+# therefore, a db will be called in views.py
+# the db obj will be passed from the views.py
+# ===================================
+#scholar_ref = db.test.scholarships
+#user_Ref = db.test.client_profile
+# table_Ref = db.collection("Index Table").document("Terms")
+# refList = table_Ref.get().to_dict().get('Terms')
 
 
-def updtUser(userEmail,
-             gender,
-             dob,
-             zipC,
-             gpa,
-             major='',
-             race='',
-             ethnicity='',
-             religion='',
-             dissabilities='',
-             sat='',
-             address1='',
-             address2='',
-             address3=''):
+def updtUser(
+        db,
+        user_Ref,
+        userEmail,
+        gender,
+        dob,
+        zipC,
+        gpa,
+        major='',
+        race=[],
+        ethnicity=[],
+        religion=[],
+        dissabilities=[],
+        sat='',):
     # Used to initiation user or update their information, specify when using optional attributes
     list1 = [gender]
     list1.append(catAge(dob))
     list1.append(catState(zipC))
     list1.append(catGPA(gpa))
 
-    list2 = [major, race, religion, dissabilities, ethnicity]
+    if major != '':
+        list1.append(major)
+    
+    list2 = [race, religion, dissabilities, ethnicity]
     for i in range(len(list2)):
-        if list2[i] != '':
-            list1.append(list2[i])
+        if list2[i] != []:
+            list1.extend(list2[i])
+        
 
     if (sat != ''):
         list1.append(catSat(sat))
 
-    binary = setBin(list1)
+    binary = setBin(db, list1)
 
-    user_Ref[userEmail].insert_one({
-        'Email': userEmail,
-        'Gender': gender,
-        'Date of Birth': dob,
-        'Zip': zipC,
-        'GPA': gpa,
-        'Major': major,
-        'Religion': religion,
-        'Race': race,
-        'Ethnicity': ethnicity,
-        'Dissabilities': dissabilities,
-        'SAT Score': sat,
-        'Address 1': address1,
-        'Address 2': address2,
-        'Address 3': address3,
-        'Binary': binary,
-        'Terms': list1
+    user_Ref.insert_one({
+        "_id": userEmail,
+        "email": userEmail,
+        "paswrd": "place holder 2",
+        "jwt": "place holder 3",
+        "recent_viewed": [
+            {
+                "type": "scholarship",
+                "title": "place holder 4",
+            },
+            {
+                "type": "college",
+                "title": "place holder 5",
+            },
+            {
+                "type": "major",
+                "title": "place holder 6",
+            },
+        ],
+        "bookmarks": [
+            {
+                "type": "scholarship",
+                "title": "place holder 7",
+            },
+            {
+                "type": "college",
+                "title": "place holder 8",
+            },
+            {
+                "type": "major",
+                "title": "place holder 9",
+            },
+        ],
+        "survey_scholarship": {
+            "gender": gender,
+            "dob": dob,
+            "zip": zipC,
+            "gpa": gpa,
+            "major": major,
+            "race": race,
+            "ethnicity": ethnicity,
+            "religion": religion,
+            "disabilities": dissabilities,
+            "sat_score": sat,
+            "terms": list1,
+            "binary": binary,
+        },
+        "survey_college": {
+            "x": "place holder 16",
+        },
+        "survey_major": {
+            "y": "place holder 17",
+        },
     })
 
 
@@ -199,19 +243,24 @@ def toString(list):
     return (str.join(list))
 
 
-def catIndex(word):
+def catIndex(db, word):
     # Finds the index of the word based on a table generated from the driver
     # Input -> string, the word
     # output -> int, the index
+    subCatCursor = db.test.subcatlist.find(
+        {"subCat": word}, {"subCat": 1, "_id": 0})
+
+    refListDict = subCatCursor[0]
+    refList = refListDict.get("subCat")
     ind = refList.index(word)
     return ind
 
 
-def setBin(list):
-    binaryInitial = '0' * 807
+def setBin(db, list):
+    binaryInitial = '0' * 810  # Changed to 810 to match scholarship binary length
     usrList = splitStr(binaryInitial)
     for i in range(len(list)):
-        ind = catIndex(list[i])
+        ind = catIndex(db, list[i])
         usrList[ind] = "1"
     binaryStr = toString(usrList)
     return binaryStr
@@ -221,12 +270,12 @@ def setBin(list):
 # Input -> int, string, the id of the scholarship and the term
 # Output -> none
 
-#listA = table_Ref.get().to_dict().get('Terms')
+# listA = table_Ref.get().to_dict().get('Terms')
 # print(setBin(['Accounting']))
-#updtUser('some email', 'Male', '5/11/1999', '10308', '3.6', sat='1400')
-updtUser("hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
-         "Computer Science", "Asian/Pacific Islander", "Chinese",
-         "Buddhist")
+# updtUser('some email', 'Male', '5/11/1999', '10308', '3.6', sat='1400')
+# updtUser("hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
+#          "Computer Science", "Asian/Pacific Islander", "Chinese",
+#          "Buddhist")
 
 
 #########################################     METHODS    #######################
@@ -259,27 +308,48 @@ def sortKey(e):
     return e['Val']
 
 
-def filter_results(userId):
+def filter_results(user_Ref, scholar_ref, userId):
     # For filtereing after a query is done, returns a list of id's that we can loop through to pull info of those scholarships
     # Input -> Query generator object, string user id, filtering float number
     # Output -> List of strings, these are id's that can be used to pull information
-    filterVal = 0.4
-    user = user_Ref.document(userId).get().to_dict()
-    userTerms = user.get('Terms')
-    query = scholar_ref.where(
-        u'Terms', u'array_contains_any', userTerms).stream()
+    filterVal = 0.20  # Need to do more testing for best value
+    userCursor = user_Ref.find(
+        {"email": userId}, {"_id": 0})
+    userProf = userCursor[0]
+    userTerms = userProf.get('survey_scholarship').get('terms')
+    userBin = userProf.get('survey_scholarship').get('binary')
+
+    queryTotal = []
+
+    # Pulls any scholarship that contains a term that the User Profile has
+    for i in range(len(userTerms)):
+        subQuery = list(scholar_ref.find(
+            {'terms': userTerms[i]}, {'terms': 0}))
+        queryTotal = queryTotal + subQuery
+
+    # Removes duplates, O(n^2)
+    seen = set()
+    queryRes = []
+    for d in queryTotal:
+        t = tuple(sorted(d.items()))
+        if t not in seen:
+            seen.add(t)
+            queryRes.append(d)
+
+    # Binary Comparision
     filteredScholar = []
-    userBin = user.get('Binary')
-    for i in query:
-        scholarBin = i.get('Binary')
-        if binCompare(userBin, scholarBin) == True:
+    for i in range(len(queryRes)):
+        curr_scholar = queryRes[i]
+        scholarBin = curr_scholar.get('binary')
+        # Need to change method for check set to false for now
+        if binCompare(userBin, scholarBin) == False:
             value = comparison(scholarBin, userBin)
             if(value >= filterVal):
                 scholarInfo = {
-                    'ID': i.id,
-                    'Amount': i.get('Amount'),
-                    'Deadline': i.get('Deadline'),
-                    'Val': value
+                    'Name': str(curr_scholar.get('name')),
+                    'Amount': str(curr_scholar.get('amount')),
+                    'Deadline': str(curr_scholar.get('deadline')),
+                    'Val': value,
                 }
                 filteredScholar.append(scholarInfo)
                 filteredScholar.sort(key=sortKey, reverse=True)
@@ -298,17 +368,14 @@ def binCompare(user_bin, scholar_bin):
     return True
 
 
-def getInfo(scholarId):
-    # Method to return content of a specific scholarship, id will be supplied from a list of id's that is from filtering in filter_reults method
-    # Input -> String, Scholarship id
-    # Output -> List, filled of the scholarship's contents
-    scholarInfo = []
-    scholarDir = scholar_ref.document(scholarId).get().to_dict()
-    scholarInfo.append(scholarDir.get('Name'))
-    scholarInfo.append(scholarDir.get('Amount'))
-    scholarInfo.append(scholarDir.get('Deadline'))
-    scholarInfo.append(scholarDir.get('Awards Available'))
-    scholarInfo.append(scholarDir.get('Direct Link'))
-    scholarInfo.append(scholarDir.get('Description'))
-    scholarInfo.append(scholarDir.get('Contact Info'))
-    return scholarInfo
+# from pymongo import MongoClient
+
+# db = MongoClient("mongodb://localhost:27017/")
+# scholarDb = db.test
+# scholar_ref = db.test.scholarships
+# user_Ref = db.test.client_profile
+
+#updtUser(db,user_Ref,"mtrzasko@nyit.edu", "Male", "5/11/1999", 10308, "3.0")
+# print(filter_results(user_Ref, scholar_ref, 'mtrzasko@nyit.edu'))
+# Test run of compare
+#   print(filter_results('hchen60@nyit.edu'))

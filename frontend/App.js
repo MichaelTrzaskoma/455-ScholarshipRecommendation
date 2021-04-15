@@ -1,5 +1,7 @@
+// temp version of App.js
+
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View} from "react-native";
 import { AppRegistry } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
@@ -7,13 +9,18 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import * as SecureStore from 'expo-secure-store';
+// import DeviceInfo from 'react-native-device-info';
+// import { NativeModules } from 'react-native';
+import Constants from 'expo-constants';
 
 import LoginScreen from "./components/LoginScreen";
-import HomeContainer from "./components/HomeContainer";
+// import HomeContainer from "./components/HomeContainer";
 import AccScreen from "./components/AccScreen2";
 // for account screen style 2, pls use the following
 // import InputScreen2 from "./components/InputInfoScreen2";
 
+import CollegeSurvey from "./components/CollegeSurvey";
 import InputScreen1 from "./components/InputInfoScreen1";
 import InputScreen2 from "./components/InputInfoScreen2";
 import ViewAllScholar from "./components/ViewAllScholar";
@@ -21,10 +28,12 @@ import ViewSubCate from "./components/ViewSubCate";
 import ViewScholarTbl from "./components/ViewScholarTbl";
 import ViewScholarDetail from "./components/ViewScholarDetail";
 import ViewRecommendTbl from "./components/ViewRecommendTbl";
-import AddProfile from "./ui/AddProfile";
+// import AddProfile from "./ui/MultiSurvey";
+import ScholarRecommend from "./ui/ScholarRecommend";
 import ScholarshipScreen from "./components/ScholarshipScreen";
 import MajorScreen from "./components/MajorScreen";
 import CollegeScreen from "./components/CollegeScreen";
+import TabViewSurvey from "./components/TabViewSurvey";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -100,6 +109,22 @@ export default class App extends Component {
 
   }
 
+  saveSecureStorage = async (key, value) => {
+    // save the key and val pair data in secure storage
+    await SecureStore.setItemAsync(key, value);
+  }
+
+  getSecureStorage = async (key) => {
+    // retrieve val based on key from secure storage
+    // return "null" if the val does not exist
+    return await SecureStore.getItemAsync(key);
+  }
+
+  getDeviceID = () => {
+    // return device unique id
+    // return Constants.deviceId;
+    console.log(Constants.deviceId);
+  }
 
   signIn = (inputEmail, inputPassword) => {
     try {
@@ -128,7 +153,9 @@ export default class App extends Component {
 
 
   render() {
+    this.getDeviceID()
     if (this.state.usrProfile.signedIn) {
+      // console.log("Email from App.js: " + this.state.usrProfile.email);
       return (
         <NavigationContainer>
           <Stack.Navigator>
@@ -141,12 +168,28 @@ export default class App extends Component {
               name={"InputScreen1"}
               component={InputScreen1}
               options={{ title: "Required Info" }}
+              // nitialParams={{ email: this.state.usrProfile.email }}
+            />
+
+            {/* Multiple Survey component stacked  */}
+            <Stack.Screen
+              name={"TabViewSurvey"}
+              component={TabViewSurvey}
+              options={{ title: "Survey" }}
             />
 
             <Stack.Screen
               name={"InputScreen2"}
               component={InputScreen2}
-              options={{ title: "Optional Info" }}
+              options={{ title: "Optional Info", email: this.state.usrProfile.email }}
+              initialParams={{ email: this.state.usrProfile.email }}
+            />
+
+            {/* CollegeSurvey component stacked */}
+            <Stack.Screen
+              name={"CollegeSurvey"}
+              component={CollegeSurvey}
+              options={{ title: "College Info" }}
               initialParams={{ email: this.state.usrProfile.email }}
             />
 
@@ -155,6 +198,19 @@ export default class App extends Component {
               component={ViewSubCate}
               // pass down the screen header bar title
               options={({ route }) => ({ title: route.params.title })}
+            />
+
+            <Stack.Screen
+              name={"ScholarshipScreen"}
+              component = {ScholarshipScreen}
+              options = {({ route }) => ({ title: route.params.title})}
+              initialParams={{ email: this.state.usrProfile.email}}
+            />
+
+            <Stack.Screen
+              name={"ScholarRecommend"}
+              component = {ScholarRecommend}
+              options = {({route }) => ({ title: route.params.title})}
             />
 
             <Stack.Screen
@@ -175,11 +231,11 @@ export default class App extends Component {
               options={({ route }) => ({ title: route.params.title })}
             />
 
-            <Stack.Screen
+            {/* <Stack.Screen
               name={"AddProfile"}
               component={AddProfile}
               options={({ route }) => ({ title: route.params.title })}
-            />
+            /> */}
 
             <Stack.Screen
               name={"ViewRecommendTbl"}
@@ -209,86 +265,4 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "rgba(255,255,255,1)"
   },
-  loginEmailTextBox: {
-
-    color: "#121212",
-    height: 37,
-    width: 240,
-    borderWidth: 1,
-    borderColor: "#000000",
-    textAlign: "left",
-    letterSpacing: 0,
-    fontSize: 16,
-    marginTop: 372,
-    marginLeft: 65
-  },
-  loginPasswordTextBox: {
-
-    color: "#121212",
-    height: 37,
-    width: 240,
-    borderWidth: 1,
-    borderColor: "#000000",
-    fontSize: 16,
-    marginTop: 38,
-    marginLeft: 65
-  },
-  LoginSignInButton: {
-    height: 36,
-    width: 168,
-    backgroundColor: "#4a76ff",
-    borderRadius: 16,
-    marginTop: 47,
-    marginLeft: 98
-  },
-  LoginSignUpButton: {
-    height: 36,
-    width: 168,
-    borderRadius: 16,
-    backgroundColor: "#4a76ff",
-    marginTop: 27,
-    marginLeft: 98
-  },
-  image: {
-    width: 221,
-    height: 231,
-    borderRadius: 36,
-    marginTop: -555,
-    marginLeft: 76
-  },
-  containerLoginButton: {
-    backgroundColor: "#2196F3",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
-    borderRadius: 2,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowOpacity: 0.35,
-    shadowRadius: 5,
-    elevation: 2,
-    minWidth: 88,
-    paddingLeft: 16,
-    paddingRight: 16
-  },
-  next: {
-    color: "#fff",
-    fontSize: 16,
-
-    alignSelf: "center"
-  },
-
-  bottomNaviContainer: {
-    backgroundColor: "#3f51b5",
-    flexDirection: "row",
-    alignItems: "center",
-    shadowColor: "#111",
-    shadowOffset: {
-      width: 0,
-      height: -2
-    }
-  }
 });
