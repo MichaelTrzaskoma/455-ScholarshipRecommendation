@@ -18,6 +18,8 @@ __pycache__/**/*
 .expo/*
 /frontend/.vscode/**
 
+babel.config.js
+package-lock.json
 npm-debug.*
 *.jks
 *.p8

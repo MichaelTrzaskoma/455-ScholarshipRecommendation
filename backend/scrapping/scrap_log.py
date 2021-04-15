@@ -37,6 +37,7 @@ client = MongoClient("mongodb://localhost:27017/")
 uni_ref = client.test.colleges
 
 def append_college(data):
+    # print(data)
     uni_ref.insert_one(data)
 
 def college_scraped(url):

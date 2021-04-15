@@ -121,13 +121,8 @@ export default class App extends Component {
   }
 
   getDeviceID = () => {
-    // DeviceInfo.getUniqueId().then(uniqueId => {
-    //   console.log(uniqueId)
-    //   // iOS: "FCDBD8EF-62FC-4ECB-B2F5-92C9E79AC7F9"
-    //   // Android: "dd96dec43fb81c97"
-    // });
-
-    // console.log(NativeModules.PlatformConstants);
+    // return device unique id
+    // return Constants.deviceId;
     console.log(Constants.deviceId);
   }
 

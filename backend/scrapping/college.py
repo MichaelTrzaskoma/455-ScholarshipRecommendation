@@ -1036,6 +1036,7 @@ def retrieve_campus_life(driver, section):
                     # need to remove "." in the key, otherwise mongodb wouldn't accept it
                     i = str(key.text).replace(".", "")
                     i = str(i).replace(" ", "_")
+                    i = str(i).replace("$", "")
                     CLUB_EVENT_POLL[i] = val.text
             else:
                 CLUB_EVENT_POLL["N\A"] = "N\A"
