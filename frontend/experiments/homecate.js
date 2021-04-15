@@ -22,7 +22,7 @@ export default function ScholarCategory() {
                     <ScrollView
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
-                        Å contentContainerStyle={styles.scrollArea_contentContaiclearnerStyle}>
+                        Å contentContainerStyle={styles.scrollArea_contentContainerStyle}>
                         <View style={styles.amGrpRow}>
                             <TouchableOpacity
                                 onPress={() => {
@@ -114,7 +114,7 @@ export default function ScholarCategory() {
                 </View>
             </View>
         </View>
-    );
+    )
 }
 
 const styles = StyleSheet.create({
@@ -208,7 +208,4 @@ const styles = StyleSheet.create({
         marginBottom: 8,
         alignSelf: 'center',
     },
-
-
-
 })

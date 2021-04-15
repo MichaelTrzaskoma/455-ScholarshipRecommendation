@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   inputEmail: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     height: 37,
     width: 230,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     marginTop: 29
   },
   inputPasswrd: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     height: 37,
     width: 230,
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     marginTop: 2
   },
   logInBtn_Txt: {
-    fontFamily: "roboto-regular",
+
     color: "rgba(255,255,255,1)",
     fontSize: 16,
     textAlign: "center",
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   forgotPasswrd_txt: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     fontSize: 16,
     textAlign: "center",
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     marginTop: 3
   },
   footer_divider_txt: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     width: 330,
     height: 17,
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     marginLeft: 37
   },
   foot_txt: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     fontSize: 16
   },
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     marginLeft: 8
   },
   signUp_txt: {
-    fontFamily: "roboto-700",
+
     color: "#121212",
     fontSize: 16
   },

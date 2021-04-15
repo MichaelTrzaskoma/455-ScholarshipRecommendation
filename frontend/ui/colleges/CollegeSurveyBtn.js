@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
   submit: {
     color: "#fff",
     fontSize: 16,
-    fontFamily: "roboto-700"
   }
 });
 

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  StatusBar,
   TouchableOpacity,
   Text
 } from "react-native";
@@ -15,7 +14,6 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 function AccountScreen1(props) {
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
       <View style={styles.content_container}>
         <TouchableOpacity style={styles.userInfoContainer}>
           <View style={styles.usrIconRow}>
@@ -138,12 +136,12 @@ const styles = StyleSheet.create({
     fontSize: 80
   },
   nameTxt: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     fontSize: 16
   },
   emailTxt: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     fontSize: 16,
     marginTop: 11
@@ -158,7 +156,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     position: "absolute",
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     height: 20,
     width: 153,
@@ -181,7 +179,7 @@ const styles = StyleSheet.create({
   usrEmailTxt_display: {
     left: 0,
     position: "absolute",
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     height: 20,
     width: 153,
@@ -215,7 +213,7 @@ const styles = StyleSheet.create({
     fontSize: 35
   },
   addScholarshipQuizTxt: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     fontSize: 16,
     marginLeft: 15,
@@ -251,7 +249,7 @@ const styles = StyleSheet.create({
     marginTop: -1
   },
   addCollegeQuizTxt: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     fontSize: 16,
     marginLeft: 15,
@@ -287,7 +285,7 @@ const styles = StyleSheet.create({
     marginTop: -1
   },
   addMajorQuizTxt: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     fontSize: 16,
     marginLeft: 15,
@@ -320,7 +318,7 @@ const styles = StyleSheet.create({
     fontSize: 30
   },
   bookmarksTxt: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     fontSize: 16,
     marginLeft: 15,
@@ -353,7 +351,7 @@ const styles = StyleSheet.create({
     fontSize: 35
   },
   signoutTxt: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     fontSize: 16,
     marginLeft: 18,

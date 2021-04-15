@@ -7,43 +7,69 @@ import {
     TouchableOpacity
 } from "react-native";
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import IoniconsIcon from "react-native-vector-icons/Ionicons";
 
-export default function CollegeCategory() {
+export default function MajorCategory() {
+
     return (
-        // Cateogry ScrollView 
+
+        // Cateogry ScrollView */}
         <View style={styles.category_container}>
             <View style={styles.categoryGrp}>
                 <Text style={styles.categoryTxt}>Category</Text>
                 <View style={styles.scrollArea1}>
                     <ScrollView
                         horizontal={true}
+                        showsHorizontalScrollIndicator={false}
                         contentContainerStyle={styles.scrollArea1_contentContainerStyle}
                     >
-                        <View style={styles.nYBtnRow}>
-                            <TouchableOpacity style={styles.nYBtn}>
-                                <View style={styles.nYTxtFiller}></View>
-                                <Text style={styles.nYTxt}>New York</Text>
+                        <View style={styles.artBtnRow}>
+                            <TouchableOpacity style={styles.artBtn}>
+                                <IoniconsIcon
+                                    name="ios-brush"
+                                    style={styles.artIcon}
+                                ></IoniconsIcon>
+                                <View style={styles.artIconFiller}></View>
+                                <Text style={styles.artTxt}>Arts</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.nJBtn}>
-                                <View style={styles.nJTxtFiller}></View>
-                                <Text style={styles.nJTxt}>New Jersey</Text>
+                            <TouchableOpacity style={styles.bnBtn}>
+                                <IoniconsIcon
+                                    name="md-business"
+                                    style={styles.bnIcon}
+                                ></IoniconsIcon>
+                                <Text style={styles.bnTxt}>Business</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.nCBtn}>
-                                <View style={styles.nCTxtFiller}></View>
-                                <Text style={styles.nCTxt}>North Carolina</Text>
+                            <TouchableOpacity style={styles.edBtn}>
+                                <IoniconsIcon
+                                    name="ios-school"
+                                    style={styles.edIcon}
+                                ></IoniconsIcon>
+                                <View style={styles.edIconFiller}></View>
+                                <Text style={styles.edTxt}>Education</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.nDBtn}>
-                                <View style={styles.nDTxtFiller}></View>
-                                <Text style={styles.nDTxt}>North Dakota</Text>
+                            <TouchableOpacity style={styles.hPBtn}>
+                                <MaterialCommunityIconsIcon
+                                    name="hospital-building"
+                                    style={styles.hPIcon}
+                                ></MaterialCommunityIconsIcon>
+                                <View style={styles.hPIconFiller}></View>
+                                <Text style={styles.hPTxt}>North Dakota</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.oHBtn}>
-                                <View style={styles.oHTxtFiller}></View>
-                                <Text style={styles.oHTxt}>Ohio</Text>
+                            <TouchableOpacity style={styles.sTMBtn}>
+                                <MaterialCommunityIconsIcon
+                                    name="lightbulb-on-outline"
+                                    style={styles.sTMIcon}
+                                ></MaterialCommunityIconsIcon>
+                                <View style={styles.sTMIconFiller}></View>
+                                <Text style={styles.sTMTxt}>
+                                    Science,{"\n"}Technology {"\n"}&amp; Math
+                    </Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.viewAllBtn1}>
+                            <TouchableOpacity style={styles.viewAllGrp1}>
                                 <FontAwesomeIcon
                                     name="arrow-circle-right"
-                                    style={styles.viewAllIcon1}>
+                                    style={styles.customIcon}>
                                 </FontAwesomeIcon>
                                 <View style={styles.viewAllIcon1Filler}></View>
                                 <Text style={styles.viewAllTxt1}>View All</Text>
@@ -54,6 +80,7 @@ export default function CollegeCategory() {
             </View>
         </View>
     );
+
 }
 
 const styles = StyleSheet.create({
@@ -93,7 +120,7 @@ const styles = StyleSheet.create({
       height: 123,
       flexDirection: "row"
     },
-    nYBtn: {
+    artBtn: {
       width: 110,
       height: 110,
       borderRadius: 5,
@@ -103,40 +130,24 @@ const styles = StyleSheet.create({
       borderLeftWidth: 0,
       backgroundColor: "rgba(230, 230, 230,1)"
     },
-    nYTxtFiller: {
-      flex: 1
-    },
-    nYTxt: {
-      color: "#121212",
-      fontSize: 14,
-      width: 90,
-      height: 32,
-      marginBottom: 8,
-      alignSelf: "center"
-    },
-    nJBtn: {
-      width: 110,
-      height: 110,
-      borderRadius: 5,
-      overflow: "hidden",
-      borderWidth: 0,
-      borderColor: "#000000",
-      borderLeftWidth: 0,
-      backgroundColor: "rgba(230, 230, 230,1)",
-      marginLeft: 12
-    },
-    nJTxtFiller: {
-      flex: 1
-    },
-    nJTxt: {
-      color: "#121212",
-      fontSize: 14,
-      width: 90,
-      height: 36,
-      marginBottom: 6,
+    artIcon: {
+      color: "rgba(128,128,128,1)",
+      fontSize: 40,
+      marginTop: 11,
       marginLeft: 10
     },
-    nCBtn: {
+    artIconFiller: {
+      flex: 1
+    },
+    artTxt: {
+      color: "#121212",
+      fontSize: 14,
+      width: 77,
+      height: 27,
+      marginBottom: 2,
+      marginLeft: 10
+    },
+    bnBtn: {
       width: 110,
       height: 110,
       borderRadius: 5,
@@ -147,18 +158,49 @@ const styles = StyleSheet.create({
       backgroundColor: "rgba(230, 230, 230,1)",
       marginLeft: 12
     },
-    nCTxtFiller: {
+    bnIcon: {
+      color: "rgba(128,128,128,1)",
+      fontSize: 40,
+      marginTop: 11,
+      marginLeft: 9
+    },
+    bnTxt: {
+      color: "#121212",
+      fontSize: 14,
+      width: 90,
+      height: 27,
+      marginTop: 25,
+      marginLeft: 10
+    },
+    edBtn: {
+      width: 110,
+      height: 110,
+      borderRadius: 5,
+      overflow: "hidden",
+      borderWidth: 0,
+      borderColor: "#000000",
+      borderLeftWidth: 0,
+      backgroundColor: "rgba(230, 230, 230,1)",
+      marginLeft: 12
+    },
+    edIcon: {
+      color: "rgba(128,128,128,1)",
+      fontSize: 40,
+      marginTop: 11,
+      marginLeft: 10
+    },
+    edIconFiller: {
       flex: 1
     },
-    nCTxt: {
+    edTxt: {
       color: "#121212",
       fontSize: 14,
       width: 100,
-      height: 36,
-      marginBottom: 7,
+      height: 25,
+      marginBottom: 6,
       marginLeft: 10
     },
-    nDBtn: {
+    hPBtn: {
       width: 110,
       height: 110,
       borderRadius: 5,
@@ -169,40 +211,51 @@ const styles = StyleSheet.create({
       backgroundColor: "rgba(230, 230, 230,1)",
       marginLeft: 12
     },
-    nDTxtFiller: {
+    hPIcon: {
+      color: "rgba(128,128,128,1)",
+      fontSize: 40,
+      marginTop: 11,
+      marginLeft: 9
+    },
+    hPIconFiller: {
       flex: 1
     },
-    nDTxt: {
+    hPTxt: {
       color: "#121212",
       fontSize: 14,
       width: 90,
-      height: 36,
-      marginBottom: 7,
-      marginLeft: 10
-    },
-    oHBtn: {
-      width: 110,
-      height: 110,
-      borderRadius: 5,
-      overflow: "hidden",
-      borderWidth: 0,
-      borderColor: "#000000",
-      borderLeftWidth: 0,
-      backgroundColor: "rgba(230, 230, 230,1)",
-      marginLeft: 12
-    },
-    oHTxtFiller: {
-      flex: 1
-    },
-    oHTxt: {
-      color: "#121212",
-      fontSize: 14,
-      width: 90,
-      height: 34,
+      height: 24,
       marginBottom: 9,
       marginLeft: 10
     },
-    viewAllBtn1: {
+    sTMBtn: {
+      width: 110,
+      height: 110,
+      borderRadius: 5,
+      overflow: "hidden",
+      borderWidth: 0,
+      borderColor: "#000000",
+      borderLeftWidth: 0,
+      backgroundColor: "rgba(230, 230, 230,1)",
+      marginLeft: 12
+    },
+    sTMIcon: {
+      color: "rgba(128,128,128,1)",
+      fontSize: 40,
+      marginTop: 11,
+      marginLeft: 10
+    },
+    sTMIconFiller: {
+      flex: 1
+    },
+    sTMTxt: {
+      color: "#121212",
+      fontSize: 14,
+      width: 90,
+      height: 49,
+      alignSelf: "center"
+    },
+    viewAllGrp1: {
       width: 110,
       height: 110,
       borderRadius: 5,
@@ -227,10 +280,10 @@ const styles = StyleSheet.create({
       fontSize: 14,
       width: 90,
       height: 16,
-      marginBottom: 8,
+      marginBottom: 18,
       alignSelf: "center"
     },
-    nYBtnRow: {
+    artBtnRow: {
       height: 110,
       flexDirection: "row",
       flex: 1,
@@ -457,11 +510,11 @@ const styles = StyleSheet.create({
       color: "#121212",
       fontSize: 14,
       width: 90,
-      height: 34,
+      height: 32,
       marginBottom: 8,
       alignSelf: "center"
     },
-    viewAlllBtn2: {
+    viewAlllBtn: {
       width: 110,
       height: 110,
       borderRadius: 5,
@@ -472,16 +525,16 @@ const styles = StyleSheet.create({
       backgroundColor: "rgba(230, 230, 230,1)",
       marginLeft: 12
     },
-    viewAllIcon2: {
+    viewAllIcon: {
       color: "rgba(128,128,128,1)",
       fontSize: 35,
       marginTop: 14,
       marginLeft: 10
     },
-    viewAllIcon2Filler: {
+    viewAllIconFiller: {
       flex: 1
     },
-    viewAllTxt2: {
+    viewAllTxt: {
       color: "#121212",
       fontSize: 14,
       width: 90,

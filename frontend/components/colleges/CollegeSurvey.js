@@ -7,7 +7,7 @@ import {
   TextInput,
 } from "react-native";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import CollegeSurveyBtn from "../ui/CollegeSurveyBtn";
+import CollegeSurveyBtn from "../../ui/colleges/CollegeSurveyBtn";
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { MaterialIcons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -619,7 +619,7 @@ const styles = StyleSheet.create({
   },
 
   findCollege: {
-    fontFamily: "roboto-700",
+
     color: "#4a76ff",
     height: 37,
     width: 298,
@@ -629,7 +629,7 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   surveyDescription: {
-    fontFamily: "roboto-700",
+
     color: "rgba(0,0,0,1)",
     height: 120,
     width: 298,
@@ -645,7 +645,7 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   collegeSurveyQA1: {
-    fontFamily: "roboto-700",
+
     color: "#121212",
     fontSize: 16,
     width: 260,
@@ -660,7 +660,7 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   collegeSurveyQA2: {
-    fontFamily: "roboto-700",
+
     color: "#121212",
     fontSize: 16,
     marginTop: -27,
@@ -672,7 +672,7 @@ const styles = StyleSheet.create({
     marginTop: 2
   },
   textInput: {
-    fontFamily: "roboto-regular",
+
     fontSize: 16,
     color: "#121212",
     height: 32,
@@ -697,7 +697,7 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   collegeSurveyQA3: {
-    fontFamily: "roboto-700",
+
     color: "#121212",
     fontSize: 16,
     marginTop: -29,
@@ -708,7 +708,7 @@ const styles = StyleSheet.create({
     fontSize: 25
   },
   textInput1: {
-    fontFamily: "roboto-regular",
+
     fontSize: 16,
     color: "#121212",
     height: 32,
@@ -733,7 +733,7 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   collegeSurveyQA4: {
-    fontFamily: "roboto-700",
+
     color: "#121212",
     fontSize: 16,
     marginTop: -28,

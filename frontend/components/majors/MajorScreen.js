@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  StatusBar,
   Text,
   ScrollView,
   TouchableOpacity
@@ -10,13 +9,12 @@ import {
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import MajorCategory from "../ui/MajorCategory";
-import MajorRecommend from "../ui/MajorRecommend";
+import MajorCategory from "../../ui/majors/MajorCategory";
+import MajorRecommend from "../../ui/majors/MajorRecommend";
 
 function MajorScreen(props) {
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
       <View style={styles.container_grp}>
 
         {/* Major Category */}
@@ -34,6 +32,7 @@ function MajorScreen(props) {
               <View style={styles.scrollArea2}>
                 <ScrollView
                   horizontal={true}
+                  showsHorizontalScrollIndicator={false}
                   contentContainerStyle={
                     styles.scrollArea2_contentContainerStyle
                   }

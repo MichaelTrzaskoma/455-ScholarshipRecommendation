@@ -6,7 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 // import AddCollege from '../ui/AddCollege';
 
 import InputInfoScreen1 from './InputInfoScreen1';
-import CollegeSurvey from './CollegeSurvey';
+import CollegeSurvey from './colleges/CollegeSurvey';
 import InputScreen2 from "./InputInfoScreen2";
 
 const Stack = createStackNavigator();

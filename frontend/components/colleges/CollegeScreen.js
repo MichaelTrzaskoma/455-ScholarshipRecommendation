@@ -8,8 +8,8 @@ import {
 } from "react-native";
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import CollegeCategory from "../ui/CollegeCategory";
-import CollegeRecommend from "../ui/CollegeRecommend";
+import CollegeCategory from "../../ui/colleges/CollegeCategory";
+import CollegeRecommend from "../../ui/colleges/CollegeRecommend";
 
 function CollegeScreen(props) {
   return (
@@ -32,6 +32,7 @@ function CollegeScreen(props) {
               <View style={styles.scrollArea2}>
                 <ScrollView
                   horizontal={true}
+                  showsHorizontalScrollIndicator={false}
                   contentContainerStyle={
                     styles.scrollArea2_contentContainerStyle
                   }

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  StatusBar,
   Text,
   TouchableOpacity
 } from "react-native";
@@ -15,7 +14,6 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 function AccountScreen(props) {
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
       <View style={styles.content_container}>
         <View style={styles.usrInfoContainer}>
           <View style={styles.usrIconRow}>
@@ -100,12 +98,12 @@ const styles = StyleSheet.create({
     fontSize: 80
   },
   nameTxt: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     fontSize: 16
   },
   emailTxt: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     fontSize: 16,
     marginTop: 11
@@ -117,7 +115,7 @@ const styles = StyleSheet.create({
     marginBottom: 19
   },
   namePlaceHolder: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     height: 20,
     width: 153,
@@ -125,7 +123,7 @@ const styles = StyleSheet.create({
     marginLeft: 2
   },
   usrEmailTxt_display: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     height: 20,
     width: 153,
@@ -159,7 +157,7 @@ const styles = StyleSheet.create({
     fontSize: 35
   },
   addProfileDetailTxt: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     fontSize: 16,
     marginLeft: 15,
@@ -192,7 +190,7 @@ const styles = StyleSheet.create({
     fontSize: 30
   },
   bookmarksTxt: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     fontSize: 16,
     marginLeft: 15,
@@ -225,7 +223,7 @@ const styles = StyleSheet.create({
     fontSize: 35
   },
   signOut2: {
-    fontFamily: "roboto-regular",
+
     color: "#121212",
     fontSize: 16,
     marginLeft: 18,

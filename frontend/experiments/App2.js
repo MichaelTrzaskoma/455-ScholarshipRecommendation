@@ -25,7 +25,7 @@ import ViewScholarTbl from "./components/ViewScholarTbl";
 import ViewScholarDetail from "./components/ViewScholarDetail";
 import ViewRecommendTbl from "./components/ViewRecommendTbl";
 import AddProfile from "./ui/AddProfile";
-import ScholarshipScreen from "./components/ScholarshipScreen";
+import ScholarshipScreen from "./components/scholarships/ScholarshipScreen";
 import MajorScreen from "./components/MajorScreen";
 import CollegeScreen from "./components/CollegeScreen";
 
