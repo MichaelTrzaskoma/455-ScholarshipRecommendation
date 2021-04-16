@@ -129,6 +129,7 @@ export default class ViewScholarTbl extends React.Component {
           ItemSeparatorComponent={this.FlatListItemSeparator}
           renderItem={({ item }) => (
             <TouchableOpacity
+              onLongPress = {() => {alert("This scholarship has been bookmarked!")}}
               onPress={() => {
                 // we are able to navigate to "ViewSubCate"
                 // since it is one of the stack screens in App.js
