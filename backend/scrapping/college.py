@@ -228,35 +228,52 @@ def retrieve_college_general_info(driver, section):
 def retrieve_college_ranking(driver, section):
     # get college ranking
 
-    ranking_detail_url = section.find_element_by_class_name("expansion-link__text").get_attribute('href')
-    close_modal_message(driver)
-
-    # ######## navigate to ranking detail page ########
-    driver.get(ranking_detail_url)
-
-    close_modal_message(driver)
-
     RANKING = {}
-    if exception_handler(driver, 5, "rankings-expansion__badge"):
-        rank_listing = driver.find_elements_by_class_name("rankings-expansion__badge")
-        for item in rank_listing:
-            
-            if not exception_handler(item, 13, "rankings-card__link__title"):
-                break
+    if exception_handler(section, 13, "expansion-link__text"):
+        ranking_detail_url = section.find_element_by_class_name("expansion-link__text").get_attribute('href')
+        close_modal_message(driver)
 
-            # get the grid item title and ranking and ranking out of total #
-            item_title = item.find_element_by_class_name("rankings-card__link__title").text
-            item_rank = item.find_element_by_class_name("rankings-card__link__rank__number").text
-            item_rank_outOF = item.find_element_by_class_name("rankings-card__link__rank").text
+        # ######## navigate to ranking detail page ########
+        driver.get(ranking_detail_url)
 
-            # trim the unncessary info
-            position = item_rank_outOF.index("of")
-            item_rank_outOF = item_rank_outOF[(position + 3):]
-            
-            key = str(item_title).replace(" ", "_")
-            key = str(key).replace(".", "")
-            RANKING[key] = str(item_rank + "/" + item_rank_outOF)
+        close_modal_message(driver)
+
+        if exception_handler(driver, 5, "rankings-expansion__badge"):
+            rank_listing = driver.find_elements_by_class_name("rankings-expansion__badge")
+            for item in rank_listing:
+                
+                if not exception_handler(item, 13, "rankings-card__link__title"):
+                    break
+
+                # get the grid item title and ranking and ranking out of total #
+                item_title = item.find_element_by_class_name("rankings-card__link__title").text
+                item_rank = item.find_element_by_class_name("rankings-card__link__rank__number").text
+                item_rank_outOF = item.find_element_by_class_name("rankings-card__link__rank").text
+
+                # trim the unncessary info
+                position = item_rank_outOF.index("of")
+                item_rank_outOF = item_rank_outOF[(position + 3):]
+                
+                key = str(item_title).replace(" ", "_")
+                key = str(key).replace(".", "")
+                RANKING[key] = str(item_rank + "/" + item_rank_outOF)
+        else:
+            RANKING["N\A"] = "N\A"
+    elif exception_handler(section, 13, "rankings__collection"):
+        # the ranking is on the same page
+        ranking_collection = section.find_element_by_class_name("rankings__collection__name")
+        ranking_key = ranking_collection.find_elements_by_class_name("rankings__collection__name")
+        ranking_val = ranking_collection.find_elements_by_class_name("rankings__collection__ranking")
+
+        z_list = list(zip(ranking_key, ranking_val))
+
+        for key, val in z_list:
+            position = str(val).index(" of ")
+            k = str(key).replace(" ", "_")
+            k = str(k).replace(".", "")
+            RANKING[k] = str(val[:(position)] + "/" + val[position:])
     else:
+        # there's no ranking for this college
         RANKING["N\A"] = "N\A"
 
     return RANKING
@@ -269,6 +286,7 @@ def retrieve_admission_statistics(driver, section):
     # :section (selenium ele obj) - admission section of block from parent page
     # OUPUT: return an admission dict
 
+    # !!!!!!!!!!!!!!!
     admission_detail_url = section.find_element_by_class_name("expansion-link__text").get_attribute('href')
 
     # ####### navigate to admission detail page ########

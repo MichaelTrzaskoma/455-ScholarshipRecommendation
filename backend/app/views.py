@@ -1,18 +1,18 @@
-from typing_extensions import Required
+# from typing_extensions import Required
 import jwt
 from werkzeug.datastructures import Authorization
 from app import app
 from flask import json, render_template, jsonify, request, make_response, redirect, url_for
 import mailhandler
-# from app.auths import authOutput
+import hashlib
+from pymongo import MongoClient
+
 import string
 import random
 from datetime import datetime
 
+# from app.auths import authOutput
 from .recommend_model import updtUser, filter_results
-import hashlib
-
-from pymongo import MongoClient
 
 ACTIVE_CODE_LENGTH = 64
 MINS_TIL_ACTIVE_CODE_EXPIRY = 15
@@ -75,30 +75,26 @@ def thankYou():
 
 
 @app.route("/api/v1.2/managements/users/<email>/auth", methods=["POST"])
-def auth(email, paswrd, uniqueID):
+def auth(email):
     # user login feature
     # REQUIRMENT: a registered user
     # INPUT
     # :email (str) user's email address
     # :paswrd (str) user's password
-    # :uniqueID (str) device unique id
     # OUTPUT: result of login
 
     if request.method == "POST":
 
+        income_data = request.json
+
         # validate the inputs
         len_e = len(email)
-        len_p = len(paswrd)
-        len_id = len(uniqueID)
-
+        len_p = len(income_data['paswrd'])
         if len_e == 0 or len_e < 1:
             return make_response(jsonify({"mesg": "Please enter an email"}), 400)
         
         if len_p == 0 or len_p < 1:
             return make_response(jsonify({"mesg": "Please enter a password"}), 400)
-        
-        if len_id == 0 or len_id < 1:
-            return make_response(jsonify({"mesg": "Unsupport platform"}), 400)
         
         # check if the user's email verification is verified or not
         # if not then either request users to verify or
@@ -106,7 +102,12 @@ def auth(email, paswrd, uniqueID):
         r_email = user_Ref.count_documents({"email": email})
         
         if r_email == 1:
-            
+            # the user is registered with us and verified his/ her email address
+            verify = user_Ref.find_one({"email": email}, {"_id": 0, "jwt": 1, "active": 1})
+            # print(verify)
+
+            if verify["activate"] != 0:
+                return make_response(jsonify({"mesg": "ok"}), 202)
         else:
             return make_response(jsonify({"mesg": "Please signup an account first!"}), 403)
 

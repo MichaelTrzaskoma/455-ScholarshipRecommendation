@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View} from "react-native";
+import { StyleSheet, View } from "react-native";
 import { AppRegistry } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
@@ -8,24 +8,24 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-import {saveSecureStorage, getSecureStorage} from "./functions/secureStorage";
-import {getDeviceID} from "./functions/deviceUniqueID";
+import { saveSecureStorage, getSecureStorage } from "./functions/secureStorage";
+import { getDeviceID } from "./functions/deviceUniqueID";
 
 import LoginScreen from "./components/LoginScreen";
 import AccScreen from "./components/AccScreen";
-import CollegeSurvey from "./components/colleges/CollegeSurvey";
 import InputScreen1 from "./components/InputInfoScreen1";
 import InputScreen2 from "./components/InputInfoScreen2";
+import ScholarshipScreen from "./components/scholarships/ScholarshipScreen";
 import ViewAllScholar from "./components/scholarships/ViewAllScholar";
 import ViewSubCate from "./components/scholarships/ViewSubCate";
 import ViewScholarTbl from "./components/scholarships/ViewScholarTbl";
 import ViewScholarDetail from "./components/scholarships/ViewScholarDetail";
 import ViewRecommendTbl from "./components/scholarships/ViewRecommendTbl";
-// import AddProfile from "./ui/MultiSurvey";
 import ScholarRecommend from "./ui/scholarships/ScholarRecommend";
-import ScholarshipScreen from "./components/scholarships/ScholarshipScreen";
-import MajorScreen from "./components/majors/MajorScreen";
+// import AddProfile from "./ui/MultiSurvey";
+import CollegeSurvey from "./components/colleges/CollegeSurvey";
 import CollegeScreen from "./components/colleges/CollegeScreen";
+import MajorScreen from "./components/majors/MajorScreen";
 import TabViewSurvey from "./components/TabViewSurvey";
 
 const Tab = createBottomTabNavigator();
@@ -64,7 +64,7 @@ function TabScreens({ usr, navigation }) {
     >
       <Tab.Screen name="Home" options={{ title: "Scholarship" }}>
         {/* ScholarshipScreen component belong to first Tap navi */}
-        {() => <ScholarshipScreen usrInfo={usr}/>}
+        {() => <ScholarshipScreen usrInfo={usr} />}
       </Tab.Screen>
 
       <Tab.Screen name="Search" options={{ title: "College" }}>
@@ -79,7 +79,7 @@ function TabScreens({ usr, navigation }) {
 
       <Tab.Screen name="Account" options={{ title: "Account" }}>
         {/* AccountScreen component belong to fourth Tap navi */}
-        {() => <AccScreen usrInfo={usr}/>}
+        {() => <AccScreen usrInfo={usr} />}
       </Tab.Screen>
     </Tab.Navigator>
   );
@@ -97,42 +97,37 @@ export default class App extends Component {
         email: "",
         password: "",
         photoUrl: "",
+        jwt: "",
       },
     };
 
   }
 
-  saveSecureStorage = async (key, value) => {
-    // save the key and val pair data in secure storage
-    await SecureStore.setItemAsync(key, value);
-  }
-
-  getSecureStorage = async (key) => {
-    // retrieve val based on key from secure storage
-    // return "null" if the val does not exist
-    return await SecureStore.getItemAsync(key);
-  }
-
-  getDeviceID = () => {
-    // return device unique id
-    // return Constants.deviceId;
-    console.log(Constants.deviceId);
-  }
-
-  signIn = (inputEmail, inputPassword) => {
+  signIn = async (inputEmail, inputPassword) => {
     try {
       if (!inputEmail == "" && !inputPassword == "") {
-        this.setState({
-          usrProfile: {
-            full_name: "dummyFUllName",
-            last_name: "dummyLastName",
-            first_name: "dummyFirstName",
-            photoUrl: "https://i.pinimg.com/originals/e9/73/46/e9734614f73b4766546ceee1d7778827.jpg",
-            email: inputEmail,
-            password: inputPassword,
-            signedIn: true,
-          },
-        });
+        
+        // let uniqueID = 
+        // console.log(getDeviceID());
+
+        // store the sign and jwt first
+        if (saveSecureStorage("signIn", JSON.stringify(true))) {
+          saveSecureStorage("sassy", "afafa")
+
+          this.setState({
+            usrProfile: {
+              full_name: "dummyFUllName",
+              last_name: "dummyLastName",
+              first_name: "dummyFirstName",
+              photoUrl: "https://i.pinimg.com/originals/e9/73/46/e9734614f73b4766546ceee1d7778827.jpg",
+              email: inputEmail,
+              password: inputPassword,
+              signedIn: getSecureStorage("signIn"),
+              jwt: "",
+            },
+          });
+        }
+
       } else {
         alert("Please input your email or password!");
       }
@@ -144,11 +139,10 @@ export default class App extends Component {
     }
   };
 
-
   render() {
-    
     // print the device unique ID
     // console.log(getDeviceID())
+    // console.log("Auth val: " + JSON.stringify(this.state.usrProfile.signedIn));
 
     if (this.state.usrProfile.signedIn) {
       // console.log("Email from App.js: " + this.state.usrProfile.email);
@@ -164,7 +158,7 @@ export default class App extends Component {
               name={"InputScreen1"}
               component={InputScreen1}
               options={{ title: "Required Info" }}
-              // nitialParams={{ email: this.state.usrProfile.email }}
+            // nitialParams={{ email: this.state.usrProfile.email }}
             />
 
             {/* Multiple Survey component stacked  */}
@@ -198,15 +192,15 @@ export default class App extends Component {
 
             <Stack.Screen
               name={"ScholarshipScreen"}
-              component = {ScholarshipScreen}
-              options = {({ route }) => ({ title: route.params.title})}
-              initialParams={{ email: this.state.usrProfile.email}}
+              component={ScholarshipScreen}
+              options={({ route }) => ({ title: route.params.title })}
+              initialParams={{ email: this.state.usrProfile.email }}
             />
 
             <Stack.Screen
               name={"ScholarRecommend"}
-              component = {ScholarRecommend}
-              options = {({route }) => ({ title: route.params.title})}
+              component={ScholarRecommend}
+              options={({ route }) => ({ title: route.params.title })}
             />
 
             <Stack.Screen
