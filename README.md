@@ -15,7 +15,7 @@
    <image src="https://img.shields.io/badge/JavaScript-blue?style=flat&logo=JavaScript&logoColor=white&color=blue" />
    <image src="https://img.shields.io/badge/react-0.63.2-blue?style=flat&logo=react&logoColor=white&label=React%20Native" />
    <image src="https://img.shields.io/badge/npm-7.6.3-blue?style=flat&logo=npm&logoColor=white" />
-   <image src="https://img.shields.io/badge/expo-40.0.1-blue?style=flat&logo=Expo&logoColor=white&color=blue" />
+   <image src="https://img.shields.io/badge/expo-41.0.0-blue?style=flat&logo=Expo&logoColor=white&color=blue" />
 </p>
 
 <p align="center">
@@ -36,7 +36,7 @@
 ---
 
 ## Introduction
-This Scholar Seek project is a continuation of a project from CSCI426 (Information Retrieval). The continuation of this project will include the implementation of more robust features and an enhanced database, which will distinguish this project from its previous state. The new planned features will also expand the scope of the app. The project, in its state from CSCI426, serves as a scholarship recommendation service, using a user’s profile information to match them as best as possible with scholarships from scholarships.com. With the features planned for development in CSCI426, the app will also serve to help prospective college students find the higher education institution that best suits them and it will even help them explore potential majors. Our Scholar Seek will help students who are financially struggling find the best scholarship, explore potential majors, and find the college best suited for them by using their profile information to recommend likely candidates.
+This Scholar Seek project is a continuation of a project from CSCI426 (<a href="https://github.com/hchen98/csci426-project">Information Retrieval</a>). The continuation of this project will include the implementation of more robust features and an enhanced database, which will distinguish this project from its previous state. The new planned features will also expand the scope of the app. The project, in its state from CSCI426, serves as a scholarship recommendation service, using a user’s profile information to match them as best as possible with scholarships from scholarships.com. With the features planned for development in CSCI426, the app will also serve to help prospective college students find the higher education institution that best suits them and it will even help them explore potential majors. Our Scholar Seek will help students who are financially struggling find the best scholarship, explore potential majors, and find the college best suited for them by using their profile information to recommend likely candidates.
 
 ## Project File Structure
 
@@ -55,63 +55,69 @@ This Scholar Seek project is a continuation of a project from CSCI426 (Informati
     
     > Create a virtual env:
     ```
-    # navigate to the desired directory
     cd backend
-
-    # activate the env
     source env/bin/activate
-
-    # install all libs
     pip install -r requirements.txt
     ```
 
-    #### Production Env
+    >Production Env
     ```
-    # run the Flask through uWSGI
     uwsgi dev.ini
     ```
 
-    * Access the URL: URL:9090
+    * Access the URL: <a href="localhost:9090">localhost:9090</a>
 
-    #### Dev Env:
+    >Development Env:
     ```
+    cd backend
     export FLASK_APP=run.py
     export FLASK_ENV=development
     python run.py
     ```
 
-    * Access the URL: <a href="localhost:5000">localhost:5000</a>.
-<br><br>
+    * Access the URL: <a href="localhost:5000">localhost:5000</a>
+
+    >Test Env with Ngrok
+   ```
+   cd <ngrok directory>
+   ./ngrok http 5000
+   ```
+
+<br>
 
 * frontend:
 
     ```
-    # navigate to the desired directory
     cd frontend
-
-    # install all libs
     npm install
-
-    # install expo cli
-    sudo npm install --global expo-cli
-
-    # start the project through expo
     expo start
     ```
 
 ## API
 
-* Resources
-    | Endpoint | Method(s) | Description |
-    | :--- | :--- | :--- |
-    | /api/v1.2/resources/scholarships/view/categories/general | GET | View a list of scholarship general category terms. E.g. Acamdeic Major, Age, Gendder, and etc. |
-    | /api/v1.2/resources/scholarships/view/categories/<cater\> | GET | View a list of scholarship sub-category terms. E.g. Acamdeic Major has Accounting, Computer Science, and etc. |
-    | /api/v1.2/resources/scholarships/view/categories/sub/<cater\> | GET | View a list of scholarship that belongs to a specific sub-categories. |
-    | /api/v1.2/resources/scholarships/view/titles/<scholarship_title\> | GET | View a specific scholarship detail by providing the title of that scholarship. |
+<details>
 
-    <br>
-* User Management
-    | Endpoint | Method(s) | Description |
-    | :--- | :--- | :--- |
-    | /api/v1.2/users/id/<email\>/surveys/scholarship | POST | Insert client's scholarship survey detail into db. |
-    | /api/v1.2/users/id/<email\>/recommends/scholarship | GET | View a list of recommended scholarships by providing client's email. |
+<summary>Resources</summary>
+
+
+| Endpoint | Method(s) | Description |
+| :--- | :--- | :--- |
+| /api/v1.2/resources/scholarships/view/categories/general | GET | View a list of scholarship general category terms. E.g. Acamdeic Major, Age, Gendder, and etc. |
+| /api/v1.2/resources/scholarships/view/categories/<cater\> | GET | View a list of scholarship sub-category terms. E.g. Acamdeic Major has Accounting, Computer Science, and etc. |
+| /api/v1.2/resources/scholarships/view/categories/sub/<cater\> | GET | View a list of scholarship that belongs to a specific sub-categories. |
+| /api/v1.2/resources/scholarships/view/titles/<scholarship_title\> | GET | View a specific scholarship detail by providing the title of that scholarship. |
+
+</details>
+
+<br>
+
+<details>
+
+<summary>Management</summary>
+
+| Endpoint | Method(s) | Description |
+| :--- | :--- | :--- |
+| /api/v1.2/users/id/<email\>/surveys/scholarship | POST | Insert client's scholarship survey detail into db. |
+| /api/v1.2/users/id/<email\>/recommends/scholarship | GET | View a list of recommended scholarships by providing client's email. |
+
+</details>

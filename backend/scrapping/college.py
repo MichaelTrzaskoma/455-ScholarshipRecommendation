@@ -812,15 +812,15 @@ def retrieve_academic_data(driver, section):
         if exception_handler(prof_grp, 13, "profile__bucket--1"):
             prof_info_grp = prof_grp.find_element_by_class_name("profile__bucket--1")
 
-            if exception_handler(prof_info_grp, 5, "scalar__value"):
-                prof_info = prof_info_grp.find_elements_by_class_name("scalar__value")
+            if exception_handler(prof_info_grp, 5, "scalar--three"):
+                prof_info = prof_info_grp.find_elements_by_class_name("scalar--three")
                 
-                if "—" not in prof_info[0].text:
-                    FACULTY_RATIO = prof_info[0].text
-                if "—" not in prof_info[1].text:
-                    FEMALE_PROF = prof_info[1].text
-                if "—" not in prof_info[2].text:
-                    MALE_PROF = prof_info[2].text
+                if "—" not in prof_info[0].text[21:]:
+                    FACULTY_RATIO = prof_info[0].text[21:]
+                if "—" not in prof_info[1].text[17:]:
+                    FEMALE_PROF = prof_info[1].text[17:]
+                if "—" not in prof_info[2].text[15:]:
+                    MALE_PROF = prof_info[2].text[15:]
 
     # get faculty diversity
     if exception_handler(prof_grp, 13, "profile__bucket--2"):
