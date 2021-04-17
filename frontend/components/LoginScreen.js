@@ -50,7 +50,6 @@ export default function LoginScreen(props) {
 							selectTextOnFocus={true}
 							clearButtonMode="while-editing"
 							clearTextOnFocus={true}
-							autoFocus={true}
 							maxLength={125}
 							style={styles.inputEmail}>
 						</TextInput>
@@ -70,6 +69,7 @@ export default function LoginScreen(props) {
 					<TouchableOpacity style={styles.loginBtn} onPress={() => { props.signIn(inputEmail, inputPassword) }}>
 						<Text style={styles.logInBtn_Txt}>Log In</Text>
 					</TouchableOpacity>
+					
 					<BeautyWebView
 						// Reguired for open and close
 						visible={visible2}
@@ -106,12 +106,12 @@ export default function LoginScreen(props) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'rgba(255,255,255,1)',
+		// backgroundColor: 'rgba(255,255,255,1)',
 	},
 	content_container: {
 		width: '100%',
 		height: '80%',
-		marginTop: 115,
+		marginTop: 110,
 		alignItems: 'center',
 	},
 	logo: {
@@ -127,8 +127,9 @@ const styles = StyleSheet.create({
 	},
 	inputEmail_container: {
 		width: '100%',
-		height: 37,
+		height: 40,
 		borderWidth: 1,
+		borderRadius: 5,
 		borderColor: '#000000',
 		justifyContent: 'center',
 	},
@@ -145,8 +146,9 @@ const styles = StyleSheet.create({
 	},
 	inputPasswrd_container: {
 		width: '100%',
-		height: 37,
+		height: 40,
 		borderWidth: 1,
+		borderRadius: 5,
 		borderColor: '#000000',
 		justifyContent: 'center',
 		marginTop: 29,
@@ -167,10 +169,11 @@ const styles = StyleSheet.create({
 		width: '80%',
 	},
 	loginBtn: {
-		height: 35,
-		backgroundColor: 'rgba(82,110,255,1)',
+		height: 40,
+		borderRadius: 5,
+		backgroundColor: '#4a76ff',
 		justifyContent: 'center',
-		marginTop: 2,
+		// marginTop: 2,
 		width: '100%',
 	},
 	logInBtn_Txt: {

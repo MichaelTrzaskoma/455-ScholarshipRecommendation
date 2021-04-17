@@ -46,31 +46,42 @@ def thankYou():
         if(page == "signup"):
             email = request.form['inputEmail']
             password = request.form['inputPassword']
+            
             # salt and hash password
             saltedPass = password + app.config['SALT_VALUE']
             hashPass = hashlib.md5(saltedPass.encode()).hexdigest()
+            
             #For debugging purposes
             scholarDb.users.delete_one({"email" : email })
+            
             #Check if email already exists in database
-            results = scholarDb.users.find({ "email" : email })
-            if(results.count() != 0):
+            results = scholarDb.users.count_documents({ "email" : email })
+            
+            if(results != 0):
                return redirect(url_for('signUp', error="dup"))
+
             #Insert user into database
             activationCode = generateCode()
             scholarDb.users.insert_one({ "email": email, "password": password, "activationCode": activationCode, "activationDate": datetime.now(), "active": 0 })
+            
             #Send welcome email
             mailhandler.sendWelcomeEmail(email, activationCode)
+
             return render_template("public/thankyou.html")
         else:
             email = request.form['email']
             print(email)
+            
             #Try to look up email in database
             results = scholarDb.users.find({ "email" : email })
+            
             #Send user back to /forgotpassword if no email found
-            if(results.count() == 0):
+            if(results == 0):
                 return redirect(url_for('forgotpassword', error="unfound"))
+
             #Send reset password email to user if successful 
             mailhandler.sendResetPasswordEmail(email)
+            
             return render_template("public/thankyou2.html")
 
 

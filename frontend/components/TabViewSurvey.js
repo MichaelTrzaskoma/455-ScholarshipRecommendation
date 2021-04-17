@@ -37,9 +37,7 @@ export default function TabViewSurvey() {
   return (
 
     // Since NavigationContainer is used in App.js, this is independent NavigationContainer from the one in App.js 
-    <NavigationContainer
-      independent={true}
-    >
+    <NavigationContainer independent={true} >
       
       {/* TopMultiView (TopTapView) has been nested in StackNavigator */}
       <Stack.Navigator>

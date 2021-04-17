@@ -21,7 +21,6 @@ import ViewScholarTbl from "./components/scholarships/ViewScholarTbl";
 import ViewScholarDetail from "./components/scholarships/ViewScholarDetail";
 import ViewRecommendTbl from "./components/scholarships/ViewRecommendTbl";
 import ScholarRecommend from "./ui/scholarships/ScholarRecommend";
-// import AddProfile from "./ui/MultiSurvey";
 import CollegeSurvey from "./components/colleges/CollegeSurvey";
 import CollegeScreen from "./components/colleges/CollegeScreen";
 import MajorScreen from "./components/majors/MajorScreen";
@@ -219,12 +218,6 @@ export default class App extends Component {
               component={ViewScholarDetail}
               options={({ route }) => ({ title: route.params.title })}
             />
-
-            {/* <Stack.Screen
-              name={"AddProfile"}
-              component={AddProfile}
-              options={({ route }) => ({ title: route.params.title })}
-            /> */}
 
             <Stack.Screen
               name={"ViewRecommendTbl"}

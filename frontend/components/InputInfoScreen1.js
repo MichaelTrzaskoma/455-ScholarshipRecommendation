@@ -388,14 +388,16 @@ class InputScreen1a extends React.Component {
 	}
 
 	handleGPA(text) {
-		let gpaFloat = parseFloat(text);
-		if (gpaFloat >= 0.0 && gpaFloat <= 5.0) {
-			this.setState({
-				gpa: text,
-			});
-		}
-		else {
-			alert("Please enter a valid GPA");
+		if (text.toString().length > 0) {
+			let gpaFloat = parseFloat(text);
+			if (gpaFloat >= 0.0 && gpaFloat <= 5.0) {
+				this.setState({
+					gpa: text,
+				});
+			}
+			else {
+				alert("Please enter a valid GPA");
+			}
 		}
 	}
 
@@ -405,79 +407,74 @@ class InputScreen1a extends React.Component {
 			<DismissKeyboard>
 				<KeyboardAwareScrollView
 					style={styles.container}>
-					<View style={styles.collapsibleContainer}>
-						<Card elevation={7}>
-							{/* <Card.Title>Required Information</Card.Title> */}
-							{/* <Text style={styles.requiredDetails}>Required Details</Text> */}
-							<Text style={styles.re_text}>Required Quesetions</Text>
-							<View style={styles.input1_grp}>
-								<Text style={styles.txt_gender}>Gender</Text>
-								<DropDownPicker
-									items={[
-										{ label: 'Male', value: 'Male' },
-										{ label: 'Female', value: 'Female' },
-										{ label: 'Transgender', value: 'Transgender' },
-										{ label: 'Other', value: 'Other' },
-									]}
-									defaultIndex={0}
-									containerStyle={{ height: 30, marginTop: 8 }}
-									itemStyle={{ justifyContent: 'flex-start' }}
-									//dropDownStyle={{marginTop: 2}}
-									//dropDownStyle={{backgroundColor: '#fafafa', borderBottomLeftRadius: 20, borderBottomRightRadius: 20}}
-									onChangeItem={item => this.handleGender(item.value)}
-								/>
-							</View>
-							<View style={styles.input2_grp}>
-								<Text style={styles.txt_dob}>Age</Text>
-								<TextInput
-									onChangeText={this.handleDOB}
-									placeholder="16"
-									keyboardType="numeric"
-									maxLength={2}
-									style={styles.input2}
-								></TextInput>
-							</View>
-							<View style={styles.input3_grp}>
-								<Text style={styles.txt_zip}>State of Residence and/or Schooling</Text>
+
+					<View style={styles.requiredGrp}>
+						{/* <Card.Title>Required Information</Card.Title> */}
+						{/* <Text style={styles.requiredDetails}>Required Details</Text> */}
+						<Text style={styles.re_text}>Required Quesetions</Text>
+						<View style={styles.input1_grp}>
+							<Text style={styles.txt_display}>Gender</Text>
+							<DropDownPicker
+								items={[
+									{ label: 'Male', value: 'Male' },
+									{ label: 'Female', value: 'Female' },
+									{ label: 'Transgender', value: 'Transgender' },
+									{ label: 'Other', value: 'Other' },
+								]}
+								defaultIndex={0}
+								containerStyle={{ height: 30, marginTop: 8, marginLeft: 10, width: "90%" }}
+								itemStyle={{ justifyContent: 'flex-start' }}
+								//dropDownStyle={{marginTop: 2}}
+								//dropDownStyle={{backgroundColor: '#fafafa', borderBottomLeftRadius: 20, borderBottomRightRadius: 20}}
+								onChangeItem={item => this.handleGender(item.value)}
+							/>
+						</View>
+						<View style={styles.input2_grp}>
+							<Text style={styles.txt_display}>Age</Text>
+							<TextInput
+								onChangeText={this.handleDOB}
+								placeholder="16"
+								keyboardType="numeric"
+								maxLength={2}
+								style={styles.input2}
+							></TextInput>
+						</View>
+						<View style={styles.input3_grp}>
+							<Text style={styles.txt_display}>State of Residence and/or Schooling</Text>
+							<View style={{ width: "95%" }}>
 								<SectionedMultiSelect
 									items={items1}
 									IconRenderer={MaterialIcons}
 									uniqueKey="id"
 									subKey="children"
 									selectText="Choose State(s) If Applicable"
-									style={{ margin: 20 }}
+									style={{ height: 'auto', }}
 									showDropDowns={true}
 									readOnlyHeadings={true}
 									onSelectedItemsChange={this.onSelectedItemsChange}
 									selectedItems={this.state.selectedItems}
 								/>
 							</View>
-							<View style={styles.input4_grp}>
-								<Text style={styles.txt_gpa}>GPA</Text>
-								<TextInput
-									onChangeText={this.handleGPA}
-									placeholder="4.0"
-									keyboardType="numeric"
-									autoFocus={true}
-									style={styles.input4}
-									maxLength={4}
-								></TextInput>
-							</View>
-						</Card>
+						</View>
+						<View style={styles.input4_grp}>
+							<Text style={styles.txt_display}>GPA</Text>
+							<TextInput
+								onChangeText={this.handleGPA}
+								placeholder="4.0"
+								keyboardType="numeric"
+								style={styles.input4}
+								maxLength={4}
+							></TextInput>
+						</View>
+					</View>
 
 						<CollapsibleView
-							title="Optional Questions"
+							title={<Text style={styles.collapsibleTitle}>Optional Questions</Text>}
 							style={styles.col_view}
 						>
-							<Card
-								containerStyle={styles.card}
-							>
-								{/* <View style={styles.containerGrp1}>
-            		 <View style={styles.containerBkground1}> */}
-								{/* <Text style={styles.optionalDetails}>Optional Details</Text> */}
-
+							<View style={styles.collapsibleContentGrp}>
 								<View style={styles.grp1}>
-									<Text style={styles.txt_major}>Academic Major:</Text>
+									<Text style={styles.txt_display}>Academic Major:</Text>
 									<SectionedMultiSelect
 										style={{ margin: 30 }}
 										items={items1.slice(0, items1.length - 4)}
@@ -491,8 +488,9 @@ class InputScreen1a extends React.Component {
 										selectedItems={this.state.selectedItems}
 									/>
 								</View>
-								<View style={styles.grp2}>
-									<Text style={styles.txt_race}>Race:</Text>
+
+								<View style={styles.grp1}>
+									<Text style={styles.txt_display}>Race:</Text>
 									<SectionedMultiSelect
 										style={{ margin: 30 }}
 										items={items1.slice(items1.length - 4, items1.length - 4 + 1)}
@@ -506,8 +504,9 @@ class InputScreen1a extends React.Component {
 										selectedItems={this.state.selectedItems2}
 									/>
 								</View>
+
 								<View style={styles.grp3}>
-									<Text style={styles.txt_religion}>Religion:</Text>
+									<Text style={styles.txt_display}>Religion:</Text>
 									<SectionedMultiSelect
 										style={{ margin: 30 }}
 										items={items1.slice(items1.length - 3, items1.length - 3 + 1)}
@@ -521,8 +520,9 @@ class InputScreen1a extends React.Component {
 										selectedItems={this.state.selectedItems3}
 									/>
 								</View>
+
 								<View style={styles.grp4}>
-									<Text style={styles.txt_disability}>Disabilities:</Text>
+									<Text style={styles.txt_display}>Disabilities:</Text>
 									<SectionedMultiSelect
 										style={{ margin: 30 }}
 										items={items1.slice(items1.length - 2, items1.length - 2 + 1)}
@@ -536,8 +536,9 @@ class InputScreen1a extends React.Component {
 										selectedItems={this.state.selectedItems4}
 									/>
 								</View>
+
 								<View style={styles.grp5}>
-									<Text style={styles.txt_testScore}>Test Scores:</Text>
+									<Text style={styles.txt_display}>Test Scores:</Text>
 									<TextInput
 										onChangeText={this.handleSAT}
 										placeholder="SAT"
@@ -553,6 +554,7 @@ class InputScreen1a extends React.Component {
 										maxLength={2}
 									></TextInput>
 								</View>
+
 								<View style={styles.grp6}>
 									<Text style={styles.txt_testScore}>Ethnicity:</Text>
 									<SectionedMultiSelect
@@ -568,25 +570,21 @@ class InputScreen1a extends React.Component {
 										selectedItems={this.state.selectedItems5}
 									/>
 								</View>
-
-								{/* </View>
-       						   </View> */}
-								{/* </KeyboardAwareScrollView> */}
-							</Card>
+							</View>
 						</CollapsibleView>
 
-						<View style={styles.submit_grp}>
-							<TouchableOpacity
-								onPress={() =>
-									this.onSubmit()
-								}
-								style={styles.btn_submit}
-							>
-								<Text style={styles.next}>Submit</Text>
-							</TouchableOpacity>
-						</View>
+					<View style={styles.submit_grp}>
+						<TouchableOpacity
+							onPress={() =>
+								this.onSubmit()
+							}
+							style={styles.btn_submit}
+						>
+							<Text style={styles.next}>Submit</Text>
+						</TouchableOpacity>
+					</View>
 
-						{/* <View style={styles.op_submit_grp}>
+					{/* <View style={styles.op_submit_grp}>
 							<TouchableOpacity
 								onPress={() => this.upload2sever()}
 								style={styles.txt_submit}
@@ -595,7 +593,6 @@ class InputScreen1a extends React.Component {
 							</TouchableOpacity>
 						</View> */}
 
-					</View>
 				</KeyboardAwareScrollView>
 			</DismissKeyboard>
 		);
@@ -609,55 +606,65 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		height: "100%",
+		backgroundColor: '#E6E6E6',
+	},
+	requiredGrp: {
+		marginTop: 30,
+		marginBottom: 10,
+		backgroundColor: 'white',
+		borderWidth: 0,
+		borderRadius: 5,
+		overflow: 'hidden',
+		width: "93%",
+		marginLeft: 15,
 	},
 	col_view: {
 		flex: 1,
-		width: '92.4%',
-		borderWidth: 2,
-		marginLeft: 14.7,
-		justifyContent: 'center',
-		borderColor: '#e4ebef',
-	},
-	collapsibleContainer: {
-		flex: 1,
-		width: "100%",
+		width: "93%",
+		marginLeft: 15,
+		overflow: "hidden",
+		borderRadius: 5,
+		borderColor: 'white',
 		backgroundColor: "white",
 		justifyContent: 'center',
 	},
-	card: {
-		borderWidth: 0, // Remove Border
-		shadowColor: 'rgba(0,0,0, 0.0)', // Remove Shadow IOS
-		shadowOffset: { height: 0, width: 0 },
-		shadowOpacity: 0,
-		shadowRadius: 0,
-		elevation: 0 // This is for Android
+	collapsibleTitle: {
+		fontWeight: "bold",
+		fontSize: 20,
+		color: '#3385ff',
+	},
+	collapsibleContentGrp: {
+		marginTop: 10,
+		marginLeft: 9,
+		marginRight: 10,
+		maxWidth: "100%",
+		height: "auto",
 	},
 	requiredDetails: {
 		fontWeight: "bold",
 		color: "black",
 		lineHeight: 0,
 		fontSize: 20,
-		// marginTop: 34,
 		marginLeft: 20,
 	},
 	input1_grp: {
 		width: "100%",
 		height: 50,
+		// verify the platform for using the dropdown menu
 		...Platform.OS !== 'android' && {
 			zIndex: 1,
 		},
-		// position: 'relative',
-		// marginTop: 37,
-		// marginLeft: 10,
+		marginLeft: 10,
 	},
 	re_text: {
-		fontSize: 18,
-		textAlign: 'center',
-		paddingTop: 5,
-		paddingBottom: 10,
+		marginTop: 20,
+		marginBottom: 10,
+		marginLeft: 20,
+		fontWeight: "bold",
+		fontSize: 20,
 		color: '#3385ff',
 	},
-	txt_gender: {
+	txt_display: {
 		fontWeight: "bold",
 		color: "#121212",
 		fontSize: 15,
@@ -674,33 +681,20 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 50,
 		marginTop: 15,
-		// zIndex: -1,
-	},
-	txt_dob: {
-		fontWeight: "bold",
-		color: "#121212",
-		fontSize: 15,
-		marginLeft: 9,
+		marginLeft: 10,
 	},
 	input2: {
 		color: "#121212",
 		height: 30,
 		width: "95%",
 		marginTop: 2,
-		marginLeft: 9,
+		marginLeft: 25,
 	},
 	input3_grp: {
 		width: "100%",
 		height: "auto",
 		marginTop: 15,
-		// marginLeft: 10,
-		// zIndex: -1,
-	},
-	txt_zip: {
-		fontWeight: "bold",
-		color: "#121212",
-		fontSize: 15,
-		marginLeft: 9,
+		marginLeft: 10,
 	},
 	input3: {
 		color: "#121212",
@@ -712,15 +706,9 @@ const styles = StyleSheet.create({
 	input4_grp: {
 		width: "100%",
 		height: 50,
-		marginTop: 15,
-		// marginLeft: 10,
-		// zIndex: -1,
-	},
-	txt_gpa: {
-		fontWeight: "bold",
-		color: "#121212",
-		fontSize: 15,
-		marginLeft: 9,
+		marginTop: 10,
+		marginBottom: 10,
+		marginLeft: 10,
 	},
 	input4: {
 		color: "#121212",
@@ -731,76 +719,36 @@ const styles = StyleSheet.create({
 	},
 	submit_grp: {
 		width: "100%",
-		height: 40,
+		height: 45,
 		marginTop: 20,
-		// marginLeft: 15,
-		// zIndex: -1,
+		borderRadius: 5,
+		marginBottom: 20,
 	},
 	btn_submit: {
-		width: "85%",
-		height: 40,
+		width: "92%",
+		height: 45,
+		borderRadius: 5,
 		backgroundColor: "#4a76ff",
+		justifyContent: 'center',
 		alignSelf: "center",
 	},
 	next: {
 		color: "rgba(255,255,255,1)",
 		fontSize: 16,
-		marginTop: 10,
 		alignSelf: "center",
-	},
-
-	AwardView: {
-		flex: 1,
-		minHeight: Dimensions.get("window").height - 220,
 	},
 	container: {
 		flex: 1,
 	},
-	containerGrp1: {
-		backgroundColor: "rgba(230, 230, 230,1)",
-		flex: 1,
-	},
-	containerBkground1: {
-		height: 685,
-		backgroundColor: "rgba(255,255,255,1)",
-		marginTop: 20,
-	},
-	optionalDetails: {
-		fontWeight: "bold",
-		color: "#121212",
-		fontSize: 20,
-		marginTop: 25,
-		marginLeft: 20,
-	},
 	grp1: {
 		width: "100%",
 		height: "auto",
-		// marginTop: 22,
-		// marginLeft: 10,
-	},
-	txt_major: {
-		fontWeight: "bold",
-		color: "#121212",
-		fontSize: 15,
-		marginLeft: 9,
 	},
 	input1: {
 		color: "#121212",
 		height: 30,
 		width: "95%",
 		marginTop: 2,
-		marginLeft: 9,
-	},
-	grp2: {
-		width: "100%",
-		height: "auto",
-		// marginTop: 85,
-		// marginLeft: 10,
-	},
-	txt_race: {
-		fontWeight: "bold",
-		color: "#121212",
-		fontSize: 15,
 		marginLeft: 9,
 	},
 	input2: {
@@ -814,13 +762,6 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: "auto",
 		marginTop: 20,
-		// marginLeft: 10,
-	},
-	txt_religion: {
-		fontWeight: "bold",
-		color: "#121212",
-		fontSize: 15,
-		marginLeft: 9,
 	},
 	input3: {
 		color: "#121212",
@@ -833,20 +774,6 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: "auto",
 		marginTop: 20,
-		// marginLeft: 10,
-	},
-	txt_disability: {
-		fontWeight: "bold",
-		color: "#121212",
-		fontSize: 15,
-		marginLeft: 9,
-	},
-	input5: {
-		color: "#121212",
-		height: 30,
-		width: "93%",
-		marginTop: 2,
-		marginLeft: 9,
 	},
 	grp5: {
 		width: "100%",
@@ -859,12 +786,6 @@ const styles = StyleSheet.create({
 		height: "auto",
 		marginTop: 40,
 		// marginLeft: 10,
-	},
-	txt_testScore: {
-		fontWeight: "bold",
-		color: "#121212",
-		fontSize: 15,
-		marginLeft: 9,
 	},
 	input6: {
 		color: "#121212",
@@ -880,34 +801,6 @@ const styles = StyleSheet.create({
 		marginTop: 2,
 		marginLeft: 9,
 		marginBottom: 10,
-	},
-	input7: {
-		color: "#121212",
-		height: 30,
-		width: "95%",
-		marginTop: 5,
-		marginLeft: 9,
-	},
-	input8: {
-		color: "#121212",
-		height: 30,
-		width: "93%",
-		marginTop: 2,
-		marginLeft: 9,
-	},
-	input9: {
-		color: "#121212",
-		height: 30,
-		width: "93%",
-		marginTop: 5,
-		marginLeft: 9,
-	},
-	input10: {
-		color: "#121212",
-		height: 30,
-		width: "93%",
-		marginTop: 5,
-		marginLeft: 9,
 	},
 	op_submit_grp: {
 		width: "100%",
