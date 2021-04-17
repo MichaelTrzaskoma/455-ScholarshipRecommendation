@@ -17,16 +17,16 @@ export default class ViewScholarDetail extends React.Component {
         applyLink: '',
         title: '',
       },
-      applyLinkVisible : false,
+      applyLinkVisible: false,
     };
     this.handleApplyLinkVisible = this.handleApplyLinkVisible.bind(this);
     this.handleBookmark = this.handleBookmark.bind(this);
   }
 
-  handleApplyLinkVisible(boolean){
+  handleApplyLinkVisible(boolean) {
     this.setState({
-      applyLinkVisible : boolean
-    });  
+      applyLinkVisible: boolean
+    });
   }
 
   handleBookmark () {
@@ -162,11 +162,11 @@ export default class ViewScholarDetail extends React.Component {
         <View style={styles.card_grp2}>
           <View style={styles.apply_grp}>
             <View style={styles.txt_applyRow}>
-            <TouchableOpacity style={styles.applyRow} onPress={() => { this.handleApplyLinkVisible(true) }}>
-              <Text style={styles.txt_apply}>Apply Link:</Text>
-              <Text numberOfLines={5} style={styles.apply}>
-                {this.state.scholarshipObj.applyLink}
-              </Text>
+              <TouchableOpacity style={styles.applyRow} onPress={() => { this.handleApplyLinkVisible(true) }}>
+                <Text style={styles.txt_apply}>Apply Link:</Text>
+                <Text numberOfLines={5} style={styles.apply}>
+                  {this.state.scholarshipObj.applyLink}
+                </Text>
               </TouchableOpacity>
               <BeautyWebView
                 // Reguired for open and close
@@ -175,8 +175,8 @@ export default class ViewScholarDetail extends React.Component {
                 onPressClose={() => this.handleApplyLinkVisible(false)}
                 // use tunnel network here to local test env
                 url={this.state.scholarshipObj.applyLink}
-				    	/>
-             
+              />
+
             </View>
           </View>
           <View style={styles.description_grp}>

@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Text
 } from "react-native";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import { FontAwesome } from '@expo/vector-icons';
 
 function VertialRecommendationTbl(props) {
   return (
@@ -17,11 +17,11 @@ function VertialRecommendationTbl(props) {
           contentContainerStyle={styles.scrollArea_contentContainerStyle}
         >
           <TouchableOpacity style={styles.itemN1}>
-           <View style={styles.iconGrp}>
-              <FontAwesomeIcon
+            <View style={styles.iconGrp}>
+              <FontAwesome
                 name="graduation-cap"
                 style={styles.icon}
-              ></FontAwesomeIcon>
+              ></FontAwesome>
             </View>
             <View style={styles.txtUpGrpStack}>
               <View style={styles.txtUpGrp}>
@@ -35,10 +35,10 @@ function VertialRecommendationTbl(props) {
                   <View style={styles.ratingGrp}>
                     <View style={styles.ratingTxtRow}>
                       <Text style={styles.ratingTxt}>3.5</Text>
-                      <FontAwesomeIcon
+                      <FontAwesome
                         name="star"
                         style={styles.ratingIcon}
-                      ></FontAwesomeIcon>
+                      ></FontAwesome>
                     </View>
                   </View>
                   <View style={styles.amountGrp}>
@@ -51,13 +51,13 @@ function VertialRecommendationTbl(props) {
               </View>
             </View>
           </TouchableOpacity>
-          
-          <TouchableOpacity style={styles.itemN2}>          
+
+          <TouchableOpacity style={styles.itemN2}>
             <View style={styles.iconGrp}>
-              <FontAwesomeIcon
+              <FontAwesome
                 name="graduation-cap"
                 style={styles.icon2}
-              ></FontAwesomeIcon>
+              ></FontAwesome>
             </View>
             <View style={styles.txtUpGrpStack}>
               <View style={styles.txtUpGrp}>
@@ -71,10 +71,10 @@ function VertialRecommendationTbl(props) {
                   <View style={styles.rect5}>
                     <View style={styles.text2Row}>
                       <Text style={styles.text2}>3.5</Text>
-                      <FontAwesomeIcon
+                      <FontAwesome
                         name="star"
                         style={styles.icon3}
-                      ></FontAwesomeIcon>
+                      ></FontAwesome>
                     </View>
                   </View>
                   <View style={styles.rect6}>
@@ -87,13 +87,13 @@ function VertialRecommendationTbl(props) {
               </View>
             </View>
           </TouchableOpacity>
-          
-          <TouchableOpacity style={styles.itemN3}>          
+
+          <TouchableOpacity style={styles.itemN3}>
             <View style={styles.iconGrp}>
-              <FontAwesomeIcon
+              <FontAwesome
                 name="graduation-cap"
                 style={styles.icon4}
-              ></FontAwesomeIcon>
+              ></FontAwesome>
             </View>
             <View style={styles.txtUpGrpStack}>
               <View style={styles.txtUpGrp}>
@@ -107,10 +107,10 @@ function VertialRecommendationTbl(props) {
                   <View style={styles.rect11}>
                     <View style={styles.text6Row}>
                       <Text style={styles.text6}>3.5</Text>
-                      <FontAwesomeIcon
+                      <FontAwesome
                         name="star"
                         style={styles.icon5}
-                      ></FontAwesomeIcon>
+                      ></FontAwesome>
                     </View>
                   </View>
                   <View style={styles.rect12}>
@@ -122,15 +122,15 @@ function VertialRecommendationTbl(props) {
                 </View>
               </View>
             </View>
-            
+
           </TouchableOpacity>
-          
-          <TouchableOpacity style={styles.itemN4}>          
+
+          <TouchableOpacity style={styles.itemN4}>
             <View style={styles.iconGrp}>
-              <FontAwesomeIcon
+              <FontAwesome
                 name="graduation-cap"
                 style={styles.icon6}
-              ></FontAwesomeIcon>
+              ></FontAwesome>
             </View>
             <View style={styles.txtUpGrpStack}>
               <View style={styles.txtUpGrp}>
@@ -144,10 +144,10 @@ function VertialRecommendationTbl(props) {
                   <View style={styles.rect17}>
                     <View style={styles.text10Row}>
                       <Text style={styles.text10}>3.5</Text>
-                      <FontAwesomeIcon
+                      <FontAwesome
                         name="star"
                         style={styles.icon7}
-                      ></FontAwesomeIcon>
+                      ></FontAwesome>
                     </View>
                   </View>
                   <View style={styles.rect18}>
@@ -160,13 +160,13 @@ function VertialRecommendationTbl(props) {
               </View>
             </View>
           </TouchableOpacity>
-          
+
           <TouchableOpacity style={styles.itemN5}>
             <View style={styles.iconGrp}>
-              <FontAwesomeIcon
+              <FontAwesome
                 name="graduation-cap"
                 style={styles.icon8}
-              ></FontAwesomeIcon>
+              ></FontAwesome>
             </View>
             <View style={styles.txtUpGrpStack}>
               <View style={styles.txtUpGrp}>
@@ -180,10 +180,10 @@ function VertialRecommendationTbl(props) {
                   <View style={styles.rect23}>
                     <View style={styles.text14Row}>
                       <Text style={styles.text14}>3.5</Text>
-                      <FontAwesomeIcon
+                      <FontAwesome
                         name="star"
                         style={styles.icon9}
-                      ></FontAwesomeIcon>
+                      ></FontAwesome>
                     </View>
                   </View>
                   <View style={styles.rect24}>
@@ -195,15 +195,15 @@ function VertialRecommendationTbl(props) {
                 </View>
               </View>
             </View>
-           
+
           </TouchableOpacity>
-          
+
           <TouchableOpacity style={styles.itemN6}>
             <View style={styles.iconGrp}>
-              <FontAwesomeIcon
+              <FontAwesome
                 name="graduation-cap"
                 style={styles.icon10}
-              ></FontAwesomeIcon>
+              ></FontAwesome>
             </View>
             <View style={styles.txtUpGrpStack}>
               <View style={styles.txtUpGrp}>
@@ -217,10 +217,10 @@ function VertialRecommendationTbl(props) {
                   <View style={styles.rect29}>
                     <View style={styles.text18Row}>
                       <Text style={styles.text18}>3.5</Text>
-                      <FontAwesomeIcon
+                      <FontAwesome
                         name="star"
                         style={styles.icon11}
-                      ></FontAwesomeIcon>
+                      ></FontAwesome>
                     </View>
                   </View>
                   <View style={styles.rect30}>
@@ -233,13 +233,13 @@ function VertialRecommendationTbl(props) {
               </View>
             </View>
           </TouchableOpacity>
-          
+
           <TouchableOpacity style={styles.itemN7}>
             <View style={styles.iconGrp}>
-              <FontAwesomeIcon
+              <FontAwesome
                 name="graduation-cap"
                 style={styles.icon12}
-              ></FontAwesomeIcon>
+              ></FontAwesome>
             </View>
             <View style={styles.txtUpGrpStack}>
               <View style={styles.txtUpGrp}>
@@ -253,10 +253,10 @@ function VertialRecommendationTbl(props) {
                   <View style={styles.rect35}>
                     <View style={styles.text22Row}>
                       <Text style={styles.text22}>3.5</Text>
-                      <FontAwesomeIcon
+                      <FontAwesome
                         name="star"
                         style={styles.icon13}
-                      ></FontAwesomeIcon>
+                      ></FontAwesome>
                     </View>
                   </View>
                   <View style={styles.rect36}>
@@ -267,15 +267,15 @@ function VertialRecommendationTbl(props) {
                   <Text style={styles.text24}>04/01/2021</Text>
                 </View>
               </View>
-            </View> 
+            </View>
           </TouchableOpacity>
-          
+
           <TouchableOpacity style={styles.itemN8}>
             <View style={styles.iconGrp}>
-              <FontAwesomeIcon
+              <FontAwesome
                 name="graduation-cap"
                 style={styles.icon14}
-              ></FontAwesomeIcon>
+              ></FontAwesome>
             </View>
             <View style={styles.txtUpGrpStack}>
               <View style={styles.txtUpGrp}>
@@ -289,10 +289,10 @@ function VertialRecommendationTbl(props) {
                   <View style={styles.rect41}>
                     <View style={styles.text26Row}>
                       <Text style={styles.text26}>3.5</Text>
-                      <FontAwesomeIcon
+                      <FontAwesome
                         name="star"
                         style={styles.icon15}
-                      ></FontAwesomeIcon>
+                      ></FontAwesome>
                     </View>
                   </View>
                   <View style={styles.rect42}>
@@ -305,13 +305,13 @@ function VertialRecommendationTbl(props) {
               </View>
             </View>
           </TouchableOpacity>
-          
+
           <TouchableOpacity style={styles.itemN9}>
             <View style={styles.iconGrp}>
-              <FontAwesomeIcon
+              <FontAwesome
                 name="graduation-cap"
                 style={styles.icon16}
-              ></FontAwesomeIcon>
+              ></FontAwesome>
             </View>
             <View style={styles.txtUpGrpStack}>
               <View style={styles.txtUpGrp}>
@@ -325,10 +325,10 @@ function VertialRecommendationTbl(props) {
                   <View style={styles.rect47}>
                     <View style={styles.text30Row}>
                       <Text style={styles.text30}>3.5</Text>
-                      <FontAwesomeIcon
+                      <FontAwesome
                         name="star"
                         style={styles.icon17}
-                      ></FontAwesomeIcon>
+                      ></FontAwesome>
                     </View>
                   </View>
                   <View style={styles.rect48}>
@@ -403,7 +403,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   ratingTxt: {
-    
+
     color: "#121212"
   },
   ratingIcon: {
@@ -428,7 +428,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   amountTxt: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -442,7 +442,7 @@ const styles = StyleSheet.create({
     marginRight: -6
   },
   dateTxt: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -484,7 +484,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text: {
-    
+
     color: "#121212",
     fontSize: 14,
     textAlign: "left",
@@ -507,7 +507,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   text2: {
-    
+
     color: "#121212"
   },
   icon3: {
@@ -532,7 +532,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text3: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -546,7 +546,7 @@ const styles = StyleSheet.create({
     marginRight: -6
   },
   text4: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -587,7 +587,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text5: {
-    
+
     color: "#121212",
     fontSize: 14,
     textAlign: "left",
@@ -610,7 +610,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   text6: {
-    
+
     color: "#121212"
   },
   icon5: {
@@ -635,7 +635,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text7: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -649,7 +649,7 @@ const styles = StyleSheet.create({
     marginRight: -6
   },
   text8: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -690,7 +690,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text9: {
-    
+
     color: "#121212",
     fontSize: 14,
     textAlign: "left",
@@ -713,7 +713,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   text10: {
-    
+
     color: "#121212"
   },
   icon7: {
@@ -738,7 +738,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text11: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -752,7 +752,7 @@ const styles = StyleSheet.create({
     marginRight: -6
   },
   text12: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -793,7 +793,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text13: {
-    
+
     color: "#121212",
     fontSize: 14,
     textAlign: "left",
@@ -816,7 +816,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   text14: {
-    
+
     color: "#121212"
   },
   icon9: {
@@ -841,7 +841,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text15: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -855,7 +855,7 @@ const styles = StyleSheet.create({
     marginRight: -6
   },
   text16: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -896,7 +896,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text17: {
-    
+
     color: "#121212",
     fontSize: 14,
     textAlign: "left",
@@ -919,7 +919,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   text18: {
-    
+
     color: "#121212"
   },
   icon11: {
@@ -944,7 +944,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text19: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -958,7 +958,7 @@ const styles = StyleSheet.create({
     marginRight: -6
   },
   text20: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -999,7 +999,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text21: {
-    
+
     color: "#121212",
     fontSize: 14,
     textAlign: "left",
@@ -1022,7 +1022,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   text22: {
-    
+
     color: "#121212"
   },
   icon13: {
@@ -1047,7 +1047,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text23: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -1061,7 +1061,7 @@ const styles = StyleSheet.create({
     marginRight: -6
   },
   text24: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -1102,7 +1102,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text25: {
-    
+
     color: "#121212",
     fontSize: 14,
     textAlign: "left",
@@ -1125,7 +1125,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   text26: {
-    
+
     color: "#121212"
   },
   icon15: {
@@ -1150,7 +1150,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text27: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -1164,7 +1164,7 @@ const styles = StyleSheet.create({
     marginRight: -6
   },
   text28: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -1205,7 +1205,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text29: {
-    
+
     color: "#121212",
     fontSize: 14,
     textAlign: "left",
@@ -1228,7 +1228,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   text30: {
-    
+
     color: "#121212"
   },
   icon17: {
@@ -1253,7 +1253,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text31: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },
@@ -1267,7 +1267,7 @@ const styles = StyleSheet.create({
     marginRight: -6
   },
   text32: {
-    
+
     color: "#121212",
     alignSelf: "center"
   },

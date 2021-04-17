@@ -11,14 +11,6 @@ import InputScreen2 from "./InputInfoScreen2";
 
 const Stack = createStackNavigator();
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <InputInfoScreen1 />
-    </View>
-  );
-}
-
 function SettingsScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

@@ -5,8 +5,7 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { saveSecureStorage, getSecureStorage } from "./functions/secureStorage";
 import { getDeviceID } from "./functions/deviceUniqueID";
@@ -41,11 +40,11 @@ function TabScreens({ usr, navigation }) {
           if (route.name === "Home") {
             // console.log(route);
             iconName = focused ? "school" : "school";
-            return <Icon name="school" size={size} color={color} />;
+            return <MaterialCommunityIcons name="school" size={size} color={color} />;
           } else if (route.name === "Account") {
             iconName = focused ? "account-outline" : "account-outline";
             return (
-              <MaterialCommunityIconsIcon
+              <MaterialCommunityIcons
                 name={iconName}
                 size={size}
                 color={color}
@@ -53,11 +52,11 @@ function TabScreens({ usr, navigation }) {
             );
           } else if (route.name === "Search") {
             iconName = focused ? "bank" : "bank";
-            return <Icon name={iconName} size={size} color={color} />;
+            return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
           }
           else if (route.name == "Major") {
             iconName = focused ? "book-open-page-variant" : "book-open-page-variant";
-            return <Icon name={iconName} size={size} color={color} />;
+            return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
           }
         },
       })}
@@ -106,7 +105,7 @@ export default class App extends Component {
   signIn = async (inputEmail, inputPassword) => {
     try {
       if (!inputEmail == "" && !inputPassword == "") {
-        
+
         // let uniqueID = 
         // console.log(getDeviceID());
 

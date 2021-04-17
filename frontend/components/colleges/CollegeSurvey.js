@@ -6,7 +6,7 @@ import {
   Text,
   TextInput,
 } from "react-native";
-import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import CollegeSurveyBtn from "../../ui/colleges/CollegeSurveyBtn";
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -531,10 +531,10 @@ export default class CollegeSurvey extends React.Component {
                 What is your SAT score?
         </Text>
               <View style={styles.iconRow}>
-                <MaterialCommunityIconsIcon
+                <MaterialCommunityIcons
                   name="book-open-variant"
                   style={styles.icon}
-                ></MaterialCommunityIconsIcon>
+                ></MaterialCommunityIcons>
                 <TextInput
                   placeholder="If Not Applicable Leave Blank"
                   keyboardAppearance="light"
@@ -548,10 +548,10 @@ export default class CollegeSurvey extends React.Component {
                 What is your ACT score?
         </Text>
               <View style={styles.icon1Row}>
-                <MaterialCommunityIconsIcon
+                <MaterialCommunityIcons
                   name="book-open-variant"
                   style={styles.icon1}
-                ></MaterialCommunityIconsIcon>
+                ></MaterialCommunityIcons>
                 <TextInput
                   placeholder="If Not Applicable Leave Blank"
                   keyboardAppearance="light"

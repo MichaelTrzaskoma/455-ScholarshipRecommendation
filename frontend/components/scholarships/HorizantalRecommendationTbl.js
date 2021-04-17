@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { StyleSheet, View, ScrollView, Text } from "react-native";
-import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import EntypoIcon from "react-native-vector-icons/Entypo";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 function HorizantalRecommendationTbl(props) {
   return (
@@ -14,7 +14,7 @@ function HorizantalRecommendationTbl(props) {
           contentContainerStyle={styles.scrollArea_contentContainerStyle}
         >
           <View style={styles.itemN1Row}>
-            
+
             <View style={styles.itemN1}>
               <View style={styles.gridOutlineStack}>
                 <View style={styles.gridOutline}>
@@ -58,19 +58,19 @@ function HorizantalRecommendationTbl(props) {
                     <View style={styles.bookmarkGrpRow}>
                       <View style={styles.bookmarkGrp}>
                         <View style={styles.iconRow}>
-                          <MaterialCommunityIconsIcon
+                          <MaterialCommunityIcons
                             name="bookmark-plus"
                             style={styles.icon}
-                          ></MaterialCommunityIconsIcon>
+                          ></MaterialCommunityIcons>
                           <Text style={styles.bookmark}>Bookmark</Text>
                         </View>
                       </View>
                       <View style={styles.shareGrp}>
                         <View style={styles.icon2Row}>
-                          <EntypoIcon
+                          <Entypo
                             name="share"
                             style={styles.icon2}
-                          ></EntypoIcon>
+                          ></Entypo>
                           <Text style={styles.share2}>Share</Text>
                         </View>
                       </View>
@@ -80,15 +80,15 @@ function HorizantalRecommendationTbl(props) {
                 <View style={styles.ratingGrp}>
                   <View style={styles.loremIpsumRow}>
                     <Text style={styles.loremIpsum}>3.5</Text>
-                    <FontAwesomeIcon
+                    <FontAwesome
                       name="star"
                       style={styles.ratingIcon}
-                    ></FontAwesomeIcon>
+                    ></FontAwesome>
                   </View>
                 </View>
               </View>
             </View>
-            
+
             <View style={styles.itemN2}>
               <View style={styles.rectStack}>
                 <View style={styles.rect}>
@@ -132,19 +132,19 @@ function HorizantalRecommendationTbl(props) {
                     <View style={styles.rect8Row}>
                       <View style={styles.rect8}>
                         <View style={styles.icon3Row}>
-                          <MaterialCommunityIconsIcon
+                          <MaterialCommunityIcons
                             name="bookmark-plus"
                             style={styles.icon3}
-                          ></MaterialCommunityIconsIcon>
+                          ></MaterialCommunityIcons>
                           <Text style={styles.bookmark2}>Bookmark</Text>
                         </View>
                       </View>
                       <View style={styles.rect9}>
                         <View style={styles.icon4Row}>
-                          <EntypoIcon
+                          <Entypo
                             name="share"
                             style={styles.icon4}
-                          ></EntypoIcon>
+                          ></Entypo>
                           <Text style={styles.share3}>Share</Text>
                         </View>
                       </View>
@@ -154,15 +154,15 @@ function HorizantalRecommendationTbl(props) {
                 <View style={styles.rect10}>
                   <View style={styles.text6Row}>
                     <Text style={styles.text6}>3.5</Text>
-                    <FontAwesomeIcon
+                    <FontAwesome
                       name="star"
                       style={styles.icon5}
-                    ></FontAwesomeIcon>
+                    ></FontAwesome>
                   </View>
                 </View>
               </View>
             </View>
-            
+
             <View style={styles.itemN3}>
               <View style={styles.rect11Stack}>
                 <View style={styles.rect11}>
@@ -206,19 +206,19 @@ function HorizantalRecommendationTbl(props) {
                     <View style={styles.rect18Row}>
                       <View style={styles.rect18}>
                         <View style={styles.icon6Row}>
-                          <MaterialCommunityIconsIcon
+                          <MaterialCommunityIcons
                             name="bookmark-plus"
                             style={styles.icon6}
-                          ></MaterialCommunityIconsIcon>
+                          ></MaterialCommunityIcons>
                           <Text style={styles.bookmark3}>Bookmark</Text>
                         </View>
                       </View>
                       <View style={styles.rect19}>
                         <View style={styles.icon7Row}>
-                          <EntypoIcon
+                          <Entypo
                             name="share"
                             style={styles.icon7}
-                          ></EntypoIcon>
+                          ></Entypo>
                           <Text style={styles.share4}>Share</Text>
                         </View>
                       </View>
@@ -228,10 +228,10 @@ function HorizantalRecommendationTbl(props) {
                 <View style={styles.rect20}>
                   <View style={styles.text12Row}>
                     <Text style={styles.text12}>3.5</Text>
-                    <FontAwesomeIcon
+                    <FontAwesome
                       name="star"
                       style={styles.icon8}
-                    ></FontAwesomeIcon>
+                    ></FontAwesome>
                   </View>
                 </View>
               </View>

@@ -1110,11 +1110,11 @@ export default class InputScreen2 extends React.Component {
   };
 
   onSelectedItemsChange2 = (selectedItems2) => {
-    this.setState({ selectedItems2});
+    this.setState({ selectedItems2 });
   };
 
   onSelectedItemsChange3 = (selectedItems3) => {
-    this.setState({ selectedItems3});
+    this.setState({ selectedItems3 });
   };
 
   onSelectedItemsChange4 = (selectedItems4) => {
@@ -1151,37 +1151,31 @@ export default class InputScreen2 extends React.Component {
 
   handleSAT(text) {
     let textInt = parseInt(text, 10);
-    if(text.length > 2 && textInt >=400 && textInt <= 1600)
-    {
+    if (text.length > 2 && textInt >= 400 && textInt <= 1600) {
       this.setState({
         Sat: text,
       });
       //console.log("SAT: "+this.state.Sat)
     }
-    else if(text.substring(0,1).localeCompare("2") == 0 || text.substring(0,1).localeCompare("3") == 0 || text.substring(0,1).localeCompare("0") == 0)
-    {
+    else if (text.substring(0, 1).localeCompare("2") == 0 || text.substring(0, 1).localeCompare("3") == 0 || text.substring(0, 1).localeCompare("0") == 0) {
       alert("Please enter a valid SAT score");
     }
-    else if (text.length < 3 || text.substring(0,1).localeCompare("1") == 0)
-    {
+    else if (text.length < 3 || text.substring(0, 1).localeCompare("1") == 0) {
       console.log("Waiting for User Input");
     }
-    else
-    {
+    else {
       alert("Please enter a valid SAT score");
     }
   }
 
   handleACT(text) {
     let textInt = parseInt(text, 10);
-    if(textInt >= 1 && textInt <= 36)
-    {
-      this.setState({ 
+    if (textInt >= 1 && textInt <= 36) {
+      this.setState({
         Act: text,
       });
     }
-    else
-    {
+    else {
       alert("Please Enter a Valid ACT Score");
     }
   }
@@ -1193,19 +1187,19 @@ export default class InputScreen2 extends React.Component {
   }
 
   upload2sever = () => {
-    console.log(      JSON.stringify({
-        email: this.state.email,
-        gender: this.state.gender,
-        dob: this.state.dob,
-        zip: this.state.zip,
-        gpa: this.state.gpa,
-        major: this.state.selectedItems,
-        race: this.state.race,
-        ethnicity: this.state.ethnicity,
-        religion: this.state.religion,
-        disabilities: this.state.Disabilities,
-        sat_score: this.state.Sat,
-      }));
+    console.log(JSON.stringify({
+      email: this.state.email,
+      gender: this.state.gender,
+      dob: this.state.dob,
+      zip: this.state.zip,
+      gpa: this.state.gpa,
+      major: this.state.selectedItems,
+      race: this.state.race,
+      ethnicity: this.state.ethnicity,
+      religion: this.state.religion,
+      disabilities: this.state.Disabilities,
+      sat_score: this.state.Sat,
+    }));
 
     // console.log("Email from InputScreen2: " + this.props);
 
@@ -1276,7 +1270,7 @@ export default class InputScreen2 extends React.Component {
             <Text style={styles.txt_major}>Academic Major:</Text>
             <SectionedMultiSelect
               style={{ margin: 30 }}
-              items={items.slice(0,items.length-4)}
+              items={items.slice(0, items.length - 4)}
               IconRenderer={MaterialIcons}
               uniqueKey="name"
               subKey="children"
@@ -1290,47 +1284,47 @@ export default class InputScreen2 extends React.Component {
           <View style={styles.grp2}>
             <Text style={styles.txt_race}>Race:</Text>
             <SectionedMultiSelect
-              style = {{ margin: 30 }}
-              items = {items.slice(items.length-4, items.length-4 + 1)}
-              IconRenderer = {MaterialIcons}
-              uniqueKey = "name"
+              style={{ margin: 30 }}
+              items={items.slice(items.length - 4, items.length - 4 + 1)}
+              IconRenderer={MaterialIcons}
+              uniqueKey="name"
               subKey="children"
-              selectText = "Select all that apply"
-              showDropDowns = {true}
-              readOnlyHeadings = {true}
-              onSelectedItemsChange = {this.onSelectedItemsChange2}
-              selectedItems = {this.state.selectedItems2}
-              />
+              selectText="Select all that apply"
+              showDropDowns={true}
+              readOnlyHeadings={true}
+              onSelectedItemsChange={this.onSelectedItemsChange2}
+              selectedItems={this.state.selectedItems2}
+            />
           </View>
           <View style={styles.grp3}>
             <Text style={styles.txt_religion}>Religion:</Text>
             <SectionedMultiSelect
-              style = {{ margin: 30 }}
-              items = {items.slice(items.length-3, items.length-3 + 1)}
-              IconRenderer = {MaterialIcons}
-              uniqueKey = "name"
-              subKey = "children"
-              selectText = "Select all that apply"
-              showDropDowns = {true}
-              readOnlyHeadings = {true}
-              onSelectedItemsChange = {this.onSelectedItemsChange3}
-              selectedItems = {this.state.selectedItems3}
-              />
+              style={{ margin: 30 }}
+              items={items.slice(items.length - 3, items.length - 3 + 1)}
+              IconRenderer={MaterialIcons}
+              uniqueKey="name"
+              subKey="children"
+              selectText="Select all that apply"
+              showDropDowns={true}
+              readOnlyHeadings={true}
+              onSelectedItemsChange={this.onSelectedItemsChange3}
+              selectedItems={this.state.selectedItems3}
+            />
           </View>
           <View style={styles.grp4}>
             <Text style={styles.txt_disability}>Disabilities:</Text>
             <SectionedMultiSelect
-              style = {{ margin: 30}}
-              items = {items.slice(items.length-2, items.length-2 + 1)}
-              IconRenderer = {MaterialIcons}
-              uniqueKey = "name"
-              subKey = "children"
-              selectText = "Select all that apply"
-              showDropDowns = {true}
-              readOnlyHeadings = {true}
-              onSelectedItemsChange = {this.onSelectedItemsChange4}
-              selectedItems = {this.state.selectedItems4}
-              />
+              style={{ margin: 30 }}
+              items={items.slice(items.length - 2, items.length - 2 + 1)}
+              IconRenderer={MaterialIcons}
+              uniqueKey="name"
+              subKey="children"
+              selectText="Select all that apply"
+              showDropDowns={true}
+              readOnlyHeadings={true}
+              onSelectedItemsChange={this.onSelectedItemsChange4}
+              selectedItems={this.state.selectedItems4}
+            />
           </View>
           <View style={styles.grp5}>
             <Text style={styles.txt_testScore}>Test Scores:</Text>
@@ -1352,16 +1346,16 @@ export default class InputScreen2 extends React.Component {
           <View style={styles.grp6}>
             <Text style={styles.txt_testScore}>Ethnicity:</Text>
             <SectionedMultiSelect
-              style = {{ margin: 30 }}
-              items = {items.slice(items.length-1, items.length)}
-              IconRenderer = {MaterialIcons}
-              uniqueKey = "name"
-              subKey = "children"
-              selectText = "Select all that apply"
-              showDropDowns = {true}
-              readOnlyHeadings = {true}
-              onSelectedItemsChange = {this.onSelectedItemsChange5}
-              selectedItems = {this.state.selectedItems5}
+              style={{ margin: 30 }}
+              items={items.slice(items.length - 1, items.length)}
+              IconRenderer={MaterialIcons}
+              uniqueKey="name"
+              subKey="children"
+              selectText="Select all that apply"
+              showDropDowns={true}
+              readOnlyHeadings={true}
+              onSelectedItemsChange={this.onSelectedItemsChange5}
+              selectedItems={this.state.selectedItems5}
             />
           </View>
           <View style={styles.submit_grp}>

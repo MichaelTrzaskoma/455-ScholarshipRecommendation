@@ -6,7 +6,6 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 // import firebase from "../db/firebaseDB";
 import HomeCategory from "../ui/HomeCategory";
 import HomeRecommend from "../ui/HomeRecommend";
@@ -24,10 +23,10 @@ export default class HomeContainer extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <HomeCategory/>
+        <HomeCategory />
 
         {/* {this.state.isExist ? ( */}
-          <HomeRecommend email={this.state.email}/>
+        <HomeRecommend email={this.state.email} />
         {/* ) : (
           <View></View>
         )} */}
