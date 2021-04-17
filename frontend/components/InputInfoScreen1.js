@@ -8,6 +8,7 @@ import {
 	Platform,
 	Keyboard,
 	TouchableWithoutFeedback,
+	Dimensions,
 } from "react-native";
 // import InputScreen2 from "./InputInfoScreen2";
 
@@ -18,8 +19,9 @@ import { Card } from 'react-native-elements';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { MaterialIcons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import CollapsibleView from "@eliav2/react-native-collapsible-view";
 
-const items = [
+const items1 = [
 	// this is the parent or 'item'
 	{
 		name: 'United States',
@@ -403,63 +405,176 @@ class InputScreen1a extends React.Component {
 			<DismissKeyboard>
 				<KeyboardAwareScrollView
 					style={styles.container}>
-					<Card elevation={7}>
-						{/* <Card.Title>Required Information</Card.Title> */}
-						{/* <Text style={styles.requiredDetails}>Required Details</Text> */}
-						<View style={styles.input1_grp}>
-							<Text style={styles.txt_gender}>Gender</Text>
-							<DropDownPicker
-								items={[
-									{ label: 'Male', value: 'Male' },
-									{ label: 'Female', value: 'Female' },
-									{ label: 'Transgender', value: 'Transgender' },
-									{ label: 'Other', value: 'Other' },
-								]}
-								defaultIndex={0}
-								containerStyle={{ height: 30, marginTop: 8 }}
-								itemStyle={{ justifyContent: 'flex-start' }}
-								//dropDownStyle={{marginTop: 2}}
-								//dropDownStyle={{backgroundColor: '#fafafa', borderBottomLeftRadius: 20, borderBottomRightRadius: 20}}
-								onChangeItem={item => this.handleGender(item.value)}
+					<View style={styles.collapsibleContainer}>
+						<Card elevation={7}>
+							{/* <Card.Title>Required Information</Card.Title> */}
+							{/* <Text style={styles.requiredDetails}>Required Details</Text> */}
+							<Text style={styles.re_text}>Required Quesetions</Text>
+							<View style={styles.input1_grp}>
+								<Text style={styles.txt_gender}>Gender</Text>
+								<DropDownPicker
+									items={[
+										{ label: 'Male', value: 'Male' },
+										{ label: 'Female', value: 'Female' },
+										{ label: 'Transgender', value: 'Transgender' },
+										{ label: 'Other', value: 'Other' },
+									]}
+									defaultIndex={0}
+									containerStyle={{ height: 30, marginTop: 8 }}
+									itemStyle={{ justifyContent: 'flex-start' }}
+									//dropDownStyle={{marginTop: 2}}
+									//dropDownStyle={{backgroundColor: '#fafafa', borderBottomLeftRadius: 20, borderBottomRightRadius: 20}}
+									onChangeItem={item => this.handleGender(item.value)}
+								/>
+							</View>
+							<View style={styles.input2_grp}>
+								<Text style={styles.txt_dob}>Age</Text>
+								<TextInput
+									onChangeText={this.handleDOB}
+									placeholder="16"
+									keyboardType="numeric"
+									maxLength={2}
+									style={styles.input2}
+								></TextInput>
+							</View>
+							<View style={styles.input3_grp}>
+								<Text style={styles.txt_zip}>State of Residence and/or Schooling</Text>
+								<SectionedMultiSelect
+									items={items1}
+									IconRenderer={MaterialIcons}
+									uniqueKey="id"
+									subKey="children"
+									selectText="Choose State(s) If Applicable"
+									style={{ margin: 20 }}
+									showDropDowns={true}
+									readOnlyHeadings={true}
+									onSelectedItemsChange={this.onSelectedItemsChange}
+									selectedItems={this.state.selectedItems}
+								/>
+							</View>
+							<View style={styles.input4_grp}>
+								<Text style={styles.txt_gpa}>GPA</Text>
+								<TextInput
+									onChangeText={this.handleGPA}
+									placeholder="4.0"
+									keyboardType="numeric"
+									autoFocus={true}
+									style={styles.input4}
+									maxLength={4}
+								></TextInput>
+							</View>
+						</Card>
 
-							/>
-						</View>
-						<View style={styles.input2_grp}>
-							<Text style={styles.txt_dob}>Age</Text>
-							<TextInput
-								onChangeText={this.handleDOB}
-								placeholder="16"
-								keyboardType="numeric"
-								maxLength={2}
-								style={styles.input2}
-							></TextInput>
-						</View>
-						<View style={styles.input3_grp}>
-							<Text style={styles.txt_zip}>State of Residence and/or Schooling</Text>
-							<SectionedMultiSelect
-								items={items}
-								IconRenderer={MaterialIcons}
-								uniqueKey="id"
-								subKey="children"
-								selectText="Choose State(s) If Applicable"
-								style={{ margin: 20 }}
-								showDropDowns={true}
-								readOnlyHeadings={true}
-								onSelectedItemsChange={this.onSelectedItemsChange}
-								selectedItems={this.state.selectedItems}
-							/>
-						</View>
-						<View style={styles.input4_grp}>
-							<Text style={styles.txt_gpa}>GPA</Text>
-							<TextInput
-								onChangeText={this.handleGPA}
-								placeholder="4.0"
-								keyboardType="numeric"
-								autoFocus={true}
-								style={styles.input4}
-								maxLength={4}
-							></TextInput>
-						</View>
+						<CollapsibleView
+							title="Optional Questions"
+							style={styles.col_view}
+						>
+							<Card
+								containerStyle={styles.card}
+							>
+								{/* <View style={styles.containerGrp1}>
+            		 <View style={styles.containerBkground1}> */}
+								{/* <Text style={styles.optionalDetails}>Optional Details</Text> */}
+
+								<View style={styles.grp1}>
+									<Text style={styles.txt_major}>Academic Major:</Text>
+									<SectionedMultiSelect
+										style={{ margin: 30 }}
+										items={items1.slice(0, items1.length - 4)}
+										IconRenderer={MaterialIcons}
+										uniqueKey="name"
+										subKey="children"
+										selectText="Choose your major"
+										showDropDowns={true}
+										readOnlyHeadings={true}
+										onSelectedItemsChange={this.onSelectedItemsChange}
+										selectedItems={this.state.selectedItems}
+									/>
+								</View>
+								<View style={styles.grp2}>
+									<Text style={styles.txt_race}>Race:</Text>
+									<SectionedMultiSelect
+										style={{ margin: 30 }}
+										items={items1.slice(items1.length - 4, items1.length - 4 + 1)}
+										IconRenderer={MaterialIcons}
+										uniqueKey="name"
+										subKey="children"
+										selectText="Select all that apply"
+										showDropDowns={true}
+										readOnlyHeadings={true}
+										onSelectedItemsChange={this.onSelectedItemsChange2}
+										selectedItems={this.state.selectedItems2}
+									/>
+								</View>
+								<View style={styles.grp3}>
+									<Text style={styles.txt_religion}>Religion:</Text>
+									<SectionedMultiSelect
+										style={{ margin: 30 }}
+										items={items1.slice(items1.length - 3, items1.length - 3 + 1)}
+										IconRenderer={MaterialIcons}
+										uniqueKey="name"
+										subKey="children"
+										selectText="Select all that apply"
+										showDropDowns={true}
+										readOnlyHeadings={true}
+										onSelectedItemsChange={this.onSelectedItemsChange3}
+										selectedItems={this.state.selectedItems3}
+									/>
+								</View>
+								<View style={styles.grp4}>
+									<Text style={styles.txt_disability}>Disabilities:</Text>
+									<SectionedMultiSelect
+										style={{ margin: 30 }}
+										items={items1.slice(items1.length - 2, items1.length - 2 + 1)}
+										IconRenderer={MaterialIcons}
+										uniqueKey="name"
+										subKey="children"
+										selectText="Select all that apply"
+										showDropDowns={true}
+										readOnlyHeadings={true}
+										onSelectedItemsChange={this.onSelectedItemsChange4}
+										selectedItems={this.state.selectedItems4}
+									/>
+								</View>
+								<View style={styles.grp5}>
+									<Text style={styles.txt_testScore}>Test Scores:</Text>
+									<TextInput
+										onChangeText={this.handleSAT}
+										placeholder="SAT"
+										keyboardType="numeric"
+										style={styles.input6}
+										maxLength={4}
+									></TextInput>
+									<TextInput
+										onChangeText={this.handleACT}
+										placeholder="ACT"
+										keyboardType="numeric"
+										style={styles.input61}
+										maxLength={2}
+									></TextInput>
+								</View>
+								<View style={styles.grp6}>
+									<Text style={styles.txt_testScore}>Ethnicity:</Text>
+									<SectionedMultiSelect
+										style={{ margin: 30 }}
+										items={items1.slice(items1.length - 1, items1.length)}
+										IconRenderer={MaterialIcons}
+										uniqueKey="name"
+										subKey="children"
+										selectText="Select all that apply"
+										showDropDowns={true}
+										readOnlyHeadings={true}
+										onSelectedItemsChange={this.onSelectedItemsChange5}
+										selectedItems={this.state.selectedItems5}
+									/>
+								</View>
+
+								{/* </View>
+       						   </View> */}
+								{/* </KeyboardAwareScrollView> */}
+							</Card>
+						</CollapsibleView>
+
 						<View style={styles.submit_grp}>
 							<TouchableOpacity
 								onPress={() =>
@@ -467,10 +582,20 @@ class InputScreen1a extends React.Component {
 								}
 								style={styles.btn_submit}
 							>
-								<Text style={styles.next}>Next</Text>
+								<Text style={styles.next}>Submit</Text>
 							</TouchableOpacity>
 						</View>
-					</Card>
+
+						{/* <View style={styles.op_submit_grp}>
+							<TouchableOpacity
+								onPress={() => this.upload2sever()}
+								style={styles.txt_submit}
+							>
+								<Text style={styles.op_btn_submit}>Submit</Text>
+							</TouchableOpacity>
+						</View> */}
+
+					</View>
 				</KeyboardAwareScrollView>
 			</DismissKeyboard>
 		);
@@ -482,6 +607,30 @@ class InputScreen1a extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		justifyContent: 'center',
+		height: "100%",
+	},
+	col_view: {
+		flex: 1,
+		width: '92.4%',
+		borderWidth: 2,
+		marginLeft: 14.7,
+		justifyContent: 'center',
+		borderColor: '#e4ebef',
+	},
+	collapsibleContainer: {
+		flex: 1,
+		width: "100%",
+		backgroundColor: "white",
+		justifyContent: 'center',
+	},
+	card: {
+		borderWidth: 0, // Remove Border
+		shadowColor: 'rgba(0,0,0, 0.0)', // Remove Shadow IOS
+		shadowOffset: { height: 0, width: 0 },
+		shadowOpacity: 0,
+		shadowRadius: 0,
+		elevation: 0 // This is for Android
 	},
 	requiredDetails: {
 		fontWeight: "bold",
@@ -500,6 +649,13 @@ const styles = StyleSheet.create({
 		// position: 'relative',
 		// marginTop: 37,
 		// marginLeft: 10,
+	},
+	re_text: {
+		fontSize: 18,
+		textAlign: 'center',
+		paddingTop: 5,
+		paddingBottom: 10,
+		color: '#3385ff',
 	},
 	txt_gender: {
 		fontWeight: "bold",
@@ -581,12 +737,191 @@ const styles = StyleSheet.create({
 		// zIndex: -1,
 	},
 	btn_submit: {
-		width: "100%",
+		width: "85%",
 		height: 40,
 		backgroundColor: "#4a76ff",
 		alignSelf: "center",
 	},
 	next: {
+		color: "rgba(255,255,255,1)",
+		fontSize: 16,
+		marginTop: 10,
+		alignSelf: "center",
+	},
+
+	AwardView: {
+		flex: 1,
+		minHeight: Dimensions.get("window").height - 220,
+	},
+	container: {
+		flex: 1,
+	},
+	containerGrp1: {
+		backgroundColor: "rgba(230, 230, 230,1)",
+		flex: 1,
+	},
+	containerBkground1: {
+		height: 685,
+		backgroundColor: "rgba(255,255,255,1)",
+		marginTop: 20,
+	},
+	optionalDetails: {
+		fontWeight: "bold",
+		color: "#121212",
+		fontSize: 20,
+		marginTop: 25,
+		marginLeft: 20,
+	},
+	grp1: {
+		width: "100%",
+		height: "auto",
+		// marginTop: 22,
+		// marginLeft: 10,
+	},
+	txt_major: {
+		fontWeight: "bold",
+		color: "#121212",
+		fontSize: 15,
+		marginLeft: 9,
+	},
+	input1: {
+		color: "#121212",
+		height: 30,
+		width: "95%",
+		marginTop: 2,
+		marginLeft: 9,
+	},
+	grp2: {
+		width: "100%",
+		height: "auto",
+		// marginTop: 85,
+		// marginLeft: 10,
+	},
+	txt_race: {
+		fontWeight: "bold",
+		color: "#121212",
+		fontSize: 15,
+		marginLeft: 9,
+	},
+	input2: {
+		color: "#121212",
+		height: 30,
+		width: "93%",
+		marginTop: 2,
+		marginLeft: 9,
+	},
+	grp3: {
+		width: "100%",
+		height: "auto",
+		marginTop: 20,
+		// marginLeft: 10,
+	},
+	txt_religion: {
+		fontWeight: "bold",
+		color: "#121212",
+		fontSize: 15,
+		marginLeft: 9,
+	},
+	input3: {
+		color: "#121212",
+		height: 30,
+		width: "93%",
+		marginTop: 2,
+		marginLeft: 9,
+	},
+	grp4: {
+		width: "100%",
+		height: "auto",
+		marginTop: 20,
+		// marginLeft: 10,
+	},
+	txt_disability: {
+		fontWeight: "bold",
+		color: "#121212",
+		fontSize: 15,
+		marginLeft: 9,
+	},
+	input5: {
+		color: "#121212",
+		height: 30,
+		width: "93%",
+		marginTop: 2,
+		marginLeft: 9,
+	},
+	grp5: {
+		width: "100%",
+		height: 50,
+		marginTop: 20,
+		// marginLeft: 10,
+	},
+	grp6: {
+		width: "100%",
+		height: "auto",
+		marginTop: 40,
+		// marginLeft: 10,
+	},
+	txt_testScore: {
+		fontWeight: "bold",
+		color: "#121212",
+		fontSize: 15,
+		marginLeft: 9,
+	},
+	input6: {
+		color: "#121212",
+		height: 30,
+		width: "93%",
+		marginTop: 2,
+		marginLeft: 9,
+	},
+	input61: {
+		color: "#121212",
+		height: 30,
+		width: "93%",
+		marginTop: 2,
+		marginLeft: 9,
+		marginBottom: 10,
+	},
+	input7: {
+		color: "#121212",
+		height: 30,
+		width: "95%",
+		marginTop: 5,
+		marginLeft: 9,
+	},
+	input8: {
+		color: "#121212",
+		height: 30,
+		width: "93%",
+		marginTop: 2,
+		marginLeft: 9,
+	},
+	input9: {
+		color: "#121212",
+		height: 30,
+		width: "93%",
+		marginTop: 5,
+		marginLeft: 9,
+	},
+	input10: {
+		color: "#121212",
+		height: 30,
+		width: "93%",
+		marginTop: 5,
+		marginLeft: 9,
+	},
+	op_submit_grp: {
+		width: "100%",
+		height: 40,
+		marginTop: 16,
+		// marginLeft: 15,
+	},
+	txt_submit: {
+		width: "100%",
+		height: 40,
+		backgroundColor: "#4a76ff",
+		alignSelf: "center",
+	},
+	op_btn_submit: {
 		color: "rgba(255,255,255,1)",
 		fontSize: 16,
 		marginTop: 10,
