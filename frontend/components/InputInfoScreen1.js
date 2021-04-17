@@ -2372,19 +2372,12 @@ class InputScreen1a extends React.Component {
 			dob: "",
 			// zip: "",
 			gpa: "",
-			major: "",
-			race: "",
-			religion: "",
-			Disabilities: "",
-			Sat: "",
-			Act: "",
-			ethnicity: "",
-			selectedResidences: [], //Region
-			selectedMajors: [], //Major
-			selectedRaces: [], //Race
-			selectedReligions: [], //Religion
-			selectedDisabilities: [], //Disabilities
-			selectedEthnicities: [], // Ethnicity
+			selectedItems: [], //Region
+			selectedItems1: [], //Major
+			selectedItems2: [], //Race
+			selectedItems3: [], //Religion
+			selectedItems4: [], //Disabilities
+			selectedItems5: [], // Ethnicity
 		};
 		this.handleGender = this.handleGender.bind(this);
 		this.handleDOB = this.handleDOB.bind(this);
@@ -2451,82 +2444,25 @@ class InputScreen1a extends React.Component {
 	}
 	*/
 
-	onSelectedResidencesChange = (selectedResidences) => {
-		this.setState({ selectedResidences });
+	onSelectedItemsChange1 = (selectedItems1) => {
+		this.setState({ selectedItems1 });
 	};
 
-	onSelectedMajorsChange = (selectedMajors) => {
-		this.setState({ selectedMajors });
+	onSelectedItemsChange2 = (selectedItems2) => {
+		this.setState({ selectedItems2 });
 	};
 
-	onSelectedRacesChange = (selectedRaces) => {
-		this.setState({ selectedRaces });
+	onSelectedItemsChange3 = (selectedItems3) => {
+		this.setState({ selectedItems3 });
 	};
 
-	onSelectedReligionChange = (selectedReligions) => {
-		this.setState({ selectedReligions });
+	onSelectedItemsChange4 = (selectedItems4) => {
+		this.setState({ selectedItems4 });
 	};
 
-	onSelectedDisabilitiesChange = (selectedDisabilities) => {
-		this.setState({ selectedDisabilities });
+	onSelectedItemsChange5 = (selectedItems5) => {
+		this.setState({ selectedItems5 });
 	};
-
-	onSelectedEthnicitiesChange = (selectedEthnicities) => {
-		this.setState({ selectedEthnicities });
-	};
-
-
-	handleGender(text) {
-		this.setState({
-			gender: text,
-		});
-	}
-
-	handleDOB(text) {
-		//let textStr = String(text);
-		let invalidVal1 = "0";
-		let invalidVal2 = "00";
-		if (text.localeCompare(invalidVal1) != 0 && text.localeCompare(invalidVal2) != 0) {
-			this.setState({
-				dob: text,
-			});
-		}
-		else {
-			alert("Please enter a valid age");
-		}
-	}
-
-	// handleZip(text) {
-	// 	//Error Checking for User Zip Code input
-	// 	//Lowest US Zip code is 00501, Highest US Zip Code is 99950
-	// 	let zipInt = parseInt(text, 10);
-	// 	//console.log(zipInt);
-	// 	if ((zipInt >= 501) && (zipInt <= 99950) && (text.length > 4)) {
-	// 		this.setState({
-	// 			zip: text,
-	// 		});
-	// 		//console.log("ZipInt: "+zipInt +" Current Length: "+text.length+ " current state: " + this.state.zip);
-	// 	}
-	// 	else if (text.length < 5) {
-	// 		console.log("waiting for user input" + " " + text.length);
-	// 	}
-	// 	else {
-	// 		alert("Please enter a valid zip code")
-	// 	}
-	// 	//console.log(this.state.zip);
-	// }
-
-	handleGPA(text) {
-		let gpaFloat = parseFloat(text);
-		if (gpaFloat >= 0.0 && gpaFloat <= 4.0) {
-			this.setState({
-				gpa: text,
-			});
-		}
-		else {
-			alert("Please enter a valid GPA");
-		}
-	}
 
 	handleAcamajor(text) {
 		this.setState({
@@ -2683,6 +2619,151 @@ class InputScreen1a extends React.Component {
 		}
 	}
 
+	onSelectedResidencesChange = (selectedResidences) => {
+		this.setState({ selectedResidences });
+	};
+
+	onSelectedMajorsChange = (selectedMajors) => {
+		this.setState({ selectedMajors });
+	};
+
+	onSelectedRacesChange = (selectedRaces) => {
+		this.setState({ selectedRaces });
+	};
+
+	onSelectedReligionChange = (selectedReligions) => {
+		this.setState({ selectedReligions });
+	};
+
+	onSelectedDisabilitiesChange = (selectedDisabilities) => {
+		this.setState({ selectedDisabilities });
+	};
+
+	onSelectedEthnicitiesChange = (selectedEthnicities) => {
+		this.setState({ selectedEthnicities });
+	};
+
+	handleGender(text) {
+		this.setState({
+			gender: text,
+		});
+	}
+
+	handleDOB(text) {
+		//let textStr = String(text);
+		let invalidVal1 = "0";
+		let invalidVal2 = "00";
+		if (text.localeCompare(invalidVal1) != 0 && text.localeCompare(invalidVal2) != 0) {
+			this.setState({
+				dob: text,
+			});
+		}
+		else {
+			alert("Please enter a valid age");
+		}
+	}
+
+	// handleZip(text) {
+	// 	//Error Checking for User Zip Code input
+	// 	//Lowest US Zip code is 00501, Highest US Zip Code is 99950
+	// 	let zipInt = parseInt(text, 10);
+	// 	//console.log(zipInt);
+	// 	if ((zipInt >= 501) && (zipInt <= 99950) && (text.length > 4)) {
+	// 		this.setState({
+	// 			zip: text,
+	// 		});
+	// 		//console.log("ZipInt: "+zipInt +" Current Length: "+text.length+ " current state: " + this.state.zip);
+	// 	}
+	// 	else if (text.length < 5) {
+	// 		console.log("waiting for user input" + " " + text.length);
+	// 	}
+	// 	else {
+	// 		alert("Please enter a valid zip code")
+	// 	}
+	// 	//console.log(this.state.zip);
+	// }
+
+	handleGPA(text) {
+		let gpaFloat = parseFloat(text);
+		if (gpaFloat >= 0.0 && gpaFloat <= 4.0) {
+			this.setState({
+				gpa: text,
+			});
+		}
+		else {
+			alert("Please enter a valid GPA");
+		}
+	}
+
+
+	handleAcamajor(text) {
+		this.setState({
+			major: text,
+		});
+	}
+
+	handleRace(text) {
+		this.setState({
+			race: text,
+		});
+	}
+
+	handleReligion(text) {
+		this.setState({
+			religion: text,
+		});
+	}
+
+	handleDisability(text) {
+		this.setState({
+			Disabilities: text,
+		});
+	}
+
+	handleSAT(text) {
+		let textInt = parseInt(text, 10);
+		if (text.length > 2 && textInt >= 400 && textInt <= 1600) {
+			this.setState({
+				Sat: text,
+			});
+			//console.log("SAT: "+this.state.Sat)
+		}
+		else if (text.substring(0, 1).localeCompare("2") == 0 || text.substring(0, 1).localeCompare("3") == 0 || text.substring(0, 1).localeCompare("0") == 0) {
+			alert("Please enter a valid SAT score");
+		}
+		else if (text.length < 3 || text.substring(0, 1).localeCompare("1") == 0) {
+			console.log("Waiting for User Input");
+		}
+		else {
+			alert("Please enter a valid SAT score");
+		}
+	}
+
+	handleGPA(text) {
+		if (text.toString().length > 0) {
+			let gpaFloat = parseFloat(text);
+			if (gpaFloat >= 0.0 && gpaFloat <= 5.0) {
+				this.setState({
+					gpa: text,
+				});
+			}
+			else {
+				alert("Please enter a valid GPA");
+			}
+		}
+	}
+
+	handleethnicity(text) {
+		this.setState({
+			ethnicity: text,
+		});
+	}
+
+	upload2sever = () => {
+
+	}
+
+
 	render() {
 		// console.log("DOB is: " + this.state.dob);
 		return (
@@ -2762,6 +2843,7 @@ class InputScreen1a extends React.Component {
 					<CollapsibleView
 						title={<Text style={styles.collapsibleTitle}>Optional Questions</Text>}
 						style={styles.col_view}
+						titleStyle={styles.collapsibleTitle}
 					>
 						<View style={styles.collapsibleContentGrp}>
 
@@ -2776,8 +2858,8 @@ class InputScreen1a extends React.Component {
 									selectText="Choose your major"
 									showDropDowns={true}
 									readOnlyHeadings={true}
-									onSelectedItemsChange={this.onSelectedMajorsChange}
-									selectedItems={this.state.selectedMajors}
+									onSelectedItemsChange={this.onSelectedItemsChange1}
+									selectedItems={this.state.selectedItems1}
 								/>
 							</View>
 
@@ -2948,18 +3030,16 @@ const styles = StyleSheet.create({
 		borderColor: 'white',
 		backgroundColor: "white",
 		justifyContent: 'center',
-
-		// override the offical library style
-		marginRight: "auto",
 		marginLeft: 15,
-		marginTop: 10,
-		marginBottom: 10,
-		// marginLeft: 10,
 	},
 	collapsibleTitle: {
 		fontWeight: "bold",
 		fontSize: 20,
 		color: '#3385ff',
+		marginRight: "auto",
+		marginTop: 10,
+		marginBottom: 10,
+		marginLeft: 10,
 	},
 	collapsibleContentGrp: {
 		marginTop: 10,
