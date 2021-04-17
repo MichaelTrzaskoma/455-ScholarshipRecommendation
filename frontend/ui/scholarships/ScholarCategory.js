@@ -6,9 +6,7 @@ import {
     ScrollView,
     TouchableOpacity,
 } from 'react-native';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import FeatherIcon from 'react-native-vector-icons/Feather';
+import { FontAwesome, MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 
 export default function ScholarCategory() {
@@ -32,9 +30,9 @@ export default function ScholarCategory() {
                                     });
                                 }}
                                 style={styles.amGrp}>
-                                <FontAwesomeIcon
+                                <FontAwesome
                                     name="university"
-                                    style={styles.gridItemIcon}></FontAwesomeIcon>
+                                    style={styles.gridItemIcon}></FontAwesome>
                                 <View style={styles.gridItemIconFiller}></View>
                                 <Text style={styles.gridItemTxt_2lines}>
                                     Academic{'\n'}Major
@@ -48,9 +46,9 @@ export default function ScholarCategory() {
                                     });
                                 }}
                                 style={styles.gridItemBtn}>
-                                <MaterialCommunityIconsIcon
+                                <MaterialCommunityIcons
                                     name="google-spreadsheet"
-                                    style={styles.gpa_icon}></MaterialCommunityIconsIcon>
+                                    style={styles.gpa_icon}></MaterialCommunityIcons>
                                 <View style={styles.gridItemIconFiller}></View>
                                 <Text style={styles.gridItemTxt_1line}>GPA</Text>
                             </TouchableOpacity>
@@ -62,9 +60,10 @@ export default function ScholarCategory() {
                                     });
                                 }}
                                 style={styles.gridItemBtn}>
-                                <FeatherIcon
+                                <Feather
                                     name="target"
-                                    style={styles.gridItemIcon}></FeatherIcon>
+                                    style={styles.gridItemIcon} />
+
                                 <View style={styles.gridItemIconFiller}></View>
                                 <Text style={styles.gridItemTxt_1line}>Age</Text>
                             </TouchableOpacity>
@@ -76,9 +75,9 @@ export default function ScholarCategory() {
                                     });
                                 }}
                                 style={styles.gridItemBtn}>
-                                <MaterialCommunityIconsIcon
+                                <MaterialCommunityIcons
                                     name="city-variant-outline"
-                                    style={styles.gridItemIcon}></MaterialCommunityIconsIcon>
+                                    style={styles.gridItemIcon}></MaterialCommunityIcons>
                                 <View style={styles.gridItemIconFiller}></View>
                                 <Text style={styles.gridItemTxt_1line}>State</Text>
                             </TouchableOpacity>
@@ -90,9 +89,9 @@ export default function ScholarCategory() {
                                     });
                                 }}
                                 style={styles.gridItemBtn}>
-                                <FontAwesomeIcon
+                                <FontAwesome
                                     name="calendar"
-                                    style={styles.gridItemIcon}></FontAwesomeIcon>
+                                    style={styles.gridItemIcon}></FontAwesome>
                                 <View style={styles.gridItemIconFiller}></View>
                                 <Text style={styles.gridItemTxt_1line}>Deadline</Text>
                             </TouchableOpacity>
@@ -103,9 +102,9 @@ export default function ScholarCategory() {
                                     });
                                 }}
                                 style={styles.gridItemBtn}>
-                                <FontAwesomeIcon
+                                <FontAwesome
                                     name="arrow-circle-right"
-                                    style={styles.gridItemIcon}></FontAwesomeIcon>
+                                    style={styles.gridItemIcon}></FontAwesome>
                                 <View style={styles.gridItemIconFiller}></View>
                                 <Text style={styles.gridItemTxt_1line}>View All</Text>
                             </TouchableOpacity>

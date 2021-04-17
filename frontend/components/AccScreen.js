@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaterialIconsIcon from 'react-native-vector-icons/MaterialIcons';
-import EntypoIcon from 'react-native-vector-icons/Entypo';
-import IoniconsIcon from 'react-native-vector-icons/Ionicons';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { MaterialCommunityIcons, Entypo, Ionicons, FontAwesome } from '@expo/vector-icons';
 import TabViewSurvey from './TabViewSurvey';
 
 // import AddProfile from "../ui/MultiSurvey";
 // import AddCollege from "../ui/AddCollege";
 import MultiSurveyBtn from "../ui/MultiSurveyBtn";
 
-export default function AccScreen2({ usrInfo }) {
+export default function AccScreen({ usrInfo }) {
 
 	// console.log(usrInfo)
 	// const user_info = usrInfoObj;
@@ -20,9 +16,9 @@ export default function AccScreen2({ usrInfo }) {
 			<View style={styles.content_container}>
 				<View style={styles.usrInfoContainer}>
 					<View style={styles.usrIconRow}>
-						<MaterialCommunityIconsIcon
+						<MaterialCommunityIcons
 							name="account-outline"
-							style={styles.usrIcon}></MaterialCommunityIconsIcon>
+							style={styles.usrIcon}></MaterialCommunityIcons>
 						<View style={styles.nameTxtColumn}>
 							<Text style={styles.nameTxt}>Name:</Text>
 							<Text style={styles.emailTxt}>Email:</Text>
@@ -43,43 +39,43 @@ export default function AccScreen2({ usrInfo }) {
 
 					{/* <TouchableOpacity style={styles.addMajorQuizBtn}>
 						<View style={styles.addMajorQuizIconRow}>
-							<MaterialIconsIcon
+							<MaterialIcons
 								name="playlist-add"
-								style={styles.addMajorQuizIcon}></MaterialIconsIcon>
+								style={styles.addMajorQuizIcon}></MaterialIcons>
 							<Text style={styles.addMajorQuizTxt}>Add Major Quiz</Text>
 						</View>
 						<View style={styles.addMajorQuizIconRowFiller}></View>
-						<EntypoIcon
+						<Entypo
 							name="chevron-small-right"
-							style={styles.rightArrowIcon3}></EntypoIcon>
+							style={styles.rightArrowIcon3}></Entypo>
 					</TouchableOpacity> */}
 
 					{/* This is displayed as "Take Survey" btn which will navigate to TabViewSurvey component */}
-					<MultiSurveyBtn/>
+					<MultiSurveyBtn />
 
 					<TouchableOpacity style={styles.bookmarksBtn}>
 						<View style={styles.bookmarksIconRow}>
-							<IoniconsIcon
+							<Ionicons
 								name="md-bookmarks"
-								style={styles.bookmarksIcon}></IoniconsIcon>
+								style={styles.bookmarksIcon}></Ionicons>
 							<Text style={styles.bookmarksTxt}>Bookmarks</Text>
 						</View>
 						<View style={styles.bookmarksIconRowFiller}></View>
-						<EntypoIcon
+						<Entypo
 							name="chevron-small-right"
-							style={styles.rightArrowIcon4}></EntypoIcon>
+							style={styles.rightArrowIcon4}></Entypo>
 					</TouchableOpacity>
 					<TouchableOpacity style={styles.signoutBtn}>
 						<View style={styles.signOutIconRow}>
-							<FontAwesomeIcon
+							<FontAwesome
 								name="sign-out"
-								style={styles.signOutIcon}></FontAwesomeIcon>
+								style={styles.signOutIcon}></FontAwesome>
 							<Text style={styles.signoutTxt}>Sign Out</Text>
 						</View>
 						<View style={styles.signOutIconRowFiller}></View>
-						<EntypoIcon
+						<Entypo
 							name="chevron-small-right"
-							style={styles.rightArrowIcon5}></EntypoIcon>
+							style={styles.rightArrowIcon5}></Entypo>
 					</TouchableOpacity>
 				</View>
 			</View>

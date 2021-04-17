@@ -5,16 +5,8 @@ import {
     Text,
     TouchableOpacity,
 } from 'react-native';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
-//import ViewScholarDetail from "../components/ViewScholarDetail";
-
-// export default function ScholarCategory(props) {
-//     const navigation = useNavigation();
-
-//     // {... props} is to pass down the previous props to Category class
-//     return <Category {...props} navigation={navigation} />;
-// }
 
 export default function ScholarRecommend(props) {
     const navigation = useNavigation();
@@ -25,11 +17,11 @@ class ScholarRecommender extends Component {
 
     constructor(props) {
         super(props);
-    
+
         this.state = {
-          email: this.props.email,
+            email: this.props.email,
         };
-      }
+    }
 
     render() {
         const { navigation } = this.props;
@@ -39,9 +31,9 @@ class ScholarRecommender extends Component {
                     <Text style={styles.recommendTxt}>Recommend</Text>
                     <View style={styles.recommendContainer}>
                         <TouchableOpacity style={styles.recommendBtn} onPress={() => navigation.navigate("ViewScholarDetail", { title: "Scholarship Detail", })}>
-                            <FontAwesomeIcon
+                            <FontAwesome
                                 name="arrow-circle-right"
-                                style={styles.gridItemIcon}></FontAwesomeIcon>
+                                style={styles.gridItemIcon}></FontAwesome>
                             <View style={styles.gridItemIconFiller}></View>
                             <Text style={styles.gridItemTxt_1line}>Custom View</Text>
                         </TouchableOpacity>

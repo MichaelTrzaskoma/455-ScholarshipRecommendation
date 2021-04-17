@@ -59,7 +59,7 @@ export default class ViewRecommendTbl extends React.Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getAPIINFO();
   }
 
@@ -98,7 +98,7 @@ export default class ViewRecommendTbl extends React.Component {
           scholarArr.push({
             key: res.ID,
             amount: res.Amount,
-            deadline: deadline ,
+            deadline: deadline,
           });
         });
 

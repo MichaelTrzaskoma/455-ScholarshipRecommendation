@@ -11,7 +11,7 @@ import { FlatList } from "react-native-gesture-handler";
 export default class ViewScholarTbl extends React.Component {
   constructor(props) {
     super(props);
-      // this.props.route.params.itemKey
+    // this.props.route.params.itemKey
 
     this.state = {
       isLoading: true,
@@ -76,34 +76,34 @@ export default class ViewScholarTbl extends React.Component {
         'Content-Type': 'application/json',
       },
     })
-    .then((response) => response.json())
-    .then((json) => {
-      json.forEach((res) => {
-        let deadline = "";
+      .then((response) => response.json())
+      .then((json) => {
+        json.forEach((res) => {
+          let deadline = "";
 
-        if (res.deadline == "Deadline Varies"){
-          deadline = "Varies";
-        } else {
-          const fields = res.deadline.split(" ");
-          const sub_field = fields[1].split(",");
-          deadline = this.parseMonth(fields[0]) + "/" + sub_field[0] + "/" + fields[2];
-        }
+          if (res.deadline == "Deadline Varies") {
+            deadline = "Varies";
+          } else {
+            const fields = res.deadline.split(" ");
+            const sub_field = fields[1].split(",");
+            deadline = this.parseMonth(fields[0]) + "/" + sub_field[0] + "/" + fields[2];
+          }
 
-        scholarArr.push({
-          key: res.name,
-          amount: res.amount,
-          deadline: deadline,
-          name: res.name,
+          scholarArr.push({
+            key: res.name,
+            amount: res.amount,
+            deadline: deadline,
+            name: res.name,
+          });
+
+        });
+
+        this.setState({
+          scholarArr,
+          isLoading: false,
         });
 
       });
-
-      this.setState({
-        scholarArr,
-        isLoading: false,
-      });
-
-    });
 
     // console.log(this.state.scholarArr);
 

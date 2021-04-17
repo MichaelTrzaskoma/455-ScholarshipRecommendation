@@ -6,8 +6,7 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import CollegeCategory from "../../ui/colleges/CollegeCategory";
 import CollegeRecommend from "../../ui/colleges/CollegeRecommend";
 
@@ -39,51 +38,51 @@ function CollegeScreen(props) {
                 >
                   <View style={styles.rvBtn1Row}>
                     <TouchableOpacity style={styles.rvBtn1}>
-                      <MaterialCommunityIconsIcon
+                      <MaterialCommunityIcons
                         name="table-of-contents"
                         style={styles.rvIcon1}
-                      ></MaterialCommunityIconsIcon>
+                      ></MaterialCommunityIcons>
                       <View style={styles.rvIcon1Filler}></View>
                       <Text style={styles.rvTxt1}>Place{"\n"}Holder 1</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.rvBtn2}>
-                      <MaterialCommunityIconsIcon
+                      <MaterialCommunityIcons
                         name="table-of-contents"
                         style={styles.rvIcon2}
-                      ></MaterialCommunityIconsIcon>
+                      ></MaterialCommunityIcons>
                       <View style={styles.rvIcon2Filler}></View>
                       <Text style={styles.rvTxt2}>Place{"\n"}Holder 2</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.rvBtn3}>
-                      <MaterialCommunityIconsIcon
+                      <MaterialCommunityIcons
                         name="table-of-contents"
                         style={styles.rvIcon3}
-                      ></MaterialCommunityIconsIcon>
+                      ></MaterialCommunityIcons>
                       <View style={styles.rvIcon3Filler}></View>
                       <Text style={styles.rvTxt3}>Place{"\n"}Holder 3</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.rvBtn4}>
-                      <MaterialCommunityIconsIcon
+                      <MaterialCommunityIcons
                         name="table-of-contents"
                         style={styles.rvIcon4}
-                      ></MaterialCommunityIconsIcon>
+                      ></MaterialCommunityIcons>
                       <View style={styles.rvIcon4Filler}></View>
                       <Text style={styles.rvTxt4}>Place{"\n"}Holder 4</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.rvBtn5}>
-                      <MaterialCommunityIconsIcon
+                      <MaterialCommunityIcons
                         name="table-of-contents"
                         style={styles.rvIcon5}
-                      ></MaterialCommunityIconsIcon>
+                      ></MaterialCommunityIcons>
                       <View style={styles.rvIcon5Filler}></View>
                       <Text style={styles.rvTxt5}>Place{"\n"}Holder 5</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.viewAlllBtn2}>
 
-                      <FontAwesomeIcon
+                      <FontAwesome
                         name="arrow-circle-right"
                         style={styles.viewAllIcon2}>
-                      </FontAwesomeIcon>
+                      </FontAwesome>
 
                       <View style={styles.viewAllIcon2Filler}></View>
                       <Text style={styles.viewAllTxt2}>View All</Text>

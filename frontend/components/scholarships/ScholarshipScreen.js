@@ -6,24 +6,22 @@ import {
 	ScrollView,
 	TouchableOpacity,
 } from 'react-native';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 
 import ScholarCategory from "../../ui/scholarships/ScholarCategory";
 import ScholarRecommend from '../../ui/scholarships/ScholarRecommend';
 
-export default class ScholarshipScreen extends Component {
+export default class ScholarshipScreen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			email: this.props.email,
-			nav: this.props.navigation,
+			// nav: this.props.navigation,
 		};
 	}
 
 	render() {
 		return (
-
 			<View style={styles.container}>
 
 				<View style={styles.container_grp}>
@@ -44,62 +42,62 @@ export default class ScholarshipScreen extends Component {
 										}>
 										<View style={styles.rvBtn1Row}>
 											<TouchableOpacity style={styles.rvBtn1}>
-												<MaterialCommunityIconsIcon
+												<MaterialCommunityIcons
 													name="table-of-contents"
-													style={styles.rvIcon1}></MaterialCommunityIconsIcon>
+													style={styles.rvIcon1}></MaterialCommunityIcons>
 												<View style={styles.gridItemIconFiller}></View>
 												<Text style={styles.gridItemTxt_2lines}>
 													Place{'\n'}Holder 1
                       							</Text>
 											</TouchableOpacity>
 											<TouchableOpacity style={styles.gridItemBtn}>
-												<MaterialCommunityIconsIcon
+												<MaterialCommunityIcons
 													name="table-of-contents"
 													style={
 														styles.rvGridItemIcon
-													}></MaterialCommunityIconsIcon>
+													}></MaterialCommunityIcons>
 												<View style={styles.gridItemIconFiller}></View>
 												<Text style={styles.gridItemTxt_2lines}>
 													Place{'\n'}Holder 2
                       							</Text>
 											</TouchableOpacity>
 											<TouchableOpacity style={styles.gridItemBtn}>
-												<MaterialCommunityIconsIcon
+												<MaterialCommunityIcons
 													name="table-of-contents"
 													style={
 														styles.rvGridItemIcon
-													}></MaterialCommunityIconsIcon>
+													}></MaterialCommunityIcons>
 												<View style={styles.gridItemIconFiller}></View>
 												<Text style={styles.gridItemTxt_2lines}>
 													Place{'\n'}Holder 3
                       							</Text>
 											</TouchableOpacity>
 											<TouchableOpacity style={styles.gridItemBtn}>
-												<MaterialCommunityIconsIcon
+												<MaterialCommunityIcons
 													name="table-of-contents"
 													style={
 														styles.rvGridItemIcon
-													}></MaterialCommunityIconsIcon>
+													}></MaterialCommunityIcons>
 												<View style={styles.gridItemIconFiller}></View>
 												<Text style={styles.gridItemTxt_2lines}>
 													Place{'\n'}Holder 4
                       							</Text>
 											</TouchableOpacity>
 											<TouchableOpacity style={styles.gridItemBtn}>
-												<MaterialCommunityIconsIcon
+												<MaterialCommunityIcons
 													name="table-of-contents"
 													style={
 														styles.rvGridItemIcon
-													}></MaterialCommunityIconsIcon>
+													}></MaterialCommunityIcons>
 												<View style={styles.gridItemIconFiller}></View>
 												<Text style={styles.gridItemTxt_2lines}>
 													Place{'\n'}Holder 5
                       							</Text>
 											</TouchableOpacity>
 											<TouchableOpacity style={styles.gridItemBtn}>
-												<FontAwesomeIcon
+												<FontAwesome
 													name="arrow-circle-right"
-													style={styles.gridItemIcon}></FontAwesomeIcon>
+													style={styles.gridItemIcon}></FontAwesome>
 												<View style={styles.gridItemIconFiller}></View>
 												<Text style={styles.gridItemTxt_1line}>View All</Text>
 											</TouchableOpacity>
