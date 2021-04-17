@@ -1,11 +1,13 @@
 import React from 'react';
 import { StyleSheet, ScrollView, View, Text, TouchableOpacity, } from 'react-native';
 import BeautyWebView from 'react-native-beauty-webview';
+import { Ionicons } from '@expo/vector-icons';
 
 export default class ViewScholarDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      scholarshipKey: this.props.itemKey,
       scholarshipObj: {
         amount: '',
         ava: '',
@@ -18,12 +20,65 @@ export default class ViewScholarDetail extends React.Component {
       applyLinkVisible: false,
     };
     this.handleApplyLinkVisible = this.handleApplyLinkVisible.bind(this);
+    this.handleBookmark = this.handleBookmark.bind(this);
   }
 
   handleApplyLinkVisible(boolean) {
     this.setState({
       applyLinkVisible: boolean
     });
+  }
+
+  handleBookmark () {
+
+    /*
+    //Insert API Call here
+    let URL = "http://5144454dac7b.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
+    fetch(URL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: "", //get user email from?
+        title : this.scholarshipObj.title,
+        applyLink: this.scholarshipObj.applyLink,
+        scholarshipKey: itemKey,
+        
+      }),
+    })
+
+      // =============================================
+      // .then((response) => response.json())
+      // .then((json) => {
+      //   console.log("Email: " + this.state.email);
+      //   console.log(json);
+      // })
+      // =============================================
+
+      .then((response) => {
+        if (response.status == 202) {
+
+          Alert.alert(
+            "Your data have been successfully \ninserted! " +
+            "You will be navigated back!"
+          );
+
+          setTimeout(() => {
+            this.props.navigation.goBack();
+          }, 2500);
+
+        } else {
+          json_mesg = response.json();
+          Alert.alert("Error: " + json_mesg.mesg);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      */
+    alert("This scholarship has been bookmarked!");
   }
 
   componentDidMount() {
@@ -66,6 +121,15 @@ export default class ViewScholarDetail extends React.Component {
   render() {
     return (
       <ScrollView horizontal={false} style={styles.container}>
+        <View style = {styles.card_grp0}>
+          <TouchableOpacity onPress={() => this.handleBookmark()}>
+          <Ionicons
+								  name="md-bookmarks"
+								  style={styles.bookmarksIcon}></Ionicons>
+							  <Text style={styles.bookmarksTxt}>Bookmark This Scholarship</Text>
+                
+          </TouchableOpacity>
+        </View>
         <View style={styles.card_grp1}>
           <View style={styles.title_grp}>
             <Text style={styles.title}>{this.state.scholarshipObj.title}</Text>
@@ -143,6 +207,29 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  card_grp0: {
+    width: '90%',
+    marginTop: 25,
+    height: 50,
+    backgroundColor: 'rgba(255,255,255,1)',
+    borderWidth: 0,
+    borderColor: '#000000',
+    borderRadius: 5,
+    overflow: 'hidden',
+    alignSelf: 'center',
+  },
+  bookmarksIcon:
+  {
+    color: 'rgba(48,132,188,1)',
+		fontSize: 35,
+    marginTop: 5,
+    marginLeft: 20,
+  },
+  bookmarksTxt: {
+    marginLeft: 87,
+    marginTop: -22,
+    color: 'rgba(48,132,188,1)',
+  },
   card_grp1: {
     width: '90%',
     height: 229,
@@ -151,7 +238,7 @@ const styles = StyleSheet.create({
     borderColor: '#000000',
     borderRadius: 5,
     overflow: 'hidden',
-    marginTop: 30,
+    marginTop: 20,
     alignSelf: 'center',
   },
   title_grp: {
