@@ -72,6 +72,7 @@ def init_usrProfileDB(user_Ref, email, password, activate_code, activate_date, a
         "actiDate": activate_date,
     })
 
+
 def check_email_verification_status(user_Ref, email):
     # check email verification status
     # REQUIREMENT: a registed user and haven't verified his/her email yet

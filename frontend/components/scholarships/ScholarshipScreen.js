@@ -11,11 +11,15 @@ import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 import ScholarCategory from "../../ui/scholarships/ScholarCategory";
 import ScholarRecommend from '../../ui/scholarships/ScholarRecommend';
 
+import HorizantalRecommendationTbl from "./HorizantalRecommendationTbl";
+import VertialRecommendationTbl from "./VerticalRecommdationTbl";
+
 export default class ScholarshipScreen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: this.props.email,
+			userProfile: this.props.usrInfo,
+			email: this.props.usrInfo.email,
 			// nav: this.props.navigation,
 		};
 	}
@@ -120,7 +124,7 @@ const styles = StyleSheet.create({
 	container_grp: {
 		flex: 1,
 		width: '100%',
-		backgroundColor: "#FFFFFF",
+		// backgroundColor: "#FFFFFF",
 	},
 	category_container: {
 		height: 173,
@@ -182,7 +186,8 @@ const styles = StyleSheet.create({
 		borderWidth: 0,
 		borderColor: '#000000',
 		borderLeftWidth: 0,
-		backgroundColor: 'rgba(230, 230, 230,1)',
+		// backgroundColor: 'rgba(230, 230, 230,1)',
+		backgroundColor: 'white',
 		marginLeft: 12,
 	},
 	gpa_icon: {
@@ -267,6 +272,7 @@ const styles = StyleSheet.create({
 		fontSize: 30,
 		width: 205,
 		height: 40,
+		fontWeight: "bold",
 	},
 	scrollArea2: {
 		width: '100%',
@@ -286,7 +292,7 @@ const styles = StyleSheet.create({
 		borderWidth: 0,
 		borderColor: '#000000',
 		borderLeftWidth: 0,
-		backgroundColor: 'rgba(230, 230, 230,1)',
+		backgroundColor: 'white',
 	},
 	rvIcon1: {
 		color: 'rgba(128,128,128,1)',

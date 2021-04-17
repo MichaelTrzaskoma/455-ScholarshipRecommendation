@@ -20,6 +20,7 @@ import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { MaterialIcons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import CollapsibleView from "@eliav2/react-native-collapsible-view";
+import { CheckBox } from 'react-native-elements/dist/checkbox/CheckBox';
 
 const items1 = [
 	// this is the parent or 'item'
@@ -2372,6 +2373,7 @@ class InputScreen1a extends React.Component {
 			dob: "",
 			// zip: "",
 			gpa: "",
+			selectedResidences: [5, 3, 4],
 			selectedItems: [], //Region
 			selectedItems1: [], //Major
 			selectedItems2: [], //Race
@@ -2542,7 +2544,7 @@ class InputScreen1a extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props);
 
-		let URL = "http://5144454dac7b.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
+		let URL = "http://3a645b20797b.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
 		fetch(URL, {
 			method: "POST",
 			headers: {
@@ -2763,9 +2765,16 @@ class InputScreen1a extends React.Component {
 
 	}
 
+	// check = () => {
+	// 	fetch();
+	// 	// validate
+	// }
+
 
 	render() {
 		// console.log("DOB is: " + this.state.dob);
+
+		// check();
 		return (
 			<DismissKeyboard>
 				<KeyboardAwareScrollView

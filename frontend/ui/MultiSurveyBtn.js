@@ -35,7 +35,8 @@ export default function AddProfile(email) {
 const styles = StyleSheet.create({
 	button: {
 		height: 50,
-		backgroundColor: 'rgba(230, 230, 230,1)',
+		// backgroundColor: 'rgba(230, 230, 230,1)',
+		backgroundColor: 'white',
 		flexDirection: 'row',
 	},
 	addProfileDetailIconRow: {

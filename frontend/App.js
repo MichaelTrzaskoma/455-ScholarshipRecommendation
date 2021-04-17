@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import { AppRegistry } from "react-native";
 import "react-native-gesture-handler";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -26,17 +26,50 @@ import CollegeScreen from "./components/colleges/CollegeScreen";
 import MajorScreen from "./components/majors/MajorScreen";
 import TabViewSurvey from "./components/TabViewSurvey";
 
+import HorizantalRecommendationTbl from "./components/scholarships/HorizantalRecommendationTbl";
+import VertialRecommendationTbl from "./components/scholarships/VerticalRecommdationTbl";
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function TabScreens({ usr, navigation }) {
+function getHeaderTitle(route) {
+  // If the focused route is not found, we need to assume it's the initial screen
+  // This can happen during if there hasn't been any navigation inside the screen
+  // In our case, it's "Feed" as that's the first screen inside the navigator
+  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Scholarship';
+
+  switch (routeName) {
+    case 'Scholarship':
+      return 'Scholarship';
+    case 'College':
+      return 'College';
+    case 'Major':
+      return 'Major';
+    case 'Account':
+      return 'My Account';
+  }
+}
+
+function TabScreens({ navigation, route }) {
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({ headerTitle: getHeaderTitle(route) });
+  }, [navigation, route]);
+
+  // in the functional component, we access the initialParams from Stack.Screen
+  // we must have route obj as one of parameters within the func
+  // then access the initialParams via "route.params.<var names>"
+  // in class component, we access the initialParams via "this.props.route.params.<var name>"
+  let usr = route.params.usr;
+
+  // console.log(route.params.usr);
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === "Home") {
+          if (route.name === "Scholarship") {
             // console.log(route);
             iconName = focused ? "school" : "school";
             return <MaterialCommunityIcons name="school" size={size} color={color} />;
@@ -49,7 +82,7 @@ function TabScreens({ usr, navigation }) {
                 color={color}
               />
             );
-          } else if (route.name === "Search") {
+          } else if (route.name === "College") {
             iconName = focused ? "bank" : "bank";
             return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
           }
@@ -60,22 +93,22 @@ function TabScreens({ usr, navigation }) {
         },
       })}
     >
-      <Tab.Screen name="Home" options={{ title: "Scholarship" }}>
+      <Tab.Screen name="Scholarship">
         {/* ScholarshipScreen component belong to first Tap navi */}
         {() => <ScholarshipScreen usrInfo={usr} />}
       </Tab.Screen>
 
-      <Tab.Screen name="Search" options={{ title: "College" }}>
+      <Tab.Screen name="College">
         {/* CollegeScreen component belong to second Tap navi */}
         {() => <CollegeScreen />}
       </Tab.Screen>
 
-      <Tab.Screen name="Major" options={{ title: "Major" }}>
+      <Tab.Screen name="Major">
         {/* MajorScreen component belong to third Tap navi */}
         {() => <MajorScreen />}
       </Tab.Screen>
 
-      <Tab.Screen name="Account" options={{ title: "Account" }}>
+      <Tab.Screen name="Account">
         {/* AccountScreen component belong to fourth Tap navi */}
         {() => <AccScreen usrInfo={usr} />}
       </Tab.Screen>
@@ -148,8 +181,19 @@ export default class App extends Component {
         <NavigationContainer>
           <Stack.Navigator>
 
-            <Stack.Screen name={"Home"}>
-              {() => <TabScreens usr={this.state.usrProfile} navigation={this.props.navigation} />}
+            <Stack.Screen
+              name={"Home"}
+              options={({ route }) => ({ 
+                headerStyle: {
+                  backgroundColor: '#f4511e',
+                },
+              })}
+              component={TabScreens}
+              initialParams={{
+                usr: this.state.usrProfile
+              }}
+            >
+              {/* {() => <TabScreens usr={this.state.usrProfile} navigation={this.props.navigation} />} */}
             </Stack.Screen>
 
             <Stack.Screen
@@ -217,6 +261,9 @@ export default class App extends Component {
               name={"ViewScholarDetail"}
               component={ViewScholarDetail}
               options={({ route }) => ({ title: route.params.title })}
+              initialParams={{
+                email: this.state.usrProfile.email
+              }}
             />
 
             <Stack.Screen
@@ -224,6 +271,18 @@ export default class App extends Component {
               component={ViewRecommendTbl}
               options={({ route }) => ({ title: route.params.title })}
               initialParams={{ email: this.state.usrProfile.email }}
+            />
+
+            <Stack.Screen
+              name={"HorizantalRecommendationTbl"}
+              component={HorizantalRecommendationTbl}
+              options={({ route }) => ({ title: route.params.title })}
+            />
+
+            <Stack.Screen
+              name={"VertialRecommendationTbl"}
+              component={VertialRecommendationTbl}
+              options={({ route }) => ({ title: route.params.title })}
             />
 
           </Stack.Navigator>

@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         width: 177,
         height: 40,
+        fontWeight: "bold",
     },
     scrollArea: {
         width: '100%',
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         borderColor: '#000000',
         borderLeftWidth: 0,
-        backgroundColor: 'rgba(230, 230, 230,1)',
+        backgroundColor: 'white',
     },
     gridItemIcon: {
         color: 'rgba(128,128,128,1)',
@@ -188,7 +189,7 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         borderColor: '#000000',
         borderLeftWidth: 0,
-        backgroundColor: 'rgba(230, 230, 230,1)',
+        backgroundColor: 'white',
         marginLeft: 12,
     },
     gpa_icon: {

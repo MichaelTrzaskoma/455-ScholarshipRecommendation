@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, ScrollView, View, Text, TouchableOpacity, } from 'react-native';
 import BeautyWebView from 'react-native-beauty-webview';
 import { Ionicons } from '@expo/vector-icons';
+import { getDeviceID } from "../../functions/deviceUniqueID";
+import { getSecureStorage } from "../../functions/secureStorage";
 
 export default class ViewScholarDetail extends React.Component {
   constructor(props) {
@@ -18,6 +20,7 @@ export default class ViewScholarDetail extends React.Component {
         title: '',
       },
       applyLinkVisible: false,
+      email: this.props.route.params.email,
     };
     this.handleApplyLinkVisible = this.handleApplyLinkVisible.bind(this);
     this.handleBookmark = this.handleBookmark.bind(this);
@@ -31,7 +34,7 @@ export default class ViewScholarDetail extends React.Component {
 
   handleBookmark () {
 
-    /*
+    
     //Insert API Call here
     let URL = "http://5144454dac7b.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
     fetch(URL, {
@@ -41,11 +44,10 @@ export default class ViewScholarDetail extends React.Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: "", //get user email from?
-        title : this.scholarshipObj.title,
-        applyLink: this.scholarshipObj.applyLink,
-        scholarshipKey: itemKey,
-        
+        "email": this.state.email, //get user email from?
+        "title": this.scholarshipObj.title,
+        // "jwt": getSecureStorage("jwt"),
+        // "uniqueID": getDeviceID(),
       }),
     })
 
@@ -65,10 +67,6 @@ export default class ViewScholarDetail extends React.Component {
             "You will be navigated back!"
           );
 
-          setTimeout(() => {
-            this.props.navigation.goBack();
-          }, 2500);
-
         } else {
           json_mesg = response.json();
           Alert.alert("Error: " + json_mesg.mesg);
@@ -77,7 +75,7 @@ export default class ViewScholarDetail extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-      */
+      
     alert("This scholarship has been bookmarked!");
   }
 

@@ -90,14 +90,15 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	content_container: {
-		backgroundColor: 'rgba(255,255,255,1)',
+		// backgroundColor: 'rgba(255,255,255,1)',
 		width: '100%',
 		height: '100%',
 		alignSelf: 'center',
 	},
 	usrInfoContainer: {
 		height: 113,
-		backgroundColor: '#e6e6e6',
+		// backgroundColor: '#e6e6e6',
+		backgroundColor: 'white',
 		marginTop: 50,
 	},
 	usrIcon: {
@@ -256,7 +257,8 @@ const styles = StyleSheet.create({
 	},
 	bookmarksBtn: {
 		height: 50,
-		backgroundColor: 'rgba(230, 230, 230,1)',
+		// backgroundColor: 'rgba(230, 230, 230,1)',
+		backgroundColor: 'white',
 		flexDirection: 'row',
 		marginTop: 16,
 	},
@@ -290,7 +292,8 @@ const styles = StyleSheet.create({
 	},
 	signoutBtn: {
 		height: 50,
-		backgroundColor: 'rgba(230, 230, 230,1)',
+		// backgroundColor: 'rgba(230, 230, 230,1)',
+		backgroundColor: 'white',
 		flexDirection: 'row',
 		marginTop: 16,
 	},
