@@ -2782,8 +2782,6 @@ class InputScreen1a extends React.Component {
 					</View>
 
 					<View style={styles.requiredGrp}>
-						{/* <Card.Title>Required Information</Card.Title> */}
-						{/* <Text style={styles.requiredDetails}>Required Details</Text> */}
 						<Text style={styles.re_text}>Required Quesetions</Text>
 						<View style={styles.input1_grp}>
 							<Text style={styles.txt_display}>Gender</Text>
@@ -2814,14 +2812,14 @@ class InputScreen1a extends React.Component {
 						</View>
 						<View style={styles.input3_grp}>
 							<Text style={styles.txt_display}>State of Residence and/or Schooling</Text>
-							<View style={{ width: "95%" }}>
+							<View style={styles.toggleMultiSelectWrapper}>
 								<SectionedMultiSelect
 									items={items1.slice(0, 1)}
 									IconRenderer={MaterialIcons}
 									uniqueKey="id"
 									subKey="children"
 									selectText="Choose State(s) If Applicable"
-									style={{ height: 'auto', }}
+									// style={styles.multiSelecter}
 									showDropDowns={true}
 									readOnlyHeadings={true}
 									onSelectedItemsChange={this.onSelectedResidencesChange}
@@ -3026,12 +3024,18 @@ const styles = StyleSheet.create({
 	col_view: {
 		flex: 1,
 		width: "93%",
-		marginLeft: 15,
 		overflow: "hidden",
 		borderRadius: 5,
 		borderColor: 'white',
 		backgroundColor: "white",
 		justifyContent: 'center',
+
+		// override the offical library style
+		marginRight: "auto",
+		marginLeft: 15,
+		marginTop: 10,
+		marginBottom: 10,
+		// marginLeft: 10,
 	},
 	collapsibleTitle: {
 		fontWeight: "bold",
@@ -3052,6 +3056,21 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		marginLeft: 20,
 	},
+	toggleMultiSelectWrapper: {
+		width: "90%",
+		// height: 30,
+		marginLeft: 10,
+		borderWidth: 1,
+		borderRadius: 5,
+		borderColor: '#e6e6e6',
+	},
+	// multiSelecter: {
+	// 	marginLeft: 0,
+	// 	// marginTop: -5,
+	// 	// marginBottom: -5,
+	// 	top: 0,
+	// 	bottom: 0,
+	// },
 	input1_grp: {
 		width: "100%",
 		height: 50,
