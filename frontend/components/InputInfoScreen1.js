@@ -3003,7 +3003,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 	},
 	findScholar: {
-		color: "#4a76ff",
+		color: "#007FF9",
 		height: 37,
 		width: 298,
 		fontSize: 20,
@@ -3044,7 +3044,7 @@ const styles = StyleSheet.create({
 	collapsibleTitle: {
 		fontWeight: "bold",
 		fontSize: 20,
-		color: '#3385ff',
+		color: '#007FF9',
 		marginRight: "auto",
 		marginTop: 10,
 		marginBottom: 10,
@@ -3094,7 +3094,7 @@ const styles = StyleSheet.create({
 		marginLeft: 20,
 		fontWeight: "bold",
 		fontSize: 20,
-		color: '#3385ff',
+		color: '#007FF9',
 	},
 	txt_display: {
 		fontWeight: "bold",
@@ -3160,7 +3160,7 @@ const styles = StyleSheet.create({
 		width: "92%",
 		height: 45,
 		borderRadius: 5,
-		backgroundColor: "#4a76ff",
+		backgroundColor: "#007FF9",
 		justifyContent: 'center',
 		alignSelf: "center",
 	},

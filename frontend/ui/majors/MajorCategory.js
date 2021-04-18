@@ -38,7 +38,7 @@ export default function MajorCategory() {
                 ></Ionicons>
                 <Text style={styles.bnTxt}>Business</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.edBtn}>
+              <TouchableOpacity style={styles.bnBtn}>
                 <Ionicons
                   name="ios-school"
                   style={styles.edIcon}
@@ -46,7 +46,7 @@ export default function MajorCategory() {
                 <View style={styles.edIconFiller}></View>
                 <Text style={styles.edTxt}>Education</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.hPBtn}>
+              <TouchableOpacity style={styles.bnBtn}>
                 <MaterialCommunityIcons
                   name="hospital-building"
                   style={styles.hPIcon}
@@ -54,7 +54,7 @@ export default function MajorCategory() {
                 <View style={styles.hPIconFiller}></View>
                 <Text style={styles.hPTxt}>North Dakota</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.sTMBtn}>
+              <TouchableOpacity style={styles.bnBtn}>
                 <MaterialCommunityIcons
                   name="lightbulb-on-outline"
                   style={styles.sTMIcon}
@@ -64,7 +64,7 @@ export default function MajorCategory() {
                   Science,{"\n"}Technology {"\n"}&amp; Math
                     </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.viewAllGrp1}>
+              <TouchableOpacity style={styles.bnBtn}>
                 <FontAwesome
                   name="arrow-circle-right"
                   style={styles.customIcon}>
@@ -103,10 +103,11 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   categoryTxt: {
-    color: '#4a76ff',
+    color: '#007FF9',
     fontSize: 30,
     width: 177,
     height: 40,
+    fontWeight: "bold",
   },
   scrollArea1: {
     width: '100%',
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderColor: "#000000",
     borderLeftWidth: 0,
-    backgroundColor: "rgba(230, 230, 230,1)"
+    backgroundColor: "white"
   },
   artIcon: {
     color: "rgba(128,128,128,1)",
@@ -153,7 +154,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderColor: "#000000",
     borderLeftWidth: 0,
-    backgroundColor: "rgba(230, 230, 230,1)",
+    backgroundColor: "white",
     marginLeft: 12
   },
   bnIcon: {

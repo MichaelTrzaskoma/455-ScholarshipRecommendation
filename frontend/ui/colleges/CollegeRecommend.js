@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   container_grp: {
     flex: 1,
     width: '100%',
-    backgroundColor: "#FFFFFF",
+    // backgroundColor: "#FFFFFF",
   },
   category_container: {
     height: 173,
@@ -224,10 +224,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   recommendTxt: {
-    color: "#4a76ff",
+    color: "#007FF9",
     fontSize: 30,
     width: 177,
-    height: 35
+    height: 40,
+    fontWeight: "bold",
   },
   customContainer: {
     width: 332,
@@ -243,7 +244,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderColor: "#000000",
     borderLeftWidth: 0,
-    backgroundColor: "rgba(230, 230, 230,1)"
+    backgroundColor: "white"
   },
   customIcon: {
     color: "rgba(128,128,128,1)",

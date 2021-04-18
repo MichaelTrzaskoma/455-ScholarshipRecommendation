@@ -619,7 +619,7 @@ const styles = StyleSheet.create({
 	},
 
 	findCollege: {
-		color: "#4a76ff",
+		color: "#007FF9",
 		height: 37,
 		width: 298,
 		fontSize: 20,

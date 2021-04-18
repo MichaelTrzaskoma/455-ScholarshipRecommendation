@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
 		marginTop: 5,
 	},
 	recentTxt: {
-		color: '#4a76ff',
+		color: '#007FF9',
 		fontSize: 30,
 		width: 205,
 		height: 40,

@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     recommendTxt: {
-        color: '#4a76ff',
+        color: '#007FF9',
         fontSize: 30,
         width: 177,
         height: 40,

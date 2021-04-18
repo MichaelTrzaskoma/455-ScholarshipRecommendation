@@ -53,7 +53,7 @@ function CollegeScreen(props) {
                       <View style={styles.rvIcon2Filler}></View>
                       <Text style={styles.rvTxt2}>Place{"\n"}Holder 2</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.rvBtn3}>
+                    <TouchableOpacity style={styles.rvBtn2}>
                       <MaterialCommunityIcons
                         name="table-of-contents"
                         style={styles.rvIcon3}
@@ -61,7 +61,7 @@ function CollegeScreen(props) {
                       <View style={styles.rvIcon3Filler}></View>
                       <Text style={styles.rvTxt3}>Place{"\n"}Holder 3</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.rvBtn4}>
+                    <TouchableOpacity style={styles.rvBtn2}>
                       <MaterialCommunityIcons
                         name="table-of-contents"
                         style={styles.rvIcon4}
@@ -69,7 +69,7 @@ function CollegeScreen(props) {
                       <View style={styles.rvIcon4Filler}></View>
                       <Text style={styles.rvTxt4}>Place{"\n"}Holder 4</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.rvBtn5}>
+                    <TouchableOpacity style={styles.rvBtn2}>
                       <MaterialCommunityIcons
                         name="table-of-contents"
                         style={styles.rvIcon5}
@@ -77,7 +77,7 @@ function CollegeScreen(props) {
                       <View style={styles.rvIcon5Filler}></View>
                       <Text style={styles.rvTxt5}>Place{"\n"}Holder 5</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.viewAlllBtn2}>
+                    <TouchableOpacity style={styles.rvBtn2}>
 
                       <FontAwesome
                         name="arrow-circle-right"
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   container_grp: {
     flex: 1,
     width: '100%',
-    backgroundColor: "#FFFFFF",
+    // backgroundColor: "#FFFFFF",
   },
   category_container: {
     height: 173,
@@ -347,10 +347,11 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   recentTxt: {
-    color: "#4a76ff",
+    color: "#007FF9",
     fontSize: 30,
     width: 205,
-    height: 35
+    height: 40,
+    fontWeight: "bold",
   },
   scrollArea2: {
     width: '100%',
@@ -370,7 +371,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderColor: "#000000",
     borderLeftWidth: 0,
-    backgroundColor: "rgba(230, 230, 230,1)"
+    backgroundColor: "white"
   },
   rvIcon1: {
     color: "rgba(128,128,128,1)",
@@ -399,7 +400,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderColor: "#000000",
     borderLeftWidth: 0,
-    backgroundColor: "rgba(230, 230, 230,1)",
+    backgroundColor: "white",
     marginLeft: 12
   },
   rvIcon2: {

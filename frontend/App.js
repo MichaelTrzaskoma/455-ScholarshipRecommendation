@@ -183,9 +183,14 @@ export default class App extends Component {
 
             <Stack.Screen
               name={"Home"}
-              options={({ route }) => ({ 
+              options={({ route }) => ({
                 headerStyle: {
-                  backgroundColor: '#f4511e',
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
                 },
               })}
               component={TabScreens}
@@ -193,7 +198,6 @@ export default class App extends Component {
                 usr: this.state.usrProfile
               }}
             >
-              {/* {() => <TabScreens usr={this.state.usrProfile} navigation={this.props.navigation} />} */}
             </Stack.Screen>
 
             <Stack.Screen
@@ -207,7 +211,17 @@ export default class App extends Component {
             <Stack.Screen
               name={"TabViewSurvey"}
               component={TabViewSurvey}
-              options={{ title: "Survey" }}
+              options={{
+                title: "Survey",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
             />
 
             <Stack.Screen
@@ -221,7 +235,17 @@ export default class App extends Component {
             <Stack.Screen
               name={"CollegeSurvey"}
               component={CollegeSurvey}
-              options={{ title: "College Info" }}
+              options={{
+                title: "College Info",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
               initialParams={{ email: this.state.usrProfile.email }}
             />
 
@@ -229,38 +253,98 @@ export default class App extends Component {
               name={"ViewSubCate"}
               component={ViewSubCate}
               // pass down the screen header bar title
-              options={({ route }) => ({ title: route.params.title })}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
             />
 
             <Stack.Screen
               name={"ScholarshipScreen"}
               component={ScholarshipScreen}
-              options={({ route }) => ({ title: route.params.title })}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
               initialParams={{ email: this.state.usrProfile.email }}
             />
 
             <Stack.Screen
               name={"ScholarRecommend"}
               component={ScholarRecommend}
-              options={({ route }) => ({ title: route.params.title })}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
             />
 
             <Stack.Screen
               name={"ViewAllScholar"}
               component={ViewAllScholar}
-              options={{ title: "Scholarship Categories" }}
+              options={{
+                title: "Scholarship Categories",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
             />
 
             <Stack.Screen
               name={"ViewScholarTbl"}
               component={ViewScholarTbl}
-              options={({ route }) => ({ title: route.params.title })}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
             />
 
             <Stack.Screen
               name={"ViewScholarDetail"}
               component={ViewScholarDetail}
-              options={({ route }) => ({ title: route.params.title })}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
               initialParams={{
                 email: this.state.usrProfile.email
               }}
@@ -269,20 +353,50 @@ export default class App extends Component {
             <Stack.Screen
               name={"ViewRecommendTbl"}
               component={ViewRecommendTbl}
-              options={({ route }) => ({ title: route.params.title })}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
               initialParams={{ email: this.state.usrProfile.email }}
             />
 
             <Stack.Screen
               name={"HorizantalRecommendationTbl"}
               component={HorizantalRecommendationTbl}
-              options={({ route }) => ({ title: route.params.title })}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
             />
 
             <Stack.Screen
               name={"VertialRecommendationTbl"}
               component={VertialRecommendationTbl}
-              options={({ route }) => ({ title: route.params.title })}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
             />
 
           </Stack.Navigator>
