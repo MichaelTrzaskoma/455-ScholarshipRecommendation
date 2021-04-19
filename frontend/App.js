@@ -216,6 +216,7 @@ export default class App extends Component {
                 headerStyle: {
                   backgroundColor: '#007FF9',
                 },
+                headerTintColor: 'white',
                 headerTitleStyle: {
                   fontWeight: 'bold',
                   fontSize: 20,

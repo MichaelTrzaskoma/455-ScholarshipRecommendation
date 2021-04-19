@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
 	recentTxt: {
 		color: '#007FF9',
 		fontSize: 30,
-		width: 205,
+		width: 215,
 		height: 40,
 		fontWeight: "bold",
 	},
