@@ -2371,7 +2371,7 @@ class InputScreen1a extends React.Component {
 			email: this.props.email,
 			gender: "",
 			dob: "",
-			// zip: "",
+			// zip: "",git l
 			gpa: "",
 			selectedResidences: [5, 3, 4],
 			selectedItems: [], //Region
