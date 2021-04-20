@@ -478,6 +478,9 @@ export default class CollegeSurvey extends React.Component {
 		this.state = {
 			selectedItems: [],
 			selectedItems2: [],
+			satScore : "",
+			actScore: "",
+			email: this.props.route.params.email,
 		}
 	}
 
@@ -488,6 +491,54 @@ export default class CollegeSurvey extends React.Component {
 	onSelectedItemsChange2 = (selectedItems2) => {
 		this.setState({ selectedItems2 });
 	};
+
+	checkExamScores()
+	{
+		let URL = "http://3a645b20797b.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; //insert correct URL for user's profiel
+  
+	  fetch(URL, {
+		method: 'GET',
+		headers: {
+		  Accept: 'application/json',
+		  'Content-Type': 'application/json',
+		},
+	  })
+		// format the API response into json
+		.then((response) => response.json())
+		.then((json) => {
+		  // set the val to state
+		  this.setState({
+			actScore : json.actScore, //Not sure how this is stored/named in the backend
+			satScore : json.satScore, //Not sure how this is stored/named in the backend
+		  }).catch((error) => {
+			console.log('An error happened: ' + error);
+		  });
+		});
+	}
+
+	
+	existingSAT()
+	{
+		let existingScore = false;
+		//this.checkExamScores()
+		if(this.state.satScore.localeCompare("") != 0)
+		{
+			existingScore = true;
+		}
+		return existingScore;
+	}
+
+	existingACT()
+	{
+		let existingScore = false;
+		//this.checkExamScores()
+		if(this.state.actScore.localeCompare("") != 0)
+		{
+			existingScore = true;
+		}
+		return existingScore;
+	}
+	
 
 	render() {
 		const { selectedItems } = this.state;
@@ -505,7 +556,7 @@ export default class CollegeSurvey extends React.Component {
 						your own followup research!
                		</Text>
 				</View>
-
+				
 				{/* 2nd TextBox */}
 				<View style={styles.card_grp2}>
 
@@ -525,7 +576,7 @@ export default class CollegeSurvey extends React.Component {
 							onSelectedItemsChange={this.onSelectedItemsChange}
 							selectedItems={this.state.selectedItems}
 						/>
-
+						{this.existingSAT() ? 
 						<View style={styles.satTextField}>
 							<Text style={styles.collegeSurveyQA2}>
 								What is your SAT score?
@@ -535,14 +586,54 @@ export default class CollegeSurvey extends React.Component {
 									name="book-open-variant"
 									style={styles.icon}
 								></MaterialCommunityIcons>
+
 								<TextInput
-									placeholder="If Not Applicable Leave Blank"
+									placeholder= {this.state.satScore}
 									keyboardAppearance="light"
 									blurOnSubmit={false}
 									style={styles.textInput}
 								></TextInput>
 							</View>
 						</View>
+						:
+						<View style={styles.satTextField}>
+							<Text style={styles.collegeSurveyQA2}>
+								What is your SAT score?
+        					</Text>
+							<View style={styles.iconRow}>
+								<MaterialCommunityIcons
+									name="book-open-variant"
+									style={styles.icon}
+								></MaterialCommunityIcons>
+
+								<TextInput
+									placeholder= "If Not Applicable Leave Blank" 
+									keyboardAppearance="light"
+									blurOnSubmit={false}
+									style={styles.textInput}
+								></TextInput>
+							</View>
+						</View>
+						}
+						{ this.existingACT() ? 
+						<View style={styles.actTextField}>
+							<Text style={styles.collegeSurveyQA3}>
+								What is your ACT score?
+        					</Text>
+							<View style={styles.icon1Row}>
+								<MaterialCommunityIcons
+									name="book-open-variant"
+									style={styles.icon1}
+								></MaterialCommunityIcons>
+								<TextInput
+									placeholder= {this.state.actScore}
+									keyboardAppearance="light"
+									blurOnSubmit={false}
+									style={styles.textInput1}
+								></TextInput>
+							</View>
+						</View>
+						:
 						<View style={styles.actTextField}>
 							<Text style={styles.collegeSurveyQA3}>
 								What is your ACT score?
@@ -560,6 +651,7 @@ export default class CollegeSurvey extends React.Component {
 								></TextInput>
 							</View>
 						</View>
+						}
 						<View style={styles.majorTextField}>
 							<Text style={styles.collegeSurveyQA4}>
 								What major(s) are you interested in?
