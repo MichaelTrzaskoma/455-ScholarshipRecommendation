@@ -5,7 +5,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { createStackNavigator } from "@react-navigation/stack";
 // import AddCollege from '../ui/AddCollege';
 
-import InputInfoScreen1 from './InputInfoScreen1';
+import ScholarSurvey from './scholarships/ScholarSurvey';
 import CollegeSurvey from './colleges/CollegeSurvey';
 // import InputScreen2 from "./InputInfoScreen2";
 
@@ -23,7 +23,7 @@ function TopTapView() {
   return (
 
     <Tab.Navigator>
-      <Tab.Screen name="Scholarship" component={InputInfoScreen1} />
+      <Tab.Screen name="Scholarship" component={ScholarSurvey} />
       <Tab.Screen name="College" component={CollegeSurvey} />
       <Tab.Screen name="Major" component={SettingsScreen} />
     </Tab.Navigator>

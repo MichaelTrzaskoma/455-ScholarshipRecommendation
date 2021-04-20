@@ -2356,7 +2356,7 @@ const DismissKeyboard = ({ children }) => (
 	</TouchableWithoutFeedback>
 );
 
-export default function InputInfoScreen1({ route, navigation }) {
+export default function ScholarSurvey({ route, navigation }) {
 	// console.log("Email from InputScreen1: " + JSON.stringify(route.params.email));
 	// console.log("navigation from InputScreen1: " + JSON.stringify(navigation));
 
@@ -2373,7 +2373,7 @@ class InputScreen1a extends React.Component {
 			dob: "",
 			// zip: "",git l
 			gpa: "",
-			selectedResidences: [5, 3, 4],
+			selectedResidences: [],
 			selectedItems: [], //Region
 			selectedItems1: [], //Major
 			selectedItems2: [], //Race
@@ -2821,20 +2821,18 @@ class InputScreen1a extends React.Component {
 						</View>
 						<View style={styles.input3_grp}>
 							<Text style={styles.txt_display}>State of Residence and/or Schooling</Text>
-							<View style={styles.toggleMultiSelectWrapper}>
-								<SectionedMultiSelect
-									items={items1.slice(0, 1)}
-									IconRenderer={MaterialIcons}
-									uniqueKey="id"
-									subKey="children"
-									selectText="Choose State(s) If Applicable"
-									// style={styles.multiSelecter}
-									showDropDowns={true}
-									readOnlyHeadings={true}
-									onSelectedItemsChange={this.onSelectedResidencesChange}
-									selectedItems={this.state.selectedResidences}
-								/>
-							</View>
+							<SectionedMultiSelect
+								items={items1.slice(0, 1)}
+								IconRenderer={MaterialIcons}
+								uniqueKey="id"
+								subKey="children"
+								selectText="Choose State(s) If Applicable"
+								// style={styles.multiSelecter}
+								showDropDowns={true}
+								readOnlyHeadings={true}
+								onSelectedItemsChange={this.onSelectedResidencesChange}
+								selectedItems={this.state.selectedResidences}
+							/>
 						</View>
 						<View style={styles.input4_grp}>
 							<Text style={styles.txt_display}>GPA</Text>
@@ -3066,7 +3064,6 @@ const styles = StyleSheet.create({
 	},
 	toggleMultiSelectWrapper: {
 		width: "90%",
-		// height: 30,
 		marginLeft: 10,
 		borderWidth: 1,
 		borderRadius: 5,
@@ -3123,7 +3120,7 @@ const styles = StyleSheet.create({
 		marginLeft: 25,
 	},
 	input3_grp: {
-		width: "100%",
+		width: "92%",
 		height: "auto",
 		marginTop: 15,
 		marginLeft: 10,

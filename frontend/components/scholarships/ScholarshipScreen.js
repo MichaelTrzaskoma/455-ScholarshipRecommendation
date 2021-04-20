@@ -11,9 +11,6 @@ import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 import ScholarCategory from "../../ui/scholarships/ScholarCategory";
 import ScholarRecommend from '../../ui/scholarships/ScholarRecommend';
 
-import HorizantalRecommendationTbl from "./HorizantalRecommendationTbl";
-import VertialRecommendationTbl from "./VerticalRecommdationTbl";
-
 export default class ScholarshipScreen extends React.Component {
 	constructor(props) {
 		super(props);
@@ -186,9 +183,16 @@ const styles = StyleSheet.create({
 		borderWidth: 0,
 		borderColor: '#000000',
 		borderLeftWidth: 0,
-		// backgroundColor: 'rgba(230, 230, 230,1)',
 		backgroundColor: 'white',
 		marginLeft: 12,
+		shadowColor: "rgba(0,0,0,1)",
+		shadowOffset: {
+			width: 3,
+			height: 3,
+		},
+		elevation: 5,
+		shadowOpacity: 0.01,
+		shadowRadius: 0,
 	},
 	gpa_icon: {
 		color: 'rgba(128,128,128,1)',
@@ -255,7 +259,7 @@ const styles = StyleSheet.create({
 	recent_container: {
 		top: 172,
 		left: 0,
-		height: 173,
+		// height: "auto",
 		position: 'absolute',
 		right: 0,
 		justifyContent: 'center',
@@ -263,7 +267,7 @@ const styles = StyleSheet.create({
 	},
 	recentGrp: {
 		width: '90%',
-		height: 167,
+		// height: 167,
 		alignSelf: 'center',
 		marginTop: 5,
 	},
@@ -293,6 +297,15 @@ const styles = StyleSheet.create({
 		borderColor: '#000000',
 		borderLeftWidth: 0,
 		backgroundColor: 'white',
+		elevation: 5,
+		shadowOpacity: 0.01,
+		shadowRadius: 0,
+		shadowColor: "rgba(0,0,0,1)",
+		shadowOffset: {
+			width: 3,
+			height: 3,
+		},
+		marginLeft: 10,
 	},
 	rvIcon1: {
 		color: 'rgba(128,128,128,1)',

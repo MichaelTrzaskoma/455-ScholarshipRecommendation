@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   ItemSeparator: {
     height: 1,
     width: "100%",
-    backgroundColor: "black",
+    backgroundColor: "rgba(203,199,199,1)",
   },
   item: {
     padding: 10,

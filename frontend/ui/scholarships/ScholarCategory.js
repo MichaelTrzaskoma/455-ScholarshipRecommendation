@@ -97,11 +97,11 @@ export default function ScholarCategory() {
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => {
-                                    navigation.navigate("ViewAllScholar", {
+                                    navigation.navigate("ViewRecommendTbl_3", {
                                         title: "All Category List",
                                     });
                                 }}
-                                style={styles.gridItemBtn}>
+                                style={styles.gridItemBtn_last}>
                                 <FontAwesome
                                     name="arrow-circle-right"
                                     style={styles.gridItemIcon}></FontAwesome>
@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
         height: 167,
         alignSelf: 'center',
         marginTop: 5,
+        // marginLeft: -10,
     },
     category_txt: {
         color: '#007FF9',
@@ -141,6 +142,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 123,
         marginTop: 4,
+        // marginLeft: -10,
     },
     scrollArea_contentContainerStyle: {
         width: 720,
@@ -163,6 +165,15 @@ const styles = StyleSheet.create({
         borderColor: '#000000',
         borderLeftWidth: 0,
         backgroundColor: 'white',
+        elevation: 5,
+        shadowOpacity: 0.01,
+        shadowRadius: 0,
+        shadowColor: "rgba(0,0,0,1)",
+        shadowOffset: {
+            width: 3,
+            height: 3,
+        },
+        marginLeft: 10,
     },
     gridItemIcon: {
         color: 'rgba(128,128,128,1)',
@@ -191,6 +202,34 @@ const styles = StyleSheet.create({
         borderLeftWidth: 0,
         backgroundColor: 'white',
         marginLeft: 12,
+        elevation: 5,
+        shadowColor: "rgba(0,0,0,1)",
+        shadowOpacity: 0.01,
+        shadowRadius: 0,
+        shadowOffset: {
+            width: 3,
+            height: 3,
+        },
+    },
+    gridItemBtn_last: {
+        width: 110,
+        height: 110,
+        borderRadius: 5,
+        overflow: 'hidden',
+        borderWidth: 0,
+        borderColor: '#000000',
+        borderLeftWidth: 0,
+        backgroundColor: 'white',
+        shadowColor: "rgba(0,0,0,1)",
+        marginLeft: 12,
+        elevation: 5,
+        shadowOpacity: 0.01,
+        shadowRadius: 0,
+        shadowOffset: {
+            width: 3,
+            height: 3,
+        },
+        marginRight: 10,
     },
     gpa_icon: {
         color: 'rgba(128,128,128,1)',

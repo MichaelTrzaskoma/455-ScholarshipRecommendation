@@ -88,7 +88,7 @@ export default function ViewRecommendTbl_3(props) {
                                     style={styles.icon}
                                 ></FontAwesome>
                             </View>
-                            <View style={styles.txtUpGrpStack}>
+                            <View style={styles.txtGrp}>
                                 <View style={styles.txtUpGrp}>
                                     <Text style={styles.titleTxt}>
                                         ABC Humane Wildlife Control &amp; {"\n"}Prevention, Inc.
@@ -117,20 +117,19 @@ export default function ViewRecommendTbl_3(props) {
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.itemN2}>
-                            <View style={styles.rect2}>
+                            <View style={styles.iconGrp}>
                                 <FontAwesome
                                     name="graduation-cap"
                                     style={styles.icon2}
                                 ></FontAwesome>
                             </View>
-                            <View style={styles.rect3Stack}>
-                                <View style={styles.rect3}>
+                            <View style={styles.txtGrp}>
+                                <View style={styles.txtUpGrp}>
                                     <Text style={styles.text}>
-                                        ABC Humane Wildlife Control &amp; {"\n"}Prevention, Inc.
-                    Academic Scholarship
-                  </Text>
+                                        ABC Humane Wildlife Control &amp; {"\n"}Prevention, Inc. Academic Scholarship
+                                    </Text>
                                 </View>
-                                <View style={styles.rect4}>
+                                <View style={styles.txtDownGrp}>
                                     <View style={styles.rect5Stack}>
                                         <View style={styles.rect5}>
                                             <View style={styles.text2Row}>
@@ -151,21 +150,21 @@ export default function ViewRecommendTbl_3(props) {
                                 </View>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.itemN3}>
-                            <View style={styles.rect8}>
+                        <TouchableOpacity style={styles.itemN2}>
+                            <View style={styles.iconGrp}>
                                 <FontAwesome
                                     name="graduation-cap"
                                     style={styles.icon4}
                                 ></FontAwesome>
                             </View>
-                            <View style={styles.rect9Stack}>
-                                <View style={styles.rect9}>
+                            <View style={styles.txtGrp}>
+                                <View style={styles.txtUpGrp}>
                                     <Text style={styles.text5}>
                                         ABC Humane Wildlife Control &amp; {"\n"}Prevention, Inc.
                     Academic Scholarship
                   </Text>
                                 </View>
-                                <View style={styles.rect10}>
+                                <View style={styles.txtDownGrp}>
                                     <View style={styles.rect11Stack}>
                                         <View style={styles.rect11}>
                                             <View style={styles.text6Row}>
@@ -186,21 +185,21 @@ export default function ViewRecommendTbl_3(props) {
                                 </View>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.itemN4}>
-                            <View style={styles.rect14}>
+                        <TouchableOpacity style={styles.itemN2}>
+                            <View style={styles.iconGrp}>
                                 <FontAwesome
                                     name="graduation-cap"
                                     style={styles.icon6}
                                 ></FontAwesome>
                             </View>
-                            <View style={styles.rect15Stack}>
-                                <View style={styles.rect15}>
+                            <View style={styles.txtGrp}>
+                                <View style={styles.txtUpGrp}>
                                     <Text style={styles.text9}>
                                         ABC Humane Wildlife Control &amp; {"\n"}Prevention, Inc.
                     Academic Scholarship
                   </Text>
                                 </View>
-                                <View style={styles.rect16}>
+                                <View style={styles.txtDownGrp}>
                                     <View style={styles.rect17Stack}>
                                         <View style={styles.rect17}>
                                             <View style={styles.text10Row}>
@@ -221,21 +220,21 @@ export default function ViewRecommendTbl_3(props) {
                                 </View>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.itemN5}>
-                            <View style={styles.rect20}>
+                        <TouchableOpacity style={styles.itemN2}>
+                            <View style={styles.iconGrp}>
                                 <FontAwesome
                                     name="graduation-cap"
                                     style={styles.icon8}
                                 ></FontAwesome>
                             </View>
-                            <View style={styles.rect21Stack}>
-                                <View style={styles.rect21}>
+                            <View style={styles.txtGrp}>
+                                <View style={styles.txtUpGrp}>
                                     <Text style={styles.text13}>
                                         ABC Humane Wildlife Control &amp; {"\n"}Prevention, Inc.
                     Academic Scholarship
                   </Text>
                                 </View>
-                                <View style={styles.rect22}>
+                                <View style={styles.txtDownGrp}>
                                     <View style={styles.rect23Stack}>
                                         <View style={styles.rect23}>
                                             <View style={styles.text14Row}>
@@ -256,21 +255,21 @@ export default function ViewRecommendTbl_3(props) {
                                 </View>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.itemN6}>
-                            <View style={styles.rect26}>
+                        <TouchableOpacity style={styles.itemN2}>
+                            <View style={styles.iconGrp}>
                                 <FontAwesome
                                     name="graduation-cap"
                                     style={styles.icon10}
                                 ></FontAwesome>
                             </View>
-                            <View style={styles.rect27Stack}>
-                                <View style={styles.rect27}>
+                            <View style={styles.txtGrp}>
+                                <View style={styles.txtUpGrp}>
                                     <Text style={styles.text17}>
                                         ABC Humane Wildlife Control &amp; {"\n"}Prevention, Inc.
                     Academic Scholarship
                   </Text>
                                 </View>
-                                <View style={styles.rect28}>
+                                <View style={styles.txtDownGrp}>
                                     <View style={styles.rect29Stack}>
                                         <View style={styles.rect29}>
                                             <View style={styles.text18Row}>
@@ -291,21 +290,21 @@ export default function ViewRecommendTbl_3(props) {
                                 </View>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.itemN7}>
-                            <View style={styles.rect32}>
+                        <TouchableOpacity style={styles.itemN2}>
+                            <View style={styles.iconGrp}>
                                 <FontAwesome
                                     name="graduation-cap"
                                     style={styles.icon12}
                                 ></FontAwesome>
                             </View>
-                            <View style={styles.rect33Stack}>
-                                <View style={styles.rect33}>
+                            <View style={styles.txtGrp}>
+                                <View style={styles.txtUpGrp}>
                                     <Text style={styles.text21}>
                                         ABC Humane Wildlife Control &amp; {"\n"}Prevention, Inc.
                     Academic Scholarship
                   </Text>
                                 </View>
-                                <View style={styles.rect34}>
+                                <View style={styles.txtDownGrp}>
                                     <View style={styles.rect35Stack}>
                                         <View style={styles.rect35}>
                                             <View style={styles.text22Row}>
@@ -326,21 +325,21 @@ export default function ViewRecommendTbl_3(props) {
                                 </View>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.itemN8}>
-                            <View style={styles.rect38}>
+                        <TouchableOpacity style={styles.itemN2}>
+                            <View style={styles.iconGrp}>
                                 <FontAwesome
                                     name="graduation-cap"
                                     style={styles.icon14}
                                 ></FontAwesome>
                             </View>
-                            <View style={styles.rect39Stack}>
-                                <View style={styles.rect39}>
+                            <View style={styles.txtGrp}>
+                                <View style={styles.txtUpGrp}>
                                     <Text style={styles.text25}>
                                         ABC Humane Wildlife Control &amp; {"\n"}Prevention, Inc.
                     Academic Scholarship
                   </Text>
                                 </View>
-                                <View style={styles.rect40}>
+                                <View style={styles.txtDownGrp}>
                                     <View style={styles.rect41Stack}>
                                         <View style={styles.rect41}>
                                             <View style={styles.text26Row}>
@@ -361,21 +360,21 @@ export default function ViewRecommendTbl_3(props) {
                                 </View>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.itemN9}>
-                            <View style={styles.rect44}>
+                        <TouchableOpacity style={styles.itemN2}>
+                            <View style={styles.iconGrp}>
                                 <FontAwesome
                                     name="graduation-cap"
                                     style={styles.icon16}
                                 ></FontAwesome>
                             </View>
-                            <View style={styles.rect45Stack}>
-                                <View style={styles.rect45}>
+                            <View style={styles.txtGrp}>
+                                <View style={styles.txtUpGrp}>
                                     <Text style={styles.text29}>
                                         ABC Humane Wildlife Control &amp; {"\n"}Prevention, Inc.
                     Academic Scholarship
                   </Text>
                                 </View>
-                                <View style={styles.rect46}>
+                                <View style={styles.txtDownGrp}>
                                     <View style={styles.rect47Stack}>
                                         <View style={styles.rect47}>
                                             <View style={styles.text30Row}>
@@ -412,7 +411,7 @@ const styles = StyleSheet.create({
     scrollArea2: {
         height: 40,
         position: "absolute",
-        backgroundColor: "rgba(230, 230, 230,1)",
+        backgroundColor: "#007FF9",
         width: "100%",
     },
     scrollArea2_contentContainerStyle: {
@@ -569,7 +568,8 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 0,
         left: 0,
-        right: 0
+        right: 0,
+        backgroundColor: "white",
     },
     scrollArea_contentContainerStyle: {
         height: 810
@@ -577,9 +577,10 @@ const styles = StyleSheet.create({
     itemN1: {
         height: 90,
         borderWidth: 0,
-        borderColor: "rgba(203,199,199,1)",
-        borderTopWidth: 1,
-        flexDirection: "row"
+        // borderColor: "rgba(203,199,199,1)",
+        // borderTopWidth: 1,
+        flexDirection: "row",
+        backgroundColor: "white",
     },
     iconGrp: {
         borderRadius: 5,
@@ -597,7 +598,7 @@ const styles = StyleSheet.create({
         alignSelf: "center"
     },
     txtUpGrp: {
-        top: -1,
+        top: -5,
         width: 266,
         height: 60,
         position: "absolute",
@@ -671,7 +672,7 @@ const styles = StyleSheet.create({
         color: "#121212",
         alignSelf: "center"
     },
-    txtUpGrpStack: {
+    txtGrp: {
         width: 266,
         height: 85,
         marginTop: 2
@@ -681,7 +682,8 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         borderColor: "rgba(203,199,199,1)",
         borderTopWidth: 1,
-        flexDirection: "row"
+        flexDirection: "row",
+        backgroundColor: "white",
     },
     rect2: {
         borderRadius: 5,

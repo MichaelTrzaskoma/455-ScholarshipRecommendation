@@ -61,7 +61,7 @@ export default function MajorCategory() {
                 ></MaterialCommunityIcons>
                 <View style={styles.sTMIconFiller}></View>
                 <Text style={styles.sTMTxt}>
-                  Science,{"\n"}Technology {"\n"}&amp; Math
+                  Sci, Tech & Math
                     </Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.bnBtn}>
@@ -127,7 +127,16 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderColor: "#000000",
     borderLeftWidth: 0,
-    backgroundColor: "white"
+    backgroundColor: "white",
+    shadowColor: "rgba(0,0,0,1)",
+		shadowOffset: {
+			width: 3,
+			height: 3,
+		},
+		elevation: 5,
+		shadowOpacity: 0.01,
+		shadowRadius: 0,
+    marginLeft: 10,
   },
   artIcon: {
     color: "rgba(128,128,128,1)",
@@ -155,7 +164,15 @@ const styles = StyleSheet.create({
     borderColor: "#000000",
     borderLeftWidth: 0,
     backgroundColor: "white",
-    marginLeft: 12
+    marginLeft: 12,
+    shadowColor: "rgba(0,0,0,1)",
+		shadowOffset: {
+			width: 3,
+			height: 3,
+		},
+		elevation: 5,
+		shadowOpacity: 0.01,
+		shadowRadius: 0,
   },
   bnIcon: {
     color: "rgba(128,128,128,1)",
@@ -252,6 +269,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     width: 90,
     height: 49,
+    marginTop: 18,
     alignSelf: "center"
   },
   viewAllGrp1: {

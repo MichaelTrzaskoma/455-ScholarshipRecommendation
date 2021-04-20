@@ -245,7 +245,16 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderColor: "#000000",
     borderLeftWidth: 0,
-    backgroundColor: "white"
+    backgroundColor: "white",
+    shadowColor: "rgba(0,0,0,1)",
+		shadowOffset: {
+			width: 3,
+			height: 3,
+		},
+		elevation: 5,
+		shadowOpacity: 0.01,
+		shadowRadius: 0,
+    marginLeft: 10,
   },
   customIcon: {
     color: "rgba(128,128,128,1)",

@@ -81,8 +81,17 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         borderColor: '#000000',
         borderLeftWidth: 0,
-        // backgroundColor: 'rgba(230, 230, 230,1)',
         backgroundColor: 'white',
+        shadowColor: "rgba(0,0,0,1)",
+        shadowOffset: {
+            width: 3,
+            height: 3,
+        },
+        elevation: 5,
+        shadowOpacity: 0.01,
+        shadowRadius: 0,
+        overflow: "hidden",
+        marginLeft: 10,
     },
 
     gridItemIcon: {

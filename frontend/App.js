@@ -12,7 +12,7 @@ import { getDeviceID } from "./functions/deviceUniqueID";
 
 import LoginScreen from "./components/LoginScreen";
 import AccScreen from "./components/AccScreen";
-import InputScreen1 from "./components/InputInfoScreen1";
+import InputScreen1 from "./components/scholarships/ScholarSurvey";
 import InputScreen2 from "./components/InputInfoScreen2";
 import ScholarshipScreen from "./components/scholarships/ScholarshipScreen";
 import ViewAllScholar from "./components/scholarships/ViewAllScholar";
@@ -26,8 +26,6 @@ import CollegeScreen from "./components/colleges/CollegeScreen";
 import MajorScreen from "./components/majors/MajorScreen";
 import TabViewSurvey from "./components/TabViewSurvey";
 
-import HorizantalRecommendationTbl from "./components/scholarships/HorizantalRecommendationTbl";
-import VertialRecommendationTbl from "./components/scholarships/VerticalRecommdationTbl";
 import ViewRecommendTbl_3 from "./components/scholarships/ViewRecommendTbl_3";
 
 
@@ -368,38 +366,6 @@ export default class App extends Component {
                 },
               })}
               initialParams={{ email: this.state.usrProfile.email }}
-            />
-
-            <Stack.Screen
-              name={"HorizantalRecommendationTbl"}
-              component={HorizantalRecommendationTbl}
-              options={({ route }) => ({
-                title: route.params.title,
-                headerStyle: {
-                  backgroundColor: '#007FF9',
-                },
-                headerTitleStyle: {
-                  fontWeight: 'bold',
-                  fontSize: 20,
-                  color: "white",
-                },
-              })}
-            />
-
-            <Stack.Screen
-              name={"VertialRecommendationTbl"}
-              component={VertialRecommendationTbl}
-              options={({ route }) => ({
-                title: route.params.title,
-                headerStyle: {
-                  backgroundColor: '#007FF9',
-                },
-                headerTitleStyle: {
-                  fontWeight: 'bold',
-                  fontSize: 20,
-                  color: "white",
-                },
-              })}
             />
 
             <Stack.Screen
