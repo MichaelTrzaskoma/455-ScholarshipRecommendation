@@ -22,1275 +22,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import CollapsibleView from "@eliav2/react-native-collapsible-view";
 import { CheckBox } from 'react-native-elements/dist/checkbox/CheckBox';
 
-const items1 = [
-	// this is the parent or 'item'
-	{
-		name: 'United States',
-		id: 0,
-		// these are the children or 'sub items'
-		children: [
-			{
-				name: 'No Preference',
-				id: 1,
-			},
-			{
-				name: 'Alabama',
-				id: 2,
-			},
-			{
-				name: 'Alaska',
-				id: 3,
-			},
-			{
-				name: 'Arizona',
-				id: 4,
-			},
-			{
-				name: 'Arkansas',
-				id: 5,
-			},
-			{
-				name: 'California',
-				id: 6,
-			},
-			{
-				name: 'Colorado',
-				id: 7,
-			},
-			{
-				name: 'Connecticut',
-				id: 8,
-			},
-			{
-				name: 'Delaware',
-				id: 9,
-			},
-			{
-				name: 'Flordia',
-				id: 10,
-			},
-			{
-				name: 'Georgia',
-				id: 11,
-			},
-			{
-				name: 'Hawaii',
-				id: 12,
-			},
-			{
-				name: 'Idaho',
-				id: 13,
-			},
-			{
-				name: 'Illinois',
-				id: 14,
-			},
-			{
-				name: 'Indiana',
-				id: 15,
-			},
-			{
-				name: 'Iowa',
-				id: 16,
-			},
-			{
-				name: 'Kansas',
-				id: 17,
-			},
-			{
-				name: 'Kentucky',
-				id: 18,
-			},
-			{
-				name: 'Louisiana',
-				id: 19,
-			},
-			{
-				name: 'Maine',
-				id: 20,
-			},
-			{
-				name: 'Maryland',
-				id: 21,
-			},
-			{
-				name: 'Massachusetts',
-				id: 22,
-			},
-			{
-				name: 'Michigan',
-				id: 23,
-			},
-			{
-				name: 'Minnesota',
-				id: 24,
-			},
-			{
-				name: 'Mississippi',
-				id: 25,
-			},
-			{
-				name: 'Missouri',
-				id: 26,
-			},
-			{
-				name: 'Montana',
-				id: 27,
-			},
-			{
-				name: 'Nebraska',
-				id: 28,
-			},
-			{
-				name: 'Nevada',
-				id: 29,
-			},
-			{
-				name: 'New Hampshire',
-				id: 30,
-			},
-			{
-				name: 'New Jersey',
-				id: 31,
-			},
-			{
-				name: 'New Mexico',
-				id: 32,
-			},
-			{
-				name: 'New York',
-				id: 33,
-			},
-			{
-				name: 'North Carolina',
-				id: 34,
-			},
-			{
-				name: 'North Dakota',
-				id: 35,
-			},
-			{
-				name: 'Ohio',
-				id: 36,
-			},
-			{
-				name: 'Oklahoma',
-				id: 37,
-			},
-			{
-				name: 'Oregon',
-				id: 38,
-			},
-			{
-				name: 'Pennsylvania',
-				id: 39,
-			},
-			{
-				name: 'Rhode Island',
-				id: 40,
-			},
-			{
-				name: 'South Carolina',
-				id: 41,
-			},
-			{
-				name: 'South Dakota',
-				id: 42,
-			},
-			{
-				name: 'Tennessee',
-				id: 43,
-			},
-			{
-				name: 'Texas',
-				id: 44,
-			},
-			{
-				name: 'Utah',
-				id: 45,
-			},
-			{
-				name: 'Vermont',
-				id: 46,
-			},
-			{
-				name: 'Virginia',
-				id: 47,
-			},
-			{
-				name: 'Washington',
-				id: 48,
-			},
-			{
-				name: 'West Virgina',
-				id: 49,
-			},
-			{
-				name: 'Wisconsin',
-				id: 50,
-			},
-			{
-				name: 'Wyoming',
-				id: 51,
-			},
-		],
-	},
-	{
-		name: 'Arts',
-		id: 9000,
-		// these are the children or 'sub items'
-		children: [
-			{
-				name: 'Art',
-				id: 9011,
-			},
-			{
-				name: 'Design',
-				id: 9012,
-			},
-			{
-				name: 'Film and Photography',
-				id: 9013,
-			},
-			{
-				name: 'Film',
-				id: 9014,
-			},
-			{
-				name: 'Photography',
-				id: 9015,
-			},
-			{
-				name: 'Music',
-				id: 9016,
-			},
-		],
-	},
-	{
-		name: 'Business',
-		id: 902,
-		children: [
-			{
-				name: 'Business Management',
-				id: 9021,
-			},
-			{
-				name: 'Business and Management',
-				id: 9022,
-			},
-			{
-				name: 'Finance and Accounting',
-				id: 9023,
-			},
-			{
-				name: 'Sports Management',
-				id: 9024,
-			},
-		],
-	},
-	{
-		name: 'Education',
-		id: 903,
-		children: [
-			{
-				name: 'Education',
-				id: 9031
-			},
-		],
-	},
-	{
-		name: 'Health Professions',
-		id: 904,
-		children: [
-			{
-				name: 'Dental',
-				id: 9041,
-			},
-			{
-				name: 'Food and Nutrition',
-				id: 9042,
-			},
-			{
-				name: 'Health Care',
-				id: 9043,
-			},
-			{
-				name: 'Health',
-				id: 9044,
-			},
-			{
-				name: 'Kinesiology',
-				id: 9045,
-			},
-			{
-				name: 'Physical Therapy',
-				id: 9046,
-			},
-			{
-				name: "Kinesiology and Physical Therapy",
-				id: 9047,
-			},
-			{
-				name: 'Medical',
-				id: 9048
-			},
-			{
-				name: 'Nursing',
-				id: 9049,
-			},
-			{
-				name: 'Public Health',
-				id: 9050,
-			},
-			{
-				name: 'Veterinary',
-				id: 9051,
-			}
-		],
-	},
-	{
-		name: 'Humanities',
-		id: 90512,
-		children: [
-			{
-				name: 'Anthropology',
-				id: 9051,
-			},
-			{
-				name: 'Communications',
-				id: 9052,
-			},
-			{
-				name: 'Economics',
-				id: 9053,
-			},
-			{
-				name: 'English',
-				id: 9054,
-			},
-			{
-				name: 'Foreign Language',
-				id: 9055,
-			},
-			{
-				name: 'History',
-				id: 9056,
-			},
-			{
-				name: 'International Relations',
-				id: 9057,
-			},
-			{
-				name: 'Legal Studies',
-				id: 9058,
-			},
-			{
-				name: 'Philosophy',
-				id: 9059,
-			},
-			{
-				name: 'Political Science',
-				id: 9059122,
-			},
-			{
-				name: 'Psychology',
-				id: 90592,
-			},
-			{
-				name: 'Public Policy and Social Services',
-				id: 90593,
-			},
-			{
-				name: 'Religious Studies',
-				id: 90594,
-			}
-		],
-	},
-	{
-		name: 'Protective Services',
-		id: 6,
-		children: [
-			{
-				name: 'Criminal Justice',
-				id: 61,
-			},
-			{
-				name: 'Protective Services',
-				id: 62,
-			},
-		],
-	},
-	{
-		name: 'Science, Technology, & Math',
-		id: 7,
-		children: [
-			{
-				name: 'Agriculture',
-				id: 71,
-			},
-			{
-				name: 'Biology',
-				id: 72,
-			},
-			{
-				name: 'Chemistry',
-				id: 73,
-			},
-			{
-				name: 'Computer Science',
-				id: 74,
-			},
-			{
-				name: 'Environmental Science',
-				id: 75,
-			},
-			{
-				name: 'Engineering',
-				id: 76,
-			},
-			{
-				name: 'Information Technology',
-				id: 77,
-			},
-			{
-				name: 'Math',
-				id: 78,
-			},
-			{
-				name: 'Physics',
-				id: 79,
-			}
-		],
-	},
-	{
-		name: 'Trades & Personal Services',
-		id: 8,
-		children: [
-			{
-				name: 'Cosmetology',
-				id: 81,
-			},
-			{
-				name: 'Culinary Arts',
-				id: 82,
-			},
-			{
-				name: 'Mechanics',
-				id: 83,
-			},
-		],
-	},
-	{
-		name: "Race",
-		id: 90,
-		children: [
-			{
-				name: "African American",
-				id: 91,
-			},
-			{
-				name: "Alaska Native",
-				id: 92,
-			},
-			{
-				name: "Asian/Pacific Islander",
-				id: 93,
-			},
-			{
-				name: "Caucasian",
-				id: 94,
-			},
-			{
-				name: "Hispanic",
-				id: 95,
-			},
-			{
-				name: "Native American",
-				id: 96,
-			},
-			{
-				name: "Other Ethnic/Racial Heritage",
-				id: 97,
-			},
-		]
-	},
-	{
-		name: "Religion",
-		id: 1000,
-		children: [
-			{
-				name: "Agnostic",
-				id: 1001,
-			},
-			{
-				name: "All Religions (encompasses all religions)",
-				id: 1002,
-			},
-			{
-				name: "Amish",
-				id: 1003,
-			},
-			{
-				name: "Atheist",
-				id: 1004,
-			},
-			{
-				name: "Baha'i",
-				id: 1005,
-			},
-			{
-				name: "Baptist",
-				id: 1006,
-			},
-			{
-				name: "Buddhist",
-				id: 1007,
-			},
-			{
-				name: "Catholic",
-				id: 1008,
-			},
-			{
-				name: "Christian",
-				id: 1009,
-			},
-			{
-				name: "Church of Christ (Christian Scientist)",
-				id: 1010,
-			},
-			{
-				name: "Church of Jesus Christ ( LDS)",
-				id: 1011,
-			},
-			{
-				name: "Church of the Brethren",
-				id: 1012,
-			},
-			{
-				name: "Confucianist",
-				id: 1013,
-			},
-			{
-				name: "Disciples of Christ",
-				id: 1014,
-			},
-			{
-				name: "Episcopalian",
-				id: 1015,
-			},
-			{
-				name: "Evangelical",
-				id: 1016,
-			},
-			{
-				name: "Hindu",
-				id: 1017,
-			},
-			{
-				name: "Islam/Muslim",
-				id: 1018,
-			},
-			{
-				name: "Jain",
-				id: 1019,
-			},
-			{
-				name: "Jesuit",
-				id: 1020,
-			},
-			{
-				name: "Jewish/Judaism",
-				id: 1021,
-			},
-			{
-				name: "Lutheran",
-				id: 1022,
-			},
-			{
-				name: "Mennonite",
-				id: 1023,
-			},
-			{
-				name: "Methodist",
-				id: 1024,
-			},
-			{
-				name: "Non-religious",
-				id: 1025,
-			},
-			{
-				name: "Orthodox",
-				id: 1026,
-			},
-			{
-				name: "Pagan/Wiccan",
-				id: 1027,
-			},
-			{
-				name: "Presbyterian",
-				id: 1028,
-			},
-			{
-				name: "Quaker",
-				id: 1029,
-			},
-			{
-				name: "Reformed Church in America",
-				id: 1030,
-			},
-			{
-				name: "Sikh",
-				id: 1031,
-			},
-			{
-				name: "Taoist",
-				id: 1032,
-			},
-			{
-				name: "Unitarian Universalist",
-				id: 1033,
-			},
-		]
-	},
-	{
-		name: "Disabilities",
-		id: 1034,
-		children: [
-			{
-				name: "ADD/ADHD",
-				id: 1035,
-			},
-			{
-				name: "Allergies",
-				id: 1036,
-			},
-			{
-				name: "Alopecia",
-				id: 1037,
-			},
-			{
-				name: "ALS (Lou Gehrig's Disease)",
-				id: 1038,
-			},
-			{
-				name: "Any Impairment",
-				id: 1039,
-			},
-			{
-				name: "Arthritis/Rheumatism",
-				id: 1040,
-			},
-			{
-				name: "Autism",
-				id: 1041,
-			},
-			{
-				name: "Autoimmune Disorder",
-				id: 1042,
-			},
-			{
-				name: "Batten disease",
-				id: 1043,
-			},
-			{
-				name: "Bipolar Disorder",
-				id: 1044,
-			},
-			{
-				name: "Cancer Related",
-				id: 1045,
-			},
-			{
-				name: "Clinically Depressed",
-				id: 1046,
-			},
-			{
-				name: "Clinically Overweight",
-				id: 1047,
-			},
-			{
-				name: "Cystic Fibrosis",
-				id: 1048,
-			},
-			{
-				name: "Deaf/Hard of Hearing",
-				id: 1049,
-			},
-			{
-				name: "Deaf/Hard of Hearing Parent",
-				id: 1050,
-			},
-			{
-				name: "Developmental Impairment",
-				id: 1051,
-			},
-			{
-				name: "Diabetes",
-				id: 1052,
-			},
-			{
-				name: "Digestive Impairment",
-				id: 1053,
-			},
-			{
-				name: "Disabled Parent",
-				id: 1054,
-			},
-			{
-				name: "Down Syndrome",
-				id: 1055,
-			},
-			{
-				name: "Dyscalculia",
-				id: 1056,
-			},
-			{
-				name: "Dysgraphia",
-				id: 1057,
-			},
-			{
-				name: "Dyslexia",
-				id: 1058,
-			},
-			{
-				name: "Epilepsy",
-				id: 1059,
-			},
-			{
-				name: "Executive Function Challenges",
-				id: 1060,
-			},
-			{
-				name: "Glycogen Storage Disease",
-				id: 1061,
-			},
-			{
-				name: "Heart Disease",
-				id: 1062,
-			},
-			{
-				name: "Hemophilia",
-				id: 1063,
-			},
-			{
-				name: "Hepatitis",
-				id: 1064,
-			},
-			{
-				name: "HIV Positive",
-				id: 1065,
-			},
-			{
-				name: "Kidney Related Impairment",
-				id: 1066,
-			},
-			{
-				name: "Learning Disability",
-				id: 1067,
-			},
-			{
-				name: "Medical Disability",
-				id: 1068,
-			},
-			{
-				name: "Mental Impairment",
-				id: 1069,
-			},
-			{
-				name: "Mucopolysaccharidoses (MPS)",
-				id: 1070,
-			},
-			{
-				name: "Multiple Sclerosis",
-				id: 1071,
-			},
-			{
-				name: "Muscular Dystrophy",
-				id: 1072,
-			},
-			{
-				name: "Narcolepsy",
-				id: 1073,
-			},
-			{
-				name: "Parkinson's Disease",
-				id: 1074,
-			},
-			{
-				name: "Phenylketonuria (PKU)",
-				id: 1075,
-			},
-			{
-				name: "Physical Impairment",
-				id: 1076,
-			},
-			{
-				name: "Post-Traumatic Stress Disorder",
-				id: 1077,
-			},
-			{
-				name: "Primary Immune Deficiency",
-				id: 1078,
-			},
-			{
-				name: "Relative w/ Alzheimer's",
-				id: 1079,
-			},
-			{
-				name: "Respiratory Impairment",
-				id: 1080,
-			},
-			{
-				name: "Sickle Cell Disease",
-				id: 1081,
-			},
-			{
-				name: "Spina Bifida",
-				id: 1082,
-			},
-			{
-				name: "Tourette Syndrome (TS)",
-				id: 1083,
-			},
-			{
-				name: "Visual Impairment",
-				id: 1084,
-			},
-			{
-				name: "Wheelchair User/Mobility Challenged",
-				id: 1085,
-			},
-		]
-	},
-	{
-		name: "Ethnicity",
-		id: 1086,
-		children: [
-			{
-				name: "Afghan",
-				id: 1087,
-			},
-			{
-				name: "Albanian",
-				id: 1088,
-			},
-			{
-				name: "Algerian",
-				id: 1089,
-			},
-			{
-				name: "American",
-				id: 1090,
-			},
-			{
-				name: "Argentinian",
-				id: 1091,
-			},
-			{
-				name: "Armenian",
-				id: 1092,
-			},
-			{
-				name: "Barbadian",
-				id: 1093,
-			},
-			{
-				name: "Belarusian",
-				id: 1094,
-			},
-			{
-				name: "Belgian",
-				id: 1095,
-			},
-			{
-				name: "Belizean",
-				id: 1096,
-			},
-			{
-				name: "Bolivian",
-				id: 1097,
-			},
-			{
-				name: "Bosnian",
-				id: 1098,
-			},
-			{
-				name: "Brazilian",
-				id: 1099,
-			},
-			{
-				name: "British",
-				id: 1100,
-			},
-			{
-				name: "Bulgarian",
-				id: 1101,
-			},
-			{
-				name: "Cambodian",
-				id: 1102,
-			},
-			{
-				name: "Cameroonian",
-				id: 1103,
-			},
-			{
-				name: "Canadian",
-				id: 1104,
-			},
-			{
-				name: "Chilean",
-				id: 1105,
-			},
-			{
-				name: "Chinese",
-				id: 1106,
-			},
-			{
-				name: "Colombian",
-				id: 1107,
-			},
-			{
-				name: "Congolese",
-				id: 1108,
-			},
-			{
-				name: "Costa Rican",
-				id: 1109,
-			},
-			{
-				name: "Croatian",
-				id: 1110,
-			},
-			{
-				name: "Cuban",
-				id: 1111,
-			},
-			{
-				name: "Czech",
-				id: 1112,
-			},
-			{
-				name: "Dominican",
-				id: 1113,
-			},
-			{
-				name: "Dutch",
-				id: 1114,
-			},
-			{
-				name: "Ecuadorian",
-				id: 1115,
-			},
-			{
-				name: "Egyptian",
-				id: 1116,
-			},
-			{
-				name: "Ethiopian",
-				id: 1117,
-			},
-			{
-				name: "Fijian",
-				id: 1118,
-			},
-			{
-				name: "Filipino",
-				id: 1119,
-			},
-			{
-				name: "French",
-				id: 1120,
-			},
-			{
-				name: "German",
-				id: 1121,
-			},
-			{
-				name: "Greek",
-				id: 1122,
-			},
-			{
-				name: "Guatemalan",
-				id: 1123,
-			},
-			{
-				name: "Guyanese",
-				id: 1124,
-			},
-			{
-				name: "Haitian",
-				id: 1125,
-			},
-			{
-				name: "Honduran",
-				id: 1126,
-			},
-			{
-				name: "Hungarian",
-				id: 1127,
-			},
-			{
-				name: "Indian",
-				id: 1128,
-			},
-			{
-				name: "Indonesian",
-				id: 1129,
-			},
-			{
-				name: "Iranian",
-				id: 1130,
-			},
-			{
-				name: "Iraqi",
-				id: 1131,
-			},
-			{
-				name: "Irish",
-				id: 1132,
-			},
-			{
-				name: "Israeli",
-				id: 1133,
-			},
-			{
-				name: "Italian",
-				id: 1134,
-			},
-			{
-				name: "Jamaican",
-				id: 1135,
-			},
-			{
-				name: "Japanese",
-				id: 1136,
-			},
-			{
-				name: "Jordanian",
-				id: 1137,
-			},
-			{
-				name: "Kenyan",
-				id: 1138,
-			},
-			{
-				name: "Kyrgyzstan",
-				id: 1139,
-			},
-			{
-				name: "Laotian",
-				id: 1140,
-			},
-			{
-				name: "Latvian",
-				id: 1141,
-			},
-			{
-				name: "Lebanese",
-				id: 1142,
-			},
-			{
-				name: "Liberian",
-				id: 1143,
-			},
-			{
-				name: "Libyan",
-				id: 1144,
-			},
-			{
-				name: "Lithuanian",
-				id: 1145,
-			},
-			{
-				name: "Macedonian",
-				id: 1146,
-			},
-			{
-				name: "Madagascan",
-				id: 1147,
-			},
-			{
-				name: "Malaysian",
-				id: 1148,
-			},
-			{
-				name: "Mexican",
-				id: 1149,
-			},
-			{
-				name: "Moldovan",
-				id: 1150,
-			},
-			{
-				name: "Mongolian",
-				id: 1151,
-			},
-			{
-				name: "Moroccan",
-				id: 1152,
-			},
-			{
-				name: "Mozambican",
-				id: 1153,
-			},
-			{
-				name: "Native American",
-				id: 1154,
-			},
-			{
-				name: "Nepalese",
-				id: 1155,
-			},
-			{
-				name: "Nicaraguan",
-				id: 1156,
-			},
-			{
-				name: "Nigerian",
-				id: 1157,
-			},
-			{
-				name: "North Korean",
-				id: 1158,
-			},
-			{
-				name: "Pakistani",
-				id: 1159,
-			},
-			{
-				name: "Palestinian",
-				id: 1160,
-			},
-			{
-				name: "Panamanian",
-				id: 1161,
-			},
-			{
-				name: "Paraguayan",
-				id: 1162,
-			},
-			{
-				name: "Peruvian",
-				id: 1163,
-			},
-			{
-				name: "Polish",
-				id: 1164,
-			},
-			{
-				name: "Portuguese",
-				id: 1165,
-			},
-			{
-				name: "Puerto Rican",
-				id: 1166,
-			},
-			{
-				name: "Romanian",
-				id: 1167,
-			},
-			{
-				name: "Russian",
-				id: 1168,
-			},
-			{
-				name: "Salvadoran",
-				id: 1169,
-			},
-			{
-				name: "Saudi Arabian",
-				id: 1170,
-			},
-			{
-				name: "Scandinavian",
-				id: 1171,
-			},
-			{
-				name: "Serbian",
-				id: 1172,
-			},
-			{
-				name: "Singaporean",
-				id: 1173,
-			},
-			{
-				name: "Slovakian",
-				id: 1174,
-			},
-			{
-				name: "Slovene",
-				id: 1175,
-			},
-			{
-				name: "Somalian",
-				id: 1176,
-			},
-			{
-				name: "South Korean",
-				id: 1177,
-			},
-			{
-				name: "Spanish",
-				id: 1178,
-			},
-			{
-				name: "Sudanese",
-				id: 1179,
-			},
-			{
-				name: "Swazi",
-				id: 1180,
-			},
-			{
-				name: "Syrian",
-				id: 1181,
-			},
-			{
-				name: "Taiwanese",
-				id: 1182,
-			},
-			{
-				name: "Tanzanian",
-				id: 1183,
-			},
-			{
-				name: "Thai",
-				id: 1184,
-			},
-			{
-				name: "Tunisian",
-				id: 1185,
-			},
-			{
-				name: "Ugandan",
-				id: 1186,
-			},
-			{
-				name: "Ukrainian",
-				id: 1187,
-			},
-			{
-				name: "Uruguayan",
-				id: 1188,
-			},
-			{
-				name: "Venezuelan",
-				id: 1189,
-			},
-			{
-				name: "Vietnamese",
-				id: 1190,
-			},
-			{
-				name: "Yemeni",
-				id: 1191,
-			},
-		]
-	},
-];
 
-const items2 = [
+const items = [
 	// this is the parent or 'item'
 	{
 		name: 'Arts',
@@ -2345,6 +1078,217 @@ const items2 = [
 			},
 		]
 	},
+	{
+		name: 'United States',
+		id: 1192,
+		// these are the children or 'sub items'
+		children: [
+			{
+				name: 'No Preference',
+				id: 1193,
+			},
+			{
+				name: 'Alabama',
+				id: 1194,
+			},
+			{
+				name: 'Alaska',
+				id: 1195,
+			},
+			{
+				name: 'Arizona',
+				id: 1196,
+			},
+			{
+				name: 'Arkansas',
+				id: 1197,
+			},
+			{
+				name: 'California',
+				id: 1198,
+			},
+			{
+				name: 'Colorado',
+				id: 1199,
+			},
+			{
+				name: 'Connecticut',
+				id: 1200,
+			},
+			{
+				name: 'Delaware',
+				id: 1201,
+			},
+			{
+				name: 'Flordia',
+				id: 1202,
+			},
+			{
+				name: 'Georgia',
+				id: 1203,
+			},
+			{
+				name: 'Hawaii',
+				id: 1204,
+			},
+			{
+				name: 'Idaho',
+				id: 1205,
+			},
+			{
+				name: 'Illinois',
+				id: 1206,
+			},
+			{
+				name: 'Indiana',
+				id: 1207,
+			},
+			{
+				name: 'Iowa',
+				id: 1208,
+			},
+			{
+				name: 'Kansas',
+				id: 1209,
+			},
+			{
+				name: 'Kentucky',
+				id: 1210,
+			},
+			{
+				name: 'Louisiana',
+				id: 1211,
+			},
+			{
+				name: 'Maine',
+				id: 1212,
+			},
+			{
+				name: 'Maryland',
+				id: 1213,
+			},
+			{
+				name: 'Massachusetts',
+				id: 1214,
+			},
+			{
+				name: 'Michigan',
+				id: 1215,
+			},
+			{
+				name: 'Minnesota',
+				id: 1216,
+			},
+			{
+				name: 'Mississippi',
+				id: 1217,
+			},
+			{
+				name: 'Missouri',
+				id: 1218,
+			},
+			{
+				name: 'Montana',
+				id: 1219,
+			},
+			{
+				name: 'Nebraska',
+				id: 1220,
+			},
+			{
+				name: 'Nevada',
+				id: 1221,
+			},
+			{
+				name: 'New Hampshire',
+				id: 1222,
+			},
+			{
+				name: 'New Jersey',
+				id: 1223,
+			},
+			{
+				name: 'New Mexico',
+				id: 1224,
+			},
+			{
+				name: 'New York',
+				id: 1225,
+			},
+			{
+				name: 'North Carolina',
+				id: 1226,
+			},
+			{
+				name: 'North Dakota',
+				id: 1227,
+			},
+			{
+				name: 'Ohio',
+				id: 1228,
+			},
+			{
+				name: 'Oklahoma',
+				id: 1229,
+			},
+			{
+				name: 'Oregon',
+				id: 1230,
+			},
+			{
+				name: 'Pennsylvania',
+				id: 1231,
+			},
+			{
+				name: 'Rhode Island',
+				id: 1232,
+			},
+			{
+				name: 'South Carolina',
+				id: 1233,
+			},
+			{
+				name: 'South Dakota',
+				id: 1234,
+			},
+			{
+				name: 'Tennessee',
+				id: 1235,
+			},
+			{
+				name: 'Texas',
+				id: 1236,
+			},
+			{
+				name: 'Utah',
+				id: 1237,
+			},
+			{
+				name: 'Vermont',
+				id: 1238,
+			},
+			{
+				name: 'Virginia',
+				id: 1239,
+			},
+			{
+				name: 'Washington',
+				id: 1240,
+			},
+			{
+				name: 'West Virgina',
+				id: 1241,
+			},
+			{
+				name: 'Wisconsin',
+				id: 1242,
+			},
+			{
+				name: 'Wyoming',
+				id: 1243,
+			},
+		],
+	},
 
 ];
 
@@ -2369,17 +1313,27 @@ class InputScreen1a extends React.Component {
 		super(props);
 		this.state = {
 			email: this.props.email,
-			gender: "",
-			dob: "",
+			gender: "Male",
+			dob: "22",
 			// zip: "",git l
-			gpa: "",
-			selectedResidences: [],
+			gpa: "3.5",
+			sat_score: "",
+			act_score: "",
+			selectedResidences: ["New York"],
+			selectedMajors: ["Computer Science"],
+			selectedRaces : ["Asian/Pacific Islander"],
+			selectedReligions: ["Islam/Muslim"],
+			selectedDisabilities: ["Visual Impairment"],
+			selectedEthnicities: ["Yemeni"],
+
+			/*
 			selectedItems: ["New York"], //Region
 			selectedItems1: ["Computer Science"], //Major
-			selectedItems2: ["Asian"], //Race
+			selectedItems2: ["Asian/Pacific Islander"], //Race
 			selectedItems3: ["Islam/Muslim"], //Religion
 			selectedItems4: ["Visual Impairment"], //Disabilities
 			selectedItems5: ["Yemeni",], // Ethnicity
+			*/
 		};
 		this.handleGender = this.handleGender.bind(this);
 		this.handleDOB = this.handleDOB.bind(this);
@@ -2446,6 +1400,7 @@ class InputScreen1a extends React.Component {
 	}
 	*/
 
+	/*
 	onSelectedItemsChange1 = (selectedItems1) => {
 		this.setState({ selectedItems1 });
 	};
@@ -2465,6 +1420,8 @@ class InputScreen1a extends React.Component {
 	onSelectedItemsChange5 = (selectedItems5) => {
 		this.setState({ selectedItems5 });
 	};
+
+	*/
 
 	handleAcamajor(text) {
 		this.setState({
@@ -2761,11 +1718,7 @@ class InputScreen1a extends React.Component {
 		});
 	}
 
-	upload2sever = () => {
-
-	}
-
-	checkDropDowns = () => {
+	getExistingData = () => {
 		let URL = "http://3a645b20797b.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; //insert correct URL for user's profiel
   
 	  fetch(URL, {
@@ -2780,12 +1733,15 @@ class InputScreen1a extends React.Component {
 		.then((json) => {
 		  // set the val to state
 		  this.setState({
-			selectedItems : json.region, //Not sure how this is stored/named in the backend
-			selectedItems1 : json.major, //Not sure how this is stored/named in the backend
-			selectedItems2 : json.race, //Not sure how this is stored/named in the backend
-			selectedItems3 : json.religion, //Not sure how this is stored/named in the backend
-			selectedItems4 : json.disability, //Not sure how this is stored/named in the backend
-			selectedItems5 : json.ethnicity, //Not sure how this is stored/named in the backend
+			dob: json.dob,
+			gender: json.gender,
+			gpa: json.gpa,
+			selectedResidences : json.region, //Not sure how this is stored/named in the backend
+			selectedMajors : json.major, //Not sure how this is stored/named in the backend
+			selectedRaces : json.race, //Not sure how this is stored/named in the backend
+			selectedReligions : json.religion, //Not sure how this is stored/named in the backend
+			selectedDisabilities : json.disability, //Not sure how this is stored/named in the backend
+			selectedEthnicities : json.ethnicity, //Not sure how this is stored/named in the backend
 		  }).catch((error) => {
 			console.log('An error happened: ' + error);
 		  });
@@ -2793,11 +1749,64 @@ class InputScreen1a extends React.Component {
 	// 	// validate
 	}
 
+	checkGender()
+	{
+		let exists = false;
+		if(this.state.gender.localeCompare("") != 0)
+		{
+			exists = true;
+		}
+		return exists;
+	}
+
+	checkAge()
+	{
+		let exits = false;
+		if(this.state.dob.localeCompare("") != 0)
+		{
+			exists = true;
+		}
+		return exists;
+	}
+
+	checkGPA()
+	{
+		let exists = false;
+		if(this.state.gpa.localeCompare("") != 0)
+		{
+			exists = true;
+		}
+		return exists;
+	}
+
+	checkSAT()
+	{
+		let existingScore = false;
+		//this.checkExamScores()
+		if(this.state.sat_score.localeCompare("") != 0)
+		{
+			existingScore = true;
+		}
+		return existingScore;
+	}
+
+	checkACT()
+	{
+		let existingScore = false;
+		//this.checkExamScores()
+		if(this.state.act_score.localeCompare("") != 0)
+		{
+			existingScore = true;
+		}
+		return existingScore;
+	}
+
 
 	render() {
 		// console.log("DOB is: " + this.state.dob);
 
 		// check();
+		this.getExistingData();
 		return (
 			<DismissKeyboard>
 				<KeyboardAwareScrollView
@@ -2824,6 +1833,7 @@ class InputScreen1a extends React.Component {
 									{ label: 'Transgender', value: 'Transgender' },
 									{ label: 'Other', value: 'Other' },
 								]}
+								defaultValue={this.state.gender}
 								defaultIndex={0}
 								containerStyle={{ height: 30, marginTop: 8, marginLeft: 10, width: "90%" }}
 								itemStyle={{ justifyContent: 'flex-start' }}
@@ -2834,20 +1844,30 @@ class InputScreen1a extends React.Component {
 						</View>
 						<View style={styles.input2_grp}>
 							<Text style={styles.txt_display}>Age</Text>
+							{ this.checkAge() ?
 							<TextInput
 								onChangeText={this.handleDOB}
-								placeholder="16"
+								placeholder= {this.state.dob}
 								keyboardType="numeric"
 								maxLength={2}
 								style={styles.input2}
 							></TextInput>
+							:
+							<TextInput
+								onChangeText={this.handleDOB}
+								placeholder="Please Enter Your Age"
+								keyboardType="numeric"
+								maxLength={2}
+								style={styles.input2}
+							></TextInput>
+							}
 						</View>
 						<View style={styles.input3_grp}>
 							<Text style={styles.txt_display}>State of Residence and/or Schooling</Text>
 							<SectionedMultiSelect
-								items={items1.slice(0, 1)}
+								items={items.slice(items.length -1)}
 								IconRenderer={MaterialIcons}
-								uniqueKey="id"
+								uniqueKey="name"
 								subKey="children"
 								selectText="Choose State(s) If Applicable"
 								// style={styles.multiSelecter}
@@ -2859,13 +1879,23 @@ class InputScreen1a extends React.Component {
 						</View>
 						<View style={styles.input4_grp}>
 							<Text style={styles.txt_display}>GPA</Text>
+							{ this.checkGPA() ? 
 							<TextInput
 								onChangeText={this.handleGPA}
-								placeholder="4.0"
+								placeholder= {this.state.gpa}
 								keyboardType="numeric"
 								style={styles.input4}
 								maxLength={4}
 							></TextInput>
+							:
+							<TextInput
+								onChangeText={this.handleGPA}
+								placeholder="Please Enter Your GPA"
+								keyboardType="numeric"
+								style={styles.input4}
+								maxLength={4}
+							></TextInput>
+							}
 						</View>
 					</View>
 
@@ -2881,15 +1911,15 @@ class InputScreen1a extends React.Component {
 								<Text style={styles.txt_display}>Academic Major:</Text>
 								<SectionedMultiSelect
 									style={{ margin: 30 }}
-									items={items1.slice(1, items1.length - 4)}
+									items={items.slice(0, 8)}
 									IconRenderer={MaterialIcons}
 									uniqueKey="name"
 									subKey="children"
 									selectText="Choose your major"
 									showDropDowns={true}
 									readOnlyHeadings={true}
-									onSelectedItemsChange={this.onSelectedItemsChange1}
-									selectedItems={this.state.selectedItems1}
+									onSelectedItemsChange={this.onSelectedMajorsChange}
+									selectedItems={this.state.selectedMajors}
 								/>
 							</View>
 
@@ -2897,7 +1927,7 @@ class InputScreen1a extends React.Component {
 								<Text style={styles.txt_display}>Race:</Text>
 								<SectionedMultiSelect
 									style={{ margin: 30 }}
-									items={items2.slice(items2.length - 4, items2.length - 4 + 1)}
+									items={items.slice(8,9)}
 									IconRenderer={MaterialIcons}
 									uniqueKey="name"
 									subKey="children"
@@ -2913,7 +1943,7 @@ class InputScreen1a extends React.Component {
 								<Text style={styles.txt_display}>Religion:</Text>
 								<SectionedMultiSelect
 									style={{ margin: 30 }}
-									items={items2.slice(items2.length - 3, items2.length - 3 + 1)}
+									items={items.slice(9,10)}
 									IconRenderer={MaterialIcons}
 									uniqueKey="name"
 									subKey="children"
@@ -2929,7 +1959,7 @@ class InputScreen1a extends React.Component {
 								<Text style={styles.txt_display}>Disabilities:</Text>
 								<SectionedMultiSelect
 									style={{ margin: 30 }}
-									items={items2.slice(items2.length - 2, items2.length - 2 + 1)}
+									items={items.slice(10,11)}
 									IconRenderer={MaterialIcons}
 									uniqueKey="name"
 									subKey="children"
@@ -2943,6 +1973,15 @@ class InputScreen1a extends React.Component {
 
 							<View style={styles.grp5}>
 								<Text style={styles.txt_display}>Test Scores:</Text>
+								{ this.checkSAT() ?
+								<TextInput
+									onChangeText={this.handleSAT}
+									placeholder= {this.state.sat_score}
+									keyboardType="numeric"
+									style={styles.input6}
+									maxLength={4}
+								></TextInput>
+								:
 								<TextInput
 									onChangeText={this.handleSAT}
 									placeholder="SAT"
@@ -2950,6 +1989,16 @@ class InputScreen1a extends React.Component {
 									style={styles.input6}
 									maxLength={4}
 								></TextInput>
+								}
+								{ this.checkACT() ?
+								<TextInput
+									onChangeText={this.handleACT}
+									placeholder= {this.state.act_score}
+									keyboardType="numeric"
+									style={styles.input61}
+									maxLength={2}
+								></TextInput>
+								:
 								<TextInput
 									onChangeText={this.handleACT}
 									placeholder="ACT"
@@ -2957,13 +2006,14 @@ class InputScreen1a extends React.Component {
 									style={styles.input61}
 									maxLength={2}
 								></TextInput>
+								}
 							</View>
 
 							<View style={styles.grp6}>
 								<Text style={styles.txt_display}>Ethnicity:</Text>
 								<SectionedMultiSelect
 									style={{ margin: 30 }}
-									items={items2.slice(items2.length - 1, items2.length)}
+									items={items.slice(11,12)}
 									IconRenderer={MaterialIcons}
 									uniqueKey="name"
 									subKey="children"
