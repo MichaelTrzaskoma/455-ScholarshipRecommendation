@@ -28,6 +28,8 @@ import TabViewSurvey from "./components/TabViewSurvey";
 
 import HorizantalRecommendationTbl from "./components/scholarships/HorizantalRecommendationTbl";
 import VertialRecommendationTbl from "./components/scholarships/VerticalRecommdationTbl";
+import ViewRecommendTbl_3 from "./components/scholarships/ViewRecommendTbl_3";
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -400,6 +402,22 @@ export default class App extends Component {
               })}
             />
 
+            <Stack.Screen
+              name={"ViewRecommendTbl_3"}
+              component={ViewRecommendTbl_3}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
+            />
+
           </Stack.Navigator>
         </NavigationContainer>
       );
@@ -407,6 +425,7 @@ export default class App extends Component {
     else {
       return (
         <View style={styles.container}>
+          {/* <ViewRecommendTbl_3 signIn={this.signIn} /> */}
           <LoginScreen signIn={this.signIn} />
         </View>
       );

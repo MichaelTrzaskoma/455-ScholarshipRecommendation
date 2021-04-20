@@ -7,7 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import InputInfoScreen1 from './InputInfoScreen1';
 import CollegeSurvey from './colleges/CollegeSurvey';
-import InputScreen2 from "./InputInfoScreen2";
+// import InputScreen2 from "./InputInfoScreen2";
 
 const Stack = createStackNavigator();
 
@@ -46,13 +46,13 @@ export default function TabViewSurvey() {
           component={TopTapView}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name={"InputScreen2"}
           component={InputScreen2}
           options={{ headerShown: false }}
         // options={{ title: "Optional Info", email: this.state.usrProfile.email }}
         // initialParams={{ email: this.state.usrProfile.email }}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
