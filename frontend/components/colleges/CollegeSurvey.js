@@ -480,7 +480,7 @@ export default class CollegeSurvey extends React.Component {
 			selectedItems2: [],
 			satScore : "",
 			actScore: "",
-			email: this.props.route.params.email,
+			//email: this.props.route.params.email,
 		}
 	}
 

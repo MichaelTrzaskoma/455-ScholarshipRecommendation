@@ -2374,12 +2374,12 @@ class InputScreen1a extends React.Component {
 			// zip: "",git l
 			gpa: "",
 			selectedResidences: [],
-			selectedItems: [], //Region
-			selectedItems1: [], //Major
-			selectedItems2: [], //Race
-			selectedItems3: [], //Religion
-			selectedItems4: [], //Disabilities
-			selectedItems5: [], // Ethnicity
+			selectedItems: ["New York"], //Region
+			selectedItems1: ["Computer Science"], //Major
+			selectedItems2: ["Asian"], //Race
+			selectedItems3: ["Islam/Muslim"], //Religion
+			selectedItems4: ["Visual Impairment"], //Disabilities
+			selectedItems5: ["Yemeni",], // Ethnicity
 		};
 		this.handleGender = this.handleGender.bind(this);
 		this.handleDOB = this.handleDOB.bind(this);
@@ -2765,10 +2765,33 @@ class InputScreen1a extends React.Component {
 
 	}
 
-	// check = () => {
-	// 	fetch();
+	checkDropDowns = () => {
+		let URL = "http://3a645b20797b.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; //insert correct URL for user's profiel
+  
+	  fetch(URL, {
+		method: 'GET',
+		headers: {
+		  Accept: 'application/json',
+		  'Content-Type': 'application/json',
+		},
+	  })
+		// format the API response into json
+		.then((response) => response.json())
+		.then((json) => {
+		  // set the val to state
+		  this.setState({
+			selectedItems : json.region, //Not sure how this is stored/named in the backend
+			selectedItems1 : json.major, //Not sure how this is stored/named in the backend
+			selectedItems2 : json.race, //Not sure how this is stored/named in the backend
+			selectedItems3 : json.religion, //Not sure how this is stored/named in the backend
+			selectedItems4 : json.disability, //Not sure how this is stored/named in the backend
+			selectedItems5 : json.ethnicity, //Not sure how this is stored/named in the backend
+		  }).catch((error) => {
+			console.log('An error happened: ' + error);
+		  });
+		});
 	// 	// validate
-	// }
+	}
 
 
 	render() {
