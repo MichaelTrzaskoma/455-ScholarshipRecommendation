@@ -1,6 +1,7 @@
 *.pem
 
 config.py
+env/
 
 **/node_modules
 node_modules/**
@@ -28,7 +29,7 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-env/
+
 
 # macOS
 .DS_Store
