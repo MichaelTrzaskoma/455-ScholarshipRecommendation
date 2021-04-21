@@ -16,7 +16,7 @@ zcdb = ZipCodeDatabase()
 # the db obj will be passed from the views.py
 # ===================================
 #scholar_ref = db.test.scholarships
-#user_Ref = db.test.client_profile
+# user_Ref = db.test.client_profile
 # table_Ref = db.collection("Index Table").document("Terms")
 # refList = table_Ref.get().to_dict().get('Terms')
 
@@ -111,6 +111,58 @@ def updtUser(
     })
 
 
+
+def updtScholarSurvey(
+        db,
+        user_Ref,
+        email,
+        gender,
+        age,
+        state,
+        gpa,
+        major='',
+        race=[],
+        ethnicity=[],
+        religion=[],
+        dissabilities=[],
+        sat='',):
+
+    list1 = [gender]
+    list1.append(catAge(age))
+    list1.append(catGPA(gpa))
+
+    
+    list2 = [state, race, religion, dissabilities, ethnicity, major]
+    for i in range(len(list2)):
+        if list2[i] != []:
+            list1.extend(list2[i])
+        
+
+    if (sat != ''):
+        list1.append(catSat(sat))
+
+    binary = setBin(db, list1)
+
+    user_Ref.update(
+        {id_:email},
+        { $set:
+            {
+           survey_scholarship:{
+                "gender": gender,
+                "age": age,
+                "states": states,
+                "gpa": gpa,
+                "major": major,
+                "race": race,
+                "ethnicity": ethnicity,
+                "religion": religion,
+                "disabilities": dissabilities,
+                "sat_score": sat,
+                "terms": list1,
+                "binary": binary, 
+           } 
+        }}
+    )
 # def binaryConvert():
 # refers to a list
 
@@ -200,10 +252,10 @@ def catGPA(gpa):
     return str
 
 
-def catAge(dob):
-    birth = datetime.strptime(dob, "%m/%d/%Y")
-    today = date.today()
-    age = today.year - birth.year - ((today.month, today.day) <
+def catAge(age):
+    #birth = datetime.strptime(dob, "%m/%d/%Y")
+    #today = date.today()
+    #age = today.year - birth.year - ((today.month, today.day) <
                                      (birth.month, birth.day))
     string = ''
     if age < 13:
