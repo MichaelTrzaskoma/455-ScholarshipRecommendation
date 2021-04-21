@@ -144,10 +144,10 @@ def updtScholarSurvey(
     binary = setBin(db, list1)
 
     user_Ref.update(
-        {id_:email},
-        { $set:
+        {'id'_:email},
+        {'$set':
             {
-           survey_scholarship:{
+           'survey_scholarship':{
                 "gender": gender,
                 "age": age,
                 "states": states,
