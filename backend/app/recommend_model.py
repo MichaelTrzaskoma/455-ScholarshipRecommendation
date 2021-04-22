@@ -144,13 +144,13 @@ def updtScholarSurvey(
     binary = setBin(db, list1)
 
     user_Ref.update(
-        {'id'_:email},
+        {'_id':email},
         {'$set':
             {
            'survey_scholarship':{
                 "gender": gender,
                 "age": age,
-                "states": states,
+                "states": state,
                 "gpa": gpa,
                 "major": major,
                 "race": race,
@@ -253,9 +253,9 @@ def catGPA(gpa):
 
 
 def catAge(age):
-    #birth = datetime.strptime(dob, "%m/%d/%Y")
-    #today = date.today()
-    #age = today.year - birth.year - ((today.month, today.day) <
+    birth = datetime.strptime(dob, "%m/%d/%Y")
+    today = date.today()
+    age = today.year - birth.year - ((today.month, today.day) <
                                      (birth.month, birth.day))
     string = ''
     if age < 13:
