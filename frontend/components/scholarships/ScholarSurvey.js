@@ -9,6 +9,7 @@ import {
 	Keyboard,
 	TouchableWithoutFeedback,
 	Dimensions,
+	StatusBar
 } from "react-native";
 // import InputScreen2 from "./InputInfoScreen2";
 
@@ -21,6 +22,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import CollapsibleView from "@eliav2/react-native-collapsible-view";
 import { CheckBox } from 'react-native-elements/dist/checkbox/CheckBox';
+// import { Feather } from '@expo/vector-icons';
 
 
 const items = [
@@ -1329,7 +1331,7 @@ class InputScreen1a extends React.Component {
 			act_score: "",
 			selectedResidences: ["New York"],
 			selectedMajors: ["Computer Science"],
-			selectedRaces : ["Asian/Pacific Islander"],
+			selectedRaces: ["Asian/Pacific Islander"],
 			selectedReligions: ["Islam/Muslim"],
 			selectedDisabilities: ["Visual Impairment"],
 			selectedEthnicities: ["Yemeni"],
@@ -1354,82 +1356,7 @@ class InputScreen1a extends React.Component {
 		this.handleSAT = this.handleSAT.bind(this);
 		this.handleethnicity = this.handleethnicity.bind(this);
 		this.handleACT = this.handleACT.bind(this);
-		/*
-		this.reformatDate = this.reformatDate.bind(this);
-		this.assignReformattDate = this.assignReformatDate.bind(this);
-		*/
 	}
-
-	/*
-	reformatDate(dateStr) {
-		//Function takes in date String as stored by external library and converts to format suitable for backend purposes
-		//Converts Date from "1925-05-04T23:00:00.000Z" format to "MM-DD-YYYY"
-
-		//Retrieving semi-desired format for day
-		let day = dateStr.getDate();
-		console.log("Day is: "+day)
-		//Converting date-day value to string value for purposes of checking length
-		let dayStr = String(day);
-
-		//If the lenth of the String is less than 2, ie the raw date value is one digit, like "5", it is to be converted to "05"
-		if (dayStr.length < 2) {
-			dayStr = "0" + dayStr;
-		}
-		//Retrieving semi-desired format for month
-		let month = dateStr.getMonth() + 1;
-
-		//Converting date-month value to String value ofr purposes of checking length
-		let monthStr = String(month);
-
-		//If the length of the String is less than 2, ie the raw date value is one digit, like "3", it is to be converted to "03"
-		if (monthStr.length < 2) {
-			monthStr = "0" + monthStr;
-		}
-		//Retrieving the semi-desired format for year
-		let year = dateStr.getFullYear();
-		//Converting year to String value for reliable concatenation 
-		let yearStr = String(year);
-		
-		// TODO: date must be in "mm/dd/yyyy" format.
-		let formattedString = dayStr + "/" + monthStr + "/" + yearStr;
-		console.log("formattedString:"+ formattedString);
-		return formattedString;
-	}
-
-
-	assignReformatDate(dateStr) {
-		//Function Feeds converted date to DOBhandler
-		let formattedDate = this.reformatDate(dateStr);
-		//console.log(formattedDate);
-		let formattedDateStr = String(formattedDate);
-		console.log("Date: " + formattedDateStr);
-		final_date = this.handleDOB(formattedDateStr);
-		console.log(this.state.dob);
-	}
-	*/
-
-	/*
-	onSelectedItemsChange1 = (selectedItems1) => {
-		this.setState({ selectedItems1 });
-	};
-
-	onSelectedItemsChange2 = (selectedItems2) => {
-		this.setState({ selectedItems2 });
-	};
-
-	onSelectedItemsChange3 = (selectedItems3) => {
-		this.setState({ selectedItems3 });
-	};
-
-	onSelectedItemsChange4 = (selectedItems4) => {
-		this.setState({ selectedItems4 });
-	};
-
-	onSelectedItemsChange5 = (selectedItems5) => {
-		this.setState({ selectedItems5 });
-	};
-
-	*/
 
 	handleAcamajor(text) {
 		this.setState({
@@ -1826,53 +1753,43 @@ class InputScreen1a extends React.Component {
 	// 	// validate
 	}
 
-	checkGender()
-	{
+	checkGender() {
 		let exists = false;
-		if(this.state.gender.localeCompare("") != 0)
-		{
+		if (this.state.gender.localeCompare("") != 0) {
 			exists = true;
 		}
 		return exists;
 	}
 
-	checkAge()
-	{
-		let exits = false;
-		if(this.state.dob.localeCompare("") != 0)
-		{
-			exists = true;
-		}
-		return exists;
-	}
-
-	checkGPA()
-	{
+	checkAge() {
 		let exists = false;
-		if(this.state.gpa.localeCompare("") != 0)
-		{
+		if (this.state.dob.localeCompare("") != 0) {
 			exists = true;
 		}
 		return exists;
 	}
 
-	checkSAT()
-	{
+	checkGPA() {
+		let exists = false;
+		if (this.state.gpa.localeCompare("") != 0) {
+			exists = true;
+		}
+		return exists;
+	}
+
+	checkSAT() {
 		let existingScore = false;
 		//this.checkExamScores()
-		if(this.state.sat_score.localeCompare("") != 0)
-		{
+		if (this.state.sat_score.localeCompare("") != 0) {
 			existingScore = true;
 		}
 		return existingScore;
 	}
 
-	checkACT()
-	{
+	checkACT() {
 		let existingScore = false;
 		//this.checkExamScores()
-		if(this.state.act_score.localeCompare("") != 0)
-		{
+		if (this.state.act_score.localeCompare("") != 0) {
 			existingScore = true;
 		}
 		return existingScore;
@@ -1888,6 +1805,7 @@ class InputScreen1a extends React.Component {
 			<DismissKeyboard>
 				<KeyboardAwareScrollView
 					style={styles.container}>
+					<StatusBar backgroundColor="#007FF9" barStyle="light-content" />
 
 					<View style={styles.card_grp1}>
 						<Text style={styles.findScholar}>To Find your Scholarship:</Text>
@@ -1920,28 +1838,28 @@ class InputScreen1a extends React.Component {
 						</View>
 						<View style={styles.input2_grp}>
 							<Text style={styles.txt_display}>Age</Text>
-							{ this.checkAge() ?
-							<TextInput
-								onChangeText={this.handleDOB}
-								placeholder= {this.state.dob}
-								keyboardType="numeric"
-								maxLength={2}
-								style={styles.input2}
-							></TextInput>
-							:
-							<TextInput
-								onChangeText={this.handleDOB}
-								placeholder="Please Enter Your Age"
-								keyboardType="numeric"
-								maxLength={2}
-								style={styles.input2}
-							></TextInput>
+							{this.checkAge() ?
+								<TextInput
+									onChangeText={this.handleDOB}
+									placeholder={this.state.dob}
+									keyboardType="numeric"
+									maxLength={2}
+									style={styles.input2}
+								></TextInput>
+								:
+								<TextInput
+									onChangeText={this.handleDOB}
+									placeholder="Please Enter Your Age"
+									keyboardType="numeric"
+									maxLength={2}
+									style={styles.input2}
+								></TextInput>
 							}
 						</View>
 						<View style={styles.input3_grp}>
 							<Text style={styles.txt_display}>State of Residence and/or Schooling</Text>
 							<SectionedMultiSelect
-								items={items.slice(items.length -1)}
+								items={items.slice(items.length - 1)}
 								IconRenderer={MaterialIcons}
 								uniqueKey="name"
 								subKey="children"
@@ -1955,22 +1873,22 @@ class InputScreen1a extends React.Component {
 						</View>
 						<View style={styles.input4_grp}>
 							<Text style={styles.txt_display}>GPA</Text>
-							{ this.checkGPA() ? 
-							<TextInput
-								onChangeText={this.handleGPA}
-								placeholder= {this.state.gpa}
-								keyboardType="numeric"
-								style={styles.input4}
-								maxLength={4}
-							></TextInput>
-							:
-							<TextInput
-								onChangeText={this.handleGPA}
-								placeholder="Please Enter Your GPA"
-								keyboardType="numeric"
-								style={styles.input4}
-								maxLength={4}
-							></TextInput>
+							{this.checkGPA() ?
+								<TextInput
+									onChangeText={this.handleGPA}
+									placeholder={this.state.gpa}
+									keyboardType="numeric"
+									style={styles.input4}
+									maxLength={4}
+								></TextInput>
+								:
+								<TextInput
+									onChangeText={this.handleGPA}
+									placeholder="Please Enter Your GPA"
+									keyboardType="numeric"
+									style={styles.input4}
+									maxLength={4}
+								></TextInput>
 							}
 						</View>
 					</View>
@@ -2003,7 +1921,7 @@ class InputScreen1a extends React.Component {
 								<Text style={styles.txt_display}>Race:</Text>
 								<SectionedMultiSelect
 									style={{ margin: 30 }}
-									items={items.slice(8,9)}
+									items={items.slice(8, 9)}
 									IconRenderer={MaterialIcons}
 									uniqueKey="name"
 									subKey="children"
@@ -2019,7 +1937,7 @@ class InputScreen1a extends React.Component {
 								<Text style={styles.txt_display}>Religion:</Text>
 								<SectionedMultiSelect
 									style={{ margin: 30 }}
-									items={items.slice(9,10)}
+									items={items.slice(9, 10)}
 									IconRenderer={MaterialIcons}
 									uniqueKey="name"
 									subKey="children"
@@ -2035,7 +1953,7 @@ class InputScreen1a extends React.Component {
 								<Text style={styles.txt_display}>Disabilities:</Text>
 								<SectionedMultiSelect
 									style={{ margin: 30 }}
-									items={items.slice(10,11)}
+									items={items.slice(10, 11)}
 									IconRenderer={MaterialIcons}
 									uniqueKey="name"
 									subKey="children"
@@ -2049,39 +1967,39 @@ class InputScreen1a extends React.Component {
 
 							<View style={styles.grp5}>
 								<Text style={styles.txt_display}>Test Scores:</Text>
-								{ this.checkSAT() ?
-								<TextInput
-									onChangeText={this.handleSAT}
-									placeholder= {this.state.sat_score}
-									keyboardType="numeric"
-									style={styles.input6}
-									maxLength={4}
-								></TextInput>
-								:
-								<TextInput
-									onChangeText={this.handleSAT}
-									placeholder="SAT"
-									keyboardType="numeric"
-									style={styles.input6}
-									maxLength={4}
-								></TextInput>
+								{this.checkSAT() ?
+									<TextInput
+										onChangeText={this.handleSAT}
+										placeholder={this.state.sat_score}
+										keyboardType="numeric"
+										style={styles.input6}
+										maxLength={4}
+									></TextInput>
+									:
+									<TextInput
+										onChangeText={this.handleSAT}
+										placeholder="SAT"
+										keyboardType="numeric"
+										style={styles.input6}
+										maxLength={4}
+									></TextInput>
 								}
-								{ this.checkACT() ?
-								<TextInput
-									onChangeText={this.handleACT}
-									placeholder= {this.state.act_score}
-									keyboardType="numeric"
-									style={styles.input61}
-									maxLength={2}
-								></TextInput>
-								:
-								<TextInput
-									onChangeText={this.handleACT}
-									placeholder="ACT"
-									keyboardType="numeric"
-									style={styles.input61}
-									maxLength={2}
-								></TextInput>
+								{this.checkACT() ?
+									<TextInput
+										onChangeText={this.handleACT}
+										placeholder={this.state.act_score}
+										keyboardType="numeric"
+										style={styles.input61}
+										maxLength={2}
+									></TextInput>
+									:
+									<TextInput
+										onChangeText={this.handleACT}
+										placeholder="ACT"
+										keyboardType="numeric"
+										style={styles.input61}
+										maxLength={2}
+									></TextInput>
 								}
 							</View>
 
@@ -2089,7 +2007,7 @@ class InputScreen1a extends React.Component {
 								<Text style={styles.txt_display}>Ethnicity:</Text>
 								<SectionedMultiSelect
 									style={{ margin: 30 }}
-									items={items.slice(11,12)}
+									items={items.slice(11, 12)}
 									IconRenderer={MaterialIcons}
 									uniqueKey="name"
 									subKey="children"

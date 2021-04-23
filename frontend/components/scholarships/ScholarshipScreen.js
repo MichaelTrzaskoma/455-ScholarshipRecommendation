@@ -5,6 +5,7 @@ import {
 	Text,
 	ScrollView,
 	TouchableOpacity,
+	StatusBar
 } from 'react-native';
 import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 
@@ -22,9 +23,10 @@ export default class ScholarshipScreen extends React.Component {
 	}
 
 	render() {
+		console.log("Email from ScholarshipScreen.js: " + this.state.email);
 		return (
 			<View style={styles.container}>
-
+				<StatusBar backgroundColor="#007FF9" barStyle="light-content" />
 				<View style={styles.container_grp}>
 					{/* Scholarship Category */}
 					<ScholarCategory />

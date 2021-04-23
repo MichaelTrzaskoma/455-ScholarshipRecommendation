@@ -10,7 +10,7 @@ from numpy.linalg import norm
 zcdb = ZipCodeDatabase()
 
 #db = MongoClient('localhost', 27017)
-
+ 
 # This file is gonna be imported by views.py
 # therefore, a db will be called in views.py
 # the db obj will be passed from the views.py
@@ -253,7 +253,7 @@ def catGPA(gpa):
 
 
 def catAge(age):
-    birth = datetime.strptime(dob, "%m/%d/%Y")
+    birth = datetime.strptime(age, "%m/%d/%Y")
     today = date.today()
     age = today.year - birth.year - ((today.month, today.day) <
                                      (birth.month, birth.day))

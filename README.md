@@ -48,6 +48,7 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
     * subcatList - a list of scholarship sub-category
     * auth - user profile data
     * college - college data from niche.com
+    * client_profile - user's profile db
 
 ## Get Started
 

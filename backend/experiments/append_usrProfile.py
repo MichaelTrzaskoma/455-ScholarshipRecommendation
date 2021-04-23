@@ -2,6 +2,7 @@ from pymongo import MongoClient
 
 client = MongoClient("mongodb://localhost:27017/")
 testDB = client.test
+user_Ref = client.test.client_profile
 
 profile_collection = testDB.client_profile
 usrProfile_collection = testDB.auth
@@ -92,4 +93,10 @@ def check_email_verification_status(user_Ref, email):
 
 # r = check_email_verification_status(profile_collection, "hchen98x@gmail.com")
 # print(r)
+
+
+# Alpha test of user profile db
+# updtUser(client, user_Ref, "hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
+#          "Computer Science", "Asian/Pacific Islander", "Chinese",
+#          "Buddhist")
 

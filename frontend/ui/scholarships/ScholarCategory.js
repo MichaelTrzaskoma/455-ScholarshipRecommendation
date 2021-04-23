@@ -97,7 +97,7 @@ export default function ScholarCategory() {
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => {
-                                    navigation.navigate("ViewRecommendTbl_3", {
+                                    navigation.navigate("ViewAllScholar", {
                                         title: "All Category List",
                                     });
                                 }}
