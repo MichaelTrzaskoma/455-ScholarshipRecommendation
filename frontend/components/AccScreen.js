@@ -20,11 +20,9 @@ export default function AccScreen({ usrInfo }) {
 							name="account-outline"
 							style={styles.usrIcon}></MaterialCommunityIcons>
 						<View style={styles.nameTxtColumn}>
-							<Text style={styles.nameTxt}>Name:</Text>
 							<Text style={styles.emailTxt}>Email:</Text>
 						</View>
 						<View style={styles.namePlaceHolderColumn}>
-							<Text style={styles.namePlaceHolder}>{usrInfo.full_name}</Text>
 							<Text style={styles.usrEmailTxt_display}>{usrInfo.email}</Text>
 						</View>
 					</View>

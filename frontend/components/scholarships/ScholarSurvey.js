@@ -1501,7 +1501,7 @@ class InputScreen1a extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props);
 
-		let URL = "http://3a645b20797b.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
+		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
 		fetch(URL, {
 			method: "POST",
 			headers: {
@@ -1719,7 +1719,7 @@ class InputScreen1a extends React.Component {
 	}
 
 	getExistingData = () => {
-		let URL = "http://3a645b20797b.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; //insert correct URL for user's profiel
+		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; //insert correct URL for user's profiel
   
 	  fetch(URL, {
 		method: 'GET',
@@ -1813,12 +1813,11 @@ class InputScreen1a extends React.Component {
 					style={styles.container}>
 
 					<View style={styles.card_grp1}>
-						<Text style={styles.findScholar}>To Find your college:</Text>
+						<Text style={styles.findScholar}>To Find your Scholarship:</Text>
 						<Text style={styles.surveyDescription}>
-							Please Answer the Following Questions to the best of your
-							ability. You can select more than one of the criteria, using the
-							results we will recommend a best fit college. Remember to do
-							your own followup research!
+							To provide you with the best possible scholarship recommendations,
+							Please complete all mandatory fields and as many of the optional
+							fields as possible. A complete survey will yield the best results.
 						</Text>
 					</View>
 

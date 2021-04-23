@@ -65,7 +65,7 @@ export default class ViewRecommendTbl extends React.Component {
 
   getAPIINFO = () => {
     let URL =
-      "http://3.137.203.74:8080/api/v1/csci426/getRecommend?email=" +
+      "http://53858dd9f3a6.ngrok.io/api/v1/csci426/getRecommend?email=" +
       this.state.email;
     const scholarArr = [];
 

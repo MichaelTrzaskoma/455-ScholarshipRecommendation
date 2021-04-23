@@ -67,7 +67,7 @@ export default class ViewBookTbl extends React.Component {
   getDoc = () => {
     const bookArr = [];
 
-    let URL = "http://5144454dac7b.ngrok.io/api/v1.2/scholarship/view/category/sub/" + this.props.route.params.itemKey;
+    let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/scholarship/view/category/sub/" + this.props.route.params.itemKey;
 
     fetch(URL, {
       method: "GET",
