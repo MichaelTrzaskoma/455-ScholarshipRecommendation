@@ -569,10 +569,39 @@ export default class CollegeSurvey extends React.Component {
 		}
 		return existingScore;
 	}
+
+	checkMajor()
+	{
+		//insert correct URL for user's profile
+		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; 
+		
+  
+	  fetch(URL, {
+		method: 'GET',
+		headers: {
+		  Accept: 'application/json',
+		  'Content-Type': 'application/json',
+		},
+	  })
+		// format the API response into json
+		.then((response) => response.json())
+		.then((json) => {
+		  // set the val to state
+		  this.setState({
+
+			//Not sure how this is stored/named in the backend
+			selectedItems2: json.major,
+
+		  }).catch((error) => {
+			console.log('An error happened: ' + error);
+		  });
+		});
+	}
 	
 
 	render() {
 		const { selectedItems } = this.state;
+		this.checkMajor()
 		return (
 			<KeyboardAwareScrollView
 				style={styles.container}>
