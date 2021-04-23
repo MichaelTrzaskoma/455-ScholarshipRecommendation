@@ -277,6 +277,10 @@ def getRecommend_scholarship(email):
     # get scholarship recommendations
     # INPUT: email (string)
     # OUTPUT: scholarship title, amount, and deadline
+    # updtUser(db, user_Ref, "hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
+    #      "Computer Science", race=["Asian/Pacific Islander"], ethnicity=["Chinese"],
+    #      religion=["Buddhist"])
+    
     if request.method == "GET":
         result = filter_results(user_Ref, scholar_ref, email)
         return make_response(jsonify(result), 202)

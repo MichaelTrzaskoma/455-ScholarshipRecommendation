@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
+import { parseMonth } from "../../functions/utilities";
 
 export default class ViewRecommendTbl extends React.Component {
   constructor(props) {
@@ -17,48 +18,7 @@ export default class ViewRecommendTbl extends React.Component {
       scholarArr: [],
     };
   }
-
-  parseMonth(month) {
-    switch (month) {
-      case "January":
-        return "01";
-        break;
-      case "February":
-        return "02";
-        break;
-      case "March":
-        return "03";
-        break;
-      case "April":
-        return "04";
-        break;
-      case "May":
-        return "05";
-        break;
-      case "June":
-        return "06";
-        break;
-      case "July":
-        return "07";
-        break;
-      case "August":
-        return "08";
-        break;
-      case "September":
-        return "09";
-        break;
-      case "October":
-        return "10";
-        break;
-      case "November":
-        return "11";
-        break;
-      default:
-        return "12";
-        break;
-    }
-  }
-
+ 
   componentDidMount() {
     this.getAPIINFO();
   }
@@ -92,7 +52,7 @@ export default class ViewRecommendTbl extends React.Component {
             const fields = res.Deadline.split(" ");
             const sub_field = fields[1].split(",");
             deadline =
-              this.parseMonth(fields[0]) + "/" + sub_field[0] + "/" + fields[2];
+            parseMonth(fields[0]) + "/" + sub_field[0] + "/" + fields[2];
           }
 
           scholarArr.push({
@@ -106,6 +66,7 @@ export default class ViewRecommendTbl extends React.Component {
           scholarArr,
           isLoading: false,
         });
+        
       })
       .catch((error) => {
         console.log(error);

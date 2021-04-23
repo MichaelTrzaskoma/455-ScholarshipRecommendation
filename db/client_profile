@@ -1,0 +1,69 @@
+[{
+  "_id": "hchen60@nyit.edu",
+  "email": "hchen60@nyit.edu",
+  "paswrd": "place holder 2",
+  "jwt": "place holder 3",
+  "recent_viewed": [
+    {
+      "type": "scholarship",
+      "title": "place holder 4"
+    },
+    {
+      "type": "college",
+      "title": "place holder 5"
+    },
+    {
+      "type": "major",
+      "title": "place holder 6"
+    }
+  ],
+  "bookmarks": [
+    {
+      "type": "scholarship",
+      "title": "place holder 7"
+    },
+    {
+      "type": "college",
+      "title": "place holder 8"
+    },
+    {
+      "type": "major",
+      "title": "place holder 9"
+    }
+  ],
+  "survey_scholarship": {
+    "gender": "Male",
+    "dob": "01/18/1998",
+    "zip": "11223",
+    "gpa": "3.41",
+    "major": "Computer Science",
+    "race": [
+      "Asian/Pacific Islander"
+    ],
+    "ethnicity": [
+      "Chinese"
+    ],
+    "religion": [
+      "Buddhist"
+    ],
+    "disabilities": [],
+    "sat_score": "",
+    "terms": [
+      "Male",
+      "Age 23",
+      "New York",
+      "Minimum Grade Point Average From 3.1 to 3.5",
+      "Computer Science",
+      "Asian/Pacific Islander",
+      "Buddhist",
+      "Chinese"
+    ],
+    "binary": "000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000010000000000000000000000000000000000000000000000000000000000000000001000000000010000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "survey_college": {
+    "x": "place holder 16"
+  },
+  "survey_major": {
+    "y": "place holder 17"
+  }
+}]

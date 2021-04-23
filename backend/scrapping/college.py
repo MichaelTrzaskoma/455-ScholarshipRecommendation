@@ -679,7 +679,7 @@ def retrieve_cost_data(driver, section):
                         if exception_handler(loan_info_block, 13, "scalar"):
                             temp = loan_info_block.find_element_by_class_name("scalar")
 
-                            if exception_handler(loan_info_block, 13, "scalar"):
+                            if exception_handler(temp, 13, "scalar__value"):
                                 info = temp.find_element_by_class_name("scalar__value")
 
                                 position = info.text.index(" / ")
@@ -1338,7 +1338,7 @@ if __name__ == "__main__":
 
             college["niche_grade"] = NICHE_GRADES
 
-            time.sleep(random.randint(1, 6))
+            # time.sleep(random.randint(1, 6))
 
             # ======== college info ========
             COLLEGE_DESCRIPTION, COLLEGE_SITE, COLLEGE_ADDRESS, ATHLETICS_DIVISION, ATHLETICS_CONFERENCE = "N\A", "N\A", "N\A", "N\A", "N\A"
@@ -1380,7 +1380,7 @@ if __name__ == "__main__":
             # back to scholasrhip detail (previous) page
             driver.get(temp)
             
-            time.sleep(random.randint(1, 6))
+            # time.sleep(random.randint(1, 6))
             close_modal_message(driver)
 
             # ======== Admission info ========
@@ -1477,7 +1477,7 @@ if __name__ == "__main__":
             
             # back to scholasrhip detail (previous) page
             driver.get(temp)
-            time.sleep(random.randint(1, 6))
+            # time.sleep(random.randint(1, 6))
             close_modal_message(driver)
             
             # ======== Academic info =========
@@ -1522,7 +1522,7 @@ if __name__ == "__main__":
 
             # back to scholasrhip detail (previous) page
             driver.get(temp)
-            time.sleep(random.randint(1, 6))
+            # time.sleep(random.randint(1, 6))
             close_modal_message(driver)
 
             # ======== Campus life ========
@@ -1568,7 +1568,7 @@ if __name__ == "__main__":
                 section9 = driver.find_element_by_id("after")
                 after_uni = retrieve_after_college(driver, section9)
 
-            time.sleep(random.randint(1, 6))
+            # time.sleep(random.randint(1, 6))
 
             college["after_uni"] = after_uni
 
