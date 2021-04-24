@@ -6,6 +6,7 @@ import TabViewSurvey from './TabViewSurvey';
 // import AddProfile from "../ui/MultiSurvey";
 // import AddCollege from "../ui/AddCollege";
 import MultiSurveyBtn from "../ui/MultiSurveyBtn";
+import HistoryBtn from "../ui/HistoryBtn";
 
 export default function AccScreen({ usrInfo }) {
 
@@ -20,11 +21,9 @@ export default function AccScreen({ usrInfo }) {
 							name="account-outline"
 							style={styles.usrIcon}></MaterialCommunityIcons>
 						<View style={styles.nameTxtColumn}>
-							<Text style={styles.nameTxt}>Name:</Text>
 							<Text style={styles.emailTxt}>Email:</Text>
 						</View>
 						<View style={styles.namePlaceHolderColumn}>
-							<Text style={styles.namePlaceHolder}>{usrInfo.full_name}</Text>
 							<Text style={styles.usrEmailTxt_display}>{usrInfo.email}</Text>
 						</View>
 					</View>
@@ -52,6 +51,9 @@ export default function AccScreen({ usrInfo }) {
 
 					{/* This is displayed as "Take Survey" btn which will navigate to TabViewSurvey component */}
 					<MultiSurveyBtn />
+					
+					{/* This is displayed as "View History" btn which will navigate to ViewHistory component */}
+					<HistoryBtn/>
 
 					<TouchableOpacity style={styles.bookmarksBtn}>
 						<View style={styles.bookmarksIconRow}>

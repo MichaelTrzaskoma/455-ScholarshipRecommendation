@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 
+const itemsPerPage = 5;
+
 export default class ViewScholarTbl extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,8 @@ export default class ViewScholarTbl extends React.Component {
     this.state = {
       isLoading: true,
       scholarArr: [],
+      stagingArea: [],
+      pageNumber: 1,
     };
   }
 
@@ -67,7 +71,7 @@ export default class ViewScholarTbl extends React.Component {
   getDoc = () => {
     const scholarArr = [];
 
-    let URL = "http://5144454dac7b.ngrok.io/api/v1.2/scholarship/view/category/sub/" + this.props.route.params.itemKey;
+    let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
 
     fetch(URL, {
       method: "GET",
@@ -101,6 +105,7 @@ export default class ViewScholarTbl extends React.Component {
         this.setState({
           scholarArr,
           isLoading: false,
+          stagingArea: scholarArr.slice(0,5)
         });
 
       });
@@ -113,7 +118,50 @@ export default class ViewScholarTbl extends React.Component {
     return <View style={styles.ItemSeparator} />;
   };
 
+  renderList(item, i) {
+    return (
+      <TouchableOpacity
+      onLongPress = {() => {alert("This scholarship has been bookmarked!")}}
+      onPress={() => {
+        // we are able to navigate to "ViewSubCate"
+        // since it is one of the stack screens in App.js
+        // therefore, no need to import in this screen
+        this.props.navigation.navigate('ViewScholarDetail', {
+          title: item.key,
+          itemKey: item.key,
+        });
+      }}
+    >
+      <Text style={styles.item_title}>{item.key}</Text>
+      <Text style={styles.item_subTitle}>Amount: {item.amount}</Text>
+      <Text style={styles.item_deadline}>
+        Deadline: {item.deadline}
+      </Text>
+    </TouchableOpacity>
+    );
+  }
+
+  loadMore = ()  => {
+  
+    //const { pageNumber, scholarArr } = this.state;
+    const tempPageNumber = this.state.pageNumber;
+    const currentScholarArr = this.state.scholarArr;
+    const start = tempPageNumber*itemsPerPage;
+    const end = (tempPageNumber+1)*itemsPerPage-1;
+    const stagingArea = this.state.stagingArea;
+
+    // here, we will receive next batch of the items
+    const newData = currentScholarArr.slice(start, end); 
+     // here we are appending new batch to existing batch
+    this.setState({
+      stagingArea: [...stagingArea, ...newData],
+      //pageNumber : tempPageNumber + 1,
+    });
+  }
+
+
   render() {
+    console.log(this.state.stagingArea);
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>
@@ -125,28 +173,12 @@ export default class ViewScholarTbl extends React.Component {
     return (
       <View style={styles.container}>
         <FlatList
-          data={this.state.scholarArr}
+          data={this.state.stagingArea}
           ItemSeparatorComponent={this.FlatListItemSeparator}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onLongPress = {() => {alert("This scholarship has been bookmarked!")}}
-              onPress={() => {
-                // we are able to navigate to "ViewSubCate"
-                // since it is one of the stack screens in App.js
-                // therefore, no need to import in this screen
-                this.props.navigation.navigate('ViewScholarDetail', {
-                  title: item.key,
-                  itemKey: item.key,
-                });
-              }}
-            >
-              <Text style={styles.item_title}>{item.key}</Text>
-              <Text style={styles.item_subTitle}>Amount: {item.amount}</Text>
-              <Text style={styles.item_deadline}>
-                Deadline: {item.deadline}
-              </Text>
-            </TouchableOpacity>
-          )}
+          renderItem={({ item, index }) => this.renderList(item, index)}
+          keyExtractor={item => item.key}
+          onEndReached={this.loadMore}
+          //onEndThreshold={0}
         ></FlatList>
       </View>
     );

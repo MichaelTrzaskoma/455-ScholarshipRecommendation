@@ -193,8 +193,16 @@ const items = [
 				id: 593,
 			},
 			{
-				name: 'Religious Studies',
+				name: "Public Policy",
 				id: 594,
+			},
+			{
+				name: "Social Services",
+				id: 595,
+			},
+			{
+				name: 'Religious Studies',
+				id: 596,
 			}
 		],
 	},
@@ -1428,7 +1436,7 @@ class InputScreen1a extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props);
 
-		let URL = "http://3a645b20797b.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
+		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
 		fetch(URL, {
 			method: "POST",
 			headers: {
@@ -1510,8 +1518,69 @@ class InputScreen1a extends React.Component {
 	};
 
 	onSelectedMajorsChange = (selectedMajors) => {
-		this.setState({ selectedMajors });
+		//If the user has selected Business and Management (Business Management for scholarships.com) and they have not already selected Business Management
+		if(this.findPosition("Business and Management", selectedMajors) != -1 && this.findPosition("Business Management", selectedMajors) == -1)
+		{
+			selectedMajors.push("Business Management");
+		}
+		//If the user has selected K and PT which is not supported by scholarships.com (listed separately)
+		if(this.findPosition("Kinesiology and Physical Therapy", selectedMajors) != -1)
+		{
+			//If the user has not selected Kinesiology, it will be added to the array
+			if(this.findPosition("Kinesiology", selectedMajors) == -1)
+			{
+				selectedMajors.push("Kinesiology");
+			}
+			//If the user has not selected Physical Therapy, it will be added to the array
+			if(this.findPosition("Physical Therapy", selectedMajors) == -1)
+			{
+				selectedMajors.push("Physical Therapy");
+			}
+		}
+		//If the user has selected Public Policy and Social Services (separate for scholarships.com) 
+		if(this.findPosition("Public Policy and Social Services", selectedMajors) != -1)
+		{
+			//If the user hasn't selected Public Policy, it will be added to the array
+			if(this.findPosition("Public Policy", selectedMajors) == -1)
+			{
+				selectedMajors.push("Public Policy");
+			}
+			//If the user has not seelected Social Services, it will be added to the array
+			if(this.findPosition("Social Services", selectedMajors) == -1)
+			{
+				selectedMajors.push("Social Services");
+			}
+		}
+		//If the user has selected Film and Photography (separately listed for scholarships.com)
+		if(this.findPosition("Film and Photography", selectedMajors) != -1)
+		{
+			//If the user hasn't selected Film, it will be added to the array
+			if(this.findPosition("Film", selectedMajors) == -1)
+			{
+				selectedMajors.push("Film");
+			}
+			//If the user hasn't selected Photography, it will be added to the array
+			if(this.findPosition("Photography", selectedMajors) == -1)
+			{
+				selectedMajors.push("Photography");
+			}
+		}
+		this.setState({ selectedMajors });	
 	};
+
+	findPosition(item, array)
+	{
+		let position = -1;
+		var i;
+		for (i = 0; i<array.length; i++)
+		{
+			if(array[i].localeCompare(item) == 0)
+			{
+				position = i;
+			}
+		}
+		return position;
+	}
 
 	onSelectedRacesChange = (selectedRaces) => {
 		this.setState({ selectedRaces });
@@ -1646,34 +1715,42 @@ class InputScreen1a extends React.Component {
 	}
 
 	getExistingData = () => {
-		let URL = "http://3a645b20797b.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; //insert correct URL for user's profiel
-
-		fetch(URL, {
-			method: 'GET',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-		})
-			// format the API response into json
-			.then((response) => response.json())
-			.then((json) => {
-				// set the val to state
-				this.setState({
-					dob: json.dob,
-					gender: json.gender,
-					gpa: json.gpa,
-					selectedResidences: json.region, //Not sure how this is stored/named in the backend
-					selectedMajors: json.major, //Not sure how this is stored/named in the backend
-					selectedRaces: json.race, //Not sure how this is stored/named in the backend
-					selectedReligions: json.religion, //Not sure how this is stored/named in the backend
-					selectedDisabilities: json.disability, //Not sure how this is stored/named in the backend
-					selectedEthnicities: json.ethnicity, //Not sure how this is stored/named in the backend
-				}).catch((error) => {
-					console.log('An error happened: ' + error);
-				});
-			});
-		// 	// validate
+		//insert correct URL for user's profile
+		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; 
+		
+  
+	  fetch(URL, {
+		method: 'GET',
+		headers: {
+		  Accept: 'application/json',
+		  'Content-Type': 'application/json',
+		},
+	  })
+		// format the API response into json
+		.then((response) => response.json())
+		.then((json) => {
+		  // set the val to state
+		  this.setState({
+			dob: json.dob,
+			gender: json.gender,
+			gpa: json.gpa,
+			//Not sure how this is stored/named in the backend
+			selectedResidences : json.region, 
+			//Not sure how this is stored/named in the backend
+			selectedMajors : json.major,
+			//Not sure how this is stored/named in the backend 
+			selectedRaces : json.race, 
+			//Not sure how this is stored/named in the backend
+			selectedReligions : json.religion, 
+			//Not sure how this is stored/named in the backend
+			selectedDisabilities : json.disability,
+			//Not sure how this is stored/named in the backend 
+			selectedEthnicities : json.ethnicity, 
+		  }).catch((error) => {
+			console.log('An error happened: ' + error);
+		  });
+		});
+	// 	// validate
 	}
 
 	checkGender() {
@@ -1731,12 +1808,11 @@ class InputScreen1a extends React.Component {
 					<StatusBar backgroundColor="#007FF9" barStyle="light-content" />
 
 					<View style={styles.card_grp1}>
-						<Text style={styles.findScholar}>To Find your college:</Text>
+						<Text style={styles.findScholar}>To Find your Scholarship:</Text>
 						<Text style={styles.surveyDescription}>
-							Please Answer the Following Questions to the best of your
-							ability. You can select more than one of the criteria, using the
-							results we will recommend a best fit college. Remember to do
-							your own followup research!
+							To provide you with the best possible scholarship recommendations,
+							Please complete all mandatory fields and as many of the optional
+							fields as possible. A complete survey will yield the best results.
 						</Text>
 					</View>
 

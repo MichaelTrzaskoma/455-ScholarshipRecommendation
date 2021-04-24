@@ -492,9 +492,40 @@ export default class CollegeSurvey extends React.Component {
 		this.setState({ selectedItems2 });
 	};
 
+	handleSAT(text) {
+		let textInt = parseInt(text, 10);
+		if (text.length > 2 && textInt >= 400 && textInt <= 1600) {
+			this.setState({
+				Sat: text,
+			});
+			//console.log("SAT: "+this.state.Sat)
+		}
+		else if (text.substring(0, 1).localeCompare("2") == 0 || text.substring(0, 1).localeCompare("3") == 0 || text.substring(0, 1).localeCompare("0") == 0) {
+			alert("Please enter a valid SAT score");
+		}
+		else if ((text.length < 3 || text.substring(0, 1).localeCompare("1") == 0) && text.substring(1).localeCompare("7") != 0) {
+			console.log("Waiting for User Input");
+		}
+		else {
+			alert("Please enter a valid SAT score");
+		}
+	}
+
+	handleACT(text) {
+		let textInt = parseInt(text, 10);
+		if (textInt >= 1 && textInt <= 36) {
+			this.setState({
+				Act: text,
+			});
+		}
+		else {
+			alert("Please Enter a Valid ACT Score");
+		}
+	}
+
 	checkExamScores()
 	{
-		let URL = "http://3a645b20797b.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; //insert correct URL for user's profiel
+		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; //insert correct URL for user's profiel
   
 	  fetch(URL, {
 		method: 'GET',
@@ -538,10 +569,39 @@ export default class CollegeSurvey extends React.Component {
 		}
 		return existingScore;
 	}
+
+	checkMajor()
+	{
+		//insert correct URL for user's profile
+		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; 
+		
+  
+	  fetch(URL, {
+		method: 'GET',
+		headers: {
+		  Accept: 'application/json',
+		  'Content-Type': 'application/json',
+		},
+	  })
+		// format the API response into json
+		.then((response) => response.json())
+		.then((json) => {
+		  // set the val to state
+		  this.setState({
+
+			//Not sure how this is stored/named in the backend
+			selectedItems2: json.major,
+
+		  }).catch((error) => {
+			console.log('An error happened: ' + error);
+		  });
+		});
+	}
 	
 
 	render() {
 		const { selectedItems } = this.state;
+		this.checkMajor()
 		return (
 			<KeyboardAwareScrollView
 				style={styles.container}>
@@ -591,6 +651,8 @@ export default class CollegeSurvey extends React.Component {
 									placeholder= {this.state.satScore}
 									keyboardAppearance="light"
 									blurOnSubmit={false}
+									onChangeText={this.handleSAT}
+									keyboardType="numeric"
 									style={styles.textInput}
 								></TextInput>
 							</View>
@@ -611,6 +673,8 @@ export default class CollegeSurvey extends React.Component {
 									keyboardAppearance="light"
 									blurOnSubmit={false}
 									style={styles.textInput}
+									onChangeText={this.handleSAT}
+									keyboardType="numeric"
 								></TextInput>
 							</View>
 						</View>
@@ -629,6 +693,8 @@ export default class CollegeSurvey extends React.Component {
 									placeholder= {this.state.actScore}
 									keyboardAppearance="light"
 									blurOnSubmit={false}
+									onChangeText={this.handleACT}
+									keyboardType="numeric"
 									style={styles.textInput1}
 								></TextInput>
 							</View>
@@ -647,6 +713,8 @@ export default class CollegeSurvey extends React.Component {
 									placeholder="If Not Applicable Leave Blank"
 									keyboardAppearance="light"
 									blurOnSubmit={false}
+									onChangeText={this.handleACT}
+									keyboardType="numeric"
 									style={styles.textInput1}
 								></TextInput>
 							</View>

@@ -9,6 +9,8 @@ import {
 import { FlatList } from "react-native-gesture-handler";
 import { parseMonth } from "../../functions/utilities";
 
+const itemsPerPage = 5;
+
 export default class ViewRecommendTbl extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,8 @@ export default class ViewRecommendTbl extends React.Component {
       email: this.props.route.params.email,
       isLoading: true,
       scholarArr: [],
+      stagingArea: [],
+      pageNumber: 1,
     };
   }
  
@@ -25,8 +29,8 @@ export default class ViewRecommendTbl extends React.Component {
 
   getAPIINFO = () => {
     let URL =
-      "http://3.137.203.74:8080/api/v1/csci426/getRecommend?email=" +
-      this.state.email;
+      "http://53858dd9f3a6.ngrok.io/api/v1.2/users/id/"+this.state.email+ "/recommends/scholarship"; 
+      
     const scholarArr = [];
 
     fetch(URL, {
@@ -44,6 +48,7 @@ export default class ViewRecommendTbl extends React.Component {
         json.forEach((res) => {
           // const { title, amount, deal, val } = res.data();
 
+          console.log(res);
           let deadline = "";
 
           if (res.Deadline == "Deadline Varies") {
@@ -77,6 +82,18 @@ export default class ViewRecommendTbl extends React.Component {
     return <View style={styles.ItemSeparator} />;
   };
 
+  loadMore() 
+  {
+    const { pageNumber, scholarArr } = this.state;
+    const start = pageNumber*itemsPerPage;
+    const end = (pageNumber+1)*itemsPerPage-1;
+
+    // here, we will receive next batch of the items
+    const newData = scholarArr.slice(start, end); 
+    // here we are appending new batch to existing batch
+    this.setState({stagingArea: [...stagingArea, ...newData]}); 
+  }
+
   render() {
     if (this.state.isLoading) {
       return (
@@ -89,7 +106,7 @@ export default class ViewRecommendTbl extends React.Component {
     return (
       <View style={styles.container}>
         <FlatList
-          data={this.state.scholarArr}
+          data={this.state.stagingArea}
           ItemSeparatorComponent={this.FlatListItemSeparator}
           renderItem={({ item }) => (
             <TouchableOpacity
@@ -110,6 +127,7 @@ export default class ViewRecommendTbl extends React.Component {
               </Text>
             </TouchableOpacity>
           )}
+          onEndReached={this.loadMore}
         ></FlatList>
       </View>
     );
