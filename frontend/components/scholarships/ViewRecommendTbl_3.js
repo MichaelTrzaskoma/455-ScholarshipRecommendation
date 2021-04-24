@@ -102,7 +102,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
     //   scholarArr: sortAmount_a2z(this.state.scholarArr),
     // });
     this.state.scholarArr.sort(sortAmount("amount"));
-    // console.log(this.state.scholarArr);
+    console.log(this.state.scholarArr);
     this._closeAmountMenu();
   }
 
