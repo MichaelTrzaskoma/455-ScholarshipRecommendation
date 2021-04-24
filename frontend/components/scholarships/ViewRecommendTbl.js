@@ -48,6 +48,7 @@ export default class ViewRecommendTbl extends React.Component {
         json.forEach((res) => {
           // const { title, amount, deal, val } = res.data();
 
+          console.log(res);
           let deadline = "";
 
           if (res.Deadline == "Deadline Varies") {

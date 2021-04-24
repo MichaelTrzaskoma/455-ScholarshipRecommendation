@@ -6,6 +6,7 @@ import TabViewSurvey from './TabViewSurvey';
 // import AddProfile from "../ui/MultiSurvey";
 // import AddCollege from "../ui/AddCollege";
 import MultiSurveyBtn from "../ui/MultiSurveyBtn";
+import HistoryBtn from "../ui/HistoryBtn";
 
 export default function AccScreen({ usrInfo }) {
 
@@ -50,6 +51,9 @@ export default function AccScreen({ usrInfo }) {
 
 					{/* This is displayed as "Take Survey" btn which will navigate to TabViewSurvey component */}
 					<MultiSurveyBtn />
+					
+					{/* This is displayed as "View History" btn which will navigate to ViewHistory component */}
+					<HistoryBtn/>
 
 					<TouchableOpacity style={styles.bookmarksBtn}>
 						<View style={styles.bookmarksIconRow}>
