@@ -29,7 +29,7 @@ export default class ViewRecommendTbl extends React.Component {
 
   getAPIINFO = () => {
     let URL =
-      "http://53858dd9f3a6.ngrok.io/api/v1.2/users/id/"+this.state.email+ "/recommends/scholarship"; 
+      "http://a2ffcb82d4fa.ngrok.io/api/v1.2/users/id/"+this.state.email+ "/recommends/scholarship"; 
       
     const scholarArr = [];
 

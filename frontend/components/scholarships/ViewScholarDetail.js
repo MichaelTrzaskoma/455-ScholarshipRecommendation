@@ -36,7 +36,7 @@ export default class ViewScholarDetail extends React.Component {
 
     
     //Insert API Call here
-    let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
+    let URL = "http://a2ffcb82d4fa.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
     fetch(URL, {
       method: "POST",
       headers: {

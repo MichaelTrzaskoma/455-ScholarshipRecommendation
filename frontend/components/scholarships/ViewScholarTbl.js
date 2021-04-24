@@ -71,7 +71,7 @@ export default class ViewScholarTbl extends React.Component {
   getDoc = () => {
     const scholarArr = [];
 
-    let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
+    let URL = "http://a2ffcb82d4fa.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
 
     fetch(URL, {
       method: "GET",
