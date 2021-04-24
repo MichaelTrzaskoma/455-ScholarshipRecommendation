@@ -207,11 +207,12 @@ def retrieve_college_general_info(driver, section):
     if exception_handler(section, 5, "scalar--two"):
         athletics = section.find_elements_by_class_name("scalar--two")
 
-        if "—" not in athletics[0].text[17:]:
-            ATHLETICS_DIVISION = athletics[0].text[17:]
+        if len(athletics) > 0:
+            if "—" not in athletics[0].text[17:]:
+                ATHLETICS_DIVISION = athletics[0].text[17:]
 
-        if "—" not in athletics[1].text[19:]:
-            ATHLETICS_CONFERENCE = athletics[1].text[19:]
+            if "—" not in athletics[1].text[19:]:
+                ATHLETICS_CONFERENCE = athletics[1].text[19:]
 
     # get college location tag(s)
     if exception_handler(section, 5, "profile-breadcrumbs__item"):
@@ -839,14 +840,17 @@ def retrieve_academic_data(driver, section):
         academic_statisic_grp = driver.find_element_by_id("academic-statistics")
 
         # locate graduation rate
-        graduation_rate_temp = academic_statisic_grp.find_element_by_class_name("profile__bucket--2")
-        temp = graduation_rate_temp.find_element_by_class_name("scalar__value").text
-        position = temp.index("National")
+        if exception_handler(academic_statisic_grp, 13, "profile__bucket--2"):
+            graduation_rate_temp = academic_statisic_grp.find_element_by_class_name("profile__bucket--2")
 
-        if "—" not in temp[:position]:
-            # remove the extra line if any
-            i = str(temp[:position]).replace("\n", "")
-            GRADUATION_RATE = i
+            if exception_handler(graduation_rate_temp, 13, "scalar__value"):
+                temp = graduation_rate_temp.find_element_by_class_name("scalar__value").text
+                position = temp.index("National")
+
+                if "—" not in temp[:position]:
+                    # remove the extra line if any
+                    i = str(temp[:position]).replace("\n", "")
+                    GRADUATION_RATE = i
     
     # class statistics
     POPULAR_MAJOR, CLASS_SIZE_RATIO = {}, {}
@@ -972,10 +976,11 @@ def retrieve_students_data(driver, section):
             if exception_handler(temp_grp, 5, "scalar__value"):
                 ratio_grp = temp_grp.find_elements_by_class_name("scalar__value")
 
-                if "—" not in ratio_grp[0].text:
-                    FEMALE_UNDERGRADS = ratio_grp[0].text
-                if "—" not in ratio_grp[1].text:
-                    MALE_UNDERGRADS = ratio_grp[1].text
+                if len(ratio_grp) > 0:
+                    if "—" not in ratio_grp[0].text:
+                        FEMALE_UNDERGRADS = ratio_grp[0].text
+                    if "—" not in ratio_grp[1].text:
+                        MALE_UNDERGRADS = ratio_grp[1].text
                 
                 # get student residence info
 

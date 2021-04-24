@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Menu, Provider } from 'react-native-paper';
-import { parseMonth, parseAmount, parseSimilarScore } from "../../functions/utilities";
+import { parseMonth, parseAmount, parseSimilarScore, dynamicSort, sortAmount } from "../../functions/utilities";
 import { FlatList } from 'react-native-gesture-handler';
 
 function opt1() {
@@ -42,19 +42,74 @@ export default class ViewRecommendTbl_3 extends React.Component {
       isLoading: true,
       scholarArr: [],
       gender: '',
-      visible: false,
+      opt_title_visible: false,
+      opt_deadline_visible: false,
+      opt_score_visible: false,
+      opt_amount_visible: false,
     };
-    this.handleGender = this.handleGender.bind(this);
   }
 
-  _openMenu = () => this.setState({ visible: true });
-  _closeMenu = () => this.setState({ visible: false });
+  _openTitleMenu = () => { this.setState({ opt_title_visible: true }) };
+  _closeTitleMenu = () => { this.setState({ opt_title_visible: false }) };
 
-  handleGender(text) {
-    this.setState({
-      gender: text,
-    });
-    Alert.alert('selected' + text);
+  _openDeadlineMenu = () => { this.setState({ opt_deadline_visible: true }) };
+  _closeDeadlineMenu = () => { this.setState({ opt_deadline_visible: false }) };
+
+  _openScoreMenu = () => { this.setState({ opt_score_visible: true }) };
+  _closeScoreMenu = () => { this.setState({ opt_score_visible: false }) };
+
+  _openAmountMenu = () => { this.setState({ opt_amount_visible: true }) };
+  _closeAmountMenu = () => { this.setState({ opt_amount_visible: false }) };
+
+  sortTitleHandler_a2z() {
+    this.state.scholarArr.sort(dynamicSort("key"));
+    // console.log(this.state.scholarArr);
+    this._closeTitleMenu();
+  }
+
+  sortTitleHandler_z2a() {
+    this.state.scholarArr.sort(dynamicSort("-key"));
+    // console.log(this.state.scholarArr);
+    this._closeTitleMenu();
+  }
+
+  sortDeadlineHandler_a2z() {
+    this.state.scholarArr.sort(dynamicSort("deadline"));
+    // console.log(this.state.scholarArr);
+    this._closeDeadlineMenu();
+  }
+
+  sortDeadlineHandler_z2a() {
+    this.state.scholarArr.sort(dynamicSort("-deadline"));
+    // console.log(this.state.scholarArr);
+    this._closeDeadlineMenu();
+  }
+
+  sortScoreHandler_a2z() {
+    this.state.scholarArr.sort(dynamicSort("score"));
+    // console.log(this.state.scholarArr);
+    this._closeScoreMenu();
+  }
+
+  sortScoreHandler_z2a() {
+    this.state.scholarArr.sort(dynamicSort("-score"));
+    // console.log(this.state.scholarArr);
+    this._closeScoreMenu();
+  }
+
+  sortAmountHandler_a2z() {
+    // this.setState({
+    //   scholarArr: sortAmount_a2z(this.state.scholarArr),
+    // });
+    this.state.scholarArr.sort(sortAmount("amount"));
+    // console.log(this.state.scholarArr);
+    this._closeAmountMenu();
+  }
+
+  sortAmountHandler_z2a() {
+    this.state.scholarArr.sort(sortAmount("-amount"));
+    // console.log(this.state.scholarArr);
+    this._closeAmountMenu();
   }
 
   componentDidMount() {
@@ -64,7 +119,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
   getRecommend_scholarship() {
     try {
       console.log("Email from scholarshipRecommendTBL.js: " + this.state.email);
-      let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/users/id/" + this.state.email + "/recommends/scholarship"
+      let URL = "http://a2ffcb82d4fa.ngrok.io/api/v1.2/users/id/" + this.state.email + "/recommends/scholarship"
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
       const scholarArr = [];
 
@@ -118,8 +173,6 @@ export default class ViewRecommendTbl_3 extends React.Component {
     return <View style={styles.ItemSeparator} />;
   }
 
-
-
   render() {
 
     if (this.state.isLoading) {
@@ -135,6 +188,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
         <StatusBar backgroundColor="#007FF9" barStyle="light-content" />
         <View style={styles.container}>
           <View style={styles.scrollArea2Stack}>
+
             <View style={styles.scrollArea2}>
               <ScrollView
                 horizontal={true}
@@ -142,12 +196,14 @@ export default class ViewRecommendTbl_3 extends React.Component {
                 contentContainerStyle={
                   styles.scrollArea2_contentContainerStyle
                 }>
+
+
                 <Menu
-                  visible={this.state.visible}
-                  onDismiss={this._closeMenu}
+                  visible={this.state.opt_title_visible}
+                  onDismiss={this._closeTitleMenu}
                   anchor={
                     <TouchableOpacity
-                      onPress={this._openMenu}
+                      onPress={this._openTitleMenu}
                       style={styles.group0}>
                       <View style={styles.sort_a2zGrp}>
                         <View style={styles.a2zIconRow}>
@@ -163,48 +219,117 @@ export default class ViewRecommendTbl_3 extends React.Component {
                     </TouchableOpacity>
                   }>
                   <Menu.Item
-                    style={{ marginTop: 0 }}
+                    style={{ marginTop: 0, width: 15 }}
                     onPress={() => {
-                      this.handleGender('Hui');
+                      this.sortTitleHandler_a2z();
                     }}
-                    title="Item 1"
+                    title="A - Z"
                   />
-                  <Menu.Item onPress={() => { }} title="Item 2" />
+                  <Menu.Item
+                    style={{ marginTop: 0, width: 15, }}
+                    onPress={() => {
+                      this.sortTitleHandler_z2a();
+                    }} title="Z - A" />
                 </Menu>
 
-                <View style={styles.group}>
-                  <View style={styles.icon18Row}>
-                    <FontAwesome
-                      name="sort-alpha-asc"
-                      style={styles.icon18}></FontAwesome>
-                    <Text style={styles.deadline}>Deadline</Text>
-                    <FontAwesome
-                      name="sort-down"
-                      style={styles.icon19}></FontAwesome>
-                  </View>
-                </View>
-                <View style={styles.group2}>
-                  <View style={styles.icon20Row}>
-                    <FontAwesome
-                      name="sort-alpha-asc"
-                      style={styles.icon20}></FontAwesome>
-                    <Text style={styles.score}>Score</Text>
-                    <FontAwesome
-                      name="sort-down"
-                      style={styles.icon21}></FontAwesome>
-                  </View>
-                </View>
-                <View style={styles.group3}>
-                  <View style={styles.icon22Row}>
-                    <FontAwesome
-                      name="sort-alpha-asc"
-                      style={styles.icon22}></FontAwesome>
-                    <Text style={styles.amount2}>Amount</Text>
-                    <FontAwesome
-                      name="sort-down"
-                      style={styles.icon23}></FontAwesome>
-                  </View>
-                </View>
+
+                <Menu
+                  visible={this.state.opt_deadline_visible}
+                  onDismiss={this._closeDeadlineMenu}
+                  anchor={
+                    <TouchableOpacity
+                      onPress={this._openDeadlineMenu}
+                      style={styles.group}>
+                      <View style={styles.icon18Row}>
+                        <FontAwesome
+                          name="sort-alpha-asc"
+                          style={styles.icon18}></FontAwesome>
+                        <Text style={styles.deadline}>Deadline</Text>
+                        <FontAwesome
+                          name="sort-down"
+                          style={styles.icon19}></FontAwesome>
+                      </View>
+                    </TouchableOpacity>
+                  }>
+                  <Menu.Item
+                    style={{ marginTop: 0, width: 15 }}
+                    onPress={() => {
+                      this.sortDeadlineHandler_a2z();
+                    }}
+                    title="A - Z"
+                  />
+                  <Menu.Item
+                    style={{ marginTop: 0, width: 15, }}
+                    onPress={() => {
+                      this.sortDeadlineHandler_z2a();
+                    }} title="Z - A" />
+                </Menu>
+
+
+                <Menu
+                  visible={this.state.opt_score_visible}
+                  onDismiss={this._closeScoreMenu}
+                  anchor={
+                    <TouchableOpacity
+                      onPress={this._openScoreMenu}
+                      style={styles.group2}>
+                      <View style={styles.icon20Row}>
+                        <FontAwesome
+                          name="sort-alpha-asc"
+                          style={styles.icon20}></FontAwesome>
+                        <Text style={styles.score}>Score</Text>
+                        <FontAwesome
+                          name="sort-down"
+                          style={styles.icon21}></FontAwesome>
+                      </View>
+                    </TouchableOpacity>}>
+                  <Menu.Item
+                    style={{ marginTop: 0, width: 15 }}
+                    onPress={() => {
+                      this.sortScoreHandler_a2z();
+                    }}
+                    title="A - Z"
+                  />
+                  <Menu.Item
+                    style={{ marginTop: 0, width: 15, }}
+                    onPress={() => {
+                      this.sortScoreHandler_z2a();
+                    }} title="Z - A" />
+                </Menu>
+
+
+                <Menu
+                  visible={this.state.opt_amount_visible}
+                  onDismiss={this._closeAmountMenu}
+                  anchor={
+                    <TouchableOpacity
+                      onPress={this._openAmountMenu}
+                      style={styles.group3}>
+                      <View style={styles.icon22Row}>
+                        <FontAwesome
+                          name="sort-alpha-asc"
+                          style={styles.icon22}></FontAwesome>
+                        <Text style={styles.amount2}>Amount</Text>
+                        <FontAwesome
+                          name="sort-down"
+                          style={styles.icon23}></FontAwesome>
+                      </View>
+                    </TouchableOpacity>}>
+                  <Menu.Item
+                    style={{ marginTop: 0, width: 15 }}
+                    onPress={() => {
+                      this.sortAmountHandler_a2z();
+                    }}
+                    title="A - Z"
+                  />
+                  <Menu.Item
+                    style={{ marginTop: 0, width: 15, }}
+                    onPress={() => {
+                      this.sortAmountHandler_z2a();
+                    }} title="Z - A" />
+                </Menu>
+
+
               </ScrollView>
             </View>
 
@@ -259,6 +384,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
               >
               </FlatList>
             </View>
+
           </View>
         </View>
       </Provider>
