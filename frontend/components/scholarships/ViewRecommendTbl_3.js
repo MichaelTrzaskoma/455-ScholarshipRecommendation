@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Menu, Provider } from 'react-native-paper';
-import { parseMonth, parseAmount, parseSimilarScore, dynamicSort, sortAmount } from "../../functions/utilities";
+import { parseMonth, parseAmount, parseSimilarScore, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../../functions/utilities";
 import { FlatList } from 'react-native-gesture-handler';
 
 function opt1() {
@@ -98,16 +98,20 @@ export default class ViewRecommendTbl_3 extends React.Component {
   }
 
   sortAmountHandler_a2z() {
-    // this.setState({
-    //   scholarArr: sortAmount_a2z(this.state.scholarArr),
-    // });
-    this.state.scholarArr.sort(sortAmount("amount"));
-    console.log(this.state.scholarArr);
+    this.setState({
+      scholarArr: mergeSort_a2z(this.state.scholarArr),
+    });
+    // this.state.scholarArr.sort(sortAmount("amount"));
+    // console.log(this.state.scholarArr);
     this._closeAmountMenu();
   }
 
   sortAmountHandler_z2a() {
-    this.state.scholarArr.sort(sortAmount("-amount"));
+    // mergeSort_z2a
+    this.setState({
+      scholarArr: mergeSort_z2a(this.state.scholarArr),
+    });
+    // this.state.scholarArr.sort(sortAmount("-amount"));
     // console.log(this.state.scholarArr);
     this._closeAmountMenu();
   }
@@ -148,7 +152,8 @@ export default class ViewRecommendTbl_3 extends React.Component {
             // append the API data to local var
             scholarArr.push({
               key: res.Name,
-              amount: parseAmount(res.Amount),
+              // amount: parseInt(parseAmount(res.Amount)),
+              amount: parseInt(res.Amount),
               deadline: deadline,
               score: parseSimilarScore(res.Val),
             });
@@ -370,7 +375,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
                             </View>
                           </View>
                           <View style={styles.rect6}>
-                            <Text style={styles.text3}>{item.amount}</Text>
+                            <Text style={styles.text3}>{parseAmount(item.amount)}</Text>
                           </View>
                         </View>
                         <View style={styles.rect7}>

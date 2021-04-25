@@ -399,7 +399,7 @@ def filter_results(user_Ref, scholar_ref, userId):
             if(value >= filterVal):
                 scholarInfo = {
                     'Name': str(curr_scholar.get('name')),
-                    'Amount': str(curr_scholar.get('amount')),
+                    'Amount': int(parseAmount(curr_scholar.get('amount'))),
                     'Deadline': str(curr_scholar.get('deadline')),
                     'Val': value,
                 }
@@ -419,6 +419,14 @@ def binCompare(user_bin, scholar_bin):
             return False
     return True
 
+
+def parseAmount(txt):
+    if "$" in txt: 
+        if "," in txt:
+            txt = txt.replace(",", "")
+        return txt[1:]
+    else:
+        return 0
 
 # from pymongo import MongoClient
 

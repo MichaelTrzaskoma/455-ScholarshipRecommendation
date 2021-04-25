@@ -46,10 +46,13 @@ export function parseMonth(month) {
 
 
 export function parseAmount(amount) {
-  if (amount === "See Description For Amount") {
+  // parse the amount attribute
+  // INPUT: amount (int)
+  // OUTPUT: return desired val based on input leading character
+  if (amount === 0) {
     return "See Description...";
   } else {
-    return String(amount).replace(",", "");
+    return "$" + amount.toString();
   }
 }
 
@@ -83,49 +86,55 @@ export function dynamicSort(property) {
   }
 }
 
-export function sortAmount(property) {
-  // sort the dictionary list in asending or descending order
-  // INPUT: attribute of the dictionary
-  // OUTPUT: return a sorted dictionary list
-  // ref: https://ourcodeworld.com/articles/read/764/how-to-sort-alphabetically-an-array-of-objects-by-key-in-javascript
 
-  var sortOrder = 1;
+// special case when sorting the amount
+// merge sort, ref: https://jsfiddle.net/hhc879099766/a56qfpz7/11/
 
-  if (property[0] === "-") {
-    sortOrder = -1;
-    property = property.substr(1);
-  }
+export function mergeSort_a2z(arr) {
+  if (arr.length <= 1) return arr;
 
+  let mid = Math.floor(arr.length / 2),
+    left = mergeSort_a2z(arr.slice(0, mid)),
+    right = mergeSort_a2z(arr.slice(mid));
 
+  return merge_a2z(left, right);
+};
 
-  // return function (a, b) {
-  //   if (sortOrder == -1) {
-  //     return b[property].substring(1).localeCompare(a[property].substring(1));
-  //   } else {
-  //     return a[property].substring(1).localeCompare(b[property].substring(1));
-  //   }
-  // }
+function merge_a2z(arr1, arr2) {
+  let sorted = [];
 
+  while (arr1.length && arr2.length) {
+    
+    if (parseInt(arr1[0].amount) < parseInt(arr2[0].amount)) sorted.push(arr1.shift());
+    // if (Buffer.from(arr1[0].amount, 'utf-8') < Buffer.from(arr2[0].amount, 'utf-8')) sorted.push(arr1.shift());
+    else sorted.push(arr2.shift());
 
-  return function (a, b) {
-    if (sortOrder == -1) {
-      return parseInt(b[property].substring(1)) - parseInt(a[property].substring(1));
-    } else {
-      return parseInt(a[property].substring(1)) - parseInt(b[property].substring(1));
-    }
-  }
+  };
+
+  return sorted.concat(arr1.slice().concat(arr2.slice()));
+};
 
 
+export function mergeSort_z2a(arr) {
+  if (arr.length <= 1) return arr;
 
-}
+  let mid = Math.floor(arr.length / 2),
+    left = mergeSort_z2a(arr.slice(0, mid)),
+    right = mergeSort_z2a(arr.slice(mid));
 
+  return merge_z2a(left, right);
+};
 
-export function sortAmount_a2z(target) {
-  //Sort ArrayList by ascending order
-  // Ref: https://www.techup.co.in/sort-arraylist-by-id-react-native/
+function merge_z2a(arr1, arr2) {
+  let sorted = [];
 
-  target.sort(function (obj1, obj2) {
-    // Ascending: first id less than the previous
-    return obj1.amount - obj2.amount;
-  });
-}
+  while (arr1.length && arr2.length) {
+    
+    if (parseInt(arr1[0].amount) > parseInt(arr2[0].amount)) sorted.push(arr1.shift());
+    // if (Buffer.from(arr1[0].amount, 'utf-8') < Buffer.from(arr2[0].amount, 'utf-8')) sorted.push(arr1.shift());
+    else sorted.push(arr2.shift());
+
+  };
+
+  return sorted.concat(arr1.slice().concat(arr2.slice()));
+};
