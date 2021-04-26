@@ -26,7 +26,7 @@ def uniqueSatRange():
         uniqueSat.append(sat['admission']['sat']['accept_score_range'])
     
     uniqueSat = set(uniqueSat)
-    print(len(uniqueSat))
+    print('Number of unique Sat ranges ' + str(len(uniqueSat)))
 
 def uniqueState ():
     uniqueState = []
@@ -36,7 +36,8 @@ def uniqueState ():
     for loc in queryLocHave:
         if len(loc['location_tags']) > 1:
             uniqueState.append(loc['location_tags'][0])
-    
+    print(len(queryLocHave))        
+    print(len(uniqueState))
     uniqueState = sorted(set(uniqueState))
     print(uniqueState)
 
