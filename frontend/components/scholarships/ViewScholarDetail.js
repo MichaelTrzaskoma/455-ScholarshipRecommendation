@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, ScrollView, View, Text, TouchableOpacity, } from 'react-native';
 import BeautyWebView from 'react-native-beauty-webview';
 import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { getDeviceID } from "../../functions/deviceUniqueID";
 import { getSecureStorage } from "../../functions/secureStorage";
 
@@ -36,7 +37,7 @@ export default class ViewScholarDetail extends React.Component {
 
     
     //Insert API Call here
-    let URL = "http://ddc755e778ab.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
+    let URL = "http://9171590d2b54.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
     fetch(URL, {
       method: "POST",
       headers: {
@@ -87,7 +88,7 @@ export default class ViewScholarDetail extends React.Component {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
     let URL =
-      'http://ddc755e778ab.ngrok.io/api/v1.2/resources/scholarships/view/titles/Kentucky%20Tuition%20Grant';
+      'http://9171590d2b54.ngrok.io/api/v1.2/resources/scholarships/view/titles/Kentucky%20Tuition%20Grant';
 
     fetch(URL, {
       method: 'GET',
@@ -121,9 +122,9 @@ export default class ViewScholarDetail extends React.Component {
       <ScrollView horizontal={false} style={styles.container}>
         <View style = {styles.card_grp0}>
           <TouchableOpacity onPress={() => this.handleBookmark()}>
-          <Ionicons
-								  name="md-bookmarks"
-								  style={styles.bookmarksIcon}></Ionicons>
+          <MaterialCommunityIcons
+								  name="bookmark-plus"
+								  style={styles.bookmarksIcon}></MaterialCommunityIcons>
 							  <Text style={styles.bookmarksTxt}>Bookmark This Scholarship</Text>
                 
           </TouchableOpacity>
