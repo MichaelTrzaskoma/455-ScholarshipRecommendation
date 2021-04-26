@@ -1375,8 +1375,8 @@ class InputScreen1a extends React.Component {
 			gpa: "3.5",
 			sat_score: "",
 			act_score: "",
-			selectedResidences: ["New York"],
-			selectedMajors: ["Computer Science"],
+			selectedResidences: [],
+			selectedMajors: [],
 			selectedRaces: ["Asian/Pacific Islander"],
 			selectedReligions: ["Islam/Muslim"],
 			selectedDisabilities: ["Visual Impairment"],
@@ -1471,7 +1471,8 @@ class InputScreen1a extends React.Component {
 			gender: this.state.gender,
 			dob: this.state.dob,
 			gpa: this.state.gpa,
-			major: this.state.selectedItems,
+			major: this.state.selectedMajors,
+			selectedResidences: this.state.selectedResidences,
 			race: this.state.race,
 			ethnicity: this.state.ethnicity,
 			religion: this.state.religion,
@@ -1761,7 +1762,7 @@ class InputScreen1a extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
-		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; 
+		let URL = "http://9171590d2b54.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; 
 		
   
 	  fetch(URL, {
