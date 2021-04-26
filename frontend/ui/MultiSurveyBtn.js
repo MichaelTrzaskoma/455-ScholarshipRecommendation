@@ -15,6 +15,7 @@ export default function AddProfile(email) {
 				"title": "Input Required Info",
 				"email": email.email,
 			})}
+			// onPress={() => console.log(email)}
 		>
 			<View style={styles.addProfileDetailIconRow}>
 				<MaterialIcons

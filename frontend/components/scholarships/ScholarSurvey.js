@@ -1310,12 +1310,12 @@ const DismissKeyboard = ({ children }) => (
 	</TouchableWithoutFeedback>
 );
 
-export default function ScholarSurvey({ route, navigation }) {
+export default function ScholarSurvey(props) {
 	// console.log("Email from InputScreen1: " + JSON.stringify(route.params.email));
 	// console.log("navigation from InputScreen1: " + JSON.stringify(navigation));
-
-	// Delete the email attribute to get rid of the error for now - email={route.params.email} 
-	return <InputScreen1a navigation={navigation} />;
+	// console.log(props);
+	// Delete the navigation & atttribute that is not used nowhere.
+	return <InputScreen1a email={props.route.params.email}/>
 }
 
 class InputScreen1a extends React.Component {
@@ -1325,7 +1325,7 @@ class InputScreen1a extends React.Component {
 			email: this.props.email,
 			gender: "Male",
 			dob: "22",
-			// zip: "",git l
+			// zip: "",
 			gpa: "3.5",
 			sat_score: "",
 			act_score: "",
@@ -1424,7 +1424,6 @@ class InputScreen1a extends React.Component {
 			email: this.state.email,
 			gender: this.state.gender,
 			dob: this.state.dob,
-			zip: this.state.zip,
 			gpa: this.state.gpa,
 			major: this.state.selectedItems,
 			race: this.state.race,
@@ -1798,6 +1797,7 @@ class InputScreen1a extends React.Component {
 
 	render() {
 		// console.log("DOB is: " + this.state.dob);
+		console.log(this.props);
 
 		// check();
 		this.getExistingData();
@@ -2025,6 +2025,7 @@ class InputScreen1a extends React.Component {
 						<TouchableOpacity
 							onPress={() =>
 								this.onSubmit()
+								// console.log(this.props)
 							}
 							style={styles.btn_submit}
 						>
