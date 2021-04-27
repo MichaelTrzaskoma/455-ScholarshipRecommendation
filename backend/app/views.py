@@ -82,12 +82,25 @@ def thankYou():
 
 @app.route("/activate", methods=["POST", "GET"])
 def activate():
+    # get incoming account activation code
     code = request.args.get('code')
-    results = user_Ref.find_one({"activationCode": code})
-    if(len(code) != ACTIVE_CODE_LENGTH or results.count() != 1):
+
+    # check if this code ever exists
+    counter = user_Ref.count_documents({"activationCode": code})
+    # print(f"Counter: {counter}")
+
+    # validate the activation code
+    if(len(code) != ACTIVE_CODE_LENGTH or counter != 1):
         return "Error"  # redirect(url_for('error', error="invalid"))
+
+    # retrieve user profile info
+    results = user_Ref.find_one({"activationCode": code})
+
     activationTime = results["activationDate"]
-    email = results["email"]
+    email = results["_id"]
+
+    # check if the activation code expiration timestamp
+    # regenerate and resend the email if the code is expired
     if((datetime.now() - activationTime).total_seconds() / 60 > MINS_TIL_ACTIVE_CODE_EXPIRY):
         activationCode = generateCode()
         user_Ref.update_one({"_id": email}, {
@@ -102,13 +115,29 @@ def activate():
 
 @app.route("/api/v1.2/managements/users/<email>/auth", methods=["POST"])
 def auth(email):
-    # user login feature
-    # REQUIRMENT: a registered user
-    # INPUT: email (str) user's email address
-    # INCOMINT DATA
-    # :paswrd (str) user's password
-    # :unique_id (str) device unique UUID
-    # OUTPUT: result of login - JWT
+    '''
+    user login feature
+    REQUIRMENT: a registered user
+    INPUT: email (str) user's email address
+    INCOMINT DATA
+    :paswrd (str) user's password
+    :unique_id (str) device unique UUID
+    OUTPUT: result of login - JWT
+    '''
+
+    '''
+        A user may allow to have multiple devices. 
+        Each device will have differnt: uuid (unique id), token (randome str), a jwt code, and activateDate (time stampe).
+        Check if there's any devices under client's profile
+            If there's an exisiting device with same uuid in the record 
+                --> why: the user was inactive for more than a week
+                --> todo: regenerate the token and jwt code and then update into "devices" arr on db
+            If there's no devices:
+                --> todo: push the device to devices arr
+                Note, if there's no 'devices' attribute, mongodb will automatically create it
+            If there's exisitng devices and no matched uuid:
+                --> todo: push the device to devices arr
+    '''
 
     if request.method == "POST":
 
@@ -144,6 +173,7 @@ def auth(email):
         r_email = user_Ref.count_documents({"_id": email})
 
         if r_email == 1:
+            # there's a matched email
 
             # get the user profile for validation
             usr_profile_data = user_Ref.find_one(
@@ -153,6 +183,8 @@ def auth(email):
             # print(usr_profile_data)
 
             if usr_profile_data["active"] != 0:
+                # make sure the user's email is valified
+
                 if 'devices' in usr_profile_data:
                     # there's a device list under user's profile
                     # check if there's an exisiting unique id
@@ -167,43 +199,52 @@ def auth(email):
 
                         # get existing device info
                         existing_device = device_info[0]
-                        
+
                         # generate a new device token
                         secret_code = generateCode()
+                        timer = datetime.utcnow()
 
                         # generate a new jwt code by using current device info
-                        new_jwt = encode_jwt(income_data['unique_id'], 7, secret_code)
+                        new_jwt = encode_jwt(
+                            income_data['unique_id'], timer, 7, secret_code)
 
                         # update the device info
-                        update_deviceInfo(user_Ref, email, existing_device['unique_id'], new_jwt, income_data['unique_id'], secret_code, datetime.now())
+                        update_deviceInfo(
+                            user_Ref, email, existing_device['unique_id'], new_jwt, income_data['unique_id'], secret_code, timer)
 
                         return make_response(jsonify({"mesg": "authorized!", "token": str(new_jwt)}), 202)
-                        
+
                     else:
-                        # no matched device uuid found/ doesn't ever have device info
+                        # no matched device uuid found or doesn't ever have device info
                         # this is new login with a new device
-                        
+
                         # generate a new device token
                         secret_code = generateCode()
+                        timer = datetime.utcnow()
 
                         # generate a new jwt code by using current device info
-                        new_jwt = encode_jwt(income_data['unique_id'], 7, secret_code)
+                        new_jwt = encode_jwt(
+                            income_data['unique_id'], timer, 7, secret_code)
 
-                        initial_device(user_Ref, email, new_jwt, income_data['unique_id'], secret_code, datetime.now())
+                        initial_device(
+                            user_Ref, email, new_jwt, income_data['unique_id'], secret_code, timer)
 
                         return make_response(jsonify({"mesg": "authorized!", "token": str(new_jwt)}), 202)
-                    
+
                 else:
-                    # no matched device uuid found/ doesn't ever have device info
+                    # no matched device uuid found or doesn't ever have device info
                     # this is new login with a new device
-                    
+
                     # generate a new device token
                     secret_code = generateCode()
+                    timer = datetime.utcnow()
 
                     # generate a new jwt code by using current device info
-                    new_jwt = encode_jwt(income_data['unique_id'], 7, secret_code)
+                    new_jwt = encode_jwt(
+                        income_data['unique_id'], timer, 7, secret_code)
 
-                    initial_device(user_Ref, email, new_jwt, income_data['unique_id'], secret_code, datetime.now())
+                    initial_device(
+                        user_Ref, email, new_jwt, income_data['unique_id'], secret_code, timer)
 
                     return make_response(jsonify({"mesg": "authorized!", "token": str(new_jwt)}), 202)
 
