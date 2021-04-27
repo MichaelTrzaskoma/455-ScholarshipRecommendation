@@ -40,7 +40,7 @@ def initial_device(profileDB, email, jwt_code, uuid, token, timer):
         "jwt": jwt_code,
         "unique_id": uuid,
         "token": token,
-        "expireDate": int(time.mktime((timer + datetime.timedelta(days=7)).timetuple()))
+        "expireDate": timer
         # "expireDate": int(time.mktime(datetime.datetime.utcnow() + datetime.timedelta(days=7)).timetuple())
     }
     # mongodb will create this devices array if it doesn't exist in db
@@ -68,7 +68,7 @@ def encode_jwt(unique_id, timer, expire_day, secret):
     # :expire_day (int) when the jwt will be expired
     # :secret (str) a unique token for the user that valid for 7 days
     # OUTPUT: return a jwt code
-    return jwt.encode({"id": unique_id, "exp": timer + datetime.timedelta(days=expire_day)}, secret, algorithm="HS256")
+    return jwt.encode({"id": unique_id, "exp": timer}, secret, algorithm="HS256")
 
 
 def decode_jwt(code, key):
@@ -98,7 +98,7 @@ def decode_jwt(code, key):
 #     return True if decode_timer > current_timer else False
 
 
-def update_deviceInfo(profileRef, email, exisiting_id, jwt, uuid, token, timestamp):
+def update_deviceInfo(profileRef, email, exisiting_id, jwt, uuid, token, timer):
     # update a single device info
     # REQUIREMENT - a registered user and existing uuid
     # INPUT
@@ -116,6 +116,6 @@ def update_deviceInfo(profileRef, email, exisiting_id, jwt, uuid, token, timesta
                                   "jwt": jwt,
                                   "unique_id": uuid,
                                   "token": token,
-                                  "expireDate": int(time.mktime((timestamp + datetime.timedelta(days=7)).timetuple()))
+                                  "expireDate": timer
                               }
                           }})

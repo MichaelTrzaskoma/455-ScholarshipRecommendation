@@ -72,84 +72,77 @@ def encode_jwt2(unique_id, timer, secret):
 def decode_jwt2(code, key):
     return jwt.decode(code, key, algorithms="HS256")
 
-# try:
-#     # ================== TEST ================== 
-#     # secret = "fewgewg-gwgwe-fweafa-awfewfwe-wfef"
-#     # uuid = "sfef-wefweg-wetwe-wsgeg-wsgeg-ewgwe"
-#     # timer = int(time.mktime((datetime.datetime.utcnow() + datetime.timedelta(seconds=5)).timetuple()))
-#     # print(f"Timer: {timer}")
+try:
+    # ================== TEST ================== 
+    # secret = "fewgewg-gwgwe-fweafa-awfewfwe-wfef"
+    # uuid = "sfef-wefweg-wetwe-wsgeg-wsgeg-ewgwe"
+    # timer = int(time.mktime((datetime.datetime.utcnow() + datetime.timedelta(seconds=5)).timetuple()))
+    # print(f"Timer: {timer}")
 
-#     # code = encode_jwt2(uuid, 10, secret)
-#     # print(f"UUID: {uuid}")
-#     # print(f"Secret Key: {secret}")
-#     # print(f"JWT code: {code}")
-#     # print(datetime.datetime.utcnow() + datetime.timedelta(seconds=10))
+    # code = encode_jwt2(uuid, 10, secret)
+    # print(f"UUID: {uuid}")
+    # print(f"Secret Key: {secret}")
+    # print(f"JWT code: {code}")
+    # print(datetime.datetime.utcnow() + datetime.timedelta(seconds=10))
 
-#     # time.sleep(12)
+    # time.sleep(12)
 
-#     # print(datetime.datetime.utcnow() + datetime.timedelta(seconds=9))
-#     # decode = decode_jwt2(code, secret)
-#     # print(decode)
-#     # print("Valide token")
-#     # print(int(time.mktime(datetime.datetime.now().timetuple())))
-#     # if decode['exp'] > timer:
-#     #     print("expired token")
-#     # else:
-#     #     print("valid token")
-#     # ================== TEST ================== 
+    # print(datetime.datetime.utcnow() + datetime.timedelta(seconds=9))
+    # decode = decode_jwt2(code, secret)
+    # print(decode)
+    # print("Valide token")
+    # print(int(time.mktime(datetime.datetime.now().timetuple())))
+    # if decode['exp'] > timer:
+    #     print("expired token")
+    # else:
+    #     print("valid token")
+    # ================== TEST ================== 
 
-#     JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6ImV3ZndlZmV3ZmUiLCJleHAiOjE2MjAxNTYxNjZ9.10QlsWRuTJOtQrbCJi5d12iE5AQ2OOw3jP3-r-apgSE"
-#     UUID = "ewfwefewfe"
-#     EMAIL = "hchen98x@gmail.com"
-#     user_profile = getUsrProfile(usr_profile, EMAIL)
-#     if "devices" not in user_profile:
-#         print(0)
+    JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6ImV3ZndlZmV3ZmUiLCJleHAiOjE2MjAxODY0ODZ9.OOIRvJIrwP0k8PreZ4A44HL71XDoxPw7lrNscEbBhJE"
+    UUID = "ewfwefewfe"
+    EMAIL = "hchen98x@gmail.com"
+    user_profile = getUsrProfile(usr_profile, EMAIL)
+    if "devices" not in user_profile:
+        print(0)
     
-#     device_list = user_profile["devices"]
-#     device_info = list(filter(lambda device: device['unique_id'] == UUID, device_list))
-#     if len(device_info) != 1:
-#         print(1)
+    device_list = user_profile["devices"]
+    device_info = list(filter(lambda device: device['unique_id'] == UUID, device_list))
+    if len(device_info) != 1:
+        print(1)
     
-#     db_record_jwt = device_info[0]["jwt"]
-#     db_record_uuid = device_info[0]["unique_id"]
-#     db_record_token = device_info[0]["token"]
-#     db_record_time = device_info[0]["expireDate"]
+    db_record_jwt = device_info[0]["jwt"]
+    db_record_uuid = device_info[0]["unique_id"]
+    db_record_token = device_info[0]["token"]
+    db_record_time = device_info[0]["expireDate"]
 
-#     if not JWT == db_record_jwt:
-#         print(2)
+    if not JWT == db_record_jwt:
+        print(2)
     
-#     if not UUID == db_record_uuid:
-#         print(3)
+    if not UUID == db_record_uuid:
+        print(3)
     
-#     decode = decode_jwt2(JWT, db_record_token)
-#     print(f"Decode JWT: {decode}")
-#     print(f"DB record time: {db_record_time}")
+    decode = decode_jwt2(JWT, db_record_token)
+    print(f"Decode JWT: {decode}")
+    print(f"DB record time: {db_record_time}")
 
-#     if not decode["exp"] == db_record_time:
-#         print(4)
+    if not decode["exp"] == db_record_time:
+        print(4)
     
-#     current_time = int(time.mktime(datetime.datetime.utcnow().timetuple()))
-#     if decode["exp"] > current_time:
-#         # e.g. JWT expires April 07, 2021 and current time is APril 01, 2021
-#         # therefore this is valid jwt code
-#         print("This is valid JWT code!")
+    current_time = int(time.mktime(datetime.datetime.utcnow().timetuple()))
+    if decode["exp"] > current_time:
+        # e.g. JWT expires April 07, 2021 and current time is APril 01, 2021
+        # therefore this is valid jwt code
+        print("This is valid JWT code!")
 
-timer = datetime.datetime.utcnow()+ datetime.timedelta(days=7)
-f_time = int(time.mktime((timer + datetime.timedelta(days=7)).timetuple()))
-print(timer)
-
-time.sleep(5)
-
-print(timer)
 
     
 
 
-# except jwt.exceptions.ExpiredSignatureError:
-#     # raise an exception if the token is expired
-#     print("Expired token")
-# except jwt.exceptions.InvalidSignatureError:
-#     # invalid signature
-#     print("Invalid signature")
-# except jwt.exceptions.InvalidTokenError:
-#     print("Invalid token")
+except jwt.exceptions.ExpiredSignatureError:
+    # raise an exception if the token is expired
+    print("Expired token")
+except jwt.exceptions.InvalidSignatureError:
+    # invalid signature
+    print("Invalid signature")
+except jwt.exceptions.InvalidTokenError:
+    print("Invalid token")

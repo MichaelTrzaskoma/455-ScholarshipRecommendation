@@ -6,7 +6,8 @@ from flask import json, render_template, jsonify, request, make_response, redire
 import mailhandler
 import hashlib
 from pymongo import MongoClient
-from datetime import datetime
+from datetime import datetime, timedelta
+import time
 
 from .auths import generateCode, init_usrProfileDB, check_email_verification_status, encode_jwt, update_deviceInfo, initial_device
 from .recommend_model import updtUser, filter_results
@@ -202,7 +203,7 @@ def auth(email):
 
                         # generate a new device token
                         secret_code = generateCode()
-                        timer = datetime.utcnow()
+                        timer = int(time.mktime((datetime.utcnow() + timedelta(days=7)).timetuple()))
 
                         # generate a new jwt code by using current device info
                         new_jwt = encode_jwt(
@@ -220,7 +221,7 @@ def auth(email):
 
                         # generate a new device token
                         secret_code = generateCode()
-                        timer = datetime.utcnow()
+                        timer = int(time.mktime((datetime.utcnow() + timedelta(days=7)).timetuple()))
 
                         # generate a new jwt code by using current device info
                         new_jwt = encode_jwt(
@@ -237,7 +238,7 @@ def auth(email):
 
                     # generate a new device token
                     secret_code = generateCode()
-                    timer = datetime.utcnow()
+                    timer = int(time.mktime((datetime.utcnow() + timedelta(days=7)).timetuple()))
 
                     # generate a new jwt code by using current device info
                     new_jwt = encode_jwt(

@@ -15,6 +15,7 @@ __pycache__/**/*
 
 *.swp
 *.pyc
+**/*.pyc
 
 /frontend/node_modules/**/*
 /frontend/.expo/*
