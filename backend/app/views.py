@@ -1,25 +1,24 @@
 # from typing_extensions import Required
-import jwt
+
 from werkzeug.datastructures import Authorization
 from app import app
 from flask import json, render_template, jsonify, request, make_response, redirect, url_for
 import mailhandler
 import hashlib
 from pymongo import MongoClient
-
-import string
-import random
 from datetime import datetime
 
-# from app.auths import authOutput
+from .auths import generateCode, init_usrProfileDB, check_email_verification_status, encode_jwt, update_deviceInfo, initial_device
 from .recommend_model import updtUser, filter_results
 
-ACTIVE_CODE_LENGTH = 64
 MINS_TIL_ACTIVE_CODE_EXPIRY = 15
 db = MongoClient("mongodb://localhost:27017/")
 scholarDb = db.test
 scholar_ref = db.test.scholarships
 user_Ref = db.test.client_profile
+
+ACTIVE_CODE_LENGTH = 64
+
 
 @app.route("/")
 def index():
@@ -32,13 +31,6 @@ def signUp():
     return render_template("public/signup.html")
 
 
-def generateCode():
-    code = ""
-    for i in range(ACTIVE_CODE_LENGTH):
-        code += random.choice(string.ascii_letters + string.digits) 
-    return code
-
-
 @app.route("/api/v1.2/managements/users/thankyou", methods=["POST", "GET"])
 def thankYou():
     if(request.method == "POST"):
@@ -46,104 +38,184 @@ def thankYou():
         if(page == "signup"):
             email = request.form['inputEmail']
             password = request.form['inputPassword']
-            
+
             # salt and hash password
             saltedPass = password + app.config['SALT_VALUE']
             hashPass = hashlib.md5(saltedPass.encode()).hexdigest()
-            
-            #For debugging purposes
-            scholarDb.users.delete_one({"email" : email })
-            
-            #Check if email already exists in database
-            results = scholarDb.users.count_documents({ "email" : email })
-            
-            if(results != 0):
-               return redirect(url_for('signUp', error="dup"))
 
-            #Insert user into database
+            # For debugging purposes
+            # user_Ref.delete_one({"_id" : email })
+
+            # Check if email already exists in database
+            results = user_Ref.count_documents({"_id": email})
+
+            if(results != 0):
+                return redirect(url_for('signUp', error="dup"))
+
+            # Insert user into database
             activationCode = generateCode()
-            scholarDb.users.insert_one({ "email": email, "password": password, "activationCode": activationCode, "activationDate": datetime.now(), "active": 0 })
-            
-            #Send welcome email
+            init_usrProfileDB(user_Ref, email, password,
+                              activationCode, datetime.now(), 0)
+
+            # user_Ref.insert_one({ "_id": email, "password": password, "activationCode": activationCode, "activationDate": datetime.now(), "active": 0 })
+
+            # Send welcome email
             mailhandler.sendWelcomeEmail(email, activationCode)
 
             return render_template("public/thankyou.html")
         else:
             email = request.form['email']
             print(email)
-            
-            #Try to look up email in database
-            results = scholarDb.users.find({ "email" : email })
-            
-            #Send user back to /forgotpassword if no email found
+
+            # Try to look up email in database
+            results = user_Ref.count_documents({"_id": email})
+
+            # Send user back to /forgotpassword if no email found
             if(results == 0):
                 return redirect(url_for('forgotpassword', error="unfound"))
 
-            #Send reset password email to user if successful 
+            # Send reset password email to user if successful
             mailhandler.sendResetPasswordEmail(email)
-            
+
             return render_template("public/thankyou2.html")
+
+
+@app.route("/activate", methods=["POST", "GET"])
+def activate():
+    code = request.args.get('code')
+    results = user_Ref.find_one({"activationCode": code})
+    if(len(code) != ACTIVE_CODE_LENGTH or results.count() != 1):
+        return "Error"  # redirect(url_for('error', error="invalid"))
+    activationTime = results["activationDate"]
+    email = results["email"]
+    if((datetime.now() - activationTime).total_seconds() / 60 > MINS_TIL_ACTIVE_CODE_EXPIRY):
+        activationCode = generateCode()
+        user_Ref.update_one({"_id": email}, {
+                            "$set": {"activationCode": activationCode, "activationDate": datetime.now()}})
+        mailhandler.sendWelcomeEmail(email, activationCode)
+        return "Code Expired, sending new code"
+
+    user_Ref.update_one({"_id": email}, {"$set": {"active": 1}})
+
+    return "Account activated"
 
 
 @app.route("/api/v1.2/managements/users/<email>/auth", methods=["POST"])
 def auth(email):
     # user login feature
     # REQUIRMENT: a registered user
-    # INPUT
-    # :email (str) user's email address
+    # INPUT: email (str) user's email address
+    # INCOMINT DATA
     # :paswrd (str) user's password
-    # OUTPUT: result of login
+    # :unique_id (str) device unique UUID
+    # OUTPUT: result of login - JWT
 
     if request.method == "POST":
 
         income_data = request.json
 
-        # validate the inputs
+        # validate the inputs and incoming data
+
+        if 'email' not in income_data:
+            return make_response(jsonify({"mesg": "An email is needed!"}), 400)
+
+        if 'paswrd' not in income_data:
+            return make_response(jsonify({"mesg": "A password is needed!"}), 400)
+
+        if 'unique_id' not in income_data:
+            return make_response(jsonify({"mesg": "Device is not supported!"}), 400)
+
         len_e = len(email)
         len_p = len(income_data['paswrd'])
+        len_uid = len(income_data['unique_id'])
+
         if len_e == 0 or len_e < 1:
             return make_response(jsonify({"mesg": "Please enter an email"}), 400)
-        
+
         if len_p == 0 or len_p < 1:
             return make_response(jsonify({"mesg": "Please enter a password"}), 400)
-        
+
+        if len_uid == 0 or len_uid < 1:
+            return make_response(jsonify({"mesg": "An error occurred!"}), 400)
+
         # check if the user's email verification is verified or not
         # if not then either request users to verify or
         # resend a new link for verification
-        r_email = user_Ref.count_documents({"email": email})
-        
+        r_email = user_Ref.count_documents({"_id": email})
+
         if r_email == 1:
+
+            # get the user profile for validation
+            usr_profile_data = user_Ref.find_one(
+                {"_id": email}, {"_id": 1, "devices": 1, "active": 1})
+
             # the user is registered with us and verified his/ her email address
-            verify = user_Ref.find_one({"email": email}, {"_id": 0, "jwt": 1, "active": 1})
-            # print(verify)
+            # print(usr_profile_data)
 
-            if verify["activate"] != 0:
-                return make_response(jsonify({"mesg": "ok"}), 202)
+            if usr_profile_data["active"] != 0:
+                if 'devices' in usr_profile_data:
+                    # there's a device list under user's profile
+                    # check if there's an exisiting unique id
+                    device_list = usr_profile_data["devices"]
+                    device_info = list(filter(
+                        lambda device: device['unique_id'] == income_data['unique_id'], device_list))
+
+                    if len(device_info) == 1:
+                        # there's a same match device in the user's profile
+                        # this could be a re-login user
+                        # so replace existing device info with current device info
+
+                        # get existing device info
+                        existing_device = device_info[0]
+                        
+                        # generate a new device token
+                        secret_code = generateCode()
+
+                        # generate a new jwt code by using current device info
+                        new_jwt = encode_jwt(income_data['unique_id'], 7, secret_code)
+
+                        # update the device info
+                        update_deviceInfo(user_Ref, email, existing_device['unique_id'], new_jwt, income_data['unique_id'], secret_code, datetime.now())
+
+                        return make_response(jsonify({"mesg": "authorized!", "token": str(new_jwt)}), 202)
+                        
+                    else:
+                        # no matched device uuid found/ doesn't ever have device info
+                        # this is new login with a new device
+                        
+                        # generate a new device token
+                        secret_code = generateCode()
+
+                        # generate a new jwt code by using current device info
+                        new_jwt = encode_jwt(income_data['unique_id'], 7, secret_code)
+
+                        initial_device(user_Ref, email, new_jwt, income_data['unique_id'], secret_code, datetime.now())
+
+                        return make_response(jsonify({"mesg": "authorized!", "token": str(new_jwt)}), 202)
+                    
+                else:
+                    # no matched device uuid found/ doesn't ever have device info
+                    # this is new login with a new device
+                    
+                    # generate a new device token
+                    secret_code = generateCode()
+
+                    # generate a new jwt code by using current device info
+                    new_jwt = encode_jwt(income_data['unique_id'], 7, secret_code)
+
+                    initial_device(user_Ref, email, new_jwt, income_data['unique_id'], secret_code, datetime.now())
+
+                    return make_response(jsonify({"mesg": "authorized!", "token": str(new_jwt)}), 202)
+
+            else:
+                # user didn't verify his/ her email
+                return make_response(jsonify({"mesg": "Please verify your email by using the link we sent you through email!"}), 400)
         else:
-            return make_response(jsonify({"mesg": "Please signup an account first!"}), 403)
-
+            # there's was no such email address in the db records
+            return make_response(jsonify({"mesg": "Please signup an account first!"}), 400)
 
     else:
         return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
-
-
-@app.route("/activate", methods=["POST", "GET"])
-def activate():
-    code = request.args.get('code')
-    results = scholarDb.users.find({ "activationCode" : code })
-    if(len(code) != ACTIVE_CODE_LENGTH or results.count() != 1):
-        return "Error" #redirect(url_for('error', error="invalid"))
-    activationTime = results[0]["activationDate"]
-    email = results[0]["email"]
-    if((datetime.now() - activationTime).total_seconds() / 60 > MINS_TIL_ACTIVE_CODE_EXPIRY):
-        activationCode = generateCode()
-        scholarDb.users.update_one({"email" : email}, {"$set": {"activationCode": activationCode, "activationDate": datetime.now()}})
-        mailhandler.sendWelcomeEmail(email, activationCode)
-        return "Code Expired, sending new code"
-        
-    scholarDb.users.update_one({"email" : email }, {"$set": {"active": 1}})
-
-    return "Account activated"
 
 
 @app.route("/api/v1.2/managements/users/forgotpassword")
@@ -280,11 +352,9 @@ def getRecommend_scholarship(email):
     # updtUser(db, user_Ref, "hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
     #      "Computer Science", race=["Asian/Pacific Islander"], ethnicity=["Chinese"],
     #      religion=["Buddhist"])
-    
+
     if request.method == "GET":
         result = filter_results(user_Ref, scholar_ref, email)
         return make_response(jsonify(result), 202)
     else:
         return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
-
-
