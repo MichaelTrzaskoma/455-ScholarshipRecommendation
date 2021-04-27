@@ -27,18 +27,21 @@ def updtUser(
         userEmail,
         gender,
         dob,
-        zipC,
+        # zipC,
         gpa,
-        major='',
+        sat='',
+        act='',
+        major=[],
+        residence=[],
         race=[],
         ethnicity=[],
         religion=[],
         dissabilities=[],
-        sat='',):
+        ):
     # Used to initiation user or update their information, specify when using optional attributes
     list1 = [gender]
     list1.append(catAge(dob))
-    list1.append(catState(zipC))
+    # list1.append(catState(zipC))
     list1.append(catGPA(gpa))
 
     if major != '':
@@ -253,14 +256,15 @@ def catGPA(gpa):
 
 
 def catAge(age):
-    birth = datetime.strptime(age, "%m/%d/%Y")
-    today = date.today()
-    age = today.year - birth.year - ((today.month, today.day) <
-                                     (birth.month, birth.day))
+    # birth = datetime.strptime(age, "%m/%d/%Y")
+    # today = date.today()
+    # age = today.year - birth.year - ((today.month, today.day) <
+    #                                  (birth.month, birth.day))
+    intAge=int(age)
     string = ''
-    if age < 13:
+    if intAge < 13:
         string = ("Age 13")
-    elif age > 30:
+    elif intAge > 30:
         string = ("Age Greater Than 30")
     else:
         string = ("Age " + str(age))
