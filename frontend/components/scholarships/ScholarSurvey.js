@@ -1299,6 +1299,52 @@ const items = [
 			},
 		],
 	},
+	{
+		name: 'Canada',
+		id: 1244,
+		children: [
+			{
+				name: 'Alberta',
+				id: 1245,
+			},
+			{
+				name: 'British Columbia',
+				id: 1246,
+			},
+			{
+				name: 'Manitoba',
+				id: 1247,
+			},
+			{
+				name: 'New Brunswick',
+				id: 1248,
+			},
+			{
+				name: 'Newfoundland and Labrador',
+				id: 1249,
+			},
+			{
+				name: 'Nova Scotia',
+				id: 1250,
+			},
+			{
+				name: 'Ontario',
+				id: 1251,
+			},
+			{
+				name: 'Prince Edward Island',
+				id: 1252,
+			},
+			{
+				name: 'Quebec',
+				id: 1253,
+			},
+			{
+				name: 'Saskatchewan',
+				id: 1254,
+			},
+		],
+	},
 
 ];
 
@@ -1329,8 +1375,8 @@ class InputScreen1a extends React.Component {
 			gpa: "3.5",
 			sat_score: "",
 			act_score: "",
-			selectedResidences: ["New York"],
-			selectedMajors: ["Computer Science"],
+			selectedResidences: [],
+			selectedMajors: [],
 			selectedRaces: ["Asian/Pacific Islander"],
 			selectedReligions: ["Islam/Muslim"],
 			selectedDisabilities: ["Visual Impairment"],
@@ -1425,7 +1471,8 @@ class InputScreen1a extends React.Component {
 			gender: this.state.gender,
 			dob: this.state.dob,
 			gpa: this.state.gpa,
-			major: this.state.selectedItems,
+			major: this.state.selectedMajors,
+			selectedResidences: this.state.selectedResidences,
 			race: this.state.race,
 			ethnicity: this.state.ethnicity,
 			religion: this.state.religion,
@@ -1435,7 +1482,7 @@ class InputScreen1a extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props);
 
-		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
+		let URL = "http://9171590d2b54.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
 		fetch(URL, {
 			method: "POST",
 			headers: {
@@ -1715,7 +1762,7 @@ class InputScreen1a extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
-		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; 
+		let URL = "http://9171590d2b54.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; 
 		
   
 	  fetch(URL, {
@@ -1859,7 +1906,7 @@ class InputScreen1a extends React.Component {
 						<View style={styles.input3_grp}>
 							<Text style={styles.txt_display}>State of Residence and/or Schooling</Text>
 							<SectionedMultiSelect
-								items={items.slice(items.length - 1)}
+								items={items.slice(items.length - 2)}
 								IconRenderer={MaterialIcons}
 								uniqueKey="name"
 								subKey="children"

@@ -227,6 +227,52 @@ const items = [
 		],
 	},
 	{
+		name: 'Canada',
+		id: 1244,
+		children: [
+			{
+				name: 'Alberta',
+				id: 1245,
+			},
+			{
+				name: 'British Columbia',
+				id: 1246,
+			},
+			{
+				name: 'Manitoba',
+				id: 1247,
+			},
+			{
+				name: 'New Brunswick',
+				id: 1248,
+			},
+			{
+				name: 'Newfoundland and Labrador',
+				id: 1249,
+			},
+			{
+				name: 'Nova Scotia',
+				id: 1250,
+			},
+			{
+				name: 'Ontario',
+				id: 1251,
+			},
+			{
+				name: 'Prince Edward Island',
+				id: 1252,
+			},
+			{
+				name: 'Quebec',
+				id: 1253,
+			},
+			{
+				name: 'Saskatchewan',
+				id: 1254,
+			},
+		],
+	},
+	{
 		name: 'Arts',
 		id: 52,
 		children: [
@@ -625,7 +671,7 @@ export default class CollegeSurvey extends React.Component {
 							What is you regional preference {"\n"}for college location?
       					</Text>
 						<SectionedMultiSelect
-							items={items}
+							items={items.slice(0,2)}
 							IconRenderer={MaterialIcons}
 							uniqueKey="id"
 							subKey="children"
@@ -726,7 +772,7 @@ export default class CollegeSurvey extends React.Component {
         					</Text>
 							<SectionedMultiSelect
 								style={{ margin: 30 }}
-								items={items.slice(1, items.length + 1)}
+								items={items.slice(2, items.length + 1)}
 								IconRenderer={MaterialIcons}
 								uniqueKey="name"
 								subKey="children"
