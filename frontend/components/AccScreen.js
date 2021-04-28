@@ -7,6 +7,7 @@ import TabViewSurvey from './TabViewSurvey';
 // import AddCollege from "../ui/AddCollege";
 import MultiSurveyBtn from "../ui/MultiSurveyBtn";
 import HistoryBtn from "../ui/HistoryBtn";
+import { deleteSecureStorage, getSecureStorage } from "../functions/secureStorage";
 
 export default function AccScreen({ usrInfo }) {
 
@@ -67,7 +68,7 @@ export default function AccScreen({ usrInfo }) {
 							name="chevron-small-right"
 							style={styles.rightArrowIcon4}></Entypo>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.signoutBtn}>
+					<TouchableOpacity style={styles.signoutBtn} onPress={() => {deleteSecureStorage()}}>
 						<View style={styles.signOutIconRow}>
 							<FontAwesome
 								name="sign-out"
