@@ -358,8 +358,8 @@ def usrSurvey_scholarship(email):
         if income_data["dob"] == "":
             return make_response(jsonify({"mesg": "Missing date of birth"}), 400)
 
-        if income_data["zip"] == "":
-            return make_response(jsonify({"mesg": "Missing zip code"}), 400)
+        # if income_data["zip"] == "":
+        #     return make_response(jsonify({"mesg": "Missing zip code"}), 400)
 
         updtUser(
             db,
@@ -367,14 +367,16 @@ def usrSurvey_scholarship(email):
             income_data['email'],
             income_data['gender'],
             income_data['dob'],
-            income_data['zip'],
+            # income_data['zip'],
             income_data['gpa'],
-            major=income_data['major'],
-            race=income_data['race'],
-            ethnicity=income_data['ethnicity'],
-            religion=income_data['religion'],
-            dissabilities=income_data['disabilities'],
             sat=income_data['sat_score'],
+            act=income_data['act_score'],
+            major=income_data['selectedMajors'],
+            residence=income_data['selectedResidences'],
+            race=income_data['selectedRaces'],
+            ethnicity=income_data['selectedEthnicities'],
+            religion=income_data['selectedReligions'],
+            dissabilities=income_data['selectedDisabilities'],
         )
 
         # updtUser(db, user_Ref, "hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",

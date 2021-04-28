@@ -3,11 +3,11 @@ import {
 	StyleSheet,
 	View,
 	ScrollView,
+	TouchableOpacity,
 	Text,
 	TextInput,
 } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import CollegeSurveyBtn from "../../ui/colleges/CollegeSurveyBtn";
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { MaterialIcons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -522,9 +522,10 @@ export default class CollegeSurvey extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			email: this.props.route.params.email,
 			selectedItems: [],
 			selectedItems2: [],
-			satScore : "",
+			satScore: "",
 			actScore: "",
 			//email: this.props.route.params.email,
 		}
@@ -569,85 +570,153 @@ export default class CollegeSurvey extends React.Component {
 		}
 	}
 
-	checkExamScores()
-	{
+	checkExamScores() {
 		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; //insert correct URL for user's profiel
-  
-	  fetch(URL, {
-		method: 'GET',
-		headers: {
-		  Accept: 'application/json',
-		  'Content-Type': 'application/json',
-		},
-	  })
-		// format the API response into json
-		.then((response) => response.json())
-		.then((json) => {
-		  // set the val to state
-		  this.setState({
-			actScore : json.actScore, //Not sure how this is stored/named in the backend
-			satScore : json.satScore, //Not sure how this is stored/named in the backend
-		  }).catch((error) => {
-			console.log('An error happened: ' + error);
-		  });
-		});
-	}
 
-	
-	existingSAT()
-	{
+		fetch(URL, {
+			method: 'GET',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+		})
+			// format the API response into json
+			.then((response) => response.json())
+			.then((json) => {
+				// set the val to state
+				this.setState({
+					actScore: json.actScore, //Not sure how this is stored/named in the backend
+					satScore: json.satScore, //Not sure how this is stored/named in the backend
+				}).catch((error) => {
+					console.log('An error happened: ' + error);
+				});
+			});
+	}
+	existingSAT() {
 		let existingScore = false;
 		//this.checkExamScores()
-		if(this.state.satScore.localeCompare("") != 0)
-		{
+		if (this.state.satScore.localeCompare("") != 0) {
 			existingScore = true;
 		}
 		return existingScore;
 	}
 
-	existingACT()
-	{
+	existingACT() {
 		let existingScore = false;
 		//this.checkExamScores()
-		if(this.state.actScore.localeCompare("") != 0)
-		{
+		if (this.state.actScore.localeCompare("") != 0) {
 			existingScore = true;
 		}
 		return existingScore;
 	}
 
-	checkMajor()
-	{
+	checkMajor() {
 		//insert correct URL for user's profile
-		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; 
-		
-  
-	  fetch(URL, {
-		method: 'GET',
-		headers: {
-		  Accept: 'application/json',
-		  'Content-Type': 'application/json',
-		},
-	  })
-		// format the API response into json
-		.then((response) => response.json())
-		.then((json) => {
-		  // set the val to state
-		  this.setState({
+		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
 
-			//Not sure how this is stored/named in the backend
-			selectedItems2: json.major,
 
-		  }).catch((error) => {
-			console.log('An error happened: ' + error);
-		  });
-		});
+		fetch(URL, {
+			method: 'GET',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+		})
+			// format the API response into json
+			.then((response) => response.json())
+			.then((json) => {
+				// set the val to state
+				this.setState({
+
+					//Not sure how this is stored/named in the backend
+					selectedItems2: json.major,
+
+				}).catch((error) => {
+					console.log('An error happened: ' + error);
+				});
+			});
 	}
+
+	upload2sever = () => {
+		console.log(this.props.route.params.email);
+
+		// console.log(JSON.stringify({
+		// 	email: this.state.email,
+		// 	gender: this.state.gender,
+		// 	dob: this.state.dob,
+		// 	gpa: this.state.gpa,
+		// 	sat_score: this.state.sat_score,
+		// 	act_score: this.state.act_score,
+		// 	selectedMajors: this.state.selectedMajors,
+		// 	selectedResidences: this.state.selectedResidences,
+		// 	selectedRaces: this.state.selectedRaces,
+		// 	selectedEthnicities: this.state.selectedEthnicities,
+		// 	selectedReligions: this.state.selectedReligions,
+		// 	selectedDisabilities: this.state.selectedDisabilities,
+		// }));
+
+		// console.log("Email from InputScreen2: " + this.props);
+
+		let URL = "http://cf473f950697.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+		fetch(URL, {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				email: this.state.email,
+				gender: this.state.gender,
+				dob: this.state.dob,
+				gpa: this.state.gpa,
+				sat_score: this.state.sat_score,
+				act_score: this.state.act_score,
+				selectedMajors: this.state.selectedMajors,
+				selectedResidences: this.state.selectedResidences,
+				selectedRaces: this.state.selectedRaces,
+				selectedEthnicities: this.state.selectedEthnicities,
+				selectedReligions: this.state.selectedReligions,
+				selectedDisabilities: this.state.selectedDisabilities,
+			}),
+		})
+
+			// =============================================
+			// .then((response) => response.json())
+			// .then((json) => {
+			//   console.log("Email: " + this.state.email);
+			//   console.log(json);
+			// })
+			// =============================================
+
+			.then((response) => {
+				if (response.status == 202) {
+
+					console.log(response);
+					// Alert.alert(
+					// 	"Your data have been successfully \ninserted! " +
+					// 	"You will be navigated back!"
+					// );
+
+					// setTimeout(() => {
+					// 	this.props.navigation.goBack();
+					// }, 2500);
+
+				} else {
+					json_mesg = response.json();
+					Alert.alert("Error: " + json_mesg.mesg);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+
 	
+
 
 	render() {
-		const { selectedItems } = this.state;
-		this.checkMajor()
+		// const { selectedItems } = this.state;
+		// this.checkMajor()
 		return (
 			<KeyboardAwareScrollView
 				style={styles.container}>
@@ -662,7 +731,7 @@ export default class CollegeSurvey extends React.Component {
 						your own followup research!
                		</Text>
 				</View>
-				
+
 				{/* 2nd TextBox */}
 				<View style={styles.card_grp2}>
 
@@ -671,7 +740,7 @@ export default class CollegeSurvey extends React.Component {
 							What is you regional preference {"\n"}for college location?
       					</Text>
 						<SectionedMultiSelect
-							items={items.slice(0,2)}
+							items={items.slice(0, 2)}
 							IconRenderer={MaterialIcons}
 							uniqueKey="id"
 							subKey="children"
@@ -682,89 +751,89 @@ export default class CollegeSurvey extends React.Component {
 							onSelectedItemsChange={this.onSelectedItemsChange}
 							selectedItems={this.state.selectedItems}
 						/>
-						{this.existingSAT() ? 
-						<View style={styles.satTextField}>
-							<Text style={styles.collegeSurveyQA2}>
-								What is your SAT score?
+						{this.existingSAT() ?
+							<View style={styles.satTextField}>
+								<Text style={styles.collegeSurveyQA2}>
+									What is your SAT score?
         					</Text>
-							<View style={styles.iconRow}>
-								<MaterialCommunityIcons
-									name="book-open-variant"
-									style={styles.icon}
-								></MaterialCommunityIcons>
+								<View style={styles.iconRow}>
+									<MaterialCommunityIcons
+										name="book-open-variant"
+										style={styles.icon}
+									></MaterialCommunityIcons>
 
-								<TextInput
-									placeholder= {this.state.satScore}
-									keyboardAppearance="light"
-									blurOnSubmit={false}
-									onChangeText={this.handleSAT}
-									keyboardType="numeric"
-									style={styles.textInput}
-								></TextInput>
+									<TextInput
+										placeholder={this.state.satScore}
+										keyboardAppearance="light"
+										blurOnSubmit={false}
+										onChangeText={this.handleSAT}
+										keyboardType="numeric"
+										style={styles.textInput}
+									></TextInput>
+								</View>
 							</View>
-						</View>
-						:
-						<View style={styles.satTextField}>
-							<Text style={styles.collegeSurveyQA2}>
-								What is your SAT score?
+							:
+							<View style={styles.satTextField}>
+								<Text style={styles.collegeSurveyQA2}>
+									What is your SAT score?
         					</Text>
-							<View style={styles.iconRow}>
-								<MaterialCommunityIcons
-									name="book-open-variant"
-									style={styles.icon}
-								></MaterialCommunityIcons>
+								<View style={styles.iconRow}>
+									<MaterialCommunityIcons
+										name="book-open-variant"
+										style={styles.icon}
+									></MaterialCommunityIcons>
 
-								<TextInput
-									placeholder= "If Not Applicable Leave Blank" 
-									keyboardAppearance="light"
-									blurOnSubmit={false}
-									style={styles.textInput}
-									onChangeText={this.handleSAT}
-									keyboardType="numeric"
-								></TextInput>
+									<TextInput
+										placeholder="If Not Applicable Leave Blank"
+										keyboardAppearance="light"
+										blurOnSubmit={false}
+										style={styles.textInput}
+										onChangeText={this.handleSAT}
+										keyboardType="numeric"
+									></TextInput>
+								</View>
 							</View>
-						</View>
 						}
-						{ this.existingACT() ? 
-						<View style={styles.actTextField}>
-							<Text style={styles.collegeSurveyQA3}>
-								What is your ACT score?
+						{this.existingACT() ?
+							<View style={styles.actTextField}>
+								<Text style={styles.collegeSurveyQA3}>
+									What is your ACT score?
         					</Text>
-							<View style={styles.icon1Row}>
-								<MaterialCommunityIcons
-									name="book-open-variant"
-									style={styles.icon1}
-								></MaterialCommunityIcons>
-								<TextInput
-									placeholder= {this.state.actScore}
-									keyboardAppearance="light"
-									blurOnSubmit={false}
-									onChangeText={this.handleACT}
-									keyboardType="numeric"
-									style={styles.textInput1}
-								></TextInput>
+								<View style={styles.icon1Row}>
+									<MaterialCommunityIcons
+										name="book-open-variant"
+										style={styles.icon1}
+									></MaterialCommunityIcons>
+									<TextInput
+										placeholder={this.state.actScore}
+										keyboardAppearance="light"
+										blurOnSubmit={false}
+										onChangeText={this.handleACT}
+										keyboardType="numeric"
+										style={styles.textInput1}
+									></TextInput>
+								</View>
 							</View>
-						</View>
-						:
-						<View style={styles.actTextField}>
-							<Text style={styles.collegeSurveyQA3}>
-								What is your ACT score?
+							:
+							<View style={styles.actTextField}>
+								<Text style={styles.collegeSurveyQA3}>
+									What is your ACT score?
         					</Text>
-							<View style={styles.icon1Row}>
-								<MaterialCommunityIcons
-									name="book-open-variant"
-									style={styles.icon1}
-								></MaterialCommunityIcons>
-								<TextInput
-									placeholder="If Not Applicable Leave Blank"
-									keyboardAppearance="light"
-									blurOnSubmit={false}
-									onChangeText={this.handleACT}
-									keyboardType="numeric"
-									style={styles.textInput1}
-								></TextInput>
+								<View style={styles.icon1Row}>
+									<MaterialCommunityIcons
+										name="book-open-variant"
+										style={styles.icon1}
+									></MaterialCommunityIcons>
+									<TextInput
+										placeholder="If Not Applicable Leave Blank"
+										keyboardAppearance="light"
+										blurOnSubmit={false}
+										onChangeText={this.handleACT}
+										keyboardType="numeric"
+										style={styles.textInput1}
+									></TextInput>
+								</View>
 							</View>
-						</View>
 						}
 						<View style={styles.majorTextField}>
 							<Text style={styles.collegeSurveyQA4}>
@@ -786,10 +855,12 @@ export default class CollegeSurvey extends React.Component {
 					</View>
 
 					{/* Submit Button */}
-					<CollegeSurveyBtn
-						style={styles.submitBtn}
-					></CollegeSurveyBtn>
-
+					<TouchableOpacity
+						style={[styles.submitContainer, styles.submitBtn]}
+						onPress={()=> console.log(this.upload2sever())}
+					>
+						<Text style={styles.submitTxt}>Submit</Text>
+					</TouchableOpacity>
 				</View>
 			</KeyboardAwareScrollView>
 		);
@@ -953,6 +1024,19 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 		alignSelf: "center"
 	},
+	submitContainer: {
+		backgroundColor: "#007AFF",
+		justifyContent: "center",
+		alignItems: "center",
+		flexDirection: "row",
+		borderRadius: 5,
+		paddingLeft: 16,
+		paddingRight: 16
+	},
+	submitTxt: {
+		color: "#fff",
+		fontSize: 16,
+	}
 });
 
 

@@ -20,11 +20,11 @@ function SettingsScreen() {
 }
 
 function TopTapView(props) {
-  console.log(props.route.params.email);
+  // console.log(props.route.params.email);
   return (
     <Tab.Navigator>
       <Tab.Screen name="Scholarship" component={ScholarSurvey} initialParams={ {email:props.route.params.email}}/>
-      <Tab.Screen name="College" component={CollegeSurvey} />
+      <Tab.Screen name="College" component={CollegeSurvey} initialParams={ {email:props.route.params.email}}/>
       <Tab.Screen name="Major" component={SettingsScreen} />
     </Tab.Navigator>
   );

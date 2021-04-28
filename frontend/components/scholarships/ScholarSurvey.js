@@ -1361,7 +1361,7 @@ export default function ScholarSurvey(props) {
 	// console.log("navigation from InputScreen1: " + JSON.stringify(navigation));
 	// console.log(props);
 	// Delete the navigation & atttribute that is not used nowhere.
-	return <InputScreen1a email={props.route.params.email}/>
+	return <InputScreen1a email={props.route.params.email} />
 }
 
 class InputScreen1a extends React.Component {
@@ -1369,70 +1369,31 @@ class InputScreen1a extends React.Component {
 		super(props);
 		this.state = {
 			email: this.props.email,
-			gender: "Male",
-			dob: "22",
-			// zip: "",
-			gpa: "3.5",
+			gender: "",
+			dob: "",
+			gpa: "",
 			sat_score: "",
 			act_score: "",
 			selectedResidences: [],
 			selectedMajors: [],
-			selectedRaces: ["Asian/Pacific Islander"],
-			selectedReligions: ["Islam/Muslim"],
-			selectedDisabilities: ["Visual Impairment"],
-			selectedEthnicities: ["Yemeni"],
-
-			/*
-			selectedItems: ["New York"], //Region
-			selectedItems1: ["Computer Science"], //Major
-			selectedItems2: ["Asian/Pacific Islander"], //Race
-			selectedItems3: ["Islam/Muslim"], //Religion
-			selectedItems4: ["Visual Impairment"], //Disabilities
-			selectedItems5: ["Yemeni",], // Ethnicity
-			*/
+			selectedRaces: [],
+			selectedReligions: [],
+			selectedDisabilities: [],
+			selectedEthnicities: [],
 		};
 		this.handleGender = this.handleGender.bind(this);
 		this.handleDOB = this.handleDOB.bind(this);
-		// this.handleZip = this.handleZip.bind(this);
 		this.handleGPA = this.handleGPA.bind(this);
-		this.handleAcamajor = this.handleAcamajor.bind(this);
-		this.handleRace = this.handleRace.bind(this);
-		this.handleReligion = this.handleReligion.bind(this);
-		this.handleDisability = this.handleDisability.bind(this);
 		this.handleSAT = this.handleSAT.bind(this);
-		this.handleethnicity = this.handleethnicity.bind(this);
 		this.handleACT = this.handleACT.bind(this);
 	}
 
-	handleAcamajor(text) {
-		this.setState({
-			major: text,
-		});
-	}
-
-	handleRace(text) {
-		this.setState({
-			race: text,
-		});
-	}
-
-	handleReligion(text) {
-		this.setState({
-			religion: text,
-		});
-	}
-
-	handleDisability(text) {
-		this.setState({
-			Disabilities: text,
-		});
-	}
-
+	//handle functions
 	handleSAT(text) {
 		let textInt = parseInt(text, 10);
 		if (text.length > 2 && textInt >= 400 && textInt <= 1600) {
 			this.setState({
-				Sat: text,
+				sat_score: text,
 			});
 			//console.log("SAT: "+this.state.Sat)
 		}
@@ -1451,198 +1412,13 @@ class InputScreen1a extends React.Component {
 		let textInt = parseInt(text, 10);
 		if (textInt >= 1 && textInt <= 36) {
 			this.setState({
-				Act: text,
+				act_score: text,
 			});
 		}
 		else {
 			alert("Please Enter a Valid ACT Score");
 		}
 	}
-
-	handleethnicity(text) {
-		this.setState({
-			ethnicity: text,
-		});
-	}
-
-	upload2sever = () => {
-		console.log(JSON.stringify({
-			email: this.state.email,
-			gender: this.state.gender,
-			dob: this.state.dob,
-			gpa: this.state.gpa,
-			major: this.state.selectedMajors,
-			selectedResidences: this.state.selectedResidences,
-			race: this.state.race,
-			ethnicity: this.state.ethnicity,
-			religion: this.state.religion,
-			disabilities: this.state.Disabilities,
-			sat_score: this.state.Sat,
-		}));
-
-		// console.log("Email from InputScreen2: " + this.props);
-
-		let URL = "http://9171590d2b54.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
-		fetch(URL, {
-			method: "POST",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				email: this.state.email,
-				gender: this.state.gender,
-				dob: this.state.dob,
-				zip: this.state.zip,
-				gpa: this.state.gpa,
-				major: "Computer Science",
-				race: this.state.race,
-				ethnicity: this.state.ethnicity,
-				religion: this.state.religion,
-				disabilities: this.state.Disabilities,
-				sat_score: this.state.Sat,
-			}),
-		})
-
-			// =============================================
-			// .then((response) => response.json())
-			// .then((json) => {
-			//   console.log("Email: " + this.state.email);
-			//   console.log(json);
-			// })
-			// =============================================
-
-			.then((response) => {
-				if (response.status == 202) {
-
-					Alert.alert(
-						"Your data have been successfully \ninserted! " +
-						"You will be navigated back!"
-					);
-
-					setTimeout(() => {
-						this.props.navigation.goBack();
-					}, 2500);
-
-				} else {
-					json_mesg = response.json();
-					Alert.alert("Error: " + json_mesg.mesg);
-				}
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	};
-
-	onSubmit() {
-		let noInput = "";
-		if (this.state.gender.localeCompare(noInput) != 0 && this.state.dob.localeCompare(noInput) != 0 /*&& this.state.zip.localeCompare(noInput) != 0 */ && this.state.gpa.localeCompare(noInput) != 0) {
-			this.upload2sever()
-			/*
-			this.props.navigation.navigate('InputScreen2', {
-				email: this.state.email,
-				gender: this.state.gender,
-				dob: this.state.dob,
-				gpa: this.state.gpa,
-			})
-			console.log(this.state.zip);
-			*/
-		}
-		/*
-		else if(this.state.zip.localeCompare(noInput) == 0)
-		{
-			alert("Error, incomplete or invalid Zip code");
-		}
-		*/
-		else {
-			alert("Please Fill All Fields Before Submitting");
-		}
-	}
-
-	onSelectedResidencesChange = (selectedResidences) => {
-		this.setState({ selectedResidences });
-	};
-
-	onSelectedMajorsChange = (selectedMajors) => {
-		//If the user has selected Business and Management (Business Management for scholarships.com) and they have not already selected Business Management
-		if(this.findPosition("Business and Management", selectedMajors) != -1 && this.findPosition("Business Management", selectedMajors) == -1)
-		{
-			selectedMajors.push("Business Management");
-		}
-		//If the user has selected K and PT which is not supported by scholarships.com (listed separately)
-		if(this.findPosition("Kinesiology and Physical Therapy", selectedMajors) != -1)
-		{
-			//If the user has not selected Kinesiology, it will be added to the array
-			if(this.findPosition("Kinesiology", selectedMajors) == -1)
-			{
-				selectedMajors.push("Kinesiology");
-			}
-			//If the user has not selected Physical Therapy, it will be added to the array
-			if(this.findPosition("Physical Therapy", selectedMajors) == -1)
-			{
-				selectedMajors.push("Physical Therapy");
-			}
-		}
-		//If the user has selected Public Policy and Social Services (separate for scholarships.com) 
-		if(this.findPosition("Public Policy and Social Services", selectedMajors) != -1)
-		{
-			//If the user hasn't selected Public Policy, it will be added to the array
-			if(this.findPosition("Public Policy", selectedMajors) == -1)
-			{
-				selectedMajors.push("Public Policy");
-			}
-			//If the user has not seelected Social Services, it will be added to the array
-			if(this.findPosition("Social Services", selectedMajors) == -1)
-			{
-				selectedMajors.push("Social Services");
-			}
-		}
-		//If the user has selected Film and Photography (separately listed for scholarships.com)
-		if(this.findPosition("Film and Photography", selectedMajors) != -1)
-		{
-			//If the user hasn't selected Film, it will be added to the array
-			if(this.findPosition("Film", selectedMajors) == -1)
-			{
-				selectedMajors.push("Film");
-			}
-			//If the user hasn't selected Photography, it will be added to the array
-			if(this.findPosition("Photography", selectedMajors) == -1)
-			{
-				selectedMajors.push("Photography");
-			}
-		}
-		this.setState({ selectedMajors });	
-	};
-
-	findPosition(item, array)
-	{
-		let position = -1;
-		var i;
-		for (i = 0; i<array.length; i++)
-		{
-			if(array[i].localeCompare(item) == 0)
-			{
-				position = i;
-			}
-		}
-		return position;
-	}
-
-	onSelectedRacesChange = (selectedRaces) => {
-		this.setState({ selectedRaces });
-	};
-
-	onSelectedReligionChange = (selectedReligions) => {
-		this.setState({ selectedReligions });
-	};
-
-	onSelectedDisabilitiesChange = (selectedDisabilities) => {
-		this.setState({ selectedDisabilities });
-	};
-
-	onSelectedEthnicitiesChange = (selectedEthnicities) => {
-		this.setState({ selectedEthnicities });
-	};
 
 	handleGender(text) {
 		this.setState({
@@ -1664,82 +1440,6 @@ class InputScreen1a extends React.Component {
 		}
 	}
 
-	// handleZip(text) {
-	// 	//Error Checking for User Zip Code input
-	// 	//Lowest US Zip code is 00501, Highest US Zip Code is 99950
-	// 	let zipInt = parseInt(text, 10);
-	// 	//console.log(zipInt);
-	// 	if ((zipInt >= 501) && (zipInt <= 99950) && (text.length > 4)) {
-	// 		this.setState({
-	// 			zip: text,
-	// 		});
-	// 		//console.log("ZipInt: "+zipInt +" Current Length: "+text.length+ " current state: " + this.state.zip);
-	// 	}
-	// 	else if (text.length < 5) {
-	// 		console.log("waiting for user input" + " " + text.length);
-	// 	}
-	// 	else {
-	// 		alert("Please enter a valid zip code")
-	// 	}
-	// 	//console.log(this.state.zip);
-	// }
-
-	handleGPA(text) {
-		let gpaFloat = parseFloat(text);
-		if (gpaFloat >= 0.0 && gpaFloat <= 4.0) {
-			this.setState({
-				gpa: text,
-			});
-		}
-		else {
-			alert("Please enter a valid GPA");
-		}
-	}
-
-
-	handleAcamajor(text) {
-		this.setState({
-			major: text,
-		});
-	}
-
-	handleRace(text) {
-		this.setState({
-			race: text,
-		});
-	}
-
-	handleReligion(text) {
-		this.setState({
-			religion: text,
-		});
-	}
-
-	handleDisability(text) {
-		this.setState({
-			Disabilities: text,
-		});
-	}
-
-	handleSAT(text) {
-		let textInt = parseInt(text, 10);
-		if (text.length > 2 && textInt >= 400 && textInt <= 1600) {
-			this.setState({
-				Sat: text,
-			});
-			//console.log("SAT: "+this.state.Sat)
-		}
-		else if (text.substring(0, 1).localeCompare("2") == 0 || text.substring(0, 1).localeCompare("3") == 0 || text.substring(0, 1).localeCompare("0") == 0) {
-			alert("Please enter a valid SAT score");
-		}
-		else if (text.length < 3 || text.substring(0, 1).localeCompare("1") == 0) {
-			console.log("Waiting for User Input");
-		}
-		else {
-			alert("Please enter a valid SAT score");
-		}
-	}
-
 	handleGPA(text) {
 		if (text.toString().length > 0) {
 			let gpaFloat = parseFloat(text);
@@ -1754,50 +1454,68 @@ class InputScreen1a extends React.Component {
 		}
 	}
 
-	handleethnicity(text) {
-		this.setState({
-			ethnicity: text,
-		});
-	}
+	// multiselc fucntions
+	onSelectedResidencesChange = (selectedResidences) => {
+		this.setState({ selectedResidences });
+	};
 
-	getExistingData = () => {
-		//insert correct URL for user's profile
-		let URL = "http://9171590d2b54.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; 
-		
-  
-	  fetch(URL, {
-		method: 'GET',
-		headers: {
-		  Accept: 'application/json',
-		  'Content-Type': 'application/json',
-		},
-	  })
-		// format the API response into json
-		.then((response) => response.json())
-		.then((json) => {
-		  // set the val to state
-		  this.setState({
-			dob: json.dob,
-			gender: json.gender,
-			gpa: json.gpa,
-			//Not sure how this is stored/named in the backend
-			selectedResidences : json.region, 
-			//Not sure how this is stored/named in the backend
-			selectedMajors : json.major,
-			//Not sure how this is stored/named in the backend 
-			selectedRaces : json.race, 
-			//Not sure how this is stored/named in the backend
-			selectedReligions : json.religion, 
-			//Not sure how this is stored/named in the backend
-			selectedDisabilities : json.disability,
-			//Not sure how this is stored/named in the backend 
-			selectedEthnicities : json.ethnicity, 
-		  }).catch((error) => {
-			console.log('An error happened: ' + error);
-		  });
-		});
-	// 	// validate
-	}
+	onSelectedMajorsChange = (selectedMajors) => {
+		//If the user has selected Business and Management (Business Management for scholarships.com) and they have not already selected Business Management
+		if (this.findPosition("Business and Management", selectedMajors) != -1 && this.findPosition("Business Management", selectedMajors) == -1) {
+			selectedMajors.push("Business Management");
+		}
+		//If the user has selected K and PT which is not supported by scholarships.com (listed separately)
+		if (this.findPosition("Kinesiology and Physical Therapy", selectedMajors) != -1) {
+			//If the user has not selected Kinesiology, it will be added to the array
+			if (this.findPosition("Kinesiology", selectedMajors) == -1) {
+				selectedMajors.push("Kinesiology");
+			}
+			//If the user has not selected Physical Therapy, it will be added to the array
+			if (this.findPosition("Physical Therapy", selectedMajors) == -1) {
+				selectedMajors.push("Physical Therapy");
+			}
+		}
+		//If the user has selected Public Policy and Social Services (separate for scholarships.com) 
+		if (this.findPosition("Public Policy and Social Services", selectedMajors) != -1) {
+			//If the user hasn't selected Public Policy, it will be added to the array
+			if (this.findPosition("Public Policy", selectedMajors) == -1) {
+				selectedMajors.push("Public Policy");
+			}
+			//If the user has not seelected Social Services, it will be added to the array
+			if (this.findPosition("Social Services", selectedMajors) == -1) {
+				selectedMajors.push("Social Services");
+			}
+		}
+		//If the user has selected Film and Photography (separately listed for scholarships.com)
+		if (this.findPosition("Film and Photography", selectedMajors) != -1) {
+			//If the user hasn't selected Film, it will be added to the array
+			if (this.findPosition("Film", selectedMajors) == -1) {
+				selectedMajors.push("Film");
+			}
+			//If the user hasn't selected Photography, it will be added to the array
+			if (this.findPosition("Photography", selectedMajors) == -1) {
+				selectedMajors.push("Photography");
+			}
+		}
+		this.setState({ selectedMajors });
+	};
+
+	onSelectedRacesChange = (selectedRaces) => {
+		this.setState({ selectedRaces });
+	};
+
+	onSelectedReligionChange = (selectedReligions) => {
+		this.setState({ selectedReligions });
+	};
+
+	onSelectedDisabilitiesChange = (selectedDisabilities) => {
+		this.setState({ selectedDisabilities });
+	};
+
+	onSelectedEthnicitiesChange = (selectedEthnicities) => {
+		this.setState({ selectedEthnicities });
+	};
+
 
 	checkGender() {
 		let exists = false;
@@ -1841,6 +1559,175 @@ class InputScreen1a extends React.Component {
 		return existingScore;
 	}
 
+	findPosition(item, array) {
+		let position = -1;
+		var i;
+		for (i = 0; i < array.length; i++) {
+			if (array[i].localeCompare(item) == 0) {
+				position = i;
+			}
+		}
+		return position;
+	}
+
+	upload2sever = () => {
+		console.log(JSON.stringify({
+			email: this.state.email,
+			gender: this.state.gender,
+			dob: this.state.dob,
+			gpa: this.state.gpa,
+			sat_score: this.state.sat_score,
+			act_score: this.state.act_score,
+			selectedMajors: this.state.selectedMajors,
+			selectedResidences: this.state.selectedResidences,
+			selectedRaces: this.state.selectedRaces,
+			selectedEthnicities: this.state.selectedEthnicities,
+			selectedReligions: this.state.selectedReligions,
+			selectedDisabilities: this.state.selectedDisabilities,
+		}));
+
+		// console.log("Email from InputScreen2: " + this.props);
+
+		let URL = "http://b7031d610420.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+		fetch(URL, {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				email: this.state.email,
+				gender: this.state.gender,
+				dob: this.state.dob,
+				gpa: this.state.gpa,
+				sat_score: this.state.sat_score,
+				act_score: this.state.act_score,
+				selectedMajors: this.state.selectedMajors,
+				selectedResidences: this.state.selectedResidences,
+				selectedRaces: this.state.selectedRaces,
+				selectedEthnicities: this.state.selectedEthnicities,
+				selectedReligions: this.state.selectedReligions,
+				selectedDisabilities: this.state.selectedDisabilities,
+			}),
+		})
+
+			// =============================================
+			// .then((response) => response.json())
+			// .then((json) => {
+			//   console.log("Email: " + this.state.email);
+			//   console.log(json);
+			// })
+			// =============================================
+
+			.then((response) => {
+				if (response.status == 202) {
+
+					console.log(response);
+					// Alert.alert(
+					// 	"Your data have been successfully \ninserted! " +
+					// 	"You will be navigated back!"
+					// );
+
+					// setTimeout(() => {
+					// 	this.props.navigation.goBack();
+					// }, 2500);
+
+				} else {
+					json_mesg = response.json();
+					Alert.alert("Error: " + json_mesg.mesg);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+
+	onSubmit() {
+		let noInput = "";
+		if (this.state.gender.localeCompare(noInput) != 0 && this.state.dob.localeCompare(noInput) != 0 /*&& this.state.zip.localeCompare(noInput) != 0 */ && this.state.gpa.localeCompare(noInput) != 0) {
+			this.upload2sever()
+			/*
+			this.props.navigation.navigate('InputScreen2', {
+				email: this.state.email,
+				gender: this.state.gender,
+				dob: this.state.dob,
+				gpa: this.state.gpa,
+			})
+			console.log(this.state.zip);
+			*/
+		}
+		/*
+		else if(this.state.zip.localeCompare(noInput) == 0)
+		{
+			alert("Error, incomplete or invalid Zip code");
+		}
+		*/
+		else {
+			alert("Please Fill All Fields Before Submitting");
+		}
+	}
+
+
+
+
+	// handleZip(text) {
+	// 	//Error Checking for User Zip Code input
+	// 	//Lowest US Zip code is 00501, Highest US Zip Code is 99950
+	// 	let zipInt = parseInt(text, 10);
+	// 	//console.log(zipInt);
+	// 	if ((zipInt >= 501) && (zipInt <= 99950) && (text.length > 4)) {
+	// 		this.setState({
+	// 			zip: text,
+	// 		});
+	// 		//console.log("ZipInt: "+zipInt +" Current Length: "+text.length+ " current state: " + this.state.zip);
+	// 	}
+	// 	else if (text.length < 5) {
+	// 		console.log("waiting for user input" + " " + text.length);
+	// 	}
+	// 	else {
+	// 		alert("Please enter a valid zip code")
+	// 	}
+	// 	//console.log(this.state.zip);
+	// }
+
+	getExistingData = () => {
+		//insert correct URL for user's profile
+		let URL = "http://b7031d610420.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+
+
+		fetch(URL, {
+			method: 'GET',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+		})
+			// format the API response into json
+			.then((response) => response.json())
+			.then((json) => {
+				// set the val to state
+				this.setState({
+					dob: json.dob,
+					gender: json.gender,
+					gpa: json.gpa,
+					//Not sure how this is stored/named in the backend
+					selectedResidences: json.region,
+					//Not sure how this is stored/named in the backend
+					selectedMajors: json.major,
+					//Not sure how this is stored/named in the backend 
+					selectedRaces: json.race,
+					//Not sure how this is stored/named in the backend
+					selectedReligions: json.religion,
+					//Not sure how this is stored/named in the backend
+					selectedDisabilities: json.disability,
+					//Not sure how this is stored/named in the backend 
+					selectedEthnicities: json.ethnicity,
+				}).catch((error) => {
+					console.log('An error happened: ' + error);
+				});
+			});
+		// 	// validate
+	}
 
 	render() {
 		// console.log("DOB is: " + this.state.dob);
