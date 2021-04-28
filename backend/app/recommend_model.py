@@ -136,6 +136,7 @@ def updtScholarSurvey(
     if major !=[]:
         majorUpdt = catMajor(major)
 
+    print(majorUpdt)
     list2 = [state, race, religion, dissabilities, ethnicity, majorUpdt]
     for i in range(len(list2)):
         if list2[i] != []:
@@ -286,7 +287,7 @@ def catSat(sat):
 
 
 def catMajor(major):
-    for i in len(major):
+    for i in range(len(major)):
         if major[i] == 'Agriculture':
             major[i] = 'Agriculture/Agribusiness'
 

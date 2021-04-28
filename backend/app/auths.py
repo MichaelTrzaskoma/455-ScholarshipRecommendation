@@ -165,8 +165,8 @@ def validate_token(user_Ref, jwt, uuid, email):
 
     errors = [0, 1, 2, 3, 4, 5]
     r = validate_access_token(user_Ref, jwt, uuid, email)
-
-    if r and r not in errors:
+    # print(r)
+    if r:
         return True
     else:
         return False

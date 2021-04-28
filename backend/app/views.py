@@ -21,6 +21,13 @@ user_Ref = db.test.client_profile
 ACTIVE_CODE_LENGTH = 64
 
 
+@app.route("/test")
+def test():
+    income_data = request.json
+    r = validate_token(user_Ref, income_data['jwt'], income_data['uuid'], income_data['email'])
+    # print(income_data)
+    return make_response(jsonify({"msg": r}))
+
 @app.route("/")
 def index():
     # print(authOutput)
