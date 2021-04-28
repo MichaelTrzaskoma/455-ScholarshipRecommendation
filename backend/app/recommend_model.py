@@ -24,30 +24,26 @@ zcdb = ZipCodeDatabase()
 def updtUser(
         db,
         user_Ref,
-        userEmail,
+        email,
         gender,
-        dob,
-        # zipC,
+        age,
+        state,
         gpa,
-        sat='',
-        act='',
         major=[],
-        residence=[],
         race=[],
         ethnicity=[],
         religion=[],
         dissabilities=[],
-        ):
+        sat='',):
     # Used to initiation user or update their information, specify when using optional attributes
     list1 = [gender]
-    list1.append(catAge(dob))
-    # list1.append(catState(zipC))
+    list1.append(catAge(age))
     list1.append(catGPA(gpa))
 
-    if major != '':
-        list1.append(major)
-    
-    list2 = [race, religion, dissabilities, ethnicity]
+    if major !=[]:
+        majorUpdt = catMajor(major)
+
+    list2 = [state, race, religion, dissabilities, ethnicity, majorUpdt]
     for i in range(len(list2)):
         if list2[i] != []:
             list1.extend(list2[i])
@@ -63,6 +59,7 @@ def updtUser(
         "email": userEmail,
         "paswrd": "place holder 2",
         "jwt": "place holder 3",
+        # max 15 items
         "recent_viewed": [
             {
                 "type": "scholarship",
@@ -77,6 +74,7 @@ def updtUser(
                 "title": "place holder 6",
             },
         ],
+        # no limit to bookmark item
         "bookmarks": [
             {
                 "type": "scholarship",
@@ -93,8 +91,8 @@ def updtUser(
         ],
         "survey_scholarship": {
             "gender": gender,
-            "dob": dob,
-            "zip": zipC,
+            "age": age,
+            "states": state,
             "gpa": gpa,
             "major": major,
             "race": race,
@@ -103,7 +101,7 @@ def updtUser(
             "disabilities": dissabilities,
             "sat_score": sat,
             "terms": list1,
-            "binary": binary,
+            "binary": binary, 
         },
         "survey_college": {
             "x": "place holder 16",
@@ -114,28 +112,31 @@ def updtUser(
     })
 
 
-
+#Focus on this method 
 def updtScholarSurvey(
         db,
         user_Ref,
         email,
         gender,
         age,
-        state,
         gpa,
-        major='',
+        sat='',
+        act='',
+        major=[],
+        state=[],
         race=[],
         ethnicity=[],
         religion=[],
-        dissabilities=[],
-        sat='',):
+        dissabilities=[]):
 
     list1 = [gender]
     list1.append(catAge(age))
     list1.append(catGPA(gpa))
 
-    
-    list2 = [state, race, religion, dissabilities, ethnicity, major]
+    if major !=[]:
+        majorUpdt = catMajor(major)
+
+    list2 = [state, race, religion, dissabilities, ethnicity, majorUpdt]
     for i in range(len(list2)):
         if list2[i] != []:
             list1.extend(list2[i])
@@ -172,7 +173,7 @@ def updtScholarSurvey(
 # def updateAccount():
 # update all fields? not too sure
 
-
+#Not utilized 
 def catState(zipC):
     zipcode = zcdb[zipC]
     state = abrevConv[zipcode.state]
@@ -282,6 +283,77 @@ def catSat(sat):
     elif (float(sat) >= 1401) & (float(sat) <= 1600):
         str = 'SAT Scores From 1,401 To 1,600'
     return str
+
+
+def catMajor(major):
+    for i in len(major):
+        if major[i] == 'Agriculture':
+            major[i] = 'Agriculture/Agribusiness'
+
+        if major[i] == 'Culinary Arts':
+            major[i] = 'Culinary Science'
+        
+        if major[i] == 'Dental':
+            major[i] = 'Dentistry'
+
+        if major[i] == 'Environmental Science':
+            major[i] = 'Environmental Studies'
+        
+        if major[i] == 'Film':
+            major[i] = 'Film, Television & Interactive Media'
+        
+        if major[i] == 'Food and Nutrition':
+            major[i] = 'Food Science & Human Nutrition'
+        
+        if major[i] == 'Foreign Language':
+            major[i] = 'Foreign Languages/Cultures'
+
+        if major[i] == 'Health':
+            major[i] = 'Health Education & Promotion'
+        
+        if major[i] == 'Health Care':
+            major[i] = 'Health Care Administration'
+        
+        if major[i] == 'Information Technology':
+            major[i] = 'Information Systems'
+        
+        if major[i] == 'International Relations':
+            major[i] = 'International Affairs'
+        
+        if major[i] == 'Legal Studies':
+            major[i] = 'Law School/Legal Studies'
+        
+        if major[i] == 'Math':
+            major[i] = 'Mathematics'
+        
+        if major[i] == 'Mechanics':
+            major[i] = 'Mechanical Engineering'
+        
+        if major[i] == 'Medical':
+            major[i] = 'Medicine'
+        
+        if major[i] == 'Nursing':
+            major[i] = 'Nursing/Nurse Practitioner'
+
+        if major[i] == 'Physical Therapy':
+            major[i] = 'Physical Therapy/Rehabilitation'
+        
+        if major[i] == 'Protective Services':
+            major[i] = 'Police/Law Enforcement'
+        
+        if major[i] == 'Psychology':
+            major[i] = 'Psychology/Counseling'
+        
+        if major[i] == 'Social Services':
+            major[i] = 'Social Work'
+
+        if major[i] == 'Sports Management':
+            major[i] = 'Sport Management'
+
+        if major[i] == 'Veterinary':
+            major[i] = 'Veterinary Medicine'
+        
+    return major
 
 
 def splitStr(word):

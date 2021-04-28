@@ -148,11 +148,25 @@ def validate_access_token(profileRefDB, jwt, uuid, email):
     errors = [0, 1, 2]
     decode = decode_jwt(jwt, db_record_token)
 
-    if not decode["exp"] == db_record_time:
-        return 4
-    
-    current_time = int(time.mktime(datetime.datetime.utcnow().timetuple()))
-    if decode["exp"] > current_time:
-        # e.g. JWT expires April 07, 2021 and current time is APril 01, 2021
-        # therefore this is valid jwt code
-        print("This is valid JWT code!")
+    if decode not in errors:
+        if not decode["exp"] == db_record_time:
+            return 4
+        
+        current_time = int(time.mktime(datetime.datetime.utcnow().timetuple()))
+        if decode["exp"] > current_time:
+            # e.g. JWT expires April 07, 2021 and current time is APril 01, 2021
+            # therefore this is valid jwt code
+            return True
+    else:
+        return 5
+
+
+def validate_token(user_Ref, jwt, uuid, email):
+
+    errors = [0, 1, 2, 3, 4, 5]
+    r = validate_access_token(user_Ref, jwt, uuid, email)
+
+    if r and r not in errors:
+        return True
+    else:
+        return False
