@@ -68,7 +68,7 @@ export default function AccScreen({ usrInfo }) {
 							name="chevron-small-right"
 							style={styles.rightArrowIcon4}></Entypo>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.signoutBtn} onPress={() => {deleteSecureStorage()}}>
+					<TouchableOpacity style={styles.signoutBtn} onPress={() => {deleteSecureStorage("signIn")}}>
 						<View style={styles.signOutIconRow}>
 							<FontAwesome
 								name="sign-out"

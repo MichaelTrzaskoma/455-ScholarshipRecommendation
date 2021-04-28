@@ -1607,6 +1607,8 @@ class InputScreen1a extends React.Component {
 		{
 			this.setState({currentMethod: "PUT"});
 		}
+
+		this.setFirstTime(false);
 		
 		console.log(JSON.stringify({
 			email: this.state.email,
@@ -1621,6 +1623,7 @@ class InputScreen1a extends React.Component {
 			selectedEthnicities: this.state.selectedEthnicities,
 			selectedReligions: this.state.selectedReligions,
 			selectedDisabilities: this.state.selectedDisabilities,
+			firstTimeScholarSurvey: this.firstTime,
 		}));
 
 		// console.log("Email from InputScreen2: " + this.props);
@@ -1645,6 +1648,7 @@ class InputScreen1a extends React.Component {
 				selectedEthnicities: this.state.selectedEthnicities,
 				selectedReligions: this.state.selectedReligions,
 				selectedDisabilities: this.state.selectedDisabilities,
+				firstTimeScholarSurvey: this.state.firstTime,
 			}),
 		})
 
@@ -1682,8 +1686,8 @@ class InputScreen1a extends React.Component {
 	onSubmit() {
 		let noInput = "";
 		if (this.state.gender.localeCompare(noInput) != 0 && this.state.dob.localeCompare(noInput) != 0 /*&& this.state.zip.localeCompare(noInput) != 0 */ && this.state.gpa.localeCompare(noInput) != 0 && this.gpaErrorHandling(this.state.gpa)) {
-			this.upload2sever()
-			this.setFirstTime(false)
+			this.upload2sever();
+			
 
 			/*
 			this.props.navigation.navigate('InputScreen2', {

@@ -26,7 +26,6 @@ export default class ViewScholarTbl extends React.Component {
       modalVisible: false,
       currentBookmarkKey: "",
       userProfile: this.props.usrInfo,
-			email: this.props.usrInfo.email,
     };
   }
 
@@ -87,7 +86,7 @@ export default class ViewScholarTbl extends React.Component {
   getDoc = () => {
     const scholarArr = [];
 
-    let URL = "http://0f7d3effbfe6.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
+    let URL = "http://614029157c7e.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
 
     fetch(URL, {
       method: "GET",
@@ -130,13 +129,19 @@ export default class ViewScholarTbl extends React.Component {
 
   };
 
+  handleBookmarkOpen(key)
+  {
+    this.setModalVisible(true)
+    this.setState({ currentBookmarkKey: key});
+  }
+
   handleBookmark () {
 
-    this.setModalVisible(!modalVisible)
-    this.setCurrentBookmarkkey(item.key)
+    this.setState({ modalVisible: false});
+    console.log(this.state.currentBookmarkKey)
 
     //Insert API Call here
-    let URL = "http://0f7d3effbfe6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
+    let URL = "http://614029157c7e.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
     fetch(URL, {
       method: "POST",
       headers: {
@@ -144,7 +149,7 @@ export default class ViewScholarTbl extends React.Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "email": this.state.email, 
+        "email": this.state.usrProfile.email, 
         "title": this.state.currentBookmarkKey,
         // "jwt": getSecureStorage("jwt"),
         // "uniqueID": getDeviceID(),
@@ -201,7 +206,7 @@ export default class ViewScholarTbl extends React.Component {
               <Text style={styles.modalText}>Touch to Add!</Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
-                onPress={() => this.setModalVisible(!modalVisible)}
+                onPress={() => this.handleBookmark()}
               >
                 <Text style={styles.textStyle}>Bookmark!</Text>
               </Pressable>
@@ -209,7 +214,7 @@ export default class ViewScholarTbl extends React.Component {
           </View>
       </Modal>
       <TouchableOpacity
-      onLongPress = {() => {this.handleBookmark()}}
+      onLongPress = {() => {this.handleBookmarkOpen(item.key)}}
       onPress={() => {
         // we are able to navigate to "ViewSubCate"
         // since it is one of the stack screens in App.js
