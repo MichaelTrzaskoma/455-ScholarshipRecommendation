@@ -25,6 +25,7 @@ export default class ViewScholarTbl extends React.Component {
       pageNumber: 1,
       modalVisible: false,
       currentBookmarkKey: "",
+      //email: this.props.usrInfo.email,
       userProfile: this.props.usrInfo,
     };
   }
@@ -149,7 +150,7 @@ export default class ViewScholarTbl extends React.Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "email": this.state.usrProfile.email, 
+        "email": this.state.email, 
         "title": this.state.currentBookmarkKey,
         // "jwt": getSecureStorage("jwt"),
         // "uniqueID": getDeviceID(),
