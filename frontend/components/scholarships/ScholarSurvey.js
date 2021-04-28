@@ -1380,6 +1380,9 @@ class InputScreen1a extends React.Component {
 			selectedReligions: [],
 			selectedDisabilities: [],
 			selectedEthnicities: [],
+			firstTime: true,
+			currentMethod: "POST",
+			
 		};
 		this.handleGender = this.handleGender.bind(this);
 		this.handleDOB = this.handleDOB.bind(this);
@@ -1439,19 +1442,45 @@ class InputScreen1a extends React.Component {
 			alert("Please enter a valid age");
 		}
 	}
+	
+	gpaErrorHandling(text)
+	{
+		let valid = false;
+		let gpaFloat = parseFloat(text);
+				if (text.toString().length > 0 && gpaFloat >= 0.0 && gpaFloat <= 5.0) 
+				{
+					valid = true;
+				}
+				return valid
+	}
 
-	handleGPA(text) {
-		if (text.toString().length > 0) {
-			let gpaFloat = parseFloat(text);
-			if (gpaFloat >= 0.0 && gpaFloat <= 5.0) {
-				this.setState({
-					gpa: text,
-				});
+	handleGPA(text) 
+	{
+
+		this.setState({
+			gpa: text,
+		});	
+			/*
+			if (text.toString().length > 0) 
+			{
+				let gpaFloat = parseFloat(text);
+				if (gpaFloat >= 0.0 && gpaFloat <= 5.0) 
+				{
+					this.setState({
+						gpa: text,
+					});
+				}
+				else 
+				{
+					alert("Please enter a valid GPA");
+				}
 			}
-			else {
-				alert("Please enter a valid GPA");
+			else
+			{
+				console.log("Waiting for user GPA input")
 			}
-		}
+		*/	
+		
 	}
 
 	// multiselc fucntions
@@ -1516,6 +1545,9 @@ class InputScreen1a extends React.Component {
 		this.setState({ selectedEthnicities });
 	};
 
+	setFirstTime = (bool) => {
+		this.setState({firstTime: bool});
+	};
 
 	checkGender() {
 		let exists = false;
@@ -1571,6 +1603,11 @@ class InputScreen1a extends React.Component {
 	}
 
 	upload2sever = () => {
+		if(this.state.firstTime == false)
+		{
+			this.setState({currentMethod: "PUT"});
+		}
+		
 		console.log(JSON.stringify({
 			email: this.state.email,
 			gender: this.state.gender,
@@ -1590,7 +1627,7 @@ class InputScreen1a extends React.Component {
 
 		let URL = "http://fef7a490b9ab.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
 		fetch(URL, {
-			method: "POST",
+			method: this.state.currentMethod,
 			headers: {
 				"Accept": "application/json",
 				"Content-Type": "application/json",
@@ -1644,8 +1681,10 @@ class InputScreen1a extends React.Component {
 
 	onSubmit() {
 		let noInput = "";
-		if (this.state.gender.localeCompare(noInput) != 0 && this.state.dob.localeCompare(noInput) != 0 /*&& this.state.zip.localeCompare(noInput) != 0 */ && this.state.gpa.localeCompare(noInput) != 0) {
+		if (this.state.gender.localeCompare(noInput) != 0 && this.state.dob.localeCompare(noInput) != 0 /*&& this.state.zip.localeCompare(noInput) != 0 */ && this.state.gpa.localeCompare(noInput) != 0 && this.gpaErrorHandling(this.state.gpa)) {
 			this.upload2sever()
+			this.setFirstTime(false)
+
 			/*
 			this.props.navigation.navigate('InputScreen2', {
 				email: this.state.email,
@@ -1662,6 +1701,10 @@ class InputScreen1a extends React.Component {
 			alert("Error, incomplete or invalid Zip code");
 		}
 		*/
+		else if(this.gpaErrorHandling(this.state.gpa) == false)
+		{
+			alert("Please Enter a Valid GPA");
+		}
 		else {
 			alert("Please Fill All Fields Before Submitting");
 		}
@@ -1722,6 +1765,10 @@ class InputScreen1a extends React.Component {
 					selectedDisabilities: json.disability,
 					//Not sure how this is stored/named in the backend 
 					selectedEthnicities: json.ethnicity,
+
+					//This field needs to be added to the backend
+					firstTime: json.firstTimeScholarSurvey,
+
 				}).catch((error) => {
 					console.log('An error happened: ' + error);
 				});
@@ -1810,7 +1857,7 @@ class InputScreen1a extends React.Component {
 							{this.checkGPA() ?
 								<TextInput
 									onChangeText={this.handleGPA}
-									// value={this.state.gpa}
+									value={this.state.gpa}
 									keyboardType="numeric"
 									style={styles.input4}
 									maxLength={4}
