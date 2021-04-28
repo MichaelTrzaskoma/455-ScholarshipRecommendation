@@ -24,6 +24,9 @@ export default class ViewScholarTbl extends React.Component {
       stagingArea: [],
       pageNumber: 1,
       modalVisible: false,
+      currentBookmarkKey: "",
+      userProfile: this.props.usrInfo,
+			email: this.props.usrInfo.email,
     };
   }
 
@@ -76,11 +79,15 @@ export default class ViewScholarTbl extends React.Component {
     this.setState({ modalVisible: visible });
   }
 
+  setCurrentBookmarkkey = (itemKey) => {
+    this.setState({ currentBookmarkKey: itemKey});
+  }
+
 
   getDoc = () => {
     const scholarArr = [];
 
-    let URL = "http://9171590d2b54.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
+    let URL = "http://0f7d3effbfe6.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
 
     fetch(URL, {
       method: "GET",
@@ -123,6 +130,55 @@ export default class ViewScholarTbl extends React.Component {
 
   };
 
+  handleBookmark () {
+
+    this.setModalVisible(!modalVisible)
+    this.setCurrentBookmarkkey(item.key)
+
+    //Insert API Call here
+    let URL = "http://0f7d3effbfe6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
+    fetch(URL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "email": this.state.email, 
+        "title": this.state.currentBookmarkKey,
+        // "jwt": getSecureStorage("jwt"),
+        // "uniqueID": getDeviceID(),
+      }),
+    })
+
+      // =============================================
+      // .then((response) => response.json())
+      // .then((json) => {
+      //   console.log("Email: " + this.state.email);
+      //   console.log(json);
+      // })
+      // =============================================
+
+      .then((response) => {
+        if (response.status == 202) {
+
+          Alert.alert(
+            "Your data have been successfully \ninserted! " +
+            "You will be navigated back!"
+          );
+
+        } else {
+          json_mesg = response.json();
+          Alert.alert("Error: " + json_mesg.mesg);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      
+    alert("This scholarship has been bookmarked!");
+  }
+
   FlatListItemSeparator = () => {
     return <View style={styles.ItemSeparator} />;
   };
@@ -153,7 +209,7 @@ export default class ViewScholarTbl extends React.Component {
           </View>
       </Modal>
       <TouchableOpacity
-      onLongPress = {() => {this.setModalVisible(true)}}
+      onLongPress = {() => {this.handleBookmark()}}
       onPress={() => {
         // we are able to navigate to "ViewSubCate"
         // since it is one of the stack screens in App.js

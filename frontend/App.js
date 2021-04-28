@@ -332,6 +332,7 @@ export default class App extends Component {
                   color: "white",
                 },
               })}
+              initialParams={{ email: this.state.usrProfile.email }}
             />
 
             <Stack.Screen

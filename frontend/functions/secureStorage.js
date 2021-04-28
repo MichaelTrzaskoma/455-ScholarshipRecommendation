@@ -23,3 +23,16 @@ export async function getSecureStorage(key) {
         return "null";
     }
 }
+
+export async function deleteSecureStorage() {
+    
+    let result = await SecureStore.deleteItemAsync("signIn")
+    if(result)
+    {
+        return result;
+    }
+    else
+    {
+        return "null";
+    }
+}

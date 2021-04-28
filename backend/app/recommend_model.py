@@ -144,7 +144,12 @@ def updtScholarSurvey(
         
 
     if (sat != ''):
-        list1.append(catSat(sat))
+        if(catSat != ''):
+            list1.append(catSat(sat))
+
+    if (act != ''):
+        if(catAct != ''):
+            list1.append(catAct(act))
 
     binary = setBin(db, list1)
 
@@ -163,6 +168,7 @@ def updtScholarSurvey(
                 "religion": religion,
                 "disabilities": dissabilities,
                 "sat_score": sat,
+                "act_score": act,
                 "terms": list1,
                 "binary": binary, 
            } 
@@ -283,9 +289,27 @@ def catSat(sat):
         str = 'SAT Scores From 1,201 To 1,400'
     elif (float(sat) >= 1401) & (float(sat) <= 1600):
         str = 'SAT Scores From 1,401 To 1,600'
+    else:
+        return str
     return str
 
-
+def catAct(act):
+    str = ''
+    intAct = int(act)
+    if (intAct>= 10) & (intAct <=15):
+        str ='ACT Scores From 10 To 15'
+    elif (intAct>= 16) & (intAct <=20):
+        str ='ACT Scores From 10 To 15'
+    elif (intAct>= 21) & (intAct <=25):
+        str ='ACT Scores From 10 To 15'
+    elif (intAct>= 26) & (intAct <=30):
+        str ='ACT Scores From 10 To 15'
+    elif (intAct>= 31):
+        str ='ACT Scores Greater Than 31'
+    else:
+        return str
+    return str
+   
 def catMajor(major):
     for i in range(len(major)):
         if major[i] == 'Agriculture':
