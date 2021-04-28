@@ -278,7 +278,6 @@ def catAge(age):
         string = ("Age " + str(age))
     return string
 
-
 def catSat(sat):
     str = ''
     if (float(sat) >= 400) & (float(sat) <= 1000):
