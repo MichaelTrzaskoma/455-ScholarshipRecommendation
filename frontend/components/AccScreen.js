@@ -50,7 +50,7 @@ export default function AccScreen({ usrInfo }) {
 					</TouchableOpacity> */}
 
 					{/* This is displayed as "Take Survey" btn which will navigate to TabViewSurvey component */}
-					<MultiSurveyBtn email={usrInfo.email} />
+					<MultiSurveyBtn email={usrInfo.email}/>
 					
 					{/* This is displayed as "View History" btn which will navigate to ViewHistory component */}
 					<HistoryBtn/>

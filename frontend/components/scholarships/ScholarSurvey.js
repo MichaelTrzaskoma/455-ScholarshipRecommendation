@@ -1588,7 +1588,7 @@ class InputScreen1a extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props);
 
-		let URL = "http://cf473f950697.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+		let URL = "http://b7031d610420.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
 		fetch(URL, {
 			method: "POST",
 			headers: {
@@ -1692,7 +1692,7 @@ class InputScreen1a extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
-		let URL = "http://cf473f950697.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+		let URL = "http://b7031d610420.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
 
 
 		fetch(URL, {
