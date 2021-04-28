@@ -135,8 +135,6 @@ try:
         print("This is valid JWT code!")
 
 
-    
-
 
 except jwt.exceptions.ExpiredSignatureError:
     # raise an exception if the token is expired

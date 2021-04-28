@@ -1588,11 +1588,11 @@ class InputScreen1a extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props);
 
-		let URL = "http://b7031d610420.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+		let URL = "http://fef7a490b9ab.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
 		fetch(URL, {
 			method: "POST",
 			headers: {
-				Accept: "application/json",
+				"Accept": "application/json",
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
@@ -1692,7 +1692,7 @@ class InputScreen1a extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
-		let URL = "http://b7031d610420.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+		let URL = "http://fef7a490b9ab.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
 
 
 		fetch(URL, {
@@ -1731,7 +1731,7 @@ class InputScreen1a extends React.Component {
 
 	render() {
 		// console.log("DOB is: " + this.state.dob);
-		console.log(this.props);
+		// console.log(this.props);
 
 		// check();
 		this.getExistingData();
@@ -1775,7 +1775,7 @@ class InputScreen1a extends React.Component {
 							{this.checkAge() ?
 								<TextInput
 									onChangeText={this.handleDOB}
-									placeholder={this.state.dob}
+									value={this.state.dob}
 									keyboardType="numeric"
 									maxLength={2}
 									style={styles.input2}
@@ -1810,7 +1810,7 @@ class InputScreen1a extends React.Component {
 							{this.checkGPA() ?
 								<TextInput
 									onChangeText={this.handleGPA}
-									placeholder={this.state.gpa}
+									// value={this.state.gpa}
 									keyboardType="numeric"
 									style={styles.input4}
 									maxLength={4}
@@ -1904,7 +1904,7 @@ class InputScreen1a extends React.Component {
 								{this.checkSAT() ?
 									<TextInput
 										onChangeText={this.handleSAT}
-										placeholder={this.state.sat_score}
+										value={this.state.sat_score}
 										keyboardType="numeric"
 										style={styles.input6}
 										maxLength={4}
@@ -1921,7 +1921,7 @@ class InputScreen1a extends React.Component {
 								{this.checkACT() ?
 									<TextInput
 										onChangeText={this.handleACT}
-										placeholder={this.state.act_score}
+										value={this.state.act_score}
 										keyboardType="numeric"
 										style={styles.input61}
 										maxLength={2}

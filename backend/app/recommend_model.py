@@ -63,6 +63,7 @@ def updtUser(
         "email": userEmail,
         "paswrd": "place holder 2",
         "jwt": "place holder 3",
+        # max 15 items
         "recent_viewed": [
             {
                 "type": "scholarship",
@@ -77,6 +78,7 @@ def updtUser(
                 "title": "place holder 6",
             },
         ],
+        # no limit to bookmark item
         "bookmarks": [
             {
                 "type": "scholarship",
@@ -121,14 +123,15 @@ def updtScholarSurvey(
         email,
         gender,
         age,
-        state,
         gpa,
-        major='',
+        sat='',
+        act='',
+        major=[],
+        state=[],
         race=[],
         ethnicity=[],
         religion=[],
-        dissabilities=[],
-        sat='',):
+        dissabilities=[]):
 
     list1 = [gender]
     list1.append(catAge(age))

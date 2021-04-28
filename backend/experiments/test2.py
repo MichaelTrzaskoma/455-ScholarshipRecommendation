@@ -3,8 +3,8 @@ from pymongo import MongoClient
 
 db = MongoClient("mongodb://localhost:27017/")
 
-user_Ref = db.test.client_profile
+subcatlist_ref = db.test.subcatlist
 
-r = user_Ref.count_documents({"sssss": "2353252"})
+r = subcatlist_ref.count_documents({"subCat": "Arthritis/Rheumatism"})
 
 print(r)

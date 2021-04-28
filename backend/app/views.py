@@ -9,8 +9,8 @@ from pymongo import MongoClient
 from datetime import datetime, timedelta
 import time
 
-from .auths import generateCode, init_usrProfileDB, check_email_verification_status, encode_jwt, update_deviceInfo, initial_device
-from .recommend_model import updtUser, filter_results
+from .auths import generateCode, init_usrProfileDB, check_email_verification_status, encode_jwt, update_deviceInfo, initial_device, update_deviceInfo, validate_token
+from .recommend_model import updtUser, filter_results, updtScholarSurvey
 
 MINS_TIL_ACTIVE_CODE_EXPIRY = 15
 db = MongoClient("mongodb://localhost:27017/")
@@ -178,7 +178,7 @@ def auth(email):
 
             # get the user profile for validation
             usr_profile_data = user_Ref.find_one(
-                {"_id": email}, {"_id": 1, "devices": 1, "active": 1})
+                {"_id": email}, {"_id": 1, "devices": 1, "active": 1, "paswrd": 1})
 
             # the user is registered with us and verified his/ her email address
             # print(usr_profile_data)
@@ -201,9 +201,12 @@ def auth(email):
                         # get existing device info
                         existing_device = device_info[0]
 
+                        # TODO: compare password here
+
                         # generate a new device token
                         secret_code = generateCode()
-                        timer = int(time.mktime((datetime.utcnow() + timedelta(days=7)).timetuple()))
+                        timer = int(time.mktime(
+                            (datetime.utcnow() + timedelta(days=7)).timetuple()))
 
                         # generate a new jwt code by using current device info
                         new_jwt = encode_jwt(
@@ -215,39 +218,25 @@ def auth(email):
 
                         return make_response(jsonify({"mesg": "authorized!", "token": str(new_jwt)}), 202)
 
-                    else:
-                        # no matched device uuid found or doesn't ever have device info
-                        # this is new login with a new device
 
-                        # generate a new device token
-                        secret_code = generateCode()
-                        timer = int(time.mktime((datetime.utcnow() + timedelta(days=7)).timetuple()))
+                # no matched device uuid found or doesn't ever have device info
+                # this is new login with a new device
 
-                        # generate a new jwt code by using current device info
-                        new_jwt = encode_jwt(
-                            income_data['unique_id'], timer, 7, secret_code)
+                # TODO: compare password here
 
-                        initial_device(
-                            user_Ref, email, new_jwt, income_data['unique_id'], secret_code, timer)
+                # generate a new device token
+                secret_code = generateCode()
+                timer = int(time.mktime(
+                    (datetime.utcnow() + timedelta(days=7)).timetuple()))
 
-                        return make_response(jsonify({"mesg": "authorized!", "token": str(new_jwt)}), 202)
+                # generate a new jwt code by using current device info
+                new_jwt = encode_jwt(
+                    income_data['unique_id'], timer, 7, secret_code)
 
-                else:
-                    # no matched device uuid found or doesn't ever have device info
-                    # this is new login with a new device
+                initial_device(
+                    user_Ref, email, new_jwt, income_data['unique_id'], secret_code, timer)
 
-                    # generate a new device token
-                    secret_code = generateCode()
-                    timer = int(time.mktime((datetime.utcnow() + timedelta(days=7)).timetuple()))
-
-                    # generate a new jwt code by using current device info
-                    new_jwt = encode_jwt(
-                        income_data['unique_id'], timer, 7, secret_code)
-
-                    initial_device(
-                        user_Ref, email, new_jwt, income_data['unique_id'], secret_code, timer)
-
-                    return make_response(jsonify({"mesg": "authorized!", "token": str(new_jwt)}), 202)
+                return make_response(jsonify({"mesg": "authorized!", "token": str(new_jwt)}), 202)
 
             else:
                 # user didn't verify his/ her email
@@ -340,48 +329,53 @@ def view_scholarship_single(scholarship_title):
     return make_response(jsonify(scholarship), 202)
 
 
-@app.route("/api/v1.2/users/id/<email>/surveys/scholarship",  methods=["POST"])
+@app.route("/api/v1.2/users/id/<email>/surveys/scholarship",  methods=["GET", "POST", "PUT"])
 def usrSurvey_scholarship(email):
     # add user survey to profile
     # REQUIREMENT: a registered user
-    # INPUT
-    # :email (string)
-    # :POST data
-    if request.method == "POST":
+
+    if request.method == "POST" and request.is_json:
         income_data = request.json
-        if income_data["email"] == "":
+
+        # print(income_data)
+        if "email" not in income_data: 
+            return make_response(jsonify({"mesg": "Missing email address"}), 400)
+        if len(income_data["email"]) < 1:
             return make_response(jsonify({"mesg": "Missing email address"}), 400)
 
-        if income_data["gender"] == "":
+        if "gender" not in income_data:
+            return make_response(jsonify({"mesg": "Missing gender information"}), 400)
+        if len(income_data["gender"]) < 1:
             return make_response(jsonify({"mesg": "Missing gender information"}), 400)
 
-        if income_data["dob"] == "":
-            return make_response(jsonify({"mesg": "Missing date of birth"}), 400)
+        if "dob" not in income_data:
+            return make_response(jsonify({"mesg": "Missing age"}), 400)
+        if len(income_data["dob"]) < 1:
+            return make_response(jsonify({"mesg": "Missing age"}), 400)
 
-        # if income_data["zip"] == "":
-        #     return make_response(jsonify({"mesg": "Missing zip code"}), 400)
+        if "gpa" not in income_data:
+            return make_response(jsonify({"mesg": "Missing gpa"}), 400)
+        if len(income_data["gpa"]) < 1:
+            return make_response(jsonify({"mesg": "Missing gpa"}), 400)
+        
+        # if validate_token(user_Ref, income_data["jwt"], income_data["uuid"], income_data["email"]):
 
-        updtUser(
+        updtScholarSurvey(
             db,
             user_Ref,
             income_data['email'],
             income_data['gender'],
             income_data['dob'],
-            # income_data['zip'],
             income_data['gpa'],
             sat=income_data['sat_score'],
             act=income_data['act_score'],
             major=income_data['selectedMajors'],
-            residence=income_data['selectedResidences'],
+            state=income_data['selectedResidences'],
             race=income_data['selectedRaces'],
             ethnicity=income_data['selectedEthnicities'],
             religion=income_data['selectedReligions'],
             dissabilities=income_data['selectedDisabilities'],
         )
-
-        # updtUser(db, user_Ref, "hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
-        #          "Computer Science", "Asian/Pacific Islander", "Chinese",
-        #          "Buddhist")
 
         return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
     else:
