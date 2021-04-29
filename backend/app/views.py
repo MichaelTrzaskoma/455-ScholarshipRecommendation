@@ -570,7 +570,7 @@ def usrSurvey_college(email):
 
 
 @app.route("/api/v1.2/users/id/<email>/recommends/college",  methods=["GET"])
-def getRecommend_scholarship(email):
+def getRecommend_college(email):
     # get scholarship recommendations
     # INPUT: email (string)
     # OUTPUT: scholarship title, amount, and deadline
@@ -681,7 +681,7 @@ def usrSurvey_major(email):
 
 
 @app.route("/api/v1.2/users/id/<email>/recommends/major",  methods=["GET"])
-def getRecommend_scholarship(email):
+def getRecommend_major(email):
     # get scholarship recommendations
     # INPUT: email (string)
     # OUTPUT: scholarship title, amount, and deadline

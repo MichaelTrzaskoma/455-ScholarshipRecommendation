@@ -1471,43 +1471,44 @@ class InputScreen1a extends React.Component {
 	};
 
 	onSelectedMajorsChange = (selectedMajors) => {
-		//If the user has selected Business and Management (Business Management for scholarships.com) and they have not already selected Business Management
-		if (this.findPosition("Business and Management", selectedMajors) != -1 && this.findPosition("Business Management", selectedMajors) == -1) {
-			selectedMajors.push("Business Management");
-		}
-		//If the user has selected K and PT which is not supported by scholarships.com (listed separately)
-		if (this.findPosition("Kinesiology and Physical Therapy", selectedMajors) != -1) {
-			//If the user has not selected Kinesiology, it will be added to the array
-			if (this.findPosition("Kinesiology", selectedMajors) == -1) {
-				selectedMajors.push("Kinesiology");
-			}
-			//If the user has not selected Physical Therapy, it will be added to the array
-			if (this.findPosition("Physical Therapy", selectedMajors) == -1) {
-				selectedMajors.push("Physical Therapy");
-			}
-		}
-		//If the user has selected Public Policy and Social Services (separate for scholarships.com) 
-		if (this.findPosition("Public Policy and Social Services", selectedMajors) != -1) {
-			//If the user hasn't selected Public Policy, it will be added to the array
-			if (this.findPosition("Public Policy", selectedMajors) == -1) {
-				selectedMajors.push("Public Policy");
-			}
-			//If the user has not seelected Social Services, it will be added to the array
-			if (this.findPosition("Social Services", selectedMajors) == -1) {
-				selectedMajors.push("Social Services");
-			}
-		}
-		//If the user has selected Film and Photography (separately listed for scholarships.com)
-		if (this.findPosition("Film and Photography", selectedMajors) != -1) {
-			//If the user hasn't selected Film, it will be added to the array
-			if (this.findPosition("Film", selectedMajors) == -1) {
-				selectedMajors.push("Film");
-			}
-			//If the user hasn't selected Photography, it will be added to the array
-			if (this.findPosition("Photography", selectedMajors) == -1) {
-				selectedMajors.push("Photography");
-			}
-		}
+		// console.log(selectedMajors);
+		// //If the user has selected Business and Management (Business Management for scholarships.com) and they have not already selected Business Management
+		// if (this.findPosition("Business and Management", selectedMajors) != -1 && this.findPosition("Business Management", selectedMajors) == -1) {
+		// 	selectedMajors.push("Business Management");
+		// }
+		// //If the user has selected K and PT which is not supported by scholarships.com (listed separately)
+		// if (this.findPosition("Kinesiology and Physical Therapy", selectedMajors) != -1) {
+		// 	//If the user has not selected Kinesiology, it will be added to the array
+		// 	if (this.findPosition("Kinesiology", selectedMajors) == -1) {
+		// 		selectedMajors.push("Kinesiology");
+		// 	}
+		// 	//If the user has not selected Physical Therapy, it will be added to the array
+		// 	if (this.findPosition("Physical Therapy", selectedMajors) == -1) {
+		// 		selectedMajors.push("Physical Therapy");
+		// 	}
+		// }
+		// //If the user has selected Public Policy and Social Services (separate for scholarships.com) 
+		// if (this.findPosition("Public Policy and Social Services", selectedMajors) != -1) {
+		// 	//If the user hasn't selected Public Policy, it will be added to the array
+		// 	if (this.findPosition("Public Policy", selectedMajors) == -1) {
+		// 		selectedMajors.push("Public Policy");
+		// 	}
+		// 	//If the user has not seelected Social Services, it will be added to the array
+		// 	if (this.findPosition("Social Services", selectedMajors) == -1) {
+		// 		selectedMajors.push("Social Services");
+		// 	}
+		// }
+		// //If the user has selected Film and Photography (separately listed for scholarships.com)
+		// if (this.findPosition("Film and Photography", selectedMajors) != -1) {
+		// 	//If the user hasn't selected Film, it will be added to the array
+		// 	if (this.findPosition("Film", selectedMajors) == -1) {
+		// 		selectedMajors.push("Film");
+		// 	}
+		// 	//If the user hasn't selected Photography, it will be added to the array
+		// 	if (this.findPosition("Photography", selectedMajors) == -1) {
+		// 		selectedMajors.push("Photography");
+		// 	}
+		// }
 		this.setState({ selectedMajors });
 	};
 
