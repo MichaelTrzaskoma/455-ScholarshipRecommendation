@@ -39,10 +39,6 @@ const items = [
 				id: 12,
 			},
 			{
-				name: 'Film and Photography',
-				id: 13,
-			},
-			{
 				name: 'Film',
 				id: 14,
 			},
@@ -65,16 +61,20 @@ const items = [
 				id: 21,
 			},
 			{
-				name: 'Business and Management',
+				name: 'Business',
 				id: 22,
 			},
 			{
-				name: 'Finance and Accounting',
+				name: 'Finance',
 				id: 23,
 			},
 			{
-				name: 'Sports Management',
+				name: 'Accounting',
 				id: 24,
+			},
+			{
+				name: 'Sports Management',
+				id: 25,
 			},
 		],
 	},
@@ -109,16 +109,8 @@ const items = [
 				id: 43,
 			},
 			{
-				name: 'Kinesiology',
-				id: 44,
-			},
-			{
 				name: 'Physical Therapy/Rehabilitation',
 				id: 45,
-			},
-			{
-				name: "Kinesiology and Physical Therapy",
-				id: 46,
 			},
 			{
 				name: 'Medical',
@@ -185,10 +177,6 @@ const items = [
 			{
 				name: 'Psychology',
 				id: 592,
-			},
-			{
-				name: 'Public Policy and Social Services',
-				id: 593,
 			},
 			{
 				name: "Public Policy",
@@ -271,10 +259,6 @@ const items = [
 			{
 				name: 'Culinary Arts',
 				id: 82,
-			},
-			{
-				name: 'Mechanics',
-				id: 83,
 			},
 		],
 	},
@@ -515,7 +499,7 @@ const items = [
 				id: 1049,
 			},
 			{
-				name: "Hearing Impairment Parent",
+				name: "Hearing Impaired Parent",
 				id: 1050,
 			},
 			{
@@ -1112,7 +1096,7 @@ const items = [
 				id: 1201,
 			},
 			{
-				name: 'Flordia',
+				name: 'Florida',
 				id: 1202,
 			},
 			{
@@ -1268,7 +1252,7 @@ const items = [
 				id: 1240,
 			},
 			{
-				name: 'West Virgina',
+				name: 'West Virginia',
 				id: 1241,
 			},
 			{
@@ -1278,52 +1262,6 @@ const items = [
 			{
 				name: 'Wyoming',
 				id: 1243,
-			},
-		],
-	},
-	{
-		name: 'Canada',
-		id: 1244,
-		children: [
-			{
-				name: 'Alberta',
-				id: 1245,
-			},
-			{
-				name: 'British Columbia',
-				id: 1246,
-			},
-			{
-				name: 'Manitoba',
-				id: 1247,
-			},
-			{
-				name: 'New Brunswick',
-				id: 1248,
-			},
-			{
-				name: 'Newfoundland and Labrador',
-				id: 1249,
-			},
-			{
-				name: 'Nova Scotia',
-				id: 1250,
-			},
-			{
-				name: 'Ontario',
-				id: 1251,
-			},
-			{
-				name: 'Prince Edward Island',
-				id: 1252,
-			},
-			{
-				name: 'Quebec',
-				id: 1253,
-			},
-			{
-				name: 'Saskatchewan',
-				id: 1254,
 			},
 		],
 	},
@@ -1827,7 +1765,7 @@ class InputScreen1a extends React.Component {
 						<View style={styles.input3_grp}>
 							<Text style={styles.txt_display}>State of Residence and/or Schooling</Text>
 							<SectionedMultiSelect
-								items={items.slice(items.length - 2)}
+								items={items.slice(items.length - 1)}
 								IconRenderer={MaterialIcons}
 								uniqueKey="name"
 								subKey="children"
@@ -1848,7 +1786,7 @@ class InputScreen1a extends React.Component {
 									keyboardType="numeric"
 									style={styles.input4}
 									maxLength={4}
-								></TextInput>
+								/>
 								:
 								<TextInput
 									onChangeText={this.handleGPA}
@@ -1856,7 +1794,7 @@ class InputScreen1a extends React.Component {
 									keyboardType="numeric"
 									style={styles.input4}
 									maxLength={4}
-								></TextInput>
+								/>
 							}
 						</View>
 					</View>
@@ -1942,7 +1880,7 @@ class InputScreen1a extends React.Component {
 										keyboardType="numeric"
 										style={styles.input6}
 										maxLength={4}
-									></TextInput>
+									/>
 									:
 									<TextInput
 										onChangeText={this.handleSAT}
@@ -1950,7 +1888,7 @@ class InputScreen1a extends React.Component {
 										keyboardType="numeric"
 										style={styles.input6}
 										maxLength={4}
-									></TextInput>
+									/>
 								}
 								{this.checkACT() ?
 									<TextInput
@@ -1959,7 +1897,7 @@ class InputScreen1a extends React.Component {
 										keyboardType="numeric"
 										style={styles.input61}
 										maxLength={2}
-									></TextInput>
+									/>
 									:
 									<TextInput
 										onChangeText={this.handleACT}
@@ -1967,7 +1905,7 @@ class InputScreen1a extends React.Component {
 										keyboardType="numeric"
 										style={styles.input61}
 										maxLength={2}
-									></TextInput>
+									/>
 								}
 							</View>
 
