@@ -113,7 +113,7 @@ const items = [
 				id: 44,
 			},
 			{
-				name: 'Physical Therapy',
+				name: 'Physical Therapy/Rehabilitation',
 				id: 45,
 			},
 			{
