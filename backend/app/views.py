@@ -1,4 +1,4 @@
-from typing_extensions import Required
+#from typing_extensions import Required
 from werkzeug.datastructures import Authorization
 from app import app
 from flask import json, render_template, jsonify, request, make_response, redirect, url_for
@@ -15,6 +15,7 @@ from pymongo import MongoClient
 
 ACTIVE_CODE_LENGTH = 64
 MINS_TIL_ACTIVE_CODE_EXPIRY = 15
+MINS_TIL_RESET_CODE_EXPIRY = 60
 db = MongoClient("mongodb://localhost:27017/")
 scholarDb = db.test
 scholar_ref = db.test.scholarships
@@ -40,6 +41,8 @@ def generateCode():
 def thankYou():
     if(request.method == "POST"):
         page = request.form['pagePost']
+        text = ""
+        print("Page: " + page)
         if(page == "signup"):
             email = request.form['inputEmail']
             password = request.form['inputPassword']
@@ -54,11 +57,11 @@ def thankYou():
                return redirect(url_for('signUp', error="dup"))
             #Insert user into database
             activationCode = generateCode()
-            scholarDb.users.insert_one({ "email": email, "password": password, "activationCode": activationCode, "activationDate": datetime.now(), "active": 0 })
+            scholarDb.users.insert_one({ "email": email, "password": hashPass, "activationCode": activationCode, "activationDate": datetime.now(), "active": 0 })
             #Send welcome email
             mailhandler.sendWelcomeEmail(email, activationCode)
-            return render_template("public/thankyou.html")
-        else:
+            text = "<strong>Please check your email</strong> for further instructions on how to complete your account setup."
+        elif(page == "forgot"):
             email = request.form['email']
             print(email)
             #Try to look up email in database
@@ -66,10 +69,39 @@ def thankYou():
             #Send user back to /forgotpassword if no email found
             if(results.count() == 0):
                 return redirect(url_for('forgotpassword', error="unfound"))
+            resetCode = generateCode()
+            scholarDb.users.update_one({"email" : email}, {"$set": {"resetCode": resetCode, "resetDate": datetime.now(), "resetCodeUsed": 0}})
             #Send reset password email to user if successful 
-            mailhandler.sendResetPasswordEmail(email)
-            return render_template("public/thankyou2.html")
-
+            mailhandler.sendResetPasswordEmail(email, resetCode)
+            text = "<strong>Please check your email</strong> for further instructions on how to reset your password."
+        elif(page == "activate"):
+            code = request.form['code']
+            results = scholarDb.users.find({ "activationCode" : code })
+            if(len(code) != ACTIVE_CODE_LENGTH or results.count() != 1):
+                return "Error" #redirect(url_for('error', error="invalid"))
+            activationTime = results[0]["activationDate"]
+            email = results[0]["email"]
+            if((datetime.now() - activationTime).total_seconds() / 60 > MINS_TIL_ACTIVE_CODE_EXPIRY):
+                activationCode = generateCode()
+                scholarDb.users.update_one({"email" : email}, {"$set": {"activationCode": activationCode, "activationDate": datetime.now()}})
+                mailhandler.sendWelcomeEmail(email, activationCode)
+                text = "<strong>That code is expired.</strong> Sending a new activation code."
+            else:
+                scholarDb.users.update_one({"email" : email }, {"$set": {"active": 1}})
+                text = "<strong>Your account is now active!</strong>"
+        elif(page == "reset"):
+            code = request.form['code']
+            print("Code: " + code)
+            results = scholarDb.users.find({ "resetCode" : code })
+            if(results.count() == 0):
+                return "Error"
+            email = results[0]["email"]
+            password = request.form['password']
+            scholarDb.users.update_one({"email" : email}, {"$set": {"resetCodeUsed": 1, "password": password}})
+            text = "<strong>Your password has been reset!</strong> Click the button below to log in with your new password"
+        if(text != ""):
+            return render_template("public/thankyou.html", text=text) 
+    return "404"
 
 @app.route("/api/v1.2/managements/users/<email>/login", methods=["POST"])
 def login(email, paswrd):
@@ -110,21 +142,23 @@ def login(email, paswrd):
 @app.route("/activate", methods=["POST", "GET"])
 def activate():
     code = request.args.get('code')
-    results = scholarDb.users.find({ "activationCode" : code })
-    if(len(code) != ACTIVE_CODE_LENGTH or results.count() != 1):
-        return "Error" #redirect(url_for('error', error="invalid"))
-    activationTime = results[0]["activationDate"]
-    email = results[0]["email"]
-    if((datetime.now() - activationTime).total_seconds() / 60 > MINS_TIL_ACTIVE_CODE_EXPIRY):
-        activationCode = generateCode()
-        scholarDb.users.update_one({"email" : email}, {"$set": {"activationCode": activationCode, "activationDate": datetime.now()}})
-        mailhandler.sendWelcomeEmail(email, activationCode)
-        return "Code Expired, sending new code"
-        
-    scholarDb.users.update_one({"email" : email }, {"$set": {"active": 1}})
+    return render_template("public/activate.html", code=code)
 
-    return "Account activated"
-    
+@app.route("/resetpassword", methods=["POST", "GET"])
+def reset():
+    code = request.args.get('code')
+    results = scholarDb.users.find({ "resetCode" : code })
+    if(len(code) != ACTIVE_CODE_LENGTH or results.count() != 1):
+        return "Error, invalid code" #redirect(url_for('error', error="invalid"))
+    activationTime = results[0]["resetDate"]
+    email = results[0]["email"]
+    if((datetime.now() - activationTime).total_seconds() / 60 > MINS_TIL_RESET_CODE_EXPIRY):
+        activationCode = generateCode()
+        scholarDb.users.update_one({"email" : email}, {"$set": {"resetCode": resetCode, "resetDate": datetime.now(), "resetCodeUsed": 0}})
+        mailhandler.sendResetPasswordEmail(email, resetCode)
+        return "Code no longer active, sending new code"
+    return render_template("public/resetpass.html", code=code)
+
 @app.route("/api/v1.2/managements/users/forgotpassword")
 def forgot():
     return render_template("public/forgotpass.html")

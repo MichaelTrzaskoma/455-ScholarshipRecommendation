@@ -1,0 +1,20 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}Thank You{% endblock %}
+
+{% block main %}
+
+
+
+<form action="/api/v1.2/managements/users/thankyou" method="post" id="activeform">
+    <input name="pagePost" id="pagePost" value="activate" class="hide">
+    <input name="code" id="code" value="{{ code }}" class="hide">
+</form>
+
+
+<script type="text/javascript">
+    console.log("hello")
+        document.getElementById("activeform").submit();
+   
+</script>
+{% endblock %}

@@ -6,7 +6,6 @@ mail = Mail(app)
 
 def sendWelcomeEmail(email, activationCode):
     message = "<h1>Welcome!</h1>"\
-              "<br>"\
               "<p>Welcome to Scholar Seek! We're excited that you've decided to take the first step in taking charge "\
               "of your college career. With our app you can make finding scholarships easier than ever before, choose "\
               "the best college for your needs, and decide on a major that will keep you interested your whole college "\
@@ -28,13 +27,14 @@ def sendWelcomeEmail(email, activationCode):
     with app.app_context():
         mail.send(msg)
 
-def sendResetPasswordEmail(email):
-    #Generate reset password code
-    passCode = ''.join(random.choices(string.ascii_uppercase + string.digits, k=N))
+def sendResetPasswordEmail(email, resetCode):
     #Update database to include password code and timestamp
      
     message = "<h1>Reset Password!</h1>"\
-                "<br>"
+              "<p>Don't worry, sometimes we forget our passwords too!</p>"\
+              "<p>Click the link below and we'll get you started on resetting your password</p>"\
+              "<p>http://localhost:5000/resetpassword?code=" + resetCode + "</p>"
+
 
     msg = Message("Reset Scholar Seek Password",
                  sender="reset@scholarseek.com",
