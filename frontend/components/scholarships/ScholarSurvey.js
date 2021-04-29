@@ -1362,7 +1362,7 @@ class InputScreen1a extends React.Component {
 			selectedReligions: [],
 			selectedDisabilities: [],
 			selectedEthnicities: [],
-			firstTime: true,
+			firstTime: 0,
 			currentMethod: "POST",
 			
 		};
@@ -1527,8 +1527,8 @@ class InputScreen1a extends React.Component {
 		this.setState({ selectedEthnicities });
 	};
 
-	setFirstTime = (bool) => {
-		this.setState({firstTime: bool});
+	setFirstTime = (int) => {
+		this.setState({firstTime: int});
 	};
 
 	checkGender() {
@@ -1585,12 +1585,12 @@ class InputScreen1a extends React.Component {
 	}
 
 	upload2sever = () => {
-		if(this.state.firstTime == false)
+		if(this.state.firstTime == 1)
 		{
 			this.setState({currentMethod: "PATCH"});
 		}
 
-		this.setFirstTime(false);
+		this.setFirstTime(1);
 		
 		console.log(JSON.stringify({
 			email: this.state.email,
@@ -1605,7 +1605,7 @@ class InputScreen1a extends React.Component {
 			selectedEthnicities: this.state.selectedEthnicities,
 			selectedReligions: this.state.selectedReligions,
 			selectedDisabilities: this.state.selectedDisabilities,
-			firstTimeScholarSurvey: this.firstTime,
+			existing: this.firstTime,
 		}));
 
 		// console.log("Email from InputScreen2: " + this.props);
@@ -1630,7 +1630,7 @@ class InputScreen1a extends React.Component {
 				selectedEthnicities: this.state.selectedEthnicities,
 				selectedReligions: this.state.selectedReligions,
 				selectedDisabilities: this.state.selectedDisabilities,
-				firstTimeScholarSurvey: this.state.firstTime,
+				existing: this.state.firstTime,
 			}),
 		})
 
@@ -1753,7 +1753,7 @@ class InputScreen1a extends React.Component {
 					selectedEthnicities: json.ethnicity,
 
 					//This field needs to be added to the backend
-					firstTime: json.firstTimeScholarSurvey,
+					firstTime: json.existing,
 
 				}).catch((error) => {
 					console.log('An error happened: ' + error);
