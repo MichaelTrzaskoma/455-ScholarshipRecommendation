@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
 	StyleSheet,
 	View,
-	ScrollView,
 	TouchableOpacity,
 	Text,
 	TextInput,
@@ -523,20 +522,20 @@ export default class CollegeSurvey extends React.Component {
 		super(props);
 		this.state = {
 			email: this.props.route.params.email,
-			selectedItems: [],
-			selectedItems2: [],
+			selectedRegions: [],
+			selectedMajors: [],
 			satScore: "",
 			actScore: "",
 			//email: this.props.route.params.email,
 		}
 	}
 
-	onSelectedItemsChange = (selectedItems) => {
-		this.setState({ selectedItems });
+	onSelectedItemsChange = (selectedRegions) => {
+		this.setState({ selectedRegions });
 	};
 
-	onSelectedItemsChange2 = (selectedItems2) => {
-		this.setState({ selectedItems2 });
+	onSelectedItemsChange2 = (selectedMajors) => {
+		this.setState({ selectedMajors });
 	};
 
 	handleSAT(text) {
@@ -629,7 +628,7 @@ export default class CollegeSurvey extends React.Component {
 				this.setState({
 
 					//Not sure how this is stored/named in the backend
-					selectedItems2: json.major,
+					selectedMajors: json.major,
 
 				}).catch((error) => {
 					console.log('An error happened: ' + error);
@@ -639,22 +638,6 @@ export default class CollegeSurvey extends React.Component {
 
 	upload2sever = () => {
 		console.log(this.props.route.params.email);
-
-		// console.log(JSON.stringify({
-		// 	email: this.state.email,
-		// 	gender: this.state.gender,
-		// 	dob: this.state.dob,
-		// 	gpa: this.state.gpa,
-		// 	sat_score: this.state.sat_score,
-		// 	act_score: this.state.act_score,
-		// 	selectedMajors: this.state.selectedMajors,
-		// 	selectedResidences: this.state.selectedResidences,
-		// 	selectedRaces: this.state.selectedRaces,
-		// 	selectedEthnicities: this.state.selectedEthnicities,
-		// 	selectedReligions: this.state.selectedReligions,
-		// 	selectedDisabilities: this.state.selectedDisabilities,
-		// }));
-
 		// console.log("Email from InputScreen2: " + this.props);
 
 		let URL = "http://cf473f950697.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
@@ -665,18 +648,10 @@ export default class CollegeSurvey extends React.Component {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				email: this.state.email,
-				gender: this.state.gender,
-				dob: this.state.dob,
-				gpa: this.state.gpa,
-				sat_score: this.state.sat_score,
-				act_score: this.state.act_score,
-				selectedMajors: this.state.selectedMajors,
-				selectedResidences: this.state.selectedResidences,
-				selectedRaces: this.state.selectedRaces,
-				selectedEthnicities: this.state.selectedEthnicities,
-				selectedReligions: this.state.selectedReligions,
-				selectedDisabilities: this.state.selectedDisabilities,
+				regions: this.state.selectedRegions,
+				majors: this.state.selectedMajors,
+				sat_score: this.state.satScore,
+				act_score: this.state.actScore,
 			}),
 		})
 
@@ -691,11 +666,11 @@ export default class CollegeSurvey extends React.Component {
 			.then((response) => {
 				if (response.status == 202) {
 
-					console.log(response);
-					// Alert.alert(
-					// 	"Your data have been successfully \ninserted! " +
-					// 	"You will be navigated back!"
-					// );
+					// console.log(response);
+					Alert.alert(
+						"Your data have been successfully \ninserted! " +
+						"You will be navigated back!"
+					);
 
 					// setTimeout(() => {
 					// 	this.props.navigation.goBack();
@@ -711,11 +686,8 @@ export default class CollegeSurvey extends React.Component {
 			});
 	};
 
-	
-
-
 	render() {
-		// const { selectedItems } = this.state;
+		// const { selectedRegions } = this.state;
 		// this.checkMajor()
 		return (
 			<KeyboardAwareScrollView
@@ -736,26 +708,32 @@ export default class CollegeSurvey extends React.Component {
 				<View style={styles.card_grp2}>
 
 					<View style={styles.collegeSurveyRect2}>
+
+						<Text style={styles.re_text}>Required Quesetions</Text>
 						<Text style={styles.collegeSurveyQA1}>
-							What is you regional preference {"\n"}for college location?
+							What is you regional preference for college location?
       					</Text>
-						<SectionedMultiSelect
-							items={items.slice(0, 2)}
-							IconRenderer={MaterialIcons}
-							uniqueKey="id"
-							subKey="children"
-							selectText="Choose all that apply"
-							style={{ margin: 20 }}
-							showDropDowns={true}
-							readOnlyHeadings={true}
-							onSelectedItemsChange={this.onSelectedItemsChange}
-							selectedItems={this.state.selectedItems}
-						/>
+
+						<View style={styles.multiSelectorWrapper}>
+							<SectionedMultiSelect
+								items={items.slice(0, 2)}
+								IconRenderer={MaterialIcons}
+								uniqueKey="id"
+								subKey="children"
+								selectText="Choose all that apply"
+								// style={{ margin: 20 }}
+								showDropDowns={true}
+								readOnlyHeadings={true}
+								onSelectedItemsChange={this.onSelectedItemsChange}
+								selectedItems={this.state.selectedRegions}
+							/>
+						</View>
+
 						{this.existingSAT() ?
 							<View style={styles.satTextField}>
 								<Text style={styles.collegeSurveyQA2}>
 									What is your SAT score?
-        					</Text>
+        						</Text>
 								<View style={styles.iconRow}>
 									<MaterialCommunityIcons
 										name="book-open-variant"
@@ -794,11 +772,12 @@ export default class CollegeSurvey extends React.Component {
 								</View>
 							</View>
 						}
+
 						{this.existingACT() ?
 							<View style={styles.actTextField}>
 								<Text style={styles.collegeSurveyQA3}>
 									What is your ACT score?
-        					</Text>
+        						</Text>
 								<View style={styles.icon1Row}>
 									<MaterialCommunityIcons
 										name="book-open-variant"
@@ -835,29 +814,34 @@ export default class CollegeSurvey extends React.Component {
 								</View>
 							</View>
 						}
+
 						<View style={styles.majorTextField}>
 							<Text style={styles.collegeSurveyQA4}>
 								What major(s) are you interested in?
         					</Text>
-							<SectionedMultiSelect
-								style={{ margin: 30 }}
-								items={items.slice(2, items.length + 1)}
-								IconRenderer={MaterialIcons}
-								uniqueKey="name"
-								subKey="children"
-								selectText="Select Major(s)"
-								showDropDowns={true}
-								readOnlyHeadings={true}
-								onSelectedItemsChange={this.onSelectedItemsChange2}
-								selectedItems={this.state.selectedItems2}
-							/>
+							<View style={styles.multiSelectorWrapper}>
+								<SectionedMultiSelect
+									style={{ margin: 30 }}
+									items={items.slice(2, items.length + 1)}
+									IconRenderer={MaterialIcons}
+									uniqueKey="name"
+									subKey="children"
+									selectText="Select Major(s)"
+									showDropDowns={true}
+									readOnlyHeadings={true}
+									onSelectedItemsChange={this.onSelectedItemsChange2}
+									selectedItems={this.state.selectedMajors}
+								/>
+							</View>
 						</View>
-					</View>
 
-					{/* Submit Button */}
+					</View>
+				</View>
+				
+				<View style={styles.submitContainer}>
 					<TouchableOpacity
-						style={[styles.submitContainer, styles.submitBtn]}
-						onPress={()=> console.log(this.upload2sever())}
+						style={styles.submitBtn}
+						onPress={() => this.upload2sever()}
 					>
 						<Text style={styles.submitTxt}>Submit</Text>
 					</TouchableOpacity>
@@ -902,7 +886,6 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		fontWeight: 'bold',
 		marginTop: 20,
-		// alignSelf: "center"
 		marginLeft: 20,
 	},
 	surveyDescription: {
@@ -913,36 +896,30 @@ const styles = StyleSheet.create({
 		// marginTop: 10,
 		marginLeft: 20,
 		marginBottom: 10,
-		// alignSelf: "center"
 	},
 	collegeSurveyRect2: {
-		width: 321,
+		width: "90%",
 		height: 'auto',
 		backgroundColor: "#fefffd",
 		flex: 1,
 		alignSelf: "center"
 	},
 	collegeSurveyQA1: {
-
 		color: "#121212",
 		fontSize: 16,
-		width: 260,
+		width: "100%",
 		height: 39,
-		marginTop: 15,
-		marginLeft: 8
+		marginTop: 10,
+		// marginLeft: 5
 	},
 	satTextField: {
-		width: 247,
+		width: "100%",
 		height: 32,
-		marginTop: 30,
-		marginLeft: 15
+		marginTop: 20,
 	},
 	collegeSurveyQA2: {
-
-		color: "#121212",
 		fontSize: 16,
 		marginTop: -27,
-		marginLeft: -4
 	},
 	icon: {
 		color: "#4a76ff",
@@ -950,11 +927,10 @@ const styles = StyleSheet.create({
 		marginTop: 2
 	},
 	textInput: {
-
 		fontSize: 16,
 		color: "#121212",
 		height: 32,
-		width: 212,
+		width: "84%",
 		borderWidth: 1,
 		borderColor: "rgba(155,155,155,1)",
 		borderBottomWidth: 1,
@@ -969,28 +945,23 @@ const styles = StyleSheet.create({
 		marginTop: 9
 	},
 	actTextField: {
-		width: 247,
+		width: "100%",
 		height: 32,
 		marginTop: 47,
-		marginLeft: 15
 	},
 	collegeSurveyQA3: {
-
-		color: "#121212",
 		fontSize: 16,
-		marginTop: -29,
-		marginLeft: -5
+		marginTop: -25,
 	},
 	icon1: {
 		color: "#4a76ff",
 		fontSize: 25
 	},
 	textInput1: {
-
 		fontSize: 16,
 		color: "#121212",
 		height: 32,
-		width: 212,
+		width: "84%",
 		borderWidth: 1,
 		borderColor: "rgba(155,155,155,1)",
 		borderBottomWidth: 1,
@@ -1005,38 +976,45 @@ const styles = StyleSheet.create({
 		marginTop: 11
 	},
 	majorTextField: {
-		width: 247,
+		width: "100%",
 		height: 'auto',
-		marginTop: 45,
-		marginLeft: 15
+		marginTop: 50,
 	},
 	collegeSurveyQA4: {
-
-		color: "#121212",
 		fontSize: 16,
-		marginTop: -28,
-		marginLeft: -7
+		marginTop: -20,
 	},
 	submitBtn: {
-		width: 300,
-		height: 36,
-		backgroundColor: "#4a76ff",
-		marginTop: 20,
-		alignSelf: "center"
+		width: "93%",
+		height: 45,
+		backgroundColor: "#007AFF",
+		// marginTop: 20,
+		justifyContent: 'center',
+		alignSelf: "center",
+		borderRadius: 5,
 	},
 	submitContainer: {
-		backgroundColor: "#007AFF",
-		justifyContent: "center",
-		alignItems: "center",
-		flexDirection: "row",
-		borderRadius: 5,
-		paddingLeft: 16,
-		paddingRight: 16
+		width: "100%",
+		marginTop: 20,
+		marginBottom: 20,
 	},
 	submitTxt: {
 		color: "#fff",
 		fontSize: 16,
-	}
+		textAlign: "center",
+	},
+	re_text: {
+		marginTop: 20,
+		fontWeight: "bold",
+		fontSize: 20,
+		color: '#007FF9',
+	},
+	multiSelectorWrapper: {
+		width: "100%",
+		height: "auto",
+		marginLeft: -10,
+		marginBottom: 20,
+	},
 });
 
 

@@ -16,12 +16,10 @@ import {
 //import DatePicker from "@dietime/react-native-date-picker";
 //import DatePicker from 'react-native-datepicker'
 import DropDownPicker from 'react-native-dropdown-picker';
-import { Card } from 'react-native-elements';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { MaterialIcons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import CollapsibleView from "@eliav2/react-native-collapsible-view";
-import { CheckBox } from 'react-native-elements/dist/checkbox/CheckBox';
 // import { Feather } from '@expo/vector-icons';
 
 
@@ -2017,15 +2015,6 @@ class InputScreen1a extends React.Component {
 							<Text style={styles.next}>Submit</Text>
 						</TouchableOpacity>
 					</View>
-
-					{/* <View style={styles.op_submit_grp}>
-							<TouchableOpacity
-								onPress={() => this.upload2sever()}
-								style={styles.txt_submit}
-							>
-								<Text style={styles.op_btn_submit}>Submit</Text>
-							</TouchableOpacity>
-						</View> */}
 
 				</KeyboardAwareScrollView>
 			</DismissKeyboard>
