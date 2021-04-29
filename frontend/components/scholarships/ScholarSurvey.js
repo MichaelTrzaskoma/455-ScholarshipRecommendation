@@ -479,7 +479,7 @@ const items = [
 				id: 1040,
 			},
 			{
-				name: "Autism",
+				name: "Autism/Asperger Syndrome",
 				id: 1041,
 			},
 			{
@@ -511,11 +511,11 @@ const items = [
 				id: 1048,
 			},
 			{
-				name: "Deaf/Hard of Hearing",
+				name: "Hearing Impairment",
 				id: 1049,
 			},
 			{
-				name: "Deaf/Hard of Hearing Parent",
+				name: "Hearing Impairment Parent",
 				id: 1050,
 			},
 			{
@@ -539,24 +539,12 @@ const items = [
 				id: 1055,
 			},
 			{
-				name: "Dyscalculia",
-				id: 1056,
-			},
-			{
-				name: "Dysgraphia",
-				id: 1057,
-			},
-			{
 				name: "Dyslexia",
 				id: 1058,
 			},
 			{
 				name: "Epilepsy",
 				id: 1059,
-			},
-			{
-				name: "Executive Function Challenges",
-				id: 1060,
 			},
 			{
 				name: "Glycogen Storage Disease",
@@ -787,10 +775,6 @@ const items = [
 			{
 				name: "Ethiopian",
 				id: 1117,
-			},
-			{
-				name: "Fijian",
-				id: 1118,
 			},
 			{
 				name: "Filipino",
