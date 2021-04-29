@@ -11,6 +11,7 @@ import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 
 import ScholarCategory from "../../ui/scholarships/ScholarCategory";
 import ScholarRecommend from '../../ui/scholarships/ScholarRecommend';
+import { getDeviceID } from "../../functions/deviceUniqueID";
 
 export default class ScholarshipScreen extends React.Component {
 	constructor(props) {
@@ -18,9 +19,58 @@ export default class ScholarshipScreen extends React.Component {
 		this.state = {
 			userProfile: this.props.usrInfo,
 			email: this.props.usrInfo.email,
+			jwt: "",
 			// nav: this.props.navigation,
 		};
 	}
+
+	checkDeviceID()
+	{
+		let id = ""
+		id = getDeviceID()
+		console.log(id);
+		return id;
+	}
+	/*
+	fetchJWT()
+	{
+		//Correct URL and API needs to be used
+		let URL = "http://fef7a490b9ab.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+
+
+		fetch(URL, {
+			method: 'GET',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+		})
+			// format the API response into json
+			.then((response) => response.json())
+			.then((json) => {
+				// set the val to state
+				this.setState({
+					jwt: json.jwt,
+				}).catch((error) => {
+					console.log('An error happened: ' + error);
+				});
+			});
+	}
+
+	checkJWT()
+	{
+		let valid = false,
+		this.fetchJWT();
+		if(getSecureStorage("sassy").localeCompare(this.state.jwt) == 0)
+		{
+			valid = true;
+		}
+		else
+		{
+			deleteSecureStorage("signIn");
+		}
+	}
+	*/
 
 	render() {
 		console.log("Email from ScholarshipScreen.js: " + this.state.email);
