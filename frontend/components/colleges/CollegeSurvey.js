@@ -528,13 +528,15 @@ export default class CollegeSurvey extends React.Component {
 			actScore: "",
 			//email: this.props.route.params.email,
 		}
+		this.handleSAT = this.handleSAT.bind(this);
+		this.handleACT = this.handleACT.bind(this);
 	}
 
-	onSelectedItemsChange = (selectedRegions) => {
+	onSelectedRegionsChange = (selectedRegions) => {
 		this.setState({ selectedRegions });
 	};
 
-	onSelectedItemsChange2 = (selectedMajors) => {
+	onSelectedMajorsChange = (selectedMajors) => {
 		this.setState({ selectedMajors });
 	};
 
@@ -570,7 +572,7 @@ export default class CollegeSurvey extends React.Component {
 	}
 
 	checkExisting() {
-		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; //insert correct URL for user's profiel
+		let URL = "http://8c1995ad6ff1.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; //insert correct URL for user's profiel
 
 		fetch(URL, {
 			method: 'GET',
@@ -614,7 +616,7 @@ export default class CollegeSurvey extends React.Component {
 		console.log(this.props.route.params.email);
 		// console.log("Email from InputScreen2: " + this.props);
 
-		let URL = "http://cf473f950697.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+		let URL = "http://8c1995ad6ff1.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
 		fetch(URL, {
 			method: "POST",
 			headers: {
@@ -699,7 +701,7 @@ export default class CollegeSurvey extends React.Component {
 								// style={{ margin: 20 }}
 								showDropDowns={true}
 								readOnlyHeadings={true}
-								onSelectedItemsChange={this.onSelectedItemsChange}
+								onSelectedItemsChange={this.onSelectedRegionsChange}
 								selectedItems={this.state.selectedRegions}
 							/>
 						</View>
@@ -722,6 +724,7 @@ export default class CollegeSurvey extends React.Component {
 										onChangeText={this.handleSAT}
 										keyboardType="numeric"
 										style={styles.textInput}
+										maxLength={4}
 									></TextInput>
 								</View>
 							</View>
@@ -743,6 +746,7 @@ export default class CollegeSurvey extends React.Component {
 										style={styles.textInput}
 										onChangeText={this.handleSAT}
 										keyboardType="numeric"
+										maxLength={4}
 									></TextInput>
 								</View>
 							</View>
@@ -761,6 +765,7 @@ export default class CollegeSurvey extends React.Component {
 									<TextInput
 										placeholder={this.state.actScore}
 										keyboardAppearance="light"
+										maxLength={2}
 										blurOnSubmit={false}
 										onChangeText={this.handleACT}
 										keyboardType="numeric"
@@ -781,6 +786,7 @@ export default class CollegeSurvey extends React.Component {
 									<TextInput
 										placeholder="If Not Applicable Leave Blank"
 										keyboardAppearance="light"
+										maxLength={2}
 										blurOnSubmit={false}
 										onChangeText={this.handleACT}
 										keyboardType="numeric"
@@ -804,7 +810,7 @@ export default class CollegeSurvey extends React.Component {
 									selectText="Select Major(s)"
 									showDropDowns={true}
 									readOnlyHeadings={true}
-									onSelectedItemsChange={this.onSelectedItemsChange2}
+									onSelectedItemsChange={this.onSelectedMajorsChange}
 									selectedItems={this.state.selectedMajors}
 								/>
 							</View>
