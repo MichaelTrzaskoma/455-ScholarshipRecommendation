@@ -7,6 +7,7 @@ import {
 	TouchableOpacity
 } from "react-native";
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Entypo } from '@expo/vector-icons';
 
 export default function CollegeCategory() {
 	return (
@@ -22,22 +23,27 @@ export default function CollegeCategory() {
 					>
 						<View style={styles.nYBtnRow}>
 							<TouchableOpacity style={styles.nYBtn}>
+								<Entypo name="stopwatch"  style={styles.artIcon}/>
 								<View style={styles.nYTxtFiller}></View>
 								<Text style={styles.nYTxt}>New York</Text>
 							</TouchableOpacity>
 							<TouchableOpacity style={styles.nJBtn}>
+								<Entypo name="stopwatch" style={styles.artIcon} />
 								<View style={styles.nJTxtFiller}></View>
 								<Text style={styles.nJTxt}>New Jersey</Text>
 							</TouchableOpacity>
 							<TouchableOpacity style={styles.nJBtn}>
+								<Entypo name="stopwatch" style={styles.artIcon} />
 								<View style={styles.nCTxtFiller}></View>
 								<Text style={styles.nCTxt}>North Carolina</Text>
 							</TouchableOpacity>
 							<TouchableOpacity style={styles.nJBtn}>
+								<Entypo name="stopwatch" style={styles.artIcon} />
 								<View style={styles.nDTxtFiller}></View>
 								<Text style={styles.nDTxt}>North Dakota</Text>
 							</TouchableOpacity>
 							<TouchableOpacity style={styles.nJBtn}>
+								<Entypo name="stopwatch" style={styles.artIcon} />
 								<View style={styles.oHTxtFiller}></View>
 								<Text style={styles.oHTxt}>Ohio</Text>
 							</TouchableOpacity>
@@ -72,6 +78,12 @@ const styles = StyleSheet.create({
 		// marginTop: 30,
 		width: '100%',
 	},
+	artIcon: {
+		color: "rgba(128,128,128,1)",
+		fontSize: 40,
+		marginTop: 11,
+		marginLeft: 10
+	  },
 	categoryGrp: {
 		width: '90%',
 		height: 167,
