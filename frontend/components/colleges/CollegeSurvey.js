@@ -569,7 +569,7 @@ export default class CollegeSurvey extends React.Component {
 		}
 	}
 
-	checkExamScores() {
+	checkExisting() {
 		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; //insert correct URL for user's profiel
 
 		fetch(URL, {
@@ -584,8 +584,9 @@ export default class CollegeSurvey extends React.Component {
 			.then((json) => {
 				// set the val to state
 				this.setState({
-					actScore: json.actScore, //Not sure how this is stored/named in the backend
-					satScore: json.satScore, //Not sure how this is stored/named in the backend
+					actScore: json.actScore, 
+					satScore: json.satScore, 
+					selectedMajors: json.major,
 				}).catch((error) => {
 					console.log('An error happened: ' + error);
 				});
@@ -607,33 +608,6 @@ export default class CollegeSurvey extends React.Component {
 			existingScore = true;
 		}
 		return existingScore;
-	}
-
-	checkMajor() {
-		//insert correct URL for user's profile
-		let URL = "http://53858dd9f3a6.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
-
-
-		fetch(URL, {
-			method: 'GET',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-		})
-			// format the API response into json
-			.then((response) => response.json())
-			.then((json) => {
-				// set the val to state
-				this.setState({
-
-					//Not sure how this is stored/named in the backend
-					selectedMajors: json.major,
-
-				}).catch((error) => {
-					console.log('An error happened: ' + error);
-				});
-			});
 	}
 
 	upload2sever = () => {
@@ -689,6 +663,7 @@ export default class CollegeSurvey extends React.Component {
 	render() {
 		// const { selectedRegions } = this.state;
 		// this.checkMajor()
+		this.checkExisting();
 		return (
 			<KeyboardAwareScrollView
 				style={styles.container}>

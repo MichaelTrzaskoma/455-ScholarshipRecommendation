@@ -1587,7 +1587,7 @@ class InputScreen1a extends React.Component {
 	upload2sever = () => {
 		if(this.state.firstTime == false)
 		{
-			this.setState({currentMethod: "PUT"});
+			this.setState({currentMethod: "PATCH"});
 		}
 
 		this.setFirstTime(false);
