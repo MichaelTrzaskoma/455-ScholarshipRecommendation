@@ -17,22 +17,20 @@ export async function getSecureStorage(key) {
     // :val corresponding to the key
     // :return "null" if the val does not exist
     let result = await SecureStore.getItemAsync(key);
-    if (result){
+    if (result) {
         return result;
     } else {
         return "null";
     }
 }
 
-export async function deleteSecureStorage() {
-    
-    let result = await SecureStore.deleteItemAsync("signIn")
-    if(result)
-    {
+export async function deleteSecureStorage(key) {
+
+    let result = await SecureStore.deleteItemAsync(key)
+    if (result) {
         return result;
     }
-    else
-    {
+    else {
         return "null";
     }
 }

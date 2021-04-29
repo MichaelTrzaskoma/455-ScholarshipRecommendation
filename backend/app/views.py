@@ -342,6 +342,8 @@ def usrSurvey_scholarship(email):
     # REQUIREMENT: a registered user
 
     if request.method == "POST" and request.is_json:
+        # user try to append the scholarship survey 
+
         income_data = request.json
 
         # print(income_data)
@@ -374,10 +376,10 @@ def usrSurvey_scholarship(email):
             income_data['gender'],
             income_data['dob'],
             income_data['gpa'],
+            income_data['selectedResidences'],
             sat=income_data['sat_score'],
             act=income_data['act_score'],
             major=income_data['selectedMajors'],
-            state=income_data['selectedResidences'],
             race=income_data['selectedRaces'],
             ethnicity=income_data['selectedEthnicities'],
             religion=income_data['selectedReligions'],
@@ -385,6 +387,39 @@ def usrSurvey_scholarship(email):
         )
 
         return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
+    elif request.method == "GET" and request.is_json:
+        # user try to append the scholarship survey
+
+        income_data = request.json
+
+        r = user_Ref.find_one({"_id": email}, {"_id": 0, "survey_scholarship": 1})
+        result = {}
+        print(type(r))
+        # if "survey_scholarship" in r:
+        if "age" in r["survey_scholarship"]:
+            result = {
+                "existing": int(1),
+                "gender": r["survey_scholarship"]["gender"],
+                "age": r["survey_scholarship"]["age"],
+                "gpa": r["survey_scholarship"]["gpa"],
+                "states": r["survey_scholarship"]["states"],
+                "sat":  r["survey_scholarship"]["sat_score"],
+                # "act": r["survey_scholarship"]["act_score"],
+                "major": r["survey_scholarship"]["major"],
+                "race": r["survey_scholarship"]["race"],
+                "ethnicity": r["survey_scholarship"]["ethnicity"],
+                "religion": r["survey_scholarship"]["religion"],
+                "dissabilities": r["survey_scholarship"]["disabilities"],
+            }
+            
+            return make_response(jsonify({"mesg": result}), 202)
+        else:
+            result = {"existing": int(0)}
+            return make_response(jsonify({"mesg": result}), 202)
+
+    elif request.method == "PUT" and request.is_json:
+        # user try to append the scholarship survey 
+        return make_response(jsonify({"mesg": "sss"}), 202)
     else:
         return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
 

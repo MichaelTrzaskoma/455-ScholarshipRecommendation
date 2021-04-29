@@ -5,6 +5,6 @@ db = MongoClient("mongodb://localhost:27017/")
 
 subcatlist_ref = db.test.subcatlist
 
-r = subcatlist_ref.count_documents({"subCat": "Arthritis/Rheumatism"})
+r = subcatlist_ref.count_documents({"subCat": "Cystic Fibrosis"})
 
 print(r)
