@@ -684,7 +684,7 @@ export default class CollegeSurvey extends React.Component {
 
 					<View style={styles.collegeSurveyRect2}>
 
-						<Text style={styles.re_text}>Required Quesetions</Text>
+						<Text style={styles.re_text}>Required Questions</Text>
 						<Text style={styles.collegeSurveyQA1}>
 							What is you regional preference for college location?
       					</Text>
