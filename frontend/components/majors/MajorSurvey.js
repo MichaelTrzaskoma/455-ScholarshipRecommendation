@@ -94,7 +94,7 @@ export default class MajorSurvey extends React.Component {
 
 					<View style={styles.collegeSurveyRect2}>
 
-						<Text style={styles.re_text}>Required Questions</Text>
+						<Text style={styles.re_text}>Major Survey Questions</Text>
 						<Text style={styles.collegeSurveyQA1}>
 							What is your expected yearly salary? (Nationwide Average)
       					</Text>
@@ -104,7 +104,7 @@ export default class MajorSurvey extends React.Component {
                              style={{width: 200, height: 40}}
                              minimumValue={20000}
                              maximumValue={130000}
-                             minimumTrackTintColor="#4a76ff"
+                             minimumTrackTintColor="#21732e"
                              maximumTrackTintColor="#808080"
                              //value = {this.state.salaryValue}
                              //onSlidingComplete = {(value) => this.handleSalaryValue(value)}
@@ -123,8 +123,8 @@ export default class MajorSurvey extends React.Component {
                                     style={{width: 200, height: 40}}
                                     minimumValue={1}
                                     maximumValue={10}
-                                    minimumTrackTintColor="#4a76ff"
-                                    maximumTrackTintColor="#808080"
+                                    minimumTrackTintColor="#d91c37"
+                                    maximumTrackTintColor="#4a76ff"
                                     value = {this.state.unemploymentValue}
                                     //value = {this.state.UnemploymentValue}
                                     //value = {this.state.salaryValue}
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
 		// marginLeft: 5
 	},
     salaryValueDisplay: {
-		color: "#121212",
+		color: "#21732e",
 		fontSize: 16,
 		width: "100%",
 		height: 39,
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
 		marginLeft: 80,
 	},
     unemploymentValueDisplay: {
-		color: "#121212",
+		color: "#d91c37",
 		fontSize: 16,
 		width: "100%",
 		height: 39,

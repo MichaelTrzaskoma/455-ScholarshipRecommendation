@@ -23,11 +23,11 @@
             return;
         }
 
-        if (!(password.match(/[a-z]/g) && 
-            password.match(/[A-Z]/g) && 
+        if (!(password.match(/[A-Z]/g) && 
+            password.match(/[!@#$%^&*]/g) &&
             password.match(/[0-9]/g) && 
             password.length >= 8)) {
-            alert("Your password must have 1 uppercase character, 1 lowercase character, 1 digit, and be at least 8 characters long");
+            alert("Your password must have 1 uppercase character, 1 special character (!@#$%^&*), 1 digit, and be at least 8 characters long");
             return;
         }
 
