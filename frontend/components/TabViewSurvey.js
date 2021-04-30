@@ -7,6 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import ScholarSurvey from './scholarships/ScholarSurvey';
 import CollegeSurvey from './colleges/CollegeSurvey';
+import MajorSurvey from "./majors/MajorSurvey";
 // import InputScreen2 from "./InputInfoScreen2";
 
 const Stack = createStackNavigator();
@@ -25,7 +26,7 @@ function TopTapView(props) {
     <Tab.Navigator>
       <Tab.Screen name="Scholarship" component={ScholarSurvey} initialParams={ {email:props.route.params.email}}/>
       <Tab.Screen name="College" component={CollegeSurvey} initialParams={ {email:props.route.params.email}}/>
-      <Tab.Screen name="Major" component={SettingsScreen} />
+      <Tab.Screen name="Major" component={MajorSurvey} initialParams={ {email:props.route.params.email}}/>
     </Tab.Navigator>
   );
 }

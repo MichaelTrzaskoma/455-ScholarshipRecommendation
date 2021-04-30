@@ -22,11 +22,13 @@ ACTIVE_CODE_LENGTH = 64
 
 
 @app.route("/test")
-def test():
+def testJWT():
     income_data = request.json
-    r = validate_token(user_Ref, income_data['jwt'], income_data['uuid'], income_data['email'])
+    r = validate_token(
+        user_Ref, income_data['jwt'], income_data['uuid'], income_data['email'])
     # print(income_data)
     return make_response(jsonify({"msg": r}))
+
 
 @app.route("/")
 def index():
@@ -146,7 +148,7 @@ def activate():
     return "Account activated"
 
 
-@app.route("/api/v1.2/managements/users/<email>/auth", methods=["POST"])
+@app.route("/api/v1.2/managements/users/<email>/auth")
 def auth(email):
     '''
     user login feature
@@ -172,7 +174,7 @@ def auth(email):
                 --> todo: push the device to devices arr
     '''
 
-    if request.method == "POST":
+    if request.method == "GET":
 
         income_data = request.json
 
@@ -249,7 +251,6 @@ def auth(email):
                             user_Ref, email, existing_device['unique_id'], new_jwt, income_data['unique_id'], secret_code, timer)
 
                         return make_response(jsonify({"mesg": "authorized!", "token": str(new_jwt)}), 202)
-
 
                 # no matched device uuid found or doesn't ever have device info
                 # this is new login with a new device
@@ -381,20 +382,17 @@ def view_scholarship_single(scholarship_title):
     return make_response(jsonify(scholarship), 202)
 
 
-@app.route("/api/v1.2/users/id/<email>/surveys/scholarship",  methods=["GET", "POST", "PUT"])
+@app.route("/api/v1.2/users/id/<email>/surveys/scholarship",  methods=["GET", "POST", "PATCH"])
 def usrSurvey_scholarship(email):
     # add user survey to profile
     # REQUIREMENT: a registered user
 
     if request.method == "POST" and request.is_json:
+        # user try to append the scholarship survey
+
         income_data = request.json
 
         # print(income_data)
-        if "email" not in income_data: 
-            return make_response(jsonify({"mesg": "Missing email address"}), 400)
-        if len(income_data["email"]) < 1:
-            return make_response(jsonify({"mesg": "Missing email address"}), 400)
-
         if "gender" not in income_data:
             return make_response(jsonify({"mesg": "Missing gender information"}), 400)
         if len(income_data["gender"]) < 1:
@@ -409,20 +407,25 @@ def usrSurvey_scholarship(email):
             return make_response(jsonify({"mesg": "Missing gpa"}), 400)
         if len(income_data["gpa"]) < 1:
             return make_response(jsonify({"mesg": "Missing gpa"}), 400)
-        
+
+        if "selectedResidences" not in income_data:
+            return make_response(jsonify({"mesg": "Missing states"}), 400)
+        if len(income_data["selectedResidences"]) < 1:
+            return make_response(jsonify({"mesg": "Missing states"}), 400)
+
         # if validate_token(user_Ref, income_data["jwt"], income_data["uuid"], income_data["email"]):
 
         updtScholarSurvey(
             db,
             user_Ref,
-            income_data['email'],
+            email,
             income_data['gender'],
             income_data['dob'],
             income_data['gpa'],
+            income_data['selectedResidences'],
             sat=income_data['sat_score'],
             act=income_data['act_score'],
             major=income_data['selectedMajors'],
-            state=income_data['selectedResidences'],
             race=income_data['selectedRaces'],
             ethnicity=income_data['selectedEthnicities'],
             religion=income_data['selectedReligions'],
@@ -430,6 +433,73 @@ def usrSurvey_scholarship(email):
         )
 
         return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
+
+    elif request.method == "GET" and request.is_json:
+        # user try to append the scholarship survey
+
+        # TODO: check the user auth
+
+        income_data = request.json
+
+        r = user_Ref.count_documents({"_id": email})
+        result = {}
+        # print(type(r))
+        # if "survey_scholarship" in r:
+        if r == 1:
+            resource = user_Ref.find_one(
+                {"_id": email}, {"_id": 0, "survey_scholarship": 1})
+            if "survey_scholarship" in resource:
+                result = {
+                    "existing": int(1),
+                    "gender": resource["survey_scholarship"]["gender"],
+                    "age": resource["survey_scholarship"]["age"],
+                    "gpa": resource["survey_scholarship"]["gpa"],
+                    "states": resource["survey_scholarship"]["states"],
+                    "sat":  resource["survey_scholarship"]["sat_score"],
+                    "act": resource["survey_scholarship"]["act_score"],
+                    "major": resource["survey_scholarship"]["major"],
+                    "race": resource["survey_scholarship"]["race"],
+                    "ethnicity": resource["survey_scholarship"]["ethnicity"],
+                    "religion": resource["survey_scholarship"]["religion"],
+                    "dissabilities": resource["survey_scholarship"]["disabilities"],
+                }
+
+                return make_response(jsonify({"mesg": result}), 202)
+
+        result = {"existing": int(0)}
+        return make_response(jsonify({"mesg": result}), 202)
+
+    elif request.method == "PATCH" and request.is_json:
+        # user try to append the scholarship survey
+
+        # TODO: check user's auth
+
+        income_data = request.json
+
+        r = user_Ref.count_documents({"_id": email})
+
+        if r == 1:
+            updtScholarSurvey(
+                db,
+                user_Ref,
+                email,
+                income_data['gender'],
+                income_data['dob'],
+                income_data['gpa'],
+                income_data['selectedResidences'],
+                sat=income_data['sat_score'],
+                act=income_data['act_score'],
+                major=income_data['selectedMajors'],
+                race=income_data['selectedRaces'],
+                ethnicity=income_data['selectedEthnicities'],
+                religion=income_data['selectedReligions'],
+                dissabilities=income_data['selectedDisabilities'],
+            )
+
+            return make_response(jsonify({"mesg": "Your scholarship survey has successfully modified!"}), 202)
+
+        return make_response(jsonify({"mesg": "Failed to modify your survey!"}), 400)
+    
     else:
         return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
 
@@ -445,6 +515,228 @@ def getRecommend_scholarship(email):
 
     if request.method == "GET":
         result = filter_results(user_Ref, scholar_ref, email)
+        return make_response(jsonify(result), 202)
+    else:
+        return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
+
+
+@app.route("/api/v1.2/users/id/<email>/surveys/college",  methods=["GET", "POST", "PATCH"])
+def usrSurvey_college(email):
+    if request.method == "POST" and request.is_json:
+
+        # TODO: validate the user auth and jwt
+
+        income_data = request.json
+        
+        # validate the incoming data
+        if "regions" not in income_data:
+            return make_response(jsonify({"mesg": "Missing region information"}), 400)
+        if len(income_data["regions"]) < 1:
+            return make_response(jsonify({"mesg": "Missing region information"}), 400)
+        
+        if "majors" not in income_data:
+            return make_response(jsonify({"mesg": "Missing major information"}), 400)
+        if len(income_data["majors"]) < 1:
+            return make_response(jsonify({"mesg": "Missing major information"}), 400)
+        
+        # ==================== PLACEHOLDER ====================
+        # TODO: some sort of func to append the data into db
+        # append_college_survey(
+        #     db,
+        #     user_Ref,
+        #     income_data["regions"],
+        #     income_data["majors"],
+        #     income_data["sat_score"],
+        #     income_data["act_score"],
+        # )
+        return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
+    
+    elif request.method == "GET" and request.is_json:
+        # TODO: validate the user auth and jwt
+
+        income_data = request.json
+
+        r = user_Ref.count_documents({"_id": email})
+        result = {}
+        
+        # ==================== PLACEHOLDER ====================
+        # validate the incoming data
+        # if "regions" not in income_data:
+        #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
+        # if len(income_data["regions"]) < 1:
+        #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
+        
+        # if "majors" not in income_data:
+        #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
+        # if len(income_data["majors"]) < 1:
+        #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
+        
+        if r == 1:
+            resource = user_Ref.find_one({"_id": email}, {"_id": 0, "survey_college": 1})
+
+            if "survey_college" in resource:
+                result = {
+                    "existing": int(1),
+                    "regions": resource["survey_college"]["regions"],
+                    "majors": resource["survey_college"]["majors"],
+                    "sat_score": resource["survey_college"]["sat_score"],
+                    "act_score": resource["survey_college"]["act_score"],
+                }
+
+                return make_response(jsonify({"mesg": result}), 202)
+
+        result = {"existing": int(0)}
+        return make_response(jsonify({"mesg": result}), 202)
+
+    elif request.method == "PATCH" and request.is_json:
+        # user try to append the college survey
+
+        # TODO: check user's auth and jwt
+        income_data = request.json
+        r = user_Ref.count_documents({"_id": email})
+
+        if r == 1:
+            # ==================== PLACEHOLDER ====================
+            # TODO: some sort of func to append the data into db
+            # append_college_survey(
+            #     db,
+            #     user_Ref,
+            #     income_data["regions"],
+            #     income_data["majors"],
+            #     income_data["sat_score"],
+            #     income_data["act_score"],
+            # )
+            return make_response(jsonify({"mesg": "Your college survey has successfully modified!"}), 202)
+        
+        return make_response(jsonify({"mesg": "Failed to modify your survey!"}), 400)
+
+    else:
+        return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
+
+
+@app.route("/api/v1.2/users/id/<email>/recommends/college",  methods=["GET"])
+def getRecommend_college(email):
+    # get scholarship recommendations
+    # INPUT: email (string)
+    # OUTPUT: scholarship title, amount, and deadline
+    # updtUser(db, user_Ref, "hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
+    #      "Computer Science", race=["Asian/Pacific Islander"], ethnicity=["Chinese"],
+    #      religion=["Buddhist"])
+
+    if request.method == "GET":
+        # result = filter_results(user_Ref, scholar_ref, email)
+        result = "x"
+        return make_response(jsonify(result), 202)
+    else:
+        return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
+
+
+@app.route("/api/v1.2/users/id/<email>/surveys/major",  methods=["GET", "POST", "PATCH"])
+def usrSurvey_major(email):
+    if request.method == "POST" and request.is_json:
+
+        # TODO: validate the user auth and jwt
+
+        income_data = request.json
+        
+        # validate the incoming data
+        if "regions" not in income_data:
+            return make_response(jsonify({"mesg": "Missing region information"}), 400)
+        if len(income_data["regions"]) < 1:
+            return make_response(jsonify({"mesg": "Missing region information"}), 400)
+        
+        if "majors" not in income_data:
+            return make_response(jsonify({"mesg": "Missing major information"}), 400)
+        if len(income_data["majors"]) < 1:
+            return make_response(jsonify({"mesg": "Missing major information"}), 400)
+        
+        # ==================== PLACEHOLDER ====================
+        # TODO: some sort of func to append the data into db
+        # append_college_survey(
+        #     db,
+        #     user_Ref,
+        #     income_data["regions"],
+        #     income_data["majors"],
+        #     income_data["sat_score"],
+        #     income_data["act_score"],
+        # )
+        return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
+    
+    elif request.method == "GET" and request.is_json:
+        # TODO: validate the user auth and jwt
+
+        income_data = request.json
+
+        r = user_Ref.count_documents({"_id": email})
+        result = {}
+        
+        # ==================== PLACEHOLDER ====================
+        # validate the incoming data
+        # if "regions" not in income_data:
+        #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
+        # if len(income_data["regions"]) < 1:
+        #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
+        
+        # if "majors" not in income_data:
+        #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
+        # if len(income_data["majors"]) < 1:
+        #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
+        
+        if r == 1:
+            resource = user_Ref.find_one({"_id": email}, {"_id": 0, "survey_college": 1})
+
+            if "survey_college" in resource:
+                result = {
+                    "existing": int(1),
+                    "regions": resource["survey_college"]["regions"],
+                    "majors": resource["survey_college"]["majors"],
+                    "sat_score": resource["survey_college"]["sat_score"],
+                    "act_score": resource["survey_college"]["act_score"],
+                }
+
+                return make_response(jsonify({"mesg": result}), 202)
+
+        result = {"existing": int(0)}
+        return make_response(jsonify({"mesg": result}), 202)
+
+    elif request.method == "PATCH" and request.is_json:
+        # user try to append the college survey
+
+        # TODO: check user's auth and jwt
+        income_data = request.json
+        r = user_Ref.count_documents({"_id": email})
+
+        if r == 1:
+            # ==================== PLACEHOLDER ====================
+            # TODO: some sort of func to append the data into db
+            # append_college_survey(
+            #     db,
+            #     user_Ref,
+            #     income_data["regions"],
+            #     income_data["majors"],
+            #     income_data["sat_score"],
+            #     income_data["act_score"],
+            # )
+            return make_response(jsonify({"mesg": "Your college survey has successfully modified!"}), 202)
+        
+        return make_response(jsonify({"mesg": "Failed to modify your survey!"}), 400)
+
+    else:
+        return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
+
+
+@app.route("/api/v1.2/users/id/<email>/recommends/major",  methods=["GET"])
+def getRecommend_major(email):
+    # get scholarship recommendations
+    # INPUT: email (string)
+    # OUTPUT: scholarship title, amount, and deadline
+    # updtUser(db, user_Ref, "hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
+    #      "Computer Science", race=["Asian/Pacific Islander"], ethnicity=["Chinese"],
+    #      religion=["Buddhist"])
+
+    if request.method == "GET":
+        # result = filter_results(user_Ref, scholar_ref, email)
+        result = "x"
         return make_response(jsonify(result), 202)
     else:
         return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)

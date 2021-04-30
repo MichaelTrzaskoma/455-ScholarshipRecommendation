@@ -118,7 +118,14 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 
 | Endpoint | Method(s) | Description |
 | :--- | :--- | :--- |
-| /api/v1.2/users/id/<email\>/surveys/scholarship | POST | Insert client's scholarship survey detail into db. |
+| /api/v1.2/managements/users/signup | GET | Allows the user end to sign up an account. |
+| /api/v1.2/managements/users/thankyou | GET, POST | Validate the user's token when sign up an account. |
+| /api/v1.2/managements/users/<email\>/auth | GET | Authenticate the user's device and account by using email address, account password, and UUID, then return a JWT code as a token.  |
+| /api/v1.2/managements/users/forgotpassword | GET | Allows the users to reset their password. Accessible by the project internally only. |
+| /api/v1.2/users/id/<email\>/surveys/scholarship | GET, POST, PATCH | Retrieve, Append, and modify client's scholarship survey detail into db. |
 | /api/v1.2/users/id/<email\>/recommends/scholarship | GET | View a list of recommended scholarships by providing client's email. |
-
+| /api/v1.2/users/id/<email\>/surveys/college | GET, POST, PATCH | Retrieve, Append, and modify client's college survey detail into db. |
+| /api/v1.2/users/id/<email\>/recommends/college | GET | View a list of recommended college by providing client's email. |
+| /api/v1.2/users/id/<email\>/surveys/major | GET, POST, PATCH | Retrieve, Append, and modify client's major survey detail into db. |
+| /api/v1.2/users/id/<email\>/recommends/major | GET | View a list of recommended major by providing client's email. |
 </details>

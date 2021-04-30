@@ -16,12 +16,10 @@ import {
 //import DatePicker from "@dietime/react-native-date-picker";
 //import DatePicker from 'react-native-datepicker'
 import DropDownPicker from 'react-native-dropdown-picker';
-import { Card } from 'react-native-elements';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { MaterialIcons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import CollapsibleView from "@eliav2/react-native-collapsible-view";
-import { CheckBox } from 'react-native-elements/dist/checkbox/CheckBox';
 // import { Feather } from '@expo/vector-icons';
 
 
@@ -39,10 +37,6 @@ const items = [
 			{
 				name: 'Design',
 				id: 12,
-			},
-			{
-				name: 'Film and Photography',
-				id: 13,
 			},
 			{
 				name: 'Film',
@@ -67,16 +61,20 @@ const items = [
 				id: 21,
 			},
 			{
-				name: 'Business and Management',
+				name: 'Business',
 				id: 22,
 			},
 			{
-				name: 'Finance and Accounting',
+				name: 'Finance',
 				id: 23,
 			},
 			{
-				name: 'Sports Management',
+				name: 'Accounting',
 				id: 24,
+			},
+			{
+				name: 'Sports Management',
+				id: 25,
 			},
 		],
 	},
@@ -111,16 +109,8 @@ const items = [
 				id: 43,
 			},
 			{
-				name: 'Kinesiology',
-				id: 44,
-			},
-			{
-				name: 'Physical Therapy',
+				name: 'Physical Therapy/Rehabilitation',
 				id: 45,
-			},
-			{
-				name: "Kinesiology and Physical Therapy",
-				id: 46,
 			},
 			{
 				name: 'Medical',
@@ -187,10 +177,6 @@ const items = [
 			{
 				name: 'Psychology',
 				id: 592,
-			},
-			{
-				name: 'Public Policy and Social Services',
-				id: 593,
 			},
 			{
 				name: "Public Policy",
@@ -273,10 +259,6 @@ const items = [
 			{
 				name: 'Culinary Arts',
 				id: 82,
-			},
-			{
-				name: 'Mechanics',
-				id: 83,
 			},
 		],
 	},
@@ -481,7 +463,7 @@ const items = [
 				id: 1040,
 			},
 			{
-				name: "Autism",
+				name: "Autism/Asperger Syndrome",
 				id: 1041,
 			},
 			{
@@ -513,11 +495,11 @@ const items = [
 				id: 1048,
 			},
 			{
-				name: "Deaf/Hard of Hearing",
+				name: "Hearing Impairment",
 				id: 1049,
 			},
 			{
-				name: "Deaf/Hard of Hearing Parent",
+				name: "Hearing Impaired Parent",
 				id: 1050,
 			},
 			{
@@ -541,24 +523,12 @@ const items = [
 				id: 1055,
 			},
 			{
-				name: "Dyscalculia",
-				id: 1056,
-			},
-			{
-				name: "Dysgraphia",
-				id: 1057,
-			},
-			{
 				name: "Dyslexia",
 				id: 1058,
 			},
 			{
 				name: "Epilepsy",
 				id: 1059,
-			},
-			{
-				name: "Executive Function Challenges",
-				id: 1060,
 			},
 			{
 				name: "Glycogen Storage Disease",
@@ -789,10 +759,6 @@ const items = [
 			{
 				name: "Ethiopian",
 				id: 1117,
-			},
-			{
-				name: "Fijian",
-				id: 1118,
 			},
 			{
 				name: "Filipino",
@@ -1130,7 +1096,7 @@ const items = [
 				id: 1201,
 			},
 			{
-				name: 'Flordia',
+				name: 'Florida',
 				id: 1202,
 			},
 			{
@@ -1286,7 +1252,7 @@ const items = [
 				id: 1240,
 			},
 			{
-				name: 'West Virgina',
+				name: 'West Virginia',
 				id: 1241,
 			},
 			{
@@ -1296,52 +1262,6 @@ const items = [
 			{
 				name: 'Wyoming',
 				id: 1243,
-			},
-		],
-	},
-	{
-		name: 'Canada',
-		id: 1244,
-		children: [
-			{
-				name: 'Alberta',
-				id: 1245,
-			},
-			{
-				name: 'British Columbia',
-				id: 1246,
-			},
-			{
-				name: 'Manitoba',
-				id: 1247,
-			},
-			{
-				name: 'New Brunswick',
-				id: 1248,
-			},
-			{
-				name: 'Newfoundland and Labrador',
-				id: 1249,
-			},
-			{
-				name: 'Nova Scotia',
-				id: 1250,
-			},
-			{
-				name: 'Ontario',
-				id: 1251,
-			},
-			{
-				name: 'Prince Edward Island',
-				id: 1252,
-			},
-			{
-				name: 'Quebec',
-				id: 1253,
-			},
-			{
-				name: 'Saskatchewan',
-				id: 1254,
 			},
 		],
 	},
@@ -1380,7 +1300,7 @@ class InputScreen1a extends React.Component {
 			selectedReligions: [],
 			selectedDisabilities: [],
 			selectedEthnicities: [],
-			firstTime: true,
+			firstTime: 0,
 			currentMethod: "POST",
 			
 		};
@@ -1489,43 +1409,44 @@ class InputScreen1a extends React.Component {
 	};
 
 	onSelectedMajorsChange = (selectedMajors) => {
-		//If the user has selected Business and Management (Business Management for scholarships.com) and they have not already selected Business Management
-		if (this.findPosition("Business and Management", selectedMajors) != -1 && this.findPosition("Business Management", selectedMajors) == -1) {
-			selectedMajors.push("Business Management");
-		}
-		//If the user has selected K and PT which is not supported by scholarships.com (listed separately)
-		if (this.findPosition("Kinesiology and Physical Therapy", selectedMajors) != -1) {
-			//If the user has not selected Kinesiology, it will be added to the array
-			if (this.findPosition("Kinesiology", selectedMajors) == -1) {
-				selectedMajors.push("Kinesiology");
-			}
-			//If the user has not selected Physical Therapy, it will be added to the array
-			if (this.findPosition("Physical Therapy", selectedMajors) == -1) {
-				selectedMajors.push("Physical Therapy");
-			}
-		}
-		//If the user has selected Public Policy and Social Services (separate for scholarships.com) 
-		if (this.findPosition("Public Policy and Social Services", selectedMajors) != -1) {
-			//If the user hasn't selected Public Policy, it will be added to the array
-			if (this.findPosition("Public Policy", selectedMajors) == -1) {
-				selectedMajors.push("Public Policy");
-			}
-			//If the user has not seelected Social Services, it will be added to the array
-			if (this.findPosition("Social Services", selectedMajors) == -1) {
-				selectedMajors.push("Social Services");
-			}
-		}
-		//If the user has selected Film and Photography (separately listed for scholarships.com)
-		if (this.findPosition("Film and Photography", selectedMajors) != -1) {
-			//If the user hasn't selected Film, it will be added to the array
-			if (this.findPosition("Film", selectedMajors) == -1) {
-				selectedMajors.push("Film");
-			}
-			//If the user hasn't selected Photography, it will be added to the array
-			if (this.findPosition("Photography", selectedMajors) == -1) {
-				selectedMajors.push("Photography");
-			}
-		}
+		// console.log(selectedMajors);
+		// //If the user has selected Business and Management (Business Management for scholarships.com) and they have not already selected Business Management
+		// if (this.findPosition("Business and Management", selectedMajors) != -1 && this.findPosition("Business Management", selectedMajors) == -1) {
+		// 	selectedMajors.push("Business Management");
+		// }
+		// //If the user has selected K and PT which is not supported by scholarships.com (listed separately)
+		// if (this.findPosition("Kinesiology and Physical Therapy", selectedMajors) != -1) {
+		// 	//If the user has not selected Kinesiology, it will be added to the array
+		// 	if (this.findPosition("Kinesiology", selectedMajors) == -1) {
+		// 		selectedMajors.push("Kinesiology");
+		// 	}
+		// 	//If the user has not selected Physical Therapy, it will be added to the array
+		// 	if (this.findPosition("Physical Therapy", selectedMajors) == -1) {
+		// 		selectedMajors.push("Physical Therapy");
+		// 	}
+		// }
+		// //If the user has selected Public Policy and Social Services (separate for scholarships.com) 
+		// if (this.findPosition("Public Policy and Social Services", selectedMajors) != -1) {
+		// 	//If the user hasn't selected Public Policy, it will be added to the array
+		// 	if (this.findPosition("Public Policy", selectedMajors) == -1) {
+		// 		selectedMajors.push("Public Policy");
+		// 	}
+		// 	//If the user has not seelected Social Services, it will be added to the array
+		// 	if (this.findPosition("Social Services", selectedMajors) == -1) {
+		// 		selectedMajors.push("Social Services");
+		// 	}
+		// }
+		// //If the user has selected Film and Photography (separately listed for scholarships.com)
+		// if (this.findPosition("Film and Photography", selectedMajors) != -1) {
+		// 	//If the user hasn't selected Film, it will be added to the array
+		// 	if (this.findPosition("Film", selectedMajors) == -1) {
+		// 		selectedMajors.push("Film");
+		// 	}
+		// 	//If the user hasn't selected Photography, it will be added to the array
+		// 	if (this.findPosition("Photography", selectedMajors) == -1) {
+		// 		selectedMajors.push("Photography");
+		// 	}
+		// }
 		this.setState({ selectedMajors });
 	};
 
@@ -1545,8 +1466,8 @@ class InputScreen1a extends React.Component {
 		this.setState({ selectedEthnicities });
 	};
 
-	setFirstTime = (bool) => {
-		this.setState({firstTime: bool});
+	setFirstTime = (int) => {
+		this.setState({firstTime: int});
 	};
 
 	checkGender() {
@@ -1603,12 +1524,12 @@ class InputScreen1a extends React.Component {
 	}
 
 	upload2sever = () => {
-		if(this.state.firstTime == false)
+		if(this.state.firstTime == 1)
 		{
-			this.setState({currentMethod: "PUT"});
+			this.setState({currentMethod: "PATCH"});
 		}
 
-		this.setFirstTime(false);
+		this.setFirstTime(1);
 		
 		console.log(JSON.stringify({
 			email: this.state.email,
@@ -1623,7 +1544,7 @@ class InputScreen1a extends React.Component {
 			selectedEthnicities: this.state.selectedEthnicities,
 			selectedReligions: this.state.selectedReligions,
 			selectedDisabilities: this.state.selectedDisabilities,
-			firstTimeScholarSurvey: this.firstTime,
+			existing: this.firstTime,
 		}));
 
 		// console.log("Email from InputScreen2: " + this.props);
@@ -1648,7 +1569,7 @@ class InputScreen1a extends React.Component {
 				selectedEthnicities: this.state.selectedEthnicities,
 				selectedReligions: this.state.selectedReligions,
 				selectedDisabilities: this.state.selectedDisabilities,
-				firstTimeScholarSurvey: this.state.firstTime,
+				existing: this.state.firstTime,
 			}),
 		})
 
@@ -1771,7 +1692,7 @@ class InputScreen1a extends React.Component {
 					selectedEthnicities: json.ethnicity,
 
 					//This field needs to be added to the backend
-					firstTime: json.firstTimeScholarSurvey,
+					firstTime: json.existing,
 
 				}).catch((error) => {
 					console.log('An error happened: ' + error);
@@ -1844,7 +1765,7 @@ class InputScreen1a extends React.Component {
 						<View style={styles.input3_grp}>
 							<Text style={styles.txt_display}>State of Residence and/or Schooling</Text>
 							<SectionedMultiSelect
-								items={items.slice(items.length - 2)}
+								items={items.slice(items.length - 1)}
 								IconRenderer={MaterialIcons}
 								uniqueKey="name"
 								subKey="children"
@@ -1865,7 +1786,7 @@ class InputScreen1a extends React.Component {
 									keyboardType="numeric"
 									style={styles.input4}
 									maxLength={4}
-								></TextInput>
+								/>
 								:
 								<TextInput
 									onChangeText={this.handleGPA}
@@ -1873,7 +1794,7 @@ class InputScreen1a extends React.Component {
 									keyboardType="numeric"
 									style={styles.input4}
 									maxLength={4}
-								></TextInput>
+								/>
 							}
 						</View>
 					</View>
@@ -1959,7 +1880,7 @@ class InputScreen1a extends React.Component {
 										keyboardType="numeric"
 										style={styles.input6}
 										maxLength={4}
-									></TextInput>
+									/>
 									:
 									<TextInput
 										onChangeText={this.handleSAT}
@@ -1967,7 +1888,7 @@ class InputScreen1a extends React.Component {
 										keyboardType="numeric"
 										style={styles.input6}
 										maxLength={4}
-									></TextInput>
+									/>
 								}
 								{this.checkACT() ?
 									<TextInput
@@ -1976,7 +1897,7 @@ class InputScreen1a extends React.Component {
 										keyboardType="numeric"
 										style={styles.input61}
 										maxLength={2}
-									></TextInput>
+									/>
 									:
 									<TextInput
 										onChangeText={this.handleACT}
@@ -1984,7 +1905,7 @@ class InputScreen1a extends React.Component {
 										keyboardType="numeric"
 										style={styles.input61}
 										maxLength={2}
-									></TextInput>
+									/>
 								}
 							</View>
 
@@ -2017,15 +1938,6 @@ class InputScreen1a extends React.Component {
 							<Text style={styles.next}>Submit</Text>
 						</TouchableOpacity>
 					</View>
-
-					{/* <View style={styles.op_submit_grp}>
-							<TouchableOpacity
-								onPress={() => this.upload2sever()}
-								style={styles.txt_submit}
-							>
-								<Text style={styles.op_btn_submit}>Submit</Text>
-							</TouchableOpacity>
-						</View> */}
 
 				</KeyboardAwareScrollView>
 			</DismissKeyboard>

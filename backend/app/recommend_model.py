@@ -120,10 +120,10 @@ def updtScholarSurvey(
         gender,
         age,
         gpa,
+        state,
         sat='',
         act='',
         major=[],
-        state=[],
         race=[],
         ethnicity=[],
         religion=[],
@@ -466,7 +466,7 @@ def filter_results(user_Ref, scholar_ref, userId):
     # Output -> List of strings, these are id's that can be used to pull information
     filterVal = 0.20  # Need to do more testing for best value
     userCursor = user_Ref.find(
-        {"email": userId}, {"_id": 0})
+        {"_id": userId}, {"_id": 0})
     userProf = userCursor[0]
     userTerms = userProf.get('survey_scholarship').get('terms')
     userBin = userProf.get('survey_scholarship').get('binary')
