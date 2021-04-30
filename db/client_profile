@@ -1,0 +1,12 @@
+[{
+  "_id": {
+    "$oid": "60872a94ead9ea188e39900b"
+  },
+  "email": "hchen98x@gmail.com",
+  "password": "Sassy.1234",
+  "activationCode": "8PzSp7Y9iSKooMpm96XL02QMS00JViCQYEJ09qhrCtJWh9cvCwHQpizvYFdinyCF",
+  "activationDate": {
+    "$date": "2021-04-26T17:03:16.282Z"
+  },
+  "active": 1
+}]

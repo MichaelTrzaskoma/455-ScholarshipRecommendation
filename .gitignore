@@ -1,17 +1,21 @@
 *.pem
 
 config.py
+env/
 
 **/node_modules
 node_modules/**
 
 /backend/__pycache__/**
+__pycache__/
 __pycache__/**
 __pycache__/**/*
 /backend/.vscode/**
 .vscode/**
 
 *.swp
+*.pyc
+**/*.pyc
 
 /frontend/node_modules/**/*
 /frontend/.expo/*
@@ -28,6 +32,7 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+
 
 # macOS
 .DS_Store

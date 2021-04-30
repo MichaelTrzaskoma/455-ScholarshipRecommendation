@@ -5,7 +5,9 @@ export async function saveSecureStorage(key, value) {
     // INPUT:
     // :key (str)
     // :val (str) data that you want to store
+    // OUTOUT: return true if store successfully
     await SecureStore.setItemAsync(key, value);
+    return true;
 }
 
 export async function getSecureStorage(key) {
@@ -14,5 +16,23 @@ export async function getSecureStorage(key) {
     // OUTPUT
     // :val corresponding to the key
     // :return "null" if the val does not exist
-    return await SecureStore.getItemAsync(key);
+    let result = await SecureStore.getItemAsync(key);
+    if (result){
+        return result;
+    } else {
+        return "null";
+    }
+}
+
+export async function deleteSecureStorage() {
+    
+    let result = await SecureStore.deleteItemAsync("signIn")
+    if(result)
+    {
+        return result;
+    }
+    else
+    {
+        return "null";
+    }
 }

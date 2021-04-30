@@ -5,19 +5,11 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { createStackNavigator } from "@react-navigation/stack";
 // import AddCollege from '../ui/AddCollege';
 
-import InputInfoScreen1 from './InputInfoScreen1';
-import CollegeSurvey from './CollegeSurvey';
-import InputScreen2 from "./InputInfoScreen2";
+import ScholarSurvey from './scholarships/ScholarSurvey';
+import CollegeSurvey from './colleges/CollegeSurvey';
+// import InputScreen2 from "./InputInfoScreen2";
 
 const Stack = createStackNavigator();
-
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <InputInfoScreen1 />
-    </View>
-  );
-}
 
 function SettingsScreen() {
   return (
@@ -27,27 +19,24 @@ function SettingsScreen() {
   );
 }
 
-function TopTapView() {
+function TopTapView(props) {
+  // console.log(props.route.params.email);
   return (
-
     <Tab.Navigator>
-      <Tab.Screen name="Scholarship" component={InputInfoScreen1} />
-      <Tab.Screen name="College" component={CollegeSurvey} />
+      <Tab.Screen name="Scholarship" component={ScholarSurvey} initialParams={ {email:props.route.params.email}}/>
+      <Tab.Screen name="College" component={CollegeSurvey} initialParams={ {email:props.route.params.email}}/>
       <Tab.Screen name="Major" component={SettingsScreen} />
     </Tab.Navigator>
-
   );
 }
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function TabViewSurvey() {
+export default function TabViewSurvey(props) {
+  // console.log(props.route.params.email);
   return (
-
     // Since NavigationContainer is used in App.js, this is independent NavigationContainer from the one in App.js 
-    <NavigationContainer
-      independent={true}
-    >
+    <NavigationContainer independent={true} >
       
       {/* TopMultiView (TopTapView) has been nested in StackNavigator */}
       <Stack.Navigator>
@@ -55,14 +44,15 @@ export default function TabViewSurvey() {
           name="TopTapView"
           component={TopTapView}
           options={{ headerShown: false }}
+          initialParams = { { email: props.route.params.email} }
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name={"InputScreen2"}
           component={InputScreen2}
           options={{ headerShown: false }}
         // options={{ title: "Optional Info", email: this.state.usrProfile.email }}
         // initialParams={{ email: this.state.usrProfile.email }}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

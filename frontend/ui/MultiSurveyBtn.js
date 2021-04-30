@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import EntypoIcon from "react-native-vector-icons/Entypo";
-import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
+import { Entypo, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 // import TabViewSurvey from '../components/TabViewSurvey';
 
@@ -13,20 +12,21 @@ export default function AddProfile(email) {
 	return (
 		<TouchableOpacity style={styles.button}
 			onPress={() => navigation.navigate('TabViewSurvey', {
-				"title": "Input Required Info", 
+				"title": "Input Required Info",
 				"email": email.email,
 			})}
+			// onPress={() => console.log(email)}
 		>
 			<View style={styles.addProfileDetailIconRow}>
-				<MaterialIconsIcon
+				<MaterialIcons
 					name="playlist-add"
-					style={styles.addProfileDetailIcon}></MaterialIconsIcon>
+					style={styles.addProfileDetailIcon}></MaterialIcons>
 				<Text style={styles.addProfileDetailTxt}>Take Survey</Text>
 			</View>
 			<View style={styles.addProfileDetailIconRowFiller}></View>
-			<EntypoIcon
+			<Entypo
 				name="chevron-small-right"
-				style={styles.optBtn_arrowRightICON}></EntypoIcon>
+				style={styles.optBtn_arrowRightICON}></Entypo>
 		</TouchableOpacity>
 
 	);
@@ -36,7 +36,8 @@ export default function AddProfile(email) {
 const styles = StyleSheet.create({
 	button: {
 		height: 50,
-		backgroundColor: 'rgba(230, 230, 230,1)',
+		// backgroundColor: 'rgba(230, 230, 230,1)',
+		backgroundColor: 'white',
 		flexDirection: 'row',
 	},
 	addProfileDetailIconRow: {

@@ -1,10 +1,10 @@
-import re,requests,random
+import jwt
+from pymongo import MongoClient
 
-ua_list = []
-userlist=re.sub('\r\n', '\n', str(requests.get('http://pastebin.com/raw/VtUHCwE6').text)).splitlines()
-for x in userlist:ua_list.append(x)
-random.shuffle(ua_list)
-def get_useragent():return(str(random.choice(ua_list)))
-pers_UA=get_useragent()
+db = MongoClient("mongodb://localhost:27017/")
 
-print(pers_UA)
+subcatlist_ref = db.test.subcatlist
+
+r = subcatlist_ref.count_documents({"subCat": "Arthritis/Rheumatism"})
+
+print(r)

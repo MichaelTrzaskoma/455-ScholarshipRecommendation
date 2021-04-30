@@ -10,13 +10,13 @@ from numpy.linalg import norm
 zcdb = ZipCodeDatabase()
 
 #db = MongoClient('localhost', 27017)
-
+ 
 # This file is gonna be imported by views.py
 # therefore, a db will be called in views.py
 # the db obj will be passed from the views.py
 # ===================================
 #scholar_ref = db.test.scholarships
-#user_Ref = db.test.client_profile
+# user_Ref = db.test.client_profile
 # table_Ref = db.collection("Index Table").document("Terms")
 # refList = table_Ref.get().to_dict().get('Terms')
 
@@ -24,12 +24,12 @@ zcdb = ZipCodeDatabase()
 def updtUser(
         db,
         user_Ref,
-        userEmail,
+        email,
         gender,
-        dob,
-        zipC,
+        age,
+        state,
         gpa,
-        major='',
+        major=[],
         race=[],
         ethnicity=[],
         religion=[],
@@ -37,14 +37,13 @@ def updtUser(
         sat='',):
     # Used to initiation user or update their information, specify when using optional attributes
     list1 = [gender]
-    list1.append(catAge(dob))
-    list1.append(catState(zipC))
+    list1.append(catAge(age))
     list1.append(catGPA(gpa))
 
-    if major != '':
-        list1.append(major)
-    
-    list2 = [race, religion, dissabilities, ethnicity]
+    if major !=[]:
+        majorUpdt = catMajor(major)
+
+    list2 = [state, race, religion, dissabilities, ethnicity, majorUpdt]
     for i in range(len(list2)):
         if list2[i] != []:
             list1.extend(list2[i])
@@ -60,6 +59,7 @@ def updtUser(
         "email": userEmail,
         "paswrd": "place holder 2",
         "jwt": "place holder 3",
+        # max 15 items
         "recent_viewed": [
             {
                 "type": "scholarship",
@@ -74,6 +74,7 @@ def updtUser(
                 "title": "place holder 6",
             },
         ],
+        # no limit to bookmark item
         "bookmarks": [
             {
                 "type": "scholarship",
@@ -90,8 +91,8 @@ def updtUser(
         ],
         "survey_scholarship": {
             "gender": gender,
-            "dob": dob,
-            "zip": zipC,
+            "age": age,
+            "states": state,
             "gpa": gpa,
             "major": major,
             "race": race,
@@ -100,7 +101,7 @@ def updtUser(
             "disabilities": dissabilities,
             "sat_score": sat,
             "terms": list1,
-            "binary": binary,
+            "binary": binary, 
         },
         "survey_college": {
             "x": "place holder 16",
@@ -111,13 +112,75 @@ def updtUser(
     })
 
 
+#Focus on this method 
+def updtScholarSurvey(
+        db,
+        user_Ref,
+        email,
+        gender,
+        age,
+        gpa,
+        sat='',
+        act='',
+        major=[],
+        state=[],
+        race=[],
+        ethnicity=[],
+        religion=[],
+        dissabilities=[]):
+
+    list1 = [gender]
+    list1.append(catAge(age))
+    list1.append(catGPA(gpa))
+
+    if major !=[]:
+        majorUpdt = catMajor(major)
+
+    print(majorUpdt)
+    list2 = [state, race, religion, dissabilities, ethnicity, majorUpdt]
+    for i in range(len(list2)):
+        if list2[i] != []:
+            list1.extend(list2[i])
+        
+
+    if (sat != ''):
+        if(catSat != ''):
+            list1.append(catSat(sat))
+
+    if (act != ''):
+        if(catAct != ''):
+            list1.append(catAct(act))
+
+    binary = setBin(db, list1)
+
+    user_Ref.update(
+        {'_id':email},
+        {'$set':
+            {
+           'survey_scholarship':{
+                "gender": gender,
+                "age": age,
+                "states": state,
+                "gpa": gpa,
+                "major": major,
+                "race": race,
+                "ethnicity": ethnicity,
+                "religion": religion,
+                "disabilities": dissabilities,
+                "sat_score": sat,
+                "act_score": act,
+                "terms": list1,
+                "binary": binary, 
+           } 
+        }}
+    )
 # def binaryConvert():
 # refers to a list
 
 # def updateAccount():
 # update all fields? not too sure
 
-
+#Not utilized 
 def catState(zipC):
     zipcode = zcdb[zipC]
     state = abrevConv[zipcode.state]
@@ -200,20 +263,20 @@ def catGPA(gpa):
     return str
 
 
-def catAge(dob):
-    birth = datetime.strptime(dob, "%m/%d/%Y")
-    today = date.today()
-    age = today.year - birth.year - ((today.month, today.day) <
-                                     (birth.month, birth.day))
+def catAge(age):
+    # birth = datetime.strptime(age, "%m/%d/%Y")
+    # today = date.today()
+    # age = today.year - birth.year - ((today.month, today.day) <
+    #                                  (birth.month, birth.day))
+    intAge=int(age)
     string = ''
-    if age < 13:
+    if intAge < 13:
         string = ("Age 13")
-    elif age > 30:
+    elif intAge > 30:
         string = ("Age Greater Than 30")
     else:
         string = ("Age " + str(age))
     return string
-
 
 def catSat(sat):
     str = ''
@@ -225,7 +288,96 @@ def catSat(sat):
         str = 'SAT Scores From 1,201 To 1,400'
     elif (float(sat) >= 1401) & (float(sat) <= 1600):
         str = 'SAT Scores From 1,401 To 1,600'
+    else:
+        return str
     return str
+
+def catAct(act):
+    str = ''
+    intAct = int(act)
+    if (intAct>= 10) & (intAct <=15):
+        str ='ACT Scores From 10 To 15'
+    elif (intAct>= 16) & (intAct <=20):
+        str ='ACT Scores From 10 To 15'
+    elif (intAct>= 21) & (intAct <=25):
+        str ='ACT Scores From 10 To 15'
+    elif (intAct>= 26) & (intAct <=30):
+        str ='ACT Scores From 10 To 15'
+    elif (intAct>= 31):
+        str ='ACT Scores Greater Than 31'
+    else:
+        return str
+    return str
+   
+def catMajor(major):
+    for i in range(len(major)):
+        if major[i] == 'Agriculture':
+            major[i] = 'Agriculture/Agribusiness'
+
+        if major[i] == 'Culinary Arts':
+            major[i] = 'Culinary Science'
+        
+        if major[i] == 'Dental':
+            major[i] = 'Dentistry'
+
+        if major[i] == 'Environmental Science':
+            major[i] = 'Environmental Studies'
+        
+        if major[i] == 'Film':
+            major[i] = 'Film, Television & Interactive Media'
+        
+        if major[i] == 'Food and Nutrition':
+            major[i] = 'Food Science & Human Nutrition'
+        
+        if major[i] == 'Foreign Language':
+            major[i] = 'Foreign Languages/Cultures'
+
+        if major[i] == 'Health':
+            major[i] = 'Health Education & Promotion'
+        
+        if major[i] == 'Health Care':
+            major[i] = 'Health Care Administration'
+        
+        if major[i] == 'Information Technology':
+            major[i] = 'Information Systems'
+        
+        if major[i] == 'International Relations':
+            major[i] = 'International Affairs'
+        
+        if major[i] == 'Legal Studies':
+            major[i] = 'Law School/Legal Studies'
+        
+        if major[i] == 'Math':
+            major[i] = 'Mathematics'
+        
+        if major[i] == 'Mechanics':
+            major[i] = 'Mechanical Engineering'
+        
+        if major[i] == 'Medical':
+            major[i] = 'Medicine'
+        
+        if major[i] == 'Nursing':
+            major[i] = 'Nursing/Nurse Practitioner'
+
+        if major[i] == 'Physical Therapy':
+            major[i] = 'Physical Therapy/Rehabilitation'
+        
+        if major[i] == 'Protective Services':
+            major[i] = 'Police/Law Enforcement'
+        
+        if major[i] == 'Psychology':
+            major[i] = 'Psychology/Counseling'
+        
+        if major[i] == 'Social Services':
+            major[i] = 'Social Work'
+
+        if major[i] == 'Sports Management':
+            major[i] = 'Sport Management'
+
+        if major[i] == 'Veterinary':
+            major[i] = 'Veterinary Medicine'
+        
+    return major
 
 
 def splitStr(word):
@@ -347,7 +499,7 @@ def filter_results(user_Ref, scholar_ref, userId):
             if(value >= filterVal):
                 scholarInfo = {
                     'Name': str(curr_scholar.get('name')),
-                    'Amount': str(curr_scholar.get('amount')),
+                    'Amount': int(parseAmount(curr_scholar.get('amount'))),
                     'Deadline': str(curr_scholar.get('deadline')),
                     'Val': value,
                 }
@@ -367,6 +519,14 @@ def binCompare(user_bin, scholar_bin):
             return False
     return True
 
+
+def parseAmount(txt):
+    if "$" in txt: 
+        if "," in txt:
+            txt = txt.replace(",", "")
+        return txt[1:]
+    else:
+        return 0
 
 # from pymongo import MongoClient
 

@@ -1,87 +1,116 @@
-// temp version of App.js
-
 import React, { Component } from "react";
-import { StyleSheet, View} from "react-native";
+import { StyleSheet, View } from "react-native";
 import { AppRegistry } from "react-native";
 import "react-native-gesture-handler";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer, getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import {saveSecureStorage, getSecureStorage} from "./functions/secureStorage";
-import {getDeviceID} from "./functions/deviceUniqueID";
+import { saveSecureStorage, getSecureStorage } from "./functions/secureStorage";
+import { getDeviceID } from "./functions/deviceUniqueID";
 
 import LoginScreen from "./components/LoginScreen";
-import AccScreen from "./components/AccScreen2";
-import CollegeSurvey from "./components/CollegeSurvey";
-import InputScreen1 from "./components/InputInfoScreen1";
+import AccScreen from "./components/AccScreen";
+import InputScreen1 from "./components/scholarships/ScholarSurvey";
 import InputScreen2 from "./components/InputInfoScreen2";
-import ViewAllScholar from "./components/ViewAllScholar";
-import ViewSubCate from "./components/ViewSubCate";
-import ViewScholarTbl from "./components/ViewScholarTbl";
-import ViewScholarDetail from "./components/ViewScholarDetail";
-import ViewRecommendTbl from "./components/ViewRecommendTbl";
-// import AddProfile from "./ui/MultiSurvey";
-import ScholarRecommend from "./ui/ScholarRecommend";
-import ScholarshipScreen from "./components/ScholarshipScreen";
-import MajorScreen from "./components/MajorScreen";
-import CollegeScreen from "./components/CollegeScreen";
+import ScholarshipScreen from "./components/scholarships/ScholarshipScreen";
+import ViewAllScholar from "./components/scholarships/ViewAllScholar";
+import ViewSubCate from "./components/scholarships/ViewSubCate";
+import ViewScholarTbl from "./components/scholarships/ViewScholarTbl";
+import ViewScholarDetail from "./components/scholarships/ViewScholarDetail";
+import ViewRecommendTbl from "./components/scholarships/ViewRecommendTbl";
+import ScholarRecommend from "./ui/scholarships/ScholarRecommend";
+import CollegeSurvey from "./components/colleges/CollegeSurvey";
+import CollegeScreen from "./components/colleges/CollegeScreen";
+import MajorScreen from "./components/majors/MajorScreen";
 import TabViewSurvey from "./components/TabViewSurvey";
+
+import ViewRecommendTbl_3 from "./components/scholarships/ViewRecommendTbl_3";
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function TabScreens({ usr, navigation }) {
+function getHeaderTitle(route) {
+  // If the focused route is not found, we need to assume it's the initial screen
+  // This can happen during if there hasn't been any navigation inside the screen
+  // In our case, it's "Feed" as that's the first screen inside the navigator
+  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Scholarship';
+
+  switch (routeName) {
+    case 'Scholarship':
+      return 'Scholarship';
+    case 'College':
+      return 'College';
+    case 'Major':
+      return 'Major';
+    case 'Account':
+      return 'My Account';
+  }
+}
+
+function TabScreens({ navigation, route }) {
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({ headerTitle: getHeaderTitle(route) });
+  }, [navigation, route]);
+
+  // in the functional component, we access the initialParams from Stack.Screen
+  // we must have route obj as one of parameters within the func
+  // then access the initialParams via "route.params.<var names>"
+  // in class component, we access the initialParams via "this.props.route.params.<var name>"
+  let usr = route.params.usr;
+
+  // console.log(route.params.usr);
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === "Home") {
+          if (route.name === "Scholarship") {
             // console.log(route);
             iconName = focused ? "school" : "school";
-            return <Icon name="school" size={size} color={color} />;
+            return <MaterialCommunityIcons name="school" size={size} color={color} />;
           } else if (route.name === "Account") {
             iconName = focused ? "account-outline" : "account-outline";
             return (
-              <MaterialCommunityIconsIcon
+              <MaterialCommunityIcons
                 name={iconName}
                 size={size}
                 color={color}
               />
             );
-          } else if (route.name === "Search") {
+          } else if (route.name === "College") {
             iconName = focused ? "bank" : "bank";
-            return <Icon name={iconName} size={size} color={color} />;
+            return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
           }
           else if (route.name == "Major") {
             iconName = focused ? "book-open-page-variant" : "book-open-page-variant";
-            return <Icon name={iconName} size={size} color={color} />;
+            return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
           }
         },
       })}
     >
-      <Tab.Screen name="Home" options={{ title: "Scholarship" }}>
+      <Tab.Screen name="Scholarship">
         {/* ScholarshipScreen component belong to first Tap navi */}
-        {() => <ScholarshipScreen usrInfo={usr}/>}
+        {() => <ScholarshipScreen usrInfo={usr} />}
       </Tab.Screen>
 
-      <Tab.Screen name="Search" options={{ title: "College" }}>
+      <Tab.Screen name="College">
         {/* CollegeScreen component belong to second Tap navi */}
         {() => <CollegeScreen />}
       </Tab.Screen>
 
-      <Tab.Screen name="Major" options={{ title: "Major" }}>
+      <Tab.Screen name="Major">
         {/* MajorScreen component belong to third Tap navi */}
         {() => <MajorScreen />}
       </Tab.Screen>
 
-      <Tab.Screen name="Account" options={{ title: "Account" }}>
+      <Tab.Screen name="Account">
         {/* AccountScreen component belong to fourth Tap navi */}
-        {() => <AccScreen usrInfo={usr}/>}
+        {() => <AccScreen usrInfo={usr} />}
       </Tab.Screen>
     </Tab.Navigator>
   );
@@ -99,42 +128,37 @@ export default class App extends Component {
         email: "",
         password: "",
         photoUrl: "",
+        jwt: "",
       },
     };
 
   }
 
-  saveSecureStorage = async (key, value) => {
-    // save the key and val pair data in secure storage
-    await SecureStore.setItemAsync(key, value);
-  }
-
-  getSecureStorage = async (key) => {
-    // retrieve val based on key from secure storage
-    // return "null" if the val does not exist
-    return await SecureStore.getItemAsync(key);
-  }
-
-  getDeviceID = () => {
-    // return device unique id
-    // return Constants.deviceId;
-    console.log(Constants.deviceId);
-  }
-
-  signIn = (inputEmail, inputPassword) => {
+  signIn = async (inputEmail, inputPassword) => {
     try {
       if (!inputEmail == "" && !inputPassword == "") {
-        this.setState({
-          usrProfile: {
-            full_name: "dummyFUllName",
-            last_name: "dummyLastName",
-            first_name: "dummyFirstName",
-            photoUrl: "https://i.pinimg.com/originals/e9/73/46/e9734614f73b4766546ceee1d7778827.jpg",
-            email: inputEmail,
-            password: inputPassword,
-            signedIn: true,
-          },
-        });
+
+        // let uniqueID = 
+        // console.log(getDeviceID());
+
+        // store the sign and jwt first
+        if (saveSecureStorage("signIn", JSON.stringify(true))) {
+          saveSecureStorage("sassy", "afafa")
+
+          this.setState({
+            usrProfile: {
+              full_name: "dummyFUllName",
+              last_name: "dummyLastName",
+              first_name: "dummyFirstName",
+              photoUrl: "https://i.pinimg.com/originals/e9/73/46/e9734614f73b4766546ceee1d7778827.jpg",
+              email: inputEmail,
+              password: inputPassword,
+              signedIn: getSecureStorage("signIn"),
+              jwt: "",
+            },
+          });
+        }
+
       } else {
         alert("Please input your email or password!");
       }
@@ -146,11 +170,10 @@ export default class App extends Component {
     }
   };
 
-
   render() {
-    
     // print the device unique ID
     // console.log(getDeviceID())
+    // console.log("Auth val: " + JSON.stringify(this.state.usrProfile.signedIn));
 
     if (this.state.usrProfile.signedIn) {
       // console.log("Email from App.js: " + this.state.usrProfile.email);
@@ -158,22 +181,48 @@ export default class App extends Component {
         <NavigationContainer>
           <Stack.Navigator>
 
-            <Stack.Screen name={"Home"}>
-              {() => <TabScreens usr={this.state.usrProfile} navigation={this.props.navigation} />}
+            <Stack.Screen
+              name={"Home"}
+              options={({ route }) => ({
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
+              component={TabScreens}
+              initialParams={{
+                usr: this.state.usrProfile
+              }}
+            >
             </Stack.Screen>
 
             <Stack.Screen
               name={"InputScreen1"}
               component={InputScreen1}
               options={{ title: "Required Info" }}
-              // nitialParams={{ email: this.state.usrProfile.email }}
+            // nitialParams={{ email: this.state.usrProfile.email }}
             />
 
             {/* Multiple Survey component stacked  */}
             <Stack.Screen
               name={"TabViewSurvey"}
               component={TabViewSurvey}
-              options={{ title: "Survey" }}
+              options={{
+                title: "Survey",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
             />
 
             <Stack.Screen
@@ -187,7 +236,17 @@ export default class App extends Component {
             <Stack.Screen
               name={"CollegeSurvey"}
               component={CollegeSurvey}
-              options={{ title: "College Info" }}
+              options={{
+                title: "College Info",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
               initialParams={{ email: this.state.usrProfile.email }}
             />
 
@@ -195,51 +254,138 @@ export default class App extends Component {
               name={"ViewSubCate"}
               component={ViewSubCate}
               // pass down the screen header bar title
-              options={({ route }) => ({ title: route.params.title })}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
             />
 
             <Stack.Screen
               name={"ScholarshipScreen"}
-              component = {ScholarshipScreen}
-              options = {({ route }) => ({ title: route.params.title})}
-              initialParams={{ email: this.state.usrProfile.email}}
+              component={ScholarshipScreen}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
+              initialParams={{ email: this.state.usrProfile.email }}
             />
 
             <Stack.Screen
               name={"ScholarRecommend"}
-              component = {ScholarRecommend}
-              options = {({route }) => ({ title: route.params.title})}
+              component={ScholarRecommend}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
             />
 
             <Stack.Screen
               name={"ViewAllScholar"}
               component={ViewAllScholar}
-              options={{ title: "Scholarship Categories" }}
+              options={{
+                title: "Scholarship Categories",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
             />
 
             <Stack.Screen
               name={"ViewScholarTbl"}
               component={ViewScholarTbl}
-              options={({ route }) => ({ title: route.params.title })}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
+              initialParams={{ email: this.state.usrProfile.email }}
             />
 
             <Stack.Screen
               name={"ViewScholarDetail"}
               component={ViewScholarDetail}
-              options={({ route }) => ({ title: route.params.title })}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
+              initialParams={{
+                email: this.state.usrProfile.email
+              }}
             />
-
-            {/* <Stack.Screen
-              name={"AddProfile"}
-              component={AddProfile}
-              options={({ route }) => ({ title: route.params.title })}
-            /> */}
 
             <Stack.Screen
               name={"ViewRecommendTbl"}
               component={ViewRecommendTbl}
-              options={({ route }) => ({ title: route.params.title })}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
               initialParams={{ email: this.state.usrProfile.email }}
+            />
+
+            <Stack.Screen
+              name={"ViewRecommendTbl_3"}
+              component={ViewRecommendTbl_3}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
             />
 
           </Stack.Navigator>
@@ -249,6 +395,7 @@ export default class App extends Component {
     else {
       return (
         <View style={styles.container}>
+          {/* <ViewRecommendTbl_3 signIn={this.signIn} /> */}
           <LoginScreen signIn={this.signIn} />
         </View>
       );

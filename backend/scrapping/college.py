@@ -207,11 +207,13 @@ def retrieve_college_general_info(driver, section):
     if exception_handler(section, 5, "scalar--two"):
         athletics = section.find_elements_by_class_name("scalar--two")
 
-        if "—" not in athletics[0].text[17:]:
-            ATHLETICS_DIVISION = athletics[0].text[17:]
+        if len(athletics) == 2:
+            print(len(athletics))
+            if "Athletic" in athletics[0].text and "—" not in athletics[0].text[17:]:
+                ATHLETICS_DIVISION = athletics[0].text[17:]
 
-        if "—" not in athletics[1].text[19:]:
-            ATHLETICS_CONFERENCE = athletics[1].text[19:]
+            if "Athletic" in athletics[1].text and "—" not in athletics[1].text[19:]:
+                ATHLETICS_CONFERENCE = athletics[1].text[19:]
 
     # get college location tag(s)
     if exception_handler(section, 5, "profile-breadcrumbs__item"):
@@ -228,35 +230,52 @@ def retrieve_college_general_info(driver, section):
 def retrieve_college_ranking(driver, section):
     # get college ranking
 
-    ranking_detail_url = section.find_element_by_class_name("expansion-link__text").get_attribute('href')
-    close_modal_message(driver)
-
-    # ######## navigate to ranking detail page ########
-    driver.get(ranking_detail_url)
-
-    close_modal_message(driver)
-
     RANKING = {}
-    if exception_handler(driver, 5, "rankings-expansion__badge"):
-        rank_listing = driver.find_elements_by_class_name("rankings-expansion__badge")
-        for item in rank_listing:
-            
-            if not exception_handler(item, 13, "rankings-card__link__title"):
-                break
+    if exception_handler(section, 13, "expansion-link__text"):
+        ranking_detail_url = section.find_element_by_class_name("expansion-link__text").get_attribute('href')
+        close_modal_message(driver)
 
-            # get the grid item title and ranking and ranking out of total #
-            item_title = item.find_element_by_class_name("rankings-card__link__title").text
-            item_rank = item.find_element_by_class_name("rankings-card__link__rank__number").text
-            item_rank_outOF = item.find_element_by_class_name("rankings-card__link__rank").text
+        # ######## navigate to ranking detail page ########
+        driver.get(ranking_detail_url)
 
-            # trim the unncessary info
-            position = item_rank_outOF.index("of")
-            item_rank_outOF = item_rank_outOF[(position + 3):]
-            
-            key = str(item_title).replace(" ", "_")
-            key = str(key).replace(".", "")
-            RANKING[key] = str(item_rank + "/" + item_rank_outOF)
+        close_modal_message(driver)
+
+        if exception_handler(driver, 5, "rankings-expansion__badge"):
+            rank_listing = driver.find_elements_by_class_name("rankings-expansion__badge")
+            for item in rank_listing:
+                
+                if not exception_handler(item, 13, "rankings-card__link__title"):
+                    break
+
+                # get the grid item title and ranking and ranking out of total #
+                item_title = item.find_element_by_class_name("rankings-card__link__title").text
+                item_rank = item.find_element_by_class_name("rankings-card__link__rank__number").text
+                item_rank_outOF = item.find_element_by_class_name("rankings-card__link__rank").text
+
+                # trim the unncessary info
+                position = item_rank_outOF.index("of")
+                item_rank_outOF = item_rank_outOF[(position + 3):]
+                
+                key = str(item_title).replace(" ", "_")
+                key = str(key).replace(".", "")
+                RANKING[key] = str(item_rank + "/" + item_rank_outOF)
+        else:
+            RANKING["N\A"] = "N\A"
+    elif exception_handler(section, 13, "rankings__collection"):
+        # the ranking is on the same page
+        ranking_collection = section.find_element_by_class_name("rankings__collection__name")
+        ranking_key = ranking_collection.find_elements_by_class_name("rankings__collection__name")
+        ranking_val = ranking_collection.find_elements_by_class_name("rankings__collection__ranking")
+
+        z_list = list(zip(ranking_key, ranking_val))
+
+        for key, val in z_list:
+            position = str(val).index(" of ")
+            k = str(key).replace(" ", "_")
+            k = str(k).replace(".", "")
+            RANKING[k] = str(val[:(position)] + "/" + val[position:])
     else:
+        # there's no ranking for this college
         RANKING["N\A"] = "N\A"
 
     return RANKING
@@ -269,226 +288,304 @@ def retrieve_admission_statistics(driver, section):
     # :section (selenium ele obj) - admission section of block from parent page
     # OUPUT: return an admission dict
 
-    admission_detail_url = section.find_element_by_class_name("expansion-link__text").get_attribute('href')
-
-    # ####### navigate to admission detail page ########
-    driver.get(admission_detail_url)
-
-    close_modal_message(driver)
-
     ADMISSION_DESCRIPTION, ACCEPTANCE_RATE, ACCEPTANCE_RATE_EARLY, TOTAL_APPLICANTS = "N\A", "N\A", "N\A", "N\A"
     SAT_ACCEPTANCE_SCORE_RANGE, SAT_READING_SCORE, SAT_MATH_SCORE, SAT_SUBMIT_BY_STUDENT = "N\A", "N\A", "N\A", "N\A"
     ACT_RANGE, ACT_ENG_SCORE, ACT_MATH_SCORE, ACT_WRITE_SCORE, ACT_SUBMIT_BY_STUDENT = "N\A", "N\A", "N\A", "N\A", "N\A"
     ADMISSION_DEADLINE_DATE, DEADLINE_EARLY_DECISION, DEADLINE_EARLY_ACTION, EARLY_OFFERE_DATE, EARLY_OFFER_ACTION = "N\A", "N\A", "N\A", "N\A", "N\A"
     APPLIC_FEE, APPLIC_WEBSITE, APPLIC_COMM_APP, APPLI_ACCEPT_COALITION_APP = "N\A", "N\A", "N\A", "N\A"
+    HIGHSCHO_GPA, HIGHSCHO_RANK, HISHSCHO_TRANSCRIPT, COLLEGE_PRE_COURSE, SAT_OR_ACT, RECOMMENDATION = "N\A", "N\A", "N\A", "N\A", "N\A", "N\A"
+    POLL_RESULT1, POLL_RESULT2 = "N\A", "N\A"
 
-    if exception_handler(driver, 13, "bare-value"):
-        ADMISSION_DESCRIPTION = driver.find_element_by_class_name("bare-value").text
+    if exception_handler(section, 13, "expansion-link__text"):
+        # check if the site has more admission info or not
+        admission_detail_url = section.find_element_by_class_name("expansion-link__text").get_attribute('href')
 
-    # admissing statistics group
-    if exception_handler(driver, 7, "admissions-statistics"):
-        admissions_statistics_grp = driver.find_element_by_id("admissions-statistics")
+        # ####### navigate to admission detail page ########
+        driver.get(admission_detail_url)
 
-        if exception_handler(admissions_statistics_grp, 13, "profile__bucket--1"):
-            acceptance_rate_grp1 = admissions_statistics_grp.find_element_by_class_name("profile__bucket--1")
+        close_modal_message(driver)
 
-            # get acceptance rate
-            if exception_handler(acceptance_rate_grp1, 13, "scalar__value"):
-                ACCEPTANCE_RATE = str(acceptance_rate_grp1.find_element_by_class_name("scalar__value").text).replace("\n", "")
+        if exception_handler(driver, 13, "bare-value"):
+            ADMISSION_DESCRIPTION = driver.find_element_by_class_name("bare-value").text
 
-            # get early acceptance rate and total applicants
-            if exception_handler(admissions_statistics_grp, 13, "profile__bucket--2"):
-                acceptance_rate_grp2 = admissions_statistics_grp.find_element_by_class_name("profile__bucket--2")
+        # admissing statistics group
+        if exception_handler(driver, 7, "admissions-statistics"):
+            admissions_statistics_grp = driver.find_element_by_id("admissions-statistics")
 
-                if exception_handler(acceptance_rate_grp2, 5, "scalar--three"):
-                    acceptance_rate_temp = acceptance_rate_grp2.find_elements_by_class_name("scalar--three")
+            if exception_handler(admissions_statistics_grp, 13, "profile__bucket--1"):
+                acceptance_rate_grp1 = admissions_statistics_grp.find_element_by_class_name("profile__bucket--1")
 
-                    # trimmer - replace no data available with "N\A"
-                    if "—" not in acceptance_rate_temp[0].text[30:]:
-                        i = str(acceptance_rate_temp[0].text[30:]).replace("\n", "")
-                        ACCEPTANCE_RATE_EARLY = i
-                    if "—" not in acceptance_rate_temp[1].text[17:]:
-                        TOTAL_APPLICANTS = acceptance_rate_temp[1].text[17:]
+                # get acceptance rate
+                if exception_handler(acceptance_rate_grp1, 13, "scalar__value"):
+                    ACCEPTANCE_RATE = str(acceptance_rate_grp1.find_element_by_class_name("scalar__value").text).replace("\n", "")
 
-            # get SAT statistics3
-            if exception_handler(admissions_statistics_grp, 13, "profile__bucket--2"):
-                sat_grp = admissions_statistics_grp.find_element_by_class_name("profile__bucket--3")
+                # get early acceptance rate and total applicants
+                if exception_handler(admissions_statistics_grp, 13, "profile__bucket--2"):
+                    acceptance_rate_grp2 = admissions_statistics_grp.find_element_by_class_name("profile__bucket--2")
 
-                if exception_handler(sat_grp, 13, "scalar"):
-                    sat_temp1 = sat_grp.find_element_by_class_name("scalar")
-                     # locate the sat overall range score element
+                    if exception_handler(acceptance_rate_grp2, 5, "scalar--three"):
+                        acceptance_rate_temp = acceptance_rate_grp2.find_elements_by_class_name("scalar--three")
 
-                    if exception_handler(sat_temp1, 13, "scalar__value"):
-                        temp = sat_temp1.find_element_by_class_name("scalar__value").text
+                        # trimmer - replace no data available with "N\A"
+                        if "—" not in acceptance_rate_temp[0].text[30:]:
+                            i = str(acceptance_rate_temp[0].text[30:]).replace("\n", "")
+                            ACCEPTANCE_RATE_EARLY = i
+                        if "—" not in acceptance_rate_temp[1].text[17:]:
+                            TOTAL_APPLICANTS = acceptance_rate_temp[1].text[17:]
 
-                        if "—" not in temp:
-                            i = str(temp).replace("\n", "")
-                            SAT_ACCEPTANCE_SCORE_RANGE = i
+                # get SAT statistics3
+                if exception_handler(admissions_statistics_grp, 13, "profile__bucket--2"):
+                    sat_grp = admissions_statistics_grp.find_element_by_class_name("profile__bucket--3")
 
-                if exception_handler(sat_grp, 5, "scalar--three"):
-                    sat_temp2 = sat_grp.find_elements_by_class_name("scalar--three")
-            
-                    # pre-processing those do not have the SAT scores appliable
-                    if "—" not in sat_temp2[0].text[11:]:
-                        i = str(sat_temp2[0].text[11:]).replace("\n", "")
-                        SAT_READING_SCORE = i
+                    if exception_handler(sat_grp, 13, "scalar"):
+                        sat_temp1 = sat_grp.find_element_by_class_name("scalar")
+                        # locate the sat overall range score element
 
-                    if "—" not in sat_temp2[1].text[11:]:
-                        i = str(sat_temp2[1].text[11:]).replace("\n", "")
-                        SAT_MATH_SCORE = i
+                        if exception_handler(sat_temp1, 13, "scalar__value"):
+                            temp = sat_temp1.find_element_by_class_name("scalar__value").text
 
-                    if "—" not in sat_temp2[2].text[11:]:
-                        i = str(sat_temp2[2].text[11:]).replace("\n", "")
-                        SAT_SUBMIT_BY_STUDENT = i
+                            if "—" not in temp:
+                                i = str(temp).replace("\n", "")
+                                SAT_ACCEPTANCE_SCORE_RANGE = i
 
-            # get ACT statistics
-            if exception_handler(admissions_statistics_grp, 13, "profile__bucket--4"):
-                act_grp = admissions_statistics_grp.find_element_by_class_name("profile__bucket--4")
+                    if exception_handler(sat_grp, 5, "scalar--three"):
+                        sat_temp2 = sat_grp.find_elements_by_class_name("scalar--three")
+                
+                        # pre-processing those do not have the SAT scores appliable
+                        if "—" not in sat_temp2[0].text[11:]:
+                            i = str(sat_temp2[0].text[11:]).replace("\n", "")
+                            SAT_READING_SCORE = i
 
-                if exception_handler(act_grp, 13, "scalar"):
-                    act_temp1 = act_grp.find_element_by_class_name("scalar")
+                        if "—" not in sat_temp2[1].text[11:]:
+                            i = str(sat_temp2[1].text[11:]).replace("\n", "")
+                            SAT_MATH_SCORE = i
 
-                    if exception_handler(act_grp, 5, "scalar--three"):
-                        act_temp2 = act_grp.find_elements_by_class_name("scalar--three")
+                        if "—" not in sat_temp2[2].text[11:]:
+                            i = str(sat_temp2[2].text[11:]).replace("\n", "")
+                            SAT_SUBMIT_BY_STUDENT = i
 
-                        # locate the act overall range score element
-                        if exception_handler(act_temp1, 13, "scalar__value"):
-                            temp = act_temp1.find_element_by_class_name("scalar__value").text
+                # get ACT statistics
+                if exception_handler(admissions_statistics_grp, 13, "profile__bucket--4"):
+                    act_grp = admissions_statistics_grp.find_element_by_class_name("profile__bucket--4")
+
+                    if exception_handler(act_grp, 13, "scalar"):
+                        act_temp1 = act_grp.find_element_by_class_name("scalar")
+
+                        if exception_handler(act_grp, 5, "scalar--three"):
+                            act_temp2 = act_grp.find_elements_by_class_name("scalar--three")
+
+                            # locate the act overall range score element
+                            if exception_handler(act_temp1, 13, "scalar__value"):
+                                temp = act_temp1.find_element_by_class_name("scalar__value").text
+
+                                # pre-processing those do not have the ACT scores appliable
+                                if "—" not in temp:
+                                    i = str(temp).replace("\n", "")
+                                    ACT_RANGE = i
+
+                                if "—" not in act_temp2[0].text[11:]:
+                                    i = str(act_temp2[0].text[11:]).replace("\n", "")
+                                    ACT_ENG_SCORE = i
+
+                                if "—" not in act_temp2[1].text[8:]:
+                                    i = str(act_temp2[1].text[8:]).replace("\n", "")
+                                    ACT_MATH_SCORE = i
+
+                                if "—" not in act_temp2[2].text[11:]:
+                                    i = str(act_temp2[2].text[11:]).replace("\n", "")
+                                    ACT_WRITE_SCORE = i
+
+                                if "—" not in act_temp2[3].text[23:]:
+                                    i = str(act_temp2[3].text[23:]).replace("\n", "")
+                                    ACT_SUBMIT_BY_STUDENT = i
+
+
+        # admission deadline group
+        if exception_handler(driver, 7, "admissions-deadlines"):
+            admission_deadline_grp = driver.find_element_by_id("admissions-deadlines")
+
+            # deadline group
+            if exception_handler(admission_deadline_grp, 13, "profile__bucket--1"):
+                deadline_grp = admission_deadline_grp.find_element_by_class_name("profile__bucket--1")
+
+                # locate deadline detail
+                if exception_handler(deadline_grp, 13, "scalar"):
+                    deadline_temp1 = deadline_grp.find_element_by_class_name("scalar")
+
+                    if exception_handler(deadline_grp, 5, "scalar--three"):
+                        deadline_temp2 = deadline_grp.find_elements_by_class_name("scalar--three")
+
+                        # locate the deadline exactly date
+                        if exception_handler(deadline_temp1, 13, "scalar__value"):
+                            temp = deadline_temp1.find_element_by_class_name("scalar__value").text
 
                             # pre-processing those do not have the ACT scores appliable
                             if "—" not in temp:
                                 i = str(temp).replace("\n", "")
-                                ACT_RANGE = i
+                                ADMISSION_DEADLINE_DATE = i
 
-                            if "—" not in act_temp2[0].text[11:]:
-                                i = str(act_temp2[0].text[11:]).replace("\n", "")
-                                ACT_ENG_SCORE = i
+                            if "—" not in deadline_temp2[0].text[23:]:
+                                i = str(deadline_temp2[0].text[23:]).replace("\n", "")
+                                DEADLINE_EARLY_DECISION = i
 
-                            if "—" not in act_temp2[1].text[8:]:
-                                i = str(act_temp2[1].text[8:]).replace("\n", "")
-                                ACT_MATH_SCORE = i
+                            if "—" not in deadline_temp2[1].text[21:]:
+                                i = str(deadline_temp2[1].text[21:]).replace("\n", "")
+                                DEADLINE_EARLY_ACTION = i
 
-                            if "—" not in act_temp2[2].text[11:]:
-                                i = str(act_temp2[2].text[11:]).replace("\n", "")
-                                ACT_WRITE_SCORE = i
+                            if "—" not in deadline_temp2[2].text[21:]:
+                                i = str(deadline_temp2[2].text[21:]).replace("\n", "")
+                                EARLY_OFFERE_DATE = i
 
-                            if "—" not in act_temp2[3].text[23:]:
-                                i = str(act_temp2[3].text[23:]).replace("\n", "")
-                                ACT_SUBMIT_BY_STUDENT = i
+                            if "—" not in deadline_temp2[3].text[19:]:
+                                i = str(deadline_temp2[3].text[19:]).replace("\n", "")
+                                EARLY_OFFER_ACTION = i
+        
+            # locate the application details
+            if exception_handler(admission_deadline_grp, 13, "profile__bucket--2"):
+                admission_application_grp = admission_deadline_grp.find_element_by_class_name("profile__bucket--2")
 
+                if exception_handler(admission_deadline_grp, 13, "scalar"):
+                    applic_temp1 = admission_deadline_grp.find_element_by_class_name("scalar")
 
-    # admission deadline group
-    if exception_handler(driver, 7, "admissions-deadlines"):
-        admission_deadline_grp = driver.find_element_by_id("admissions-deadlines")
+                    if exception_handler(applic_temp1, 13, "scalar__value"):
+                        temp = applic_temp1.find_element_by_class_name("scalar__value").text
 
-        # deadline group
-        if exception_handler(admission_deadline_grp, 13, "profile__bucket--1"):
-            deadline_grp = admission_deadline_grp.find_element_by_class_name("profile__bucket--1")
-
-            # locate deadline detail
-            if exception_handler(deadline_grp, 13, "scalar"):
-                deadline_temp1 = deadline_grp.find_element_by_class_name("scalar")
-
-                if exception_handler(deadline_grp, 5, "scalar--three"):
-                    deadline_temp2 = deadline_grp.find_elements_by_class_name("scalar--three")
-
-                    # locate the deadline exactly date
-                    if exception_handler(deadline_temp1, 13, "scalar__value"):
-                        temp = deadline_temp1.find_element_by_class_name("scalar__value").text
-
-                        # pre-processing those do not have the ACT scores appliable
                         if "—" not in temp:
                             i = str(temp).replace("\n", "")
-                            ADMISSION_DEADLINE_DATE = i
+                            APPLIC_FEE = i
 
-                        if "—" not in deadline_temp2[0].text[23:]:
-                            i = str(deadline_temp2[0].text[23:]).replace("\n", "")
-                            DEADLINE_EARLY_DECISION = i
-
-                        if "—" not in deadline_temp2[1].text[21:]:
-                            i = str(deadline_temp2[1].text[21:]).replace("\n", "")
-                            DEADLINE_EARLY_ACTION = i
-
-                        if "—" not in deadline_temp2[2].text[21:]:
-                            i = str(deadline_temp2[2].text[21:]).replace("\n", "")
-                            EARLY_OFFERE_DATE = i
-
-                        if "—" not in deadline_temp2[3].text[19:]:
-                            i = str(deadline_temp2[3].text[19:]).replace("\n", "")
-                            EARLY_OFFER_ACTION = i
-    
-        # locate the application details
-        if exception_handler(admission_deadline_grp, 13, "profile__bucket--2"):
-            admission_application_grp = admission_deadline_grp.find_element_by_class_name("profile__bucket--2")
-
-            if exception_handler(admission_deadline_grp, 13, "scalar"):
-                applic_temp1 = admission_deadline_grp.find_element_by_class_name("scalar")
-
-                if exception_handler(applic_temp1, 13, "scalar__value"):
-                    temp = applic_temp1.find_element_by_class_name("scalar__value").text
-
-                    if "—" not in temp:
-                        i = str(temp).replace("\n", "")
-                        APPLIC_FEE = i
-
-            if exception_handler(admission_application_grp, 13, "profile__website__link"):
-                appli_temp2 = admission_application_grp.find_element_by_class_name("profile__website__link").get_attribute("href")
-                if "—" not in appli_temp2:
-                    i = str(appli_temp2).replace("\n", "")
-                    APPLIC_WEBSITE = i
-                
-                if exception_handler(admission_application_grp, 5, "scalar--three"):
-                    appli_temp3 = admission_application_grp.find_elements_by_class_name("scalar--three")
+                if exception_handler(admission_application_grp, 13, "profile__website__link"):
+                    appli_temp2 = admission_application_grp.find_element_by_class_name("profile__website__link").get_attribute("href")
+                    if "—" not in appli_temp2:
+                        i = str(appli_temp2).replace("\n", "")
+                        APPLIC_WEBSITE = i
                     
-                    if "—" not in appli_temp3[0].text:
-                        i = str(appli_temp3[0].text[18:]).replace("\n", "")
-                        APPLIC_COMM_APP = i
+                    if exception_handler(admission_application_grp, 5, "scalar--three"):
+                        appli_temp3 = admission_application_grp.find_elements_by_class_name("scalar--three")
+                        
+                        if "—" not in appli_temp3[0].text:
+                            i = str(appli_temp3[0].text[18:]).replace("\n", "")
+                            APPLIC_COMM_APP = i
+                        
+                        if "—" not in appli_temp3[1].text[21:]:
+                            i = str(appli_temp3[1].text[21:]).replace("\n", "")
+                            APPLI_ACCEPT_COALITION_APP = i
+        
+        # admission requirements
+        if exception_handler(driver, 7, "admissions-requirements"):
+            admission_requirement_grp = driver.find_element_by_id("admissions-requirements")
+
+            if exception_handler(driver, 5, "fact__table__row__value"):
+                requirement_temp = admission_requirement_grp.find_elements_by_class_name("fact__table__row__value")
+
+                if "—" not in requirement_temp[0].text:
+                    HIGHSCHO_GPA = requirement_temp[0].text
+
+                if "—" not in requirement_temp[1].text:
+                    HIGHSCHO_RANK = requirement_temp[1].text
+
+                if "—" not in requirement_temp[2].text:
+                    HISHSCHO_TRANSCRIPT = requirement_temp[2].text
+
+                if "—" not in requirement_temp[3].text:
+                    COLLEGE_PRE_COURSE = requirement_temp[3].text
+
+                if "—" not in requirement_temp[4].text:
+                    SAT_OR_ACT = requirement_temp[4].text
+
+                if "—" not in requirement_temp[5].text:
+                    RECOMMENDATION = requirement_temp[5].text
+
+                # admission poll results
+                if exception_handler(admission_requirement_grp, 13, "profile__bucket--2"):
+                    poll_temp = admission_requirement_grp.find_element_by_class_name("profile__bucket--2")
                     
-                    if "—" not in appli_temp3[1].text[21:]:
-                        i = str(appli_temp3[1].text[21:]).replace("\n", "")
-                        APPLI_ACCEPT_COALITION_APP = i
-    
-    # admission requirements
-    HIGHSCHO_GPA, HIGHSCHO_RANK, HISHSCHO_TRANSCRIPT, COLLEGE_PRE_COURSE, SAT_OR_ACT, RECOMMENDATION = "N\A", "N\A", "N\A", "N\A", "N\A", "N\A"
-    POLL_RESULT1, POLL_RESULT2 = "N\A", "N\A"
+                    if exception_handler(poll_temp, 13, "poll__single__percent__label"):
+                        temp = poll_temp.find_element_by_class_name("poll__single__percent__label").text
+                        if "—" not in temp:
+                            POLL_RESULT1 = temp
+                        
+                        poll_temp = admission_requirement_grp.find_element_by_class_name("profile__bucket--3")
+                        temp = poll_temp.find_element_by_class_name("poll__single__percent__label").text
+                        if "—" not in temp:
+                            POLL_RESULT2 = temp
+    else:
+        # there's no additional detail about this college's admission
+        if exception_handler(section, 13, "profile__bucket--1"):
+            bucket_a = section.find_element_by_class_name("profile__bucket--1")
 
-    if exception_handler(driver, 7, "admissions-requirements"):
-        admission_requirement_grp = driver.find_element_by_id("admissions-requirements")
+            # get the admission acceptance rate
+            if exception_handler(bucket_a, 13, "scalar"):
+                acceptance_rate_temp = bucket_a.find_element_by_class_name("scalar").text
 
-        if exception_handler(driver, 5, "fact__table__row__value"):
-            requirement_temp = admission_requirement_grp.find_elements_by_class_name("fact__table__row__value")
-
-            if "—" not in requirement_temp[0].text:
-                HIGHSCHO_GPA = requirement_temp[0].text
-
-            if "—" not in requirement_temp[1].text:
-                HIGHSCHO_RANK = requirement_temp[1].text
-
-            if "—" not in requirement_temp[2].text:
-                HISHSCHO_TRANSCRIPT = requirement_temp[2].text
-
-            if "—" not in requirement_temp[3].text:
-                COLLEGE_PRE_COURSE = requirement_temp[3].text
-
-            if "—" not in requirement_temp[4].text:
-                SAT_OR_ACT = requirement_temp[4].text
-
-            if "—" not in requirement_temp[5].text:
-                RECOMMENDATION = requirement_temp[5].text
-
-            # admission poll results
-            if exception_handler(admission_requirement_grp, 13, "profile__bucket--2"):
-                poll_temp = admission_requirement_grp.find_element_by_class_name("profile__bucket--2")
-                
-                if exception_handler(poll_temp, 13, "poll__single__percent__label"):
-                    temp = poll_temp.find_element_by_class_name("poll__single__percent__label").text
-                    if "—" not in temp:
-                        POLL_RESULT1 = temp
+                if "Deadline" in acceptance_rate_temp:
+                    # different view
+                    if "—" not in acceptance_rate_temp[15:]:
+                        ADMISSION_DEADLINE_DATE = acceptance_rate_temp[20:]
                     
-                    poll_temp = admission_requirement_grp.find_element_by_class_name("profile__bucket--3")
-                    temp = poll_temp.find_element_by_class_name("poll__single__percent__label").text
-                    if "—" not in temp:
-                        POLL_RESULT2 = temp
+                    if exception_handler(section, 13, "profile__bucket--2"):
+                        bucket_b = section.find_element_by_class_name("profile__bucket--2").text
+                        if "—" not in bucket_b[16:]:
+                            ACCEPTANCE_RATE = bucket_b[16:]
+                        
+                    if exception_handler(section, 13, "profile__bucket--4"):
+                        bucket_c = section.find_element_by_class_name("profile__bucket--4")
+
+                        if exception_handler(bucket_c, 5, "scalar--three"):
+                            buckets = bucket_c.find_elements_by_class_name("scalar--three")
+
+                            temp = buckets[0].text[9:]
+                            if "—" not in temp:
+                                SAT_ACCEPTANCE_SCORE_RANGE = temp
+
+                            temp = buckets[1].text[9:]
+                            if "—" not in temp:
+                                ACT_RANGE = temp
+
+                            temp = buckets[2].text[16:]
+                            if "—" not in temp:
+                                APPLIC_FEE = temp
+
+                            temp = buckets[3].text[7:]
+                            if "—" not in temp:
+                                SAT_OR_ACT = temp
+
+                            temp = buckets[3].text[15:]
+                            if "—" not in temp:
+                                HIGHSCHO_GPA = temp
+
+                            temp = buckets[4].text[19:]
+                            if "—" not in temp:
+                                APPLIC_COMM_APP = temp
+
+                else:
+                    if "—" not in acceptance_rate_temp[15:]:
+                        ACCEPTANCE_RATE = acceptance_rate_temp[15:]
+                    
+                    # get other statistic
+                    if exception_handler(bucket_a, 5, "scalar--three"):
+                        admi_temp = bucket_a.find_elements_by_class_name("scalar--three")
+
+                        if "—" not in admi_temp[0].text[9:]:
+                            SAT_ACCEPTANCE_SCORE_RANGE = admi_temp[0].text[9:]
+
+                        if "—" not in admi_temp[1].text[9:]:
+                            ACT_RANGE = admi_temp[1].text[9:]
+
+                        if "—" not in admi_temp[2].text[15:]:
+                            APPLIC_FEE = admi_temp[2].text[15:]
+
+                        if "—" not in admi_temp[3].text[7:]:
+                            SAT_OR_ACT = admi_temp[3].text[7:]
+
+                        if "—" not in admi_temp[4].text[15:]:
+                            HIGHSCHO_GPA = admi_temp[4].text[15:]
+
+                if exception_handler(section, 13, "profile__bucket--2"):
+                    bucket_b = section.find_element_by_class_name("profile__bucket--2")
+                    
+                    if exception_handler(bucket_b, 13, "profile__website__link"):
+                        APPLIC_WEBSITE = bucket_b.find_element_by_class_name("profile__website__link").get_attribute("href")
     
     Admission = {
         "description": str(ADMISSION_DESCRIPTION),
@@ -538,164 +635,167 @@ def retrieve_admission_statistics(driver, section):
 
 
 def retrieve_cost_data(driver, section):
-    cost_detail_url = section.find_element_by_class_name("expansion-link__text").get_attribute("href")
-    # navigate to the cost detail page
-    driver.get(cost_detail_url)
-
-    close_modal_message(driver)
-
-    # there are two element named id with "cost", so need to process them
+    
     NET_COST = "N\A"
     student_loan_url, financial_aid_url = "N\A", "N\A"
     LOAN_AVG_AMOUNT, LOAN_TAKE_OUT, LOAN_DEFAULT_RATE = "N\A", "N\A", "N\A"
-
-    if exception_handler(driver, 15, "cost"):
-        cost_info_temp = driver.find_elements_by_id("cost")
-        cost_grp = cost_info_temp[1]
-
-        if exception_handler(cost_grp, 13, "profile__bucket--3"):
-            cost_temp = cost_grp.find_element_by_class_name("profile__bucket--3")
-            
-            if exception_handler(cost_temp, 13, "scalar__value"):
-                temp = cost_temp.find_element_by_class_name("scalar__value").text
-                # parse the unnecessary info
-                position = temp.index(" / ")
-                if "—" not in temp[:position]:
-                    NET_COST = temp[:position]
-        
-        if exception_handler(cost_grp, 13, "profile__bucket--4"):
-            # locate financial loan and aid urls
-            loan_aid_temp = cost_grp.find_element_by_class_name("profile__bucket--4")
-
-            if exception_handler(loan_aid_temp, 5, "expansion-link__text"):
-                loan_aid_urls = loan_aid_temp.find_elements_by_class_name("expansion-link__text")
-                student_loan_url = loan_aid_urls[0].get_attribute("href")
-                financial_aid_url = loan_aid_urls[1].get_attribute("href")
-
-                # navigate to student loan page
-                driver.get(student_loan_url)
-
-                if exception_handler(driver, 7, "about-student-loans"):
-                    loan_grp = driver.find_element_by_id("about-student-loans")
-
-                    if exception_handler(loan_grp, 13, "profile__bucket--1"):
-                        loan_info_block = loan_grp.find_element_by_class_name("profile__bucket--1")
-
-                        if exception_handler(loan_info_block, 13, "scalar"):
-                            temp = loan_info_block.find_element_by_class_name("scalar")
-
-                            if exception_handler(loan_info_block, 13, "scalar"):
-                                info = temp.find_element_by_class_name("scalar__value")
-
-                                position = info.text.index(" / ")
-                                if "—" not in info.text[:position]:
-                                    LOAN_AVG_AMOUNT = info.text[:position]
-
-
-                        if exception_handler(loan_info_block, 5, "scalar--three"):
-                            loan_infos = loan_info_block.find_elements_by_class_name("scalar--three")
-
-                            if "—" not in loan_infos[0].text[25:]:
-                                LOAN_TAKE_OUT = loan_infos[0].text[25:]
-                            
-                            # there are words like "\n11%" in the string
-                            temp = loan_infos[1].text[17:3].replace("\n", "")
-                            if "—" not in temp:
-                                LOAN_DEFAULT_RATE = temp
-    
-    # navigate back to the cost detail page
-    driver.get(cost_detail_url)
-
-    # locate net price breakdown
     NET_PRICE, AVG_TOTAL_AID_AWARD, STUDENT_RECEIVE_AID, NET_PRICE_CALCULATE_URL = "N\A", "N\A", "N\A", "N\A"
-    if exception_handler(driver, 7, "net-price"):
-        net_price_grp = driver.find_element_by_id("net-price")
-
-        if exception_handler(net_price_grp, 13, "profile__bucket--1"):
-            net_price_temp = net_price_grp.find_element_by_class_name("profile__bucket--1")
-
-            if exception_handler(net_price_temp, 5, "scalar--three"):
-                net_price_items = net_price_temp.find_elements_by_class_name("scalar--three")
-
-                temp = net_price_items[0].text[9:]
-                if "—" not in temp:
-                    position = temp.index(" / ")
-                    NET_PRICE = temp[:position]
-                
-                temp = net_price_items[1].text[25:]
-                if "—" not in temp:
-                    position = temp.index(" / ")
-                    AVG_TOTAL_AID_AWARD = temp[:position]
-                
-                temp = net_price_items[2].text[32:]
-                if "—" not in temp:
-                    STUDENT_RECEIVE_AID = temp
-                
-                if exception_handler(net_price_temp, 13, "profile__website__link"):
-                    temp = net_price_temp.find_element_by_class_name("profile__website__link").get_attribute("href")
-                    if "—" not in temp:
-                        NET_PRICE_CALCULATE_URL = temp
-    
     TUITION_IN_STATE, TUITION_OUT_STATE = "N\A", "N\A"
     AVG_HOUSING_COST, AVE_MEAL_PLAN_COST, BOOKS_SUPPLIES = "N\A", "N\A", "N\A"
     TUITION_GUARANTEE_PLAN, TUITION_PAYMENT_PLAN, TUITION_PREPAID_PLAN = "N\A", "N\A", "N\A"
-    
-    # locate sticker price
-    if exception_handler(driver, 7, "sticker-price"):
-        sticker_price_grp = driver.find_element_by_id("sticker-price")
 
-        if exception_handler(sticker_price_grp, 13, "profile__bucket--1"):
-            tuition_temp = sticker_price_grp.find_element_by_class_name("profile__bucket--1")
+    if exception_handler(section, 13, "expansion-link__text"):
+        cost_detail_url = section.find_element_by_class_name("expansion-link__text").get_attribute("href")
+        # navigate to the cost detail page
+        driver.get(cost_detail_url)
 
-            if exception_handler(tuition_temp, 13, "scalar__value"):
-                temp = tuition_temp.find_element_by_class_name("scalar__value").text
-                position = temp.index(" / ")
-                if "—" not in temp[:position]:
-                    TUITION_IN_STATE = temp[:position]
+        close_modal_message(driver)
 
-        if exception_handler(sticker_price_grp, 13, "profile__bucket--2"):
-            tuition_temp = sticker_price_grp.find_element_by_class_name("profile__bucket--2")
+        # there are two element named id with "cost", so need to process them
+        if exception_handler(driver, 15, "cost"):
+            cost_info_temp = driver.find_elements_by_id("cost")
+            cost_grp = cost_info_temp[1]
 
-            if exception_handler(tuition_temp, 13, "scalar__value"):
-                temp = tuition_temp.find_element_by_class_name("scalar__value").text
-                position = temp.index(" / ")
-                if "—" not in temp[:position]:
-                    TUITION_OUT_STATE = temp[:position]
+            if exception_handler(cost_grp, 13, "profile__bucket--3"):
+                cost_temp = cost_grp.find_element_by_class_name("profile__bucket--3")
+                
+                if exception_handler(cost_temp, 13, "scalar__value"):
+                    temp = cost_temp.find_element_by_class_name("scalar__value").text
+                    # parse the unnecessary info
+                    position = temp.index(" / ")
+                    if "—" not in temp[:position]:
+                        NET_COST = temp[:position]
+            
+            if exception_handler(cost_grp, 13, "profile__bucket--4"):
+                # locate financial loan and aid urls
+                loan_aid_temp = cost_grp.find_element_by_class_name("profile__bucket--4")
+
+                if exception_handler(loan_aid_temp, 5, "expansion-link__text"):
+                    loan_aid_urls = loan_aid_temp.find_elements_by_class_name("expansion-link__text")
+                    student_loan_url = loan_aid_urls[0].get_attribute("href")
+                    financial_aid_url = loan_aid_urls[1].get_attribute("href")
+
+                    # navigate to student loan page
+                    driver.get(student_loan_url)
+
+                    if exception_handler(driver, 7, "about-student-loans"):
+                        loan_grp = driver.find_element_by_id("about-student-loans")
+
+                        if exception_handler(loan_grp, 13, "profile__bucket--1"):
+                            loan_info_block = loan_grp.find_element_by_class_name("profile__bucket--1")
+
+                            if exception_handler(loan_info_block, 13, "scalar"):
+                                temp = loan_info_block.find_element_by_class_name("scalar")
+
+                                if exception_handler(temp, 13, "scalar__value"):
+                                    info = temp.find_element_by_class_name("scalar__value")
+
+                                    position = info.text.index(" / ")
+                                    if "—" not in info.text[:position]:
+                                        LOAN_AVG_AMOUNT = info.text[:position]
+
+
+                            if exception_handler(loan_info_block, 5, "scalar--three"):
+                                loan_infos = loan_info_block.find_elements_by_class_name("scalar--three")
+
+                                if "—" not in loan_infos[0].text[25:]:
+                                    LOAN_TAKE_OUT = loan_infos[0].text[25:]
+                                
+                                # there are words like "\n11%" in the string
+                                temp = loan_infos[1].text[17:3].replace("\n", "")
+                                if "—" not in temp:
+                                    LOAN_DEFAULT_RATE = temp
         
-        # other tuition cost 1
-        if exception_handler(sticker_price_grp, 13, "profile__bucket--3"):
-            other_cost_grp1 = sticker_price_grp.find_element_by_class_name("profile__bucket--3")
+        # navigate back to the cost detail page
+        driver.get(cost_detail_url)
 
-            if exception_handler(other_cost_grp1, 5, "scalar--three"):
-                other_cost_temp = other_cost_grp1.find_elements_by_class_name("scalar--three")
-                
-                if "—" not in other_cost_temp[0].text:
-                    position = other_cost_temp[0].text.index(" / ")
-                    AVG_HOUSING_COST = other_cost_temp[0].text[:position]
+        # locate net price breakdown
+        if exception_handler(driver, 7, "net-price"):
+            net_price_grp = driver.find_element_by_id("net-price")
 
-                if "—" not in other_cost_temp[1].text:
-                    position = other_cost_temp[1].text.index(" / ")
-                    AVE_MEAL_PLAN_COST = other_cost_temp[1].text[:position]
+            if exception_handler(net_price_grp, 13, "profile__bucket--1"):
+                net_price_temp = net_price_grp.find_element_by_class_name("profile__bucket--1")
 
-                if "—" not in other_cost_temp[2].text:
-                    position = other_cost_temp[2].text.index(" / ")
-                    BOOKS_SUPPLIES = other_cost_temp[2].text[:position]
+                if exception_handler(net_price_temp, 5, "scalar--three"):
+                    net_price_items = net_price_temp.find_elements_by_class_name("scalar--three")
 
-        # locate tuition plan data
-        if exception_handler(sticker_price_grp, 13, "profile__bucket--4"):
-            tuition_plan_grp = sticker_price_grp.find_element_by_class_name("profile__bucket--4")
+                    temp = net_price_items[0].text[9:]
+                    if "—" not in temp:
+                        position = temp.index(" / ")
+                        NET_PRICE = temp[:position]
+                    
+                    temp = net_price_items[1].text[25:]
+                    if "—" not in temp:
+                        position = temp.index(" / ")
+                        AVG_TOTAL_AID_AWARD = temp[:position]
+                    
+                    temp = net_price_items[2].text[32:]
+                    if "—" not in temp:
+                        STUDENT_RECEIVE_AID = temp
+                    
+                    if exception_handler(net_price_temp, 13, "profile__website__link"):
+                        temp = net_price_temp.find_element_by_class_name("profile__website__link").get_attribute("href")
+                        if "—" not in temp:
+                            NET_PRICE_CALCULATE_URL = temp
+        
+        
+        # locate sticker price
+        if exception_handler(driver, 7, "sticker-price"):
+            sticker_price_grp = driver.find_element_by_id("sticker-price")
 
-            if exception_handler(other_cost_grp1, 5, "scalar__value"):
-                tuition_plan_items = tuition_plan_grp.find_elements_by_class_name("scalar__value")
-                
-                if "—" not in tuition_plan_items[0].text:
-                    TUITION_GUARANTEE_PLAN = tuition_plan_items[0].text
+            if exception_handler(sticker_price_grp, 13, "profile__bucket--1"):
+                tuition_temp = sticker_price_grp.find_element_by_class_name("profile__bucket--1")
 
-                if "—" not in tuition_plan_items[1].text:
-                    TUITION_PAYMENT_PLAN = tuition_plan_items[1].text
+                if exception_handler(tuition_temp, 13, "scalar__value"):
+                    temp = tuition_temp.find_element_by_class_name("scalar__value").text
+                    position = temp.index(" / ")
+                    if "—" not in temp[:position]:
+                        TUITION_IN_STATE = temp[:position]
 
-                if "—" not in tuition_plan_items[2].text:
-                    TUITION_PREPAID_PLAN = tuition_plan_items[2].text
+            if exception_handler(sticker_price_grp, 13, "profile__bucket--2"):
+                tuition_temp = sticker_price_grp.find_element_by_class_name("profile__bucket--2")
+
+                if exception_handler(tuition_temp, 13, "scalar__value"):
+                    temp = tuition_temp.find_element_by_class_name("scalar__value").text
+                    position = temp.index(" / ")
+                    if "—" not in temp[:position]:
+                        TUITION_OUT_STATE = temp[:position]
+            
+            # other tuition cost 1
+            if exception_handler(sticker_price_grp, 13, "profile__bucket--3"):
+                other_cost_grp1 = sticker_price_grp.find_element_by_class_name("profile__bucket--3")
+
+                if exception_handler(other_cost_grp1, 5, "scalar--three"):
+                    other_cost_temp = other_cost_grp1.find_elements_by_class_name("scalar--three")
+                    
+                    if "—" not in other_cost_temp[0].text:
+                        position = other_cost_temp[0].text.index(" / ")
+                        AVG_HOUSING_COST = other_cost_temp[0].text[:position]
+
+                    if "—" not in other_cost_temp[1].text:
+                        position = other_cost_temp[1].text.index(" / ")
+                        AVE_MEAL_PLAN_COST = other_cost_temp[1].text[:position]
+
+                    if "—" not in other_cost_temp[2].text:
+                        position = other_cost_temp[2].text.index(" / ")
+                        BOOKS_SUPPLIES = other_cost_temp[2].text[:position]
+
+            # locate tuition plan data
+            if exception_handler(sticker_price_grp, 13, "profile__bucket--4"):
+                tuition_plan_grp = sticker_price_grp.find_element_by_class_name("profile__bucket--4")
+
+                if exception_handler(other_cost_grp1, 5, "scalar__value"):
+                    tuition_plan_items = tuition_plan_grp.find_elements_by_class_name("scalar__value")
+                    
+                    if len(tuition_plan_items) > 0:
+                        if "—" not in tuition_plan_items[0].text:
+                            TUITION_GUARANTEE_PLAN = tuition_plan_items[0].text
+
+                        if "—" not in tuition_plan_items[1].text:
+                            TUITION_PAYMENT_PLAN = tuition_plan_items[1].text
+
+                        if "—" not in tuition_plan_items[2].text:
+                            TUITION_PREPAID_PLAN = tuition_plan_items[2].text
     
     cost = {
         "net_cost": str(NET_COST),
@@ -730,114 +830,119 @@ def retrieve_cost_data(driver, section):
 
 def retrieve_academic_data(driver, section):
     
-    # get the academic detail page url
-    academic_detail_page_url = section.find_element_by_class_name("expansion-link__text").get_attribute("href")
-
-    # navigate to the academic detail page
-    driver.get(academic_detail_page_url)
-
-    close_modal_message(driver)
-
-    # academic statistic group
     GRADUATION_RATE = "N\A"
-    if exception_handler(driver, 7, "academic-statistics"):
-        academic_statisic_grp = driver.find_element_by_id("academic-statistics")
-
-        # locate graduation rate
-        graduation_rate_temp = academic_statisic_grp.find_element_by_class_name("profile__bucket--2")
-        temp = graduation_rate_temp.find_element_by_class_name("scalar__value").text
-        position = temp.index("National")
-
-        if "—" not in temp[:position]:
-            # remove the extra line if any
-            i = str(temp[:position]).replace("\n", "")
-            GRADUATION_RATE = i
-    
-    # class statistics
     POPULAR_MAJOR, CLASS_SIZE_RATIO = {}, {}
-    if exception_handler(driver, 7, "about-the-classes"):
-        class_grp = driver.find_element_by_id("about-the-classes")
-
-        # get class size
-        if exception_handler(class_grp, 13, "profile__bucket--1"):
-            class_size_grp = class_grp.find_element_by_class_name("profile__bucket--1")
-
-            # get the tbl index key
-            if exception_handler(class_size_grp, 5, "fact__table__row__label"):
-                class_size_key = class_size_grp.find_elements_by_class_name("fact__table__row__label")
-                # get the tbl val
-                class_size_val = class_size_grp.find_elements_by_class_name("fact__table__row__value")
-
-                # zip them and then form a list so that we can append into the dict
-                temp = list(zip(class_size_key, class_size_val))
-                for key, val in temp:
-                    # need to remove "." in the key, otherwise mongodb wouldn't accept it
-                    i = str(key.text).replace(".", "")
-                    i = str(i).replace(" ", "_")
-                    CLASS_SIZE_RATIO[i] = val.text
-            else:
-                CLASS_SIZE_RATIO["N\A"] = "N\A"
-            
-        # locate popular major listing
-        if exception_handler(class_grp, 13, "profile__bucket--2"):
-            popular_major_grp = class_grp.find_element_by_class_name("profile__bucket--2")
-
-            # need to click a button in order to view more data from the tbl
-            if exception_handler(popular_major_grp, 13, "toggle__content__link--profiles"):
-                popular_major_grp.find_element_by_class_name("toggle__content__link--profiles").click()
-            
-            # major name
-            if exception_handler(popular_major_grp, 5, "popular-entity__name"):
-                popular_major_key = popular_major_grp.find_elements_by_class_name("popular-entity__name")
-                # major statistics
-                popular_major_val = popular_major_grp.find_elements_by_class_name("popular-entity-descriptor")
-
-                temp = list(zip(popular_major_key, popular_major_val))
-                for key, val in temp:
-                    # need to remove "." in the key, otherwise mongodb wouldn't accept it
-                    i = str(key.text).replace(".", "")
-                    i = str(i).replace(" ", "_")
-                    POPULAR_MAJOR[i] = val.text
-            else:
-                POPULAR_MAJOR["N\A"] = "N\A"
-    
     FACULTY_RATIO, FEMALE_PROF, MALE_PROF = "N\A", "N\A", "N\A"
     FACULTY_DIVERSITY = {}
 
-    # get professor statistics
-    if exception_handler(driver, 7, "about-the-professors"):
-        prof_grp = driver.find_element_by_id("about-the-professors")
-    
-        # narrow down the ele
-        if exception_handler(prof_grp, 13, "profile__bucket--1"):
-            prof_info_grp = prof_grp.find_element_by_class_name("profile__bucket--1")
+    # get the academic detail page url
+    if exception_handler(section, 13, "expansion-link__text"):
+        academic_detail_page_url = section.find_element_by_class_name("expansion-link__text").get_attribute("href")
 
-            if exception_handler(prof_info_grp, 5, "scalar__value"):
-                prof_info = prof_info_grp.find_elements_by_class_name("scalar__value")
+        # navigate to the academic detail page
+        driver.get(academic_detail_page_url)
+
+        close_modal_message(driver)
+
+        # academic statistic group    
+        if exception_handler(driver, 7, "academic-statistics"):
+            academic_statisic_grp = driver.find_element_by_id("academic-statistics")
+
+            # locate graduation rate
+            if exception_handler(academic_statisic_grp, 13, "profile__bucket--2"):
+                graduation_rate_temp = academic_statisic_grp.find_element_by_class_name("profile__bucket--2")
+
+                if exception_handler(graduation_rate_temp, 13, "scalar__value"):
+                    temp = graduation_rate_temp.find_element_by_class_name("scalar__value").text
+                    position = temp.index("National")
+
+                    if "—" not in temp[:position]:
+                        # remove the extra line if any
+                        i = str(temp[:position]).replace("\n", "")
+                        GRADUATION_RATE = i
+        
+        # class statistics
+        if exception_handler(driver, 7, "about-the-classes"):
+            class_grp = driver.find_element_by_id("about-the-classes")
+
+            # get class size
+            if exception_handler(class_grp, 13, "profile__bucket--1"):
+                class_size_grp = class_grp.find_element_by_class_name("profile__bucket--1")
+
+                # get the tbl index key
+                if exception_handler(class_size_grp, 5, "fact__table__row__label"):
+                    class_size_key = class_size_grp.find_elements_by_class_name("fact__table__row__label")
+                    # get the tbl val
+                    class_size_val = class_size_grp.find_elements_by_class_name("fact__table__row__value")
+
+                    # zip them and then form a list so that we can append into the dict
+                    temp = list(zip(class_size_key, class_size_val))
+                    for key, val in temp:
+                        # need to remove "." in the key, otherwise mongodb wouldn't accept it
+                        i = str(key.text).replace(".", "")
+                        i = str(i).replace(" ", "_")
+                        CLASS_SIZE_RATIO[i] = val.text
+                else:
+                    CLASS_SIZE_RATIO["N\A"] = "N\A"
                 
-                if "—" not in prof_info[0].text:
-                    FACULTY_RATIO = prof_info[0].text
-                if "—" not in prof_info[1].text:
-                    FEMALE_PROF = prof_info[1].text
-                if "—" not in prof_info[2].text:
-                    MALE_PROF = prof_info[2].text
+            # locate popular major listing
+            if exception_handler(class_grp, 13, "profile__bucket--2"):
+                popular_major_grp = class_grp.find_element_by_class_name("profile__bucket--2")
 
-    # get faculty diversity
-    if exception_handler(prof_grp, 13, "profile__bucket--2"):
-        prof_diversity_grp = prof_grp.find_element_by_class_name("profile__bucket--2")
+                # need to click a button in order to view more data from the tbl
+                if exception_handler(popular_major_grp, 13, "toggle__content__link--profiles"):
+                    popular_major_grp.find_element_by_class_name("toggle__content__link--profiles").click()
+                
+                # major name
+                if exception_handler(popular_major_grp, 5, "popular-entity__name"):
+                    popular_major_key = popular_major_grp.find_elements_by_class_name("popular-entity__name")
+                    # major statistics
+                    popular_major_val = popular_major_grp.find_elements_by_class_name("popular-entity-descriptor")
 
-        if exception_handler(prof_diversity_grp, 5, "fact__table__row__label"):
-            prof_diversity_key = prof_diversity_grp.find_elements_by_class_name("fact__table__row__label")
-            prof_diversity_val = prof_diversity_grp.find_elements_by_class_name("fact__table__row__value")
+                    temp = list(zip(popular_major_key, popular_major_val))
+                    for key, val in temp:
+                        # need to remove "." in the key, otherwise mongodb wouldn't accept it
+                        i = str(key.text).replace(".", "")
+                        i = str(i).replace(" ", "_")
+                        POPULAR_MAJOR[i] = val.text
+                else:
+                    POPULAR_MAJOR["N\A"] = "N\A"
+        
 
-            temp = list(zip(prof_diversity_key, prof_diversity_val))
-            for key, val in temp:
-                # need to remove "." in the key, otherwise mongodb wouldn't accept it
-                i = str(key.text).replace(".", "")
-                i = str(i).replace(" ", "_")
-                FACULTY_DIVERSITY[i] = val.text
-        else:
-            FACULTY_DIVERSITY["N\A"] = "N\A"
+        # get professor statistics
+        if exception_handler(driver, 7, "about-the-professors"):
+            prof_grp = driver.find_element_by_id("about-the-professors")
+        
+            # narrow down the ele
+            if exception_handler(prof_grp, 13, "profile__bucket--1"):
+                prof_info_grp = prof_grp.find_element_by_class_name("profile__bucket--1")
+
+                if exception_handler(prof_info_grp, 5, "scalar--three"):
+                    prof_info = prof_info_grp.find_elements_by_class_name("scalar--three")
+                    
+                    if "—" not in prof_info[0].text[21:]:
+                        FACULTY_RATIO = prof_info[0].text[21:]
+                    if "—" not in prof_info[1].text[17:]:
+                        FEMALE_PROF = prof_info[1].text[17:]
+                    if "—" not in prof_info[2].text[15:]:
+                        MALE_PROF = prof_info[2].text[15:]
+
+        # get faculty diversity
+        if exception_handler(prof_grp, 13, "profile__bucket--2"):
+            prof_diversity_grp = prof_grp.find_element_by_class_name("profile__bucket--2")
+
+            if exception_handler(prof_diversity_grp, 5, "fact__table__row__label"):
+                prof_diversity_key = prof_diversity_grp.find_elements_by_class_name("fact__table__row__label")
+                prof_diversity_val = prof_diversity_grp.find_elements_by_class_name("fact__table__row__value")
+
+                temp = list(zip(prof_diversity_key, prof_diversity_val))
+                for key, val in temp:
+                    # need to remove "." in the key, otherwise mongodb wouldn't accept it
+                    i = str(key.text).replace(".", "")
+                    i = str(i).replace(" ", "_")
+                    FACULTY_DIVERSITY[i] = val.text
+            else:
+                FACULTY_DIVERSITY["N\A"] = "N\A"
     
     academic = {
         "graduation_rate": str(GRADUATION_RATE),
@@ -877,10 +982,11 @@ def retrieve_students_data(driver, section):
             if exception_handler(temp_grp, 5, "scalar__value"):
                 ratio_grp = temp_grp.find_elements_by_class_name("scalar__value")
 
-                if "—" not in ratio_grp[0].text:
-                    FEMALE_UNDERGRADS = ratio_grp[0].text
-                if "—" not in ratio_grp[1].text:
-                    MALE_UNDERGRADS = ratio_grp[1].text
+                if len(ratio_grp) == 2:
+                    if "—" not in ratio_grp[0].text:
+                        FEMALE_UNDERGRADS = ratio_grp[0].text
+                    if "—" not in ratio_grp[1].text:
+                        MALE_UNDERGRADS = ratio_grp[1].text
                 
                 # get student residence info
 
@@ -1243,7 +1349,7 @@ if __name__ == "__main__":
 
             college["niche_grade"] = NICHE_GRADES
 
-            time.sleep(random.randint(1, 6))
+            # time.sleep(random.randint(1, 6))
 
             # ======== college info ========
             COLLEGE_DESCRIPTION, COLLEGE_SITE, COLLEGE_ADDRESS, ATHLETICS_DIVISION, ATHLETICS_CONFERENCE = "N\A", "N\A", "N\A", "N\A", "N\A"
@@ -1285,7 +1391,7 @@ if __name__ == "__main__":
             # back to scholasrhip detail (previous) page
             driver.get(temp)
             
-            time.sleep(random.randint(1, 6))
+            # time.sleep(random.randint(1, 6))
             close_modal_message(driver)
 
             # ======== Admission info ========
@@ -1382,7 +1488,7 @@ if __name__ == "__main__":
             
             # back to scholasrhip detail (previous) page
             driver.get(temp)
-            time.sleep(random.randint(1, 6))
+            # time.sleep(random.randint(1, 6))
             close_modal_message(driver)
             
             # ======== Academic info =========
@@ -1427,7 +1533,7 @@ if __name__ == "__main__":
 
             # back to scholasrhip detail (previous) page
             driver.get(temp)
-            time.sleep(random.randint(1, 6))
+            # time.sleep(random.randint(1, 6))
             close_modal_message(driver)
 
             # ======== Campus life ========
@@ -1473,7 +1579,7 @@ if __name__ == "__main__":
                 section9 = driver.find_element_by_id("after")
                 after_uni = retrieve_after_college(driver, section9)
 
-            time.sleep(random.randint(1, 6))
+            # time.sleep(random.randint(1, 6))
 
             college["after_uni"] = after_uni
 
