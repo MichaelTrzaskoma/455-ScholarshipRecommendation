@@ -18,7 +18,7 @@ import {
 //import DatePicker from 'react-native-datepicker'
 import DropDownPicker from 'react-native-dropdown-picker';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, Feather } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import CollapsibleView from "@eliav2/react-native-collapsible-view";
 // import { Feather } from '@expo/vector-icons';
@@ -74,7 +74,7 @@ const items = [
 				id: 24,
 			},
 			{
-				name: 'Sports Management',
+				name: 'Sport Management',
 				id: 25,
 			},
 		],
@@ -1499,7 +1499,7 @@ class InputScreen1a extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props);
 
-		let URL = "http://614029157c7e.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
 		fetch(URL, {
 			method: this.state.currentMethod,
 			headers: {
@@ -1560,7 +1560,7 @@ class InputScreen1a extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
-		let URL = "http://614029157c7e.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
 
 
 		fetch(URL, {

@@ -16,6 +16,7 @@ MINS_TIL_RESET_CODE_EXPIRY = 60
 db = MongoClient("mongodb://localhost:27017/")
 scholarDb = db.test
 scholar_ref = db.test.scholarships
+college_ref = db.test.colleges
 user_Ref = db.test.client_profile
 
 ACTIVE_CODE_LENGTH = 64
@@ -66,9 +67,11 @@ def thankYou():
 
             # Insert user into database
             activationCode = generateCode()
-            scholarDb.users.insert_one({ "email": email, "password": hashPass, "activationCode": activationCode, "activationDate": datetime.now(), "active": 0 })
-            init_usrProfileDB(user_Ref, email, hashPass, activationCode, datetime.now(), 0)
-            #Send welcome email
+            scholarDb.users.insert_one({"email": email, "password": hashPass,
+                                       "activationCode": activationCode, "activationDate": datetime.now(), "active": 0})
+            init_usrProfileDB(user_Ref, email, hashPass,
+                              activationCode, datetime.now(), 0)
+            # Send welcome email
             mailhandler.sendWelcomeEmail(email, activationCode)
             text = "<strong>Please check your email</strong> for further instructions on how to complete your account setup."
         elif(page == "forgot"):
@@ -82,38 +85,43 @@ def thankYou():
             if(results == 0):
                 return redirect(url_for('forgotpassword', error="unfound"))
             resetCode = generateCode()
-            scholarDb.users.update_one({"email" : email}, {"$set": {"resetCode": resetCode, "resetDate": datetime.now(), "resetCodeUsed": 0}})
-            #Send reset password email to user if successful 
+            scholarDb.users.update_one({"email": email}, {"$set": {
+                                       "resetCode": resetCode, "resetDate": datetime.now(), "resetCodeUsed": 0}})
+            # Send reset password email to user if successful
             mailhandler.sendResetPasswordEmail(email, resetCode)
             text = "<strong>Please check your email</strong> for further instructions on how to reset your password."
         elif(page == "activate"):
             code = request.form['code']
-            results = scholarDb.users.find({ "activationCode" : code })
+            results = scholarDb.users.find({"activationCode": code})
             if(len(code) != ACTIVE_CODE_LENGTH or results.count() != 1):
-                return "Error" #redirect(url_for('error', error="invalid"))
+                return "Error"  # redirect(url_for('error', error="invalid"))
             activationTime = results[0]["activationDate"]
             email = results[0]["email"]
             if((datetime.now() - activationTime).total_seconds() / 60 > MINS_TIL_ACTIVE_CODE_EXPIRY):
                 activationCode = generateCode()
-                scholarDb.users.update_one({"email" : email}, {"$set": {"activationCode": activationCode, "activationDate": datetime.now()}})
+                scholarDb.users.update_one({"email": email}, {
+                                           "$set": {"activationCode": activationCode, "activationDate": datetime.now()}})
                 mailhandler.sendWelcomeEmail(email, activationCode)
                 text = "<strong>That code is expired.</strong> Sending a new activation code."
             else:
-                scholarDb.users.update_one({"email" : email }, {"$set": {"active": 1}})
+                scholarDb.users.update_one(
+                    {"email": email}, {"$set": {"active": 1}})
                 text = "<strong>Your account is now active!</strong>"
         elif(page == "reset"):
             code = request.form['code']
             print("Code: " + code)
-            results = scholarDb.users.find({ "resetCode" : code })
+            results = scholarDb.users.find({"resetCode": code})
             if(results.count() == 0):
                 return "Error"
             email = results[0]["email"]
             password = request.form['password']
-            scholarDb.users.update_one({"email" : email}, {"$set": {"resetCodeUsed": 1, "password": password}})
+            scholarDb.users.update_one(
+                {"email": email}, {"$set": {"resetCodeUsed": 1, "password": password}})
             text = "<strong>Your password has been reset!</strong> Click the button below to log in with your new password"
         if(text != ""):
-            return render_template("public/thankyou.html", text=text) 
+            return render_template("public/thankyou.html", text=text)
     return "404"
+
 
 @app.route("/activate", methods=["POST", "GET"])
 def activate():
@@ -224,6 +232,7 @@ def auth(email):
                     # there's a device list under user's profile
                     # check if there's an exisiting unique id
                     device_list = usr_profile_data["devices"]
+
                     device_info = list(filter(
                         lambda device: device['unique_id'] == income_data['unique_id'], device_list))
 
@@ -287,24 +296,31 @@ def auth(email):
     code = request.args.get('code')
     return render_template("public/activate.html", code=code)
 
+
 @app.route("/resetpassword", methods=["POST", "GET"])
 def reset():
     code = request.args.get('code')
-    results = scholarDb.users.find({ "resetCode" : code })
+    results = scholarDb.users.find({"resetCode": code})
     if(len(code) != ACTIVE_CODE_LENGTH or results.count() != 1):
-        return "Error, invalid code" #redirect(url_for('error', error="invalid"))
+        # redirect(url_for('error', error="invalid"))
+        return "Error, invalid code"
     activationTime = results[0]["resetDate"]
     email = results[0]["email"]
     if((datetime.now() - activationTime).total_seconds() / 60 > MINS_TIL_RESET_CODE_EXPIRY):
         activationCode = generateCode()
-        scholarDb.users.update_one({"email" : email}, {"$set": {"resetCode": resetCode, "resetDate": datetime.now(), "resetCodeUsed": 0}})
+        scholarDb.users.update_one({"email": email}, {"$set": {
+                                   "resetCode": resetCode, "resetDate": datetime.now(), "resetCodeUsed": 0}})
         mailhandler.sendResetPasswordEmail(email, resetCode)
         return "Code no longer active, sending new code"
     return render_template("public/resetpass.html", code=code)
 
+
 @app.route("/api/v1.2/managements/users/forgotpassword")
 def forgot():
     return render_template("public/forgotpass.html")
+
+
+# Scholarship Resources
 
 
 @app.route("/api/v1.2/resources/scholarships/view/categories/general")
@@ -380,6 +396,36 @@ def view_scholarship_single(scholarship_title):
     scholarship["contact_info"] = result.get("contact Info")
 
     return make_response(jsonify(scholarship), 202)
+
+
+# College Resources
+
+
+@app.route("/api/v1.2/resources/college/view/states/general")
+def view_college_generalCategory():
+    # view college general list in terms of states
+    # e.g. NY, NJ, CA, and etc
+    # college_ref
+    return null
+
+
+@app.route("/api/v1.2/resources/college/view/states/<state>")
+def view_college_stateIndex(state):
+    # view college within a specific state
+    # INPUT: state (str) name
+    # OUTPUT: return an arr, and each ele contains title and the state of the college
+
+    if request.method == "GET":
+        r = college_ref.find({"location_tags": state}, {"_id": 0, "name": 1})
+    
+    resource = []
+    print(r)
+    for item in set(r):
+        # resource.append(item)
+        print(item)
+    return make_response(r, 202)
+
+# Management
 
 
 @app.route("/api/v1.2/users/id/<email>/surveys/scholarship",  methods=["GET", "POST", "PATCH"])
@@ -499,7 +545,7 @@ def usrSurvey_scholarship(email):
             return make_response(jsonify({"mesg": "Your scholarship survey has successfully modified!"}), 202)
 
         return make_response(jsonify({"mesg": "Failed to modify your survey!"}), 400)
-    
+
     else:
         return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
 
@@ -527,18 +573,18 @@ def usrSurvey_college(email):
         # TODO: validate the user auth and jwt
 
         income_data = request.json
-        
+
         # validate the incoming data
         if "regions" not in income_data:
             return make_response(jsonify({"mesg": "Missing region information"}), 400)
         if len(income_data["regions"]) < 1:
             return make_response(jsonify({"mesg": "Missing region information"}), 400)
-        
+
         if "majors" not in income_data:
             return make_response(jsonify({"mesg": "Missing major information"}), 400)
         if len(income_data["majors"]) < 1:
             return make_response(jsonify({"mesg": "Missing major information"}), 400)
-        
+
         # ==================== PLACEHOLDER ====================
         # TODO: some sort of func to append the data into db
         # append_college_survey(
@@ -550,7 +596,7 @@ def usrSurvey_college(email):
         #     income_data["act_score"],
         # )
         return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
-    
+
     elif request.method == "GET" and request.is_json:
         # TODO: validate the user auth and jwt
 
@@ -558,21 +604,22 @@ def usrSurvey_college(email):
 
         r = user_Ref.count_documents({"_id": email})
         result = {}
-        
+
         # ==================== PLACEHOLDER ====================
         # validate the incoming data
         # if "regions" not in income_data:
         #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
         # if len(income_data["regions"]) < 1:
         #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
-        
+
         # if "majors" not in income_data:
         #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
         # if len(income_data["majors"]) < 1:
         #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
-        
+
         if r == 1:
-            resource = user_Ref.find_one({"_id": email}, {"_id": 0, "survey_college": 1})
+            resource = user_Ref.find_one(
+                {"_id": email}, {"_id": 0, "survey_college": 1})
 
             if "survey_college" in resource:
                 result = {
@@ -607,7 +654,7 @@ def usrSurvey_college(email):
             #     income_data["act_score"],
             # )
             return make_response(jsonify({"mesg": "Your college survey has successfully modified!"}), 202)
-        
+
         return make_response(jsonify({"mesg": "Failed to modify your survey!"}), 400)
 
     else:
@@ -638,18 +685,18 @@ def usrSurvey_major(email):
         # TODO: validate the user auth and jwt
 
         income_data = request.json
-        
+
         # validate the incoming data
         if "regions" not in income_data:
             return make_response(jsonify({"mesg": "Missing region information"}), 400)
         if len(income_data["regions"]) < 1:
             return make_response(jsonify({"mesg": "Missing region information"}), 400)
-        
+
         if "majors" not in income_data:
             return make_response(jsonify({"mesg": "Missing major information"}), 400)
         if len(income_data["majors"]) < 1:
             return make_response(jsonify({"mesg": "Missing major information"}), 400)
-        
+
         # ==================== PLACEHOLDER ====================
         # TODO: some sort of func to append the data into db
         # append_college_survey(
@@ -661,7 +708,7 @@ def usrSurvey_major(email):
         #     income_data["act_score"],
         # )
         return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
-    
+
     elif request.method == "GET" and request.is_json:
         # TODO: validate the user auth and jwt
 
@@ -669,21 +716,22 @@ def usrSurvey_major(email):
 
         r = user_Ref.count_documents({"_id": email})
         result = {}
-        
+
         # ==================== PLACEHOLDER ====================
         # validate the incoming data
         # if "regions" not in income_data:
         #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
         # if len(income_data["regions"]) < 1:
         #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
-        
+
         # if "majors" not in income_data:
         #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
         # if len(income_data["majors"]) < 1:
         #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
-        
+
         if r == 1:
-            resource = user_Ref.find_one({"_id": email}, {"_id": 0, "survey_college": 1})
+            resource = user_Ref.find_one(
+                {"_id": email}, {"_id": 0, "survey_college": 1})
 
             if "survey_college" in resource:
                 result = {
@@ -718,7 +766,7 @@ def usrSurvey_major(email):
             #     income_data["act_score"],
             # )
             return make_response(jsonify({"mesg": "Your college survey has successfully modified!"}), 202)
-        
+
         return make_response(jsonify({"mesg": "Failed to modify your survey!"}), 400)
 
     else:
