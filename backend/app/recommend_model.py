@@ -42,8 +42,8 @@ def updtUser(
    
     majorUpdt = list(major)
     
-    if major !=[]:
-        majorUpdt = catMajor(major)
+    if majorUpdt !=[]:
+        majorUpdt = catMajor(majorUpdt)
 
     list2 = [state, race, religion, dissabilities, ethnicity, majorUpdt]
     for i in range(len(list2)):
@@ -137,8 +137,8 @@ def updtScholarSurvey(
     
     majorUpdt = list(major)
     
-    if major !=[]:
-        majorUpdt = catMajor(major)
+    if majorUpdt !=[]:
+        majorUpdt = catMajor(majorUpdt)
 
     print(majorUpdt)
     list2 = [state, race, religion, dissabilities, ethnicity, majorUpdt]
