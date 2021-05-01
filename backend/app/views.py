@@ -282,8 +282,8 @@ def auth(email):
         return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
 
 
-@app.route("/activate", methods=["POST", "GET"])
-def activate():
+# @app.route("/activate", methods=["POST", "GET"])
+# def activate():
     code = request.args.get('code')
     return render_template("public/activate.html", code=code)
 

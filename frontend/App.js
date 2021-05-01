@@ -23,6 +23,7 @@ import ViewRecommendTbl from "./components/scholarships/ViewRecommendTbl";
 import ScholarRecommend from "./ui/scholarships/ScholarRecommend";
 import CollegeSurvey from "./components/colleges/CollegeSurvey";
 import CollegeScreen from "./components/colleges/CollegeScreen";
+import CollegeDetail from "./components/colleges/CollegeDetail";
 import MajorScreen from "./components/majors/MajorScreen";
 import TabViewSurvey from "./components/TabViewSurvey";
 
@@ -375,6 +376,22 @@ export default class App extends Component {
             <Stack.Screen
               name={"ViewRecommendTbl_3"}
               component={ViewRecommendTbl_3}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
+            />
+
+            <Stack.Screen
+              name={"CollegeDetail"}
+              component={CollegeDetail}
               options={({ route }) => ({
                 title: route.params.title,
                 headerStyle: {
