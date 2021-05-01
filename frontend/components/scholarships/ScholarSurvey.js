@@ -1438,9 +1438,11 @@ class InputScreen1a extends React.Component {
 		return exists;
 	}
 
-	checkAge() {
+	checkAge = () => {
 		let exists = false;
-		if (this.state.dob.localeCompare("") != 0) {
+		console.log("DOB value: " + this.state.dob);
+		let length_dob = String(this.state.dob).length;
+		if (length_dob > 0) {
 			exists = true;
 		}
 		return exists;
@@ -1541,7 +1543,7 @@ class InputScreen1a extends React.Component {
 
 	onSubmit() {
 		let noInput = "";
-		
+
 		if (this.state.gender.localeCompare(noInput) != 0
 			&& this.state.dob.localeCompare(noInput) != 0
 			&& this.state.gpa.localeCompare(noInput) != 0
@@ -1573,23 +1575,25 @@ class InputScreen1a extends React.Component {
 				console.log("Exisiting Data: " + JSON.stringify(json));
 				console.log("Email from ScholarSurvey.js: " + this.state.email);
 				// set the val to state
-				this.setState({
-					dob: json.mesg.age,
-					gender: json.mesg.gender,
-					gpa: json.mesg.gpa,
-					selectedResidences: json.mesg.states,
-					selectedMajors: json.mesg.major,
-					selectedRaces: json.mesg.race,
-					selectedReligions: json.mesg.religion,
-					selectedDisabilities: json.mesg.dissabilities,
-					selectedEthnicities: json.mesg.ethnicity,
-					firstTime: json.mesg.existing,
-
-				});
+				if (json.mesg.existing == 1) {
+					// there's an exisiting data on client's record
+					this.setState({
+						dob: json.mesg.age,
+						gender: json.mesg.gender,
+						gpa: json.mesg.gpa,
+						selectedResidences: json.mesg.states,
+						selectedMajors: json.mesg.major,
+						selectedRaces: json.mesg.race,
+						selectedReligions: json.mesg.religion,
+						selectedDisabilities: json.mesg.dissabilities,
+						selectedEthnicities: json.mesg.ethnicity,
+						firstTime: json.mesg.existing,
+					});
+				}
 			});
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		this.getExistingData();
 	}
 
@@ -1598,7 +1602,7 @@ class InputScreen1a extends React.Component {
 		// console.log("DOB is: " + this.state.dob);
 		// console.log(this.props);
 		// check();
-		
+
 		return (
 			<DismissKeyboard>
 				<KeyboardAwareScrollView
