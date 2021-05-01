@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 import time
 
 from .auths import generateCode, init_usrProfileDB, check_email_verification_status, encode_jwt, update_deviceInfo, initial_device, update_deviceInfo, validate_token
-from .recommend_model import updtUser, filter_results, updtScholarSurvey
+from .recommend_model import updtUser, filter_results, updtScholarSurvey, getBookmarks, addBookmark, getRecent, addRecent
 
 MINS_TIL_ACTIVE_CODE_EXPIRY = 15
 MINS_TIL_RESET_CODE_EXPIRY = 60
@@ -29,17 +29,14 @@ def testJWT():
     # print(income_data)
     return make_response(jsonify({"msg": r}))
 
-
 @app.route("/")
 def index():
     # print(authOutput)
     return render_template("public/index.html")
 
-
 @app.route("/api/v1.2/managements/users/signup")
 def signUp():
     return render_template("public/signup.html")
-
 
 @app.route("/api/v1.2/managements/users/thankyou", methods=["POST", "GET"])
 def thankYou():
@@ -66,7 +63,6 @@ def thankYou():
 
             # Insert user into database
             activationCode = generateCode()
-            scholarDb.users.insert_one({ "email": email, "password": hashPass, "activationCode": activationCode, "activationDate": datetime.now(), "active": 0 })
             init_usrProfileDB(user_Ref, email, hashPass, activationCode, datetime.now(), 0)
             #Send welcome email
             mailhandler.sendWelcomeEmail(email, activationCode)
@@ -90,30 +86,35 @@ def thankYou():
             code = request.form['code']
             results = scholarDb.users.find({ "activationCode" : code })
             if(len(code) != ACTIVE_CODE_LENGTH or results.count() != 1):
-                return "Error" #redirect(url_for('error', error="invalid"))
+                redirect(url_for('error', error="invalidcode"))
+                return
             activationTime = results[0]["activationDate"]
             email = results[0]["email"]
             if((datetime.now() - activationTime).total_seconds() / 60 > MINS_TIL_ACTIVE_CODE_EXPIRY):
                 activationCode = generateCode()
-                scholarDb.users.update_one({"email" : email}, {"$set": {"activationCode": activationCode, "activationDate": datetime.now()}})
+                scholarDb.users.update_one({"_id" : email}, {"$set": {"activationCode": activationCode, "activationDate": datetime.now()}})
                 mailhandler.sendWelcomeEmail(email, activationCode)
                 text = "<strong>That code is expired.</strong> Sending a new activation code."
             else:
-                scholarDb.users.update_one({"email" : email }, {"$set": {"active": 1}})
+                scholarDb.users.update_one({"_id" : email }, {"$set": {"active": 1}})
                 text = "<strong>Your account is now active!</strong>"
         elif(page == "reset"):
             code = request.form['code']
             print("Code: " + code)
             results = scholarDb.users.find({ "resetCode" : code })
             if(results.count() == 0):
-                return "Error"
-            email = results[0]["email"]
+                redirect(url_for('error', error="invalidcode"))
+                return 
+            email = results[0]["_id"]
             password = request.form['password']
-            scholarDb.users.update_one({"email" : email}, {"$set": {"resetCodeUsed": 1, "password": password}})
+            # salt and hash password
+            saltedPass = password + app.config['SALT_VALUE']
+            hashPass = hashlib.md5(saltedPass.encode()).hexdigest()
+            scholarDb.users.update_one({"_id" : email}, {"$set": {"resetCodeUsed": 1, "paswrd": hashPass}})
             text = "<strong>Your password has been reset!</strong> Click the button below to log in with your new password"
         if(text != ""):
             return render_template("public/thankyou.html", text=text) 
-    return "404"
+    redirect(url_for('error', error="404"))
 
 @app.route("/activate", methods=["POST", "GET"])
 def activate():
@@ -126,7 +127,7 @@ def activate():
 
     # validate the activation code
     if(len(code) != ACTIVE_CODE_LENGTH or counter != 1):
-        return "Error"  # redirect(url_for('error', error="invalid"))
+        redirect(url_for('error', error="invalidcode"))
 
     # retrieve user profile info
     results = user_Ref.find_one({"activationCode": code})
@@ -141,14 +142,22 @@ def activate():
         user_Ref.update_one({"_id": email}, {
                             "$set": {"activationCode": activationCode, "activationDate": datetime.now()}})
         mailhandler.sendWelcomeEmail(email, activationCode)
-        return "Code Expired, sending new code"
-
+        redirect(url_for('error', error="expiredcode"))
+        
+        return
     user_Ref.update_one({"_id": email}, {"$set": {"active": 1}})
-
     return "Account activated"
 
+@app.route("/error", methods=["POST", "GET"])
+def error():
+    errorName = request.args.get("error")
+    errorVal = ""
+    if(errorName == "invalidcode"):
+        errorVal = "The code you entered was not found. Please check your email again and make sure you copied the URL correctly."
+    return render_template("public/error.html", error=errorVal) 
+    
 
-@app.route("/api/v1.2/managements/users/<email>/auth")
+app.route("/api/v1.2/managements/users/<email>/auth")
 def auth(email):
     '''
     user login feature
@@ -282,24 +291,21 @@ def auth(email):
         return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
 
 
-@app.route("/activate", methods=["POST", "GET"])
-def activate():
-    code = request.args.get('code')
-    return render_template("public/activate.html", code=code)
-
 @app.route("/resetpassword", methods=["POST", "GET"])
 def reset():
     code = request.args.get('code')
     results = scholarDb.users.find({ "resetCode" : code })
     if(len(code) != ACTIVE_CODE_LENGTH or results.count() != 1):
-        return "Error, invalid code" #redirect(url_for('error', error="invalid"))
+        redirect(url_for('error', error="invalidcode"))
+        return
     activationTime = results[0]["resetDate"]
     email = results[0]["email"]
     if((datetime.now() - activationTime).total_seconds() / 60 > MINS_TIL_RESET_CODE_EXPIRY):
         activationCode = generateCode()
         scholarDb.users.update_one({"email" : email}, {"$set": {"resetCode": resetCode, "resetDate": datetime.now(), "resetCodeUsed": 0}})
         mailhandler.sendResetPasswordEmail(email, resetCode)
-        return "Code no longer active, sending new code"
+        redirect(url_for('error', error="expiredcode"))
+        return
     return render_template("public/resetpass.html", code=code)
 
 @app.route("/api/v1.2/managements/users/forgotpassword")
@@ -740,3 +746,62 @@ def getRecommend_major(email):
         return make_response(jsonify(result), 202)
     else:
         return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
+        
+@app.route("/api/v1.2/users/id/<email>/bookmarks/get",  methods=["GET"])
+def getBookmarkDoc(email):
+    return make_repsonse(jsonify(str(getBookmarks(user_Ref, email))), 202)
+
+@app.route("/api/v1.2/users/id/<email>/bookmarks/add",  methods=["GET"])
+def addBookmarkDoc(email):
+    income_data = request.json
+
+    # validate the inputs and incoming data
+    if 'email' not in income_data:
+        return make_response(jsonify({"mesg": "An email is needed!"}), 400)
+
+    if 'title' not in income_data:
+        return make_response(jsonify({"mesg": "A title is needed!"}), 400)
+
+    if 'type' not in income_data:
+        return make_response(jsonify({"mesg": "A type is needed!"}), 400)
+
+    if 'unique_id' not in income_data:
+        return make_response(jsonify({"mesg": "Device is not supported!"}), 400)
+
+    title = income_data["title"]
+    docType = income_data["type"]
+    res = addBookmarks(user_Ref, email, title, docType)
+    if(res):
+        return make_response(jsonify("success"), 202)
+    else:
+        return make_response(jsonify("wrong email"), 400)
+    
+
+@app.route("/api/v1.2/users/id/<email>/recent/get",  methods=["GET"])
+def getBookmarkDoc(email):
+    return make_repsonse(jsonify(str(getRecent(user_Ref, email))), 202)
+
+@app.route("/api/v1.2/users/id/<email>/recent/add",  methods=["GET"])
+def addRecentDoc(email):
+    income_data = request.json
+
+    # validate the inputs and incoming data
+    if 'email' not in income_data:
+        return make_response(jsonify({"mesg": "An email is needed!"}), 400)
+
+    if 'title' not in income_data:
+        return make_response(jsonify({"mesg": "A title is needed!"}), 400)
+
+    if 'type' not in income_data:
+        return make_response(jsonify({"mesg": "A type is needed!"}), 400)
+
+    if 'unique_id' not in income_data:
+        return make_response(jsonify({"mesg": "Device is not supported!"}), 400)
+
+    title = income_data["title"]
+    docType = income_data["type"]
+    res = addRecent(user_Ref, email, title, docType)
+    if(res):
+        return make_response(jsonify("success"), 202)
+    else:
+        return make_response(jsonify("wrong email"), 400)
