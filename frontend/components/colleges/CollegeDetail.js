@@ -81,7 +81,7 @@ export default function CollegeDetailPage(props) {
             </View>
           </View>
         </View>
-        
+
         <View style={styles.grp2}>
           <View style={styles.descriptionGrp1}>
             <Text style={styles.description2}>Description</Text>
@@ -130,7 +130,7 @@ export default function CollegeDetailPage(props) {
             </View>
           </View>
         </View>
-        
+
         <View style={styles.grp3}>
           <View style={styles.rankingGrp1}>
             <View style={styles.moreInfoLeftGrp2}>
@@ -165,7 +165,7 @@ export default function CollegeDetailPage(props) {
             </View>
           </View>
         </View>
-        
+
         <View style={styles.grp4}>
           <View style={styles.rankingGrp2}>
             <View style={styles.moreInfoLeftGrp3}>
@@ -216,7 +216,7 @@ export default function CollegeDetailPage(props) {
             </View>
           </View>
         </View>
-        
+
         <View style={styles.grp5}>
           <View style={styles.rankingGrp3}>
             <View style={styles.moreInfoLeftGrp4}>
@@ -265,7 +265,7 @@ export default function CollegeDetailPage(props) {
             </View>
           </View>
         </View>
-        
+
         <View style={styles.grp6}>
           <View style={styles.maleSportGrp1}>
             <Text style={styles.maleSports1}>Male Sports</Text>
@@ -316,7 +316,7 @@ export default function CollegeDetailPage(props) {
             </Text>
           </View>
         </View>
-        
+
         <View style={styles.grp7}>
           <View style={styles.moreInfoGrp2}>
             <View style={styles.moreInfoLeftGrp5}>
@@ -379,6 +379,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     marginLeft: 15,
     marginRight: 15,
+    alignSelf: "center",
   },
   titleGrp: {
     top: 0,
@@ -617,12 +618,14 @@ const styles = StyleSheet.create({
     height: 314
   },
   grp2: {
-    width: 334,
+    width: "93%",
     height: 669,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
     marginTop: 15,
-    marginLeft: 13
+    marginLeft: 15,
+    marginRight: 15,
+    alignSelf: "center",
   },
   descriptionGrp1: {
     height: 261,
@@ -775,12 +778,14 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   grp3: {
-    width: 334,
+    width: "93%",
     height: 343,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
     marginTop: 25,
-    marginLeft: 13
+    marginLeft: 15,
+    marginRight: 15,
+    alignSelf: "center",
   },
   rankingGrp1: {
     height: 343,
@@ -886,12 +891,14 @@ const styles = StyleSheet.create({
     marginTop: 29
   },
   grp4: {
-    width: 334,
+    width: "93%",
     height: 688,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
     marginTop: 26,
-    marginLeft: 13
+    marginLeft: 15,
+    marginRight: 15,
+    alignSelf: "center",
   },
   rankingGrp2: {
     backgroundColor: "rgba(255,255,255,1)",
@@ -1115,12 +1122,13 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   grp5: {
-    width: 334,
+    width: "93%",
     height: 633,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
-    marginTop: 26,
-    alignSelf: "center"
+    marginLeft: 15,
+    marginRight: 15,
+    alignSelf: "center",
   },
   rankingGrp3: {
     backgroundColor: "rgba(255,255,255,1)",
@@ -1356,8 +1364,9 @@ const styles = StyleSheet.create({
     height: 673,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
-    marginTop: 27,
-    alignSelf: "center"
+    marginLeft: 15,
+    marginRight: 15,
+    alignSelf: "center",
   },
   maleSportGrp1: {
     height: 168,
@@ -1456,8 +1465,9 @@ const styles = StyleSheet.create({
     height: 539,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
-    marginTop: 32,
-    alignSelf: "center"
+    marginLeft: 15,
+    marginRight: 15,
+    alignSelf: "center",
   },
   moreInfoGrp2: {
     height: 273,
