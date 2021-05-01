@@ -27,7 +27,7 @@ def updtUser(
         email,
         gender,
         age,
-        state,
+        state=[],
         gpa,
         major=[],
         race=[],
@@ -39,7 +39,9 @@ def updtUser(
     list1 = [gender]
     list1.append(catAge(age))
     list1.append(catGPA(gpa))
-
+   
+    majorUpdt = list(major)
+    
     if major !=[]:
         majorUpdt = catMajor(major)
 
@@ -120,7 +122,7 @@ def updtScholarSurvey(
         gender,
         age,
         gpa,
-        state,
+        state=[],
         sat='',
         act='',
         major=[],
@@ -132,7 +134,9 @@ def updtScholarSurvey(
     list1 = [gender]
     list1.append(catAge(age))
     list1.append(catGPA(gpa))
-
+    
+    majorUpdt = list(major)
+    
     if major !=[]:
         majorUpdt = catMajor(major)
 
