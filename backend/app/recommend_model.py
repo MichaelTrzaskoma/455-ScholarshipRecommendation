@@ -19,7 +19,7 @@ zcdb = ZipCodeDatabase()
 # user_Ref = db.test.client_profile
 # table_Ref = db.collection("Index Table").document("Terms")
 # refList = table_Ref.get().to_dict().get('Terms')
-
+MAX_ENTRIES_FOR_RECENT = 15
 
 def updtUser(
         db,
@@ -27,21 +27,23 @@ def updtUser(
         email,
         gender,
         age,
-        state,
         gpa,
+        state=[],
         major=[],
         race=[],
         ethnicity=[],
         religion=[],
         dissabilities=[],
-        sat='',):
+        sat=''):
     # Used to initiation user or update their information, specify when using optional attributes
     list1 = [gender]
     list1.append(catAge(age))
     list1.append(catGPA(gpa))
-
-    if major !=[]:
-        majorUpdt = catMajor(major)
+   
+    majorUpdt = list(major)
+    
+    if majorUpdt !=[]:
+        majorUpdt = catMajor(majorUpdt)
 
     list2 = [state, race, religion, dissabilities, ethnicity, majorUpdt]
     for i in range(len(list2)):
@@ -120,7 +122,7 @@ def updtScholarSurvey(
         gender,
         age,
         gpa,
-        state,
+        state=[],
         sat='',
         act='',
         major=[],
@@ -132,9 +134,11 @@ def updtScholarSurvey(
     list1 = [gender]
     list1.append(catAge(age))
     list1.append(catGPA(gpa))
-
-    if major !=[]:
-        majorUpdt = catMajor(major)
+    
+    majorUpdt = list(major)
+    
+    if majorUpdt !=[]:
+        majorUpdt = catMajor(majorUpdt)
 
     print(majorUpdt)
     list2 = [state, race, religion, dissabilities, ethnicity, majorUpdt]
@@ -174,6 +178,58 @@ def updtScholarSurvey(
            } 
         }}
     )
+
+def getBookmarks(user_Ref, email):
+    if(user_Ref.count_documents({'_id': email, 'bookmarks': {'$exists': True}}) == 0):
+        return "[]"
+    user = user_Ref.find_one(
+        {'_id':email}
+        )
+    return user["bookmarks"]
+
+def addBookmark(user_Ref, email, title, lstType):
+    if(user_Ref.count_documents({'_id': email}) == 0):
+        return False
+    user_Ref.update_one(
+        {'_id':email},
+        {
+            '$push': {
+                "bookmarks": {
+                    "title": title,
+                    "type": lstType,
+                    "timeAddded": datetime.utcnow()
+                }
+            }
+        }
+    )
+    return True
+
+def getRecent(user_Ref, email):
+    if(user_Ref.count_documents({'_id': email, 'recent_viewed': {'$exists': True}}) == 0):
+        return "[]"
+    user = user_Ref.find_one(
+        {'_id':email}
+        )
+    return user["recent_viewed"][-MAX_ENTRIES_FOR_RECENT:]
+
+def addRecent(user_Ref, email, title, lstType):
+    if(user_Ref.count_documents({'_id': email}) == 0):
+        return False
+    user_Ref.update_one(
+        {'_id':email},
+        {
+            '$push': {
+                "recent_viewed": {
+                    "title": title,
+                    "type": lstType,
+                    "timeAdded": datetime.utcnow()
+                }
+            }
+        }
+    )
+    return True
+
+
 # def binaryConvert():
 # refers to a list
 
