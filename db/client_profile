@@ -1,12 +1,94 @@
 [{
-  "_id": {
-    "$oid": "60872a94ead9ea188e39900b"
-  },
-  "email": "hchen98x@gmail.com",
-  "password": "Sassy.1234",
-  "activationCode": "8PzSp7Y9iSKooMpm96XL02QMS00JViCQYEJ09qhrCtJWh9cvCwHQpizvYFdinyCF",
+  "_id": "hchen98x@gmail.com",
+  "paswrd": "Sassy.1234",
+  "active": 1,
+  "activationCode": "JfDIaGqUMoWNNuxLqz7NgpfUmURcS13UdZQpgsqOZMdllKtCd7rRpmYC24uSekWM",
   "activationDate": {
-    "$date": "2021-04-26T17:03:16.282Z"
+    "$date": "2021-04-27T13:28:11.672Z"
   },
-  "active": 1
+  "devices": [
+    {
+      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6ImV3ZndlZmV3ZmUiLCJleHAiOjE2MjAxODY0ODZ9.OOIRvJIrwP0k8PreZ4A44HL71XDoxPw7lrNscEbBhJE",
+      "unique_id": "ewfwefewfe",
+      "token": "SviLJMhgdmF6bTM5s2F0mSUtPUBqzXoeSeZzBiTKTL7zyrdB9BRpQU8f27GBTyf0",
+      "expireDate": 1620186486
+    }
+  ],
+  "survey_scholarship": {
+    "gender": "Male",
+    "age": "23",
+    "states": [
+      "Alabama",
+      "Alaska",
+      "Arizona",
+      "Connecticut",
+      "Florida",
+      "Illinois"
+    ],
+    "gpa": "3.47",
+    "major": [
+      "Business",
+      "Physical Therapy/Rehabilitation",
+      "Finance",
+      "Accounting",
+      "Public Health",
+      "Chemistry",
+      "Computer Science"
+    ],
+    "race": [
+      "Asian/Pacific Islander"
+    ],
+    "ethnicity": [],
+    "religion": [
+      "Buddhist"
+    ],
+    "disabilities": [
+      "ALS (Lou Gehrig's Disease)",
+      "Arthritis/Rheumatism",
+      "Autism/Asperger Syndrome",
+      "Autoimmune Disorder",
+      "Cancer Related",
+      "Cystic Fibrosis",
+      "Hearing Impairment",
+      "Mucopolysaccharidoses (MPS)",
+      "Narcolepsy"
+    ],
+    "sat_score": "1200",
+    "act_score": "35",
+    "terms": [
+      "Male",
+      "Age 23",
+      "Minimum Grade Point Average From 3.1 to 3.5",
+      "Alabama",
+      "Alaska",
+      "Arizona",
+      "Connecticut",
+      "Florida",
+      "Illinois",
+      "Asian/Pacific Islander",
+      "Buddhist",
+      "ALS (Lou Gehrig's Disease)",
+      "Arthritis/Rheumatism",
+      "Autism/Asperger Syndrome",
+      "Autoimmune Disorder",
+      "Cancer Related",
+      "Cystic Fibrosis",
+      "Hearing Impairment",
+      "Mucopolysaccharidoses (MPS)",
+      "Narcolepsy",
+      "Business",
+      "Physical Therapy/Rehabilitation",
+      "Finance",
+      "Accounting",
+      "Veterinary Medicine",
+      "Public Health",
+      "Chemistry",
+      "Computer Science",
+      "Environmental Studies",
+      "Information Systems",
+      "SAT Scores From 1,001 To 1,200",
+      "ACT Scores Greater Than 31"
+    ],
+    "binary": "100000000000000000000000100000100000000100000000000000000000001000001000000000000000000000001000000000000000000000000000000000000000000010000000001000000000000000000100000000001000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000010000000000000000000101110010010000000001000000001001000000000000001000000000010000000000000000000000000011010000001001000010000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  }
 }]

@@ -7,26 +7,51 @@ import {
 	TouchableOpacity
 } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
 
-export default function CollegeRecommend() {
-	return (
-		//Recommend ScrollView 
-		<View style={styles.recommend_container}>
-			<View style={styles.recommendGrp}>
-				<Text style={styles.recommendTxt}>Recommend</Text>
-				<View style={styles.customContainer}>
-					<TouchableOpacity style={styles.customBtn}>
-						<FontAwesome
-							name="arrow-circle-right"
-							style={styles.customIcon}>
-						</FontAwesome>
-						<View style={styles.customIconFiller}></View>
-						<Text style={styles.customTxt}>Custom View</Text>
-					</TouchableOpacity>
+export default function CollegeRecommend(props) {
+	const navigation = useNavigation();
+	return <CollegeRecommender {...props} navigation={navigation} />;
+}
+
+class CollegeRecommender extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			email: this.props.email,
+		};
+	}
+
+	render() {
+		const { navigation } = this.props;
+		return (
+			//Recommend ScrollView 
+			<View style={styles.recommend_container}>
+				<View style={styles.recommendGrp}>
+					<Text style={styles.recommendTxt}>Recommend</Text>
+					<View style={styles.customContainer}>
+						<TouchableOpacity
+							style={styles.customBtn}
+							onPress={() => navigation.navigate("CollegeDetail",
+								{
+									title: "College Detail",
+									email: this.state.email,
+								})
+							}
+						>
+							<FontAwesome
+								name="arrow-circle-right"
+								style={styles.customIcon}>
+							</FontAwesome>
+							<View style={styles.customIconFiller}></View>
+							<Text style={styles.customTxt}>Custom View</Text>
+						</TouchableOpacity>
+					</View>
 				</View>
 			</View>
-		</View>
-	);
+		)
+	};
 }
 
 const styles = StyleSheet.create({

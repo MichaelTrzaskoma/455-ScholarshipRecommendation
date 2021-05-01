@@ -290,7 +290,6 @@ def auth(email):
     else:
         return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
 
-
 @app.route("/resetpassword", methods=["POST", "GET"])
 def reset():
     code = request.args.get('code')
@@ -440,12 +439,12 @@ def usrSurvey_scholarship(email):
 
         return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
 
-    elif request.method == "GET" and request.is_json:
+    elif request.method == "GET":
         # user try to append the scholarship survey
 
         # TODO: check the user auth
 
-        income_data = request.json
+        # income_data = request.json
 
         r = user_Ref.count_documents({"_id": email})
         result = {}
