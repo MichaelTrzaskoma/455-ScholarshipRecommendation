@@ -392,6 +392,7 @@ const styles = StyleSheet.create({
   titleTxt: {
 
     color: "#121212",
+    fontWeight: 'bold',
     fontSize: 17,
     textAlign: "justify",
     lineHeight: 33,
@@ -405,7 +406,7 @@ const styles = StyleSheet.create({
     right: 0
   },
   address3: {
-
+    fontWeight: 'bold',
     color: "#121212",
     fontSize: 16,
     marginTop: 15,
@@ -442,7 +443,7 @@ const styles = StyleSheet.create({
   tagsIcons_2: {
     color: "rgba(98,98,98,1)",
     fontSize: 20,
-    marginLeft: 50
+    marginLeft: '19%'
   },
   satActOptional: {
 
@@ -493,7 +494,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   inStateStack: {
-    width: 48,
+    width: 60,
     height: 32,
     marginLeft: 5
   },
@@ -501,13 +502,14 @@ const styles = StyleSheet.create({
     height: 32,
     flexDirection: "row",
     flex: 1,
-    marginRight: 9,
+    marginRight: 6,
     marginLeft: 8,
     marginTop: 12
   },
   costCenterGrp: {
     width: 100,
-    flexDirection: "row"
+    flexDirection: "row",
+    marginLeft: '2%'
   },
   dollarIcons_2: {
     color: "rgba(98,98,98,1)",
@@ -531,7 +533,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   outStateTxtStack: {
-    width: 49,
+    width: 60,
     height: 32,
     marginLeft: 4
   },
@@ -539,13 +541,14 @@ const styles = StyleSheet.create({
     height: 32,
     flexDirection: "row",
     flex: 1,
-    marginRight: 7,
-    marginLeft: 10,
+    marginRight: 6,
+    marginLeft: '20%',
     marginTop: 12
   },
   costRightGrp: {
     width: 117,
-    flexDirection: "row"
+    flexDirection: "row",
+    marginLeft: '2%'
   },
   dollarIcons_3: {
     color: "rgba(98,98,98,1)",
@@ -569,7 +572,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   hoursingStack: {
-    width: 67,
+    width: 76,
     height: 32,
     marginLeft: 4
   },
@@ -578,7 +581,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flex: 1,
     marginRight: 6,
-    marginLeft: 10,
+    marginLeft: '20%',
     marginTop: 12
   },
   costLeftGrpRow: {
@@ -596,7 +599,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   deadline: {
-
+    fontWeight: 'bold',
     color: "#121212",
     fontSize: 16
   },
@@ -622,7 +625,7 @@ const styles = StyleSheet.create({
     height: 669,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
-    marginTop: 15,
+    marginTop: 16,
     marginLeft: 15,
     marginRight: 15,
     alignSelf: "center",
@@ -636,6 +639,7 @@ const styles = StyleSheet.create({
 
     color: "#121212",
     fontSize: 16,
+    fontWeight: 'bold',
     width: 99,
     height: 19,
     marginTop: 15,
@@ -662,7 +666,7 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   moreInfoTxt1: {
-
+    fontWeight: 'bold',
     color: "#121212",
     fontSize: 16,
     marginTop: 5
@@ -769,20 +773,20 @@ const styles = StyleSheet.create({
 
     color: "#121212",
     fontSize: 16,
-    marginTop: 30
+    marginTop: 25
   },
   admissionSiteTxt1: {
 
     color: "#121212",
     fontSize: 16,
-    marginTop: 10
+    marginTop: 18
   },
   grp3: {
     width: "93%",
-    height: 343,
+    height: 345,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
-    marginTop: 25,
+    marginTop: 16,
     marginLeft: 15,
     marginRight: 15,
     alignSelf: "center",
@@ -804,40 +808,41 @@ const styles = StyleSheet.create({
     color: "#121212",
     fontSize: 16,
     marginTop: 5,
+    fontWeight: 'bold',
     marginRight: -28
   },
   rankTitle1: {
-
+    width: 210,
     color: "#121212",
     fontSize: 16,
     marginTop: 11
   },
   rankTitle2: {
-
+    width: 210,
     color: "#121212",
     fontSize: 16,
     marginTop: 10
   },
   rankTitle3: {
-
+    width: 210,
     color: "#121212",
     fontSize: 16,
     marginTop: 10
   },
   rankTitle4: {
-
+    width: 210,
     color: "#121212",
     fontSize: 16,
     marginTop: 5
   },
   rankTitle5: {
-
+    width: 210,
     color: "#121212",
     fontSize: 16,
     marginTop: 10
   },
   rankTitle6: {
-
+    width: 210,
     color: "#121212",
     fontSize: 16,
     marginTop: 8
@@ -849,34 +854,31 @@ const styles = StyleSheet.create({
   moreInfoRightGrp2: {
     width: 86,
     height: 333,
-    marginRight: 8,
+    marginRight: -5,
     marginTop: 10
   },
   rankScore1: {
-
     color: "#121212",
     fontSize: 16,
     textAlign: "left",
-    marginTop: 35
+    marginTop: '43%'
   },
   rankScore2: {
-
+    marginTop: 0,
     color: "#121212",
     fontSize: 16,
     textAlign: "left",
-    marginTop: 10
+    marginTop: '33%'
   },
   rankScore3: {
-
+    marginTop: '35%',
     color: "#121212",
     fontSize: 16,
-    marginTop: 10
   },
   rankScore4: {
-
     color: "#121212",
     fontSize: 16,
-    marginTop: 26
+    marginTop: '27%'
   },
   rankScore5: {
 
@@ -888,14 +890,14 @@ const styles = StyleSheet.create({
 
     color: "#121212",
     fontSize: 16,
-    marginTop: 29
+    marginTop: '30%'
   },
   grp4: {
     width: "93%",
     height: 688,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
-    marginTop: 26,
+    marginTop: 16,
     marginLeft: 15,
     marginRight: 15,
     alignSelf: "center",
@@ -912,7 +914,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   admissionDetails1: {
-
+    fontWeight: 'bold',
     color: "#121212",
     fontSize: 16,
     marginTop: 5
@@ -921,75 +923,75 @@ const styles = StyleSheet.create({
 
     color: "#121212",
     fontSize: 16,
-    marginTop: 11
+    marginTop: 8
   },
   satRead1: {
-
+    marginTop: '5%',
     color: "#121212",
     fontSize: 16
   },
   satMath1: {
-
+    marginTop: '5%',
     color: "#121212",
-    fontSize: 16
+    fontSize: 16,
+    marginBottom: '7%'
+    
   },
   actRange1: {
-
     color: "#121212",
     fontSize: 16,
     marginTop: 15
   },
   actEng1: {
-
+    marginTop: '5%',
     color: "#121212",
     fontSize: 16
   },
   actMath1: {
-
+    marginTop: '5%',
     color: "#121212",
     fontSize: 16
   },
   actWriting1: {
-
+    marginTop: '5%',
     color: "#121212",
-    fontSize: 16
+    fontSize: 16,
+    marginBottom: '7%'
   },
   commApp1: {
-
     color: "#121212",
     fontSize: 16,
     marginTop: 15
   },
   coalApp1: {
-
+    marginTop: '5%',
     color: "#121212",
-    fontSize: 16
+    fontSize: 16,
+    marginBottom: '7%'
   },
   highSchGpa1: {
-
     color: "#121212",
     fontSize: 16,
     marginTop: 15
   },
   highSchRank1: {
-
+    marginTop: '5%',
     color: "#121212",
     fontSize: 16
   },
   highSchoolTrans1: {
-
     color: "#121212",
     fontSize: 16,
-    marginTop: 40
+    marginTop: '34%',
+    marginBottom: '5%'
   },
   uniPrecourse1: {
-
+    marginTop: '4%',
     color: "#121212",
     fontSize: 16,
-    marginTop: 5
   },
   satORact1: {
-
+    marginTop: '7%',
     color: "#121212",
     fontSize: 16
   },
@@ -997,18 +999,18 @@ const styles = StyleSheet.create({
 
     color: "#121212",
     fontSize: 16,
-    marginTop: 20
+    marginTop: '14%'
   },
   avgMealCost1: {
 
     color: "#121212",
     fontSize: 16,
-    marginTop: 15
+    marginTop: '7%'
   },
   bookCost1: {
-
     color: "#121212",
-    fontSize: 16
+    fontSize: 16,
+    marginTop: '7%'
   },
   moreInfoLeftGrp3Filler: {
     flex: 1,
@@ -1024,54 +1026,48 @@ const styles = StyleSheet.create({
     color: "#121212",
     fontSize: 16,
     textAlign: "left",
-    marginTop: 35
+    marginTop: 33
   },
   satReadTxt1: {
-
+    marginTop: '9%',
     color: "#121212",
     fontSize: 16,
     textAlign: "left"
   },
   satMathTxt1: {
-
+    marginTop: '9%',
     color: "#121212",
     fontSize: 16
   },
   actRangeTxt1: {
-
     color: "#121212",
     fontSize: 16,
-    marginTop: 26
+    marginTop: '25%'
   },
   actEngTxt1: {
-
+    marginTop: '8%',
     color: "#121212",
     fontSize: 16,
-    marginTop: 11
   },
   actMathTxt1: {
-
+    marginTop: '8%',
     color: "#121212",
     fontSize: 16,
-    marginTop: 10
   },
   actWriteTxt1: {
-
+    marginTop: '8%',
     color: "#121212",
     fontSize: 16,
-    marginTop: 11
   },
   commAppTxt1: {
-
     color: "#121212",
     fontSize: 16,
-    marginTop: 26
+    marginTop: '24%'
   },
   coalAppTxt1: {
-
+    marginTop: '8%',
     color: "#121212",
     fontSize: 16,
-    marginTop: 11
   },
   highSchGpaTxt1: {
 
@@ -1080,16 +1076,15 @@ const styles = StyleSheet.create({
     marginTop: 26
   },
   highSchRankTxt1: {
-
+    marginTop: '8%',
     color: "#121212",
     fontSize: 16,
-    marginTop: 11
   },
   highSchRansTxt1: {
 
     color: "#121212",
     fontSize: 16,
-    marginTop: 10
+    marginTop: '24%'
   },
   uniPrecourseTxt1: {
 
@@ -1113,19 +1108,20 @@ const styles = StyleSheet.create({
 
     color: "#121212",
     fontSize: 16,
-    marginTop: 25
+    marginTop: '10%'
   },
   bookCostTxt1: {
 
     color: "#121212",
     fontSize: 16,
-    marginTop: 10
+    marginTop: '12%'
   },
   grp5: {
     width: "93%",
-    height: 633,
+    height: 685,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
+    marginTop: 16,
     marginLeft: 15,
     marginRight: 15,
     alignSelf: "center",
@@ -1142,7 +1138,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   studentDetails1: {
-
+    fontWeight: 'bold',
     color: "#121212",
     fontSize: 16,
     marginTop: 5
@@ -1156,7 +1152,9 @@ const styles = StyleSheet.create({
   maleUndergraduate2: {
 
     color: "#121212",
-    fontSize: 16
+    fontSize: 16,
+    marginTop: '7%',
+    marginBottom: '7%'
   },
   inStateResidence1: {
 
@@ -1165,12 +1163,13 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   outStateResidence1: {
-
+    marginTop: '7%',
     color: "#121212",
     fontSize: 16
   },
   internR1: {
-
+    marginTop: '7%',
+    marginBottom: '7%',
     color: "#121212",
     fontSize: 16
   },
@@ -1181,22 +1180,23 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   yr1: {
-
+    marginTop: '7%',
     color: "#121212",
     fontSize: 16
   },
   yr2: {
-
+    marginTop: '7%',
     color: "#121212",
     fontSize: 16
   },
   yr3: {
-
+    marginTop: '7%',
     color: "#121212",
     fontSize: 16
   },
   over1: {
-
+    marginTop: '7%',
+    marginBottom: '7%',
     color: "#121212",
     fontSize: 16
   },
@@ -1207,37 +1207,37 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   raceA2: {
-
+    marginTop: '7%',
     color: "#121212",
     fontSize: 16
   },
   raceH1: {
-
+    marginTop: '7%',
     color: "#121212",
     fontSize: 16
   },
   raceIntern1: {
-
+    marginTop: '7%',
     color: "#121212",
     fontSize: 16
   },
   raceMu1: {
-
+    marginTop: '7%',
     color: "#121212",
     fontSize: 16
   },
   raceMul1: {
-
+    marginTop: '7%',
     color: "#121212",
     fontSize: 16
   },
   racePi1: {
-
+    marginTop: '7%',
     color: "#121212",
     fontSize: 16
   },
   raceWhite1: {
-
+    marginTop: '7%',
     color: "#121212",
     fontSize: 16
   },
@@ -1255,19 +1255,20 @@ const styles = StyleSheet.create({
     color: "#121212",
     fontSize: 16,
     textAlign: "left",
-    marginTop: 35
+    marginTop: '34%'
   },
   maleUnderTxt2: {
-
+    marginTop: '12%',
+    marginBottom: '14%',
     color: "#121212",
     fontSize: 16,
     textAlign: "left"
   },
   inStateRTxt1: {
-
     color: "#121212",
     fontSize: 16,
-    marginTop: 15
+    marginTop: '13%',
+    marginBottom: '3%'
   },
   outStateRTxt1: {
 
@@ -1282,25 +1283,25 @@ const styles = StyleSheet.create({
     marginTop: 11
   },
   under2: {
-
+    marginTop: '25%',
+    marginBottom: '2%',
     color: "#121212",
     fontSize: 16,
-    marginTop: 25
   },
   yr4: {
-
+    marginTop: '12%',
+    marginBottom: '2%',
     color: "#121212",
     fontSize: 16,
-    marginTop: 11
   },
   yr5: {
-
+    marginTop: '11%',
+    marginBottom: '3%',
     color: "#121212",
     fontSize: 16,
-    marginTop: 11
   },
   yr6: {
-
+    marginBottom: '2%',
     color: "#121212",
     fontSize: 16,
     marginTop: 11
@@ -1312,10 +1313,10 @@ const styles = StyleSheet.create({
     marginTop: 11
   },
   raceAaTxt1: {
-
     color: "#121212",
     fontSize: 16,
-    marginTop: 26
+    marginTop: '25%',
+    marginBottom: '2%'
   },
   ractATxt1: {
 
@@ -1327,31 +1328,32 @@ const styles = StyleSheet.create({
 
     color: "#121212",
     fontSize: 16,
-    marginTop: 11
+    marginTop: '11%',
+    marginBottom: '2%'
   },
   raceInternTxt1: {
-
     color: "#121212",
     fontSize: 16,
-    marginTop: 11
+    marginTop: '11%',
+    marginBottom: '1%'
   },
   raceMuTxt1: {
-
     color: "#121212",
     fontSize: 16,
-    marginTop: 11
+    marginTop: '11%',
+    marginBottom: '3%'
   },
   raceNaTxt1: {
-
     color: "#121212",
     fontSize: 16,
-    marginTop: 10
+    marginTop: '10%',
+    marginBottom: '3%'
   },
   racePiTxt1: {
-
     color: "#121212",
     fontSize: 16,
-    marginTop: 10
+    marginTop: '11%',
+    marginBottom: '3%'
   },
   raceWhiteTxt1: {
 
@@ -1360,10 +1362,11 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   grp6: {
-    width: 334,
+    width: "93%",
     height: 673,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
+    marginTop: 16,
     marginLeft: 15,
     marginRight: 15,
     alignSelf: "center",
@@ -1374,7 +1377,7 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   maleSports1: {
-
+    fontWeight: 'bold',
     color: "#121212",
     fontSize: 16,
     width: 99,
@@ -1397,7 +1400,7 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   femaleSports1: {
-
+    fontWeight: 'bold',
     color: "#121212",
     fontSize: 16,
     width: 119,
@@ -1420,7 +1423,7 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   clubTxt1: {
-
+    fontWeight: 'bold',
     color: "#121212",
     fontSize: 16,
     width: 119,
@@ -1429,7 +1432,6 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   text2: {
-
     color: "#121212",
     textAlign: "left",
     fontSize: 16,
@@ -1443,7 +1445,7 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   music2: {
-
+    fontWeight: 'bold',
     color: "#121212",
     fontSize: 16,
     width: 119,
@@ -1452,7 +1454,6 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   text3: {
-
     color: "#121212",
     textAlign: "left",
     fontSize: 16,
@@ -1461,10 +1462,11 @@ const styles = StyleSheet.create({
     marginRight: 19
   },
   grp7: {
-    width: 334,
+    width: "93%",
     height: 539,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
+    marginTop: 16,
     marginLeft: 15,
     marginRight: 15,
     alignSelf: "center",
@@ -1482,45 +1484,43 @@ const styles = StyleSheet.create({
     marginBottom: -10
   },
   academicDetails1: {
-
+    fontWeight: 'bold',
     color: "#121212",
     fontSize: 16,
     marginTop: 5
   },
   classRatio1: {
-
+    marginBottom: '7%',
     color: "#121212",
     fontSize: 16,
     marginTop: 10
   },
   classRatio2: {
-
+    marginBottom: '7%',
     color: "#121212",
     fontSize: 16
   },
   classRatio3: {
-
+    marginBottom: '7%',
     color: "#121212",
     fontSize: 16
   },
   classRatio4: {
-
+    marginBottom: '14%',
     color: "#121212",
     fontSize: 16
   },
   facultyRatio1: {
-
     color: "#121212",
     fontSize: 16,
-    marginTop: 15
   },
   femaleFaculty1: {
-
+    marginTop: '7%',
     color: "#121212",
     fontSize: 16
   },
   maleFaculty2: {
-
+    marginTop: '7%',
     color: "#121212",
     fontSize: 16
   },
@@ -1539,41 +1539,40 @@ const styles = StyleSheet.create({
     color: "#121212",
     fontSize: 16,
     textAlign: "left",
-    marginTop: 35
+    marginTop: '29%',
+    marginBottom: '11%'
   },
   ratio2: {
-
+    marginBottom: '11%',
     color: "#121212",
     fontSize: 16,
     textAlign: "left"
   },
   ratio3: {
-
+    
     color: "#121212",
     fontSize: 16
   },
   ratio4: {
-
+    marginTop: '12%',
     color: "#121212",
     fontSize: 16
   },
   frationTxt1: {
-
     color: "#121212",
     fontSize: 16,
-    marginTop: 15
+    marginTop: '22%'
   },
   feRatioTxt1: {
-
     color: "#121212",
     fontSize: 16,
-    marginTop: 10
+    marginTop: '12%'
   },
   mRatioTxt1: {
 
     color: "#121212",
     fontSize: 16,
-    marginTop: 10
+    marginTop: '13%'
   },
   descriptionGrp2: {
     height: 260,
@@ -1581,13 +1580,13 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   pupularMajors1: {
-
+    fontWeight: 'bold',
     color: "#121212",
     fontSize: 16,
     width: 219,
     height: 19,
-    marginTop: 15,
-    marginLeft: 15
+    marginLeft: 15,
+    marginTop: '7%'
   },
   descriptionTxt2: {
 
