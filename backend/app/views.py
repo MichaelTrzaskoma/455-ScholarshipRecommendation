@@ -829,7 +829,7 @@ def addBookmarkDoc(email):
 
     title = income_data["title"]
     docType = income_data["type"]
-    res = addBookmarks(user_Ref, email, title, docType)
+    res = getBookmarkDoc(user_Ref, email, title, docType)
     if(res):
         return make_response(jsonify("success"), 202)
     else:
@@ -837,8 +837,8 @@ def addBookmarkDoc(email):
 
 
 @app.route("/api/v1.2/users/id/<email>/recent/get",  methods=["GET"])
-def getBookmarkDoc(email):
-    return make_repsonse(jsonify(str(getRecent(user_Ref, email))), 202)
+def getRecentDoc(email):
+    return make_response(jsonify(str(getRecent(user_Ref, email))), 202)
 
 
 @app.route("/api/v1.2/users/id/<email>/recent/add",  methods=["GET"])
