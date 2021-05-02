@@ -10,6 +10,7 @@ import time
 
 from .auths import generateCode, init_usrProfileDB, check_email_verification_status, encode_jwt, update_deviceInfo, initial_device, update_deviceInfo, validate_token
 from .recommend_model import updtUser, filter_results, updtScholarSurvey, getBookmarks, addBookmark, getRecent, addRecent
+from .utilities import *
 
 MINS_TIL_ACTIVE_CODE_EXPIRY = 15
 MINS_TIL_RESET_CODE_EXPIRY = 60
@@ -174,9 +175,7 @@ def error():
     return render_template("public/error.html", error=errorVal)
 
 
-app.route("/api/v1.2/managements/users/<email>/auth")
-
-
+@app.route("/api/v1.2/managements/users/<email>/auth")
 def auth(email):
     '''
     user login feature
@@ -428,17 +427,167 @@ def view_college_generalCategory():
 def view_college_stateIndex(state):
     # view college within a specific state
     # INPUT: state (str) name
-    # OUTPUT: return an arr, and each ele contains title and the state of the college
+    # OUTPUT: return an message arr, and each ele contains title of the college
 
-    if request.method == "GET":
+    if state in app.config['STATES'] and request.method == "GET":
         r = college_ref.find({"location_tags": state}, {"_id": 0, "name": 1})
 
-    resource = []
-    print(r)
-    for item in set(r):
-        # resource.append(item)
-        print(item)
-    return make_response(r, 202)
+        resource = []
+        for item in r:
+            resource.append(item['name'])
+            
+        return make_response(jsonify({"mesg": resource}), 202)
+    
+    return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
+
+
+@app.route("/api/v1.2/resources/colleges/view/titles/<college_name>")
+def view_college_single(college_name):
+    # view a single college informationn in detail
+    # INPUT: college_name (str)
+    # OUTPUT: return a 
+
+    if request.method == "GET":
+        # select 62 fields from the db
+        r = college_ref.find_one({"name": college_name}, {
+            "_id": 0,
+            "name": 1,
+            "description": 1,
+            "site": 1,
+            "address": 1,
+            "about": 1,
+            "athletics": 1,
+            "ranking": 1,
+            "admission.acceptance.rate": 1,
+            "admission.sat.accept_score_range": 1,
+            "admission.sat.reading_score": 1,
+            "admission.sat.math_score": 1,
+            "admission.act.accept_score_range": 1,
+            "admission.act.eng_score": 1,
+            "admission.act.math_score": 1,
+            "admission.act.write_score": 1,
+            "admission.deadline.date": 1,
+            "admission.application.website": 1,
+            "admission.application.comm_app": 1,
+            "admission.application.accept_coalition_app": 1,
+            "admission.requirements.highscho_gpa": 1,
+            "admission.requirements.highscho_rank": 1,
+            "admission.requirements.highscho_transcript": 1,
+            "admission.requirements.uni_precourse": 1,
+            "admission.requirements.sat_or_act": 1,
+            "admission.requirements.recommendation": 1,
+            "cost.tuition.in_state": 1,
+            "cost.tuition.out_state": 1,
+            "cost.tuition.avg_housing": 1,
+            "cost.tuition.avg_meal_plan": 1,
+            "cost.tuition.book": 1,
+            "academic.graduation_rate": 1,
+            "academic.class_size_ratio.2-19_students": 1,
+            "academic.class_size_ratio.20-39": 1,
+            "academic.class_size_ratio.100+": 1,
+            "academic.popular_major": 1,
+            "academic.faculty.ratio": 1,
+            "academic.faculty.female": 1,
+            "academic.faculty.male": 1,
+            "major.gender_ratio.female_undergrads": 1,
+            "major.gender_ratio.male_undergrads": 1,
+            "major.residence.In-State": 1,
+            "major.residence.Out-of-State": 1,
+            "major.residence.International": 1,
+            "major.age.Under_18": 1,
+            "major.age.18-19": 1,
+            "major.age.20-21": 1,
+            "major.age.22-24": 1,
+            "major.age.Over_25": 1,
+            "major.racial_diversity.African_American": 1,
+            "major.racial_diversity.Asian": 1,
+            "major.racial_diversity.Hispanic": 1,
+            "major.racial_diversity.International_(Non-Citizen)": 1,
+            "major.racial_diversity.Multiracial": 1,
+            "major.racial_diversity.Native_American": 1,
+            "major.racial_diversity.Pacific_Islander": 1,
+            "major.racial_diversity.White": 1,
+            "campus_life.sport.male": 1,
+            "campus_life.sport.female": 1,
+            "campus_life.club.offered": 1,
+            "campus_life.club.music": 1,
+            "after_uni.graudation_rate": 1,
+            "after_uni.earning.2yr": 1,
+            "after_uni.employment.2yr": 1,
+        })
+
+        result = {
+            "tag_1": trimmer_na(r['about'][0]),
+            "tag_2": trimmer_na(r['about'][1]),
+            "class_ratio_2TO19": trimmer_na(r['academic']['class_size_ratio']['2-19_students']),
+            "class_ratio_20TO39": trimmer_na(r['academic']['class_size_ratio']['20-39']),
+            "class_ratio_100UP": trimmer_na(r['academic']['class_size_ratio']['100+']),
+            "faculty_ratio": trimmer_na(r['academic']['faculty']['ratio']),
+            "faculty_female": trimmer_na(r['academic']['faculty']['female']),
+            "faculty_male": trimmer_na(r['academic']['faculty']['male']),
+            "graduation_rate": trimmer_na(r['academic']['graduation_rate']),
+            "address": trimmer_na(r['address']),
+            "acceptance_rate": trimmer_na(r['admission']['acceptance']['rate']),
+            "act_accept_score_range": trimmer_na(r['admission']['act']['accept_score_range']),
+            "act_eng_score_range": trimmer_na(r['admission']['act']['eng_score']),
+            "act_math_score_range": trimmer_na(r['admission']['act']['math_score']),
+            "act_write_score_range": trimmer_na(r['admission']['act']['write_score']),
+            "coalition_app": trimmer_na(r['admission']['application']['accept_coalition_app']),
+            "comm_app": trimmer_na(r['admission']['application']['comm_app']),
+            "application_website": trimmer_na(r['admission']['application']['website']),
+            "application_deadline": trimmer_na(r['admission']['deadline']['date']),
+            "highSchool_gpa": trimmer_na(r['admission']['requirements']['highscho_gpa']),
+            "highSchool_rank": trimmer_na(r['admission']['requirements']['highscho_rank']),
+            "highSchool_transcripts": trimmer_na(r['admission']['requirements']['highscho_transcript']),
+            "recommendationLetter": trimmer_na(r['admission']['requirements']['recommendation']),
+            "sat_or_act": trimmer_na(r['admission']['requirements']['sat_or_act']),
+            "uni_precourse": trimmer_na(r['admission']['requirements']['uni_precourse']),
+            "sat_accept_score_range": trimmer_na(r['admission']['sat']['accept_score_range']),
+            "sat_math_score_range": trimmer_na(r['admission']['sat']['math_score']),
+            "sat_read_score_range": trimmer_na(r['admission']['sat']['reading_score']),
+            "earning_after_uni": trimmer_na(r['after_uni']['earning']['2yr']),
+            "employ_after_uni": trimmer_na(r['after_uni']['employment']['2yr']),
+            "graudation_rate": trimmer_na(r['after_uni']['graudation_rate']),
+            "athleticsC": trimmer_na(r['athletics']['conference']),
+            "athleticsD": trimmer_na(r['athletics']['division']),
+            "music": arr2str(r['campus_life']['club']['music']),
+            "club": arr2str(r['campus_life']['club']['offered']),
+            "sport_female": arr2str(r['campus_life']['sport']['female']),
+            "sport_male": arr2str(r['campus_life']['sport']['male']),
+            "avg_housing": trimmer_price(r['cost']['tuition']['avg_housing']),
+            "avg_meal_plan": trimmer_price(r['cost']['tuition']['avg_meal_plan']),
+            "book_cost": trimmer_price(r['cost']['tuition']['book']),
+            "tuition_in_state": trimmer_price(r['cost']['tuition']['in_state']),
+            "tuition_out_state": trimmer_price(r['cost']['tuition']['out_state']),
+            "description": trimmer_nextline(r['description']),
+            "student_age_18TO19": trimmer_na(r['major']['age']['18-19']),
+            "student_age_20TO21": trimmer_na(r['major']['age']['20-21']),
+            "student_age_22TO24": trimmer_na(r['major']['age']['22-24']),
+            "student_age_25UP": trimmer_na(r['major']['age']['Over_25']),
+            "student_age_Under_18": trimmer_na(r['major']['age']['Under_18']),
+            "female_undergrads_ratio": trimmer_na(r['major']['gender_ratio']['female_undergrads']),
+            "male_undergrads_ratio": trimmer_na(r['major']['gender_ratio']['male_undergrads']),
+            "racial_aa": trimmer_na(r['major']['racial_diversity']['African_American']),
+            "racial_asian": trimmer_na(r['major']['racial_diversity']['Asian']),
+            "racial_hispanic": trimmer_na(r['major']['racial_diversity']['Hispanic']),
+            "racial_international": trimmer_na(r['major']['racial_diversity']['International_(Non-Citizen)']),
+            "racial_multiracial": trimmer_na(r['major']['racial_diversity']['Multiracial']),
+            "racial_na": trimmer_na(r['major']['racial_diversity']['Native_American']),
+            "racial_pi": trimmer_na(r['major']['racial_diversity']['Pacific_Islander']),
+            "racial_white": trimmer_na(r['major']['racial_diversity']['White']),
+            "residence_in_state": trimmer_na(r['major']['residence']['In-State']),
+            "residence_international": trimmer_na(r['major']['residence']['International']),
+            "residence_out_state": trimmer_na(r['major']['residence']['Out-of-State']),
+            "uni_name": trimmer_na(r['name']),
+            "ranking": parseCollegeRanking(r['ranking']),
+            "offical_site": trimmer_na(r['site']),
+        }
+        
+        return make_response(jsonify({"mesg": result}), 202)
+    
+    return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
+
+
 
 # Management
 
