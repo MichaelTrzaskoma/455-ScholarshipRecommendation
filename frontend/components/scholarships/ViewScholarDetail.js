@@ -37,7 +37,7 @@ export default class ViewScholarDetail extends React.Component {
 
     
     //Insert API Call here
-    let URL = "http://614029157c7e.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
+    let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
     fetch(URL, {
       method: "POST",
       headers: {
@@ -88,7 +88,7 @@ export default class ViewScholarDetail extends React.Component {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
     let URL =
-      'http://614029157c7e.ngrok.io/api/v1.2/resources/scholarships/view/titles/Kentucky%20Tuition%20Grant';
+      'http://0d2cdc5d2d05.ngrok.io/api/v1.2/resources/scholarships/view/titles/Kentucky%20Tuition%20Grant';
 
     fetch(URL, {
       method: 'GET',
