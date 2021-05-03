@@ -16,7 +16,9 @@ import InputScreen1 from "./components/scholarships/ScholarSurvey";
 import InputScreen2 from "./components/InputInfoScreen2";
 import ScholarshipScreen from "./components/scholarships/ScholarshipScreen";
 import ViewAllScholar from "./components/scholarships/ViewAllScholar";
-import ViewSubCate from "./components/scholarships/ViewSubCate";
+import ViewAllCollege from "./components/colleges/ViewAllCollege";
+import ViewScholarSubCate from "./components/scholarships/ViewScholarSubCate";
+import ViewCollegeSubCate from "./components/colleges/ViewCollegeSubCate";
 import ViewScholarTbl from "./components/scholarships/ViewScholarTbl";
 import ViewScholarDetail from "./components/scholarships/ViewScholarDetail";
 import ViewRecommendTbl from "./components/scholarships/ViewRecommendTbl";
@@ -251,9 +253,28 @@ export default class App extends Component {
               initialParams={{ email: this.state.usrProfile.email }}
             />
 
+            {/* ViewSubCate from scholarships has been renamed as ViewScholarSubCate */}
             <Stack.Screen
-              name={"ViewSubCate"}
-              component={ViewSubCate}
+              name={"ViewScholarSubCate"}
+              component={ViewScholarSubCate}
+              // pass down the screen header bar title
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
+            />
+            
+            <Stack.Screen
+              name={"ViewCollegeSubCate"}
+              component={ViewCollegeSubCate}
               // pass down the screen header bar title
               options={({ route }) => ({
                 title: route.params.title,
@@ -305,6 +326,22 @@ export default class App extends Component {
             <Stack.Screen
               name={"ViewAllScholar"}
               component={ViewAllScholar}
+              options={{
+                title: "Scholarship Categories",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name={"ViewAllCollege"}
+              component={ViewAllCollege}
               options={{
                 title: "Scholarship Categories",
                 headerStyle: {
