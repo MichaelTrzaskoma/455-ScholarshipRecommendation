@@ -46,16 +46,18 @@ def trimmer_na(key):
     # INPUT: key (str)
     # OUTPUT: return the key without N\A or N\\A
 
-    if key == "N\A" or key == "N\\A":
+    key = trimmer_nextline(key)
+    double_slash = "N\\\A"
+    if key == "N\A" or key == double_slash:
         return "No"
 
     if "N\A" in key:
         return str(key).replace("N\A", "")
-    elif "N\\A" in key:
+    elif double_slash in key:
         return str(key).replace("N\\A", "")
     else:
         return key
-
+        
 
 def extractKey(target):
     # extract key from a dictionary
@@ -97,4 +99,43 @@ def parseCollegeRanking(target):
         result.append({temp: val})
     
     return result
+
+
+def check_nest1(cursor, key):
+    # check a key inside from a dict
+    # INPUT
+    # :mongodb cursor
+    # :key (str) target
+    # OUTPUT: return boolean to indicate if this target key is existed
+    
+    return True if str(key) in cursor else False
+
+
+def check_nest2(cursor, key1, key2):
+    # check nested dict key
+    # INPUT
+    # :mongodb cursor
+    # :key (str) target
+    # OUTPUT: return boolean to indicate if this target key is existed
+    
+    if str(key1) in cursor:
+        if str(key2) in cursor[key1]:
+            return True
+    
+    return False
+
+
+def check_nest3(cursor, key1, key2, key3):
+    # check nested dict key
+    # INPUT
+    # :mongodb cursor
+    # :key (str) target
+    # OUTPUT: return boolean to indicate if this target key is existed
+    
+    if str(key1) in cursor:
+        if str(key2) in cursor[key1]:
+            if str(key3) in cursor[key1][key2]:
+                return True
+    
+    return False
 

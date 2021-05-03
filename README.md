@@ -107,6 +107,8 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 | /api/v1.2/resources/scholarships/view/categories/<cater\> | GET | View a list of scholarship sub-category terms. E.g. Acamdeic Major has Accounting, Computer Science, and etc. |
 | /api/v1.2/resources/scholarships/view/categories/sub/<cater\> | GET | View a list of scholarship that belongs to a specific sub-categories. |
 | /api/v1.2/resources/scholarships/view/titles/<scholarship_title\> | GET | View a specific scholarship detail by providing the title of that scholarship. |
+| /api/v1.2/resources/college/view/states/<state\> | GET | View all colleges under a specific state. |
+| /api/v1.2/resources/colleges/view/titles/<college_name\> | GET | View a college detail bu providing college name. |
 
 </details>
 
