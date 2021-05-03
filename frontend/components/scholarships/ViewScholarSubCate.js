@@ -36,6 +36,7 @@ export default class ViewSubCate extends React.Component {
     })
       .then((response) => response.json())
       .then((json) => {
+        console.log("Testing " + JSON.stringify(json));
         this.setState({
           scholarArr: json,
           isLoading: false,

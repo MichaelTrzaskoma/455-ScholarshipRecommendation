@@ -7,9 +7,11 @@ import {
 	TouchableOpacity
 } from "react-native";
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from "@react-navigation/native";
 import { Entypo } from '@expo/vector-icons';
 
 export default function CollegeCategory() {
+	const navigation = useNavigation();
 	return (
 		// Cateogry ScrollView 
 		<View style={styles.category_container}>
@@ -22,32 +24,73 @@ export default function CollegeCategory() {
 						contentContainerStyle={styles.scrollArea1_contentContainerStyle}
 					>
 						<View style={styles.nYBtnRow}>
-							<TouchableOpacity style={styles.nYBtn}>
-								<Entypo name="stopwatch"  style={styles.artIcon}/>
+							<TouchableOpacity
+								onPress={() => {
+									navigation.navigate("ViewCollegeSubCate", {
+										title: "Universities in NY",
+										itemKey: "New York"
+									})
+								}}
+								style={styles.nYBtn}>
+								<Entypo name="stopwatch" style={styles.artIcon} />
 								<View style={styles.nYTxtFiller}></View>
 								<Text style={styles.nYTxt}>New York</Text>
 							</TouchableOpacity>
-							<TouchableOpacity style={styles.nJBtn}>
+							<TouchableOpacity
+								onPress={() => {
+									navigation.navigate("ViewCollegeSubCate", {
+										title: "Universities in NJ",
+										itemKey: "New Jersey"
+									})
+								}}
+								style={styles.nJBtn}>
 								<Entypo name="stopwatch" style={styles.artIcon} />
 								<View style={styles.nJTxtFiller}></View>
 								<Text style={styles.nJTxt}>New Jersey</Text>
 							</TouchableOpacity>
-							<TouchableOpacity style={styles.nJBtn}>
+							<TouchableOpacity
+								onPress={() => {
+									navigation.navigate("ViewCollegeSubCate", {
+										title: "Universities in NC",
+										itemKey: "North Carolina"
+									})
+								}}
+								style={styles.nJBtn}>
 								<Entypo name="stopwatch" style={styles.artIcon} />
 								<View style={styles.nCTxtFiller}></View>
 								<Text style={styles.nCTxt}>North Carolina</Text>
 							</TouchableOpacity>
-							<TouchableOpacity style={styles.nJBtn}>
+							<TouchableOpacity
+								onPress={() => {
+									navigation.navigate("ViewCollegeSubCate", {
+										title: "Universities in ND",
+										itemKey: "North Dakota"
+									})
+								}}
+								style={styles.nJBtn}>
 								<Entypo name="stopwatch" style={styles.artIcon} />
 								<View style={styles.nDTxtFiller}></View>
 								<Text style={styles.nDTxt}>North Dakota</Text>
 							</TouchableOpacity>
-							<TouchableOpacity style={styles.nJBtn}>
+							<TouchableOpacity
+								onPress={() => {
+									navigation.navigate("ViewCollegeSubCate", {
+										title: "Universities in OH",
+										itemKey: "Ohio"
+									})
+								}}
+								style={styles.nJBtn}>
 								<Entypo name="stopwatch" style={styles.artIcon} />
 								<View style={styles.oHTxtFiller}></View>
 								<Text style={styles.oHTxt}>Ohio</Text>
 							</TouchableOpacity>
-							<TouchableOpacity style={styles.nJBtn}>
+							<TouchableOpacity 
+								onPress={() => {
+                                    navigation.navigate("ViewAllCollege", {
+                                        title: "All Universities List",
+                                    });
+                                }}
+								style={styles.nJBtn}>
 								<FontAwesomeIcon
 									name="arrow-circle-right"
 									style={styles.viewAllIcon1}>
@@ -83,7 +126,7 @@ const styles = StyleSheet.create({
 		fontSize: 40,
 		marginTop: 11,
 		marginLeft: 10
-	  },
+	},
 	categoryGrp: {
 		width: '90%',
 		height: 167,
@@ -134,7 +177,7 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		width: 90,
 		height: 32,
-		marginBottom: 8,
+		marginBottom: 3,
 		alignSelf: "center"
 	},
 	nJBtn: {
@@ -164,7 +207,7 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		width: 90,
 		height: 36,
-		marginBottom: 6,
+		marginBottom: 0,
 		marginLeft: 10
 	},
 	nCBtn: {
@@ -186,7 +229,7 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		width: 100,
 		height: 36,
-		marginBottom: 7,
+		marginBottom: 0,
 		marginLeft: 10
 	},
 	nDBtn: {
@@ -208,7 +251,7 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		width: 90,
 		height: 36,
-		marginBottom: 7,
+		marginBottom: 0,
 		marginLeft: 10
 	},
 	oHBtn: {
@@ -230,7 +273,7 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		width: 90,
 		height: 34,
-		marginBottom: 9,
+		marginBottom: 2,
 		marginLeft: 10
 	},
 	viewAllBtn1: {
@@ -258,7 +301,7 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		width: 90,
 		height: 16,
-		marginBottom: 8,
+		marginBottom: 22,
 		alignSelf: "center"
 	},
 	nYBtnRow: {

@@ -271,7 +271,7 @@ export default class App extends Component {
                 },
               })}
             />
-            
+
             <Stack.Screen
               name={"ViewCollegeSubCate"}
               component={ViewCollegeSubCate}
@@ -284,7 +284,7 @@ export default class App extends Component {
                 headerTintColor: 'white',
                 headerTitleStyle: {
                   fontWeight: 'bold',
-                  fontSize: 20,
+                  fontSize: 18,
                   color: "white",
                 },
               })}
