@@ -2,360 +2,431 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 import { FontAwesome, Feather } from "@expo/vector-icons";
 
-export default function CollegeDetailPage(props) {
-  return (
-    <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.mainContainer}>
-        <View style={styles.grp1}>
-          <View style={styles.titleGrpStack}>
-            <View style={styles.titleGrp}>
-              <Text style={styles.titleTxt}>
-                Massachusetts Institute of Technology
+export default class CollegeDetailPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      scholarshipKey: this.props.itemKey,
+      collegeObj: {
+        uniName: '',
+        address: '',
+        tag1: '',
+        tag2: '',
+        avgHousing: '',
+        deadLine: '',
+        description: '',
+        athDivi: '',
+        athCon: '',
+        accepRate: '',
+        gradRate: '',
+        employAfteCollege: '',
+        website: '',
+        BCESA: '',
+        CBSLM: '',
+        applyLink: '',
+        title: '',
+      },
+      applyLinkVisible: false,
+      email: this.props.route.params.email,
+    };
+    // this.handleApplyLinkVisible = this.handleApplyLinkVisible.bind(this);
+    // this.handleBookmark = this.handleBookmark.bind(this);
+  }
+
+  getDetail = () => {
+    // console.log("The Key: " + this.props.route.params.itemKey);
+    // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
+    let URL =
+      'http://c1ee84a93999.ngrok.io/api/v1.2/resources/colleges/view/titles/Massachusetts Institute of Technology';
+
+    fetch(URL, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      // format the API response into json
+      .then((response) => response.json())
+      .then((json) => {
+        // set the val to state
+        this.setState({
+          scholarshipObj: {
+            amount: json.amount,
+            ava: json.awards_available,
+            contact: json.contact_info,
+            deadline: json.deadline,
+            applyLink: json.direct_link,
+            title: json.name,
+            description: json.description,
+          },
+        }).catch((error) => {
+          console.log('An error happened: ' + error);
+        });
+      });
+  }
+
+  componentDidMount() {
+    this.getDetail();
+  }
+
+
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.mainContainer}>
+          <View style={styles.grp1}>
+            <View style={styles.titleGrpStack}>
+              <View style={styles.titleGrp}>
+                <Text style={styles.titleTxt}>
+                  Massachusetts Institute of Technology
                             </Text>
-            </View>
-            <View style={styles.locGrp}>
-              <Text style={styles.address3}>Address</Text>
-              <Text style={styles.addressTxt}>
-                77 Massachusetts Avenue{"\n"}Cambridge, MA 02139
+              </View>
+              <View style={styles.locGrp}>
+                <Text style={styles.address3}>Address</Text>
+                <Text style={styles.addressTxt}>
+                  77 Massachusetts Avenue{"\n"}Cambridge, MA 02139
                             </Text>
-            </View>
-            <View style={styles.aboutTagsGrp}>
-              <View style={styles.tagsIcons_1Row}>
-                <FontAwesome
-                  name="tags"
-                  style={styles.tagsIcons_1}
-                ></FontAwesome>
-                <Text style={styles.massachusetts}>Private</Text>
-                <FontAwesome
-                  name="tags"
-                  style={styles.tagsIcons_2}
-                ></FontAwesome>
-                <Text style={styles.satActOptional}>SAT/ACT Optional</Text>
               </View>
-            </View>
-            <View style={styles.costGrp}>
-              <View style={styles.costLeftGrpRow}>
-                <View style={styles.costLeftGrp}>
-                  <View style={styles.dollarIcons_1Row}>
-                    <Feather
-                      name="dollar-sign"
-                      style={styles.dollarIcons_1}
-                    ></Feather>
-                    <View style={styles.inStateStack}>
-                      <Text style={styles.inState}>In State</Text>
-                      <Text style={styles.instateCostTxt}>53,790</Text>
+              <View style={styles.aboutTagsGrp}>
+                <View style={styles.tagsIcons_1Row}>
+                  <FontAwesome
+                    name="tags"
+                    style={styles.tagsIcons_1}
+                  ></FontAwesome>
+                  <Text style={styles.massachusetts}>Private</Text>
+                  <FontAwesome
+                    name="tags"
+                    style={styles.tagsIcons_2}
+                  ></FontAwesome>
+                  <Text style={styles.satActOptional}>SAT/ACT Optional</Text>
+                </View>
+              </View>
+              <View style={styles.costGrp}>
+                <View style={styles.costLeftGrpRow}>
+                  <View style={styles.costLeftGrp}>
+                    <View style={styles.dollarIcons_1Row}>
+                      <Feather
+                        name="dollar-sign"
+                        style={styles.dollarIcons_1}
+                      ></Feather>
+                      <View style={styles.inStateStack}>
+                        <Text style={styles.inState}>In State</Text>
+                        <Text style={styles.instateCostTxt}>53,790</Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View style={styles.costCenterGrp}>
+                    <View style={styles.dollarIcons_2Row}>
+                      <Feather
+                        name="dollar-sign"
+                        style={styles.dollarIcons_2}
+                      ></Feather>
+                      <View style={styles.outStateTxtStack}>
+                        <Text style={styles.outStateTxt}>Out State</Text>
+                        <Text style={styles.outStateCostTxt}>53,790</Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View style={styles.costRightGrp}>
+                    <View style={styles.dollarIcons_3Row}>
+                      <Feather
+                        name="dollar-sign"
+                        style={styles.dollarIcons_3}
+                      ></Feather>
+                      <View style={styles.hoursingStack}>
+                        <Text style={styles.hoursing}>Avg Housing</Text>
+                        <Text style={styles.housingCostTxt}>10,430</Text>
+                      </View>
                     </View>
                   </View>
                 </View>
-                <View style={styles.costCenterGrp}>
-                  <View style={styles.dollarIcons_2Row}>
-                    <Feather
-                      name="dollar-sign"
-                      style={styles.dollarIcons_2}
-                    ></Feather>
-                    <View style={styles.outStateTxtStack}>
-                      <Text style={styles.outStateTxt}>Out State</Text>
-                      <Text style={styles.outStateCostTxt}>53,790</Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.costRightGrp}>
-                  <View style={styles.dollarIcons_3Row}>
-                    <Feather
-                      name="dollar-sign"
-                      style={styles.dollarIcons_3}
-                    ></Feather>
-                    <View style={styles.hoursingStack}>
-                      <Text style={styles.hoursing}>Avg Housing</Text>
-                      <Text style={styles.housingCostTxt}>10,430</Text>
-                    </View>
-                  </View>
+              </View>
+              <View style={styles.appDeadlineGrp}>
+                <View style={styles.deadlineRow}>
+                  <Text style={styles.deadline}>Deadline:</Text>
+                  <Text style={styles.deadlineTxt}>January 1</Text>
                 </View>
               </View>
             </View>
-            <View style={styles.appDeadlineGrp}>
-              <View style={styles.deadlineRow}>
-                <Text style={styles.deadline}>Deadline:</Text>
-                <Text style={styles.deadlineTxt}>January 1</Text>
+          </View>
+
+          <View style={styles.grp2}>
+            <View style={styles.descriptionGrp1}>
+              <Text style={styles.description2}>Description</Text>
+              <Text style={styles.descriptionTxt1}>
+                MIT is an elite private college located in Cambridge,
+                Massachusetts in the Boston Area. It is a small institution with
+                an enrollment of 4,501 undergraduate students. Admissions is
+                extremely competitive as the MIT acceptance rate is only 7%.
+                Popular majors include Computer Science, Mechanical Engineering,
+                and Mathematics. Graduating 95% of students, MIT alumni go on to
+                earn a starting salary of $82,200.
+            </Text>
+            </View>
+            <View style={styles.moreInfoGrp1}>
+              <View style={styles.moreInfoLeftGrp1}>
+                <Text style={styles.moreInfoTxt1}>More Details</Text>
+                <Text style={styles.athleticsDivision1}>Athletics Division</Text>
+                <Text style={styles.athleticsConference1}>
+                  Athletics Conference
+              </Text>
+                <Text style={styles.acceptanceRate1}>Acceptance Rate</Text>
+                <Text style={styles.graduateRate1}>Graduation Rate</Text>
+                <Text style={styles.earningAfterCollege1}>
+                  Earning after college
+              </Text>
+                <Text style={styles.employAfterCollege1}>
+                  Employment after college
+              </Text>
+                <Text style={styles.officalSite1}>Offical Site</Text>
+                <Text style={styles.admissionSite1}>Admission Site</Text>
+              </View>
+              <View style={styles.moreInfoLeftGrp1Filler}></View>
+              <View style={styles.moreInfoRightGrp1}>
+                <Text style={styles.adivisionTxt1}>
+                  NCAA Division III (with football)
+              </Text>
+                <Text style={styles.aConferenceTxt1}>
+                  New England Women&#39;s &amp; Men&#39;s Athletic Conference
+              </Text>
+                <Text style={styles.acceptanceRateTxt1}>7%</Text>
+                <Text style={styles.graduateRateTxt1}>95%</Text>
+                <Text style={styles.earningAfterCollegeTxt1}>$82,200</Text>
+                <Text style={styles.employAfterCollegeTxt1}>94%</Text>
+                <Text style={styles.officalSiteTxt1}>web.mit.edu</Text>
+                <Text style={styles.admissionSiteTxt1}>http://my.mit.edu/</Text>
               </View>
             </View>
           </View>
-        </View>
 
-        <View style={styles.grp2}>
-          <View style={styles.descriptionGrp1}>
-            <Text style={styles.description2}>Description</Text>
-            <Text style={styles.descriptionTxt1}>
-              MIT is an elite private college located in Cambridge,
-              Massachusetts in the Boston Area. It is a small institution with
-              an enrollment of 4,501 undergraduate students. Admissions is
-              extremely competitive as the MIT acceptance rate is only 7%.
-              Popular majors include Computer Science, Mechanical Engineering,
-              and Mathematics. Graduating 95% of students, MIT alumni go on to
-              earn a starting salary of $82,200.
-            </Text>
-          </View>
-          <View style={styles.moreInfoGrp1}>
-            <View style={styles.moreInfoLeftGrp1}>
-              <Text style={styles.moreInfoTxt1}>More Details</Text>
-              <Text style={styles.athleticsDivision1}>Athletics Division</Text>
-              <Text style={styles.athleticsConference1}>
-                Athletics Conference
+          <View style={styles.grp3}>
+            <View style={styles.rankingGrp1}>
+              <View style={styles.moreInfoLeftGrp2}>
+                <Text style={styles.rankingDetail1}>Ranking Details</Text>
+                <Text style={styles.rankTitle1}>
+                  Best_Colleges_for_Environmental_Science_in_America
               </Text>
-              <Text style={styles.acceptanceRate1}>Acceptance Rate</Text>
-              <Text style={styles.graduateRate1}>Graduation Rate</Text>
-              <Text style={styles.earningAfterCollege1}>
-                Earning after college
+                <Text style={styles.rankTitle2}>
+                  Colleges_with_the_Best_Student_Life_in_Massachusetts
               </Text>
-              <Text style={styles.employAfterCollege1}>
-                Employment after college
+                <Text style={styles.rankTitle3}>
+                  Top_Party_Schools_in_Massachusetts
               </Text>
-              <Text style={styles.officalSite1}>Offical Site</Text>
-              <Text style={styles.admissionSite1}>Admission Site</Text>
-            </View>
-            <View style={styles.moreInfoLeftGrp1Filler}></View>
-            <View style={styles.moreInfoRightGrp1}>
-              <Text style={styles.adivisionTxt1}>
-                NCAA Division III (with football)
+                <Text style={styles.rankTitle4}>
+                  Best_College_Campuses_in_America
               </Text>
-              <Text style={styles.aConferenceTxt1}>
-                New England Women&#39;s &amp; Men&#39;s Athletic Conference
+                <Text style={styles.rankTitle5}>
+                  Best_Value_Colleges_in_Boston_Area
               </Text>
-              <Text style={styles.acceptanceRateTxt1}>7%</Text>
-              <Text style={styles.graduateRateTxt1}>95%</Text>
-              <Text style={styles.earningAfterCollegeTxt1}>$82,200</Text>
-              <Text style={styles.employAfterCollegeTxt1}>94%</Text>
-              <Text style={styles.officalSiteTxt1}>web.mit.edu</Text>
-              <Text style={styles.admissionSiteTxt1}>http://my.mit.edu/</Text>
+                <Text style={styles.rankTitle6}>
+                  Safest_College_Campuses_in_Massachusetts
+              </Text>
+              </View>
+              <View style={styles.moreInfoLeftGrp2Filler}></View>
+              <View style={styles.moreInfoRightGrp2}>
+                <Text style={styles.rankScore1}>2/619</Text>
+                <Text style={styles.rankScore2}>2/59</Text>
+                <Text style={styles.rankScore3}>2/59</Text>
+                <Text style={styles.rankScore4}>215/1,408</Text>
+                <Text style={styles.rankScore5}>1/36</Text>
+                <Text style={styles.rankScore6}>20/54</Text>
+              </View>
             </View>
           </View>
-        </View>
 
-        <View style={styles.grp3}>
-          <View style={styles.rankingGrp1}>
-            <View style={styles.moreInfoLeftGrp2}>
-              <Text style={styles.rankingDetail1}>Ranking Details</Text>
-              <Text style={styles.rankTitle1}>
-                Best_Colleges_for_Environmental_Science_in_America
+          <View style={styles.grp4}>
+            <View style={styles.rankingGrp2}>
+              <View style={styles.moreInfoLeftGrp3}>
+                <Text style={styles.admissionDetails1}>Admission Details</Text>
+                <Text style={styles.satRange1}>Accept SAT score range</Text>
+                <Text style={styles.satRead1}>SAT Reading score</Text>
+                <Text style={styles.satMath1}>SAT Math score</Text>
+                <Text style={styles.actRange1}>Accept ACT score range</Text>
+                <Text style={styles.actEng1}>ACT English score</Text>
+                <Text style={styles.actMath1}>ACT Math score</Text>
+                <Text style={styles.actWriting1}>ACT Writing score</Text>
+                <Text style={styles.commApp1}>Common Application</Text>
+                <Text style={styles.coalApp1}>Coalition Application</Text>
+                <Text style={styles.highSchGpa1}>High School GPA</Text>
+                <Text style={styles.highSchRank1}>High School Rank</Text>
+                <Text style={styles.highSchoolTrans1}>
+                  High School Transcript
               </Text>
-              <Text style={styles.rankTitle2}>
-                Colleges_with_the_Best_Student_Life_in_Massachusetts
+                <Text style={styles.uniPrecourse1}>College Precourse</Text>
+                <Text style={styles.satORact1}>SAT/ ACT score</Text>
+                <Text style={styles.recomm1}>Recommendation</Text>
+                <Text style={styles.avgMealCost1}>Average Meal Plan</Text>
+                <Text style={styles.bookCost1}>Book Cost</Text>
+              </View>
+              <View style={styles.moreInfoLeftGrp3Filler}></View>
+              <View style={styles.moreInfoRightGrp3}>
+                <Text style={styles.satRangeTxt1}>1510-1570</Text>
+                <Text style={styles.satReadTxt1}>730-770</Text>
+                <Text style={styles.satMathTxt1}>0-800</Text>
+                <Text style={styles.actRangeTxt1}>34-36</Text>
+                <Text style={styles.actEngTxt1}>35-36</Text>
+                <Text style={styles.actMathTxt1}>34-36</Text>
+                <Text style={styles.actWriteTxt1}>8-10</Text>
+                <Text style={styles.commAppTxt1}>No</Text>
+                <Text style={styles.coalAppTxt1}>No</Text>
+                <Text style={styles.highSchGpaTxt1}>Recommended</Text>
+                <Text style={styles.highSchRankTxt1}>
+                  Neither required nor recommended
               </Text>
-              <Text style={styles.rankTitle3}>
-                Top_Party_Schools_in_Massachusetts
+                <Text style={styles.highSchRansTxt1}>Required</Text>
+                <Text style={styles.uniPrecourseTxt1}>Recommended</Text>
+                <Text style={styles.satORactTxt1}>
+                  Considered but not required
               </Text>
-              <Text style={styles.rankTitle4}>
-                Best_College_Campuses_in_America
-              </Text>
-              <Text style={styles.rankTitle5}>
-                Best_Value_Colleges_in_Boston_Area
-              </Text>
-              <Text style={styles.rankTitle6}>
-                Safest_College_Campuses_in_Massachusetts
-              </Text>
-            </View>
-            <View style={styles.moreInfoLeftGrp2Filler}></View>
-            <View style={styles.moreInfoRightGrp2}>
-              <Text style={styles.rankScore1}>2/619</Text>
-              <Text style={styles.rankScore2}>2/59</Text>
-              <Text style={styles.rankScore3}>2/59</Text>
-              <Text style={styles.rankScore4}>215/1,408</Text>
-              <Text style={styles.rankScore5}>1/36</Text>
-              <Text style={styles.rankScore6}>20/54</Text>
+                <Text style={styles.recommTxt1}>Required</Text>
+                <Text style={styles.avgMealCostTxt1}>$5,960</Text>
+                <Text style={styles.bookCostTxt1}>$820</Text>
+              </View>
             </View>
           </View>
-        </View>
 
-        <View style={styles.grp4}>
-          <View style={styles.rankingGrp2}>
-            <View style={styles.moreInfoLeftGrp3}>
-              <Text style={styles.admissionDetails1}>Admission Details</Text>
-              <Text style={styles.satRange1}>Accept SAT score range</Text>
-              <Text style={styles.satRead1}>SAT Reading score</Text>
-              <Text style={styles.satMath1}>SAT Math score</Text>
-              <Text style={styles.actRange1}>Accept ACT score range</Text>
-              <Text style={styles.actEng1}>ACT English score</Text>
-              <Text style={styles.actMath1}>ACT Math score</Text>
-              <Text style={styles.actWriting1}>ACT Writing score</Text>
-              <Text style={styles.commApp1}>Common Application</Text>
-              <Text style={styles.coalApp1}>Coalition Application</Text>
-              <Text style={styles.highSchGpa1}>High School GPA</Text>
-              <Text style={styles.highSchRank1}>High School Rank</Text>
-              <Text style={styles.highSchoolTrans1}>
-                High School Transcript
+          <View style={styles.grp5}>
+            <View style={styles.rankingGrp3}>
+              <View style={styles.moreInfoLeftGrp4}>
+                <Text style={styles.studentDetails1}>Student Details</Text>
+                <Text style={styles.femaleUndergraduate1}>
+                  Female Undergraduate
               </Text>
-              <Text style={styles.uniPrecourse1}>College Precourse</Text>
-              <Text style={styles.satORact1}>SAT/ ACT score</Text>
-              <Text style={styles.recomm1}>Recommendation</Text>
-              <Text style={styles.avgMealCost1}>Average Meal Plan</Text>
-              <Text style={styles.bookCost1}>Book Cost</Text>
-            </View>
-            <View style={styles.moreInfoLeftGrp3Filler}></View>
-            <View style={styles.moreInfoRightGrp3}>
-              <Text style={styles.satRangeTxt1}>1510-1570</Text>
-              <Text style={styles.satReadTxt1}>730-770</Text>
-              <Text style={styles.satMathTxt1}>0-800</Text>
-              <Text style={styles.actRangeTxt1}>34-36</Text>
-              <Text style={styles.actEngTxt1}>35-36</Text>
-              <Text style={styles.actMathTxt1}>34-36</Text>
-              <Text style={styles.actWriteTxt1}>8-10</Text>
-              <Text style={styles.commAppTxt1}>No</Text>
-              <Text style={styles.coalAppTxt1}>No</Text>
-              <Text style={styles.highSchGpaTxt1}>Recommended</Text>
-              <Text style={styles.highSchRankTxt1}>
-                Neither required nor recommended
-              </Text>
-              <Text style={styles.highSchRansTxt1}>Required</Text>
-              <Text style={styles.uniPrecourseTxt1}>Recommended</Text>
-              <Text style={styles.satORactTxt1}>
-                Considered but not required
-              </Text>
-              <Text style={styles.recommTxt1}>Required</Text>
-              <Text style={styles.avgMealCostTxt1}>$5,960</Text>
-              <Text style={styles.bookCostTxt1}>$820</Text>
+                <Text style={styles.maleUndergraduate2}>Male Undergraduate</Text>
+                <Text style={styles.inStateResidence1}>In-State Residence</Text>
+                <Text style={styles.outStateResidence1}>Out-State Residence</Text>
+                <Text style={styles.internR1}>International Residence</Text>
+                <Text style={styles.under1}>Under 18 Yrs</Text>
+                <Text style={styles.yr1}>18 Yrs - 19 Yrs</Text>
+                <Text style={styles.yr2}>20 Yrs - 21 Yrs</Text>
+                <Text style={styles.yr3}>22 Yrs - 24 Yrs</Text>
+                <Text style={styles.over1}>Over 25 Yrs</Text>
+                <Text style={styles.raceAa1}>African American</Text>
+                <Text style={styles.raceA2}>Asian</Text>
+                <Text style={styles.raceH1}>Hispanic</Text>
+                <Text style={styles.raceIntern1}>International</Text>
+                <Text style={styles.raceMu1}>Multiracial</Text>
+                <Text style={styles.raceMul1}>Native American</Text>
+                <Text style={styles.racePi1}>Pacific Islander</Text>
+                <Text style={styles.raceWhite1}>White</Text>
+              </View>
+              <View style={styles.moreInfoLeftGrp4Filler}></View>
+              <View style={styles.moreInfoRightGrp4}>
+                <Text style={styles.femaleUnderTxt1}>47%</Text>
+                <Text style={styles.maleUnderTxt2}>53%</Text>
+                <Text style={styles.inStateRTxt1}>6%</Text>
+                <Text style={styles.outStateRTxt1}>82%</Text>
+                <Text style={styles.internRTxt1}>11%</Text>
+                <Text style={styles.under2}>3%</Text>
+                <Text style={styles.yr4}>47%</Text>
+                <Text style={styles.yr5}>43%</Text>
+                <Text style={styles.yr6}>6%</Text>
+                <Text style={styles.over2}>1%</Text>
+                <Text style={styles.raceAaTxt1}>6%</Text>
+                <Text style={styles.ractATxt1}>26%</Text>
+                <Text style={styles.raceHTxt1}>14%</Text>
+                <Text style={styles.raceInternTxt1}>12%</Text>
+                <Text style={styles.raceMuTxt1}>7%</Text>
+                <Text style={styles.raceNaTxt1}>0%</Text>
+                <Text style={styles.racePiTxt1}>0%</Text>
+                <Text style={styles.raceWhiteTxt1}>33%</Text>
+              </View>
             </View>
           </View>
-        </View>
 
-        <View style={styles.grp5}>
-          <View style={styles.rankingGrp3}>
-            <View style={styles.moreInfoLeftGrp4}>
-              <Text style={styles.studentDetails1}>Student Details</Text>
-              <Text style={styles.femaleUndergraduate1}>
-                Female Undergraduate
-              </Text>
-              <Text style={styles.maleUndergraduate2}>Male Undergraduate</Text>
-              <Text style={styles.inStateResidence1}>In-State Residence</Text>
-              <Text style={styles.outStateResidence1}>Out-State Residence</Text>
-              <Text style={styles.internR1}>International Residence</Text>
-              <Text style={styles.under1}>Under 18 Yrs</Text>
-              <Text style={styles.yr1}>18 Yrs - 19 Yrs</Text>
-              <Text style={styles.yr2}>20 Yrs - 21 Yrs</Text>
-              <Text style={styles.yr3}>22 Yrs - 24 Yrs</Text>
-              <Text style={styles.over1}>Over 25 Yrs</Text>
-              <Text style={styles.raceAa1}>African American</Text>
-              <Text style={styles.raceA2}>Asian</Text>
-              <Text style={styles.raceH1}>Hispanic</Text>
-              <Text style={styles.raceIntern1}>International</Text>
-              <Text style={styles.raceMu1}>Multiracial</Text>
-              <Text style={styles.raceMul1}>Native American</Text>
-              <Text style={styles.racePi1}>Pacific Islander</Text>
-              <Text style={styles.raceWhite1}>Pacific Islander</Text>
+          <View style={styles.grp6}>
+            <View style={styles.maleSportGrp1}>
+              <Text style={styles.maleSports1}>Male Sports</Text>
+              <Text style={styles.xyz1}>
+                &quot;Baseball&quot;, &quot;Basketball&quot;, &quot;Fencing&quot;,
+                &quot;Football&quot;, &quot;Lacrosse&quot;, &quot;Rowing&quot;,
+                &quot;Soccer&quot;, &quot;Squash&quot;, &quot;Swimming and
+                Diving&quot;, &quot;Tennis&quot;, &quot;Track and Field:
+                Indoor&quot;, &quot;Track and Field: Outdoor&quot;, &quot;Track
+                and Field: X-Country&quot;, &quot;Volleyball&quot;, &quot;Water
+                Polo
+            </Text>
             </View>
-            <View style={styles.moreInfoLeftGrp4Filler}></View>
-            <View style={styles.moreInfoRightGrp4}>
-              <Text style={styles.femaleUnderTxt1}>47%</Text>
-              <Text style={styles.maleUnderTxt2}>53%</Text>
-              <Text style={styles.inStateRTxt1}>6%</Text>
-              <Text style={styles.outStateRTxt1}>82%</Text>
-              <Text style={styles.internRTxt1}>11%</Text>
-              <Text style={styles.under2}>3%</Text>
-              <Text style={styles.yr4}>47%</Text>
-              <Text style={styles.yr5}>43%</Text>
-              <Text style={styles.yr6}>6%</Text>
-              <Text style={styles.over2}>1%</Text>
-              <Text style={styles.raceAaTxt1}>6%</Text>
-              <Text style={styles.ractATxt1}>26%</Text>
-              <Text style={styles.raceHTxt1}>14%</Text>
-              <Text style={styles.raceInternTxt1}>12%</Text>
-              <Text style={styles.raceMuTxt1}>7%</Text>
-              <Text style={styles.raceNaTxt1}>0%</Text>
-              <Text style={styles.racePiTxt1}>0%</Text>
-              <Text style={styles.raceWhiteTxt1}>33%</Text>
+            <View style={styles.femaleSportGrp1}>
+              <Text style={styles.femaleSports1}>Female Sports</Text>
+              <Text style={styles.text1}>
+                &quot;Baseball&quot;, &quot;Basketball&quot;, &quot;Fencing&quot;,
+                &quot;Football&quot;, &quot;Lacrosse&quot;, &quot;Rowing&quot;,
+                &quot;Soccer&quot;, &quot;Squash&quot;, &quot;Swimming and
+                Diving&quot;, &quot;Tennis&quot;, &quot;Track and Field:
+                Indoor&quot;, &quot;Track and Field: Outdoor&quot;, &quot;Track
+                and Field: X-Country&quot;, &quot;Volleyball&quot;, &quot;Water
+                Polo
+            </Text>
+            </View>
+            <View style={styles.clubGrp1}>
+              <Text style={styles.clubTxt1}>Clubs</Text>
+              <Text style={styles.text2}>
+                &quot;Baseball&quot;, &quot;Basketball&quot;, &quot;Fencing&quot;,
+                &quot;Football&quot;, &quot;Lacrosse&quot;, &quot;Rowing&quot;,
+                &quot;Soccer&quot;, &quot;Squash&quot;, &quot;Swimming and
+                Diving&quot;, &quot;Tennis&quot;, &quot;Track and Field:
+                Indoor&quot;, &quot;Track and Field: Outdoor&quot;, &quot;Track
+                and Field: X-Country&quot;, &quot;Volleyball&quot;, &quot;Water
+                Polo
+            </Text>
+            </View>
+            <View style={styles.musicGrp1}>
+              <Text style={styles.music2}>Music</Text>
+              <Text style={styles.text3}>
+                &quot;Baseball&quot;, &quot;Basketball&quot;, &quot;Fencing&quot;,
+                &quot;Football&quot;, &quot;Lacrosse&quot;, &quot;Rowing&quot;,
+                &quot;Soccer&quot;, &quot;Squash&quot;, &quot;Swimming and
+                Diving&quot;, &quot;Tennis&quot;, &quot;Track and Field:
+                Indoor&quot;, &quot;Track and Field: Outdoor&quot;, &quot;Track
+                and Field: X-Country&quot;, &quot;Volleyball&quot;, &quot;Water
+                Polo
+            </Text>
             </View>
           </View>
-        </View>
 
-        <View style={styles.grp6}>
-          <View style={styles.maleSportGrp1}>
-            <Text style={styles.maleSports1}>Male Sports</Text>
-            <Text style={styles.xyz1}>
-              &quot;Baseball&quot;, &quot;Basketball&quot;, &quot;Fencing&quot;,
-              &quot;Football&quot;, &quot;Lacrosse&quot;, &quot;Rowing&quot;,
-              &quot;Soccer&quot;, &quot;Squash&quot;, &quot;Swimming and
-              Diving&quot;, &quot;Tennis&quot;, &quot;Track and Field:
-              Indoor&quot;, &quot;Track and Field: Outdoor&quot;, &quot;Track
-              and Field: X-Country&quot;, &quot;Volleyball&quot;, &quot;Water
-              Polo
-            </Text>
-          </View>
-          <View style={styles.femaleSportGrp1}>
-            <Text style={styles.femaleSports1}>Female Sports</Text>
-            <Text style={styles.text1}>
-              &quot;Baseball&quot;, &quot;Basketball&quot;, &quot;Fencing&quot;,
-              &quot;Football&quot;, &quot;Lacrosse&quot;, &quot;Rowing&quot;,
-              &quot;Soccer&quot;, &quot;Squash&quot;, &quot;Swimming and
-              Diving&quot;, &quot;Tennis&quot;, &quot;Track and Field:
-              Indoor&quot;, &quot;Track and Field: Outdoor&quot;, &quot;Track
-              and Field: X-Country&quot;, &quot;Volleyball&quot;, &quot;Water
-              Polo
-            </Text>
-          </View>
-          <View style={styles.clubGrp1}>
-            <Text style={styles.clubTxt1}>Clubs</Text>
-            <Text style={styles.text2}>
-              &quot;Baseball&quot;, &quot;Basketball&quot;, &quot;Fencing&quot;,
-              &quot;Football&quot;, &quot;Lacrosse&quot;, &quot;Rowing&quot;,
-              &quot;Soccer&quot;, &quot;Squash&quot;, &quot;Swimming and
-              Diving&quot;, &quot;Tennis&quot;, &quot;Track and Field:
-              Indoor&quot;, &quot;Track and Field: Outdoor&quot;, &quot;Track
-              and Field: X-Country&quot;, &quot;Volleyball&quot;, &quot;Water
-              Polo
-            </Text>
-          </View>
-          <View style={styles.musicGrp1}>
-            <Text style={styles.music2}>Music</Text>
-            <Text style={styles.text3}>
-              &quot;Baseball&quot;, &quot;Basketball&quot;, &quot;Fencing&quot;,
-              &quot;Football&quot;, &quot;Lacrosse&quot;, &quot;Rowing&quot;,
-              &quot;Soccer&quot;, &quot;Squash&quot;, &quot;Swimming and
-              Diving&quot;, &quot;Tennis&quot;, &quot;Track and Field:
-              Indoor&quot;, &quot;Track and Field: Outdoor&quot;, &quot;Track
-              and Field: X-Country&quot;, &quot;Volleyball&quot;, &quot;Water
-              Polo
-            </Text>
-          </View>
-        </View>
-
-        <View style={styles.grp7}>
-          <View style={styles.moreInfoGrp2}>
-            <View style={styles.moreInfoLeftGrp5}>
-              <Text style={styles.academicDetails1}>Academic Details</Text>
-              <Text style={styles.classRatio1}>Class Ratio (2 - 19)</Text>
-              <Text style={styles.classRatio2}>Class Ratio (20 - 39)</Text>
-              <Text style={styles.classRatio3}>Class Ratio (40 - 99)</Text>
-              <Text style={styles.classRatio4}>Class Ratio (100+)</Text>
-              <Text style={styles.facultyRatio1}>Faculty Ratio</Text>
-              <Text style={styles.femaleFaculty1}>Female Faculty</Text>
-              <Text style={styles.maleFaculty2}>Male Faculty</Text>
+          <View style={styles.grp7}>
+            <View style={styles.moreInfoGrp2}>
+              <View style={styles.moreInfoLeftGrp5}>
+                <Text style={styles.academicDetails1}>Academic Details</Text>
+                <Text style={styles.classRatio1}>Class Ratio (2 - 19)</Text>
+                <Text style={styles.classRatio2}>Class Ratio (20 - 39)</Text>
+                <Text style={styles.classRatio3}>Class Ratio (40 - 99)</Text>
+                <Text style={styles.classRatio4}>Class Ratio (100+)</Text>
+                <Text style={styles.facultyRatio1}>Faculty Ratio</Text>
+                <Text style={styles.femaleFaculty1}>Female Faculty</Text>
+                <Text style={styles.maleFaculty2}>Male Faculty</Text>
+              </View>
+              <View style={styles.moreInfoLeftGrp5Filler}></View>
+              <View style={styles.moreInfoRightGrp5}>
+                <Text style={styles.ratio1}>64%</Text>
+                <Text style={styles.ratio2}>18%</Text>
+                <Text style={styles.ratio3}>18%</Text>
+                <Text style={styles.ratio4}>95%</Text>
+                <Text style={styles.frationTxt1}>3 : 1</Text>
+                <Text style={styles.feRatioTxt1}>28%</Text>
+                <Text style={styles.mRatioTxt1}>72%</Text>
+              </View>
             </View>
-            <View style={styles.moreInfoLeftGrp5Filler}></View>
-            <View style={styles.moreInfoRightGrp5}>
-              <Text style={styles.ratio1}>64%</Text>
-              <Text style={styles.ratio2}>18%</Text>
-              <Text style={styles.ratio3}>18%</Text>
-              <Text style={styles.ratio4}>95%</Text>
-              <Text style={styles.frationTxt1}>3 : 1</Text>
-              <Text style={styles.feRatioTxt1}>28%</Text>
-              <Text style={styles.mRatioTxt1}>72%</Text>
+            <View style={styles.descriptionGrp2}>
+              <Text style={styles.pupularMajors1}>Pupular Majors (ranked)</Text>
+              <Text style={styles.descriptionTxt2}>
+                MIT is an elite private college located in Cambridge,
+                Massachusetts in the Boston Area. It is a small institution with
+                an enrollment of 4,501 undergraduate students. Admissions is
+                extremely competitive as the MIT acceptance rate is only 7%.
+                Popular majors include Computer Science, Mechanical Engineering,
+                and Mathematics. Graduating 95% of students, MIT alumni go on to
+                earn a starting salary of $82,200.
+            </Text>
             </View>
           </View>
-          <View style={styles.descriptionGrp2}>
-            <Text style={styles.pupularMajors1}>Pupular Majors (ranked)</Text>
-            <Text style={styles.descriptionTxt2}>
-              MIT is an elite private college located in Cambridge,
-              Massachusetts in the Boston Area. It is a small institution with
-              an enrollment of 4,501 undergraduate students. Admissions is
-              extremely competitive as the MIT acceptance rate is only 7%.
-              Popular majors include Computer Science, Mechanical Engineering,
-              and Mathematics. Graduating 95% of students, MIT alumni go on to
-              earn a starting salary of $82,200.
-            </Text>
-          </View>
-        </View>
-      </ScrollView>
-    </View>
-  );
+        </ScrollView>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -935,7 +1006,7 @@ const styles = StyleSheet.create({
     color: "#121212",
     fontSize: 16,
     marginBottom: '7%'
-    
+
   },
   actRange1: {
     color: "#121212",
@@ -1549,7 +1620,7 @@ const styles = StyleSheet.create({
     textAlign: "left"
   },
   ratio3: {
-    
+
     color: "#121212",
     fontSize: 16
   },

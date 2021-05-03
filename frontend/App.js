@@ -23,7 +23,7 @@ import ViewRecommendTbl from "./components/scholarships/ViewRecommendTbl";
 import ScholarRecommend from "./ui/scholarships/ScholarRecommend";
 import CollegeSurvey from "./components/colleges/CollegeSurvey";
 import CollegeScreen from "./components/colleges/CollegeScreen";
-import CollegeDetail from "./components/colleges/CollegeDetail";
+import CollegeDetail from "./components/colleges/ViewCollegeDetail";
 import MajorScreen from "./components/majors/MajorScreen";
 import TabViewSurvey from "./components/TabViewSurvey";
 
