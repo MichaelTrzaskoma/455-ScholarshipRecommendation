@@ -14,25 +14,30 @@ import AccScreen from "./components/AccScreen";
 import TabViewSurvey from "./components/TabViewSurvey";
 
 import InputScreen1 from "./components/scholarships/ScholarSurvey";
+
+// ScholarShip
 import ScholarshipScreen from "./components/scholarships/ScholarshipScreen";
 import ViewAllScholar from "./components/scholarships/ViewAllScholar";
 import ViewScholarSubCate from "./components/scholarships/ViewScholarSubCate";
 import ViewScholarTbl from "./components/scholarships/ViewScholarTbl";
 import ViewScholarDetail from "./components/scholarships/ViewScholarDetail";
+import ViewRecommendTbl_3 from "./components/scholarships/ViewRecommendTbl_3";
 import ViewRecommendTbl from "./components/scholarships/ViewRecommendTbl";
 import ScholarRecommend from "./ui/scholarships/ScholarRecommend";
 
-import CollegeSurvey from "./components/colleges/CollegeSurvey";
+// College
 import CollegeScreen from "./components/colleges/CollegeScreen";
-import CollegeDetail from "./components/colleges/ViewCollegeDetail";
+import CollegeSurvey from "./components/colleges/CollegeSurvey";
+import ViewCollegeDetail from "./components/colleges/ViewCollegeDetail";
 import ViewCollegeSubCate from "./components/colleges/ViewCollegeSubCate";
 import ViewAllCollege from "./components/colleges/ViewAllCollege";
 
+// Major
 import MajorScreen from "./components/majors/MajorScreen";
 import MajorDetail from "./components/majors/MajorDetail";
 
 
-import ViewRecommendTbl_3 from "./components/scholarships/ViewRecommendTbl_3";
+
 
 
 const Tab = createBottomTabNavigator();
@@ -370,26 +375,6 @@ export default class App extends Component {
             />
 
             <Stack.Screen
-              name={"ViewScholarDetail"}
-              component={ViewScholarDetail}
-              options={({ route }) => ({
-                title: route.params.title,
-                headerStyle: {
-                  backgroundColor: '#007FF9',
-                },
-                headerTintColor: 'white',
-                headerTitleStyle: {
-                  fontWeight: 'bold',
-                  fontSize: 20,
-                  color: "white",
-                },
-              })}
-              initialParams={{
-                email: this.state.usrProfile.email
-              }}
-            />
-
-            <Stack.Screen
               name={"ViewRecommendTbl"}
               component={ViewRecommendTbl}
               options={({ route }) => ({
@@ -423,8 +408,28 @@ export default class App extends Component {
             />
 
             <Stack.Screen
-              name={"CollegeDetail"}
-              component={CollegeDetail}
+              name={"ViewScholarDetail"}
+              component={ViewScholarDetail}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
+              initialParams={{
+                email: this.state.usrProfile.email
+              }}
+            />
+
+            <Stack.Screen
+              name={"ViewCollegeDetail"}
+              component={ViewCollegeDetail}
               options={({ route }) => ({
                 title: route.params.title,
                 headerStyle: {
