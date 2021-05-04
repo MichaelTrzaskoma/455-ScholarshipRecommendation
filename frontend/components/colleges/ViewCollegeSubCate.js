@@ -23,9 +23,8 @@ export default class ViewSubCate extends React.Component {
     this.getDoc();
   }
 
-
   getDoc = () => {
-    let URL = "http://c1ee84a93999.ngrok.io/api/v1.2/resources/scholarships/view/categories/" + this.state.subCate;
+    let URL = "http://e074c51f8e8f.ngrok.io/api/v1.2/resources/college/view/states/" + this.state.subCate;
 
     fetch(URL, {
       method: "GET",
@@ -36,8 +35,9 @@ export default class ViewSubCate extends React.Component {
     })
       .then((response) => response.json())
       .then((json) => {
+        console.log("Testing " + JSON.stringify(json.mesg));
         this.setState({
-          scholarArr: json,
+          scholarArr: json.mesg,
           isLoading: false,
         });
       })
@@ -74,7 +74,7 @@ export default class ViewSubCate extends React.Component {
                 // we are able to navigate to "ViewSubCate"
                 // since it is one of the stack screens in App.js
                 // therefore, no need to import in this screen
-                this.props.navigation.navigate('ViewScholarTbl', {
+                this.props.navigation.navigate('ViewCollegeDetail', {
                   title: (item + " List"),
                   itemKey: item,
                 });

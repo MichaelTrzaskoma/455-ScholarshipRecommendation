@@ -24,7 +24,7 @@ export default function ScholarCategory() {
                         <View style={styles.amGrpRow}>
                             <TouchableOpacity
                                 onPress={() => {
-                                    navigation.navigate("ViewSubCate", {
+                                    navigation.navigate("ViewScholarSubCate", {
                                         title: "Academic Major List",
                                         itemKey: "Academic Major",
                                     });
@@ -40,7 +40,7 @@ export default function ScholarCategory() {
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => {
-                                    navigation.navigate("ViewSubCate", {
+                                    navigation.navigate("ViewScholarSubCate", {
                                         title: "GPA List",
                                         itemKey: "Grade Point Average",
                                     });
@@ -54,7 +54,7 @@ export default function ScholarCategory() {
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => {
-                                    navigation.navigate("ViewSubCate", {
+                                    navigation.navigate("ViewScholarSubCate", {
                                         title: "Age List",
                                         itemKey: "Age",
                                     });
@@ -69,7 +69,7 @@ export default function ScholarCategory() {
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => {
-                                    navigation.navigate("ViewSubCate", {
+                                    navigation.navigate("ViewScholarSubCate", {
                                         title: "Residence State List",
                                         itemKey: "Residence State",
                                     });
@@ -83,7 +83,7 @@ export default function ScholarCategory() {
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => {
-                                    navigation.navigate("ViewSubCate", {
+                                    navigation.navigate("ViewScholarSubCate", {
                                         title: "Deadline List",
                                         itemKey: "Deadline",
                                     });
