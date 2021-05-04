@@ -96,9 +96,9 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 
 ## API
 
-<details>
+<br>
 
-<summary>Resources</summary>
+### Resources - Scholarships
 
 
 | Endpoint | Method(s) | Description |
@@ -108,15 +108,31 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 | /api/v1.2/resources/scholarships/view/categories/sub/<cater\> | GET | View a list of scholarship that belongs to a specific sub-categories. |
 | /api/v1.2/resources/scholarships/view/titles/<scholarship_title\> | GET | View a specific scholarship detail by providing the title of that scholarship. |
 | /api/v1.2/resources/college/view/states/<state\> | GET | View all colleges under a specific state. |
-| /api/v1.2/resources/colleges/view/titles/<college_name\> | GET | View a college detail bu providing college name. |
-
-</details>
+| /api/v1.2/resources/colleges/view/titles/<college_name\> | GET | View a college detail by providing college name. |
 
 <br>
 
-<details>
+### Resources - Colleges
 
-<summary>Management</summary>
+
+| Endpoint | Method(s) | Description |
+| :--- | :--- | :--- |
+| /api/v1.2/resources/college/view/states/<state\> | GET | View all colleges under a specific state. |
+| /api/v1.2/resources/colleges/view/titles/<college_name\> | GET | View a college detail by providing college name. |
+
+<br>
+
+### Resources - Majors
+
+
+| Endpoint | Method(s) | Description |
+| :--- | :--- | :--- |
+| /api/v1.2/resources/major/view/subjects/<sub> | GET | View all majors under a specific subjects. |
+| /api/v1.2/resources/majors/view/titles/<major_name> | GET | View a major detail by providing major name. |
+
+<br>
+
+### Management - Authentication
 
 | Endpoint | Method(s) | Description |
 | :--- | :--- | :--- |
@@ -124,10 +140,16 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 | /api/v1.2/managements/users/thankyou | GET, POST | Validate the user's token when sign up an account. |
 | /api/v1.2/managements/users/<email\>/auth | GET | Authenticate the user's device and account by using email address, account password, and UUID, then return a JWT code as a token.  |
 | /api/v1.2/managements/users/forgotpassword | GET | Allows the users to reset their password. Accessible by the project internally only. |
+
+<br>
+
+### Management - Survey Profile
+
+| Endpoint | Method(s) | Description |
+| :--- | :--- | :--- |
 | /api/v1.2/users/id/<email\>/surveys/scholarship | GET, POST, PATCH | Retrieve, Append, and modify client's scholarship survey detail into db. |
 | /api/v1.2/users/id/<email\>/recommends/scholarship | GET | View a list of recommended scholarships by providing client's email. |
 | /api/v1.2/users/id/<email\>/surveys/college | GET, POST, PATCH | Retrieve, Append, and modify client's college survey detail into db. |
 | /api/v1.2/users/id/<email\>/recommends/college | GET | View a list of recommended college by providing client's email. |
 | /api/v1.2/users/id/<email\>/surveys/major | GET, POST, PATCH | Retrieve, Append, and modify client's major survey detail into db. |
 | /api/v1.2/users/id/<email\>/recommends/major | GET | View a list of recommended major by providing client's email. |
-</details>

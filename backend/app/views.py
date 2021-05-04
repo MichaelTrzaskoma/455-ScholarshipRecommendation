@@ -18,6 +18,7 @@ db = MongoClient("mongodb://localhost:27017/")
 scholarDb = db.test
 scholar_ref = db.test.scholarships
 college_ref = db.test.colleges
+major_ref = db.test.majors
 user_Ref = db.test.client_profile
 
 ACTIVE_CODE_LENGTH = 64
@@ -616,6 +617,45 @@ def view_college_single(college_name):
 
         return make_response(jsonify({"mesg": result}), 202)
 
+    return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
+
+
+# Major Resources
+
+
+@app.route("/api/v1.2/resources/major/view/subjects/<sub>")
+def view_major_subjectIndex(sub):
+    # view all majors that follow unders a specific subject
+    # INPUT: sub (str) name of the subject
+    # OUTPUT: return a list of major name
+
+    if request.method == "GET":
+        r = major_ref.find({"subjects": sub}, {"_id": 0, "major": 1})
+
+        resource = []
+        for item in r:
+            resource.append(item['major'])
+
+        return make_response(jsonify({"mesg": resource}), 202)
+    
+    return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
+
+
+@app.route("/api/v1.2/resources/majors/view/titles/<major_name>")
+def view_major_single(major_name):
+    # view a single major detail from the given name
+    # INPUT: major_name (str) the name of the major
+    # OUTPUT: return a dict that contains all necessary info about this major
+
+    if request.method == "GET":
+        r = major_ref.find_one({"major": major_name}, {"_id": 0})
+
+        resource = []
+        for item in r:
+            resource.append(item)
+
+        return make_response(jsonify({"mesg": resource}), 202)
+    
     return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
 
 
