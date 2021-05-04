@@ -1,4 +1,5 @@
 import React from "react";
+import { TouchableNativeFeedbackBase } from "react-native";
 import { StyleSheet, Text, View, ActivityIndicator, LogBox } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 // import ViewScholarTbl from "./ViewScholarTbl";
@@ -75,8 +76,9 @@ export default class ViewSubCate extends React.Component {
                 // since it is one of the stack screens in App.js
                 // therefore, no need to import in this screen
                 this.props.navigation.navigate('ViewCollegeDetail', {
-                  title: (item + " List"),
+                  title: (item),
                   itemKey: item,
+                  state: this.state.subCate
                 });
               }}
             > {item} </Text>

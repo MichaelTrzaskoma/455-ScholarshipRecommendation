@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 import { FontAwesome, Feather } from "@expo/vector-icons";
 
-export default class CollegeDetailPage extends React.Component {
+export default class ViewCollegeDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      scholarshipKey: this.props.itemKey,
+      collegeState: this.props.route.params.state,
+      collegeKey: this.props.route.params.state,
+      collegeCity: '',
       collegeObj: {
         uniName: '',
         address: '',
@@ -21,10 +23,59 @@ export default class CollegeDetailPage extends React.Component {
         gradRate: '',
         employAfteCollege: '',
         website: '',
-        BCESA: '',
-        CBSLM: '',
         applyLink: '',
+        BCESA: '',
+        CBSL: '',
+        TPS: '',
+        BCCA: '',
+        BVC: '',
+        SCC: '',
         title: '',
+        acceptSAT: '',
+        readingSAT: '',
+        mathSAT: '',
+        acceptACT: '',
+        englishACT: '',
+        mathACT: '',
+        writingACT: '',
+        comAppli: '',
+        coalAppli: '',
+        highSchGPA: '',
+        highSchRank: '',
+        highSchTrans: '',
+        collegePrecour: '',
+        sat_actScore: '',
+        recommend: '',
+        averMealPlan: '',
+        bookCost: '',
+        femUnder: '',
+        malUnder: '',
+        inStateResi: '',
+        outStateResi: '',
+        interResi: '',
+        under18: '',
+        18_19: '',
+        20_21: '',
+        22_24: '',
+        over25: '',
+        AfricanAmerican: '',
+        Asian: '',
+        Hispanic: '',
+        International: '',
+        Multi: '',
+        NativeAmerican: '',
+        PacificIslander: '',
+        White: '',
+        mSports: '',
+        fSports: '',
+        clubs: '',
+        music: '',
+        classRadio2_19: '',
+        classRadio20_39: '',
+        classRadio100: '',
+        FacultyRatio: '',
+        FemFaculty: '',
+        malFaculty: '',
       },
       applyLinkVisible: false,
       email: this.props.route.params.email,
@@ -37,7 +88,7 @@ export default class CollegeDetailPage extends React.Component {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
     let URL =
-      'http://c1ee84a93999.ngrok.io/api/v1.2/resources/colleges/view/titles/Massachusetts Institute of Technology';
+      'http://e074c51f8e8f.ngrok.io/api/v1.2/resources/colleges/view/titles/Massachusetts Institute of Technology';
 
     fetch(URL, {
       method: 'GET',
@@ -51,15 +102,86 @@ export default class CollegeDetailPage extends React.Component {
       .then((json) => {
         // set the val to state
         this.setState({
-          scholarshipObj: {
-            amount: json.amount,
-            ava: json.awards_available,
-            contact: json.contact_info,
-            deadline: json.deadline,
-            applyLink: json.direct_link,
-            title: json.name,
-            description: json.description,
+          // scholarshipObj: {
+          //   amount: json.amount,
+          //   ava: json.awards_available,
+          //   contact: json.contact_info,
+          //   deadline: json.deadline,
+          //   applyLink: json.direct_link,
+          //   title: json.name,
+          //   description: json.description,
+          // },
+          collegeCity: json,
+          collegeObj: {
+            uniName: '',
+            address: '',
+            tag1: '',
+            tag2: '',
+            avgHousing: '',
+            deadLine: '',
+            description: '',
+            athDivi: '',
+            athCon: '',
+            accepRate: '',
+            gradRate: '',
+            employAfteCollege: '',
+            website: '',
+            applyLink: '',
+            BCESA: '',
+            CBSL: '',
+            TPS: '',
+            BCCA: '',
+            BVC: '',
+            SCC: '',
+            title: '',
+            acceptSAT: '',
+            readingSAT: '',
+            mathSAT: '',
+            acceptACT: '',
+            englishACT: '',
+            mathACT: '',
+            writingACT: '',
+            comAppli: '',
+            coalAppli: '',
+            highSchGPA: '',
+            highSchRank: '',
+            highSchTrans: '',
+            collegePrecour: '',
+            sat_actScore: '',
+            recommend: '',
+            averMealPlan: '',
+            bookCost: '',
+            femUnder: '',
+            malUnder: '',
+            inStateResi: '',
+            outStateResi: '',
+            interResi: '',
+            under18: '',
+            18_19: '',
+            20_21: '',
+            22_24: '',
+            over25: '',
+            AfricanAmerican: '',
+            Asian: '',
+            Hispanic: '',
+            International: '',
+            Multi: '',
+            NativeAmerican: '',
+            PacificIslander: '',
+            White: '',
+            mSports: '',
+            fSports: '',
+            clubs: '',
+            music: '',
+            classRadio2_19: '',
+            classRadio20_39: '',
+            classRadio100: '',
+            FacultyRatio: '',
+            FemFaculty: '',
+            malFaculty: '',
           },
+          applyLinkVisible: false,
+          email: this.props.route.params.email,
         }).catch((error) => {
           console.log('An error happened: ' + error);
         });
@@ -73,6 +195,10 @@ export default class CollegeDetailPage extends React.Component {
 
 
   render() {
+    console.log("Checking 123");
+    console.log("Object check " + JSON.stringify(this.props));
+    console.log("From props " + this.props.route.params.state);
+    console.log("Checking again " + this.props.itemKey);
     return (
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false} style={styles.mainContainer}>
@@ -393,7 +519,6 @@ export default class CollegeDetailPage extends React.Component {
                 <Text style={styles.academicDetails1}>Academic Details</Text>
                 <Text style={styles.classRatio1}>Class Ratio (2 - 19)</Text>
                 <Text style={styles.classRatio2}>Class Ratio (20 - 39)</Text>
-                <Text style={styles.classRatio3}>Class Ratio (40 - 99)</Text>
                 <Text style={styles.classRatio4}>Class Ratio (100+)</Text>
                 <Text style={styles.facultyRatio1}>Faculty Ratio</Text>
                 <Text style={styles.femaleFaculty1}>Female Faculty</Text>
@@ -403,14 +528,13 @@ export default class CollegeDetailPage extends React.Component {
               <View style={styles.moreInfoRightGrp5}>
                 <Text style={styles.ratio1}>64%</Text>
                 <Text style={styles.ratio2}>18%</Text>
-                <Text style={styles.ratio3}>18%</Text>
                 <Text style={styles.ratio4}>95%</Text>
                 <Text style={styles.frationTxt1}>3 : 1</Text>
                 <Text style={styles.feRatioTxt1}>28%</Text>
                 <Text style={styles.mRatioTxt1}>72%</Text>
               </View>
             </View>
-            <View style={styles.descriptionGrp2}>
+            {/* <View style={styles.descriptionGrp2}>
               <Text style={styles.pupularMajors1}>Pupular Majors (ranked)</Text>
               <Text style={styles.descriptionTxt2}>
                 MIT is an elite private college located in Cambridge,
@@ -421,7 +545,7 @@ export default class CollegeDetailPage extends React.Component {
                 and Mathematics. Graduating 95% of students, MIT alumni go on to
                 earn a starting salary of $82,200.
             </Text>
-            </View>
+            </View> */}
           </View>
         </ScrollView>
       </View>
@@ -1534,7 +1658,7 @@ const styles = StyleSheet.create({
   },
   grp7: {
     width: "93%",
-    height: 539,
+    height: 260,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
     marginTop: 16,
@@ -1625,7 +1749,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   ratio4: {
-    marginTop: '12%',
+    marginTop: '2%',
     color: "#121212",
     fontSize: 16
   },

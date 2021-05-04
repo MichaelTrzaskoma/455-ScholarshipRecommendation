@@ -459,6 +459,7 @@ def view_college_single(college_name):
             "about": 1,
             "athletics": 1,
             "ranking": 1,
+            "location_tags": 1,
             "admission.acceptance.rate": 1,
             "admission.sat.accept_score_range": 1,
             "admission.sat.reading_score": 1,
@@ -518,8 +519,13 @@ def view_college_single(college_name):
         })
 
         result = {
+            # about
             "tag_1": trimmer_na(r['about'][0]) if check_nest1(r, "about") and len(r['about'][0]) > 3 else "None",
             "tag_2": trimmer_na(r['about'][1]) if check_nest1(r, "about") and len(r['about'][1]) > 3 else "None",
+
+            # University location
+            "city": trimmer_na(r["location_tags"][0]) if check_nest1(r,"location_tags") and len(r['location_tags'][0]) > 3 else "None",
+            "regsion": trimmer_na(r["location_tags"][1]) if check_nest1(r,"location_tags") and len(r['location_tags'][1]) > 3 else "None",
 
             # class ratio
             "class_ratio_2TO19": trimmer_na(r['academic']['class_size_ratio']['2-19_students']) if check_nest3(r, "academic", "class_size_ratio", "2-19_students") else "None",
