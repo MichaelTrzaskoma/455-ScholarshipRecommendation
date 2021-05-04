@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
-import { AppRegistry } from "react-native";
+import { StyleSheet, View, AppRegistry } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer, getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -12,22 +11,26 @@ import { getDeviceID } from "./functions/deviceUniqueID";
 
 import LoginScreen from "./components/LoginScreen";
 import AccScreen from "./components/AccScreen";
+import TabViewSurvey from "./components/TabViewSurvey";
+
 import InputScreen1 from "./components/scholarships/ScholarSurvey";
-import InputScreen2 from "./components/InputInfoScreen2";
 import ScholarshipScreen from "./components/scholarships/ScholarshipScreen";
 import ViewAllScholar from "./components/scholarships/ViewAllScholar";
-import ViewAllCollege from "./components/colleges/ViewAllCollege";
 import ViewScholarSubCate from "./components/scholarships/ViewScholarSubCate";
-import ViewCollegeSubCate from "./components/colleges/ViewCollegeSubCate";
 import ViewScholarTbl from "./components/scholarships/ViewScholarTbl";
 import ViewScholarDetail from "./components/scholarships/ViewScholarDetail";
 import ViewRecommendTbl from "./components/scholarships/ViewRecommendTbl";
 import ScholarRecommend from "./ui/scholarships/ScholarRecommend";
+
 import CollegeSurvey from "./components/colleges/CollegeSurvey";
 import CollegeScreen from "./components/colleges/CollegeScreen";
 import CollegeDetail from "./components/colleges/ViewCollegeDetail";
+import ViewCollegeSubCate from "./components/colleges/ViewCollegeSubCate";
+import ViewAllCollege from "./components/colleges/ViewAllCollege";
+
 import MajorScreen from "./components/majors/MajorScreen";
-import TabViewSurvey from "./components/TabViewSurvey";
+import MajorDetail from "./components/majors/MajorDetail";
+
 
 import ViewRecommendTbl_3 from "./components/scholarships/ViewRecommendTbl_3";
 
@@ -228,13 +231,6 @@ export default class App extends Component {
               }}
             />
 
-            <Stack.Screen
-              name={"InputScreen2"}
-              component={InputScreen2}
-              options={{ title: "Optional Info", email: this.state.usrProfile.email }}
-              initialParams={{ email: this.state.usrProfile.email }}
-            />
-
             {/* CollegeSurvey component stacked */}
             <Stack.Screen
               name={"CollegeSurvey"}
@@ -429,6 +425,22 @@ export default class App extends Component {
             <Stack.Screen
               name={"CollegeDetail"}
               component={CollegeDetail}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
+            />
+
+            <Stack.Screen
+              name={"MajorDetail"}
+              component={MajorDetail}
               options={({ route }) => ({
                 title: route.params.title,
                 headerStyle: {

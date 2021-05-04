@@ -3,7 +3,6 @@ import {
 	StyleSheet,
 	View,
 	Text,
-	ScrollView,
 	TouchableOpacity
 } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
@@ -239,6 +238,7 @@ const styles = StyleSheet.create({
 		top: 0,
 		left: 0,
 		height: 173,
+		marginTop: 5,
 		position: "absolute",
 		right: 0,
 		justifyContent: "center"
