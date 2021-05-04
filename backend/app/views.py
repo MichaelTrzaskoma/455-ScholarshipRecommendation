@@ -591,6 +591,8 @@ def view_college_single(college_name):
             "student_age_25UP": trimmer_na(r['major']['age']['Over_25']) if check_nest3(r, "major", "age", "Over_25") else "None",
             "student_age_Under_18": trimmer_na(r['major']['age']['Under_18']) if check_nest3(r, "major", "age", "Under_18") else "None",
 
+            "popular_majors": trimmer_na(arr2str(r['academic']['popular_major'])) if check_nest2(r, "academic", "popular_major") else "None",
+
             "female_undergrads_ratio": trimmer_na(r['major']['gender_ratio']['female_undergrads']) if check_nest3(r, "major", "gender_ratio", "female_undergrads") else "None",
             "male_undergrads_ratio": trimmer_na(r['major']['gender_ratio']['male_undergrads']) if check_nest3(r, "major", "gender_ratio", "male_undergrads") else "None",
 
