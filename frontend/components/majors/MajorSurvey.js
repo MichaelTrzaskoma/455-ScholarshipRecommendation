@@ -14,6 +14,14 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import Slider from '@react-native-community/slider';
 import DropDownPicker from 'react-native-dropdown-picker';
 
+//Henry please create the following variables on the backend:
+//haveSalary | boolean set to false as default
+//haveAutonomy | boolean set to false by default
+//haveVariety | boolean set to false by default
+//haveSocial | boolean set to false by default
+//havehaveEnvironment | boolean set to false by default
+
+
 const items = [
     {
         name: "Subjects",

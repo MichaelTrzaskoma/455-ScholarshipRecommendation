@@ -44,7 +44,7 @@ export default class ViewScholarDetail extends React.Component {
       },
       body: JSON.stringify({
         "email": this.state.email, 
-        "title": this.scholarshipObj.title,
+        "title": this.state.scholarshipObj.title,
         // "jwt": getSecureStorage("jwt"),
         // "uniqueID": getDeviceID(),
       }),
