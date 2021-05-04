@@ -13,7 +13,7 @@ import LoginScreen from "./components/LoginScreen";
 import AccScreen from "./components/AccScreen";
 import TabViewSurvey from "./components/TabViewSurvey";
 
-import InputScreen1 from "./components/scholarships/ScholarSurvey";
+import ScholarSurvey from "./components/scholarships/ScholarSurvey";
 import ScholarshipScreen from "./components/scholarships/ScholarshipScreen";
 import ViewAllScholar from "./components/scholarships/ViewAllScholar";
 import ViewScholarSubCate from "./components/scholarships/ViewScholarSubCate";
@@ -207,8 +207,8 @@ export default class App extends Component {
             </Stack.Screen>
 
             <Stack.Screen
-              name={"InputScreen1"}
-              component={InputScreen1}
+              name={"ScholarSurvey"}
+              component={ScholarSurvey}
               options={{ title: "Required Info" }}
             // nitialParams={{ email: this.state.usrProfile.email }}
             />

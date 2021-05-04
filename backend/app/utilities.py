@@ -1,4 +1,7 @@
 # This is a utilities file for the APIs and recommendation model
+import datetime
+
+MAX_ENTRIES_FOR_RECENT = 15
 
 def trimmer_keySlash(key):
     # trim the slash from the key
@@ -84,7 +87,7 @@ def arr2str(target):
     elif l_arr == 0:
         return "None"
     else:
-        return ', '.join(trimmer_nextline(e) for e in target)
+        return ', '.join(trimmer_nextline(e) for e in target)[:-2]
     
 
 def parseCollegeRanking(target):
@@ -139,3 +142,57 @@ def check_nest3(cursor, key1, key2, key3):
     
     return False
 
+
+def getBookmarks(user_Ref, email):
+    if(user_Ref.count_documents({'_id': email, 'bookmarks': {'$exists': True}}) == 0):
+        return {"existing": int(0)}
+
+    user = user_Ref.find_one({'_id':email})
+
+    return user["bookmarks"]
+
+
+def addBookmark(user_Ref, email, title, lstType):
+    if(user_Ref.count_documents({'_id': email}) == 0):
+        return False
+
+    user_Ref.update_one(
+        {'_id':email},
+        {
+            '$push': {
+                "bookmarks": {
+                    "title": title,
+                    "type": lstType,
+                    "timeAddded": datetime.utcnow()
+                }
+            }
+        }
+    )
+    return True
+
+
+def getRecent(user_Ref, email):
+    if(user_Ref.count_documents({'_id': email, 'recent_viewed': {'$exists': True}}) == 0):
+        return {"existing": int(0)}
+
+    user = user_Ref.find_one({'_id':email})
+
+    return user["recent_viewed"][-MAX_ENTRIES_FOR_RECENT:]
+
+
+def addRecent(user_Ref, email, title, lstType):
+    if(user_Ref.count_documents({'_id': email}) == 0):
+        return False
+    user_Ref.update_one(
+        {'_id':email},
+        {
+            '$push': {
+                "recent_viewed": {
+                    "title": title,
+                    "type": lstType,
+                    "timeAdded": datetime.utcnow()
+                }
+            }
+        }
+    )
+    return True

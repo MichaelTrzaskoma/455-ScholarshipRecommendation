@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
 	emailTxt: {
 		color: '#121212',
 		fontSize: 16,
-		marginTop: 11,
+		marginTop: 10,
 		fontWeight: "bold",
 	},
 	nameTxtColumn: {
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
 		height: 20,
 		width: "auto",
 		fontSize: 16,
-		marginTop: 13,
+		marginTop: 10,
 	},
 	namePlaceHolderColumn: {
 		width: "auto",

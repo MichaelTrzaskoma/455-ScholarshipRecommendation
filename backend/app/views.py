@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 import time
 
 from .auths import generateCode, init_usrProfileDB, check_email_verification_status, encode_jwt, update_deviceInfo, initial_device, update_deviceInfo, validate_token
-from .recommend_model import updtUser, filter_results, updtScholarSurvey, getBookmarks, addBookmark, getRecent, addRecent
+from .recommend_model import updtUser, filter_results, updtScholarSurvey
 from .utilities import *
 
 MINS_TIL_ACTIVE_CODE_EXPIRY = 15
@@ -1024,63 +1024,90 @@ def getRecommend_major(email):
         return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
 
 
-@app.route("/api/v1.2/users/id/<email>/bookmarks/get",  methods=["GET"])
-def getBookmarkDoc(email):
-    return make_response(jsonify(str(getBookmarks(user_Ref, email))), 202)
+# Bookmarks
 
 
-@app.route("/api/v1.2/users/id/<email>/bookmarks/add",  methods=["GET"])
-def addBookmarkDoc(email):
-    income_data = request.json
+@app.route("/api/v1.2/users/id/<email>/bookmarks",  methods=["GET", "POST", "PATCH"])
+def getBookmarkDoc_all(email):
 
-    # validate the inputs and incoming data
-    if 'email' not in income_data:
-        return make_response(jsonify({"mesg": "An email is needed!"}), 400)
+    if request.method == "GET" and request.is_json:
+        
+        return make_response(jsonify(getBookmarks(user_Ref, email)), 202)
 
-    if 'title' not in income_data:
-        return make_response(jsonify({"mesg": "A title is needed!"}), 400)
+    elif request.method == "POST" and request.is_json:
+        # users try to append a new bookmark item
 
-    if 'type' not in income_data:
-        return make_response(jsonify({"mesg": "A type is needed!"}), 400)
+        # TODO: check if this item is already exist in the record
+        # so that we can avoid duplicate submission from the user
+        
+        income_data = request.json
 
-    if 'unique_id' not in income_data:
-        return make_response(jsonify({"mesg": "Device is not supported!"}), 400)
+        # validate the inputs and incoming data
+        if len(email) < 1:
+            return make_response(jsonify({"mesg": "An email is needed!"}), 400)
 
-    title = income_data["title"]
-    docType = income_data["type"]
-    res = getBookmarkDoc(user_Ref, email, title, docType)
-    if(res):
-        return make_response(jsonify("success"), 202)
-    else:
-        return make_response(jsonify("wrong email"), 400)
+        if 'title' not in income_data:
+            return make_response(jsonify({"mesg": "A title is needed!"}), 400)
+
+        if 'type' not in income_data:
+            return make_response(jsonify({"mesg": "A type is needed!"}), 400)
+
+        if 'unique_id' not in income_data:
+            return make_response(jsonify({"mesg": "Device is not supported!"}), 400)
+
+        title = income_data["title"]
+        docType = income_data["type"]
+        res = addBookmark(user_Ref, email, title, docType)
+
+        if res:
+            return make_response(jsonify({"emsg": "Bookmarked!"}), 202)
+        else:
+            return make_response(jsonify({"mesg": "Bookmark failed!"}), 400)
+
+    elif request.method == "PATCH" and request.is_json:
+        # Unbookmark a specific item
+        return make_response(jsonify({"mesg": "This is a PATCH method"}), 202)
+
+    else: 
+        return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
 
 
-@app.route("/api/v1.2/users/id/<email>/recent/get",  methods=["GET"])
+# Recent Viewed (aka history)
+
+
+@app.route("/api/v1.2/users/id/<email>/recent",  methods=["GET", "POST"])
 def getRecentDoc(email):
-    return make_response(jsonify(str(getRecent(user_Ref, email))), 202)
 
+    if request.method == "GET" and request.is_json:
+        
+        return make_response(jsonify(getRecent(user_Ref, email)), 202)
+        
+    elif request.method == "POST" and request.is_json:
+        income_data = request.json
 
-@app.route("/api/v1.2/users/id/<email>/recent/add",  methods=["GET"])
-def addRecentDoc(email):
-    income_data = request.json
+        # validate the inputs and incoming data
+        if len(email) < 1:
+            return make_response(jsonify({"mesg": "An email is needed!"}), 400)
 
-    # validate the inputs and incoming data
-    if 'email' not in income_data:
-        return make_response(jsonify({"mesg": "An email is needed!"}), 400)
+        if 'title' not in income_data:
+            return make_response(jsonify({"mesg": "A title is needed!"}), 400)
 
-    if 'title' not in income_data:
-        return make_response(jsonify({"mesg": "A title is needed!"}), 400)
+        if 'type' not in income_data:
+            return make_response(jsonify({"mesg": "A type is needed!"}), 400)
 
-    if 'type' not in income_data:
-        return make_response(jsonify({"mesg": "A type is needed!"}), 400)
+        if 'unique_id' not in income_data:
+            return make_response(jsonify({"mesg": "Device is not supported!"}), 400)
 
-    if 'unique_id' not in income_data:
-        return make_response(jsonify({"mesg": "Device is not supported!"}), 400)
+        title = income_data["title"]
+        docType = income_data["type"]
 
-    title = income_data["title"]
-    docType = income_data["type"]
-    res = addRecent(user_Ref, email, title, docType)
-    if(res):
-        return make_response(jsonify("success"), 202)
+        res = addRecent(user_Ref, email, title, docType)
+
+        if res:
+            return make_response(jsonify({"mesg": "Success!"}), 202)
+        else:
+            return make_response(jsonify({"mesg": "Wrong email"}), 400)
+
     else:
-        return make_response(jsonify("wrong email"), 400)
+        return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
+

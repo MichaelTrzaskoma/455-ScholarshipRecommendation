@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 
-export default function MajorDetail(props) {
+function MajorDetail(props) {
   return (
     <View style={styles.container}>
-      <View style={styles.containweWrapper}>
-        <View style={styles.bookmarkBtn}></View>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.containweWrapper}>
         
+        <View style={styles.bookmarkBtn}></View>
         
         <View style={styles.generalInfoGrp}>
           <View style={styles.majorTitleGrp}>
@@ -40,8 +40,15 @@ export default function MajorDetail(props) {
           </View>
         </View>
         
-        
         <View style={styles.detailGrp}>
+          <View style={styles.descriptionGrp}>
+            <Text style={styles.description}>Description</Text>
+            <Text style={styles.descriptionTxt}>
+              Cost Accounting, Income Tax Accounting, Computerized
+              Accounting/Accounting Information Systems, Concepts of Auditing,
+              Statistics
+            </Text>
+          </View>
           <View style={styles.classGrp}>
             <Text style={styles.classes}>Classes</Text>
             <Text style={styles.classesTxt}>
@@ -60,8 +67,7 @@ export default function MajorDetail(props) {
           </View>
         </View>
       
-      
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -70,44 +76,46 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "rgba(230, 230, 230,1)",
-    justifyContent: "center"
+    // justifyContent: "center",
   },
   containweWrapper: {
     backgroundColor: "#E6E6E6",
     width: "100%",
     height: "100%",
-    alignSelf: "center"
+    alignSelf: "center",
   },
   bookmarkBtn: {
-    width: "93%",
+    width: "92%",
     height: 47,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
     overflow: "hidden",
-    marginTop: 19,
-    alignSelf: "center"
+    marginTop: 20,
+    alignSelf: "center",
+    // marginLeft: 15
   },
   generalInfoGrp: {
-    width: "93%",
+    width: "92%",
     height: 291,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
     marginTop: 18,
-    marginLeft: 15,
+    // marginLeft: 15
+    alignSelf: "center",
   },
   majorTitleGrp: {
-    height: 50,
+    minHeight: 50,
     backgroundColor: "rgba(255,255,255,1)",
-    width: 321,
+    width: 350,
     borderRadius: 5,
     justifyContent: "center",
     alignSelf: "center"
   },
   titleTxt: {
-
     color: "#121212",
     fontSize: 16,
-    alignSelf: "center"
+    alignSelf: "center",
+    fontWeight: "bold",
   },
   statisticsGrp: {
     height: 239,
@@ -116,10 +124,9 @@ const styles = StyleSheet.create({
   salaryGrp: {
     backgroundColor: "rgba(255,255,255,1)",
     flex: 1,
-    marginRight: 1
+    marginRight: 1,
   },
   averageSalary: {
-
     color: "#121212",
     fontSize: 14,
     marginTop: 10,
@@ -165,7 +172,8 @@ const styles = StyleSheet.create({
   },
   unemployGrp: {
     flex: 1,
-    marginLeft: 1
+    marginLeft: 50,
+    width: "100%"
   },
   avg_salaryTxt: {
 
@@ -204,25 +212,46 @@ const styles = StyleSheet.create({
     flex: 1
   },
   detailGrp: {
-    width: "93%",
-    height: 247,
+    width: "92%",
+    height: "auto",
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
     marginTop: 20,
+    // marginLeft: 15
+    alignSelf: "center",
+    marginBottom: 20,
+  },
+  descriptionGrp: {
+    height: 117,
+    borderRadius: 5
+  },
+  description: {
+    color: "#121212",
+    width: 83,
+    height: 20,
+    marginTop: 15,
+    marginLeft: 15,
+    fontWeight: "bold",
+  },
+  descriptionTxt: {
+
+    color: "#121212",
+    width: 287,
+    height: 68,
+    marginTop: 10,
     marginLeft: 15
   },
   classGrp: {
     height: 114,
-    backgroundColor: "rgba(255,255,255,1)",
-    borderRadius: 5,
+    backgroundColor: "rgba(255,255,255,1)"
   },
   classes: {
-
     color: "#121212",
     width: 50,
     height: 16,
     marginTop: 15,
-    marginLeft: 15
+    marginLeft: 15,
+    fontWeight: "bold",
   },
   classesTxt: {
 
@@ -233,15 +262,16 @@ const styles = StyleSheet.create({
   },
   jobGrp: {
     height: 123,
-    backgroundColor: "rgba(255,255,255,1)"
+    backgroundColor: "rgba(255,255,255,1)",
+    borderRadius: 5,
   },
   jobs: {
-
     color: "#121212",
     width: 31,
     height: 16,
     marginTop: 15,
-    marginLeft: 15
+    marginLeft: 15,
+    fontWeight: "bold",
   },
   jobTxt: {
 
@@ -252,3 +282,5 @@ const styles = StyleSheet.create({
     marginRight: 19
   }
 });
+
+export default MajorDetail;

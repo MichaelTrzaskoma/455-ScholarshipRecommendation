@@ -60,6 +60,8 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
     source env/bin/activate
     pip install -r requirements.txt
     ```
+   
+   <br>
 
     >Production Env
     ```
@@ -67,6 +69,8 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
     ```
 
     * Access the URL: <a href="localhost:9090">localhost:9090</a>
+   
+   <br>
 
     >Development Env:
     ```
@@ -77,6 +81,8 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
     ```
 
     * Access the URL: <a href="localhost:5000">localhost:5000</a>
+   
+   <br>
 
     >Test Env with Ngrok
    ```
@@ -153,3 +159,19 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 | /api/v1.2/users/id/<email\>/recommends/college | GET | View a list of recommended college by providing client's email. |
 | /api/v1.2/users/id/<email\>/surveys/major | GET, POST, PATCH | Retrieve, Append, and modify client's major survey detail into db. |
 | /api/v1.2/users/id/<email\>/recommends/major | GET | View a list of recommended major by providing client's email. |
+
+<br>
+
+### Management - Bookmarks
+
+| Endpoint | Method(s) | Description |
+| :--- | :--- | :--- |
+| /api/v1.2/users/id/<email\>/bookmarks | GET, POST, PATCH | View, append, and modify bookmark item under user's profile. |
+
+<br>
+
+### Management - History
+
+| Endpoint | Method(s) | Description |
+| :--- | :--- | :--- |
+| /api/v1.2/users/id/<email\>/recent | GET, POST | View and append history item under user's profile. |
