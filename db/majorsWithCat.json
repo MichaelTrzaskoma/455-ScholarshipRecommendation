@@ -1,0 +1,2491 @@
+[{
+  "_id": {
+    "$oid": "608d986e88f4fb127170404a"
+  },
+  "id_": "Accounting",
+  "major": "Accounting",
+  "avg_salary": "$68,567.00",
+  "unemp_rate": "2.40%",
+  "autom": "Yes",
+  "subjects": [
+    "Math"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Indoor",
+  "classes": [
+    "Cost Accounting",
+    "Income Tax Accounting",
+    "Computerized Accounting/Accounting Information Systems",
+    "Concepts of Auditing",
+    "Statistics"
+  ],
+  "jobs": [
+    "Forensic Accountant",
+    "Financial Analyst",
+    "Personal Financial Advisor",
+    "Actuary",
+    "Anti-Money Laundering Officer"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Buisness"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170404b"
+  },
+  "id_": "Agriculture",
+  "major": "Agriculture",
+  "avg_salary": "$66,019.00",
+  "unemp_rate": "2.50%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Outdoor",
+  "classes": [
+    "Biology",
+    "Chemistry",
+    "Economics",
+    "Business and Management",
+    "Environmental Science"
+  ],
+  "jobs": [
+    "Agriculture Sales Professional",
+    "Agricultural and Natural Resources Communication",
+    "Agriculture and Food Science Technician",
+    "Veterinarian (For Livestock)",
+    "Horticulturist"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170404c"
+  },
+  "id_": "Anthropology",
+  "major": "Anthropology",
+  "avg_salary": "$57,538.00",
+  "unemp_rate": "6%",
+  "autom": "Yes",
+  "subjects": [
+    "History",
+    "Math",
+    "Science",
+    "English"
+  ],
+  "var_jobs": "High",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "Biology",
+    "Evolution",
+    "Cultural Anthropology",
+    "Ethnicity and Identity",
+    "Gender Experiences"
+  ],
+  "jobs": [
+    "Marketing Manager",
+    "Public Relations Manager",
+    "Training And Development Manager",
+    "Sociologist"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170404d"
+  },
+  "id_": "Art",
+  "major": "Art",
+  "avg_salary": "$57,813.00",
+  "unemp_rate": "4.50%",
+  "autom": "Yes",
+  "subjects": [
+    "Arts "
+  ],
+  "var_jobs": "Medium",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Art History",
+    "Painting",
+    "Sculpture",
+    "Ceramics",
+    "Graphic Design"
+  ],
+  "jobs": [
+    "Illustrator",
+    "Designer",
+    "Photographer",
+    "Artist",
+    "Fashion Designer"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Arts"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170404e"
+  },
+  "id_": "Biology",
+  "major": "Biology",
+  "avg_salary": "$71,619.00",
+  "unemp_rate": "4.20%",
+  "autom": "Yes",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Biology",
+    "Evolutionary Biology",
+    "Chemistry",
+    "Calculus",
+    "Physics"
+  ],
+  "jobs": [
+    "Biological Technician",
+    "Biochemist",
+    "Microbiologist",
+    "Health Communications Specialist",
+    "Wildlife Biologist"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170404f"
+  },
+  "id_": "Business Management",
+  "major": "Business Management",
+  "avg_salary": "$65,280.00",
+  "unemp_rate": "3.80%",
+  "autom": "No",
+  "subjects": [
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "No",
+  "env": "Indoor",
+  "classes": [
+    "Economics",
+    "Accounting",
+    "Business Law",
+    "Marketing,Business Administration"
+  ],
+  "jobs": [
+    "Personal Assistant",
+    "Program Assistant",
+    "Office Coordinator",
+    "Human Resources Assistant",
+    "Staff Accountant"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Buisness"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704050"
+  },
+  "id_": "Chemistry",
+  "major": "Chemistry",
+  "avg_salary": "$74,876.00",
+  "unemp_rate": "4%",
+  "autom": "Yes",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Introduction to Chemistry",
+    "Organic Chemsitry",
+    "Inorganic Chemistry",
+    "Calculus",
+    "Physics"
+  ],
+  "jobs": [
+    "Chemical Technician",
+    "Toxicologist",
+    "Water Chemist",
+    "Analytical Chemist",
+    "Quality Control Chemist"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704051"
+  },
+  "id_": "Communications",
+  "major": "Communications",
+  "avg_salary": "$62,427.00",
+  "unemp_rate": "3.60%",
+  "autom": "No",
+  "subjects": [
+    "English"
+  ],
+  "var_jobs": "High",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "Introduction to Communication",
+    "Communication Research",
+    "Media",
+    "Public Speaking",
+    "Writing"
+  ],
+  "jobs": [
+    "Public Relations Specialist",
+    "Event Planner",
+    "College Alumni and Development Officer",
+    "Media Planner",
+    "Social Media Manager"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704052"
+  },
+  "id_": "Computer Science",
+  "major": "Computer Science",
+  "avg_salary": "$101,896.00",
+  "unemp_rate": "5.20%",
+  "autom": "Yes",
+  "subjects": [
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "No",
+  "env": "Indoor",
+  "classes": [
+    "Calculus",
+    "Programming",
+    "Data Structures",
+    "Discrete Math",
+    "Algorithms"
+  ],
+  "jobs": [
+    "Data Scientist",
+    "Software Tester",
+    "Software Developer",
+    "System Analyst",
+    "Full-Stack Developer "
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704053"
+  },
+  "id_": "Cosmetology",
+  "major": "Cosmetology",
+  "avg_salary": "$42,824.00",
+  "unemp_rate": "3.70%",
+  "autom": "No",
+  "subjects": [
+    "Arts "
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Introduction to Cosmetology",
+    "Facial Treatment",
+    "Skin Care and Makeup",
+    "Hair Cutting",
+    "Business Management"
+  ],
+  "jobs": [
+    "Permanant Makeup Artist",
+    "Nail Technician",
+    "Massage Therapist",
+    "Fashion Designer",
+    "Barber"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Trades & Personal Services"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704054"
+  },
+  "id_": "Criminal Justice",
+  "major": "Criminal Justice",
+  "avg_salary": "$49,657.00",
+  "unemp_rate": "4.30%",
+  "autom": "No",
+  "subjects": [
+    "History",
+    "English"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "Criminology",
+    "Sociology",
+    "Research for Criminal Justice",
+    "Constitutional Law",
+    "Statistics"
+  ],
+  "jobs": [
+    "Lawyer",
+    "Homeland Security",
+    "Homicide Detective",
+    "Criminal Investigator",
+    "DEA Agent"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Protective Services"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704055"
+  },
+  "id_": "Culinary Arts",
+  "major": "Culinary Arts",
+  "avg_salary": "$48,509.00",
+  "unemp_rate": "3.70%",
+  "autom": "Yes",
+  "subjects": [
+    "Arts "
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Culinary Fundamenetals",
+    "Nutrition",
+    "Food Safety",
+    "Introduction to Gastronomy",
+    "Baking and Pastries"
+  ],
+  "jobs": [
+    "Pastry Chef",
+    "Personal Cook",
+    "Recipe Developer",
+    "Food Writer",
+    "Food Stylist"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Trades & Personal Services"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704056"
+  },
+  "id_": "Dental",
+  "major": "Dental",
+  "avg_salary": "$120,000.00",
+  "unemp_rate": "3.90%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Biology",
+    "Inorganic Chemistry",
+    "Organic Chemistry",
+    "Physics",
+    "English"
+  ],
+  "jobs": [
+    "Denist",
+    "Dental Hygienist",
+    "Dental Technician",
+    "Dental Therapist",
+    "Health Improvement Practitioner"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Health Professions"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704057"
+  },
+  "id_": "Design",
+  "major": "Design",
+  "avg_salary": "$61,290.00",
+  "unemp_rate": "4.50%",
+  "autom": "Yes",
+  "subjects": [
+    "Arts "
+  ],
+  "var_jobs": "Medium",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "3D Graphics",
+    "Animation",
+    "Art",
+    "Computer Aided Design",
+    "Web Design"
+  ],
+  "jobs": [
+    "Industrial Designer",
+    "Graphic Designer",
+    "Interior Designer",
+    "Fashion Designer",
+    "User Experience Designer"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Arts"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704058"
+  },
+  "id_": "Economics",
+  "major": "Economics",
+  "avg_salary": "$93,692.00",
+  "unemp_rate": "4.20%",
+  "autom": "No",
+  "subjects": [
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "No",
+  "env": "Indoor",
+  "classes": [
+    "Microeconomics",
+    "Macroeconomics",
+    "Calculus",
+    "Political Economy",
+    "Statistics"
+  ],
+  "jobs": [
+    "Market Research Analyst",
+    "Economic Consultant",
+    "Actuary",
+    "Credit Analyst",
+    "Policy Analyst"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704059"
+  },
+  "id_": "Education",
+  "major": "Education",
+  "avg_salary": "$53,641.00",
+  "unemp_rate": "1.70%",
+  "autom": "Yes",
+  "subjects": [
+    "English"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Introduction to Education",
+    "Student Teaching",
+    "Classroom Management",
+    "Developmental Psychology",
+    "Chlid Development"
+  ],
+  "jobs": [
+    "Education Administrator",
+    "Curriculum Design",
+    "Student Counsling",
+    "Teacher",
+    "Recreation and Student Life"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Education"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170405a"
+  },
+  "id_": "Engineering",
+  "major": "Engineering",
+  "avg_salary": "$85,647.00",
+  "unemp_rate": "4.90%",
+  "autom": "Yes",
+  "subjects": [
+    "Science",
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Calculus",
+    "Physics",
+    "Introduction to Materials Engineering",
+    "Principles to Engineering",
+    "Dynamics"
+  ],
+  "jobs": [
+    "Aerospace Engineer",
+    "Agriculture Engineer",
+    "Automotive Engineer",
+    "Biomedical Engineer",
+    "Chemical Engineer"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170405b"
+  },
+  "id_": "English",
+  "major": "English",
+  "avg_salary": "$64,472.00",
+  "unemp_rate": "4.50%",
+  "autom": "Yes",
+  "subjects": [
+    "English"
+  ],
+  "var_jobs": "High",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Literature",
+    "Creative Writing",
+    "Literature and Philisophy",
+    "Poetry",
+    "Prose"
+  ],
+  "jobs": [
+    "Advertising Manager",
+    "Technical Writer",
+    "Writer & Author",
+    "Highschool Teacher",
+    "Editor"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170405c"
+  },
+  "id_": "Environmental Science",
+  "major": "Environmental Science",
+  "avg_salary": "$60,064.00",
+  "unemp_rate": "4.30%",
+  "autom": "Yes",
+  "subjects": [
+    "Science",
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "No",
+  "env": "Outdoor",
+  "classes": [
+    "General Biology",
+    "General Physics",
+    "General Chemistry",
+    "Organic Chemistry",
+    "Principles of Ecology "
+  ],
+  "jobs": [
+    "Enviornmental Specialist",
+    "Enviornmental Technician",
+    "Enviornmental Science Teacher",
+    "Marine Biologist",
+    "Enviornmental Chemist"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    1
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170405d"
+  },
+  "id_": "Film",
+  "major": "Film",
+  "avg_salary": "$56,684.00",
+  "unemp_rate": "7.30%",
+  "autom": "Yes",
+  "subjects": [
+    "Arts "
+  ],
+  "var_jobs": "Medium",
+  "social": "Job Dependent",
+  "env": "Job Dependent",
+  "classes": [
+    "Introduction to Film",
+    "Film History",
+    "Film Theory",
+    "Film Criticism",
+    "Film Production"
+  ],
+  "jobs": [
+    "Broadcast Presenter",
+    "Film Director",
+    "Film/Video Editor",
+    "Location Manager",
+    "Production Designer"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "category": "Arts"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170405e"
+  },
+  "id_": "Finance",
+  "major": "Finance",
+  "avg_salary": "$69,864.00",
+  "unemp_rate": "3.50%",
+  "autom": "No",
+  "subjects": [
+    "Math"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Indoor",
+  "classes": [
+    "Corporate Finance",
+    "Derivatives",
+    "Investment Analysis",
+    "Investment Banking Analysis",
+    "Asset Pricing and Portfolio Analysis",
+    "Accounting",
+    "Global Capital Markets",
+    "Corporate Risk Management"
+  ],
+  "jobs": [
+    "Financial Planner",
+    "Financial Analyst",
+    "Investor Relations Associate",
+    "Budget Analyst",
+    "Commerical Real Estate Agent"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Buisness"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170405f"
+  },
+  "id_": "Food and Nutrition",
+  "major": "Food and Nutrition",
+  "avg_salary": "$56,614.00",
+  "unemp_rate": "3.30%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Biology",
+    "Chemistry",
+    "Physiology",
+    "Introduction to Nutrition",
+    "Food Preparation/Distribution "
+  ],
+  "jobs": [
+    "Animal Nutritionist",
+    "Community Education Officer",
+    "Food Technologist",
+    "Dietitian",
+    "Catering Manager "
+  ],
+  "desc": "placeholder",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Health Professions"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704060"
+  },
+  "id_": "Foreign Language",
+  "major": "Foreign Language",
+  "avg_salary": "$70,750.00",
+  "unemp_rate": "3.30%",
+  "autom": "Yes",
+  "subjects": [
+    "History"
+  ],
+  "var_jobs": "High",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "Foreign Language Proficiency",
+    "Foreign Culture "
+  ],
+  "jobs": [
+    "Foreign Civil Servant",
+    "Flight Attendant",
+    "Advertisement Translator",
+    "Subtitle/Voiceover Translator",
+    "Event Manager "
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704061"
+  },
+  "id_": "Health",
+  "major": "Health",
+  "avg_salary": "$63,930.00",
+  "unemp_rate": "3.90%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Biology",
+    "Chemistry",
+    "Anatomy",
+    "Physiology",
+    "Genetics"
+  ],
+  "jobs": [
+    "Behavior Analyst",
+    "Hearing Aid Specialist",
+    "Health Educator",
+    "Mental Health Counsler",
+    "Patient Care Advocate"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Health Professions"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704062"
+  },
+  "id_": "Health Care",
+  "major": "Health Care",
+  "avg_salary": "$61,851.00",
+  "unemp_rate": "3.90%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Healthcare Personnel Management",
+    "Financial Management of Healthcare institutions",
+    "Marketing of Healthcare Organizations",
+    "Healthcare Information Systems",
+    "Quality Assurance in Healthcare"
+  ],
+  "jobs": [
+    "Respiratory Therapist",
+    "Radiologic and MRI Technician",
+    "Orthopedic and Prosthetic Professional",
+    "Dental Hygenist",
+    "Healthcare Executive",
+    "Physician Assistant"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Health Professions"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704063"
+  },
+  "id_": "History",
+  "major": "History",
+  "avg_salary": "$67,007.00",
+  "unemp_rate": "3.80%",
+  "autom": "Yes",
+  "subjects": [
+    "History"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "American History",
+    "European History",
+    "Freedom and Responsibility",
+    "Non-Western History",
+    "Myth and Reality in American Past"
+  ],
+  "jobs": [
+    "Government Historian",
+    "Political Advisor",
+    "Museum Curator",
+    "Archivist",
+    "Diplomant"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704064"
+  },
+  "id_": "Information Technology",
+  "major": "Information Technology",
+  "avg_salary": "$67,407.00",
+  "unemp_rate": "4.90%",
+  "autom": "Yes",
+  "subjects": [
+    "Science",
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "Job Dependent",
+  "env": "Indoor",
+  "classes": [
+    "Computer Networks",
+    "Computer Programming",
+    "Data Center Design",
+    "Database Administration",
+    "Information Storage Management"
+  ],
+  "jobs": [
+    "Network Architect",
+    "Health Information Technologist",
+    "Information Technology Support Specialist",
+    "Information Technology Consultant",
+    "Information Security Analyst"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704065"
+  },
+  "id_": "International Relations",
+  "major": "International Relations",
+  "avg_salary": "$74,987.00",
+  "unemp_rate": "4.60%",
+  "autom": "No",
+  "subjects": [
+    "History",
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Economics",
+    "Foreign Language",
+    "Foreign Policy",
+    "Public Relations",
+    "Political Science"
+  ],
+  "jobs": [
+    "Diplomat",
+    "Intelligence Specialist",
+    "Political Analyst. Lobbyist",
+    "Communication Specialist"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704066"
+  },
+  "id_": "Legal Studies",
+  "major": "Legal Studies",
+  "avg_salary": "$61,274.00",
+  "unemp_rate": "4.30%",
+  "autom": "No",
+  "subjects": [
+    "History",
+    "English"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Linguistics",
+    "Literature",
+    "Politics",
+    "Sociology",
+    "English"
+  ],
+  "jobs": [
+    "Paralegal",
+    "Legal Assistant",
+    "Claims Adjuster",
+    "Real Estate Agent",
+    "Legal Administrator"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704067"
+  },
+  "id_": "Math",
+  "major": "Math",
+  "avg_salary": "$71,216.00",
+  "unemp_rate": "4.90%",
+  "autom": "Yes",
+  "subjects": [
+    "Math"
+  ],
+  "var_jobs": "High",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Differential Equations",
+    "Complex Variables",
+    "Linear Algebra",
+    "Modern Geometry",
+    "Probability and Statistics"
+  ],
+  "jobs": [
+    "Database Administrator",
+    "Financial Analyst",
+    "Economist",
+    "Operations Research Analyst",
+    "Mathematician"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704068"
+  },
+  "id_": "Music",
+  "major": "Music",
+  "avg_salary": "$56,616.00",
+  "unemp_rate": "5.10%",
+  "autom": "Yes",
+  "subjects": [
+    "Arts "
+  ],
+  "var_jobs": "Medium",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "Aural Skills",
+    "Counterpoint",
+    "Elements of Music Education",
+    "Instrumentation",
+    "Music Theory"
+  ],
+  "jobs": [
+    "Music Producer",
+    "Music Therapist",
+    "Musician",
+    "Sound Designer",
+    "Sound Engineer",
+    "Music Teacher"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Arts"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704069"
+  },
+  "id_": "Nursing",
+  "major": "Nursing",
+  "avg_salary": "$86,177.00",
+  "unemp_rate": "1.80%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Health Psychology",
+    "Healthy Aging",
+    "Family and Stress",
+    "Contemporary Moral Problems",
+    "Mental Health Nursing"
+  ],
+  "jobs": [
+    "Legal Nurse Consultant",
+    "Nurse Manager",
+    "Public Health Nurse",
+    "Hospice Nurse",
+    "Nutritionist Nurse"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Health Professions"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170406a"
+  },
+  "id_": "Philosophy",
+  "major": "Philosophy",
+  "avg_salary": "$66,023.00",
+  "unemp_rate": "4.30%",
+  "autom": "Yes",
+  "subjects": [
+    "English",
+    "History"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Ancient Philosophy",
+    "Great Philosophers",
+    "Mind and Matter",
+    "Racism and Sexism",
+    "School and Society"
+  ],
+  "jobs": [
+    "College Professor",
+    "Non-Profit Worker",
+    "Public Policy Worker",
+    "Journalist",
+    "Paralegal"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170406b"
+  },
+  "id_": "Photography",
+  "major": "Photography",
+  "avg_salary": "$53,779.00",
+  "unemp_rate": "7.30%",
+  "autom": "Yes",
+  "subjects": [
+    "Arts "
+  ],
+  "var_jobs": "Medium",
+  "social": "Job Dependent",
+  "env": "Job Dependent",
+  "classes": [
+    "Photography",
+    "Art",
+    "Design",
+    "Finance",
+    "Management"
+  ],
+  "jobs": [
+    "Advertising Art Director",
+    "Magazine Features Editor",
+    "Medical Illustrator",
+    "Photographer",
+    "Press Photographer"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "category": "Arts"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170406c"
+  },
+  "id_": "Physical Therapy",
+  "major": "Physical Therapy",
+  "avg_salary": "$86,391.00",
+  "unemp_rate": "3.30%",
+  "autom": "Yes",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Anatomy",
+    "Physiology",
+    "Biology",
+    "Psychology",
+    "General Physics "
+  ],
+  "jobs": [
+    "Physical Therapist",
+    "Physical Therapist Assistant",
+    "Chiropractor",
+    "Recreational Therapist",
+    "Massage Therapist"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Health Professions"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170406d"
+  },
+  "id_": "Physics",
+  "major": "Physics",
+  "avg_salary": "$87,876.00",
+  "unemp_rate": "7.70%",
+  "autom": "Yes",
+  "subjects": [
+    "Science",
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "General Physics",
+    "Electricity and Magnetism",
+    "Modern Atomic Physics",
+    "Thermodynamics",
+    "Numerical Methods in Computing Optics"
+  ],
+  "jobs": [
+    "Astronomer",
+    "Geophysicist",
+    "Metallurgist",
+    "Meteorologist",
+    "Nanotechnologist"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170406e"
+  },
+  "id_": "Political Science",
+  "major": "Political Science",
+  "avg_salary": "$67,085.00",
+  "unemp_rate": "5.20%",
+  "autom": "Yes",
+  "subjects": [
+    "History",
+    "Math"
+  ],
+  "var_jobs": "Low",
+  "social": "Job Dependent",
+  "env": "Indoor",
+  "classes": [
+    "American Foreign Policy",
+    "American National Government",
+    "American Political Thought",
+    "Gender Politics",
+    "World Politics"
+  ],
+  "jobs": [
+    "Policy Analyst",
+    "Legislative Assistant",
+    "Public Relations Specialist",
+    "Political Campaign Staff",
+    "Political Consultant"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170406f"
+  },
+  "id_": "Protective Services",
+  "major": "Protective Services",
+  "avg_salary": "$52,331.00",
+  "unemp_rate": "4.30%",
+  "autom": "Yes",
+  "subjects": [
+    "History"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "Criminal Justice",
+    "Public Relations",
+    "Disaster Response",
+    "Sociology",
+    "Emergency Planning"
+  ],
+  "jobs": [
+    "Airport Safety Officer",
+    "Emergency Communications Operator",
+    "Fire Ranger",
+    "House Security Officer",
+    "Protective Services Worker"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Protective Services"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704070"
+  },
+  "id_": "Psychology",
+  "major": "Psychology",
+  "avg_salary": "$60,033.00",
+  "unemp_rate": "3.90%",
+  "autom": "Yes",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Methods of Inquiry",
+    "Abnormal Psychology",
+    "Counseling Skills",
+    "Language Mind and Brain",
+    "Physiological Psychology"
+  ],
+  "jobs": [
+    "Advertising Agents",
+    "Carrer Counselor",
+    "Case Manager",
+    "Child Care Worker",
+    "Laboratory Assistant"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704071"
+  },
+  "id_": "Public Health",
+  "major": "Public Health",
+  "avg_salary": "$50,444.00",
+  "unemp_rate": "3.90%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Biostatistics",
+    "Education",
+    "Health",
+    "Nutrition",
+    "Research Methods"
+  ],
+  "jobs": [
+    "Health Education Specialist",
+    "Emergency Response Planner",
+    "Public Health Advocate",
+    "Disease Prevention Specialist",
+    "Public Health Planner"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Health Professions"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704072"
+  },
+  "id_": "Public Policy",
+  "major": "Public Policy",
+  "avg_salary": "$67,223.00",
+  "unemp_rate": "4.30%",
+  "autom": "No",
+  "subjects": [
+    "History",
+    "English"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Indoor",
+  "classes": [
+    "Policy Innovation and Analysis",
+    "The Politics of Public Policy",
+    "Justice in Public Policy",
+    "Economics",
+    "Quntitative Analysis of Public Policy"
+  ],
+  "jobs": [
+    "Public Policy Director",
+    "Public Relations Specialist",
+    "Policy Analyst",
+    "Policy Advisor",
+    "Lobbyist"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704073"
+  },
+  "id_": "Religious Studies",
+  "major": "Religious Studies",
+  "avg_salary": "$47,500.00",
+  "unemp_rate": "1.50%",
+  "autom": "Yes",
+  "subjects": [
+    "English",
+    "History "
+  ],
+  "var_jobs": "Low",
+  "social": "Job Dependent",
+  "env": "Indoor",
+  "classes": [
+    "Religion in America",
+    "Paths of World Religions",
+    "Literature and World of Old/New Testament",
+    "Apocolypses",
+    "Modern Religious Thought"
+  ],
+  "jobs": [
+    "Teacher",
+    "Media Religion Consultant",
+    "Youth Worker",
+    "Chaplain",
+    "Archivist"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704074"
+  },
+  "id_": "Social Services",
+  "major": "Social Services",
+  "avg_salary": "$50,110.00",
+  "unemp_rate": "3.10%",
+  "autom": "Job Dependent",
+  "subjects": [
+    "Science",
+    "Math",
+    "History"
+  ],
+  "var_jobs": "High",
+  "social": "Job Dependent",
+  "env": "Indoor",
+  "classes": [
+    "Community Resources",
+    "Diversity",
+    "Modern Social Problems",
+    "Social Work Practice",
+    "Sociology"
+  ],
+  "jobs": [
+    "Social Workers",
+    "Middle School Teachers",
+    "Human Resource Workers",
+    "Librarians",
+    "Urban and Regional Planners"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704075"
+  },
+  "id_": "Sports Management",
+  "major": "Sports Management",
+  "avg_salary": "$52,546.00",
+  "unemp_rate": "3.80%",
+  "autom": "Yes",
+  "subjects": [
+    "Math"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Sports Media",
+    "Sports Marketing",
+    "Sports Accounting and Finance",
+    "Sports Facility Management",
+    "Risk Management"
+  ],
+  "jobs": [
+    "Athletic Coach",
+    "Athletic Director",
+    "Athletic Development Specialist",
+    "Contract Negotiation Manager",
+    "Marketing Consultant"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Buisness"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704076"
+  },
+  "id_": "Veterinary",
+  "major": "Veterinary",
+  "avg_salary": "$82,092.00",
+  "unemp_rate": "3.90%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "Biology",
+    "Zoology",
+    "Biochemistry",
+    "Genetics",
+    "Animal Nutrition"
+  ],
+  "jobs": [
+    "Animial Nutritionist",
+    "Animal Physiotherapist",
+    "Veterinary Surgeon",
+    "Animal Technicion",
+    "Veterinary Nurse"
+  ],
+  "desc": "placeholder",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Health Professions"
+}]
