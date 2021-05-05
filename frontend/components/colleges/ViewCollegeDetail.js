@@ -6,77 +6,108 @@ export default class ViewCollegeDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      collegeState: this.props.route.params.state,
-      collegeKey: this.props.route.params.state,
-      collegeCity: '',
-      collegeObj: {
-        uniName: '',
-        address: '',
-        tag1: '',
-        tag2: '',
+      collegeState: this.props.route.params.title,
+      collegeKey: this.props.route.params.itemKey,
+      // collegeObj1_1: {
+      //   uniName: '',
+      //   address: '',
+      //   tag1: '',
+      //   tag2: '',
+      // },
+      collegeObj1_2: {
+        tuitionIn: '',
+        tuitionOut: '',
         avgHousing: '',
-        deadLine: '',
-        description: '',
-        athDivi: '',
-        athCon: '',
-        accepRate: '',
-        gradRate: '',
-        employAfteCollege: '',
-        website: '',
-        applyLink: '',
-        rankDetail1: '',
-        rankDetail2: '',
-        rankDetail3: '',
-        rankDetail4: '',
-        rankDetail5: '',
-        rankDetail6: '',
-        title: '',
-        acceptSAT: '',
-        readingSAT: '',
-        mathSAT: '',
-        acceptACT: '',
-        englishACT: '',
-        mathACT: '',
-        writingACT: '',
-        comAppli: '',
-        coalAppli: '',
-        highSchGPA: '',
-        highSchRank: '',
-        highSchTrans: '',
-        collegePrecour: '',
-        sat_actScore: '',
-        recommend: '',
-        averMealPlan: '',
-        bookCost: '',
-        femUnder: '',
-        malUnder: '',
-        inStateResi: '',
-        outStateResi: '',
-        interResi: '',
-        under18: '',
-        a18_19: '',
-        a20_21: '',
-        a22_24: '',
-        over25: '',
-        AfricanAmerican: '',
-        Asian: '',
-        Hispanic: '',
-        International: '',
-        Multi: '',
-        NativeAmerican: '',
-        PacificIslander: '',
-        White: '',
-        mSports: '',
-        fSports: '',
-        clubs: '',
-        music: '',
-        classRadio2_19: '',
-        classRadio20_39: '',
-        classRadio100: '',
-        FacultyRatio: '',
-        FemFaculty: '',
-        malFaculty: '',
+        deadLine: ''
       },
+      // collegeObj2_1: {
+      //   description: '',
+      //   athDivi: '',
+      //   athCon: '',
+      //   accepRate: '',
+      // },
+      // collegeObj2_2: {
+      //   gradRate: '',
+      //   earningAfter: '',
+      //   employAfteCollege: '',
+      //   website: '',
+      //   applyLink: ''
+      // },
+      // collegeObj3_1: {
+      //   rankingTitle1: '',
+      //   rankingRank1: '',
+      //   rankingTitle2: '',
+      //   rankingRank2: '',
+      //   rankingTitle3: '',
+      //   rankingRank3: '',
+      // },
+      // collegeObj3_2: {
+      //   rankingTitle4: '',
+      //   rankingRank4: '',
+      //   rankingTitle5: '',
+      //   rankingRank5: '',
+      //   rankingTitle6: '',
+      //   rankingRank6: ''
+      // },
+      // collegeObj4_1: {
+      //   acceptSAT: '',
+      //   readingSAT: '',
+      //   mathSAT: '',
+      //   acceptACT: '',
+      //   englishACT: '',
+      //   mathACT: '',
+      //   writingACT: '',
+      //   comAppli: '',
+      // },
+      // collegeObj4_2: {
+      //   coalAppli: '',
+      //   highSchGPA: '',
+      //   highSchRank: '',
+      //   highSchTrans: '',
+      //   collegePrecour: '',
+      //   sat_actScore: '',
+      //   recommend: '',
+      //   averMealPlan: '',
+      //   bookCost: ''
+      // },
+      // collegeObj5_1: {
+      //   femUnder: '',
+      //   malUnder: '',
+      //   inStateResi: '',
+      //   outStateResi: '',
+      //   interResi: '',
+      //   under18: '',
+      //   a18_19: '',
+      //   a20_21: '',
+      //   a22_24: ''
+      // },
+      // collegeObj5_2: {
+      //   over25: '',
+      //   AfricanAmerican: '',
+      //   Asian: '',
+      //   Hispanic: '',
+      //   International: '',
+      //   Multi: '',
+      //   NativeAmerican: '',
+      //   PacificIslander: '',
+      //   White: ''
+      // },
+      // collegeObj6_1: {
+      //   mSports: '',
+      //   fSports: '',
+      //   clubs: '',
+      //   music: '',
+      //   classRadio2_19: '',
+      //   classRadio20_39: '',
+      // },
+      // collegeObj6_2: {
+      //   classRadio40_99: '',
+      //   classRadio100: '',
+      //   FacultyRatio: '',
+      //   FemFaculty: '',
+      //   malFaculty: '',
+      //   popMajor: ''
+      // },
       applyLinkVisible: false,
       email: this.props.route.params.email,
     };
@@ -88,7 +119,7 @@ export default class ViewCollegeDetail extends React.Component {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
     let URL =
-      'http://8934d83a4df8.ngrok.io/api/v1.2/resources/colleges/view/titles/Massachusetts Institute of Technology';
+      "http://96858b0d3196.ngrok.io/api/v1.2/resources/colleges/view/titles/Massachusetts Institute of Technology"
 
     fetch(URL, {
       method: 'GET',
@@ -100,7 +131,7 @@ export default class ViewCollegeDetail extends React.Component {
       // format the API response into json
       .then((response) => response.json())
       .then((json) => {
-        console.log("API ranking check " + JSON.stringify(json.mesg.ranking[0]))
+        console.log("API ranking check " + JSON.stringify(json));
         // set the val to state
         this.setState({
           // scholarshipObj: {
@@ -112,76 +143,108 @@ export default class ViewCollegeDetail extends React.Component {
           //   title: json.name,
           //   description: json.description,
           // },
-          collegeObj: {
-            uniName: '',
-            address: '',
-            tag1: '',
-            tag2: '',
-            avgHousing: '',
-            deadLine: '',
-            description: '',
-            athDivi: '',
-            athCon: '',
-            accepRate: '',
-            gradRate: '',
-            employAfteCollege: '',
-            website: '',
-            applyLink: '',
-            BCESA: '',
-            CBSL: '',
-            TPS: '',
-            BCCA: '',
-            BVC: '',
-            SCC: '',
-            title: '',
-            acceptSAT: '',
-            readingSAT: '',
-            mathSAT: '',
-            acceptACT: '',
-            englishACT: '',
-            mathACT: '',
-            writingACT: '',
-            comAppli: '',
-            coalAppli: '',
-            highSchGPA: '',
-            highSchRank: '',
-            highSchTrans: '',
-            collegePrecour: '',
-            sat_actScore: '',
-            recommend: '',
-            averMealPlan: '',
-            bookCost: '',
-            femUnder: '',
-            malUnder: '',
-            inStateResi: '',
-            outStateResi: '',
-            interResi: '',
-            under18: '',
-            a18_19: '',
-            a20_21: '',
-            a22_24: '',
-            over25: '',
-            AfricanAmerican: '',
-            Asian: '',
-            Hispanic: '',
-            International: '',
-            Multi: '',
-            NativeAmerican: '',
-            PacificIslander: '',
-            White: '',
-            mSports: '',
-            fSports: '',
-            clubs: '',
-            music: '',
-            classRadio2_19: '',
-            classRadio20_39: '',
-            classRadio100: '',
-            FacultyRatio: '',
-            FemFaculty: '',
-            malFaculty: '',
+          // collegeObj1_1: {
+          //   uniName: json.mesg.uni_name,
+          //   address: json.mesg.address,
+          //   tag1: json.mesg.tag_1,
+          //   tag2: json.mesg.tag_2,
+          // },
+          collegeObj1_2: {
+            tuitionIn: json.mesg.tuition_in_state,
+            tuitionOut: json.mesg.tuition_out_state,
+            avgHousing: json.mesg.avg_housing,
+            deadLine: json.mesg.application_deadline
           },
-          applyLinkVisible: false,
-          email: this.props.route.params.email,
+          // collegeObj2_1: {
+          //   description: json.mesg.description,
+          //   athDivi: json.mesg.athleticsD,
+          //   athCon: json.mesg.athleticsC,
+          //   accepRate: json.mesg.acceptance_rate,
+          // },
+          // collegeObj2_2: {
+          //   gradRate: json.mesg.graduation_rate,
+          //   earningAfter: json.mesg.earning_after_uni,
+          //   employAfteCollege: json.mesg.employ_after_uni,
+          //   website: json.mesg.offical_site,
+          //   applyLink: json.mesg.application_website,
+          // },
+          // collegeObj3_1: {
+          //   rankingTitle1: json.mesg.ranking[0].title,
+          //   rankingRank1: json.mesg.ranking[0].rank,
+          //   rankingTitle2: json.mesg.ranking[1].title,
+          //   rankingRank2: json.mesg.ranking[1].rank,
+          //   rankingTitle3: json.mesg.ranking[2].title,
+          //   rankingRank3: json.mesg.ranking[2].rank,
+          // },
+          // collegeObj3_2: {
+          //   rankingTitle4: json.mesg.ranking[3].title,
+          //   rankingRank4: json.mesg.ranking[3].rank,
+          //   rankingTitle5: json.mesg.ranking[4].title,
+          //   rankingRank5: json.mesg.ranking[4].rank,
+          //   rankingTitle6: json.mesg.ranking[5].title,
+          //   rankingRank6: json.mesg.ranking[5].rank,
+          // },
+          // collegeObj4_1: {
+          //   acceptSAT: json.mesg.sat_accept_score_range,
+          //   readingSAT: json.mesg.sat_read_score_range,
+          //   mathSAT: json.mesg.sat_math_score_range,
+          //   acceptACT: json.mesg.act_accept_score_range,
+          //   englishACT: json.mesg.act_eng_score_range,
+          //   mathACT: json.mesg.act_write_score_range,
+          //   writingACT: json.mesg.act_write_score_range,
+          //   comAppli: json.mesg.comm_app,
+          // },
+          // collegeObj4_2: {
+          //   coalAppli: json.mesg.coalition_app,
+          //   highSchGPA: json.mesg.highSchool_gpa,
+          //   highSchRank: json.mesg.highSchool_rank,
+          //   highSchTrans: json.mesg.highSchool_transcripts,
+          //   collegePrecour: json.mesg.uni_precourse,
+          //   sat_actScore: json.mesg.sat_or_act,
+          //   recommend: json.mesg.recommendationLetter,
+          //   averMealPlan: json.mesg.avg_meal_plan,
+          //   bookCost: json.mesg.book_cost,
+          // },
+          // collegeObj5_1: {
+          //   femUnder: json.mesg.female_undergrads.ratio,
+          //   malUnder: json.mesg.male_undergrads.ratio,
+          //   inStateResi: json.mesg.residence_in_state,
+          //   outStateResi: json.mesg.residence_out_state,
+          //   interResi: json.mesg.residence_international,
+          //   under18: json.mesg.student_age_Under_18,
+          //   a18_19: json.mesg.student_age_18TO19,
+          //   a20_21: json.mesg.student_age_20TO21,
+          //   a22_24: json.mesg.student_age_22TO24,
+          // },
+          // collegeObj5_2: {
+          //   over25: json.mesg.student_age_25UP,
+          //   AfricanAmerican: json.mesg.racial_aa,
+          //   Asian: json.mesg.racial_asian,
+          //   Hispanic: json.mesg.racial_hispanic,
+          //   International: json.mesg.racial_international,
+          //   Multi: json.mesg.racial_international,
+          //   NativeAmerican: json.mesg.racial_na,
+          //   PacificIslander: json.mesg.racial_pi,
+          //   White: json.mesg.racial_white
+          // },
+          // collegeObj6_1: {
+          //   mSports: json.mesg.sport_male,
+          //   fSports: json.mesg.sport_female,
+          //   clubs: json.mesg.club,
+          //   music: json.mesg.music,
+          //   classRadio2_19: json.mesg.class_ratio_2TO19,
+          //   classRadio20_39: json.mesg.class_ratio_20TO39,
+          // },
+          // collegeObj6_2: {
+          //   classRadio40_99: json.mesg.class_ratio_40TO99,
+          //   classRadio100: json.mesg.class_ratio_100UP,
+          //   FacultyRatio: json.mesg.faculty_ratio,
+          //   FemFaculty: json.mesg.faculty_female,
+          //   malFaculty: json.mesg.faculty_male,
+          //   popMajor: json.mesg.popular_majors
+          // },
+          // applyLinkVisible: false,
+          // email: this.props.route.params.email,
         }).catch((error) => {
           console.log('An error happened: ' + error);
         });
@@ -195,10 +258,11 @@ export default class ViewCollegeDetail extends React.Component {
 
 
   render() {
-    console.log("Checking 123");
-    console.log("Object check " + JSON.stringify(this.props));
-    console.log("From props " + this.props.route.params.state);
-    console.log("Checking again " + this.props.itemKey);
+    // console.log("Checking 123");
+    // console.log("Object check " + JSON.stringify(this.props));
+    // console.log("From props " + this.props.route.params.itemKey);
+    // console.log("Checking again " + this.props.itemKey);
+    // console.log("local state check " + JSON.stringify(this.state.collegeObj1_2));
     return (
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false} style={styles.mainContainer}>
@@ -206,8 +270,8 @@ export default class ViewCollegeDetail extends React.Component {
             <View style={styles.titleGrpStack}>
               <View style={styles.titleGrp}>
                 <Text style={styles.titleTxt}>
-                  Massachusetts Institute of Technology
-                            </Text>
+                  {/* {this.state.collegeObj1_1.uniName} */}
+                </Text>
               </View>
               <View style={styles.locGrp}>
                 <Text style={styles.address3}>Address</Text>
@@ -1657,7 +1721,7 @@ const styles = StyleSheet.create({
   },
   grp7: {
     width: "93%",
-    height: 500,
+    height: 520,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
     marginTop: 16,
