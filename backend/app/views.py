@@ -479,6 +479,7 @@ def view_college_single(college_name):
             "academic.graduation_rate": 1,
             "academic.class_size_ratio.2-19_students": 1,
             "academic.class_size_ratio.20-39": 1,
+            "academic.class_size_ratio.40-99": 1,
             "academic.class_size_ratio.100+": 1,
             "academic.popular_major": 1,
             "academic.faculty.ratio": 1,
@@ -523,6 +524,7 @@ def view_college_single(college_name):
             # class ratio
             "class_ratio_2TO19": trimmer_na(r['academic']['class_size_ratio']['2-19_students']) if check_nest3(r, "academic", "class_size_ratio", "2-19_students") else "None",
             "class_ratio_20TO39": trimmer_na(r['academic']['class_size_ratio']['20-39']) if check_nest3(r, "academic", "class_size_ratio", "20-39") else "None",
+            "class_ratio_40TO99": trimmer_na(r['academic']['class_size_ratio']['40-99']) if check_nest3(r, "academic", "class_size_ratio", "40-99") else "None",
             "class_ratio_100UP": trimmer_na(r['academic']['class_size_ratio']['100+']) if check_nest3(r, "academic", "class_size_ratio", "100+") else "None",
 
             # faculty info
@@ -540,7 +542,7 @@ def view_college_single(college_name):
             "act_math_score_range": trimmer_na(r['admission']['act']['math_score']) if check_nest3(r, "admission", "act", "math_score") else "None",
             "act_write_score_range": trimmer_na(r['admission']['act']['write_score']) if check_nest3(r, "admission", "act", "write_score") else "None",
 
-            # apps
+            # application
             "coalition_app": trimmer_na(r['admission']['application']['accept_coalition_app']) if check_nest3(r, "admission", "application", "accept_coalition_app") else "None",
             "comm_app": trimmer_na(r['admission']['application']['comm_app']) if check_nest3(r, "admission", "application", "comm_app") else "None",
             "application_website": trimmer_na(r['admission']['application']['website']) if check_nest3(r, "admission", "application", "website") else "None",
@@ -562,7 +564,8 @@ def view_college_single(college_name):
             # after uni
             "earning_after_uni": trimmer_na(r['after_uni']['earning']['2yr']) if check_nest3(r, "after_uni", "earning", "2yr") else "None",
             "employ_after_uni": trimmer_na(r['after_uni']['earning']['2yr']) if check_nest3(r, "after_uni", "employment", "2yr") else "None",
-
+            
+            # graudation
             "graudation_rate": trimmer_na(r['after_uni']['graudation_rate']) if check_nest2(r, "after_uni", "graudation_rate") else "None",
 
             # athletics info
@@ -582,6 +585,7 @@ def view_college_single(college_name):
             "tuition_in_state": trimmer_price(r['cost']['tuition']['in_state']) if check_nest3(r, "cost", "tuition", "in_state") else "None",
             "tuition_out_state": trimmer_price(r['cost']['tuition']['out_state']) if check_nest3(r, "cost", "tuition", "out_state") else "None",
 
+            # description
             "description": trimmer_nextline(r['description']) if check_nest1(r, "description") else "None",
 
             # student info
@@ -591,8 +595,10 @@ def view_college_single(college_name):
             "student_age_25UP": trimmer_na(r['major']['age']['Over_25']) if check_nest3(r, "major", "age", "Over_25") else "None",
             "student_age_Under_18": trimmer_na(r['major']['age']['Under_18']) if check_nest3(r, "major", "age", "Under_18") else "None",
 
+            # major
             "popular_majors": trimmer_na(arr2str(r['academic']['popular_major'])) if check_nest2(r, "academic", "popular_major") else "None",
 
+            # gender ratio
             "female_undergrads_ratio": trimmer_na(r['major']['gender_ratio']['female_undergrads']) if check_nest3(r, "major", "gender_ratio", "female_undergrads") else "None",
             "male_undergrads_ratio": trimmer_na(r['major']['gender_ratio']['male_undergrads']) if check_nest3(r, "major", "gender_ratio", "male_undergrads") else "None",
 
