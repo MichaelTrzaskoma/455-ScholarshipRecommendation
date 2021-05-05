@@ -24,12 +24,12 @@ export default class ViewCollegeDetail extends React.Component {
         employAfteCollege: '',
         website: '',
         applyLink: '',
-        BCESA: '',
-        CBSL: '',
-        TPS: '',
-        BCCA: '',
-        BVC: '',
-        SCC: '',
+        rankDetail1: '',
+        rankDetail2: '',
+        rankDetail3: '',
+        rankDetail4: '',
+        rankDetail5: '',
+        rankDetail6: '',
         title: '',
         acceptSAT: '',
         readingSAT: '',
@@ -88,7 +88,7 @@ export default class ViewCollegeDetail extends React.Component {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
     let URL =
-      'http://e074c51f8e8f.ngrok.io/api/v1.2/resources/colleges/view/titles/Massachusetts Institute of Technology';
+      'http://8934d83a4df8.ngrok.io/api/v1.2/resources/colleges/view/titles/Massachusetts Institute of Technology';
 
     fetch(URL, {
       method: 'GET',
@@ -100,6 +100,7 @@ export default class ViewCollegeDetail extends React.Component {
       // format the API response into json
       .then((response) => response.json())
       .then((json) => {
+        console.log("API ranking check " + JSON.stringify(json.mesg.ranking[0]))
         // set the val to state
         this.setState({
           // scholarshipObj: {
@@ -111,7 +112,6 @@ export default class ViewCollegeDetail extends React.Component {
           //   title: json.name,
           //   description: json.description,
           // },
-          collegeCity: json,
           collegeObj: {
             uniName: '',
             address: '',
@@ -534,7 +534,7 @@ export default class ViewCollegeDetail extends React.Component {
                 <Text style={styles.mRatioTxt1}>72%</Text>
               </View>
             </View>
-            {/* <View style={styles.descriptionGrp2}>
+            <View style={styles.descriptionGrp2}>
               <Text style={styles.pupularMajors1}>Pupular Majors (ranked)</Text>
               <Text style={styles.descriptionTxt2}>
                 MIT is an elite private college located in Cambridge,
@@ -545,7 +545,7 @@ export default class ViewCollegeDetail extends React.Component {
                 and Mathematics. Graduating 95% of students, MIT alumni go on to
                 earn a starting salary of $82,200.
             </Text>
-            </View> */}
+            </View>
           </View>
         </ScrollView>
       </View>
@@ -1089,7 +1089,7 @@ const styles = StyleSheet.create({
   },
   grp4: {
     width: "93%",
-    height: 688,
+    height: 720,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
     marginTop: 16,
@@ -1313,7 +1313,7 @@ const styles = StyleSheet.create({
   },
   grp5: {
     width: "93%",
-    height: 685,
+    height: 720,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
     marginTop: 16,
@@ -1369,10 +1369,9 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   under1: {
-
     color: "#121212",
     fontSize: 16,
-    marginTop: 15
+    marginTop: "7%"
   },
   yr1: {
     marginTop: '7%',
@@ -1658,7 +1657,7 @@ const styles = StyleSheet.create({
   },
   grp7: {
     width: "93%",
-    height: 260,
+    height: 500,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
     marginTop: 16,
@@ -1781,7 +1780,7 @@ const styles = StyleSheet.create({
     width: 219,
     height: 19,
     marginLeft: 15,
-    marginTop: '7%'
+    marginTop: '3%'
   },
   descriptionTxt2: {
 
