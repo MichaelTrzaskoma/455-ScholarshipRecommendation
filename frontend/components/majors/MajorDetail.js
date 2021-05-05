@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 
-function MajorDetail(props) {
+export default function MajorDetail(props) {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.containweWrapper}>
@@ -283,4 +283,3 @@ const styles = StyleSheet.create({
   }
 });
 
-export default MajorDetail;

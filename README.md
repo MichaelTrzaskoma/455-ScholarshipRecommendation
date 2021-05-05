@@ -133,8 +133,18 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 
 | Endpoint | Method(s) | Description |
 | :--- | :--- | :--- |
-| /api/v1.2/resources/major/view/subjects/<sub> | GET | View all majors under a specific subjects. |
+| /api/v1.2/resources/major/view/subjects/<sub\> | GET | View all majors under a specific subjects. |
 | /api/v1.2/resources/majors/view/titles/<major_name> | GET | View a major detail by providing major name. |
+
+<br>
+
+### Recommendations
+
+| Endpoint | Method(s) | Description |
+| :--- | :--- | :--- |
+| /api/v1.2/users/id/<email\>/recommends/scholarship | GET | View a list of recommended scholarships by providing client's email. |
+| /api/v1.2/users/id/<email\>/recommends/college | GET | View a list of recommended college by providing client's email. |
+| /api/v1.2/users/id/<email\>/recommends/major | GET | View a list of recommended major by providing client's email. |
 
 <br>
 
@@ -154,11 +164,8 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 | Endpoint | Method(s) | Description |
 | :--- | :--- | :--- |
 | /api/v1.2/users/id/<email\>/surveys/scholarship | GET, POST, PATCH | Retrieve, Append, and modify client's scholarship survey detail into db. |
-| /api/v1.2/users/id/<email\>/recommends/scholarship | GET | View a list of recommended scholarships by providing client's email. |
 | /api/v1.2/users/id/<email\>/surveys/college | GET, POST, PATCH | Retrieve, Append, and modify client's college survey detail into db. |
-| /api/v1.2/users/id/<email\>/recommends/college | GET | View a list of recommended college by providing client's email. |
 | /api/v1.2/users/id/<email\>/surveys/major | GET, POST, PATCH | Retrieve, Append, and modify client's major survey detail into db. |
-| /api/v1.2/users/id/<email\>/recommends/major | GET | View a list of recommended major by providing client's email. |
 
 <br>
 

@@ -12,14 +12,8 @@ import { getDeviceID } from "./functions/deviceUniqueID";
 import LoginScreen from "./components/LoginScreen";
 import AccScreen from "./components/AccScreen";
 import TabViewSurvey from "./components/TabViewSurvey";
-
-<<<<<<< HEAD
 import ScholarSurvey from "./components/scholarships/ScholarSurvey";
-=======
-import InputScreen1 from "./components/scholarships/ScholarSurvey";
 
-// ScholarShip
->>>>>>> 15866cc0fffa2dd05b6044091fc49a7382373ecb
 import ScholarshipScreen from "./components/scholarships/ScholarshipScreen";
 import ViewAllScholar from "./components/scholarships/ViewAllScholar";
 import ViewScholarSubCate from "./components/scholarships/ViewScholarSubCate";
@@ -39,10 +33,6 @@ import ViewAllCollege from "./components/colleges/ViewAllCollege";
 // Major
 import MajorScreen from "./components/majors/MajorScreen";
 import MajorDetail from "./components/majors/MajorDetail";
-
-
-
-
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();

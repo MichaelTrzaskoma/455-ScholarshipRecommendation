@@ -268,6 +268,7 @@ def auth(email):
 
                         # generate a new device token
                         secret_code = generateCode()
+
                         timer = int(time.mktime(
                             (datetime.utcnow() + timedelta(days=7)).timetuple()))
 
@@ -414,14 +415,6 @@ def view_scholarship_single(scholarship_title):
 
 
 # College Resources
-
-
-@app.route("/api/v1.2/resources/college/view/states/general")
-def view_college_generalCategory():
-    # view college general list in terms of states
-    # e.g. NY, NJ, CA, and etc
-    # college_ref
-    return null
 
 
 @app.route("/api/v1.2/resources/college/view/states/<state>")
@@ -665,7 +658,7 @@ def view_major_single(major_name):
     return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
 
 
-# Management
+# Management - Surveys
 
 
 @app.route("/api/v1.2/users/id/<email>/surveys/scholarship",  methods=["GET", "POST", "PATCH"])
@@ -729,11 +722,10 @@ def usrSurvey_scholarship(email):
 
         r = user_Ref.count_documents({"_id": email})
         result = {}
-        # print(type(r))
-        # if "survey_scholarship" in r:
+        
         if r == 1:
-            resource = user_Ref.find_one(
-                {"_id": email}, {"_id": 0, "survey_scholarship": 1})
+            resource = user_Ref.find_one({"_id": email}, {"_id": 0, "survey_scholarship": 1})
+            
             if "survey_scholarship" in resource:
                 result = {
                     "existing": int(1),
@@ -788,22 +780,6 @@ def usrSurvey_scholarship(email):
 
     else:
         return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
-
-
-@app.route("/api/v1.2/users/id/<email>/recommends/scholarship",  methods=["GET"])
-def getRecommend_scholarship(email):
-    # get scholarship recommendations
-    # INPUT: email (string)
-    # OUTPUT: scholarship title, amount, and deadline
-    # updtUser(db, user_Ref, "hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
-    #      "Computer Science", race=["Asian/Pacific Islander"], ethnicity=["Chinese"],
-    #      religion=["Buddhist"])
-
-    if request.method == "GET":
-        result = filter_results(user_Ref, scholar_ref, email)
-        return make_response(jsonify(result), 202)
-    else:
-        return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
 
 
 @app.route("/api/v1.2/users/id/<email>/surveys/college",  methods=["GET", "POST", "PATCH"])
@@ -901,23 +877,6 @@ def usrSurvey_college(email):
         return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
 
 
-@app.route("/api/v1.2/users/id/<email>/recommends/college",  methods=["GET"])
-def getRecommend_college(email):
-    # get scholarship recommendations
-    # INPUT: email (string)
-    # OUTPUT: scholarship title, amount, and deadline
-    # updtUser(db, user_Ref, "hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
-    #      "Computer Science", race=["Asian/Pacific Islander"], ethnicity=["Chinese"],
-    #      religion=["Buddhist"])
-
-    if request.method == "GET":
-        # result = filter_results(user_Ref, scholar_ref, email)
-        result = "x"
-        return make_response(jsonify(result), 202)
-    else:
-        return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
-
-
 @app.route("/api/v1.2/users/id/<email>/surveys/major",  methods=["GET", "POST", "PATCH"])
 def usrSurvey_major(email):
     if request.method == "POST" and request.is_json:
@@ -1011,6 +970,42 @@ def usrSurvey_major(email):
 
     else:
         return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
+
+
+# Recommendations
+
+
+@app.route("/api/v1.2/users/id/<email>/recommends/scholarship",  methods=["GET"])
+def getRecommend_scholarship(email):
+    # get scholarship recommendations
+    # INPUT: email (string)
+    # OUTPUT: scholarship title, amount, and deadline
+    # updtUser(db, user_Ref, "hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
+    #      "Computer Science", race=["Asian/Pacific Islander"], ethnicity=["Chinese"],
+    #      religion=["Buddhist"])
+
+    if request.method == "GET":
+        result = filter_results(user_Ref, scholar_ref, email)
+        return make_response(jsonify(result), 202)
+    else:
+        return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
+
+
+@app.route("/api/v1.2/users/id/<email>/recommends/college",  methods=["GET"])
+def getRecommend_college(email):
+    # get scholarship recommendations
+    # INPUT: email (string)
+    # OUTPUT: scholarship title, amount, and deadline
+    # updtUser(db, user_Ref, "hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
+    #      "Computer Science", race=["Asian/Pacific Islander"], ethnicity=["Chinese"],
+    #      religion=["Buddhist"])
+
+    if request.method == "GET":
+        # result = filter_results(user_Ref, scholar_ref, email)
+        result = "x"
+        return make_response(jsonify(result), 202)
+    else:
+        return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
 
 
 @app.route("/api/v1.2/users/id/<email>/recommends/major",  methods=["GET"])

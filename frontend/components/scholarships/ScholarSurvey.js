@@ -1282,10 +1282,10 @@ export default function ScholarSurvey(props) {
 	// console.log("navigation from InputScreen1: " + JSON.stringify(navigation));
 	// console.log(props);
 	// Delete the navigation & atttribute that is not used nowhere.
-	return <InputScreen1a email={props.route.params.email} />
+	return <InputScreen email={props.route.params.email} />
 }
 
-class InputScreen1a extends React.Component {
+class InputScreen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

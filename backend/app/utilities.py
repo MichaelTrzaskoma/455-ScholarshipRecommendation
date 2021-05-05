@@ -87,7 +87,7 @@ def arr2str(target):
     elif l_arr == 0:
         return "None"
     else:
-        return ', '.join(trimmer_nextline(e) for e in target)[:-2]
+        return trimmer_underscore(', '.join(trimmer_nextline(e) for e in target)[:-2])
     
 
 def parseCollegeRanking(target):
@@ -99,7 +99,7 @@ def parseCollegeRanking(target):
     for key, val in target.items():
         temp = trimmer_underscore(key)
         temp = trimmer_nextline(temp)
-        result.append({temp: val})
+        result.append({"title": temp, "rank": val})
     
     return result
 
@@ -196,3 +196,19 @@ def addRecent(user_Ref, email, title, lstType):
         }
     )
     return True
+
+
+def insert_college_survey(college_ref, email, states, majors, sat='', act=''):
+    # insert the college survey
+    # the states and majors are requried info
+    # sat and act are optional inputs
+
+    # r = college_ref.update_one({"_id": email}, {
+    #     '$set': {
+    #         "survey_college": {
+
+    #         }
+    #     }
+    # })
+    return null
+

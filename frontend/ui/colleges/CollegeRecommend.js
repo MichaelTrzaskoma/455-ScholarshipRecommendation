@@ -32,7 +32,7 @@ class CollegeRecommender extends React.Component {
 					<View style={styles.customContainer}>
 						<TouchableOpacity
 							style={styles.customBtn}
-							onPress={() => navigation.navigate("CollegeDetail",
+							onPress={() => navigation.navigate("ViewCollegeDetail",
 								{
 									title: "College Detail",
 									email: this.state.email,

@@ -12,13 +12,6 @@ import MajorSurvey from "./majors/MajorSurvey";
 
 const Stack = createStackNavigator();
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
 
 function TopTapView(props) {
   // console.log(props.route.params.email);
