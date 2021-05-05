@@ -775,9 +775,8 @@ def addBookmarkDoc(email):
     else:
         return make_response(jsonify("wrong email"), 400)
     
-
 @app.route("/api/v1.2/users/id/<email>/recent/get",  methods=["GET"])
-def getBookmarkDoc(email):
+def getRecentDoc(email):
     return make_repsonse(jsonify(str(getRecent(user_Ref, email))), 202)
 
 @app.route("/api/v1.2/users/id/<email>/recent/add",  methods=["GET"])
