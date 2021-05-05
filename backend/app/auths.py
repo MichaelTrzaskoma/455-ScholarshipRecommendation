@@ -1,4 +1,5 @@
 # auth file for the backend
+from flask.globals import request
 import jwt
 import datetime
 import string
@@ -170,3 +171,7 @@ def validate_token(user_Ref, jwt, uuid, email):
         return True
     else:
         return False
+
+
+def validate_email(client_ref, email):
+    return True if client_ref.count_documents({"_id": email}) == 1 else False

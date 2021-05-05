@@ -157,7 +157,7 @@ def updtScholarSurvey(
 
     binary = setBin(db, list1)
 
-    user_Ref.update(
+    user_Ref.update_one(
         {'_id':email},
         {'$set':
             {

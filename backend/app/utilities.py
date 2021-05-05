@@ -203,12 +203,45 @@ def insert_college_survey(college_ref, email, states, majors, sat='', act=''):
     # the states and majors are requried info
     # sat and act are optional inputs
 
-    # r = college_ref.update_one({"_id": email}, {
-    #     '$set': {
-    #         "survey_college": {
+    r = college_ref.update_one({"_id": email}, {
+        '$set': {
+            "survey_college": {
+                "regions": states,
+                "majors": majors,
+                "sat": sat,
+                "act": act
+            }
+        }
+    })
+    
 
-    #         }
-    #     }
-    # })
-    return null
+def append_scholarSurvey_fromCollegeSurvey(scholar_ref, email, states, majors, sat='', act=''):
+    # insert the scholarship survey (partly) since there's input data from the college
+    # and college && scholarship shared the same act, sat, states, and major data
+    # the states and majors are requried info
+    # sat and act are optional inputs
+
+    r = scholar_ref.update_one({"_id": email}, {
+        '$set': {
+            "survey_scholarship": {
+                "regions": states,
+                "majors": majors,
+                "sat": sat,
+                "act": act
+            }
+        }
+    })
+
+
+def get_college_survey(college_ref, email):
+    # retrieve college survey info from db
+
+    r = college_ref.find_one({"_id": email}, {"_id": 0, "survey_college": 1})
+
+    return {
+        "regions": r["survey_college"]['regions'],
+        "majors": r["survey_college"]['majors'],
+        "sat": r["survey_college"]['sat'],
+        "act": r["survey_college"]['act']
+    }
 

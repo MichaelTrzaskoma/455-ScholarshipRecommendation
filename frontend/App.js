@@ -8,6 +8,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { saveSecureStorage, getSecureStorage } from "./functions/secureStorage";
 import { getDeviceID } from "./functions/deviceUniqueID";
+// import * as SecureStore from 'expo-secure-store';
 
 import LoginScreen from "./components/LoginScreen";
 import AccScreen from "./components/AccScreen";
@@ -54,6 +55,19 @@ function getHeaderTitle(route) {
       return 'My Account';
   }
 }
+
+// async function saveSecureStorage(key, value) {
+//   await SecureStore.setItemAsync(key, value);
+// }
+
+// async function getSecureStorage(key) {
+//   let result = await SecureStore.getItemAsync(key);
+//   if (result) {
+//     return (result);
+//   } else {
+//     return ('No values stored under that key.');
+//   }
+// }
 
 function TabScreens({ navigation, route }) {
 
@@ -126,7 +140,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       usrProfile: {
-        signedIn: false,
+        signedIn: "No",
         full_name: "",
         last_name: "",
         first_name: "",
@@ -135,8 +149,34 @@ export default class App extends Component {
         photoUrl: "",
         jwt: "",
       },
+      sassy: "",
     };
 
+  }
+
+  get_sassy = () => {
+    this.setState({sassy: getSecureStorage("sassy")});
+  }
+
+  // saveSecureStorage = async (key, value) => {
+  //   await SecureStore.setItemAsync(key, value);
+  // }
+
+  // getSecureStorage = async (key) => {
+  //   let result = await SecureStore.getItemAsync(key);
+  //   if (result) {
+  //     return (result);
+  //   } else {
+  //     return ('No values stored under that key.');
+  //   }
+  // }
+
+  isSign = () => {
+    let r = getSecureStorage("signIn");
+    if (r._W === "Yes"){
+      return true;
+    }
+    return false;
   }
 
   signIn = async (inputEmail, inputPassword) => {
@@ -147,22 +187,25 @@ export default class App extends Component {
         // console.log(getDeviceID());
 
         // store the sign and jwt first
-        if (saveSecureStorage("signIn", JSON.stringify(true))) {
-          saveSecureStorage("sassy", "afafa")
+        // if (this.saveSecureStorage("signIn", "Yes")) {
+          // this.saveSecureStorage("sassy", "afafa")
 
-          this.setState({
-            usrProfile: {
-              full_name: "dummyFUllName",
-              last_name: "dummyLastName",
-              first_name: "dummyFirstName",
-              photoUrl: "https://i.pinimg.com/originals/e9/73/46/e9734614f73b4766546ceee1d7778827.jpg",
-              email: inputEmail,
-              password: inputPassword,
-              signedIn: getSecureStorage("signIn"),
-              jwt: "",
-            },
-          });
-        }
+        this.setState({
+          usrProfile: {
+            full_name: "dummyFUllName",
+            last_name: "dummyLastName",
+            first_name: "dummyFirstName",
+            photoUrl: "https://i.pinimg.com/originals/e9/73/46/e9734614f73b4766546ceee1d7778827.jpg",
+            email: inputEmail,
+            password: inputPassword,
+            signedIn: "Yes",
+            jwt: "",
+          },
+        });
+
+        saveSecureStorage("signIn", "Yes");
+
+        // }
 
       } else {
         alert("Please input your email or password!");
@@ -175,13 +218,22 @@ export default class App extends Component {
     }
   };
 
+  UNSAFE_componentWillMount(){
+    console.log("Called");
+    // this.saveSecureStorage("sassy", "afafa");
+    this.get_sassy();
+  }
+
   render() {
     // print the device unique ID
     // console.log(getDeviceID())
     // console.log("Auth val: " + JSON.stringify(this.state.usrProfile.signedIn));
 
-    if (this.state.usrProfile.signedIn) {
-      // console.log("Email from App.js: " + this.state.usrProfile.email);
+    console.log("sassy: " + this.state.sassy._W);
+    
+    if (this.isSign) {
+      // console.log("Email from App.js: " + this.state.usrProfile.email)q;
+      
       return (
         <NavigationContainer>
           <Stack.Navigator>

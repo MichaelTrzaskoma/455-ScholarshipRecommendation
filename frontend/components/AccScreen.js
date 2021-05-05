@@ -51,10 +51,10 @@ export default function AccScreen({ usrInfo }) {
 					</TouchableOpacity> */}
 
 					{/* This is displayed as "Take Survey" btn which will navigate to TabViewSurvey component */}
-					<MultiSurveyBtn email={usrInfo.email}/>
-					
+					<MultiSurveyBtn email={usrInfo.email} />
+
 					{/* This is displayed as "View History" btn which will navigate to ViewHistory component */}
-					<HistoryBtn/>
+					<HistoryBtn />
 
 					<TouchableOpacity style={styles.bookmarksBtn}>
 						<View style={styles.bookmarksIconRow}>
@@ -68,7 +68,7 @@ export default function AccScreen({ usrInfo }) {
 							name="chevron-small-right"
 							style={styles.rightArrowIcon4}></Entypo>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.signoutBtn} onPress={() => {deleteSecureStorage("signIn")}}>
+					<TouchableOpacity style={styles.signoutBtn} onPress={() => { deleteSecureStorage("signIn") }}>
 						<View style={styles.signOutIconRow}>
 							<FontAwesome
 								name="sign-out"
