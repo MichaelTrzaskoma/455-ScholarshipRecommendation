@@ -51,10 +51,10 @@ export default function AccScreen({ usrInfo }) {
 					</TouchableOpacity> */}
 
 					{/* This is displayed as "Take Survey" btn which will navigate to TabViewSurvey component */}
-					<MultiSurveyBtn email={usrInfo.email}/>
-					
+					<MultiSurveyBtn email={usrInfo.email} />
+
 					{/* This is displayed as "View History" btn which will navigate to ViewHistory component */}
-					<HistoryBtn/>
+					<HistoryBtn />
 
 					<TouchableOpacity style={styles.bookmarksBtn}>
 						<View style={styles.bookmarksIconRow}>
@@ -68,7 +68,7 @@ export default function AccScreen({ usrInfo }) {
 							name="chevron-small-right"
 							style={styles.rightArrowIcon4}></Entypo>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.signoutBtn} onPress={() => {deleteSecureStorage("signIn")}}>
+					<TouchableOpacity style={styles.signoutBtn} onPress={() => { deleteSecureStorage("signIn") }}>
 						<View style={styles.signOutIconRow}>
 							<FontAwesome
 								name="sign-out"
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
 	emailTxt: {
 		color: '#121212',
 		fontSize: 16,
-		marginTop: 11,
+		marginTop: 10,
 		fontWeight: "bold",
 	},
 	nameTxtColumn: {
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
 		height: 20,
 		width: "auto",
 		fontSize: 16,
-		marginTop: 13,
+		marginTop: 10,
 	},
 	namePlaceHolderColumn: {
 		width: "auto",

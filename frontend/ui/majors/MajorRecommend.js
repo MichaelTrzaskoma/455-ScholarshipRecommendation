@@ -6,28 +6,54 @@ import {
   TouchableOpacity
 } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
+import { render } from "react-dom";
 
-export default function MajorRecommend() {
 
-  return (
+export default function MajorRecommend(props) {
+  const navigation = useNavigation();
+  return <MajorRecommender {...props} navigation={navigation} />;
+}
 
-    //Recommend ScrollView
-    <View style={styles.recommend_container}>
-      <View style={styles.recommendGrp}>
-        <Text style={styles.recommendTxt}>Recommend</Text>
-        <View style={styles.customContainer}>
-          <TouchableOpacity style={styles.customBtn}>
-            <FontAwesome
-              name="arrow-circle-right"
-              style={styles.customIcon}>
-            </FontAwesome>
-            <View style={styles.customIconFiller}></View>
-            <Text style={styles.customTxt}>Custom View</Text>
-          </TouchableOpacity>
+class MajorRecommender extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: this.props.email,
+    };
+  }
+
+  render() {
+    const { navigation } = this.props;
+    
+    return (
+      //Recommend ScrollView
+      <View style={styles.recommend_container}>
+        <View style={styles.recommendGrp}>
+          <Text style={styles.recommendTxt}>Recommend</Text>
+          <View style={styles.customContainer}>
+            <TouchableOpacity
+              style={styles.customBtn}
+              onPress={() => navigation.navigate("MajorDetail",
+                {
+                  title: "Major Detail",
+                  email: this.state.email,
+                })
+              }
+            >
+              <FontAwesome
+                name="arrow-circle-right"
+                style={styles.customIcon}>
+              </FontAwesome>
+              <View style={styles.customIconFiller}></View>
+              <Text style={styles.customTxt}>Custom View</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
-  );
+    )
+  };
 }
 
 const styles = StyleSheet.create({
@@ -215,6 +241,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     height: 173,
+    marginTop: 5,
     position: "absolute",
     right: 0,
     justifyContent: "center"
@@ -247,13 +274,13 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
     backgroundColor: "white",
     shadowColor: "rgba(0,0,0,1)",
-		shadowOffset: {
-			width: 3,
-			height: 3,
-		},
-		elevation: 5,
-		shadowOpacity: 0.01,
-		shadowRadius: 0,
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    elevation: 5,
+    shadowOpacity: 0.01,
+    shadowRadius: 0,
     marginLeft: 10,
   },
   customIcon: {

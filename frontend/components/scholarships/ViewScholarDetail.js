@@ -34,10 +34,8 @@ export default class ViewScholarDetail extends React.Component {
   }
 
   handleBookmark () {
-
-    
     //Insert API Call here
-    let URL = "http://614029157c7e.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
+    let URL = "http://8934d83a4df8.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
     fetch(URL, {
       method: "POST",
       headers: {
@@ -46,7 +44,7 @@ export default class ViewScholarDetail extends React.Component {
       },
       body: JSON.stringify({
         "email": this.state.email, 
-        "title": this.scholarshipObj.title,
+        "title": this.state.scholarshipObj.title,
         // "jwt": getSecureStorage("jwt"),
         // "uniqueID": getDeviceID(),
       }),
@@ -88,7 +86,7 @@ export default class ViewScholarDetail extends React.Component {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
     let URL =
-      'http://614029157c7e.ngrok.io/api/v1.2/resources/scholarships/view/titles/Kentucky%20Tuition%20Grant';
+      'http://8934d83a4df8.ngrok.io/api/v1.2/resources/scholarships/view/titles/' + this.props.route.params.itemKey;
 
     fetch(URL, {
       method: 'GET',
@@ -118,6 +116,7 @@ export default class ViewScholarDetail extends React.Component {
   }
 
   render() {
+    console.log(JSON.stringify(this.props));
     return (
       <ScrollView horizontal={false} style={styles.container}>
         <View style = {styles.card_grp0}>

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
-import { AppRegistry } from "react-native";
+import { StyleSheet, View, AppRegistry } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer, getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -9,26 +8,32 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { saveSecureStorage, getSecureStorage } from "./functions/secureStorage";
 import { getDeviceID } from "./functions/deviceUniqueID";
+// import * as SecureStore from 'expo-secure-store';
 
 import LoginScreen from "./components/LoginScreen";
 import AccScreen from "./components/AccScreen";
-import InputScreen1 from "./components/scholarships/ScholarSurvey";
-import InputScreen2 from "./components/InputInfoScreen2";
+import TabViewSurvey from "./components/TabViewSurvey";
+import ScholarSurvey from "./components/scholarships/ScholarSurvey";
+
 import ScholarshipScreen from "./components/scholarships/ScholarshipScreen";
 import ViewAllScholar from "./components/scholarships/ViewAllScholar";
-import ViewSubCate from "./components/scholarships/ViewSubCate";
+import ViewScholarSubCate from "./components/scholarships/ViewScholarSubCate";
 import ViewScholarTbl from "./components/scholarships/ViewScholarTbl";
 import ViewScholarDetail from "./components/scholarships/ViewScholarDetail";
+import ViewRecommendTbl_3 from "./components/scholarships/ViewRecommendTbl_3";
 import ViewRecommendTbl from "./components/scholarships/ViewRecommendTbl";
 import ScholarRecommend from "./ui/scholarships/ScholarRecommend";
-import CollegeSurvey from "./components/colleges/CollegeSurvey";
+
+// College
 import CollegeScreen from "./components/colleges/CollegeScreen";
-import CollegeDetail from "./components/colleges/CollegeDetail";
+import CollegeSurvey from "./components/colleges/CollegeSurvey";
+import ViewCollegeDetail from "./components/colleges/ViewCollegeDetail";
+import ViewCollegeSubCate from "./components/colleges/ViewCollegeSubCate";
+import ViewAllCollege from "./components/colleges/ViewAllCollege";
+
+// Major
 import MajorScreen from "./components/majors/MajorScreen";
-import TabViewSurvey from "./components/TabViewSurvey";
-
-import ViewRecommendTbl_3 from "./components/scholarships/ViewRecommendTbl_3";
-
+import MajorDetail from "./components/majors/MajorDetail";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -50,6 +55,19 @@ function getHeaderTitle(route) {
       return 'My Account';
   }
 }
+
+// async function saveSecureStorage(key, value) {
+//   await SecureStore.setItemAsync(key, value);
+// }
+
+// async function getSecureStorage(key) {
+//   let result = await SecureStore.getItemAsync(key);
+//   if (result) {
+//     return (result);
+//   } else {
+//     return ('No values stored under that key.');
+//   }
+// }
 
 function TabScreens({ navigation, route }) {
 
@@ -122,7 +140,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       usrProfile: {
-        signedIn: false,
+        signedIn: "No",
         full_name: "",
         last_name: "",
         first_name: "",
@@ -131,8 +149,34 @@ export default class App extends Component {
         photoUrl: "",
         jwt: "",
       },
+      sassy: "",
     };
 
+  }
+
+  get_sassy = () => {
+    this.setState({sassy: getSecureStorage("sassy")});
+  }
+
+  // saveSecureStorage = async (key, value) => {
+  //   await SecureStore.setItemAsync(key, value);
+  // }
+
+  // getSecureStorage = async (key) => {
+  //   let result = await SecureStore.getItemAsync(key);
+  //   if (result) {
+  //     return (result);
+  //   } else {
+  //     return ('No values stored under that key.');
+  //   }
+  // }
+
+  isSign = () => {
+    let r = getSecureStorage("signIn");
+    if (r._W === "Yes"){
+      return true;
+    }
+    return false;
   }
 
   signIn = async (inputEmail, inputPassword) => {
@@ -143,22 +187,25 @@ export default class App extends Component {
         // console.log(getDeviceID());
 
         // store the sign and jwt first
-        if (saveSecureStorage("signIn", JSON.stringify(true))) {
-          saveSecureStorage("sassy", "afafa")
+        // if (this.saveSecureStorage("signIn", "Yes")) {
+          // this.saveSecureStorage("sassy", "afafa")
 
-          this.setState({
-            usrProfile: {
-              full_name: "dummyFUllName",
-              last_name: "dummyLastName",
-              first_name: "dummyFirstName",
-              photoUrl: "https://i.pinimg.com/originals/e9/73/46/e9734614f73b4766546ceee1d7778827.jpg",
-              email: inputEmail,
-              password: inputPassword,
-              signedIn: getSecureStorage("signIn"),
-              jwt: "",
-            },
-          });
-        }
+        this.setState({
+          usrProfile: {
+            full_name: "dummyFUllName",
+            last_name: "dummyLastName",
+            first_name: "dummyFirstName",
+            photoUrl: "https://i.pinimg.com/originals/e9/73/46/e9734614f73b4766546ceee1d7778827.jpg",
+            email: inputEmail,
+            password: inputPassword,
+            signedIn: "Yes",
+            jwt: "",
+          },
+        });
+
+        saveSecureStorage("signIn", "Yes");
+
+        // }
 
       } else {
         alert("Please input your email or password!");
@@ -171,13 +218,22 @@ export default class App extends Component {
     }
   };
 
+  UNSAFE_componentWillMount(){
+    console.log("Called");
+    // this.saveSecureStorage("sassy", "afafa");
+    this.get_sassy();
+  }
+
   render() {
     // print the device unique ID
     // console.log(getDeviceID())
     // console.log("Auth val: " + JSON.stringify(this.state.usrProfile.signedIn));
 
-    if (this.state.usrProfile.signedIn) {
-      // console.log("Email from App.js: " + this.state.usrProfile.email);
+    console.log("sassy: " + this.state.sassy._W);
+    
+    if (this.isSign) {
+      // console.log("Email from App.js: " + this.state.usrProfile.email)q;
+      
       return (
         <NavigationContainer>
           <Stack.Navigator>
@@ -202,8 +258,8 @@ export default class App extends Component {
             </Stack.Screen>
 
             <Stack.Screen
-              name={"InputScreen1"}
-              component={InputScreen1}
+              name={"ScholarSurvey"}
+              component={ScholarSurvey}
               options={{ title: "Required Info" }}
             // nitialParams={{ email: this.state.usrProfile.email }}
             />
@@ -226,13 +282,6 @@ export default class App extends Component {
               }}
             />
 
-            <Stack.Screen
-              name={"InputScreen2"}
-              component={InputScreen2}
-              options={{ title: "Optional Info", email: this.state.usrProfile.email }}
-              initialParams={{ email: this.state.usrProfile.email }}
-            />
-
             {/* CollegeSurvey component stacked */}
             <Stack.Screen
               name={"CollegeSurvey"}
@@ -251,9 +300,10 @@ export default class App extends Component {
               initialParams={{ email: this.state.usrProfile.email }}
             />
 
+            {/* ViewSubCate from scholarships has been renamed as ViewScholarSubCate */}
             <Stack.Screen
-              name={"ViewSubCate"}
-              component={ViewSubCate}
+              name={"ViewScholarSubCate"}
+              component={ViewScholarSubCate}
               // pass down the screen header bar title
               options={({ route }) => ({
                 title: route.params.title,
@@ -264,6 +314,24 @@ export default class App extends Component {
                 headerTitleStyle: {
                   fontWeight: 'bold',
                   fontSize: 20,
+                  color: "white",
+                },
+              })}
+            />
+
+            <Stack.Screen
+              name={"ViewCollegeSubCate"}
+              component={ViewCollegeSubCate}
+              // pass down the screen header bar title
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 18,
                   color: "white",
                 },
               })}
@@ -319,6 +387,22 @@ export default class App extends Component {
             />
 
             <Stack.Screen
+              name={"ViewAllCollege"}
+              component={ViewAllCollege}
+              options={{
+                title: "Scholarship Categories",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
+            />
+
+            <Stack.Screen
               name={"ViewScholarTbl"}
               component={ViewScholarTbl}
               options={({ route }) => ({
@@ -334,26 +418,6 @@ export default class App extends Component {
                 },
               })}
               initialParams={{ email: this.state.usrProfile.email }}
-            />
-
-            <Stack.Screen
-              name={"ViewScholarDetail"}
-              component={ViewScholarDetail}
-              options={({ route }) => ({
-                title: route.params.title,
-                headerStyle: {
-                  backgroundColor: '#007FF9',
-                },
-                headerTintColor: 'white',
-                headerTitleStyle: {
-                  fontWeight: 'bold',
-                  fontSize: 20,
-                  color: "white",
-                },
-              })}
-              initialParams={{
-                email: this.state.usrProfile.email
-              }}
             />
 
             <Stack.Screen
@@ -390,8 +454,44 @@ export default class App extends Component {
             />
 
             <Stack.Screen
-              name={"CollegeDetail"}
-              component={CollegeDetail}
+              name={"ViewScholarDetail"}
+              component={ViewScholarDetail}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
+              initialParams={{
+                email: this.state.usrProfile.email
+              }}
+            />
+
+            <Stack.Screen
+              name={"ViewCollegeDetail"}
+              component={ViewCollegeDetail}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
+            />
+
+            <Stack.Screen
+              name={"MajorDetail"}
+              component={MajorDetail}
               options={({ route }) => ({
                 title: route.params.title,
                 headerStyle: {

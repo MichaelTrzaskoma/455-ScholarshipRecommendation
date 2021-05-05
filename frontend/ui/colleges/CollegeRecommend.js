@@ -3,7 +3,6 @@ import {
 	StyleSheet,
 	View,
 	Text,
-	ScrollView,
 	TouchableOpacity
 } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
@@ -33,7 +32,7 @@ class CollegeRecommender extends React.Component {
 					<View style={styles.customContainer}>
 						<TouchableOpacity
 							style={styles.customBtn}
-							onPress={() => navigation.navigate("CollegeDetail",
+							onPress={() => navigation.navigate("ViewCollegeDetail",
 								{
 									title: "College Detail",
 									email: this.state.email,
@@ -239,6 +238,7 @@ const styles = StyleSheet.create({
 		top: 0,
 		left: 0,
 		height: 173,
+		marginTop: 5,
 		position: "absolute",
 		right: 0,
 		justifyContent: "center"

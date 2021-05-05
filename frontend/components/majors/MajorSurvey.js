@@ -5,12 +5,21 @@ import {
 	TouchableOpacity,
 	Text,
 	TextInput,
+	Platform,
 } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Slider from '@react-native-community/slider';
+import DropDownPicker from 'react-native-dropdown-picker';
+
+//Henry please create the following variables on the backend:
+//haveSalary | boolean set to false as default
+//haveAutonomy | boolean set to false by default
+//haveVariety | boolean set to false by default
+//haveSocial | boolean set to false by default
+//havehaveEnvironment | boolean set to false by default
 
 
 const items = [
@@ -49,30 +58,487 @@ export default class MajorSurvey extends React.Component {
 		this.state = {
 			email: this.props.email,
             salaryValue: 20000,
+			salaryDisplay: "",
             unemploymentValue: 10,
+			unemploymentDisplay: 10,
             selectedSubjects: [],
+			autonomy: 1,
+			displayAutonomy: "",
+			trueAutonomy: "",
+			variety: 1,
+			trueVariety: "",
+			socialInteraction: 1,
+			trueSocialInteraction: "",
+			workEnvironment: 1,
+			trueEnvironment: "",
+			//Tripwires used to determine if user has edited slider (relevant for displayValues)
+			autoTripwire: false,
+			salaryTripWire: false,
+			varietyTripwire: false,
+			socialTripwire: false,
+			environmentTripwire: false,
+			defaultAutoDisplay: "Job Dependent",
+			defaultSalaryDisplay: "20,000",
+			defaultVarietyDisplay: "Medium",
+			defaultSocialDisplay: "Job Dependent",
+			defaultEnvironmentDisplay: "Job Dependent",
+			firstTime: 0,
+			currentMethod : "POST",
 		}
 	}
 
     handleSalaryValue(val)
     {
         this.setState({
-            salaryValue: val
+            salaryValue: val,
+			salaryTripWire: true,
         });
-        console.log(this.state.salaryValue);
+        //console.log(this.state.salaryValue);
     }
 
     handleUnemploymentRate(val)
     {
-        this.setState({
-            unemploymentValue: val
+		this.setState({
+            unemploymentValue: val,
         });
-        console.log(this.state.unemploymentValue);
+        //console.log(this.state.unemploymentValue);
     }
+
+	handleAutonomy(val)
+	{
+		this.displayAutonomy(val);
+		this.handleTrueAutonomy(val);
+		this.setState({
+			autonomy: val,
+			autoTripwire: true,
+		});
+		//console.log("state autonomy: "+this.state.autonomy);
+		//console.log("backendValue: "+this.state.trueAutonomy);
+		//console.log("displayValue: "+this.state.displayAutonomy);
+	}
+
+	handleVariety(val)
+	{
+		this.setState({
+			variety: val,
+			varietyTripwire: true,
+		});
+		//console.log(this.state.variety)
+	}
+	
+	handleSocial(val)
+	{
+		this.setState({
+			social: val,
+			socialTripwire: true,
+		});
+	}
+
+	handleEnvironment(val)
+	{
+		this.setState({
+			workEnvironment: val,
+			environmentTripwire: true,
+		})
+	}
 
     onSelectedItemsChange = (selectedSubjects) => {
 		this.setState({ selectedSubjects });
 	};
+
+	truncateSalary(salary)
+	{
+		//Trucating Salary
+		var strSalary = String(salary);
+		var decimalIndex;
+		decimalIndex = strSalary.indexOf(".");
+		//Obtaining Salary String before decimal (no cents or fractions of cents)
+		strSalary = strSalary.substring(0,decimalIndex);
+		//In the event there is no decimal and the number is whole
+		if(String(salary).localeCompare("20000") == 0 || String(salary).localeCompare("130000") == 0)
+		{
+			strSalary = String(salary);
+		}
+		//Adding commas to salary
+		var strBeforeComma = strSalary.substring(0, strSalary.length-3)
+		var strSalary = strBeforeComma + "," + strSalary.substring(strSalary.length-3);
+		this.setState({
+			salaryDisplay: strSalary
+		});
+	}
+
+	truncateUnemployment(rate)
+	{
+		var strRate = String(rate);
+		var decimalIndex;
+		decimalIndex = strRate.indexOf(".");
+		strRate = strRate.substring(0, decimalIndex+3);
+		//In the event there are no decimals, the rate can display as-is
+		if( String(rate).localeCompare("1") == 0 || String(rate).localeCompare("10") == 0)
+		{
+			strRate = String(rate);
+		}
+		this.setState({
+			unemploymentDisplay: strRate
+		});
+	}
+
+	displayAutonomy(val)
+	{
+		var strInput = String(val);
+		var strDisplay = "";
+		if(strInput.localeCompare("0") == 0)
+		{
+			strDisplay = "Autonomous";
+		}
+		else if(strInput.localeCompare("1") == 0)
+		{
+			strDisplay = "Job Dependent";
+		}
+		else
+		{
+			strDisplay = "Not Autonomous";
+		}
+		this.setState({
+			displayAutonomy: strDisplay
+		});
+	}
+
+	handleTrueAutonomy(val)
+	{
+		var strInput = String(val);
+		var strTrueVal = "";
+		if(strInput.localeCompare("0") == 0)
+		{
+			strTrueVal = "Yes";
+		}
+		else if(strInput.localeCompare("1") == 0)
+		{
+			strTrueVal = "Job Dependent";
+		}
+		else
+		{
+			strTrueVal = "No";
+		}
+		this.setState({
+			trueAutonomy: strTrueVal
+		});
+	}
+
+	handleTrueVariety(val)
+	{
+		var strInput = String(val);
+		var strTrueVal = "";
+		if(strInput.localeCompare("0") == 0)
+		{
+			strTrueVal = "Low";
+		}
+		else if(strInput.localeCompare("1") == 0)
+		{
+			strTrueVal = "Medium";
+		}
+		else
+		{
+			strTrueVal = "High";
+		}
+		this.setState({
+			trueVariety: strTrueVal
+		});
+	}
+
+	handleTrueSocial(val)
+	{
+		var strInput = String(val);
+		var strTrueVal = "";
+		if(strInput.localeCompare("0") == 0)
+		{
+			strTrueVal = "No";
+		}
+		else if(strInput.localeCompare("1") == 0)
+		{
+			strTrueVal = "Job Dependent";
+		}
+		else
+		{
+			strTrueVal = "Yes";
+		}
+		this.setState({
+			trueSocialInteraction: strTrueVal
+		});
+	}
+
+	handleTrueEnviron(val)
+	{
+		var strInput = String(val);
+		var strTrueVal = "";
+		if(strInput.localeCompare("0") == 0)
+		{
+			strTrueVal = "Indoor";
+		}
+		else if(strInput.localeCompare("1") == 0)
+		{
+			strTrueVal = "Job Dependent";
+		}
+		else
+		{
+			strTrueVal = "Outdoor";
+		}
+		this.setState({
+			trueEnvironment: strTrueVal
+		});
+	}
+
+	setFirstTime(val)
+	{
+		this.setState({
+			firstTime: val
+		});
+	}
+
+	editSalary(val)
+	{
+		this.handleSalaryValue(val);
+		this.truncateSalary(val);
+		//console.log("Val: " +val);
+		//console.log("salary value: "+this.state.salaryValue);
+		//console.log("display salary: "+this.state.salaryDisplay);
+	}
+
+	editUnemployment(val)
+	{
+		this.handleUnemploymentRate(val);
+		this.truncateUnemployment(val);
+		//console.log("unemployment value: "+this.state.unemploymentValue);
+		//console.log("displayUnemployment: "+this.state.unemploymentValueDisplay);
+	}
+
+	editAutonomy(val)
+	{
+		this.handleAutonomy(val);
+		this.displayAutonomy(val);
+		this.handleTrueAutonomy(val);
+		//console.log("Display Value: "+this.state.displayAutonomy)
+		//console.log("Backend Value: "+this.state.trueAutonomy);
+	}
+
+	editVariety(val)
+	{
+		this.handleVariety(val);
+		this.handleTrueVariety(val);
+	}
+
+	editSocial(val)
+	{
+		this.handleSocial(val);
+		this.handleTrueSocial(val);
+	}
+
+	editEnvironment(val)
+	{
+		this.handleEnvironment(val);
+		this.handleTrueEnviron(val);
+	}
+
+	debugPrinter()
+	{
+		console.log("Salary Value: "+this.state.salaryValue);
+		console.log("Unemployment Value: "+this.state.unemploymentValue);
+		console.log("Display Autonomy: " + this.state.unemploymentDisplay);
+		console.log("True Autonomy Value: " +this.state.trueAutonomy);
+		console.log("True Variety Value: "+this.state.trueVariety);
+	}
+
+	upload2server()
+	{
+		if (this.state.firstTime == 1) {
+			this.setState({ currentMethod: "PATCH" });
+		}
+		this.setFirstTime(1);
+
+		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/major";
+		fetch(URL, {
+			method: this.state.currentMethod,
+			headers: {
+				"Accept": "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				email: this.state.email,
+				avg_salary: this.state.salaryValue,
+				unemployment_rate: this.state.unemploymentValue,
+				autonomous: this.state.trueAutonomy,
+				subjects: this.state.selectedSubjects,
+				variety_of_jobs: this.state.trueVariety,
+				high_social_interaction: this.state.trueSocialInteraction,
+				work_environment: this.state.trueEnvironment,
+				existing: this.state.firstTime,
+				haveSalary: this.state.salaryTripWire,
+				haveAutonomy: this.autoTripwire,
+				haveVariety: this.varietyTripwire,
+				haveSocial: this.socialTripwire,
+				haveEnvironment: this.environmentTripwire,
+			}),
+		})
+			.then((response) => {
+				if (response.status == 202) {
+
+					// console.log(response);
+					Alert.alert(
+						"Your data have been successfully \ninserted! " +
+						"You will be navigated back!"
+					);
+
+				} else {
+					json_mesg = response.json();
+					Alert.alert("Error: " + json_mesg.mesg);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
+	onSubmit()
+	{
+		this.upload2server();
+		this.debugPrinter();
+	}
+
+	translateTrues()
+	{
+		//trues to values for sliders
+		if(this.state.socialTripwire)
+		{
+			var strTrueSocial = String(this.state.trueSocialinteraction)
+			if(strTrueSocial.localeCompare("Yes") == 0)
+			{
+				this.setState({
+					socialInteraction: 2
+				});	
+			}
+			else if(strTrueSocial.localeCompare("Job Dependent") == 0)
+			{
+				this.setState({
+					socialInteraction: 1
+				});
+			}
+			else
+			{
+				this.setState({
+					socialInteraction: 0,
+				});
+			}
+		}
+		if(this.state.autoTripwire)
+		{
+			var strTrueAutonomy = String(this.state.trueAutonomy)
+			if(strTrueAutonomy.localeCompare("Yes") == 0)
+			{
+				this.setState({
+					autonomy : 0
+				});	
+			}
+			else if(strTrueAutonomy.localeCompare("Job Dependent") == 0)
+			{
+				this.setState({
+					autonomy: 1
+				});
+			}
+			else
+			{
+				this.setState({
+					autonomy: 2,
+				});
+			}
+		}
+		if(this.state.varietyTripwire)
+		{
+			var strTrueVariety = String(this.state.trueVariety)
+			if(strTrueVariety.localeCompare("Low") == 0)
+			{
+				this.setState({
+					variety : 0
+				});	
+			}
+			else if(strTrueVariety.localeCompare("Medium") == 0)
+			{
+				this.setState({
+					variety: 1
+				});
+			}
+			else
+			{
+				this.setState({
+					variety: 2,
+				});
+			}
+		}
+		if(this.state.environmentTripwire)
+		{
+			var strTrueEnviron = String(this.state.trueEnvironment)
+			if(strTrueEnviron.localeCompare("Indoor") == 0)
+			{
+				this.setState({
+					workEnvironment : 0
+				});	
+			}
+			else if(strTrueEnviron.localeCompare("Job Dependent") == 0)
+			{
+				this.setState({
+					workEnvironment: 1
+				});
+			}
+			else
+			{
+				this.setState({
+					workEnvironment: 2,
+				});
+			}
+		}
+	}
+
+	getExistingData = () => {
+		//insert correct URL for user's profile
+		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/major";
+
+
+		fetch(URL, {
+			method: 'GET',
+			headers: {
+				"Accept": 'application/json',
+				'Content-Type': 'application/json',
+			},
+		})
+			.then((response) => response.json())
+			.then((json) => {
+				console.log("Exisiting Data: " + JSON.stringify(json));
+				console.log("Email from ScholarSurvey.js: " + this.state.email);
+				// set the val to state
+				if (json.mesg.existing == 1) {
+					// there's an exisiting data on client's record
+					this.setState({
+						salaryTripWire: json.mesg.haveSalary,
+						socialTripwire: json.mesg.haveSocial,
+						environmentTripwire: json.mesg.haveEnvironment,
+						autoTripwire: json.mesg.haveAutonomy,
+						varietyTripwire: json.mesg.haveVariety,
+						salaryValue: json.mesg.avg_salary,
+						unemploymentValue: json.mesg.unemployment_rate,
+						trueAutonomy: json.mesg.autonomous,
+						selectedSubjects: json.mesg.subjects,
+						trueVariety : json.mesg.variety_of_jobs,
+						trueSocialInteraction: json.mesg.high_social_interaction,
+						trueEnvironment : json.mesg.work_environment,
+						firstTime: json.mesg.existing,
+					});
+					this.translateTrues();
+				}
+			});
+	}
+
+	componentDidMount() {
+		this.getExistingData();
+	}
 
 	render() {
 		return (
@@ -96,7 +562,7 @@ export default class MajorSurvey extends React.Component {
 
 						<Text style={styles.re_text}>Major Survey Questions</Text>
 						<Text style={styles.collegeSurveyQA1}>
-							What is your expected yearly salary? (Nationwide Average)
+							What is your desired annual salary? (Nationwide Average)
       					</Text>
 
 						<View style={styles.multiSelectorWrapper}>
@@ -106,13 +572,21 @@ export default class MajorSurvey extends React.Component {
                              maximumValue={130000}
                              minimumTrackTintColor="#21732e"
                              maximumTrackTintColor="#808080"
+							 value = {this.state.salaryValue}
                              //value = {this.state.salaryValue}
                              //onSlidingComplete = {(value) => this.handleSalaryValue(value)}
-                             onValueChange = {(value) => this.handleSalaryValue(value)}
+                             onSlidingComplete = {(value) => this.editSalary(value)}
                         />
-                        <Text style = {styles.salaryValueDisplay}>
-                            ${this.state.salaryValue}
-                        </Text>
+						{this.state.salaryTripWire ?
+							<Text style = {styles.salaryValueDisplay}>
+                            ${this.state.salaryDisplay}
+                        	</Text>
+							:
+							<Text style = {styles.salaryValueDisplay}>
+                            ${this.state.defaultSalaryDisplay}
+                        	</Text>
+						}
+                        
 						</View>
 
 							<View style={styles.satTextField}>
@@ -120,40 +594,48 @@ export default class MajorSurvey extends React.Component {
 									What unemployment rate is acceptable for you?
         						</Text>
 								<Slider
-                                    style={{width: 200, height: 40}}
-                                    minimumValue={1}
-                                    maximumValue={10}
-                                    minimumTrackTintColor="#d91c37"
-                                    maximumTrackTintColor="#4a76ff"
-                                    value = {this.state.unemploymentValue}
-                                    //value = {this.state.UnemploymentValue}
-                                    //value = {this.state.salaryValue}
-                                    //onSlidingComplete = {(value) => this.handleSalaryValue(value)}
-                                    onValueChange = {(value) => this.handleUnemploymentRate(value)}
-                                />
-                                <Text style = {styles.unemploymentValueDisplay}>
-                                    {this.state.unemploymentValue}%
-                                </Text>
+									style={{width: 200, height: 40}}
+									minimumValue={1}
+									maximumValue={10}
+									value = {this.state.unemploymentValue}
+									minimumTrackTintColor="#d91c37"
+									maximumTrackTintColor="#808080"
+									//value = {this.state.salaryValue}
+									//onSlidingComplete = {(value) => this.handleSalaryValue(value)}
+									onValueChange = {(value) => this.editUnemployment(value)}
+                        		/>
+									<Text style = {styles.unemploymentValueDisplay}>
+                                    {this.state.unemploymentDisplay}%
+                                	</Text>
 							</View>
 
 							<View style={styles.actTextField}>
 								<Text style={styles.collegeSurveyQA3}>
-									What is your ACT score?
+									Preferred Level of Autonomy?
         					</Text>
 								<View style={styles.icon1Row}>
-									<MaterialCommunityIcons
-										name="book-open-variant"
-										style={styles.icon1}
-									></MaterialCommunityIcons>
-									<TextInput
-										placeholder="If Not Applicable Leave Blank"
-										keyboardAppearance="light"
-										blurOnSubmit={false}
-										onChangeText={this.handleACT}
-										keyboardType="numeric"
-										style={styles.textInput1}
-									></TextInput>
+								<Slider
+									style={{width: 200, height: 40}}
+									step = {1}
+									minimumValue={0}
+									maximumValue={2}
+									value = {this.state.autonomy}
+									minimumTrackTintColor="#a112cc"
+									maximumTrackTintColor="#a112cc"
+									//value = {this.state.salaryValue}
+									//onSlidingComplete = {(value) => this.handleSalaryValue(value)}
+									onValueChange = {(value) => this.handleAutonomy(value)}
+                        		/>
 								</View>
+								{ this.state.autoTripwire ?
+								<Text style = {styles.autonomyValueDisplay}>
+                                    {this.state.displayAutonomy}
+                                </Text>
+								:
+								<Text style = {styles.autonomyValueDisplay}>
+                                    {this.state.defaultAutoDisplay}
+                                </Text>
+								}
 							</View>
 
 						<View style={styles.majorTextField}>
@@ -174,15 +656,90 @@ export default class MajorSurvey extends React.Component {
 									selectedItems={this.state.selectedSubjects}
 								/>
 							</View>
+
 						</View>
 
+						<View style={styles.icon2Row}>
+						<Text style={styles.collegeSurveyQA4}>
+							Prefered Level of Job Variety Per Major?
+						</Text>
+						<Slider
+							style={{width: 200, height: 40}}
+							step = {1}
+							minimumValue={0}
+							maximumValue={2}
+							value = {this.state.variety}
+							minimumTrackTintColor="#31e03d"
+							maximumTrackTintColor="#808080"
+									//value = {this.state.salaryValue}
+									//onSlidingComplete = {(value) => this.handleSalaryValue(value)}
+							onValueChange = {(value) => this.editVariety(value)}
+                        		/>
+						</View>
+						{ this.state.varietyTripwire ?
+								<Text style = {styles.varietyValueDisplay}>
+                                    {this.state.trueVariety}
+                                </Text>
+								:
+								<Text style = {styles.varietyValueDisplay}>
+                                    {this.state.defaultVarietyDisplay}
+                                </Text>
+								}
+						<View style = {styles.socialRow}>
+							<Text style = {styles.majorSurveyQA5}> 
+								Do You Prefer a High Level of Social Interaction at work?
+							</Text>
+							<Slider
+								style={{width: 200, height: 40}}
+								step = {1}
+								minimumValue={0}
+								maximumValue={2}
+								value = {this.state.socialInteraction}
+								minimumTrackTintColor = "#f58eb4"
+								maxiumumTrackTintColor = "808080"
+								onValueChange = {(value) => this.editSocial(value)}
+							/>
+							{ this.state.socialTripwire ?
+								<Text style = {styles.socialValueDisplay}>
+                                    {this.state.trueSocialInteraction}
+                                </Text>
+								:
+								<Text style = {styles.socialValueDisplay}>
+                                    {this.state.defaultSocialDisplay}
+                                </Text>
+								}
+						</View>
+						<View style = {styles.environRow}>
+							<Text style = {styles.majorSurveyQA6}>
+								Preferred Work Environment?
+							</Text>
+							<Slider
+								style={{width: 200, height: 40}}
+								step = {1}
+								minimumValue={0}
+								maximumValue={2}
+								value = {this.state.workEnvironment}
+								minimumTrackTintColor="#dbc84d"
+								maxiumumTrackTintColor="#dbc84d"
+								onValueChange = {(value) => this.editEnvironment(value)}
+							/>
+							{ this.state.environmentTripwire ?
+								<Text style = {styles.environValueDisplay}>
+                                    {this.state.trueEnvironment}
+                                </Text>
+								:
+								<Text style = {styles.environValueDisplay}>
+                                    {this.state.defaultEnvironmentDisplay}
+                                </Text>
+								}
+						</View>
 					</View>
 				</View>
 				
 				<View style={styles.submitContainer}>
 					<TouchableOpacity
 						style={styles.submitBtn}
-						onPress={() => console.log("Test")}
+						onPress={() => this.onSubmit()}
 					>
 						<Text style={styles.submitTxt}>Submit</Text>
 					</TouchableOpacity>
@@ -269,6 +826,38 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 		marginLeft: 80,
 	},
+	autonomyValueDisplay: {
+		color: "#a112cc",
+		fontSize: 16,
+		width: "100%",
+		height: 39,
+		marginTop: 10,
+		marginLeft: 80,
+	},
+	varietyValueDisplay: {
+		color: "#31e03d",
+		fontSize: 16,
+		width: "100%",
+		height: 39,
+		marginTop: "auto",
+		marginLeft: 80,
+	},
+	socialValueDisplay: {
+		color: "#f58eb4",
+		fontSize: 16,
+		width: "100%",
+		height: 39,
+		marginTop: "auto",
+		marginLeft: 80,
+	},
+	environValueDisplay: {
+		color: "#dbc84d",
+		fontSize: 16,
+		width: "100%",
+		height: 39,
+		marginTop: "auto",
+		marginLeft: 80,
+	},
 	satTextField: {
 		width: "100%",
 		height: 32,
@@ -325,12 +914,30 @@ const styles = StyleSheet.create({
 		borderTopWidth: 0,
 		borderRightWidth: 0,
 		borderLeftWidth: 0,
-		marginLeft: 10
+		marginLeft: 10,
 	},
 	icon1Row: {
 		height: 32,
 		flexDirection: "row",
-		marginTop: 11
+		marginTop: 11,
+	},
+	icon2Row: {
+			height: "auto",
+			marginLeft: 0,
+			marginTop: 11,
+			marginBottom: 20,
+	},
+	socialRow: {
+			height: "auto",
+			marginLeft: 0,
+			marginTop: 11,
+			marginBottom: 20,
+	},
+	environRow: {
+			height: "auto",
+			marginLeft: 0,
+			marginTop: 11,
+			marginBottom: 20,
 	},
 	majorTextField: {
 		width: "100%",
@@ -339,7 +946,15 @@ const styles = StyleSheet.create({
 	},
 	collegeSurveyQA4: {
 		fontSize: 16,
-		marginTop: -20,
+		marginTop: 10,
+	},
+	majorSurveyQA5: {
+		fontSize: 16,
+		marginTop: 10,
+	},
+	majorSurveyQA6: {
+		fontSize: 16,
+		marginTop: 10,
 	},
 	submitBtn: {
 		width: "93%",
