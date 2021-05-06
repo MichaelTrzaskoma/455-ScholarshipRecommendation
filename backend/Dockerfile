@@ -8,6 +8,10 @@ RUN pip install -r requirements.txt
 
 RUN export FLASK_APP=run.py
 
+CMD ["export" "FLASK_APP=run.py"]
+
+CMD ["export" "FLASK_ENV=production"]
+
 ENTRYPOINT ["python"]
 
 CMD ["run.py"]

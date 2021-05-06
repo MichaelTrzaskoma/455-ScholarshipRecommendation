@@ -38,7 +38,7 @@ export default class ViewAllScholar extends React.Component {
         { key: "Scholarship Amount" },
         { key: "School Attendance State" },
         { key: "School Year" },
-        { key: "Speical Attributes" },
+        { key: "Special Attributes" },
         { key: "Student Organization" },
       ],
     };

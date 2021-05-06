@@ -272,7 +272,7 @@ def auth(email):
                         hashPass = hashlib.md5(saltedPass.encode()).hexdigest()
 
                         if(hashPass != usr_profile_data["paswrd"]):
-                            return make_response(jsonify({"mesg": "unauthorized", "no email and password match"), 400)
+                            return make_response(jsonify({"mesg": "unauthorized"}), 400)
 
                         # generate a new device token
                         secret_code = generateCode()
@@ -300,7 +300,7 @@ def auth(email):
                 hashPass = hashlib.md5(saltedPass.encode()).hexdigest()
 
                 if(hashPass != usr_profile_data["paswrd"]):
-                    return make_response(jsonify({"mesg": "unauthorized", "no email and password match"), 400)
+                    return make_response(jsonify({"mesg": "unauthorized"}), 400)
                 # generate a new device token
                 secret_code = generateCode()
                 timer = int(time.mktime(
