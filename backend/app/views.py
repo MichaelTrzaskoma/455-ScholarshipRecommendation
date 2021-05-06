@@ -1052,17 +1052,29 @@ def getBookmarkDoc_all(email):
         income_data = request.json
 
         # validate the inputs and incoming data
+        remove = False
         if len(email) < 1:
             return make_response(jsonify({"mesg": "An email is needed!"}), 400)
+
+        if 'unique_id' not in income_data:
+            return make_response(jsonify({"mesg": "Device is not supported!"}), 400)
 
         if 'title' not in income_data:
             return make_response(jsonify({"mesg": "A title is needed!"}), 400)
 
+        title = income_data["title"]
+
+        if 'action' in income_data:
+            if(income_data['action'] == "remove"):
+                res = removeBookmark(user_Ref, email, title)
+                
+                if(res):
+                    return make_response(jsonify({"emsg": "Removed!"}), 202)
+                else:
+                    return make_response(jsonify({"emsg": "Removal failed!"}), 400)
+
         if 'type' not in income_data:
             return make_response(jsonify({"mesg": "A type is needed!"}), 400)
-
-        if 'unique_id' not in income_data:
-            return make_response(jsonify({"mesg": "Device is not supported!"}), 400)
 
         title = income_data["title"]
         docType = income_data["type"]
