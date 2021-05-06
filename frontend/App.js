@@ -138,6 +138,7 @@ export default class App extends Component {
 
   }
 
+
   signIn = async (inputEmail, inputPassword) => {
     try {
       if (!inputEmail == "" && String(inputEmail).includes("@") && !inputPassword == "") {
@@ -145,7 +146,7 @@ export default class App extends Component {
         const unique_id = getDeviceID();
         // console.log("UUID: " + unique_id);
 
-        let URL = "http://e7823eef0bb9.ngrok.io/api/v1.2/managements/users/" + inputEmail;
+        let URL = "http://08cc501f4183.ngrok.io/api/v1.2/managements/users/" + inputEmail;
 
         fetch(URL, {
           method: "POST",
@@ -194,6 +195,7 @@ export default class App extends Component {
       // console.log(type(value));
     }
   };
+  
 
   render() {
     // print the device unique ID

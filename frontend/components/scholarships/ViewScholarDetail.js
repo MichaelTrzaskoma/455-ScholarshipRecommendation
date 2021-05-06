@@ -35,7 +35,7 @@ export default class ViewScholarDetail extends React.Component {
 
   handleBookmark () {
     //Insert API Call here
-    let URL = "http://96858b0d3196.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
+    let URL = "http://08cc501f4183.ngrok.io/api/v1.2/users/id/" + this.state.email + "/bookmarks";
     fetch(URL, {
       method: "POST",
       headers: {
@@ -45,6 +45,8 @@ export default class ViewScholarDetail extends React.Component {
       body: JSON.stringify({
         "email": this.state.email, 
         "title": this.state.scholarshipObj.title,
+        "type" : "scholarship",
+        "unique_id": "placeholder",
         // "jwt": getSecureStorage("jwt"),
         // "uniqueID": getDeviceID(),
       }),
@@ -74,7 +76,7 @@ export default class ViewScholarDetail extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-      
+    console.log("scholar bookmark title: "+this.state.scholarshipObj.title);  
     alert("This scholarship has been bookmarked!");
   }
 
@@ -86,7 +88,7 @@ export default class ViewScholarDetail extends React.Component {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
     let URL =
-      'http://8934d83a4df8.ngrok.io/api/v1.2/resources/scholarships/view/titles/' + this.props.route.params.itemKey;
+      'http://08cc501f4183.ngrok.io/api/v1.2/resources/scholarships/view/titles/' + this.props.route.params.itemKey;
 
     fetch(URL, {
       method: 'GET',
