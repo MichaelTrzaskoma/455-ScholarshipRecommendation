@@ -12,6 +12,7 @@ import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 import ScholarCategory from "../../ui/scholarships/ScholarCategory";
 import ScholarRecommend from '../../ui/scholarships/ScholarRecommend';
 import { getDeviceID } from "../../functions/deviceUniqueID";
+// import { storeData, getData } from "../../functions/secureStorage";
 
 export default class ScholarshipScreen extends React.Component {
 	constructor(props) {
@@ -19,17 +20,9 @@ export default class ScholarshipScreen extends React.Component {
 		this.state = {
 			userProfile: this.props.usrInfo,
 			email: this.props.usrInfo.email,
-			jwt: "",
+			// jwt: "",
 			// nav: this.props.navigation,
 		};
-	}
-
-	checkDeviceID()
-	{
-		let id = ""
-		id = getDeviceID()
-		console.log(id);
-		return id;
 	}
 	/*
 	fetchJWT()
@@ -73,7 +66,7 @@ export default class ScholarshipScreen extends React.Component {
 	*/
 
 	render() {
-		console.log("Email from ScholarshipScreen.js: " + this.state.email);
+		// console.log("Email from ScholarshipScreen.js: " + this.state.email);
 		return (
 			<View style={styles.container}>
 				<StatusBar backgroundColor="#007FF9" barStyle="light-content" />

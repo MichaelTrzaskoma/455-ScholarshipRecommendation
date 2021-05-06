@@ -26,7 +26,7 @@ export default class ViewScholarTbl extends React.Component {
       modalVisible: false,
       currentBookmarkKey: "",
       //email: this.props.usrInfo.email,
-      userProfile: this.props.usrInfo,
+      userProfile: this.props.route.params.usrProfile,
     };
   }
 

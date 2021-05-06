@@ -119,7 +119,7 @@ export default class ViewCollegeDetail extends React.Component {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
     let URL =
-      "http://96858b0d3196.ngrok.io/api/v1.2/resources/colleges/view/titles/Massachusetts Institute of Technology"
+      "http://96858b0d3196.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey
 
     fetch(URL, {
       method: 'GET',
@@ -134,15 +134,6 @@ export default class ViewCollegeDetail extends React.Component {
         // console.log("API ranking check " + JSON.stringify(json));
         // set the val to state
         this.setState({
-          scholarshipObj: {
-            amount: json.amount,
-            ava: json.awards_available,
-            contact: json.contact_info,
-            deadline: json.deadline,
-            applyLink: json.direct_link,
-            title: json.name,
-            description: json.description,
-          },
           collegeObj1_1: {
             uniName: json.mesg.uni_name,
             address: json.mesg.address,
@@ -250,6 +241,7 @@ export default class ViewCollegeDetail extends React.Component {
   }
 
   UNSAFE_componentWillMount() {
+    // componentDidMount(){
     this.getDetail();
   }
 
@@ -260,19 +252,19 @@ export default class ViewCollegeDetail extends React.Component {
     // console.log("Object check " + JSON.stringify(this.props));
     // console.log("From props " + this.props.route.params.itemKey);
     // console.log("Checking again " + this.props.itemKey);
-    console.log("1: " + JSON.stringify(this.state.scholarshipObj));
-    console.log("2: " + JSON.stringify(this.state.collegeObj1_1));
-    console.log("3: " + JSON.stringify(this.state.collegeObj1_2));
-    console.log("4: " + JSON.stringify(this.state.collegeObj2_1));
-    console.log("5: " + JSON.stringify(this.state.collegeObj2_2));
-    console.log("6: " + JSON.stringify(this.state.collegeObj3_1));
-    console.log("7: " + JSON.stringify(this.state.collegeObj3_2));
-    console.log("8: " + JSON.stringify(this.state.collegeObj4_1));
-    console.log("9: " + JSON.stringify(this.state.collegeObj4_2));
-    console.log("10: " + JSON.stringify(this.state.collegeObj5_1));
-    console.log("11: " + JSON.stringify(this.state.collegeObj5_2));
-    console.log("12: " + JSON.stringify(this.state.collegeObj6_1));
-    console.log("13: " + JSON.stringify(this.state.collegeObj6_2));
+    // console.log("1: " + JSON.stringify(this.state.scholarshipObj));
+    // console.log("2: " + JSON.stringify(this.state.collegeObj1_1));
+    // console.log("3: " + JSON.stringify(this.state.collegeObj1_2));
+    // console.log("4: " + JSON.stringify(this.state.collegeObj2_1));
+    // console.log("5: " + JSON.stringify(this.state.collegeObj2_2));
+    // console.log("6: " + JSON.stringify(this.state.collegeObj3_1));
+    // console.log("7: " + JSON.stringify(this.state.collegeObj3_2));
+    // console.log("8: " + JSON.stringify(this.state.collegeObj4_1));
+    // console.log("9: " + JSON.stringify(this.state.collegeObj4_2));
+    // console.log("10: " + JSON.stringify(this.state.collegeObj5_1));
+    // console.log("11: " + JSON.stringify(this.state.collegeObj5_2));
+    // console.log("12: " + JSON.stringify(this.state.collegeObj6_1));
+    // console.log("13: " + JSON.stringify(this.state.collegeObj6_2));
     return (
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false} style={styles.mainContainer}>
@@ -286,8 +278,8 @@ export default class ViewCollegeDetail extends React.Component {
               <View style={styles.locGrp}>
                 <Text style={styles.address3}>Address</Text>
                 <Text style={styles.addressTxt}>
-                  77 Massachusetts Avenue{"\n"}Cambridge, MA 02139
-                            </Text>
+                  {this.state.collegeObj1_1.address}
+                </Text>
               </View>
               <View style={styles.aboutTagsGrp}>
                 <View style={styles.tagsIcons_1Row}>
@@ -295,12 +287,12 @@ export default class ViewCollegeDetail extends React.Component {
                     name="tags"
                     style={styles.tagsIcons_1}
                   ></FontAwesome>
-                  <Text style={styles.massachusetts}>Private</Text>
+                  <Text style={styles.massachusetts}>{this.state.collegeObj1_1.tag2}</Text>
                   <FontAwesome
                     name="tags"
                     style={styles.tagsIcons_2}
                   ></FontAwesome>
-                  <Text style={styles.satActOptional}>SAT/ACT Optional</Text>
+                  <Text style={styles.satActOptional}>{this.state.collegeObj1_1.tag1}</Text>
                 </View>
               </View>
               <View style={styles.costGrp}>
@@ -313,7 +305,7 @@ export default class ViewCollegeDetail extends React.Component {
                       ></Feather>
                       <View style={styles.inStateStack}>
                         <Text style={styles.inState}>In State</Text>
-                        <Text style={styles.instateCostTxt}>53,790</Text>
+                        <Text style={styles.instateCostTxt}>{this.state.collegeObj1_2.tuitionIn}</Text>
                       </View>
                     </View>
                   </View>
@@ -325,7 +317,7 @@ export default class ViewCollegeDetail extends React.Component {
                       ></Feather>
                       <View style={styles.outStateTxtStack}>
                         <Text style={styles.outStateTxt}>Out State</Text>
-                        <Text style={styles.outStateCostTxt}>53,790</Text>
+                        <Text style={styles.outStateCostTxt}>{this.state.collegeObj1_2.tuitionOut}</Text>
                       </View>
                     </View>
                   </View>
@@ -337,7 +329,7 @@ export default class ViewCollegeDetail extends React.Component {
                       ></Feather>
                       <View style={styles.hoursingStack}>
                         <Text style={styles.hoursing}>Avg Housing</Text>
-                        <Text style={styles.housingCostTxt}>10,430</Text>
+                        <Text style={styles.housingCostTxt}>{this.state.collegeObj1_2.avgHousing}</Text>
                       </View>
                     </View>
                   </View>
@@ -346,7 +338,7 @@ export default class ViewCollegeDetail extends React.Component {
               <View style={styles.appDeadlineGrp}>
                 <View style={styles.deadlineRow}>
                   <Text style={styles.deadline}>Deadline:</Text>
-                  <Text style={styles.deadlineTxt}>January 1</Text>
+                  <Text style={styles.deadlineTxt}>{this.state.collegeObj1_2.deadLine}</Text>
                 </View>
               </View>
             </View>
@@ -356,14 +348,8 @@ export default class ViewCollegeDetail extends React.Component {
             <View style={styles.descriptionGrp1}>
               <Text style={styles.description2}>Description</Text>
               <Text style={styles.descriptionTxt1}>
-                MIT is an elite private college located in Cambridge,
-                Massachusetts in the Boston Area. It is a small institution with
-                an enrollment of 4,501 undergraduate students. Admissions is
-                extremely competitive as the MIT acceptance rate is only 7%.
-                Popular majors include Computer Science, Mechanical Engineering,
-                and Mathematics. Graduating 95% of students, MIT alumni go on to
-                earn a starting salary of $82,200.
-            </Text>
+                {this.state.collegeObj2_1.description}
+              </Text>
             </View>
             <View style={styles.moreInfoGrp1}>
               <View style={styles.moreInfoLeftGrp1}>
@@ -386,17 +372,17 @@ export default class ViewCollegeDetail extends React.Component {
               <View style={styles.moreInfoLeftGrp1Filler}></View>
               <View style={styles.moreInfoRightGrp1}>
                 <Text style={styles.adivisionTxt1}>
-                  NCAA Division III (with football)
-              </Text>
+                  {this.state.collegeObj2_1.athDivi}
+                </Text>
                 <Text style={styles.aConferenceTxt1}>
-                  New England Women&#39;s &amp; Men&#39;s Athletic Conference
-              </Text>
-                <Text style={styles.acceptanceRateTxt1}>7%</Text>
-                <Text style={styles.graduateRateTxt1}>95%</Text>
-                <Text style={styles.earningAfterCollegeTxt1}>$82,200</Text>
-                <Text style={styles.employAfterCollegeTxt1}>94%</Text>
-                <Text style={styles.officalSiteTxt1}>web.mit.edu</Text>
-                <Text style={styles.admissionSiteTxt1}>http://my.mit.edu/</Text>
+                  {this.state.collegeObj2_1.athCon}
+                </Text>
+                <Text style={styles.acceptanceRateTxt1}>{this.state.collegeObj2_1.accepRate}</Text>
+                <Text style={styles.graduateRateTxt1}>{this.state.collegeObj2_2.gradRate}</Text>
+                <Text style={styles.earningAfterCollegeTxt1}>{this.state.collegeObj2_2.earningAfter}</Text>
+                <Text style={styles.employAfterCollegeTxt1}>{this.state.collegeObj2_2.employAfteCollege}</Text>
+                <Text style={styles.officalSiteTxt1}>{this.state.collegeObj2_2.website}</Text>
+                <Text style={styles.admissionSiteTxt1}>{this.state.collegeObj2_2.applyLink}</Text>
               </View>
             </View>
           </View>
@@ -406,32 +392,32 @@ export default class ViewCollegeDetail extends React.Component {
               <View style={styles.moreInfoLeftGrp2}>
                 <Text style={styles.rankingDetail1}>Ranking Details</Text>
                 <Text style={styles.rankTitle1}>
-                  Best_Colleges_for_Environmental_Science_in_America
-              </Text>
+                  {this.state.collegeObj3_1.rankingTitle1}
+                </Text>
                 <Text style={styles.rankTitle2}>
-                  Colleges_with_the_Best_Student_Life_in_Massachusetts
-              </Text>
+                  {this.state.collegeObj3_1.rankingTitle2}
+                </Text>
                 <Text style={styles.rankTitle3}>
-                  Top_Party_Schools_in_Massachusetts
-              </Text>
+                  {this.state.collegeObj3_1.rankingTitle3}
+                </Text>
                 <Text style={styles.rankTitle4}>
-                  Best_College_Campuses_in_America
-              </Text>
+                  {this.state.collegeObj3_2.rankingTitle4}
+                </Text>
                 <Text style={styles.rankTitle5}>
-                  Best_Value_Colleges_in_Boston_Area
-              </Text>
+                  {this.state.collegeObj3_2.rankingTitle5}
+                </Text>
                 <Text style={styles.rankTitle6}>
-                  Safest_College_Campuses_in_Massachusetts
-              </Text>
+                  {this.state.collegeObj3_2.rankingTitle6}
+                </Text>
               </View>
               <View style={styles.moreInfoLeftGrp2Filler}></View>
               <View style={styles.moreInfoRightGrp2}>
-                <Text style={styles.rankScore1}>2/619</Text>
-                <Text style={styles.rankScore2}>2/59</Text>
-                <Text style={styles.rankScore3}>2/59</Text>
-                <Text style={styles.rankScore4}>215/1,408</Text>
-                <Text style={styles.rankScore5}>1/36</Text>
-                <Text style={styles.rankScore6}>20/54</Text>
+                <Text style={styles.rankScore1}>{this.state.collegeObj3_1.rankingRank1}</Text>
+                <Text style={styles.rankScore2}>{this.state.collegeObj3_1.rankingRank2}</Text>
+                <Text style={styles.rankScore3}>{this.state.collegeObj3_1.rankingRank3}</Text>
+                <Text style={styles.rankScore4}>{this.state.collegeObj3_2.rankingRank4}</Text>
+                <Text style={styles.rankScore5}>{this.state.collegeObj3_2.rankingRank5}</Text>
+                <Text style={styles.rankScore6}>{this.state.collegeObj3_2.rankingRank6}</Text>
               </View>
             </View>
           </View>
@@ -462,27 +448,27 @@ export default class ViewCollegeDetail extends React.Component {
               </View>
               <View style={styles.moreInfoLeftGrp3Filler}></View>
               <View style={styles.moreInfoRightGrp3}>
-                <Text style={styles.satRangeTxt1}>1510-1570</Text>
-                <Text style={styles.satReadTxt1}>730-770</Text>
-                <Text style={styles.satMathTxt1}>0-800</Text>
-                <Text style={styles.actRangeTxt1}>34-36</Text>
-                <Text style={styles.actEngTxt1}>35-36</Text>
-                <Text style={styles.actMathTxt1}>34-36</Text>
-                <Text style={styles.actWriteTxt1}>8-10</Text>
-                <Text style={styles.commAppTxt1}>No</Text>
-                <Text style={styles.coalAppTxt1}>No</Text>
-                <Text style={styles.highSchGpaTxt1}>Recommended</Text>
+                <Text style={styles.satRangeTxt1}>{this.state.collegeObj4_1.acceptSAT}</Text>
+                <Text style={styles.satReadTxt1}>{this.state.collegeObj4_1.readingSAT}</Text>
+                <Text style={styles.satMathTxt1}>{this.state.collegeObj4_1.mathSAT}</Text>
+                <Text style={styles.actRangeTxt1}>{this.state.collegeObj4_1.acceptACT}</Text>
+                <Text style={styles.actEngTxt1}>{this.state.collegeObj4_1.englishACT}</Text>
+                <Text style={styles.actMathTxt1}>{this.state.collegeObj4_1.mathACT}</Text>
+                <Text style={styles.actWriteTxt1}>{this.state.collegeObj4_1.writingACT}</Text>
+                <Text style={styles.commAppTxt1}>{this.state.collegeObj4_1.comAppli}</Text>
+                <Text style={styles.coalAppTxt1}>{this.state.collegeObj4_2.coalAppli}</Text>
+                <Text style={styles.highSchGpaTxt1}>{this.state.collegeObj4_2.highSchGPA}</Text>
                 <Text style={styles.highSchRankTxt1}>
-                  Neither required nor recommended
-              </Text>
-                <Text style={styles.highSchRansTxt1}>Required</Text>
-                <Text style={styles.uniPrecourseTxt1}>Recommended</Text>
+                  {this.state.collegeObj4_2.highSchRank}
+                </Text>
+                <Text style={styles.highSchRansTxt1}>{this.state.collegeObj4_2.highSchTrans}</Text>
+                <Text style={styles.uniPrecourseTxt1}>{this.state.collegeObj4_2.collegePrecour}</Text>
                 <Text style={styles.satORactTxt1}>
-                  Considered but not required
-              </Text>
-                <Text style={styles.recommTxt1}>Required</Text>
-                <Text style={styles.avgMealCostTxt1}>$5,960</Text>
-                <Text style={styles.bookCostTxt1}>$820</Text>
+                  {this.state.collegeObj4_2.sat_actScore}
+                </Text>
+                <Text style={styles.recommTxt1}>{this.state.collegeObj4_2.recommend}</Text>
+                <Text style={styles.avgMealCostTxt1}>{this.state.collegeObj4_2.averMealPlan}</Text>
+                <Text style={styles.bookCostTxt1}>{this.state.collegeObj4_2.bookCost}</Text>
               </View>
             </View>
           </View>
@@ -514,24 +500,24 @@ export default class ViewCollegeDetail extends React.Component {
               </View>
               <View style={styles.moreInfoLeftGrp4Filler}></View>
               <View style={styles.moreInfoRightGrp4}>
-                <Text style={styles.femaleUnderTxt1}>47%</Text>
-                <Text style={styles.maleUnderTxt2}>53%</Text>
-                <Text style={styles.inStateRTxt1}>6%</Text>
-                <Text style={styles.outStateRTxt1}>82%</Text>
-                <Text style={styles.internRTxt1}>11%</Text>
-                <Text style={styles.under2}>3%</Text>
-                <Text style={styles.yr4}>47%</Text>
-                <Text style={styles.yr5}>43%</Text>
-                <Text style={styles.yr6}>6%</Text>
-                <Text style={styles.over2}>1%</Text>
-                <Text style={styles.raceAaTxt1}>6%</Text>
-                <Text style={styles.ractATxt1}>26%</Text>
-                <Text style={styles.raceHTxt1}>14%</Text>
-                <Text style={styles.raceInternTxt1}>12%</Text>
-                <Text style={styles.raceMuTxt1}>7%</Text>
-                <Text style={styles.raceNaTxt1}>0%</Text>
-                <Text style={styles.racePiTxt1}>0%</Text>
-                <Text style={styles.raceWhiteTxt1}>33%</Text>
+                <Text style={styles.femaleUnderTxt1}>{this.state.collegeObj5_1.femUnder}</Text>
+                <Text style={styles.maleUnderTxt2}>{this.state.collegeObj5_1.malUnder}</Text>
+                <Text style={styles.inStateRTxt1}>{this.state.collegeObj5_1.inStateResi}</Text>
+                <Text style={styles.outStateRTxt1}>{this.state.collegeObj5_1.outStateResi}</Text>
+                <Text style={styles.internRTxt1}>{this.state.collegeObj5_1.interResi}</Text>
+                <Text style={styles.under2}>{this.state.collegeObj5_1.under18}</Text>
+                <Text style={styles.yr4}>{this.state.collegeObj5_1.a18_19}</Text>
+                <Text style={styles.yr5}>{this.state.collegeObj5_1.a20_21}</Text>
+                <Text style={styles.yr6}>{this.state.collegeObj5_1.a22_24}</Text>
+                <Text style={styles.over2}>{this.state.collegeObj5_2.over25}</Text>
+                <Text style={styles.raceAaTxt1}>{this.state.collegeObj5_2.AfricanAmerican}</Text>
+                <Text style={styles.ractATxt1}>{this.state.collegeObj5_2.Asian}</Text>
+                <Text style={styles.raceHTxt1}>{this.state.collegeObj5_2.Hispanic}</Text>
+                <Text style={styles.raceInternTxt1}>{this.state.collegeObj5_2.International}</Text>
+                <Text style={styles.raceMuTxt1}>{this.state.collegeObj5_2.Multi}</Text>
+                <Text style={styles.raceNaTxt1}>{this.state.collegeObj5_2.NativeAmerican}</Text>
+                <Text style={styles.racePiTxt1}>{this.state.collegeObj5_2.PacificIslander}</Text>
+                <Text style={styles.raceWhiteTxt1}>{this.state.collegeObj5_2.White}</Text>
               </View>
             </View>
           </View>
@@ -540,50 +526,26 @@ export default class ViewCollegeDetail extends React.Component {
             <View style={styles.maleSportGrp1}>
               <Text style={styles.maleSports1}>Male Sports</Text>
               <Text style={styles.xyz1}>
-                &quot;Baseball&quot;, &quot;Basketball&quot;, &quot;Fencing&quot;,
-                &quot;Football&quot;, &quot;Lacrosse&quot;, &quot;Rowing&quot;,
-                &quot;Soccer&quot;, &quot;Squash&quot;, &quot;Swimming and
-                Diving&quot;, &quot;Tennis&quot;, &quot;Track and Field:
-                Indoor&quot;, &quot;Track and Field: Outdoor&quot;, &quot;Track
-                and Field: X-Country&quot;, &quot;Volleyball&quot;, &quot;Water
-                Polo
-            </Text>
+                {this.state.collegeObj6_1.mSports}
+              </Text>
             </View>
             <View style={styles.femaleSportGrp1}>
               <Text style={styles.femaleSports1}>Female Sports</Text>
               <Text style={styles.text1}>
-                &quot;Baseball&quot;, &quot;Basketball&quot;, &quot;Fencing&quot;,
-                &quot;Football&quot;, &quot;Lacrosse&quot;, &quot;Rowing&quot;,
-                &quot;Soccer&quot;, &quot;Squash&quot;, &quot;Swimming and
-                Diving&quot;, &quot;Tennis&quot;, &quot;Track and Field:
-                Indoor&quot;, &quot;Track and Field: Outdoor&quot;, &quot;Track
-                and Field: X-Country&quot;, &quot;Volleyball&quot;, &quot;Water
-                Polo
-            </Text>
+                {this.state.collegeObj6_1.fSports}
+              </Text>
             </View>
             <View style={styles.clubGrp1}>
               <Text style={styles.clubTxt1}>Clubs</Text>
               <Text style={styles.text2}>
-                &quot;Baseball&quot;, &quot;Basketball&quot;, &quot;Fencing&quot;,
-                &quot;Football&quot;, &quot;Lacrosse&quot;, &quot;Rowing&quot;,
-                &quot;Soccer&quot;, &quot;Squash&quot;, &quot;Swimming and
-                Diving&quot;, &quot;Tennis&quot;, &quot;Track and Field:
-                Indoor&quot;, &quot;Track and Field: Outdoor&quot;, &quot;Track
-                and Field: X-Country&quot;, &quot;Volleyball&quot;, &quot;Water
-                Polo
-            </Text>
+                {this.state.collegeObj6_1.clubs}
+              </Text>
             </View>
             <View style={styles.musicGrp1}>
               <Text style={styles.music2}>Music</Text>
               <Text style={styles.text3}>
-                &quot;Baseball&quot;, &quot;Basketball&quot;, &quot;Fencing&quot;,
-                &quot;Football&quot;, &quot;Lacrosse&quot;, &quot;Rowing&quot;,
-                &quot;Soccer&quot;, &quot;Squash&quot;, &quot;Swimming and
-                Diving&quot;, &quot;Tennis&quot;, &quot;Track and Field:
-                Indoor&quot;, &quot;Track and Field: Outdoor&quot;, &quot;Track
-                and Field: X-Country&quot;, &quot;Volleyball&quot;, &quot;Water
-                Polo
-            </Text>
+                {this.state.collegeObj6_1.music}
+              </Text>
             </View>
           </View>
 
@@ -592,7 +554,8 @@ export default class ViewCollegeDetail extends React.Component {
               <View style={styles.moreInfoLeftGrp5}>
                 <Text style={styles.academicDetails1}>Academic Details</Text>
                 <Text style={styles.classRatio1}>Class Ratio (2 - 19)</Text>
-                <Text style={styles.classRatio2}>Class Ratio (20 - 39)</Text>
+                <Text style={styles.classRatio3}>Class Ratio (20 - 39)</Text>
+                <Text style={styles.classRatio2}>Class Ratio (40 - 99)</Text>
                 <Text style={styles.classRatio4}>Class Ratio (100+)</Text>
                 <Text style={styles.facultyRatio1}>Faculty Ratio</Text>
                 <Text style={styles.femaleFaculty1}>Female Faculty</Text>
@@ -600,25 +563,20 @@ export default class ViewCollegeDetail extends React.Component {
               </View>
               <View style={styles.moreInfoLeftGrp5Filler}></View>
               <View style={styles.moreInfoRightGrp5}>
-                <Text style={styles.ratio1}>64%</Text>
-                <Text style={styles.ratio2}>18%</Text>
-                <Text style={styles.ratio4}>95%</Text>
-                <Text style={styles.frationTxt1}>3 : 1</Text>
-                <Text style={styles.feRatioTxt1}>28%</Text>
-                <Text style={styles.mRatioTxt1}>72%</Text>
+                <Text style={styles.ratio1}>{this.state.collegeObj6_1.classRadio2_19}</Text>
+                <Text style={styles.ratio2}>{this.state.collegeObj6_1.classRadio20_39}</Text>
+                <Text style={styles.ratio3}>{this.state.collegeObj6_1.classRadio40_99}</Text>
+                <Text style={styles.ratio4}>{this.state.collegeObj6_2.classRadio100}</Text>
+                <Text style={styles.frationTxt1}>{this.state.collegeObj6_2.FacultyRatio}</Text>
+                <Text style={styles.feRatioTxt1}>{this.state.collegeObj6_2.FemFaculty}</Text>
+                <Text style={styles.mRatioTxt1}>{this.state.collegeObj6_2.malFaculty}</Text>
               </View>
             </View>
             <View style={styles.descriptionGrp2}>
               <Text style={styles.pupularMajors1}>Pupular Majors (ranked)</Text>
               <Text style={styles.descriptionTxt2}>
-                MIT is an elite private college located in Cambridge,
-                Massachusetts in the Boston Area. It is a small institution with
-                an enrollment of 4,501 undergraduate students. Admissions is
-                extremely competitive as the MIT acceptance rate is only 7%.
-                Popular majors include Computer Science, Mechanical Engineering,
-                and Mathematics. Graduating 95% of students, MIT alumni go on to
-                earn a starting salary of $82,200.
-            </Text>
+                {this.state.collegeObj6_2.popMajor}
+              </Text>
             </View>
           </View>
         </ScrollView>
@@ -712,7 +670,7 @@ const styles = StyleSheet.create({
   tagsIcons_2: {
     color: "rgba(98,98,98,1)",
     fontSize: 20,
-    marginLeft: '19%'
+    marginLeft: '15%'
   },
   satActOptional: {
 
@@ -891,7 +849,7 @@ const styles = StyleSheet.create({
   },
   grp2: {
     width: "93%",
-    height: 669,
+    height: 685,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
     marginTop: 16,
@@ -900,7 +858,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   descriptionGrp1: {
-    height: 261,
+    height: 'auto',
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5
   },
@@ -1003,7 +961,7 @@ const styles = StyleSheet.create({
     width: 195,
     fontSize: 16,
     textAlign: "left",
-    marginTop: 35
+    marginTop: '19%'
   },
   aConferenceTxt1: {
 
@@ -1068,7 +1026,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   moreInfoLeftGrp2: {
-    width: 205,
+    width: 280,
     marginLeft: 15,
     marginTop: 10
   },
@@ -1081,37 +1039,37 @@ const styles = StyleSheet.create({
     marginRight: -28
   },
   rankTitle1: {
-    width: 210,
+    width: 240,
     color: "#121212",
     fontSize: 16,
     marginTop: 11
   },
   rankTitle2: {
-    width: 210,
+    width: 240,
     color: "#121212",
     fontSize: 16,
     marginTop: 10
   },
   rankTitle3: {
-    width: 210,
+    width: 240,
     color: "#121212",
     fontSize: 16,
     marginTop: 10
   },
   rankTitle4: {
-    width: 210,
+    width: 240,
     color: "#121212",
     fontSize: 16,
     marginTop: 5
   },
   rankTitle5: {
-    width: 210,
+    width: 240,
     color: "#121212",
     fontSize: 16,
     marginTop: 10
   },
   rankTitle6: {
-    width: 210,
+    width: 240,
     color: "#121212",
     fontSize: 16,
     marginTop: 8
@@ -1251,7 +1209,7 @@ const styles = StyleSheet.create({
   highSchoolTrans1: {
     color: "#121212",
     fontSize: 16,
-    marginTop: '34%',
+    marginTop: '20%',
     marginBottom: '5%'
   },
   uniPrecourse1: {
@@ -1353,7 +1311,7 @@ const styles = StyleSheet.create({
 
     color: "#121212",
     fontSize: 16,
-    marginTop: '24%'
+    marginTop: 40,
   },
   uniPrecourseTxt1: {
 
@@ -1822,19 +1780,19 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   ratio4: {
-    marginTop: '2%',
+    marginTop: '-16%',
     color: "#121212",
     fontSize: 16
   },
   frationTxt1: {
     color: "#121212",
     fontSize: 16,
-    marginTop: '22%'
+    marginTop: '11%'
   },
   feRatioTxt1: {
     color: "#121212",
     fontSize: 16,
-    marginTop: '12%'
+    marginTop: '25%'
   },
   mRatioTxt1: {
 
