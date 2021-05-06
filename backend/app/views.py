@@ -626,8 +626,6 @@ def view_college_single(college_name):
 
 
 # Major Resources
-
-
 @app.route("/api/v1.2/resources/major/view/subjects/<sub>")
 def view_major_subjectIndex(sub):
     # view all majors that follow unders a specific subject
@@ -1033,8 +1031,6 @@ def getRecommend_major(email):
 
 
 # Bookmarks
-
-
 @app.route("/api/v1.2/users/id/<email>/bookmarks",  methods=["GET", "POST", "PATCH"])
 def getBookmarkDoc_all(email):
     if request.method == "GET" and request.is_json:
