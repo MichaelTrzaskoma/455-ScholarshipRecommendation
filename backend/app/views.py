@@ -14,7 +14,8 @@ from .utilities import *
 
 MINS_TIL_ACTIVE_CODE_EXPIRY = 15
 MINS_TIL_RESET_CODE_EXPIRY = 60
-db = MongoClient(app.config["DB_IP"], app.config["DB_PORT"])
+
+db = MongoClient(app.config["DB_IP"], app.config["DB_PORT"], serverSelectionTimeoutMS=10, connectTimeoutMS=20000)
 scholarDb = db.test
 scholar_ref = db.test.scholarships
 college_ref = db.test.colleges
@@ -265,6 +266,13 @@ def auth(email):
                         existing_device = device_info[0]
 
                         # TODO: compare password here
+                        password = income_data["paswrd"]
+                        # salt and hash password
+                        saltedPass = password + app.config['SALT_VALUE']
+                        hashPass = hashlib.md5(saltedPass.encode()).hexdigest()
+
+                        if(hashPass != usr_profile_data["paswrd"]):
+                            return make_response(jsonify({"mesg": "unauthorized", "no email and password match"), 400)
 
                         # generate a new device token
                         secret_code = generateCode()
@@ -286,7 +294,13 @@ def auth(email):
                 # this is new login with a new device
 
                 # TODO: compare password here
+                password = income_data["paswrd"]
+                # salt and hash password
+                saltedPass = password + app.config['SALT_VALUE']
+                hashPass = hashlib.md5(saltedPass.encode()).hexdigest()
 
+                if(hashPass != usr_profile_data["paswrd"]):
+                    return make_response(jsonify({"mesg": "unauthorized", "no email and password match"), 400)
                 # generate a new device token
                 secret_code = generateCode()
                 timer = int(time.mktime(

@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-   <image src="https://shields.io/badge/python-3.8.x-blue??style=flat&logo=python&logoColor=white" />
+   <image src="https://shields.io/badge/python-3.7.x-blue??style=flat&logo=python&logoColor=white" />
    <image src="https://img.shields.io/badge/JavaScript-blue?style=flat&logo=JavaScript&logoColor=white&color=blue" />
    <image src="https://img.shields.io/badge/react-0.63.2-blue?style=flat&logo=react&logoColor=white&label=React%20Native" />
    <image src="https://img.shields.io/badge/npm-7.6.3-blue?style=flat&logo=npm&logoColor=white" />
@@ -54,7 +54,7 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 
 * backend:
     
-    > Create a virtual env:
+    > Create a virtual env (if you have not):
     ```
     cd backend
     source env/bin/activate
@@ -63,13 +63,19 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
    
    <br>
 
-    >Production Env
+    >Production Env with Docker:
     ```
-    cd backend
-    export FLASK_APP=run.py
-    export FLASK_ENV=production
-    python run.py
+    # build a container
+    docker-compose build
+
+    # view the container info (get container ID)
+    docker-compose images
+
+    # run the docker in port 8080
+    docker run -p 8080:8080 -it <container ID>
     ```
+
+    * Access the URL: <a href="localhost:8080">localhost:8080</a>
    
    <br>
 
@@ -81,14 +87,14 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
     python run.py
     ```
 
-    * Access the URL: <a href="localhost:5000">localhost:5000</a>
+    * Access the URL: <a href="localhost:8080">localhost:8080</a>
    
    <br>
 
     >Test Env with Ngrok
    ```
    cd <ngrok directory>
-   ./ngrok http 5000
+   ./ngrok http 8080
    ```
 
 <br>
