@@ -15,7 +15,7 @@ export default class ViewRecommendTbl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: this.props.route.params.email,
+      email: this.props.route.params.usrProfile.email,
       isLoading: true,
       scholarArr: [],
       stagingArea: [],

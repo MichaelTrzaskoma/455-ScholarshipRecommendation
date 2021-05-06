@@ -5,7 +5,7 @@ from flask import json, render_template, jsonify, request, make_response, redire
 import mailhandler
 import hashlib
 from pymongo import MongoClient
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 import time
 
 from .auths import generateCode, init_usrProfileDB, check_email_verification_status, encode_jwt, update_deviceInfo, initial_device, update_deviceInfo, validate_token, validate_email
@@ -14,7 +14,7 @@ from .utilities import *
 
 MINS_TIL_ACTIVE_CODE_EXPIRY = 15
 MINS_TIL_RESET_CODE_EXPIRY = 60
-db = MongoClient("mongodb://localhost:27017/")
+db = MongoClient(app.config["DB_IP"], app.config["DB_PORT"])
 scholarDb = db.test
 scholar_ref = db.test.scholarships
 college_ref = db.test.colleges
@@ -176,7 +176,7 @@ def error():
     return render_template("public/error.html", error=errorVal)
 
 
-@app.route("/api/v1.2/managements/users/<email>/auth")
+@app.route("/api/v1.2/managements/users/<email>", methods=["POST"])
 def auth(email):
     '''
     user login feature
@@ -202,13 +202,13 @@ def auth(email):
                 --> todo: push the device to devices arr
     '''
 
-    if request.method == "GET":
+    if request.method == "POST":
 
         income_data = request.json
 
         # validate the inputs and incoming data
 
-        if 'email' not in income_data:
+        if '@' not in email:
             return make_response(jsonify({"mesg": "An email is needed!"}), 400)
 
         if 'paswrd' not in income_data:
@@ -270,7 +270,7 @@ def auth(email):
                         secret_code = generateCode()
 
                         timer = int(time.mktime(
-                            (datetime.utcnow() + timedelta(days=7)).timetuple()))
+                            (datetime.datetime.utcnow() + timedelta(days=7)).timetuple()))
 
                         # generate a new jwt code by using current device info
                         new_jwt = encode_jwt(
@@ -280,7 +280,7 @@ def auth(email):
                         update_deviceInfo(
                             user_Ref, email, existing_device['unique_id'], new_jwt, income_data['unique_id'], secret_code, timer)
 
-                        return make_response(jsonify({"mesg": "authorized!", "token": str(new_jwt)}), 202)
+                        return make_response(jsonify({"mesg": "authorized", "token": str(new_jwt)}), 202)
 
                 # no matched device uuid found or doesn't ever have device info
                 # this is new login with a new device
@@ -290,7 +290,7 @@ def auth(email):
                 # generate a new device token
                 secret_code = generateCode()
                 timer = int(time.mktime(
-                    (datetime.utcnow() + timedelta(days=7)).timetuple()))
+                    (datetime.datetime.utcnow() + timedelta(days=7)).timetuple()))
 
                 # generate a new jwt code by using current device info
                 new_jwt = encode_jwt(

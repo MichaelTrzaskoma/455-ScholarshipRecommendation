@@ -7,7 +7,7 @@ import TabViewSurvey from './TabViewSurvey';
 // import AddCollege from "../ui/AddCollege";
 import MultiSurveyBtn from "../ui/MultiSurveyBtn";
 import HistoryBtn from "../ui/HistoryBtn";
-import { deleteSecureStorage, getSecureStorage } from "../functions/secureStorage";
+import { deleteSecureStorage } from "../functions/secureStorage";
 
 export default function AccScreen({ usrInfo }) {
 

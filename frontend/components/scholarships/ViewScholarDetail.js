@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { getDeviceID } from "../../functions/deviceUniqueID";
 import { getSecureStorage } from "../../functions/secureStorage";
-
+ 
 export default class ViewScholarDetail extends React.Component {
   constructor(props) {
     super(props);

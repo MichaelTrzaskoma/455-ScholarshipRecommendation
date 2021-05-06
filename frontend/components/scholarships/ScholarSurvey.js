@@ -9,7 +9,7 @@ import {
 	Platform,
 	Keyboard,
 	TouchableWithoutFeedback,
-	Dimensions,
+	// Dimensions,
 	StatusBar
 } from "react-native";
 // import InputScreen2 from "./InputInfoScreen2";
@@ -21,8 +21,8 @@ import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { MaterialIcons, Feather } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import CollapsibleView from "@eliav2/react-native-collapsible-view";
-// import { Feather } from '@expo/vector-icons';
-
+// import { storeData, getData } from "../../functions/secureStorage";
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const items = [
 	// this is the parent or 'item'
@@ -1304,6 +1304,8 @@ class InputScreen extends React.Component {
 			firstTime: 0,
 			currentMethod: "POST",
 
+			jwt: "",
+			uuid: "",
 		};
 		this.handleGender = this.handleGender.bind(this);
 		this.handleDOB = this.handleDOB.bind(this);
@@ -1440,7 +1442,7 @@ class InputScreen extends React.Component {
 
 	checkAge = () => {
 		let exists = false;
-		console.log("DOB value: " + this.state.dob);
+		// console.log("DOB value: " + this.state.dob);
 		let length_dob = String(this.state.dob).length;
 		if (length_dob > 0) {
 			exists = true;
@@ -1557,11 +1559,9 @@ class InputScreen extends React.Component {
 		}
 	}
 
-
 	getExistingData = () => {
 		//insert correct URL for user's profile
 		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
-
 
 		fetch(URL, {
 			method: 'GET',
@@ -1571,6 +1571,7 @@ class InputScreen extends React.Component {
 			},
 		})
 			.then((response) => response.json())
+			
 			.then((json) => {
 				console.log("Exisiting Data: " + JSON.stringify(json));
 				console.log("Email from ScholarSurvey.js: " + this.state.email);
@@ -1593,8 +1594,11 @@ class InputScreen extends React.Component {
 			});
 	}
 
-	componentDidMount() {
+	UNSAFE_componentWillUpdate() {
 		this.getExistingData();
+		AsyncStorage.getItem('JWT').then((value) => this.setState({ jwt: value }));
+		AsyncStorage.getItem('uuid').then((value) => this.setState({ uuid: value }));
+		console.log("UUID: " + this.state.uuid + "\n" + "JWT: " + this.state.jwt);
 	}
 
 
