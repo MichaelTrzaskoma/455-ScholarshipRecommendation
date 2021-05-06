@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { getDeviceID } from "../../functions/deviceUniqueID";
 import { getSecureStorage } from "../../functions/secureStorage";
-
+ 
 export default class ViewScholarDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +35,7 @@ export default class ViewScholarDetail extends React.Component {
 
   handleBookmark () {
     //Insert API Call here
-    let URL = "http://8934d83a4df8.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
+    let URL = "http://96858b0d3196.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
     fetch(URL, {
       method: "POST",
       headers: {

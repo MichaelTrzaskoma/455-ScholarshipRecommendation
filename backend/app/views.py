@@ -5,7 +5,7 @@ from flask import json, render_template, jsonify, request, make_response, redire
 import mailhandler
 import hashlib
 from pymongo import MongoClient
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 import time
 
 from .auths import generateCode, init_usrProfileDB, check_email_verification_status, encode_jwt, update_deviceInfo, initial_device, update_deviceInfo, validate_token, validate_email
@@ -14,7 +14,7 @@ from .utilities import *
 
 MINS_TIL_ACTIVE_CODE_EXPIRY = 15
 MINS_TIL_RESET_CODE_EXPIRY = 60
-db = MongoClient("mongodb://localhost:27017/")
+db = MongoClient(app.config["DB_IP"], app.config["DB_PORT"])
 scholarDb = db.test
 scholar_ref = db.test.scholarships
 college_ref = db.test.colleges
@@ -176,7 +176,7 @@ def error():
     return render_template("public/error.html", error=errorVal)
 
 
-@app.route("/api/v1.2/managements/users/<email>/auth")
+@app.route("/api/v1.2/managements/users/<email>", methods=["POST"])
 def auth(email):
     '''
     user login feature
@@ -202,13 +202,13 @@ def auth(email):
                 --> todo: push the device to devices arr
     '''
 
-    if request.method == "GET":
+    if request.method == "POST":
 
         income_data = request.json
 
         # validate the inputs and incoming data
 
-        if 'email' not in income_data:
+        if '@' not in email:
             return make_response(jsonify({"mesg": "An email is needed!"}), 400)
 
         if 'paswrd' not in income_data:
@@ -270,7 +270,7 @@ def auth(email):
                         secret_code = generateCode()
 
                         timer = int(time.mktime(
-                            (datetime.utcnow() + timedelta(days=7)).timetuple()))
+                            (datetime.datetime.utcnow() + timedelta(days=7)).timetuple()))
 
                         # generate a new jwt code by using current device info
                         new_jwt = encode_jwt(
@@ -280,7 +280,7 @@ def auth(email):
                         update_deviceInfo(
                             user_Ref, email, existing_device['unique_id'], new_jwt, income_data['unique_id'], secret_code, timer)
 
-                        return make_response(jsonify({"mesg": "authorized!", "token": str(new_jwt)}), 202)
+                        return make_response(jsonify({"mesg": "authorized", "token": str(new_jwt)}), 202)
 
                 # no matched device uuid found or doesn't ever have device info
                 # this is new login with a new device
@@ -290,7 +290,7 @@ def auth(email):
                 # generate a new device token
                 secret_code = generateCode()
                 timer = int(time.mktime(
-                    (datetime.utcnow() + timedelta(days=7)).timetuple()))
+                    (datetime.datetime.utcnow() + timedelta(days=7)).timetuple()))
 
                 # generate a new jwt code by using current device info
                 new_jwt = encode_jwt(
@@ -626,8 +626,6 @@ def view_college_single(college_name):
 
 
 # Major Resources
-
-
 @app.route("/api/v1.2/resources/major/view/subjects/<sub>")
 def view_major_subjectIndex(sub):
     # view all majors that follow unders a specific subject
@@ -1033,15 +1031,14 @@ def getRecommend_major(email):
 
 
 # Bookmarks
-
-
 @app.route("/api/v1.2/users/id/<email>/bookmarks",  methods=["GET", "POST", "PATCH"])
 def getBookmarkDoc_all(email):
-
     if request.method == "GET" and request.is_json:
-
-        return make_response(jsonify(getBookmarks(user_Ref, email)), 202)
-
+        income_data = request.json
+        docType = None
+        if 'docType' in income_data:
+            docType = income_data['docType']
+        return make_response(jsonify(getBookmarks(user_Ref, email, docType)), 202)
     elif request.method == "POST" and request.is_json:
         # users try to append a new bookmark item
 
@@ -1051,17 +1048,29 @@ def getBookmarkDoc_all(email):
         income_data = request.json
 
         # validate the inputs and incoming data
+        remove = False
         if len(email) < 1:
             return make_response(jsonify({"mesg": "An email is needed!"}), 400)
+
+        if 'unique_id' not in income_data:
+            return make_response(jsonify({"mesg": "Device is not supported!"}), 400)
 
         if 'title' not in income_data:
             return make_response(jsonify({"mesg": "A title is needed!"}), 400)
 
+        title = income_data["title"]
+
+        if 'action' in income_data:
+            if(income_data['action'] == "remove"):
+                res = removeBookmark(user_Ref, email, title)
+                
+                if(res):
+                    return make_response(jsonify({"emsg": "Removed!"}), 202)
+                else:
+                    return make_response(jsonify({"emsg": "Removal failed!"}), 400)
+
         if 'type' not in income_data:
             return make_response(jsonify({"mesg": "A type is needed!"}), 400)
-
-        if 'unique_id' not in income_data:
-            return make_response(jsonify({"mesg": "Device is not supported!"}), 400)
 
         title = income_data["title"]
         docType = income_data["type"]
@@ -1082,14 +1091,17 @@ def getBookmarkDoc_all(email):
 # Recent Viewed (aka history)
 @app.route("/api/v1.2/users/id/<email>/recent",  methods=["GET", "POST"])
 def getRecentDoc(email):
-
     if request.method == "GET" and request.is_json:
-
-        return make_response(jsonify(getRecent(user_Ref, email)), 202)
-
+        income_data = request.json
+        numDocs = 15
+        docType = None
+        if 'numDocs' in income_data:
+            numDocs = int(income_data['numDocs'])
+        if 'docType' in income_data:
+            docType = income_data['docType']
+        return make_response(jsonify(getRecent(user_Ref, email, numDocs, docType)), 202)
     elif request.method == "POST" and request.is_json:
         income_data = request.json
-
         # validate the inputs and incoming data
         if len(email) < 1:
             return make_response(jsonify({"mesg": "An email is needed!"}), 400)

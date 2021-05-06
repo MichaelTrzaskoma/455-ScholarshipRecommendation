@@ -83,8 +83,8 @@ export default class ViewAllScholar extends React.Component {
                 // we are able to navigate to "ViewSubCate"
                 // since it is one of the stack screens in App.js
                 // therefore, no need to import in this screen
-                this.props.navigation.navigate('ViewCollegeDetail', {
-                  title: (item.key + " List"),
+                this.props.navigation.navigate('ViewCollegeSubCate', {
+                  title: item.key,
                   itemKey: item.key,
                 });
               }}

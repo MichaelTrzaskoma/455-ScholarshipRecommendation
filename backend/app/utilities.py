@@ -1,7 +1,5 @@
 # This is a utilities file for the APIs and recommendation model
-import datetime
-
-MAX_ENTRIES_FOR_RECENT = 15
+from datetime import datetime
 
 def trimmer_keySlash(key):
     # trim the slash from the key
@@ -143,17 +141,34 @@ def check_nest3(cursor, key1, key2, key3):
     return False
 
 
-def getBookmarks(user_Ref, email):
+def getBookmarks(user_Ref, email, lstType = None):
     if(user_Ref.count_documents({'_id': email, 'bookmarks': {'$exists': True}}) == 0):
-        return {"existing": int(0)}
-
-    user = user_Ref.find_one({'_id':email})
-
-    return user["bookmarks"]
-
+        return {"existing": int(0)} 
+    if(lstType == None):
+        user = user_Ref.find_one({'_id':email})
+        return user["bookmarks"]
+    docs = user_Ref.aggregate([
+        { '$match': {"_id":email}},
+        { '$unwind': '$bookmarks'},
+        { '$match': {'bookmarks.type': lstType}},
+        { '$project': {"bookmarks": 1, "_id": 0}}
+    ])
+    bkmrks = []
+    for doc in docs:
+        bkmrks.append(doc['bookmarks'])
+    return bkmrks
 
 def addBookmark(user_Ref, email, title, lstType):
     if(user_Ref.count_documents({'_id': email}) == 0):
+        return False
+
+    docs = user_Ref.aggregate([
+        { '$match': {"_id":email}},
+        { '$unwind': '$bookmarks'},
+        { '$match': {'bookmarks.title': title}},
+        { '$project': {"bookmarks": 1, "_id": 0}}
+    ])
+    for doc in docs:
         return False
 
     user_Ref.update_one(
@@ -170,19 +185,61 @@ def addBookmark(user_Ref, email, title, lstType):
     )
     return True
 
+def removeBookmark(user_Ref, email, title):
+    if(user_Ref.count_documents({'_id': email, 'bookmarks': {'$exists': True}}) == 0):
+        return False
+    user_Ref.update(
+        {
+            "_id": email
+        },
+        {
+            '$pull': { "bookmarks": {"title": title } }
+        }
+    )
+    
 
-def getRecent(user_Ref, email):
+def getRecent(user_Ref, email, numRes, lstType = None):
     if(user_Ref.count_documents({'_id': email, 'recent_viewed': {'$exists': True}}) == 0):
         return {"existing": int(0)}
-
-    user = user_Ref.find_one({'_id':email})
-
-    return user["recent_viewed"][-MAX_ENTRIES_FOR_RECENT:]
-
+    if(lstType == None):
+        user = user_Ref.find_one({'_id':email})
+        return user["recent_viewed"][-numRes:]
+    docs = user_Ref.aggregate([
+        { '$match': {"_id":email}},
+        { '$unwind': '$recent_viewed'},
+        { '$match': {'recent_viewed.type': lstType}},
+        { '$project': {"recent_viewed": 1, "_id": 0}}
+    ])
+    recent = []
+    for doc in docs:
+        recent.append(doc['recent_viewed'])
+    return recent
 
 def addRecent(user_Ref, email, title, lstType):
     if(user_Ref.count_documents({'_id': email}) == 0):
         return False
+    docs = user_Ref.aggregate([
+        { '$match': {"_id":email}},
+        { '$unwind': '$recent_viewed'},
+        { '$match': {'recent_viewed.title': title}},
+        { '$project': {"recent_viewed": 1, "_id": 0}}
+    ])
+    update = False
+    for doc in docs:
+        user_Ref.update(
+            {
+                "_id": email,
+                "recent_viewed.title": doc["recent_viewed"]["title"]
+            },
+            {
+                '$set': {
+                    "recent_viewed.$.timeAdded": datetime.utcnow()
+                }
+            }
+        )
+        update = True
+    if(update):
+        return True
     user_Ref.update_one(
         {'_id':email},
         {
