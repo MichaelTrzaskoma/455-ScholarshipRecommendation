@@ -265,6 +265,13 @@ def auth(email):
                         existing_device = device_info[0]
 
                         # TODO: compare password here
+                        password = income_data["paswrd"]
+                        # salt and hash password
+                        saltedPass = password + app.config['SALT_VALUE']
+                        hashPass = hashlib.md5(saltedPass.encode()).hexdigest()
+
+                        if(hashPass != usr_profile_data["paswrd"]):
+                            return make_response(jsonify({"mesg": "unauthorized", "no email and password match"), 400)
 
                         # generate a new device token
                         secret_code = generateCode()
@@ -286,7 +293,13 @@ def auth(email):
                 # this is new login with a new device
 
                 # TODO: compare password here
+                password = income_data["paswrd"]
+                # salt and hash password
+                saltedPass = password + app.config['SALT_VALUE']
+                hashPass = hashlib.md5(saltedPass.encode()).hexdigest()
 
+                if(hashPass != usr_profile_data["paswrd"]):
+                    return make_response(jsonify({"mesg": "unauthorized", "no email and password match"), 400)
                 # generate a new device token
                 secret_code = generateCode()
                 timer = int(time.mktime(
