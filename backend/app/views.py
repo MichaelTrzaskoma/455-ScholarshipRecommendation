@@ -14,7 +14,8 @@ from .utilities import *
 
 MINS_TIL_ACTIVE_CODE_EXPIRY = 15
 MINS_TIL_RESET_CODE_EXPIRY = 60
-db = MongoClient(app.config["DB_IP"], app.config["DB_PORT"])
+
+db = MongoClient(app.config["DB_IP"], app.config["DB_PORT"], serverSelectionTimeoutMS=10, connectTimeoutMS=20000)
 scholarDb = db.test
 scholar_ref = db.test.scholarships
 college_ref = db.test.colleges
