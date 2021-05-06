@@ -1037,11 +1037,12 @@ def getRecommend_major(email):
 
 @app.route("/api/v1.2/users/id/<email>/bookmarks",  methods=["GET", "POST", "PATCH"])
 def getBookmarkDoc_all(email):
-
     if request.method == "GET" and request.is_json:
-
-        return make_response(jsonify(getBookmarks(user_Ref, email)), 202)
-
+        income_data = request.json
+        docType = None
+        if 'docType' in income_data:
+            docType = income_data['docType']
+        return make_response(jsonify(getBookmarks(user_Ref, email, docType)), 202)
     elif request.method == "POST" and request.is_json:
         # users try to append a new bookmark item
 
@@ -1082,14 +1083,17 @@ def getBookmarkDoc_all(email):
 # Recent Viewed (aka history)
 @app.route("/api/v1.2/users/id/<email>/recent",  methods=["GET", "POST"])
 def getRecentDoc(email):
-
     if request.method == "GET" and request.is_json:
-
-        return make_response(jsonify(getRecent(user_Ref, email)), 202)
-
+        income_data = request.json
+        numDocs = 15
+        docType = None
+        if 'numDocs' in income_data:
+            numDocs = int(income_data['numDocs'])
+        if 'docType' in income_data:
+            docType = income_data['docType']
+        return make_response(jsonify(getRecent(user_Ref, email, numDocs, docType)), 202)
     elif request.method == "POST" and request.is_json:
         income_data = request.json
-
         # validate the inputs and incoming data
         if len(email) < 1:
             return make_response(jsonify({"mesg": "An email is needed!"}), 400)
