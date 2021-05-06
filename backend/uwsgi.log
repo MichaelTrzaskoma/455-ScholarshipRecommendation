@@ -1,0 +1,1234 @@
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 08:49:09 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address :8080 fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x5608caef47a0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x5608caef47a0 pid: 108542 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 108542)
+spawned uWSGI worker 1 (pid: 108556, cores: 2)
+spawned uWSGI worker 2 (pid: 108558, cores: 2)
+spawned uWSGI worker 3 (pid: 108559, cores: 2)
+spawned uWSGI worker 4 (pid: 108562, cores: 2)
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+SIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 3 seconds
+worker 2 buried after 3 seconds
+worker 3 buried after 3 seconds
+worker 4 buried after 3 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 08:50:21 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:35673 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x56374f8a6db0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x56374f8a6db0 pid: 108866 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 108866)
+spawned uWSGI worker 1 (pid: 108880, cores: 2)
+spawned uWSGI worker 2 (pid: 108882, cores: 2)
+spawned uWSGI worker 3 (pid: 108884, cores: 2)
+spawned uWSGI worker 4 (pid: 108886, cores: 2)
+spawned uWSGI http 1 (pid: 108888)
+[2021-05-06 08:50:59,925] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 351, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 30s, Topology Description: <TopologyDescription id: 6093e60da4593b2b02790fcd, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 108886|app: 0|req: 1/1] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 08:50:29 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 30016 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[pid: 108884|app: 0|req: 1/2] 127.0.0.1 () {52 vars in 1206 bytes} [Thu May  6 08:51:00 2021] GET /favicon.ico => generated 232 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 108888)
+worker 3 buried after 1 seconds
+worker 1 buried after 3 seconds
+worker 2 buried after 3 seconds
+worker 4 buried after 3 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 08:52:29 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:46107 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x556c79fdedb0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x556c79fdedb0 pid: 109214 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 109214)
+spawned uWSGI worker 1 (pid: 109231, cores: 2)
+spawned uWSGI worker 2 (pid: 109233, cores: 2)
+spawned uWSGI worker 3 (pid: 109234, cores: 2)
+spawned uWSGI worker 4 (pid: 109236, cores: 2)
+spawned uWSGI http 1 (pid: 109239)
+[2021-05-06 08:53:02,360] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 351, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 30s, Topology Description: <TopologyDescription id: 6093e68d3a6599769f36ae3f, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 109236|app: 0|req: 2/1] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 08:52:32 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 30018 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[2021-05-06 08:53:09,789] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 351, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 30s, Topology Description: <TopologyDescription id: 6093e68d3a6599769f36ae3f, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 109234|app: 0|req: 2/2] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 08:52:39 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 30017 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[2021-05-06 08:53:21,854] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 351, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 30s, Topology Description: <TopologyDescription id: 6093e68d3a6599769f36ae3f, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 109234|app: 0|req: 2/3] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 08:52:51 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 30013 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 1)
+[2021-05-06 08:53:22,098] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 351, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 30s, Topology Description: <TopologyDescription id: 6093e68d3a6599769f36ae3f, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 109236|app: 0|req: 2/4] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 08:52:52 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 30013 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 1)
+[2021-05-06 08:53:22,279] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 351, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 30s, Topology Description: <TopologyDescription id: 6093e68d3a6599769f36ae3f, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 109233|app: 0|req: 1/5] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 08:52:52 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 30016 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[2021-05-06 08:53:22,452] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 351, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 30s, Topology Description: <TopologyDescription id: 6093e68d3a6599769f36ae3f, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 109231|app: 0|req: 2/6] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 08:52:52 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 30016 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[2021-05-06 08:53:24,069] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 351, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 30s, Topology Description: <TopologyDescription id: 6093e68d3a6599769f36ae3f, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 109231|app: 0|req: 2/7] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 08:52:54 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 30013 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 1)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 109239)
+worker 1 buried after 3 seconds
+worker 2 buried after 3 seconds
+worker 3 buried after 3 seconds
+worker 4 buried after 3 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 08:55:02 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:36225 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x560d5433dde0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x560d5433dde0 pid: 109746 (default app)
+mountpoint  already configured. skip.
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 109746)
+spawned uWSGI worker 1 (pid: 109760, cores: 2)
+spawned uWSGI worker 2 (pid: 109762, cores: 2)
+spawned uWSGI worker 3 (pid: 109763, cores: 2)
+spawned uWSGI worker 4 (pid: 109765, cores: 2)
+spawned uWSGI http 1 (pid: 109768)
+[2021-05-06 08:55:39,070] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 351, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 30s, Topology Description: <TopologyDescription id: 6093e72697602dd34d41d9af, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 109762|app: 0|req: 1/1] 127.0.0.1 () {52 vars in 1306 bytes} [Thu May  6 08:55:09 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 30016 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 109768)
+worker 1 buried after 3 seconds
+worker 2 buried after 3 seconds
+worker 3 buried after 3 seconds
+worker 4 buried after 3 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 08:57:31 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:37189 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x55d4eebeede0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x55d4eebeede0 pid: 110119 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 110119)
+spawned uWSGI worker 1 (pid: 110133, cores: 2)
+spawned uWSGI worker 2 (pid: 110135, cores: 2)
+spawned uWSGI worker 3 (pid: 110136, cores: 2)
+spawned uWSGI worker 4 (pid: 110138, cores: 2)
+spawned uWSGI http 1 (pid: 110141)
+[2021-05-06 08:58:08,310] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 351, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 30s, Topology Description: <TopologyDescription id: 6093e7bcb2a4e593cb9f9a4c, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 110138|app: 0|req: 1/1] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 08:57:38 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 30016 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 110141)
+worker 1 buried after 3 seconds
+worker 2 buried after 3 seconds
+worker 3 buried after 3 seconds
+worker 4 buried after 3 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 08:58:37 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:37013 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x55cc8dbeee20
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+unable to find symbol _binary_config_py_start
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 08:58:53 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:42205 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x561b3e2f6e20
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+unable to find symbol _binary_config.py_start
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 08:59:12 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:39389 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x55f2fd532de0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x55f2fd532de0 pid: 110446 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 110446)
+spawned uWSGI worker 1 (pid: 110460, cores: 2)
+spawned uWSGI worker 2 (pid: 110462, cores: 2)
+spawned uWSGI worker 3 (pid: 110464, cores: 2)
+spawned uWSGI worker 4 (pid: 110466, cores: 2)
+spawned uWSGI http 1 (pid: 110468)
+[2021-05-06 08:59:46,018] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 351, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 30s, Topology Description: <TopologyDescription id: 6093e820e11600abd8d7fc90, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 110466|app: 0|req: 1/1] 127.0.0.1 () {52 vars in 1306 bytes} [Thu May  6 08:59:16 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 30016 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[2021-05-06 09:03:32,256] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 351, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 30s, Topology Description: <TopologyDescription id: 6093e820e11600abd8d7fc90, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 110466|app: 0|req: 2/2] 127.0.0.1 () {52 vars in 1306 bytes} [Thu May  6 09:03:02 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 30013 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 1)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 110468)
+worker 1 buried after 3 seconds
+worker 2 buried after 3 seconds
+worker 3 buried after 3 seconds
+worker 4 buried after 3 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 09:04:08 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:35901 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x55babeb16de0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+18.116.165.210
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x55babeb16de0 pid: 111299 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 111299)
+spawned uWSGI worker 1 (pid: 111313, cores: 2)
+spawned uWSGI worker 2 (pid: 111315, cores: 2)
+spawned uWSGI worker 3 (pid: 111316, cores: 2)
+spawned uWSGI worker 4 (pid: 111318, cores: 2)
+spawned uWSGI http 1 (pid: 111321)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 111321)
+worker 1 buried after 3 seconds
+worker 2 buried after 3 seconds
+worker 3 buried after 3 seconds
+worker 4 buried after 3 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 09:08:37 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:38811 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x55d11ab97de0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+DB IP: 18.116.165.210
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x55d11ab97de0 pid: 112092 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 112092)
+spawned uWSGI worker 1 (pid: 112106, cores: 2)
+spawned uWSGI worker 2 (pid: 112108, cores: 2)
+spawned uWSGI worker 3 (pid: 112110, cores: 2)
+spawned uWSGI worker 4 (pid: 112112, cores: 2)
+spawned uWSGI http 1 (pid: 112113)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 112113)
+worker 1 buried after 3 seconds
+worker 2 buried after 3 seconds
+worker 3 buried after 3 seconds
+Thu May  6 09:09:42 2021 - worker 4 (pid: 112112) is taking too much time to die...NO MERCY !!!
+worker 4 buried after 1 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 09:10:30 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:34475 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x5626b0486de0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+DB IP: 18.116.165.210
+Traceback (most recent call last):
+  File "run.py", line 1, in <module>
+    from app import app
+  File "./app/__init__.py", line 21, in <module>
+    from app import views
+  File "./app/views.py", line 18, in <module>
+    scholarDb = app.db.test
+AttributeError: 'Flask' object has no attribute 'db'
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 112254)
+spawned uWSGI worker 1 (pid: 112266, cores: 2)
+spawned uWSGI worker 2 (pid: 112268, cores: 2)
+spawned uWSGI worker 3 (pid: 112270, cores: 2)
+spawned uWSGI worker 4 (pid: 112272, cores: 2)
+spawned uWSGI http 1 (pid: 112274)
+--- no python application found, check your startup logs for errors ---
+[pid: 112272|app: -1|req: -1/1] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 09:10:34 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 112272|app: -1|req: -1/2] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 09:10:35 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 112268|app: -1|req: -1/3] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 09:10:35 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 112270|app: -1|req: -1/4] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 09:10:35 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 112268|app: -1|req: -1/5] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 09:10:56 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 112274)
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 09:11:01 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:45467 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x5559e53c3de0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+DB IP: 18.116.165.210
+Traceback (most recent call last):
+  File "run.py", line 1, in <module>
+    from app import app
+  File "./app/__init__.py", line 24, in <module>
+    from app import views
+  File "./app/views.py", line 18, in <module>
+    scholarDb = app.db.test
+AttributeError: 'Flask' object has no attribute 'db'
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 112387)
+spawned uWSGI worker 1 (pid: 112399, cores: 2)
+spawned uWSGI worker 2 (pid: 112401, cores: 2)
+spawned uWSGI worker 3 (pid: 112403, cores: 2)
+spawned uWSGI worker 4 (pid: 112405, cores: 2)
+spawned uWSGI http 1 (pid: 112407)
+--- no python application found, check your startup logs for errors ---
+[pid: 112405|app: -1|req: -1/1] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 09:11:32 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 112405|app: -1|req: -1/2] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 09:11:33 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 112399|app: -1|req: -1/3] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 09:11:33 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 112407)
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 09:11:42 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:40151 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x55c74f54dde0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+DB IP: 18.116.165.210
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x55c74f54dde0 pid: 112518 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 112518)
+spawned uWSGI worker 1 (pid: 112532, cores: 2)
+spawned uWSGI worker 2 (pid: 112534, cores: 2)
+spawned uWSGI worker 3 (pid: 112536, cores: 2)
+spawned uWSGI worker 4 (pid: 112538, cores: 2)
+spawned uWSGI http 1 (pid: 112540)
+[2021-05-06 09:12:16,155] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 351, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 30s, Topology Description: <TopologyDescription id: 6093eb0e8f8d002186b34c89, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 112536|app: 0|req: 1/1] 127.0.0.1 () {52 vars in 1306 bytes} [Thu May  6 09:11:46 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 30016 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 112540)
+worker 1 buried after 3 seconds
+worker 2 buried after 3 seconds
+worker 3 buried after 3 seconds
+worker 4 buried after 3 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 09:27:24 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:41377 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x5613c1690de0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+DB IP: 18.116.165.210
+Traceback (most recent call last):
+  File "run.py", line 1, in <module>
+    from app import app
+  File "./app/__init__.py", line 21, in <module>
+    from app import views
+  File "./app/views.py", line 27
+    global connected
+    ^
+SyntaxError: name 'connected' is used prior to global declaration
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 114118)
+spawned uWSGI worker 1 (pid: 114120, cores: 2)
+spawned uWSGI worker 2 (pid: 114121, cores: 2)
+spawned uWSGI worker 3 (pid: 114123, cores: 2)
+spawned uWSGI worker 4 (pid: 114125, cores: 2)
+spawned uWSGI http 1 (pid: 114127)
+--- no python application found, check your startup logs for errors ---
+[pid: 114125|app: -1|req: -1/1] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 09:27:45 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 114125|app: -1|req: -1/2] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 09:28:03 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 114127)
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 09:28:06 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:34961 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x56331ed4dde0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+DB IP: 18.116.165.210
+Traceback (most recent call last):
+  File "run.py", line 1, in <module>
+    from app import app
+  File "./app/__init__.py", line 21, in <module>
+    from app import views
+  File "./app/views.py", line 34, in <module>
+    db = create_db_connection()
+  File "./app/views.py", line 24, in create_db_connection
+    if connected == 0:
+UnboundLocalError: local variable 'connected' referenced before assignment
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 114233)
+spawned uWSGI worker 1 (pid: 114245, cores: 2)
+spawned uWSGI worker 2 (pid: 114247, cores: 2)
+spawned uWSGI worker 3 (pid: 114249, cores: 2)
+spawned uWSGI worker 4 (pid: 114251, cores: 2)
+spawned uWSGI http 1 (pid: 114253)
+--- no python application found, check your startup logs for errors ---
+[pid: 114251|app: -1|req: -1/1] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 09:28:08 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 114249|app: -1|req: -1/2] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 09:28:37 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 114253)
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 09:28:43 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:43733 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x55afcbc2bde0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+DB IP: 18.116.165.210
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x55afcbc2bde0 pid: 114332 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 114332)
+spawned uWSGI worker 1 (pid: 114346, cores: 2)
+spawned uWSGI worker 2 (pid: 114348, cores: 2)
+spawned uWSGI worker 3 (pid: 114349, cores: 2)
+spawned uWSGI worker 4 (pid: 114351, cores: 2)
+spawned uWSGI http 1 (pid: 114354)
+[2021-05-06 09:28:47,691] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 370, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 0.01s, Topology Description: <TopologyDescription id: 6093ef0b8397f47f4d36f378, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 114351|app: 0|req: 1/1] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 09:28:47 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 504 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 114354)
+worker 1 buried after 3 seconds
+worker 2 buried after 3 seconds
+worker 3 buried after 3 seconds
+worker 4 buried after 3 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu May  6 09:29:48 2021] ***
+compiled with version: 10.3.0 on 24 April 2021 02:44:29
+os: Linux-5.11.0-16-generic #17-Ubuntu SMP Wed Apr 14 20:12:43 UTC 2021
+nodename: China-home
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /home/hui/projects/455-ScholarshipRecommendation/backend
+detected binary path: /home/hui/projects/455-ScholarshipRecommendation/backend/env/bin/uwsgi
+your processes number limit is 63247
+your memory page size is 4096 bytes
+detected max file descriptor number: 8192
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:44051 (port auto-assigned) fd 3
+Python version: 3.9.4 (default, Apr  4 2021, 19:38:44)  [GCC 10.2.1 20210401]
+Python main interpreter initialized at 0x555ad499dde0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+DB IP: 18.116.165.210
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x555ad499dde0 pid: 114476 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 114476)
+spawned uWSGI worker 1 (pid: 114490, cores: 2)
+spawned uWSGI worker 2 (pid: 114492, cores: 2)
+spawned uWSGI worker 3 (pid: 114494, cores: 2)
+spawned uWSGI worker 4 (pid: 114496, cores: 2)
+spawned uWSGI http 1 (pid: 114498)
+[2021-05-06 09:30:23,948] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 370, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 30s, Topology Description: <TopologyDescription id: 6093ef4cd8e70f941d7b3591, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 114494|app: 0|req: 1/1] 127.0.0.1 () {52 vars in 1307 bytes} [Thu May  6 09:29:53 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 30017 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[2021-05-06 09:31:38,633] ERROR in app: Exception on /api/v1.2/resources/scholarships/view/categories/general [GET]
+Traceback (most recent call last):
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app/views.py", line 370, in view_scholarship_generalCategory
+    for item in result:
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/hui/projects/455-ScholarshipRecommendation/backend/env/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No servers found yet, Timeout: 30s, Topology Description: <TopologyDescription id: 6093ef4cd8e70f941d7b3591, topology_type: Single, servers: [<ServerDescription ('18.116.165.210', 27017) server_type: Unknown, rtt: None>]>
+[pid: 114492|app: 0|req: 1/2] 127.0.0.1 () {52 vars in 1306 bytes} [Thu May  6 09:31:08 2021] GET /api/v1.2/resources/scholarships/view/categories/general => generated 290 bytes in 30017 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 114498)
+worker 1 buried after 3 seconds
+worker 2 buried after 3 seconds
+worker 3 buried after 3 seconds
+worker 4 buried after 3 seconds
+goodbye to uWSGI.

@@ -302,7 +302,7 @@ export default class App extends Component {
                 headerTintColor: 'white',
                 headerTitleStyle: {
                   fontWeight: 'bold',
-                  fontSize: 18,
+                  fontSize: 20,
                   color: "white",
                 },
               })}

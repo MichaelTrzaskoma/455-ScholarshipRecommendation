@@ -14,7 +14,8 @@ from .utilities import *
 
 MINS_TIL_ACTIVE_CODE_EXPIRY = 15
 MINS_TIL_RESET_CODE_EXPIRY = 60
-db = MongoClient(app.config["DB_IP"], app.config["DB_PORT"])
+
+db = MongoClient(app.config["DB_IP"], app.config["DB_PORT"], serverSelectionTimeoutMS=10, connectTimeoutMS=20000)
 scholarDb = db.test
 scholar_ref = db.test.scholarships
 college_ref = db.test.colleges
@@ -639,8 +640,6 @@ def view_college_single(college_name):
 
 
 # Major Resources
-
-
 @app.route("/api/v1.2/resources/major/view/subjects/<sub>")
 def view_major_subjectIndex(sub):
     # view all majors that follow unders a specific subject
@@ -1046,8 +1045,6 @@ def getRecommend_major(email):
 
 
 # Bookmarks
-
-
 @app.route("/api/v1.2/users/id/<email>/bookmarks",  methods=["GET", "POST", "PATCH"])
 def getBookmarkDoc_all(email):
     if request.method == "GET" and request.is_json:
