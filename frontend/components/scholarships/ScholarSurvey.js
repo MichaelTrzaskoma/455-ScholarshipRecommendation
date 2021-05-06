@@ -1316,34 +1316,34 @@ class InputScreen extends React.Component {
 
 	//handle functions
 	handleSAT(text) {
-		let textInt = parseInt(text, 10);
-		if (text.length > 2 && textInt >= 400 && textInt <= 1600) {
+		//let textInt = parseInt(text, 10);
+		//if (text.length > 2 && textInt >= 400 && textInt <= 1600) {
 			this.setState({
 				sat_score: text,
 			});
-			console.log("SAT: "+this.state.Sat)
-		}
-		else if (text.substring(0, 1).localeCompare("2") == 0 || text.substring(0, 1).localeCompare("3") == 0 || text.substring(0, 1).localeCompare("0") == 0) {
-			alert("Please enter a valid SAT score");
-		}
-		else if ((text.length < 3 || text.substring(0, 1).localeCompare("1") == 0) && text.substring(1).localeCompare("7") != 0) {
-			console.log("Waiting for User Input");
-		}
-		else {
-			alert("Please enter a valid SAT score");
-		}
+			//console.log("SAT: "+this.state.Sat)
+		//}
+		//else if (text.substring(0, 1).localeCompare("2") == 0 || text.substring(0, 1).localeCompare("3") == 0 || text.substring(0, 1).localeCompare("0") == 0) {
+			//alert("Please enter a valid SAT score");
+		//}
+		//else if ((text.length < 3 || text.substring(0, 1).localeCompare("1") == 0) && text.substring(1).localeCompare("7") != 0) {
+			//console.log("Waiting for User Input");
+		//}
+		//else {
+			//alert("Please enter a valid SAT score");
+		//}
 	}
 
 	handleACT(text) {
-		let textInt = parseInt(text, 10);
-		if (textInt >= 1 && textInt <= 36) {
+		//let textInt = parseInt(text, 10);
+		//if (textInt >= 1 && textInt <= 36) {
 			this.setState({
 				act_score: text,
 			});
-		}
-		else {
-			alert("Please Enter a Valid ACT Score");
-		}
+		//}
+		//else {
+		//	alert("Please Enter a Valid ACT Score");
+		//}
 	}
 
 	handleGender(text) {
@@ -1372,7 +1372,29 @@ class InputScreen extends React.Component {
 		if (text.toString().length > 0 && gpaFloat >= 0.0 && gpaFloat <= 5.0) {
 			valid = true;
 		}
-		return valid
+		return valid;
+	}
+
+	satErrorHandling(text)
+	{
+		let valid = false;
+		let textInt = parseInt(text, 10);
+		if (text.length > 2 && textInt >= 400 && textInt <= 1600)
+		{
+			valid = true;
+		}
+		return valid;
+	}
+
+	actErrorHandling(text)
+	{
+		let valid = false;
+		let textInt = parseInt(text, 10);
+		if (textInt >= 1 && textInt <= 36) 
+		{
+			valid = true;
+		}
+		return valid;
 	}
 
 	handleGPA(text) {
@@ -1549,13 +1571,29 @@ class InputScreen extends React.Component {
 		if (this.state.gender.localeCompare(noInput) != 0
 			&& this.state.dob.localeCompare(noInput) != 0
 			&& this.state.gpa.localeCompare(noInput) != 0
-			&& this.gpaErrorHandling(this.state.gpa)) {
+			&& this.gpaErrorHandling(this.state.gpa)
+			&& this.satErrorHandling(this.state.sat_score)) {
 			this.upload2sever();
+
+			console.log("Gender: "+this.state.gender);
+			console.log("Age: "+this.state.dob);
+			console.log("State of residence: "+ this.state.selectedResidences);
+			console.log("GPA: "+ this.state.gpa);
+			console.log("Academic Major: "+ this.state.selectedMajors);
+			console.log("Race: "+this.state.selectedRaces);
+			console.log("Religion: "+ this.state.selectedReligions);
+			console.log("Disabilities: "+ this.state.selectedDisabilities);
+			console.log("ACT: "+ this.state.act_score);
+			console.log("SAT: "+ this.state.sat_score);
+			console.log("Ethnicity: "+ this.state.selectedEthnicities);
 
 		} else if (this.gpaErrorHandling(this.state.gpa) == false) {
 			alert("Please Enter a Valid GPA");
-		} else {
-			alert("Please Fill All Fields Before Submitting");
+		} else if (this.satErrorHandling(this.state.sat_score) == false) {
+			alert("Please enter a valid SAT score");
+		}
+		else {
+			alert("Please Fill All Required Fields Before Submitting");
 		}
 	}
 
@@ -1596,8 +1634,8 @@ class InputScreen extends React.Component {
 
 	UNSAFE_componentWillUpdate() {
 		this.getExistingData();
-		AsyncStorage.getItem('JWT').then((value) => this.setState({ jwt: value }));
-		AsyncStorage.getItem('uuid').then((value) => this.setState({ uuid: value }));
+		//AsyncStorage.getItem('JWT').then((value) => this.setState({ jwt: value }));
+		//AsyncStorage.getItem('uuid').then((value) => this.setState({ uuid: value }));
 		console.log("UUID: " + this.state.uuid + "\n" + "JWT: " + this.state.jwt);
 	}
 

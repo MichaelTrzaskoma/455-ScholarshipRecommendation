@@ -138,6 +138,7 @@ export default class App extends Component {
 
   }
 
+
   signIn = async (inputEmail, inputPassword) => {
     try {
       if (!inputEmail == "" && String(inputEmail).includes("@") && !inputPassword == "") {
@@ -203,6 +204,7 @@ export default class App extends Component {
       // console.log(type(value));
     }
   };
+  
 
   render() {
     // print the device unique ID

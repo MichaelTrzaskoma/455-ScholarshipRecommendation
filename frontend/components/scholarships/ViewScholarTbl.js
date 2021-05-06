@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 
-const itemsPerPage = 5;
+//const itemsPerPage = 10;
 
 export default class ViewScholarTbl extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ export default class ViewScholarTbl extends React.Component {
     this.state = {
       isLoading: true,
       scholarArr: [],
-      stagingArea: [],
+      //stagingArea: [],
       pageNumber: 1,
       modalVisible: false,
       currentBookmarkKey: "",
@@ -87,7 +87,7 @@ export default class ViewScholarTbl extends React.Component {
   getDoc = () => {
     const scholarArr = [];
 
-    let URL = "http://96858b0d3196.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
+    let URL = "http://08cc501f4183.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
 
     fetch(URL, {
       method: "GET",
@@ -121,7 +121,7 @@ export default class ViewScholarTbl extends React.Component {
         this.setState({
           scholarArr,
           isLoading: false,
-          stagingArea: scholarArr.slice(0,5)
+          //stagingArea: scholarArr.slice(0,5)
         });
 
       });
@@ -142,7 +142,7 @@ export default class ViewScholarTbl extends React.Component {
     console.log(this.state.currentBookmarkKey)
 
     //Insert API Call here
-    let URL = "http://96858b0d3196.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship";
+    let URL = "http://08cc501f4183.ngrok.io/api/v1.2/users/id/" + this.state.email + "/bookmarks";
     fetch(URL, {
       method: "POST",
       headers: {
@@ -152,6 +152,8 @@ export default class ViewScholarTbl extends React.Component {
       body: JSON.stringify({
         "email": this.state.email, 
         "title": this.state.currentBookmarkKey,
+        "unique_id": "placeholder", 
+        "type": "scholarship",
         // "jwt": getSecureStorage("jwt"),
         // "uniqueID": getDeviceID(),
       }),
@@ -182,7 +184,9 @@ export default class ViewScholarTbl extends React.Component {
         console.log(error);
       });
       
+    console.log("Bookmark Key: "+this.state.currentBookmarkKey);  
     alert("This scholarship has been bookmarked!");
+   
   }
 
   FlatListItemSeparator = () => {
@@ -204,13 +208,22 @@ export default class ViewScholarTbl extends React.Component {
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>Touch to Add!</Text>
+              <Text style={styles.modalText}>{this.state.currentBookmarkKey}</Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => this.handleBookmark()}
               >
-                <Text style={styles.textStyle}>Bookmark!</Text>
+                <Text style={styles.textStyle}>Bookmark</Text>
               </Pressable>
+              <Pressable
+                style = {[styles.button, styles.buttonClose2]}
+                onPress = {() => this.setModalVisible(false)}
+              >
+                <Text style = {styles.textStyle}> Close   </Text>
+              </Pressable>
+            </View>
+            <View>
+              
             </View>
           </View>
       </Modal>
@@ -237,6 +250,7 @@ export default class ViewScholarTbl extends React.Component {
     );
   }
 
+  /*
   loadMore = ()  => {
   
     //const { pageNumber, scholarArr } = this.state;
@@ -254,6 +268,7 @@ export default class ViewScholarTbl extends React.Component {
       //pageNumber : tempPageNumber + 1,
     });
   }
+  */
 
 
   render() {
@@ -269,13 +284,15 @@ export default class ViewScholarTbl extends React.Component {
     return (
       <View style={styles.container}>
         <FlatList
-          data={this.state.stagingArea}
+          data={this.state.scholarArr}
           ItemSeparatorComponent={this.FlatListItemSeparator}
           renderItem={({ item, index }) => this.renderList(item, index)}
           keyExtractor={item => item.key}
-          onEndReached={this.loadMore}
+          //onEndReached={this.loadMore}
+          maxToRenderPerBatch = {10}
           //onEndThreshold={0}
         ></FlatList>
+
       </View>
     );
   }
@@ -366,6 +383,10 @@ const styles = StyleSheet.create({
   },
   buttonClose: {
     backgroundColor: "#2196F3",
+  },
+  buttonClose2: {
+    backgroundColor: "#c42e23",
+    marginTop: 20,
   },
   textStyle: {
     color: "white",
