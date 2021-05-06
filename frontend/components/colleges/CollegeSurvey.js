@@ -521,8 +521,8 @@ export default class CollegeSurvey extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			ustObj: this.props.route.params.usrProfile,
-			email: this.props.route.params.usrProfile.email,
+			// ustObj: this.props.route.params.usrProfile,
+			// email: this.props.route.params.usrProfile.email,
 			selectedRegions: [],
 			selectedMajors: [],
 			satScore: "",

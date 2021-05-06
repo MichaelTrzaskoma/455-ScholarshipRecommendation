@@ -14,26 +14,6 @@ import { Menu, Provider } from 'react-native-paper';
 import { parseMonth, parseAmount, parseSimilarScore, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../../functions/utilities";
 import { FlatList } from 'react-native-gesture-handler';
 
-function opt1() {
-  return (
-    <TouchableOpacity>
-      <View>
-        <Text>Option 1</Text>
-      </View>
-    </TouchableOpacity>
-  );
-}
-
-function opt2() {
-  return (
-    <TouchableOpacity>
-      <View>
-        <Text>Option 2</Text>
-      </View>
-    </TouchableOpacity>
-  );
-}
-
 export default class ViewRecommendTbl_3 extends React.Component {
   constructor(props) {
     super(props);
