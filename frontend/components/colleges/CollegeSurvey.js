@@ -541,13 +541,14 @@ export default class CollegeSurvey extends React.Component {
 	};
 
 	handleSAT(text) {
-		let textInt = parseInt(text, 10);
-		if (text.length > 2 && textInt >= 400 && textInt <= 1600) {
+		//let textInt = parseInt(text, 10);
+		//if (text.length > 2 && textInt >= 400 && textInt <= 1600) {
 			this.setState({
-				Sat: text,
+				satScore: text,
 			});
-			//console.log("SAT: "+this.state.Sat)
-		}
+			//console.log("SAT: "+this.state.satScore)
+		//}
+		/*
 		else if (text.substring(0, 1).localeCompare("2") == 0 || text.substring(0, 1).localeCompare("3") == 0 || text.substring(0, 1).localeCompare("0") == 0) {
 			alert("Please enter a valid SAT score");
 		}
@@ -557,17 +558,154 @@ export default class CollegeSurvey extends React.Component {
 		else {
 			alert("Please enter a valid SAT score");
 		}
+		*/
 	}
 
 	handleACT(text) {
-		let textInt = parseInt(text, 10);
-		if (textInt >= 1 && textInt <= 36) {
+		//let textInt = parseInt(text, 10);
+		//if (textInt >= 1 && textInt <= 36) {
 			this.setState({
-				Act: text,
+				actScore: text,
 			});
+		//}
+		//else {
+			//alert("Please Enter a Valid ACT Score");
+	}
+
+	actErrorChecking()
+	{
+		var actValid = false;
+		var intAct =parseInt(this.state.actScore, 10);
+		if (intAct >= 1 && intAct <=36)
+		{
+			actValid = true;
 		}
-		else {
-			alert("Please Enter a Valid ACT Score");
+		return actValid;
+	}
+
+	satErrorChecking()
+	{
+		var satValid = false;
+		var intSat = parseInt(this.state.satScore, 10)
+		if (intSat >= 400 && intSat <= 1600)
+		{
+			satValid = true;
+		}
+
+		return satValid;
+	}
+
+	errorChecking()
+	{
+		var pass = true;
+		if(String(this.state.satScore).localeCompare("") != 0)
+		{
+			if(!this.satErrorChecking())
+			{
+				alert("Please enter a valid SAT score");
+				pass = false;
+			}
+		}
+		if(String(this.state.actScore).localeCompare("") != 0)
+		{
+			if(!this.actErrorChecking())
+			{
+				alert("Please enter a valid ACT score");
+				pass = false;
+			}
+		}
+		return pass;
+	}
+
+	checkExamField()
+	{
+		var haveExam = true;
+		if(this.existingSAT() == false && this.existingACT() == false)
+		{
+			haveExam = false;
+		}
+		return haveExam
+	}
+
+	checkRegionField()
+	{
+		var haveRegion = true;
+		if(this.state.selectedRegions.length == 0)
+		{
+			haveRegion = false;
+		}
+		return haveRegion;
+	}
+
+	checkMajorField()
+	{
+		var haveMajor = true;
+		if(this.state.selectedMajors.length == 0)
+		{
+			haveMajor = false;
+		}
+		return haveMajor;
+	}
+	
+	checkCompletion()
+	{
+		var complete = false;
+
+		//Checking for completion
+		if(this.checkMajorField() && this.checkRegionField())
+		{
+			complete = true;
+			console.log("we have majors and regions");
+		}
+		else if( this.checkExamField() && this.checkRegionField())
+		{
+			complete = true;
+			console.log("We have exam and regions");
+		}
+		else if( this.checkExamField() && this.checkMajorField())
+		{
+			complete = true;
+			console.log("we have exam and majors ");
+		}
+		
+		return complete;
+		
+	}
+
+	checkMissing()
+	{
+		if( !this.checkExamField() && !this.checkRegionField() && !this.checkMajorField())
+		{
+			alert("Please complete at least two of three fields (location, exam, major)");
+		}
+		else if( !this.checkExamField()  && !this.checkMajorField())
+		{
+			alert("Please submit either an exam score, or select a major of interest to complete the minimum required information");
+		}
+		else if( !this.checkExamField() && !this.checkRegionField())
+		{
+			alert("Please submit either an exam score or select a region of interest to complete the minimum required information");
+		}
+		else if( !this.checkMajorField() && !this.checkRegionField())
+		{
+			alert("Please enter either a major of interest or a region of interest to complete the minimum required information ");
+		}
+	}
+
+	onSubmit()
+	{
+		if(this.errorChecking())
+		{
+			if(this.checkCompletion())
+			{
+				this.upload2sever();
+				alert("success");
+			}
+			else
+			{
+				console.log("location: "+this.state.selectedRegions);
+				this.checkMissing();
+			}
 		}
 	}
 
@@ -596,10 +734,12 @@ export default class CollegeSurvey extends React.Component {
 	}
 	existingSAT() {
 		let existingScore = false;
-		//this.checkExamScores()
-		if (this.state.satScore.localeCompare("") != 0) {
+		let strSat = String(this.state.satScore);
+		//console.log("strSat: "+strSat);
+		if (strSat.localeCompare("") != 0) {
 			existingScore = true;
 		}
+		//console.log("ExistingSat: "+existingScore);
 		return existingScore;
 	}
 
@@ -686,7 +826,7 @@ export default class CollegeSurvey extends React.Component {
 
 					<View style={styles.collegeSurveyRect2}>
 
-						<Text style={styles.re_text}>Required Questions</Text>
+						<Text style={styles.re_text}>Survey Questions (Please fill two out of three fields)</Text>
 						<Text style={styles.collegeSurveyQA1}>
 							What is you regional preference for college location?
       					</Text>
@@ -695,7 +835,7 @@ export default class CollegeSurvey extends React.Component {
 							<SectionedMultiSelect
 								items={items.slice(0, 2)}
 								IconRenderer={MaterialIcons}
-								uniqueKey="id"
+								uniqueKey="name"
 								subKey="children"
 								selectText="Choose all that apply"
 								// style={{ margin: 20 }}
@@ -822,7 +962,7 @@ export default class CollegeSurvey extends React.Component {
 				<View style={styles.submitContainer}>
 					<TouchableOpacity
 						style={styles.submitBtn}
-						onPress={() => this.upload2sever()}
+						onPress={() => this.onSubmit()}
 					>
 						<Text style={styles.submitTxt}>Submit</Text>
 					</TouchableOpacity>

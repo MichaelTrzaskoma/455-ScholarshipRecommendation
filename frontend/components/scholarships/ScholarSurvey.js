@@ -1319,7 +1319,7 @@ class InputScreen extends React.Component {
 			this.setState({
 				sat_score: text,
 			});
-			//console.log("SAT: "+this.state.Sat)
+			console.log("SAT: "+this.state.Sat)
 		}
 		else if (text.substring(0, 1).localeCompare("2") == 0 || text.substring(0, 1).localeCompare("3") == 0 || text.substring(0, 1).localeCompare("0") == 0) {
 			alert("Please enter a valid SAT score");
