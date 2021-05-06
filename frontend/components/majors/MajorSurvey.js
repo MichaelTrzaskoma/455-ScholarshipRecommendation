@@ -591,7 +591,7 @@ export default class MajorSurvey extends React.Component {
 
 							<View style={styles.satTextField}>
 								<Text style={styles.collegeSurveyQA2}>
-									What unemployment rate is acceptable for you?
+									What unemployment rate are you willing to contend with?
         						</Text>
 								<Slider
 									style={{width: 200, height: 40}}
@@ -608,8 +608,9 @@ export default class MajorSurvey extends React.Component {
                                     {this.state.unemploymentDisplay}%
                                 	</Text>
 							</View>
-
+							{/*}
 							<View style={styles.actTextField}>
+							
 								<Text style={styles.collegeSurveyQA3}>
 									Preferred Level of Autonomy?
         					</Text>
@@ -637,7 +638,7 @@ export default class MajorSurvey extends React.Component {
                                 </Text>
 								}
 							</View>
-
+							*/}
 						<View style={styles.majorTextField}>
 							<Text style={styles.collegeSurveyQA4}>
 								What Subject(s) are you interested in?
@@ -669,7 +670,7 @@ export default class MajorSurvey extends React.Component {
 							minimumValue={0}
 							maximumValue={2}
 							value = {this.state.variety}
-							minimumTrackTintColor="#31e03d"
+							minimumTrackTintColor="#a112cc"
 							maximumTrackTintColor="#808080"
 									//value = {this.state.salaryValue}
 									//onSlidingComplete = {(value) => this.handleSalaryValue(value)}
@@ -719,7 +720,7 @@ export default class MajorSurvey extends React.Component {
 								minimumValue={0}
 								maximumValue={2}
 								value = {this.state.workEnvironment}
-								minimumTrackTintColor="#dbc84d"
+								minimumTrackTintColor="#31e03d"
 								maxiumumTrackTintColor="#dbc84d"
 								onValueChange = {(value) => this.editEnvironment(value)}
 							/>
@@ -835,7 +836,7 @@ const styles = StyleSheet.create({
 		marginLeft: 80,
 	},
 	varietyValueDisplay: {
-		color: "#31e03d",
+		color: "#a112cc",
 		fontSize: 16,
 		width: "100%",
 		height: 39,
@@ -851,7 +852,7 @@ const styles = StyleSheet.create({
 		marginLeft: 80,
 	},
 	environValueDisplay: {
-		color: "#dbc84d",
+		color: "#31e03d",
 		fontSize: 16,
 		width: "100%",
 		height: 39,
