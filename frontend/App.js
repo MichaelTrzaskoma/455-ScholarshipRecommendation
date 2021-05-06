@@ -6,7 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { saveSecureStorage, getSecureStorage } from "./functions/secureStorage";
+import { storeData } from "./functions/secureStorage";
 import { getDeviceID } from "./functions/deviceUniqueID";
 // import * as SecureStore from 'expo-secure-store';
 
@@ -15,6 +15,7 @@ import AccScreen from "./components/AccScreen";
 import TabViewSurvey from "./components/TabViewSurvey";
 import ScholarSurvey from "./components/scholarships/ScholarSurvey";
 
+// Scholarship
 import ScholarshipScreen from "./components/scholarships/ScholarshipScreen";
 import ViewAllScholar from "./components/scholarships/ViewAllScholar";
 import ViewScholarSubCate from "./components/scholarships/ViewScholarSubCate";
@@ -56,18 +57,6 @@ function getHeaderTitle(route) {
   }
 }
 
-// async function saveSecureStorage(key, value) {
-//   await SecureStore.setItemAsync(key, value);
-// }
-
-// async function getSecureStorage(key) {
-//   let result = await SecureStore.getItemAsync(key);
-//   if (result) {
-//     return (result);
-//   } else {
-//     return ('No values stored under that key.');
-//   }
-// }
 
 function TabScreens({ navigation, route }) {
 
@@ -140,72 +129,60 @@ export default class App extends Component {
     super(props);
     this.state = {
       usrProfile: {
-        signedIn: "No",
-        full_name: "",
-        last_name: "",
-        first_name: "",
+        signedIn: false,
         email: "",
-        password: "",
-        photoUrl: "",
         jwt: "",
+        uuid: "",
       },
-      sassy: "",
     };
 
   }
 
-  get_sassy = () => {
-    this.setState({sassy: getSecureStorage("sassy")});
-  }
-
-  // saveSecureStorage = async (key, value) => {
-  //   await SecureStore.setItemAsync(key, value);
-  // }
-
-  // getSecureStorage = async (key) => {
-  //   let result = await SecureStore.getItemAsync(key);
-  //   if (result) {
-  //     return (result);
-  //   } else {
-  //     return ('No values stored under that key.');
-  //   }
-  // }
-
-  isSign = () => {
-    let r = getSecureStorage("signIn");
-    if (r._W === "Yes"){
-      return true;
-    }
-    return false;
-  }
-
   signIn = async (inputEmail, inputPassword) => {
     try {
-      if (!inputEmail == "" && !inputPassword == "") {
+      if (!inputEmail == "" && String(inputEmail).includes("@") && !inputPassword == "") {
 
-        // let uniqueID = 
-        // console.log(getDeviceID());
+        const unique_id = getDeviceID();
+        // console.log("UUID: " + unique_id);
 
-        // store the sign and jwt first
-        // if (this.saveSecureStorage("signIn", "Yes")) {
-          // this.saveSecureStorage("sassy", "afafa")
+        let URL = "http://e7823eef0bb9.ngrok.io/api/v1.2/managements/users/" + inputEmail;
 
-        this.setState({
-          usrProfile: {
-            full_name: "dummyFUllName",
-            last_name: "dummyLastName",
-            first_name: "dummyFirstName",
-            photoUrl: "https://i.pinimg.com/originals/e9/73/46/e9734614f73b4766546ceee1d7778827.jpg",
-            email: inputEmail,
-            password: inputPassword,
-            signedIn: "Yes",
-            jwt: "",
+        fetch(URL, {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
           },
-        });
 
-        saveSecureStorage("signIn", "Yes");
+          body: JSON.stringify({
+            "paswrd": inputPassword,
+            "unique_id": unique_id,
+          }),
 
-        // }
+        })
+          .then((response) => response.json())
+          .then((json) => {
+
+            if (json.mesg === "authorized") {
+
+              storeData("signIn", "Yes");
+              storeData("JWT", json.token);
+              storeData("uuid", unique_id);
+              storeData("email", inputEmail);
+
+              this.setState({
+                usrProfile: {
+                  email: inputEmail,
+                  signedIn: true,
+                  jwt: json.token,
+                  uuid: unique_id,
+                },
+              });
+
+            } else {
+              alert(json.mesg);
+            }
+          })
 
       } else {
         alert("Please input your email or password!");
@@ -218,22 +195,16 @@ export default class App extends Component {
     }
   };
 
-  UNSAFE_componentWillMount(){
-    console.log("Called");
-    // this.saveSecureStorage("sassy", "afafa");
-    this.get_sassy();
-  }
-
   render() {
     // print the device unique ID
     // console.log(getDeviceID())
     // console.log("Auth val: " + JSON.stringify(this.state.usrProfile.signedIn));
+    // console.log("Auth val: " + this.state.usrProfile.signedIn);
 
-    console.log("sassy: " + this.state.sassy._W);
-    
-    if (this.isSign) {
+    if (this.state.usrProfile.signedIn) {
+      // console.log("signedIn: " + (getData("signIn")));
       // console.log("Email from App.js: " + this.state.usrProfile.email)q;
-      
+
       return (
         <NavigationContainer>
           <Stack.Navigator>
@@ -297,7 +268,7 @@ export default class App extends Component {
                   color: "white",
                 },
               }}
-              initialParams={{ email: this.state.usrProfile.email }}
+              initialParams={{ usrProfile: this.state.usrProfile }}
             />
 
             {/* ViewSubCate from scholarships has been renamed as ViewScholarSubCate */}
@@ -368,6 +339,7 @@ export default class App extends Component {
                   color: "white",
                 },
               })}
+              initialParams={{ usrProfile: this.state.usrProfile }}
             />
 
             <Stack.Screen
@@ -417,7 +389,7 @@ export default class App extends Component {
                   color: "white",
                 },
               })}
-              initialParams={{ email: this.state.usrProfile.email }}
+              initialParams={{ usrProfile: this.state.usrProfile }}
             />
 
             <Stack.Screen
@@ -434,7 +406,7 @@ export default class App extends Component {
                   color: "white",
                 },
               })}
-              initialParams={{ email: this.state.usrProfile.email }}
+              initialParams={{ usrProfile: this.state.usrProfile }}
             />
 
             <Stack.Screen
@@ -451,6 +423,7 @@ export default class App extends Component {
                   color: "white",
                 },
               })}
+              initialParams={{ usrProfile: this.state.usrProfile }}
             />
 
             <Stack.Screen

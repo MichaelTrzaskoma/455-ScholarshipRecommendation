@@ -65,10 +65,11 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 
     >Production Env
     ```
-    uwsgi dev.ini
+    cd backend
+    export FLASK_APP=run.py
+    export FLASK_ENV=production
+    python run.py
     ```
-
-    * Access the URL: <a href="localhost:9090">localhost:9090</a>
    
    <br>
 
@@ -154,7 +155,7 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 | :--- | :--- | :--- |
 | /api/v1.2/managements/users/signup | GET | Allows the user end to sign up an account. |
 | /api/v1.2/managements/users/thankyou | GET, POST | Validate the user's token when sign up an account. |
-| /api/v1.2/managements/users/<email\>/auth | GET | Authenticate the user's device and account by using email address, account password, and UUID, then return a JWT code as a token.  |
+| /api/v1.2/managements/users/<email\> | GET | Authenticate the user's device and account by using email address, account password, and UUID, then return a JWT code as a token.  |
 | /api/v1.2/managements/users/forgotpassword | GET | Allows the users to reset their password. Accessible by the project internally only. |
 
 <br>
