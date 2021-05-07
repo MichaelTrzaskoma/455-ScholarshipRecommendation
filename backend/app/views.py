@@ -669,7 +669,7 @@ def view_major_subjectIndex(sub):
     if request.method == "GET":
 
         if sub in app.config['MAJOR_CAT']:
-            r = major_ref.find({"subjects": sub}, {"_id": 0, "major": 1})
+            r = major_ref.find({"category": sub}, {"_id": 0, "major": 1})
 
             resource = []
             for item in r:
