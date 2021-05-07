@@ -521,12 +521,12 @@ export default class CollegeSurvey extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			// ustObj: this.props.route.params.usrProfile,
-			// email: this.props.route.params.usrProfile.email,
+			usrInfo: this.props.route.params.usrInfo,
 			selectedRegions: [],
 			selectedMajors: [],
 			satScore: "",
 			actScore: "",
+			firstTime: 0,
 			//email: this.props.route.params.email,
 		}
 		this.handleSAT = this.handleSAT.bind(this);
@@ -540,6 +540,13 @@ export default class CollegeSurvey extends React.Component {
 	onSelectedMajorsChange = (selectedMajors) => {
 		this.setState({ selectedMajors });
 	};
+
+	setFirstTime(num)
+	{
+		this.setState({
+			firstTime: num
+		});
+	}
 
 	handleSAT(text) {
 		//let textInt = parseInt(text, 10);
@@ -711,7 +718,8 @@ export default class CollegeSurvey extends React.Component {
 	}
 
 	checkExisting() {
-		let URL = "http://8c1995ad6ff1.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; //insert correct URL for user's profiel
+		// console.log("checkExisting " + JSON.stringify(this.state.usrInfo));
+		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid +"/" +"surveys/college"; 
 
 		fetch(URL, {
 			method: 'GET',
@@ -723,14 +731,18 @@ export default class CollegeSurvey extends React.Component {
 			// format the API response into json
 			.then((response) => response.json())
 			.then((json) => {
+				if(json.mesg.existing == 1)
+				{
 				// set the val to state
 				this.setState({
 					actScore: json.actScore, 
 					satScore: json.satScore, 
 					selectedMajors: json.major,
+					firstTime: json.mesg.existing,
 				}).catch((error) => {
 					console.log('An error happened: ' + error);
 				});
+				}
 			});
 	}
 	existingSAT() {
@@ -754,12 +766,19 @@ export default class CollegeSurvey extends React.Component {
 	}
 
 	upload2sever = () => {
-		console.log(this.props.route.params.email);
+		// console.log(this.props.route.params.email);
 		// console.log("Email from InputScreen2: " + this.props);
+		let apiMethod = "POST";
+		if(this.state.firstTime = 1)
+		{
+			apiMethod = "PATCH";
+		}
 
-		let URL = "http://8c1995ad6ff1.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+		this.setFirstTime(1);
+
+		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid +"/" +"surveys/college";  
 		fetch(URL, {
-			method: "POST",
+			method: apiMethod,
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
@@ -769,6 +788,7 @@ export default class CollegeSurvey extends React.Component {
 				majors: this.state.selectedMajors,
 				sat_score: this.state.satScore,
 				act_score: this.state.actScore,
+				existing: this.state.firstTime,
 			}),
 		})
 
@@ -806,6 +826,7 @@ export default class CollegeSurvey extends React.Component {
 	render() {
 		// const { selectedRegions } = this.state;
 		// this.checkMajor()
+		// console.log("CollegeSurvey " + JSON.stringify(this.props.route.params.usrInfo));
 		this.checkExisting();
 		return (
 			<KeyboardAwareScrollView

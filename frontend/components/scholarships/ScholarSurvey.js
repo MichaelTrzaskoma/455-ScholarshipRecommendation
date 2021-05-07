@@ -1278,18 +1278,19 @@ const DismissKeyboard = ({ children }) => (
 );
 
 export default function ScholarSurvey(props) {
-	// console.log("Email from InputScreen1: " + JSON.stringify(route.params.email));
+	// console.log("props Check from InputScreen1: " + JSON.stringify(props.route.params.usrInfo.usrInfo));
 	// console.log("navigation from InputScreen1: " + JSON.stringify(navigation));
-	// console.log(props);
 	// Delete the navigation & atttribute that is not used nowhere.
-	return <InputScreen email={props.route.params.email} />
+	// console.log("ScholarSurvey within " + JSON.stringify(props.route.params.usrInfo));
+	// usrInfo={props.route.params.usrInfo}
+	return <InputScreen {...props}/>
 }
 
 class InputScreen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: this.props.email,
+			usrProfile: this.props.route.params.usrInfo,
 			gender: "",
 			dob: "",
 			gpa: "",
@@ -1303,9 +1304,6 @@ class InputScreen extends React.Component {
 			selectedEthnicities: [],
 			firstTime: 0,
 			currentMethod: "POST",
-
-			jwt: "",
-			uuid: "",
 		};
 		this.handleGender = this.handleGender.bind(this);
 		this.handleDOB = this.handleDOB.bind(this);
@@ -1380,6 +1378,10 @@ class InputScreen extends React.Component {
 		let valid = false;
 		let textInt = parseInt(text, 10);
 		if (text.length > 2 && textInt >= 400 && textInt <= 1600)
+		{
+			valid = true;
+		}
+		else if(String(text).localeCompare("") ==0)
 		{
 			valid = true;
 		}
@@ -1523,8 +1525,12 @@ class InputScreen extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props);
 
+<<<<<<< HEAD
 		let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/users/id/" + this.state.email + "/" + "token" + "/" + "sffdf" + "/surveys/scholarship";
 		// /api/v1.2/users/id/<email>/<token>/<id>/surveys/scholarship
+=======
+		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
+>>>>>>> 83836898b5c303fb41d9b1c26a402dd6ed9b3fbc
 		fetch(URL, {
 			method: this.state.currentMethod,
 			headers: {
@@ -1600,7 +1606,11 @@ class InputScreen extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
+<<<<<<< HEAD
 		let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/users/id/" + this.state.email + "/" + "token" + "/" + "sffdf" + "/surveys/scholarship";
+=======
+		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
+>>>>>>> 83836898b5c303fb41d9b1c26a402dd6ed9b3fbc
 
 		fetch(URL, {
 			method: 'GET',
@@ -1642,10 +1652,8 @@ class InputScreen extends React.Component {
 
 
 	render() {
-		// console.log("DOB is: " + this.state.dob);
-		// console.log(this.props);
-		// check();
-
+		// console.log("ScholarSuvey Checking " + JSON.stringify(this.state.usrProfile));
+		// console.log("scholarSurvey prop check " + JSON.stringify(this.props.route.params.usrInfo));
 		return (
 			<DismissKeyboard>
 				<KeyboardAwareScrollView

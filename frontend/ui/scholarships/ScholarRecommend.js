@@ -18,12 +18,12 @@ class ScholarRecommender extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: this.props.email,
+      usrInfo: this.props.usrProfile,
     };
   }
 
   render() {
-    console.log("Email from ScholarshipRecommend.js: " + this.state.email);
+    // console.log("Props from ScholarshipRecommend.js: " + JSON.stringify(this.props.usrProfile));
     const { navigation } = this.props;
     return (
       <View style={styles.recommendGrp}>
@@ -35,7 +35,7 @@ class ScholarRecommender extends Component {
               onPress={() => navigation.navigate("ViewRecommendTbl_3",
                 {
                   title: "Scholarship Detail",
-                  email: this.state.email,
+                  usrInfo: this.props.usrProfile,
                 })
               }>
               <FontAwesome

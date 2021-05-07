@@ -56,7 +56,7 @@ export default class MajorSurvey extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: this.props.email,
+			usrInfo: this.props.route.params.usrInfo,
             salaryValue: 20000,
 			salaryDisplay: "",
             unemploymentValue: 10,
@@ -90,8 +90,8 @@ export default class MajorSurvey extends React.Component {
     handleSalaryValue(val)
     {
         this.setState({
-            salaryValue: val,
 			salaryTripWire: true,
+			salaryValue: val,
         });
         //console.log(this.state.salaryValue);
     }
@@ -355,7 +355,7 @@ export default class MajorSurvey extends React.Component {
 		}
 		this.setFirstTime(1);
 
-		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/major";
+		let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major";
 		fetch(URL, {
 			method: this.state.currentMethod,
 			headers: {
@@ -383,14 +383,14 @@ export default class MajorSurvey extends React.Component {
 				if (response.status == 202) {
 
 					// console.log(response);
-					Alert.alert(
+					alert(
 						"Your data have been successfully \ninserted! " +
 						"You will be navigated back!"
 					);
 
 				} else {
 					json_mesg = response.json();
-					Alert.alert("Error: " + json_mesg.mesg);
+					alert("Error: " + json_mesg.mesg);
 				}
 			})
 			.catch((error) => {
@@ -499,7 +499,7 @@ export default class MajorSurvey extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
-		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/major";
+		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid + "/surveys/major";
 
 
 		fetch(URL, {
@@ -541,6 +541,7 @@ export default class MajorSurvey extends React.Component {
 	}
 
 	render() {
+		// console.log("MajorSurvey props checking " + JSON.stringify(this.props.route.params.usrInfo));
 		return (
 			<KeyboardAwareScrollView
 				style={styles.container}>
@@ -550,8 +551,7 @@ export default class MajorSurvey extends React.Component {
 					<Text style={styles.findCollege}>To Find your Major:</Text>
 					<Text style={styles.surveyDescription}>
 						You may not have an answer for all of these questions but we encourage you
-                        to think about them and answer as best as possible. Please
-                        complete the survey many times with different answers if you're undecided and compare your results!
+                        to think about them and answer as best as possible. Multiple attempts are encouraged.
                		</Text>
 				</View>
 
@@ -567,7 +567,7 @@ export default class MajorSurvey extends React.Component {
 
 						<View style={styles.multiSelectorWrapper}>
                         <Slider
-                             style={{width: 200, height: 40}}
+                             style={{width: 310, height: 40}}
                              minimumValue={20000}
                              maximumValue={130000}
                              minimumTrackTintColor="#21732e"
@@ -594,7 +594,7 @@ export default class MajorSurvey extends React.Component {
 									What unemployment rate are you willing to contend with?
         						</Text>
 								<Slider
-									style={{width: 200, height: 40}}
+									style={{width: 310, height: 40}}
 									minimumValue={1}
 									maximumValue={10}
 									value = {this.state.unemploymentValue}
@@ -665,7 +665,7 @@ export default class MajorSurvey extends React.Component {
 							Prefered Level of Job Variety Per Major?
 						</Text>
 						<Slider
-							style={{width: 200, height: 40}}
+							style={{width: 310, height: 40}}
 							step = {1}
 							minimumValue={0}
 							maximumValue={2}
@@ -691,7 +691,7 @@ export default class MajorSurvey extends React.Component {
 								Do You Prefer a High Level of Social Interaction at work?
 							</Text>
 							<Slider
-								style={{width: 200, height: 40}}
+								style={{width: 310, height: 40}}
 								step = {1}
 								minimumValue={0}
 								maximumValue={2}
@@ -715,7 +715,7 @@ export default class MajorSurvey extends React.Component {
 								Preferred Work Environment?
 							</Text>
 							<Slider
-								style={{width: 200, height: 40}}
+								style={{width: 310, height: 40}}
 								step = {1}
 								minimumValue={0}
 								maximumValue={2}
@@ -817,7 +817,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 39,
 		marginTop: 10,
-		marginLeft: 80,
+		marginLeft: 130,
 	},
     unemploymentValueDisplay: {
 		color: "#d91c37",
@@ -825,7 +825,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 39,
 		marginTop: 10,
-		marginLeft: 80,
+		marginLeft: 130,
 	},
 	autonomyValueDisplay: {
 		color: "#a112cc",
@@ -841,7 +841,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 39,
 		marginTop: "auto",
-		marginLeft: 80,
+		marginLeft: 130,
 	},
 	socialValueDisplay: {
 		color: "#f58eb4",
@@ -849,7 +849,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 39,
 		marginTop: "auto",
-		marginLeft: 80,
+		marginLeft: 130,
 	},
 	environValueDisplay: {
 		color: "#31e03d",
@@ -857,7 +857,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 39,
 		marginTop: "auto",
-		marginLeft: 80,
+		marginLeft: 130,
 	},
 	satTextField: {
 		width: "100%",

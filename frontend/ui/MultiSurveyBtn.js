@@ -5,15 +5,15 @@ import { useNavigation } from "@react-navigation/native";
 // import TabViewSurvey from '../components/TabViewSurvey';
 
 
-export default function AddProfile(email) {
+export default function AddProfile(props) {
 	const navigation = useNavigation();
-	// console.log("Email from AddProfile: " + email.email);
+	// console.log("User Profile Info: " + JSON.stringify(props.userInfo));
 
 	return (
 		<TouchableOpacity style={styles.button}
 			onPress={() => navigation.navigate('TabViewSurvey', {
 				"title": "Input Required Info",
-				"email": email.email,
+				"usrInfo": props.userInfo,
 			})}
 			// onPress={() => console.log(email)}
 		>

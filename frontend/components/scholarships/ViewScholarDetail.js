@@ -10,6 +10,7 @@ export default class ViewScholarDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      usrInfo : this.props.route.params.userProfile,
       scholarshipKey: this.props.itemKey,
       scholarshipObj: {
         amount: '',
@@ -35,7 +36,7 @@ export default class ViewScholarDetail extends React.Component {
 
   handleBookmark () {
     //Insert API Call here
-    let URL = "http://08cc501f4183.ngrok.io/api/v1.2/users/id/" + this.state.email + "/bookmarks";
+    let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
     fetch(URL, {
       method: "POST",
       headers: {
@@ -43,11 +44,11 @@ export default class ViewScholarDetail extends React.Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "email": this.state.email, 
+        "email": this.state.usrInfo.email, 
         "title": this.state.scholarshipObj.title,
         "type" : "scholarship",
-        "unique_id": "placeholder",
-        // "jwt": getSecureStorage("jwt"),
+        "unique_id": this.state.usrInfo.uuid,
+        "jwt": this.state.usrInfo.jwt,
         // "uniqueID": getDeviceID(),
       }),
     })
@@ -63,21 +64,21 @@ export default class ViewScholarDetail extends React.Component {
       .then((response) => {
         if (response.status == 202) {
 
-          Alert.alert(
+          alert(
             "Your data have been successfully \ninserted! " +
             "You will be navigated back!"
           );
 
         } else {
           json_mesg = response.json();
-          Alert.alert("Error: " + json_mesg.mesg);
+          alert("Error: " + json_mesg.mesg);
         }
       })
       .catch((error) => {
         console.log(error);
       });
     console.log("scholar bookmark title: "+this.state.scholarshipObj.title);  
-    alert("This scholarship has been bookmarked!");
+    //alert("This scholarship has been bookmarked!");
   }
 
   componentDidMount() {
@@ -88,7 +89,7 @@ export default class ViewScholarDetail extends React.Component {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
     let URL =
-      'http://08cc501f4183.ngrok.io/api/v1.2/resources/scholarships/view/titles/' + this.props.route.params.itemKey;
+      "http://b9d79f8fdd3c.ngrok.io/api/v1.2/resources/scholarships/view/titles/" + this.props.route.params.itemKey +"/"+ this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid ;
 
     fetch(URL, {
       method: 'GET',
@@ -118,7 +119,7 @@ export default class ViewScholarDetail extends React.Component {
   }
 
   render() {
-    console.log(JSON.stringify(this.props));
+    // console.log("Checking ScholarDetail " + JSON.stringify(this.state.usrInfo));
     return (
       <ScrollView horizontal={false} style={styles.container}>
         <View style = {styles.card_grp0}>

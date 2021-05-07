@@ -72,7 +72,8 @@ function TabScreens({ navigation, route }) {
   let usr = route.params.usr;
   // console.log("User obj from TabScreens: " + JSON.stringify(route.params.usr));
 
-  // console.log(route.params.usr);
+  // console.log("Checking in TapScreen 123 " + JSON.stringify(route));
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -132,7 +133,7 @@ export default class App extends Component {
     this.state = {
       usrProfile: {
         signedIn: false,
-        email: "",
+        email: "hchen98x@gmail.com",
         jwt: "",
         uuid: "",
       },
@@ -150,11 +151,59 @@ export default class App extends Component {
 
         let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/managements/users/" + inputEmail;
 
+<<<<<<< HEAD
         fetch(URL, {
           method: "POST",
           headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
+=======
+        // fetch(URL, {
+        //   method: "POST",
+        //   headers: {
+        //     "Accept": "application/json",
+        //     "Content-Type": "application/json",
+        //   },
+
+        //   body: JSON.stringify({
+        //     "paswrd": inputPassword,
+        //     "unique_id": unique_id,
+        //   }),
+
+        // })
+        //   .then((response) => response.json())
+        //   .then((json) => {
+
+        //     if (json.mesg === "authorized") {
+
+        //       storeData("signIn", "Yes");
+        //       storeData("JWT", json.token);
+        //       storeData("uuid", unique_id);
+        //       storeData("email", inputEmail);
+
+        //       this.setState({
+        //         usrProfile: {
+        //           email: inputEmail,
+        //           signedIn: true,
+        //           jwt: json.token,
+        //           uuid: unique_id,
+        //         },
+        //       });
+
+        //     } else {
+        //       alert(json.mesg);
+        //     }
+        //   })
+
+        this.setState({
+          usrProfile: {
+            email: inputEmail,
+            signedIn: true,
+            // Testing
+            jwt: "randome_jwt",
+            // jwt: json.token,
+            uuid: "randome_uuid",
+>>>>>>> 83836898b5c303fb41d9b1c26a402dd6ed9b3fbc
           },
 
           body: JSON.stringify({
@@ -211,6 +260,8 @@ export default class App extends Component {
 
 
   render() {
+
+    // console.log(this.state.usrProfile);
     // print the device unique ID
     // console.log(getDeviceID())
     // console.log("Auth val: " + JSON.stringify(this.state.usrProfile.signedIn));
@@ -365,7 +416,7 @@ export default class App extends Component {
                   color: "white",
                 },
               })}
-              initialParams={{ email: this.state.usrProfile.email }}
+              initialParams={{ usrProfile: this.state.usrProfile }}
             />
 
             <Stack.Screen

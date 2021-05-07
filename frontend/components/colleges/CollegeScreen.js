@@ -10,92 +10,102 @@ import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import CollegeCategory from "../../ui/colleges/CollegeCategory";
 import CollegeRecommend from "../../ui/colleges/CollegeRecommend";
 
-function CollegeScreen(props) {
-	return (
-		<View style={styles.container}>
+export default class CollegeScreen extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			userProfile: this.props.usrInfo,
+		};
+	}
 
-			<View style={styles.container_grp}>
+	render() {
+		// console.log("Checking " + JSON.stringify(this.state.userProfile))
+		return (
+			<View style={styles.container}>
 
-				{/* College Category */}
-				<CollegeCategory />
+				<View style={styles.container_grp}>
 
-				<View style={styles.recommend_containerStack}>
+					{/* College Category: passing down state.userProfile as prop */}
+					<CollegeCategory userProfile={this.state.userProfile} />
 
-					{/* College Recommend */}
-					<CollegeRecommend />
+					<View style={styles.recommend_containerStack}>
 
-					{/* Recent View ScrollView */}
-					<View style={styles.recent_container}>
-						<View style={styles.recentGrp}>
-							<Text style={styles.recentTxt}>Recent Viewed</Text>
-							<View style={styles.scrollArea2}>
-								<ScrollView
-									horizontal={true}
-									showsHorizontalScrollIndicator={false}
-									contentContainerStyle={
-										styles.scrollArea2_contentContainerStyle
-									}
-								>
-									<View style={styles.rvBtn1Row}>
-										<TouchableOpacity style={styles.rvBtn1}>
-											<MaterialCommunityIcons
-												name="table-of-contents"
-												style={styles.rvIcon1}
-											></MaterialCommunityIcons>
-											<View style={styles.rvIcon1Filler}></View>
-											<Text style={styles.rvTxt1}>Place{"\n"}Holder 1</Text>
-										</TouchableOpacity>
-										<TouchableOpacity style={styles.rvBtn2}>
-											<MaterialCommunityIcons
-												name="table-of-contents"
-												style={styles.rvIcon2}
-											></MaterialCommunityIcons>
-											<View style={styles.rvIcon2Filler}></View>
-											<Text style={styles.rvTxt2}>Place{"\n"}Holder 2</Text>
-										</TouchableOpacity>
-										<TouchableOpacity style={styles.rvBtn2}>
-											<MaterialCommunityIcons
-												name="table-of-contents"
-												style={styles.rvIcon3}
-											></MaterialCommunityIcons>
-											<View style={styles.rvIcon3Filler}></View>
-											<Text style={styles.rvTxt3}>Place{"\n"}Holder 3</Text>
-										</TouchableOpacity>
-										<TouchableOpacity style={styles.rvBtn2}>
-											<MaterialCommunityIcons
-												name="table-of-contents"
-												style={styles.rvIcon4}
-											></MaterialCommunityIcons>
-											<View style={styles.rvIcon4Filler}></View>
-											<Text style={styles.rvTxt4}>Place{"\n"}Holder 4</Text>
-										</TouchableOpacity>
-										<TouchableOpacity style={styles.rvBtn2}>
-											<MaterialCommunityIcons
-												name="table-of-contents"
-												style={styles.rvIcon5}
-											></MaterialCommunityIcons>
-											<View style={styles.rvIcon5Filler}></View>
-											<Text style={styles.rvTxt5}>Place{"\n"}Holder 5</Text>
-										</TouchableOpacity>
-										<TouchableOpacity style={styles.rvBtn2}>
+						{/* College Recommend: passing down state.userProfile as prop*/}
+						<CollegeRecommend userProfile={this.state.userProfile} />
 
-											<FontAwesome
-												name="arrow-circle-right"
-												style={styles.viewAllIcon2}>
-											</FontAwesome>
+						{/* Recent View ScrollView */}
+						<View style={styles.recent_container}>
+							<View style={styles.recentGrp}>
+								<Text style={styles.recentTxt}>Recent Viewed</Text>
+								<View style={styles.scrollArea2}>
+									<ScrollView
+										horizontal={true}
+										showsHorizontalScrollIndicator={false}
+										contentContainerStyle={
+											styles.scrollArea2_contentContainerStyle
+										}
+									>
+										<View style={styles.rvBtn1Row}>
+											<TouchableOpacity style={styles.rvBtn1}>
+												<MaterialCommunityIcons
+													name="table-of-contents"
+													style={styles.rvIcon1}
+												></MaterialCommunityIcons>
+												<View style={styles.rvIcon1Filler}></View>
+												<Text style={styles.rvTxt1}>Place{"\n"}Holder 1</Text>
+											</TouchableOpacity>
+											<TouchableOpacity style={styles.rvBtn2}>
+												<MaterialCommunityIcons
+													name="table-of-contents"
+													style={styles.rvIcon2}
+												></MaterialCommunityIcons>
+												<View style={styles.rvIcon2Filler}></View>
+												<Text style={styles.rvTxt2}>Place{"\n"}Holder 2</Text>
+											</TouchableOpacity>
+											<TouchableOpacity style={styles.rvBtn2}>
+												<MaterialCommunityIcons
+													name="table-of-contents"
+													style={styles.rvIcon3}
+												></MaterialCommunityIcons>
+												<View style={styles.rvIcon3Filler}></View>
+												<Text style={styles.rvTxt3}>Place{"\n"}Holder 3</Text>
+											</TouchableOpacity>
+											<TouchableOpacity style={styles.rvBtn2}>
+												<MaterialCommunityIcons
+													name="table-of-contents"
+													style={styles.rvIcon4}
+												></MaterialCommunityIcons>
+												<View style={styles.rvIcon4Filler}></View>
+												<Text style={styles.rvTxt4}>Place{"\n"}Holder 4</Text>
+											</TouchableOpacity>
+											<TouchableOpacity style={styles.rvBtn2}>
+												<MaterialCommunityIcons
+													name="table-of-contents"
+													style={styles.rvIcon5}
+												></MaterialCommunityIcons>
+												<View style={styles.rvIcon5Filler}></View>
+												<Text style={styles.rvTxt5}>Place{"\n"}Holder 5</Text>
+											</TouchableOpacity>
+											<TouchableOpacity style={styles.rvBtn2}>
 
-											<View style={styles.viewAllIcon2Filler}></View>
-											<Text style={styles.viewAllTxt2}>View All</Text>
-										</TouchableOpacity>
-									</View>
-								</ScrollView>
+												<FontAwesome
+													name="arrow-circle-right"
+													style={styles.viewAllIcon2}>
+												</FontAwesome>
+
+												<View style={styles.viewAllIcon2Filler}></View>
+												<Text style={styles.viewAllTxt2}>View All</Text>
+											</TouchableOpacity>
+										</View>
+									</ScrollView>
+								</View>
 							</View>
 						</View>
 					</View>
 				</View>
 			</View>
-		</View>
-	);
+		)
+	}
 }
 
 const styles = StyleSheet.create({
@@ -562,4 +572,3 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default CollegeScreen;

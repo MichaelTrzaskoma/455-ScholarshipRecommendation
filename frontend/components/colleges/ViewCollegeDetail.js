@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity, } from "react-native";
 import { FontAwesome, Feather } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 export default class ViewCollegeDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      usrInfo: this.props.route.params.usrProf,
       collegeState: this.props.route.params.title,
       collegeKey: this.props.route.params.itemKey,
       collegeObj1_1: {
@@ -115,11 +117,57 @@ export default class ViewCollegeDetail extends React.Component {
     // this.handleBookmark = this.handleBookmark.bind(this);
   }
 
+  handleBookmark () {
+    //Insert API Call here
+    let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
+    fetch(URL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "email": this.state.usrInfo.email, 
+        "title": this.state.collegeObj1_1.uniName,
+        "type" : "college",
+        "unique_id": this.state.usrInfo.uuid,
+        "jwt": this.state.usrInfo.jwt,
+      }),
+    })
+
+      // =============================================
+      // .then((response) => response.json())
+      // .then((json) => {
+      //   console.log("Email: " + this.state.email);
+      //   console.log(json);
+      // })
+      // =============================================
+
+      .then((response) => {
+        if (response.status == 202) {
+
+          alert(
+            "Your data have been successfully \ninserted! " +
+            "You will be navigated back!"
+          );
+
+        } else {
+          json_mesg = response.json();
+          alert("Error: " + json_mesg.mesg);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log("College bookmark title: "+this.state.collegeObj1_1.uniName);  
+    //alert("This scholarship has been bookmarked!");
+  }
+
   getDetail = () => {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
     let URL =
-      "http://96858b0d3196.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey
+      "http://b9d79f8fdd3c.ngrok.io/api/v1.2/resources/college/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
 
     fetch(URL, {
       method: 'GET',
@@ -248,26 +296,18 @@ export default class ViewCollegeDetail extends React.Component {
 
 
   render() {
-    // console.log("Checking 123");
-    // console.log("Object check " + JSON.stringify(this.props));
-    // console.log("From props " + this.props.route.params.itemKey);
-    // console.log("Checking again " + this.props.itemKey);
-    // console.log("1: " + JSON.stringify(this.state.scholarshipObj));
-    // console.log("2: " + JSON.stringify(this.state.collegeObj1_1));
-    // console.log("3: " + JSON.stringify(this.state.collegeObj1_2));
-    // console.log("4: " + JSON.stringify(this.state.collegeObj2_1));
-    // console.log("5: " + JSON.stringify(this.state.collegeObj2_2));
-    // console.log("6: " + JSON.stringify(this.state.collegeObj3_1));
-    // console.log("7: " + JSON.stringify(this.state.collegeObj3_2));
-    // console.log("8: " + JSON.stringify(this.state.collegeObj4_1));
-    // console.log("9: " + JSON.stringify(this.state.collegeObj4_2));
-    // console.log("10: " + JSON.stringify(this.state.collegeObj5_1));
-    // console.log("11: " + JSON.stringify(this.state.collegeObj5_2));
-    // console.log("12: " + JSON.stringify(this.state.collegeObj6_1));
-    // console.log("13: " + JSON.stringify(this.state.collegeObj6_2));
+    // console.log("From ViewCollegeDetail props " + JSON.stringify(this.props.route.params.usrProf));
     return (
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false} style={styles.mainContainer}>
+        <View style = {styles.card_grp0}>
+          <TouchableOpacity onPress={() => this.handleBookmark()}>
+          <MaterialCommunityIcons
+								  name="bookmark-plus"
+								  style={styles.bookmarksIcon}></MaterialCommunityIcons>
+							  <Text style={styles.bookmarksTxt}>Bookmark This Scholarship</Text>
+          </TouchableOpacity>
+        </View>
           <View style={styles.grp1}>
             <View style={styles.titleGrpStack}>
               <View style={styles.titleGrp}>
@@ -596,6 +636,29 @@ const styles = StyleSheet.create({
     height: "100%",
     // justifyContent: "center"
     // alignItems: "center"
+  },
+  card_grp0:{
+    width: '93%',
+    marginTop: 25,
+    height: 50,
+    backgroundColor: 'rgba(255,255,255,1)',
+    borderWidth: 0,
+    borderColor: '#000000',
+    borderRadius: 5,
+    overflow: 'hidden',
+    alignSelf: 'center',
+  },
+  bookmarksIcon:
+  {
+    color: 'rgba(48,132,188,1)',
+		fontSize: 35,
+    marginTop: 5,
+    marginLeft: 20,
+  },
+  bookmarksTxt: {
+    marginLeft: 87,
+    marginTop: -22,
+    color: 'rgba(48,132,188,1)',
   },
   grp1: {
     width: "93%",
