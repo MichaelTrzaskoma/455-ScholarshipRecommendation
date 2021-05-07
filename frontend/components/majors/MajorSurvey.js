@@ -90,8 +90,8 @@ export default class MajorSurvey extends React.Component {
     handleSalaryValue(val)
     {
         this.setState({
-            salaryValue: val,
 			salaryTripWire: true,
+			salaryValue: val,
         });
         //console.log(this.state.salaryValue);
     }
@@ -550,8 +550,7 @@ export default class MajorSurvey extends React.Component {
 					<Text style={styles.findCollege}>To Find your Major:</Text>
 					<Text style={styles.surveyDescription}>
 						You may not have an answer for all of these questions but we encourage you
-                        to think about them and answer as best as possible. Please
-                        complete the survey many times with different answers if you're undecided and compare your results!
+                        to think about them and answer as best as possible. Multiple attempts are encouraged.
                		</Text>
 				</View>
 
@@ -567,7 +566,7 @@ export default class MajorSurvey extends React.Component {
 
 						<View style={styles.multiSelectorWrapper}>
                         <Slider
-                             style={{width: 200, height: 40}}
+                             style={{width: 310, height: 40}}
                              minimumValue={20000}
                              maximumValue={130000}
                              minimumTrackTintColor="#21732e"
@@ -594,7 +593,7 @@ export default class MajorSurvey extends React.Component {
 									What unemployment rate are you willing to contend with?
         						</Text>
 								<Slider
-									style={{width: 200, height: 40}}
+									style={{width: 310, height: 40}}
 									minimumValue={1}
 									maximumValue={10}
 									value = {this.state.unemploymentValue}
@@ -665,7 +664,7 @@ export default class MajorSurvey extends React.Component {
 							Prefered Level of Job Variety Per Major?
 						</Text>
 						<Slider
-							style={{width: 200, height: 40}}
+							style={{width: 310, height: 40}}
 							step = {1}
 							minimumValue={0}
 							maximumValue={2}
@@ -691,7 +690,7 @@ export default class MajorSurvey extends React.Component {
 								Do You Prefer a High Level of Social Interaction at work?
 							</Text>
 							<Slider
-								style={{width: 200, height: 40}}
+								style={{width: 310, height: 40}}
 								step = {1}
 								minimumValue={0}
 								maximumValue={2}
@@ -715,7 +714,7 @@ export default class MajorSurvey extends React.Component {
 								Preferred Work Environment?
 							</Text>
 							<Slider
-								style={{width: 200, height: 40}}
+								style={{width: 310, height: 40}}
 								step = {1}
 								minimumValue={0}
 								maximumValue={2}
@@ -817,7 +816,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 39,
 		marginTop: 10,
-		marginLeft: 80,
+		marginLeft: 130,
 	},
     unemploymentValueDisplay: {
 		color: "#d91c37",
@@ -825,7 +824,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 39,
 		marginTop: 10,
-		marginLeft: 80,
+		marginLeft: 130,
 	},
 	autonomyValueDisplay: {
 		color: "#a112cc",
@@ -841,7 +840,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 39,
 		marginTop: "auto",
-		marginLeft: 80,
+		marginLeft: 130,
 	},
 	socialValueDisplay: {
 		color: "#f58eb4",
@@ -849,7 +848,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 39,
 		marginTop: "auto",
-		marginLeft: 80,
+		marginLeft: 130,
 	},
 	environValueDisplay: {
 		color: "#31e03d",
@@ -857,7 +856,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 39,
 		marginTop: "auto",
-		marginLeft: 80,
+		marginLeft: 130,
 	},
 	satTextField: {
 		width: "100%",
