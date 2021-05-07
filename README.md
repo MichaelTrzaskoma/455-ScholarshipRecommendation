@@ -119,9 +119,7 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 | /api/v1.2/resources/scholarships/view/categories/general | GET | View a list of scholarship general category terms. E.g. Acamdeic Major, Age, Gendder, and etc. |
 | /api/v1.2/resources/scholarships/view/categories/<cater\> | GET | View a list of scholarship sub-category terms. E.g. Acamdeic Major has Accounting, Computer Science, and etc. |
 | /api/v1.2/resources/scholarships/view/categories/sub/<cater\> | GET | View a list of scholarship that belongs to a specific sub-categories. |
-| /api/v1.2/resources/scholarships/view/titles/<scholarship_title\> | GET | View a specific scholarship detail by providing the title of that scholarship. |
-| /api/v1.2/resources/college/view/states/<state\> | GET | View all colleges under a specific state. |
-| /api/v1.2/resources/colleges/view/titles/<college_name\> | GET | View a college detail by providing college name. |
+| /api/v1.2/resources/colleges/view/titles/<scholarship_title\>/<email\>/<token\>/<id\> | GET | View a scholarship detail by providing scholarship name. At the same time, the backend automatically add this item as recent viewed. |
 
 <br>
 
@@ -131,7 +129,7 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 | Endpoint | Method(s) | Description |
 | :--- | :--- | :--- |
 | /api/v1.2/resources/college/view/states/<state\> | GET | View all colleges under a specific state. |
-| /api/v1.2/resources/colleges/view/titles/<college_name\> | GET | View a college detail by providing college name. |
+| /api/v1.2/resources/scholarships/view/titles/<college_name\>/<email\>/<token\>/<id\> | GET | View a college detail by providing college name. At the same time, the backend automatically add this item as recent viewed. |
 
 <br>
 
@@ -141,7 +139,7 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 | Endpoint | Method(s) | Description |
 | :--- | :--- | :--- |
 | /api/v1.2/resources/major/view/subjects/<sub\> | GET | View all majors under a specific subjects. |
-| /api/v1.2/resources/majors/view/titles/<major_name> | GET | View a major detail by providing major name. |
+| /api/v1.2/resources/majors/view/titles/<major_name\>/<email\>/<token\>/<id\> | GET | View a major detail by providing major name. At the same time, the backend automatically add this item as recent viewed. |
 
 <br>
 
@@ -149,9 +147,9 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 
 | Endpoint | Method(s) | Description |
 | :--- | :--- | :--- |
-| /api/v1.2/users/id/<email\>/recommends/scholarship | GET | View a list of recommended scholarships by providing client's email. |
-| /api/v1.2/users/id/<email\>/recommends/college | GET | View a list of recommended college by providing client's email. |
-| /api/v1.2/users/id/<email\>/recommends/major | GET | View a list of recommended major by providing client's email. |
+| /api/v1.2/users/id/<email\>/<token\>/<id\>/recommends/scholarship | GET | View a list of recommended scholarships by providing client's email. |
+| /api/v1.2/users/id/<email\>/<token\>/<id\>/recommends/college | GET | View a list of recommended college by providing client's email. |
+| /api/v1.2/users/id/<email\>/<token\>/<id\>/recommends/major | GET | View a list of recommended major by providing client's email. |
 
 <br>
 
@@ -180,7 +178,7 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 
 | Endpoint | Method(s) | Description |
 | :--- | :--- | :--- |
-| /api/v1.2/users/id/<email\>/bookmarks | GET, POST, PATCH | View, append, and modify bookmark item under user's profile. |
+| /api/v1.2/users/id/<email\>/bookmarks/<type\>/<token\>/<id\> /bookmarks | GET, POST, PATCH | View, append, and modify bookmark item under user's profile. |
 
 <br>
 
