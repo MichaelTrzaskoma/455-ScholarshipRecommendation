@@ -142,7 +142,7 @@ export default class ViewScholarTbl extends React.Component {
     console.log(this.state.currentBookmarkKey)
 
     //Insert API Call here
-    let URL = "http://8f301090708b.ngrok.io/api/v1.2/users/id/" + this.state.email + "/bookmarks";
+    let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/users/id/"+ this.state.userProfile.email + "/bookmarks/scholarship/"+ this.state.userProfile.jwt+ "/"+ this.state.userProfile.uuid +"/bookmarks";
     fetch(URL, {
       method: "POST",
       headers: {
@@ -150,11 +150,11 @@ export default class ViewScholarTbl extends React.Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "email": this.state.email, 
+        "email": this.state.userProfile.email, 
         "title": this.state.currentBookmarkKey,
         "unique_id": this.state.userProfile.uuid, 
         "type": "scholarship",
-        // "jwt": getSecureStorage("jwt"),
+        "jwt": this.state.userProfile.jwt,
         // "uniqueID": getDeviceID(),
       }),
     })
