@@ -42,6 +42,17 @@ def trimmer_price(key):
         return key
 
 
+def trimmer_price_special(key):
+    # trim non-price from the key
+    # INPUT: key (str)
+    # OUTPUT: return the key without non-price
+    if "$" in key:
+        i = str(key).index("$")
+        return str(key)[(i + 1):]
+    else:
+        return key
+
+
 def trimmer_na(key):
     # trim N\A or N\\A from the key
     # INPUT: key (str)

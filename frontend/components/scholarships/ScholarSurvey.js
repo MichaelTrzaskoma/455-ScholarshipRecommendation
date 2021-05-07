@@ -1523,7 +1523,8 @@ class InputScreen extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props);
 
-		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+		let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/users/id/" + this.state.email + "/" + "token" + "/" + "sffdf" + "/surveys/scholarship";
+		// /api/v1.2/users/id/<email>/<token>/<id>/surveys/scholarship
 		fetch(URL, {
 			method: this.state.currentMethod,
 			headers: {
@@ -1599,7 +1600,7 @@ class InputScreen extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
-		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+		let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/users/id/" + this.state.email + "/" + "token" + "/" + "sffdf" + "/surveys/scholarship";
 
 		fetch(URL, {
 			method: 'GET',
@@ -1632,11 +1633,11 @@ class InputScreen extends React.Component {
 			});
 	}
 
-	UNSAFE_componentWillUpdate() {
+	componentDidMount() {
 		this.getExistingData();
 		//AsyncStorage.getItem('JWT').then((value) => this.setState({ jwt: value }));
 		//AsyncStorage.getItem('uuid').then((value) => this.setState({ uuid: value }));
-		console.log("UUID: " + this.state.uuid + "\n" + "JWT: " + this.state.jwt);
+		// console.log("UUID: " + this.state.uuid + "\n" + "JWT: " + this.state.jwt);
 	}
 
 

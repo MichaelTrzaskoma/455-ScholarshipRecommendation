@@ -122,46 +122,6 @@ def update_deviceInfo(profileRef, email, exisiting_id, jwt, uuid, token, timer):
                           }})
 
 
-def validate_access_token(profileRefDB, jwt, uuid, email):
-    # validate the user's access token (jwt)
-    # this func is used whenever the incoming request from the user is received
-    r = profileRefDB.find_one({"_id": email})
-
-    if "devices" not in r:
-        return 0
-    
-    device_list = r["devices"]
-    device_info = list(filter(lambda device: device['unique_id'] == uuid, device_list))
-    if len(device_info) != 1:
-        return 1
-    
-    db_record_jwt = device_info[0]["jwt"]
-    db_record_uuid = device_info[0]["unique_id"]
-    db_record_token = device_info[0]["token"]
-    db_record_time = device_info[0]["expireDate"]
-
-    if not jwt == db_record_jwt:
-        return 2
-    
-    if not uuid == db_record_uuid:
-        return 3
-    
-    errors = [0, 1, 2]
-    decode = decode_jwt(jwt, db_record_token)
-
-    if decode not in errors:
-        if not decode["exp"] == db_record_time:
-            return 4
-        
-        current_time = int(time.mktime(datetime.datetime.utcnow().timetuple()))
-        if decode["exp"] > current_time:
-            # e.g. JWT expires April 07, 2021 and current time is APril 01, 2021
-            # therefore this is valid jwt code
-            return True
-    else:
-        return 5
-
-
 def validate_token(user_Ref, jwt, uuid, email):
 
     errors = [0, 1, 2, 3, 4, 5]
@@ -175,3 +135,47 @@ def validate_token(user_Ref, jwt, uuid, email):
 
 def validate_email(client_ref, email):
     return True if client_ref.count_documents({"_id": email}) == 1 else False
+
+
+def validate_access_token(profileRefDB, jwt, uuid, email):
+    # validate the user's access token (jwt)
+    # this func is used whenever the incoming request from the user is received
+
+    if validate_email(profileRefDB, email):
+        r = profileRefDB.find_one({"_id": email})
+
+        if "devices" not in r:
+            return 0
+        
+        device_list = r["devices"]
+        device_info = list(filter(lambda device: device['unique_id'] == uuid, device_list))
+        if len(device_info) != 1:
+            return 1
+        
+        db_record_jwt = device_info[0]["jwt"]
+        db_record_uuid = device_info[0]["unique_id"]
+        db_record_token = device_info[0]["token"]
+        db_record_time = device_info[0]["expireDate"]
+
+        if not jwt == db_record_jwt:
+            return 2
+        
+        if not uuid == db_record_uuid:
+            return 3
+        
+        errors = [0, 1, 2]
+        decode = decode_jwt(jwt, db_record_token)
+
+        if decode not in errors:
+            if not decode["exp"] == db_record_time:
+                return 4
+            
+            current_time = int(time.mktime(datetime.datetime.utcnow().timetuple()))
+            if decode["exp"] > current_time:
+                # e.g. JWT expires April 07, 2021 and current time is APril 01, 2021
+                # therefore this is valid jwt code
+                return True
+    
+    else:
+        return 5
+    

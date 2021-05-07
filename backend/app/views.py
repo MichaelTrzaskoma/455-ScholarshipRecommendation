@@ -278,7 +278,7 @@ def auth(email):
                         secret_code = generateCode()
 
                         timer = int(time.mktime(
-                            (datetime.datetime.utcnow() + timedelta(days=7)).timetuple()))
+                            (datetime.utcnow() + timedelta(days=7)).timetuple()))
 
                         # generate a new jwt code by using current device info
                         new_jwt = encode_jwt(
@@ -305,7 +305,7 @@ def auth(email):
                 # generate a new device token
                 secret_code = generateCode()
                 timer = int(time.mktime(
-                    (datetime.datetime.utcnow() + timedelta(days=7)).timetuple()))
+                    (datetime.utcnow() + timedelta(days=7)).timetuple()))
 
                 # generate a new jwt code by using current device info
                 new_jwt = encode_jwt(
@@ -314,7 +314,7 @@ def auth(email):
                 initial_device(
                     user_Ref, email, new_jwt, income_data['unique_id'], secret_code, timer)
 
-                return make_response(jsonify({"mesg": "authorized!", "token": str(new_jwt)}), 202)
+                return make_response(jsonify({"mesg": "authorized", "token": str(new_jwt)}), 202)
 
             else:
                 # user didn't verify his/ her email
@@ -609,11 +609,11 @@ def view_college_single(college_name, email, token, id):
                 "sport_male": trimmer_na(arr2str(r['campus_life']['sport']['male'])) if check_nest3(r, "campus_life", "sport", "male") else "None",
 
                 # tuitions
-                "avg_housing": trimmer_price(r['cost']['tuition']['avg_housing']) if check_nest3(r, "cost", "tuition", "avg_housing") else "None",
+                "avg_housing": trimmer_price_special(r['cost']['tuition']['avg_housing']) if check_nest3(r, "cost", "tuition", "avg_housing") else "None",
                 "avg_meal_plan": trimmer_price(r['cost']['tuition']['avg_meal_plan']) if check_nest3(r, "cost", "tuition", "avg_meal_plan") else "None",
                 "book_cost": trimmer_price(r['cost']['tuition']['book']) if check_nest3(r, "cost", "tuition", "book") else "None",
-                "tuition_in_state": trimmer_price(r['cost']['tuition']['in_state']) if check_nest3(r, "cost", "tuition", "in_state") else "None",
-                "tuition_out_state": trimmer_price(r['cost']['tuition']['out_state']) if check_nest3(r, "cost", "tuition", "out_state") else "None",
+                "tuition_in_state": trimmer_price_special(r['cost']['tuition']['in_state']) if check_nest3(r, "cost", "tuition", "in_state") else "None",
+                "tuition_out_state": trimmer_price_special(r['cost']['tuition']['out_state']) if check_nest3(r, "cost", "tuition", "out_state") else "None",
 
                 # description
                 "description": trimmer_nextline(r['description']) if check_nest1(r, "description") else "None",
@@ -782,7 +782,7 @@ def usrSurvey_scholarship(email, token, id):
         )
 
         # append to college survey
-        insert_college_survey(user_Ref, email, income_data["selectedReligions"],
+        insert_college_survey(user_Ref, email, income_data["selectedResidences"],
                               income_data['selectedMajors'], sat=income_data['sat_score'], act=income_data['act_score'])
 
         return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
@@ -850,7 +850,7 @@ def usrSurvey_scholarship(email, token, id):
             )
 
             # append the survey to college attribute
-            insert_college_survey(user_Ref, email, income_data["selectedReligions"],
+            insert_college_survey(user_Ref, email, income_data["selectedResidences"],
                               income_data['selectedMajors'], sat=income_data['sat_score'], act=income_data['act_score'])
 
             return make_response(jsonify({"mesg": "Your scholarship survey has successfully modified!"}), 202)
@@ -871,7 +871,7 @@ def usrSurvey_college(email, token, id):
         income_data = request.json
 
         # validate the incoming data
-        if "selectedReligions" not in income_data:
+        if "selectedResidences" not in income_data:
             return make_response(jsonify({"mesg": "Missing region information"}), 400)
         if len(income_data["selectedMajors"]) < 1:
             return make_response(jsonify({"mesg": "Missing region information"}), 400)
@@ -882,7 +882,7 @@ def usrSurvey_college(email, token, id):
             return make_response(jsonify({"mesg": "Missing major information"}), 400)
 
         if validate_email(user_Ref, email):
-            insert_college_survey(user_Ref, email, income_data["selectedReligions"],
+            insert_college_survey(user_Ref, email, income_data["selectedResidences"],
                                 income_data['selectedMajors'], sat=income_data['sat_score'], act=income_data['act_score'])
 
         return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
@@ -919,7 +919,7 @@ def usrSurvey_college(email, token, id):
         income_data = request.json
 
         # validate the incoming data
-        if "selectedReligions" not in income_data:
+        if "selectedResidences" not in income_data:
             return make_response(jsonify({"mesg": "Missing region information"}), 400)
         if len(income_data["selectedMajors"]) < 1:
             return make_response(jsonify({"mesg": "Missing region information"}), 400)
@@ -931,11 +931,11 @@ def usrSurvey_college(email, token, id):
 
 
         if validate_email(user_Ref, email):
-            insert_college_survey(user_Ref, email, income_data["selectedReligions"],
+            insert_college_survey(user_Ref, email, income_data["selectedResidences"],
                         income_data['selectedMajors'], sat=income_data['sat_score'], act=income_data['act_score'])
 
             # append the data into scholarship survey attribute
-            append_scholarSurvey_fromCollegeSurvey(user_Ref, email, income_data["selectedReligions"],
+            append_scholarSurvey_fromCollegeSurvey(user_Ref, email, income_data["selectedResidences"],
                         income_data['selectedMajors'], sat=income_data['sat_score'], act=income_data['act_score'])
 
             return make_response(jsonify({"mesg": "Your college survey has successfully modified!"}), 202)
@@ -1162,7 +1162,7 @@ def getBookmarkDoc_all(email, type, token, id):
 # Recent Viewed (aka history)
 
 
-@app.route("/api/v1.2/users/id/<email>/<token>/<id>/recent",  methods=["GET", "POST"])
+@app.route("/api/v1.2/users/id/<email>/<token>/<id>/recent")
 def getRecentDoc(email, token, id):
     if request.method == "GET" and request.is_json:
         income_data = request.json
@@ -1177,7 +1177,7 @@ def getRecentDoc(email, token, id):
         return make_response(jsonify(getRecent(user_Ref, email, numDocs, docType)), 202)
 
     elif request.method == "POST" and request.is_json:
-        
+        # deprecated the POST method there
         income_data = request.json
         
         # validate the inputs and incoming data
