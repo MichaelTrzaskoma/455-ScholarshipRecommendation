@@ -660,7 +660,7 @@ def view_college_single(college_name, email, token, id):
 # Resources - Major 
 
 
-@app.route("/api/v1.2/resources/major/view/subjects/<sub>")
+@app.route("/api/v1.2/resources/major/view/category/<sub>")
 def view_major_subjectIndex(sub):
     # view all majors that follow unders a specific subject
     # INPUT: sub (str) name of the subject
