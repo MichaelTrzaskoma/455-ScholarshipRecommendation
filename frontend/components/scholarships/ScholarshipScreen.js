@@ -67,15 +67,20 @@ export default class ScholarshipScreen extends React.Component {
 
 	render() {
 		// console.log("Email from ScholarshipScreen.js: " + this.state.email);
+		// console.log("Checking passing props: "+ JSON.stringify(this.state.userProfile))
 		return (
 			<View style={styles.container}>
 				<StatusBar backgroundColor="#007FF9" barStyle="light-content" />
 				<View style={styles.container_grp}>
-					{/* Scholarship Category */}
-					<ScholarCategory />
+
+					{/* Scholarship Category: passing down state.userProfile as prop */}
+					<ScholarCategory userProfile={this.state.userProfile}/>
+
 					<View style={styles.recommendGrpStack}>
-						{/* Scholarship Recommend: passing down email as prop */}
-						<ScholarRecommend email={this.state.email} nav={this.state.nav} />
+
+						{/* Scholarship Recommend: passing down state.userProfile as prop */}
+						<ScholarRecommend usrProfile={this.state.userProfile} nav={this.state.nav} />
+
 						<View style={styles.recent_container}>
 							<View style={styles.recentGrp}>
 								<Text style={styles.recentTxt}>Recent Viewed</Text>

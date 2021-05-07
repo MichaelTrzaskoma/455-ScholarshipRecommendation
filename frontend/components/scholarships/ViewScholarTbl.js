@@ -26,7 +26,7 @@ export default class ViewScholarTbl extends React.Component {
       modalVisible: false,
       currentBookmarkKey: "",
       //email: this.props.usrInfo.email,
-      userProfile: this.props.route.params.usrProfile,
+      userProfile: this.props.route.params.usrProfile
     };
   }
 
@@ -87,7 +87,7 @@ export default class ViewScholarTbl extends React.Component {
   getDoc = () => {
     const scholarArr = [];
 
-    let URL = "http://08cc501f4183.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
+    let URL = "http://8f301090708b.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
 
     fetch(URL, {
       method: "GET",
@@ -142,7 +142,7 @@ export default class ViewScholarTbl extends React.Component {
     console.log(this.state.currentBookmarkKey)
 
     //Insert API Call here
-    let URL = "http://08cc501f4183.ngrok.io/api/v1.2/users/id/" + this.state.email + "/bookmarks";
+    let URL = "http://8f301090708b.ngrok.io/api/v1.2/users/id/" + this.state.email + "/bookmarks";
     fetch(URL, {
       method: "POST",
       headers: {
@@ -152,7 +152,7 @@ export default class ViewScholarTbl extends React.Component {
       body: JSON.stringify({
         "email": this.state.email, 
         "title": this.state.currentBookmarkKey,
-        "unique_id": "placeholder", 
+        "unique_id": this.state.userProfile.uuid, 
         "type": "scholarship",
         // "jwt": getSecureStorage("jwt"),
         // "uniqueID": getDeviceID(),
@@ -236,6 +236,7 @@ export default class ViewScholarTbl extends React.Component {
         this.props.navigation.navigate('ViewScholarDetail', {
           title: item.key,
           itemKey: item.key,
+          userProfile: this.props.route.params.usrProfile
         });
       }}
     >
@@ -272,7 +273,7 @@ export default class ViewScholarTbl extends React.Component {
 
 
   render() {
-    console.log(this.state.stagingArea);
+    // console.log("Checking ViewScholarTbl " + JSON.stringify(this.props.route.params.usrProfile));
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>

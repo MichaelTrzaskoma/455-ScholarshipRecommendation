@@ -6,6 +6,7 @@ export default class ViewCollegeDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      usrInfo: this.props.route.params.usrProf,
       collegeState: this.props.route.params.title,
       collegeKey: this.props.route.params.itemKey,
       collegeObj1_1: {
@@ -119,7 +120,7 @@ export default class ViewCollegeDetail extends React.Component {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
     let URL =
-      "http://96858b0d3196.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey
+      "http://8f301090708b.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey
 
     fetch(URL, {
       method: 'GET',
@@ -248,23 +249,7 @@ export default class ViewCollegeDetail extends React.Component {
 
 
   render() {
-    // console.log("Checking 123");
-    // console.log("Object check " + JSON.stringify(this.props));
-    // console.log("From props " + this.props.route.params.itemKey);
-    // console.log("Checking again " + this.props.itemKey);
-    // console.log("1: " + JSON.stringify(this.state.scholarshipObj));
-    // console.log("2: " + JSON.stringify(this.state.collegeObj1_1));
-    // console.log("3: " + JSON.stringify(this.state.collegeObj1_2));
-    // console.log("4: " + JSON.stringify(this.state.collegeObj2_1));
-    // console.log("5: " + JSON.stringify(this.state.collegeObj2_2));
-    // console.log("6: " + JSON.stringify(this.state.collegeObj3_1));
-    // console.log("7: " + JSON.stringify(this.state.collegeObj3_2));
-    // console.log("8: " + JSON.stringify(this.state.collegeObj4_1));
-    // console.log("9: " + JSON.stringify(this.state.collegeObj4_2));
-    // console.log("10: " + JSON.stringify(this.state.collegeObj5_1));
-    // console.log("11: " + JSON.stringify(this.state.collegeObj5_2));
-    // console.log("12: " + JSON.stringify(this.state.collegeObj6_1));
-    // console.log("13: " + JSON.stringify(this.state.collegeObj6_2));
+    // console.log("From ViewCollegeDetail props " + JSON.stringify(this.props.route.params.usrProf));
     return (
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false} style={styles.mainContainer}>

@@ -14,12 +14,12 @@ const Stack = createStackNavigator();
 
 
 function TopTapView(props) {
-  // console.log(props.route.params.email);
+  // console.log("TopTapView function 123" + JSON.stringify(props.route.params.usrInfo));
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Scholarship" component={ScholarSurvey} initialParams={ {email:props.route.params.email}}/>
-      <Tab.Screen name="College" component={CollegeSurvey} initialParams={ {email:props.route.params.email}}/>
-      <Tab.Screen name="Major" component={MajorSurvey} initialParams={ {email:props.route.params.email}}/>
+      <Tab.Screen name="Scholarship" component={ScholarSurvey} initialParams={ {usrInfo : props.route.params.usrInfo}}/>
+      <Tab.Screen name="College" component={CollegeSurvey} initialParams={ {usrInfo : props.route.params.usrInfo}}/>
+      <Tab.Screen name="Major" component={MajorSurvey} initialParams={ {usrInfo : props.route.params.usrInfo}}/>
     </Tab.Navigator>
   );
 }
@@ -27,7 +27,7 @@ function TopTapView(props) {
 const Tab = createMaterialTopTabNavigator();
 
 export default function TabViewSurvey(props) {
-  // console.log(props.route.params.email);
+  // console.log("TabViewSurvey " + JSON.stringify(props.route.params.usrInfo));
   return (
     // Since NavigationContainer is used in App.js, this is independent NavigationContainer from the one in App.js 
     <NavigationContainer independent={true} >
@@ -38,7 +38,7 @@ export default function TabViewSurvey(props) {
           name="TopTapView"
           component={TopTapView}
           options={{ headerShown: false }}
-          initialParams = { { email: props.route.params.email} }
+          initialParams = { { usrInfo: props.route.params.usrInfo} }
         />
         {/* <Stack.Screen
           name={"InputScreen2"}

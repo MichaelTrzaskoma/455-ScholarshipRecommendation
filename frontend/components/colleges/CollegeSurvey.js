@@ -521,8 +521,7 @@ export default class CollegeSurvey extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			// ustObj: this.props.route.params.usrProfile,
-			// email: this.props.route.params.usrProfile.email,
+			usrInfo: this.props.route.params.usrInfo,
 			selectedRegions: [],
 			selectedMajors: [],
 			satScore: "",
@@ -711,7 +710,8 @@ export default class CollegeSurvey extends React.Component {
 	}
 
 	checkExisting() {
-		let URL = "http://8c1995ad6ff1.ngrok.io/api/v1.2/usr/" + this.state.email + "/survey/scholarship"; //insert correct URL for user's profiel
+		// console.log("checkExisting " + JSON.stringify(this.state.usrInfo));
+		let URL = "http://8c1995ad6ff1.ngrok.io/api/v1.2/usr/" + this.state.usrInfo.email + "/survey/scholarship"; //insert correct URL for user's profiel
 
 		fetch(URL, {
 			method: 'GET',
@@ -754,10 +754,10 @@ export default class CollegeSurvey extends React.Component {
 	}
 
 	upload2sever = () => {
-		console.log(this.props.route.params.email);
+		// console.log(this.props.route.params.email);
 		// console.log("Email from InputScreen2: " + this.props);
 
-		let URL = "http://8c1995ad6ff1.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+		let URL = "http://8c1995ad6ff1.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/surveys/scholarship";
 		fetch(URL, {
 			method: "POST",
 			headers: {
@@ -806,6 +806,7 @@ export default class CollegeSurvey extends React.Component {
 	render() {
 		// const { selectedRegions } = this.state;
 		// this.checkMajor()
+		// console.log("CollegeSurvey " + JSON.stringify(this.props.route.params.usrInfo));
 		this.checkExisting();
 		return (
 			<KeyboardAwareScrollView

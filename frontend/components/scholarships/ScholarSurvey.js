@@ -1278,18 +1278,19 @@ const DismissKeyboard = ({ children }) => (
 );
 
 export default function ScholarSurvey(props) {
-	// console.log("Email from InputScreen1: " + JSON.stringify(route.params.email));
+	// console.log("props Check from InputScreen1: " + JSON.stringify(props.route.params.usrInfo.usrInfo));
 	// console.log("navigation from InputScreen1: " + JSON.stringify(navigation));
-	// console.log(props);
 	// Delete the navigation & atttribute that is not used nowhere.
-	return <InputScreen email={props.route.params.email} />
+	// console.log("ScholarSurvey within " + JSON.stringify(props.route.params.usrInfo));
+	// usrInfo={props.route.params.usrInfo}
+	return <InputScreen {...props}/>
 }
 
 class InputScreen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: this.props.email,
+			usrProfile: this.props.route.params.usrInfo,
 			gender: "",
 			dob: "",
 			gpa: "",
@@ -1303,9 +1304,6 @@ class InputScreen extends React.Component {
 			selectedEthnicities: [],
 			firstTime: 0,
 			currentMethod: "POST",
-
-			jwt: "",
-			uuid: "",
 		};
 		this.handleGender = this.handleGender.bind(this);
 		this.handleDOB = this.handleDOB.bind(this);
@@ -1523,7 +1521,7 @@ class InputScreen extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props);
 
-		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email + "/surveys/scholarship";
 		fetch(URL, {
 			method: this.state.currentMethod,
 			headers: {
@@ -1599,7 +1597,7 @@ class InputScreen extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
-		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/scholarship";
+		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email + "/surveys/scholarship";
 
 		fetch(URL, {
 			method: 'GET',
@@ -1641,10 +1639,8 @@ class InputScreen extends React.Component {
 
 
 	render() {
-		// console.log("DOB is: " + this.state.dob);
-		// console.log(this.props);
-		// check();
-
+		// console.log("ScholarSuvey Checking " + JSON.stringify(this.state.usrProfile));
+		// console.log("scholarSurvey prop check " + JSON.stringify(this.props.route.params.usrInfo));
 		return (
 			<DismissKeyboard>
 				<KeyboardAwareScrollView

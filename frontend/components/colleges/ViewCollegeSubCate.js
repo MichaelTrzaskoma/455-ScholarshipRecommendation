@@ -14,6 +14,7 @@ export default class ViewSubCate extends React.Component {
     super(props);
     // this.props.route.params.itemKey
     this.state = {
+      usrInfo: this.props.route.params.usrInfo,
       isLoading: true,
       scholarArr: [],
       subCate: this.props.route.params.itemKey,
@@ -25,7 +26,7 @@ export default class ViewSubCate extends React.Component {
   }
 
   getDoc = () => {
-    let URL = "http://96858b0d3196.ngrok.io/api/v1.2/resources/college/view/states/" + this.state.subCate;
+    let URL = "http://8f301090708b.ngrok.io/api/v1.2/resources/college/view/states/" + this.state.subCate;
 
     fetch(URL, {
       method: "GET",
@@ -36,7 +37,7 @@ export default class ViewSubCate extends React.Component {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log("Testing " + JSON.stringify(json.mesg));
+        // console.log("Testing " + JSON.stringify(json.mesg));
         this.setState({
           scholarArr: json.mesg,
           isLoading: false,
@@ -46,8 +47,8 @@ export default class ViewSubCate extends React.Component {
         console.log("Ann error occured: " + e);
       });
 
-    console.log("The subcategory is: " + this.state.subCate);
-    console.log("The list is: " + this.state.scholarArr);
+    // console.log("The subcategory is: " + this.state.subCate);
+    // console.log("The list is: " + this.state.scholarArr);
     // console.log(this.state.scholarArr);
   }
 
@@ -56,6 +57,7 @@ export default class ViewSubCate extends React.Component {
   };
 
   render() {
+    // console.log("ViewCollege " + JSON.stringify(this.props.route.params.usrInfo));
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>
@@ -78,7 +80,7 @@ export default class ViewSubCate extends React.Component {
                 this.props.navigation.navigate('ViewCollegeDetail', {
                   title: (item),
                   itemKey: item,
-                  state: this.state.subCate
+                  usrProf: this.state.usrInfo
                 });
               }}
             > {item} </Text>

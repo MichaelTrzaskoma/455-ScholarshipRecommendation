@@ -9,9 +9,9 @@ import {
 import { FontAwesome, MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 
-export default function ScholarCategory() {
+export default function ScholarCategory(props) {
     const navigation = useNavigation();
-
+    // console.log("Checking ScholarCategory " + JSON.stringify(props.userProfile));
     return (
         <View style={styles.category_container}>
             <View style={styles.categoryGrp}>
@@ -27,6 +27,8 @@ export default function ScholarCategory() {
                                     navigation.navigate("ViewScholarSubCate", {
                                         title: "Academic Major List",
                                         itemKey: "Academic Major",
+                                        usrProfile: props.userProfile
+
                                     });
                                 }}
                                 style={styles.amGrp}>
@@ -43,6 +45,7 @@ export default function ScholarCategory() {
                                     navigation.navigate("ViewScholarSubCate", {
                                         title: "GPA List",
                                         itemKey: "Grade Point Average",
+                                        usrProfile: props.userProfile
                                     });
                                 }}
                                 style={styles.gridItemBtn}>
@@ -57,6 +60,7 @@ export default function ScholarCategory() {
                                     navigation.navigate("ViewScholarSubCate", {
                                         title: "Age List",
                                         itemKey: "Age",
+                                        usrProfile: props.userProfile
                                     });
                                 }}
                                 style={styles.gridItemBtn}>
@@ -72,6 +76,7 @@ export default function ScholarCategory() {
                                     navigation.navigate("ViewScholarSubCate", {
                                         title: "Residence State List",
                                         itemKey: "Residence State",
+                                        usrProfile: props.userProfile
                                     });
                                 }}
                                 style={styles.gridItemBtn}>
@@ -86,6 +91,7 @@ export default function ScholarCategory() {
                                     navigation.navigate("ViewScholarSubCate", {
                                         title: "Deadline List",
                                         itemKey: "Deadline",
+                                        usrProfile: props.userProfile
                                     });
                                 }}
                                 style={styles.gridItemBtn}>
@@ -99,6 +105,7 @@ export default function ScholarCategory() {
                                 onPress={() => {
                                     navigation.navigate("ViewAllScholar", {
                                         title: "All Category List",
+                                        usrProfile: props.userProfile
                                     });
                                 }}
                                 style={styles.gridItemBtn_last}>

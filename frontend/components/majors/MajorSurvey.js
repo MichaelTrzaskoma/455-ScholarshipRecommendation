@@ -56,7 +56,7 @@ export default class MajorSurvey extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: this.props.email,
+			usrInfo: this.props.route.params.usrInfo,
             salaryValue: 20000,
 			salaryDisplay: "",
             unemploymentValue: 10,
@@ -355,7 +355,7 @@ export default class MajorSurvey extends React.Component {
 		}
 		this.setFirstTime(1);
 
-		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/major";
+		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/surveys/major";
 		fetch(URL, {
 			method: this.state.currentMethod,
 			headers: {
@@ -499,7 +499,7 @@ export default class MajorSurvey extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
-		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.email + "/surveys/major";
+		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/surveys/major";
 
 
 		fetch(URL, {
@@ -541,6 +541,7 @@ export default class MajorSurvey extends React.Component {
 	}
 
 	render() {
+		// console.log("MajorSurvey props checking " + JSON.stringify(this.props.route.params.usrInfo));
 		return (
 			<KeyboardAwareScrollView
 				style={styles.container}>
