@@ -35,6 +35,7 @@ import ViewAllCollege from "./components/colleges/ViewAllCollege";
 // Major
 import MajorScreen from "./components/majors/MajorScreen";
 import MajorDetail from "./components/majors/MajorDetail";
+import MajorSurvey from "./components/majors/MajorSurvey";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -69,6 +70,7 @@ function TabScreens({ navigation, route }) {
   // then access the initialParams via "route.params.<var names>"
   // in class component, we access the initialParams via "this.props.route.params.<var name>"
   let usr = route.params.usr;
+  // console.log("User obj from TabScreens: " + JSON.stringify(route.params.usr));
 
   // console.log(route.params.usr);
   return (
@@ -108,12 +110,12 @@ function TabScreens({ navigation, route }) {
 
       <Tab.Screen name="College">
         {/* CollegeScreen component belong to second Tap navi */}
-        {() => <CollegeScreen />}
+        {() => <CollegeScreen usrInfo={usr} />}
       </Tab.Screen>
 
       <Tab.Screen name="Major">
         {/* MajorScreen component belong to third Tap navi */}
-        {() => <MajorScreen />}
+        {() => <MajorScreen usrInfo={usr} />}
       </Tab.Screen>
 
       <Tab.Screen name="Account">
@@ -141,8 +143,8 @@ export default class App extends Component {
 
   signIn = async (inputEmail, inputPassword) => {
     try {
-      if (!inputEmail == "" && String(inputEmail).includes("@") && !inputPassword == "") {
-
+      if (!inputEmail == "" && !inputPassword == "") {
+        //  &&  String(inputEmail).includes("@")
         const unique_id = getDeviceID();
         // console.log("UUID: " + unique_id);
 
@@ -187,10 +189,10 @@ export default class App extends Component {
 
         this.setState({
           usrProfile: {
-            // email: inputEmail,
+            email: inputEmail,
             signedIn: true,
-            // jwt: json.token,
-            // uuid: unique_id,
+            jwt: "sfwefgwgewg",
+            uuid: unique_id,
           },
         });
 
@@ -204,7 +206,7 @@ export default class App extends Component {
       // console.log(type(value));
     }
   };
-  
+
 
   render() {
     // print the device unique ID
@@ -242,8 +244,19 @@ export default class App extends Component {
             <Stack.Screen
               name={"ScholarSurvey"}
               component={ScholarSurvey}
-              options={{ title: "Required Info" }}
-            // nitialParams={{ email: this.state.usrProfile.email }}
+              options={{
+                title: "Required Info",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
+              itialParams={{ usrObj: this.state.usrProfile }}
             />
 
             {/* Multiple Survey component stacked  */}
@@ -279,7 +292,24 @@ export default class App extends Component {
                   color: "white",
                 },
               }}
-              initialParams={{ usrProfile: this.state.usrProfile }}
+              itialParams={{ usrObj: this.state.usrProfile }}
+            />
+
+            <Stack.Screen
+              name={"MajorSurvey"}
+              component={MajorSurvey}
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
+              itialParams={{ usrObj: this.state.usrProfile }}
             />
 
             {/* ViewSubCate from scholarships has been renamed as ViewScholarSubCate */}

@@ -19,7 +19,7 @@ db = MongoClient(app.config["DB_IP"], app.config["DB_PORT"], serverSelectionTime
 scholarDb = db.test
 scholar_ref = db.test.scholarships
 college_ref = db.test.colleges
-major_ref = db.test.majors
+major_ref = db.test.majorsWithCat
 user_Ref = db.test.client_profile
 
 ACTIVE_CODE_LENGTH = 64
@@ -351,7 +351,7 @@ def forgot():
     return render_template("public/forgotpass.html")
 
 
-# Scholarship Resources
+# Resources - Scholarship
 
 
 @app.route("/api/v1.2/resources/scholarships/view/categories/general")
@@ -442,7 +442,7 @@ def view_scholarship_single(scholarship_title, email, token, id):
     
 
 
-# College Resources
+# Resources - College
 
 
 @app.route("/api/v1.2/resources/college/view/states/<state>")
@@ -657,7 +657,9 @@ def view_college_single(college_name, email, token, id):
     return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
 
 
-# Major Resources
+# Resources - Major 
+
+
 @app.route("/api/v1.2/resources/major/view/subjects/<sub>")
 def view_major_subjectIndex(sub):
     # view all majors that follow unders a specific subject
@@ -665,13 +667,17 @@ def view_major_subjectIndex(sub):
     # OUTPUT: return a list of major name
 
     if request.method == "GET":
-        r = major_ref.find({"subjects": sub}, {"_id": 0, "major": 1})
 
-        resource = []
-        for item in r:
-            resource.append(item['major'])
+        if sub in app.config['MAJOR_CAT']:
+            r = major_ref.find({"subjects": sub}, {"_id": 0, "major": 1})
 
-        return make_response(jsonify({"mesg": resource}), 202)
+            resource = []
+            for item in r:
+                resource.append(item['major'])
+
+            return make_response(jsonify({"mesg": resource}), 202)
+        else:
+            return make_response(jsonify({"mesg": "Bad Request!"}), 400)
 
     return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
 
@@ -685,15 +691,38 @@ def view_major_single(major_name, email, token, id):
     if request.method == "GET":
 
         if validate_email(user_Ref, email):
-            r = major_ref.find_one({"major": major_name}, {"_id": 0})
+            r = major_ref.find_one({"major": major_name}, {
+                "_id": 0,
+                "major": 1,
+                "avg_salary": 1,
+                "unemp_rate": 1,
+                "autom": 1,
+                "subjects": 1,
+                "var_jobs": 1,
+                "social": 1,
+                "env": 1,
+                "classes": 1,
+                "jobs": 1,
+                "desc": 1
+                })
 
-            resource = []
-            for item in r:
-                resource.append(item)
+            resource = {
+                "title": r['major'],
+                "avg_salary": r['avg_salary'],
+                "unemp_rate": r['unemp_rate'],
+                "autom": r['autom'],
+                'subjects': arr2str(r['subjects']),
+                "var_jobs": arr2str(r['var_jobs']),
+                "social": r['social'],
+                "env": r['env'],
+                "classes": arr2str(r['classes']),
+                "jobs": arr2str(r['jobs']),
+                "desc": r['desc']
+            }
             
             # TODO @Greg - since we automatically receiving the user's info, insert the recent view here.
 
-            return make_response(jsonify({"mesg": resource}), 202)
+            return make_response(jsonify({resource}), 202)
 
     return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
 
@@ -1067,6 +1096,8 @@ def getRecommend_major(email, token, id):
 
 
 # Bookmarks
+
+
 @app.route("/api/v1.2/users/id/<email>/bookmarks/<type>/<token>/<id>",  methods=["GET", "POST", "PATCH"])
 def getBookmarkDoc_all(email, type, token, id):
     if request.method == "GET" and request.is_json:
@@ -1127,7 +1158,10 @@ def getBookmarkDoc_all(email, type, token, id):
     else:
         return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
 
+
 # Recent Viewed (aka history)
+
+
 @app.route("/api/v1.2/users/id/<email>/<token>/<id>/recent",  methods=["GET", "POST"])
 def getRecentDoc(email, token, id):
     if request.method == "GET" and request.is_json:
