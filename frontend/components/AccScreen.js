@@ -11,7 +11,7 @@ import { deleteSecureStorage } from "../functions/secureStorage";
 
 export default function AccScreen({ usrInfo }) {
 
-	// console.log(usrInfo);
+	// console.log("From account " + JSON.stringify(usrInfo));
 	// const user_info = usrInfoObj;
 	return (
 		<View style={styles.container}>
@@ -51,7 +51,7 @@ export default function AccScreen({ usrInfo }) {
 					</TouchableOpacity> */}
 
 					{/* This is displayed as "Take Survey" btn which will navigate to TabViewSurvey component */}
-					<MultiSurveyBtn email={usrInfo.email} />
+					<MultiSurveyBtn userInfo={usrInfo} />
 
 					{/* This is displayed as "View History" btn which will navigate to ViewHistory component */}
 					<HistoryBtn />

@@ -10,8 +10,9 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from "@react-navigation/native";
 import { Entypo } from '@expo/vector-icons';
 
-export default function CollegeCategory() {
+export default function CollegeCategory(props) {
 	const navigation = useNavigation();
+	// console.log("Checking props in collegeCate " + JSON.stringify(props.userProfile));
 	return (
 		// Cateogry ScrollView 
 		<View style={styles.category_container}>
@@ -28,7 +29,8 @@ export default function CollegeCategory() {
 								onPress={() => {
 									navigation.navigate("ViewCollegeSubCate", {
 										title: "Universities in NY",
-										itemKey: "New York"
+										itemKey: "New York",
+										usrInfo: props.userProfile
 									})
 								}}
 								style={styles.nYBtn}>
@@ -40,7 +42,9 @@ export default function CollegeCategory() {
 								onPress={() => {
 									navigation.navigate("ViewCollegeSubCate", {
 										title: "Universities in NJ",
-										itemKey: "New Jersey"
+										itemKey: "New Jersey",
+										usrInfo: props.userProfile
+					
 									})
 								}}
 								style={styles.nJBtn}>
@@ -52,7 +56,8 @@ export default function CollegeCategory() {
 								onPress={() => {
 									navigation.navigate("ViewCollegeSubCate", {
 										title: "Universities in NC",
-										itemKey: "North Carolina"
+										itemKey: "North Carolina",
+										usrInfo: props.userProfile
 									})
 								}}
 								style={styles.nJBtn}>
@@ -64,7 +69,8 @@ export default function CollegeCategory() {
 								onPress={() => {
 									navigation.navigate("ViewCollegeSubCate", {
 										title: "Universities in ND",
-										itemKey: "North Dakota"
+										itemKey: "North Dakota",
+										usrInfo: props.userProfile
 									})
 								}}
 								style={styles.nJBtn}>
@@ -76,7 +82,8 @@ export default function CollegeCategory() {
 								onPress={() => {
 									navigation.navigate("ViewCollegeSubCate", {
 										title: "Universities in OH",
-										itemKey: "Ohio"
+										itemKey: "Ohio",
+										usrInfo: props.userProfile
 									})
 								}}
 								style={styles.nJBtn}>
@@ -88,6 +95,7 @@ export default function CollegeCategory() {
 								onPress={() => {
                                     navigation.navigate("ViewAllCollege", {
                                         title: "All Universities List",
+										usrInfo: props.userProfile
                                     });
                                 }}
 								style={styles.nJBtn}>

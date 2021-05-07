@@ -72,7 +72,8 @@ function TabScreens({ navigation, route }) {
   let usr = route.params.usr;
   // console.log("User obj from TabScreens: " + JSON.stringify(route.params.usr));
 
-  // console.log(route.params.usr);
+  // console.log("Checking in TapScreen 123 " + JSON.stringify(route));
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -132,7 +133,7 @@ export default class App extends Component {
     this.state = {
       usrProfile: {
         signedIn: false,
-        email: "",
+        email: "hchen98x@gmail.com",
         jwt: "",
         uuid: "",
       },
@@ -191,8 +192,10 @@ export default class App extends Component {
           usrProfile: {
             email: inputEmail,
             signedIn: true,
-            jwt: "sfwefgwgewg",
-            uuid: unique_id,
+            // Testing
+            jwt: "randome_jwt",
+            // jwt: json.token,
+            uuid: "randome_uuid",
           },
         });
 
@@ -209,6 +212,8 @@ export default class App extends Component {
 
 
   render() {
+
+    // console.log(this.state.usrProfile);
     // print the device unique ID
     // console.log(getDeviceID())
     // console.log("Auth val: " + JSON.stringify(this.state.usrProfile.signedIn));
@@ -363,7 +368,7 @@ export default class App extends Component {
                   color: "white",
                 },
               })}
-              initialParams={{ email: this.state.usrProfile.email }}
+              initialParams={{ usrProfile: this.state.usrProfile }}
             />
 
             <Stack.Screen

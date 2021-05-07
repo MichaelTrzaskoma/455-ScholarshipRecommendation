@@ -10,6 +10,7 @@ export default class ViewScholarDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      usrInfo : this.props.route.params.userProfile,
       scholarshipKey: this.props.itemKey,
       scholarshipObj: {
         amount: '',
@@ -46,7 +47,7 @@ export default class ViewScholarDetail extends React.Component {
         "email": this.state.email, 
         "title": this.state.scholarshipObj.title,
         "type" : "scholarship",
-        "unique_id": "placeholder",
+        "unique_id": this.state.usrInfo,
         // "jwt": getSecureStorage("jwt"),
         // "uniqueID": getDeviceID(),
       }),
@@ -88,7 +89,7 @@ export default class ViewScholarDetail extends React.Component {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
     let URL =
-      'http://08cc501f4183.ngrok.io/api/v1.2/resources/scholarships/view/titles/' + this.props.route.params.itemKey;
+      'http://8f301090708b.ngrok.io/api/v1.2/resources/scholarships/view/titles/' + this.props.route.params.itemKey;
 
     fetch(URL, {
       method: 'GET',
@@ -118,7 +119,7 @@ export default class ViewScholarDetail extends React.Component {
   }
 
   render() {
-    console.log(JSON.stringify(this.props));
+    // console.log("Checking ScholarDetail " + JSON.stringify(this.state.usrInfo));
     return (
       <ScrollView horizontal={false} style={styles.container}>
         <View style = {styles.card_grp0}>
