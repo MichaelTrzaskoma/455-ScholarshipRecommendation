@@ -103,7 +103,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
   getRecommend_scholarship() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      let URL = "http://614029157c7e.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/recommends/scholarship"
+      let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid+ "/recommends/scholarship";  "/recommends/scholarship"
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
       const scholarArr = [];
 

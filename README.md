@@ -119,7 +119,7 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 | /api/v1.2/resources/scholarships/view/categories/general | GET | View a list of scholarship general category terms. E.g. Acamdeic Major, Age, Gendder, and etc. |
 | /api/v1.2/resources/scholarships/view/categories/<cater\> | GET | View a list of scholarship sub-category terms. E.g. Acamdeic Major has Accounting, Computer Science, and etc. |
 | /api/v1.2/resources/scholarships/view/categories/sub/<cater\> | GET | View a list of scholarship that belongs to a specific sub-categories. |
-| /api/v1.2/resources/colleges/view/titles/<scholarship_title\>/<email\>/<token\>/<id\> | GET | View a scholarship detail by providing scholarship name. At the same time, the backend automatically add this item as recent viewed. |
+| /api/v1.2/resources/scholarships/view/titles/<scholarship_title\>/<email\>/<token\>/<id\> | GET | View a scholarship detail by providing scholarship name. At the same time, the backend automatically add this item as recent viewed. |
 
 <br>
 
@@ -129,7 +129,7 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 | Endpoint | Method(s) | Description |
 | :--- | :--- | :--- |
 | /api/v1.2/resources/college/view/states/<state\> | GET | View all colleges under a specific state. |
-| /api/v1.2/resources/scholarships/view/titles/<college_name\>/<email\>/<token\>/<id\> | GET | View a college detail by providing college name. At the same time, the backend automatically add this item as recent viewed. |
+| /api/v1.2/resources/college/view/titles/<college_name\>/<email\>/<token\>/<id\> | GET | View a college detail by providing college name. At the same time, the backend automatically add this item as recent viewed. |
 
 <br>
 

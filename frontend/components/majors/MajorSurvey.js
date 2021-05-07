@@ -355,7 +355,7 @@ export default class MajorSurvey extends React.Component {
 		}
 		this.setFirstTime(1);
 
-		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/surveys/major";
+		let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major";
 		fetch(URL, {
 			method: this.state.currentMethod,
 			headers: {
@@ -383,14 +383,14 @@ export default class MajorSurvey extends React.Component {
 				if (response.status == 202) {
 
 					// console.log(response);
-					Alert.alert(
+					alert(
 						"Your data have been successfully \ninserted! " +
 						"You will be navigated back!"
 					);
 
 				} else {
 					json_mesg = response.json();
-					Alert.alert("Error: " + json_mesg.mesg);
+					alert("Error: " + json_mesg.mesg);
 				}
 			})
 			.catch((error) => {
@@ -499,7 +499,7 @@ export default class MajorSurvey extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
-		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/surveys/major";
+		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid + "/surveys/major";
 
 
 		fetch(URL, {

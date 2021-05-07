@@ -120,7 +120,7 @@ export default class ViewCollegeDetail extends React.Component {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
     let URL =
-      "http://8f301090708b.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey
+      "http://b9d79f8fdd3c.ngrok.io/api/v1.2/resources/college/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
 
     fetch(URL, {
       method: 'GET',

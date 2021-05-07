@@ -1381,6 +1381,10 @@ class InputScreen extends React.Component {
 		{
 			valid = true;
 		}
+		else if(String(text).localeCompare("") ==0)
+		{
+			valid = true;
+		}
 		return valid;
 	}
 
@@ -1521,7 +1525,7 @@ class InputScreen extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props);
 
-		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email + "/surveys/scholarship";
+		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
 		fetch(URL, {
 			method: this.state.currentMethod,
 			headers: {
@@ -1597,7 +1601,7 @@ class InputScreen extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
-		let URL = "http://0d2cdc5d2d05.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email + "/surveys/scholarship";
+		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
 
 		fetch(URL, {
 			method: 'GET',
