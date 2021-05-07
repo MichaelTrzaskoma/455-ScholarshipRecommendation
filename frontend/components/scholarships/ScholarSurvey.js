@@ -1525,12 +1525,7 @@ class InputScreen extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props);
 
-<<<<<<< HEAD
-		let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/users/id/" + this.state.email + "/" + "token" + "/" + "sffdf" + "/surveys/scholarship";
-		// /api/v1.2/users/id/<email>/<token>/<id>/surveys/scholarship
-=======
-		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
->>>>>>> 83836898b5c303fb41d9b1c26a402dd6ed9b3fbc
+		let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
 		fetch(URL, {
 			method: this.state.currentMethod,
 			headers: {
@@ -1606,11 +1601,7 @@ class InputScreen extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
-<<<<<<< HEAD
-		let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/users/id/" + this.state.email + "/" + "token" + "/" + "sffdf" + "/surveys/scholarship";
-=======
-		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
->>>>>>> 83836898b5c303fb41d9b1c26a402dd6ed9b3fbc
+		let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
 
 		fetch(URL, {
 			method: 'GET',
@@ -1638,6 +1629,8 @@ class InputScreen extends React.Component {
 						selectedDisabilities: json.mesg.dissabilities,
 						selectedEthnicities: json.mesg.ethnicity,
 						firstTime: json.mesg.existing,
+						sat_score: json.mesg.sat,
+						act_score: json.mesg.act,
 					});
 				}
 			});

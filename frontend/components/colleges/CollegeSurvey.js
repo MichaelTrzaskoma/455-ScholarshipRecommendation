@@ -719,7 +719,7 @@ export default class CollegeSurvey extends React.Component {
 
 	checkExisting() {
 		// console.log("checkExisting " + JSON.stringify(this.state.usrInfo));
-		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid +"/" +"surveys/college"; 
+		let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid +"/" +"surveys/college"; 
 
 		fetch(URL, {
 			method: 'GET',
@@ -776,7 +776,7 @@ export default class CollegeSurvey extends React.Component {
 
 		this.setFirstTime(1);
 
-		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid +"/" +"surveys/college";  
+		let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid +"/" +"surveys/college";  
 		fetch(URL, {
 			method: apiMethod,
 			headers: {

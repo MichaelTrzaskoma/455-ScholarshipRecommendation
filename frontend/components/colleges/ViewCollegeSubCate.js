@@ -28,7 +28,7 @@ export default class ViewSubCate extends React.Component {
   }
 
   getDoc = () => {
-    let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/resources/college/view/states/" + this.state.subCate;
+    let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/resources/college/view/states/" + this.state.subCate;
 
     fetch(URL, {
       method: "GET",
@@ -73,8 +73,7 @@ export default class ViewSubCate extends React.Component {
     this.setState({ modalVisible: false});
     console.log(this.state.currentBookmarkKey)
 
-    //Insert API Call here
-    let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
+    let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
     fetch(URL, {
       method: "POST",
       headers: {
@@ -87,7 +86,6 @@ export default class ViewSubCate extends React.Component {
         "unique_id": this.state.usrInfo.uuid, 
         "type": "scholarship",
         "jwt": this.state.usrInfo.jwt,
-        // "uniqueID": getDeviceID(),
       }),
     })
 

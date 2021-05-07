@@ -151,13 +151,6 @@ export default class App extends Component {
 
         let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/managements/users/" + inputEmail;
 
-<<<<<<< HEAD
-        fetch(URL, {
-          method: "POST",
-          headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-=======
         // fetch(URL, {
         //   method: "POST",
         //   headers: {
@@ -203,7 +196,6 @@ export default class App extends Component {
             jwt: "randome_jwt",
             // jwt: json.token,
             uuid: "randome_uuid",
->>>>>>> 83836898b5c303fb41d9b1c26a402dd6ed9b3fbc
           },
 
           body: JSON.stringify({
