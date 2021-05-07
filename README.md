@@ -168,9 +168,9 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 
 | Endpoint | Method(s) | Description |
 | :--- | :--- | :--- |
-| /api/v1.2/users/id/<email\>/surveys/scholarship | GET, POST, PATCH | Retrieve, Append, and modify client's scholarship survey detail into db. |
-| /api/v1.2/users/id/<email\>/surveys/college | GET, POST, PATCH | Retrieve, Append, and modify client's college survey detail into db. |
-| /api/v1.2/users/id/<email\>/surveys/major | GET, POST, PATCH | Retrieve, Append, and modify client's major survey detail into db. |
+| /api/v1.2/users/id/<email\>/<token\>/<id\>/surveys/scholarship | GET, POST, PATCH | Retrieve, Append, and modify client's scholarship survey detail into db. |
+| /api/v1.2/users/id/<email\>/<token\>/<id\>/surveys/college | GET, POST, PATCH | Retrieve, Append, and modify client's college survey detail into db. |
+| /api/v1.2/users/id/<email\>/<token\>/<id\>/surveys/major | GET, POST, PATCH | Retrieve, Append, and modify client's major survey detail into db. |
 
 <br>
 
@@ -186,4 +186,4 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 
 | Endpoint | Method(s) | Description |
 | :--- | :--- | :--- |
-| /api/v1.2/users/id/<email\>/recent | GET, POST | View and append history item under user's profile. |
+| /api/v1.2/users/id/<email\>/<token\>/<id\>/recent | GET, POST | View and append history item under user's profile. |

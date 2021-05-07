@@ -1128,8 +1128,8 @@ def getBookmarkDoc_all(email, type, token, id):
         return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
 
 # Recent Viewed (aka history)
-@app.route("/api/v1.2/users/id/<email>/recent",  methods=["GET", "POST"])
-def getRecentDoc(email):
+@app.route("/api/v1.2/users/id/<email>/<token>/<id>/recent",  methods=["GET", "POST"])
+def getRecentDoc(email, token, id):
     if request.method == "GET" and request.is_json:
         income_data = request.json
         numDocs = 15
