@@ -265,7 +265,6 @@ def auth(email):
                         # get existing device info
                         existing_device = device_info[0]
 
-                        # TODO: compare password here
                         password = income_data["paswrd"]
                         # salt and hash password
                         saltedPass = password + app.config['SALT_VALUE']
@@ -293,7 +292,6 @@ def auth(email):
                 # no matched device uuid found or doesn't ever have device info
                 # this is new login with a new device
 
-                # TODO: compare password here
                 password = income_data["paswrd"]
                 # salt and hash password
                 saltedPass = password + app.config['SALT_VALUE']
@@ -431,7 +429,7 @@ def view_scholarship_single(scholarship_title, email, token, id):
         scholarship["description"] = result.get("description")
         scholarship["contact_info"] = result.get("contact Info")
 
-        # TODO @Greg - since we automatically receiving the user's info, insert the recent view here.
+        addRecentDoc(email, scholarship_title, "scholarship")
 
         return make_response(jsonify(scholarship), 202)
 
@@ -650,7 +648,7 @@ def view_college_single(college_name, email, token, id):
                 "offical_site": trimmer_na(r['site']) if len(r['site']) > 0 else "None"
             }
 
-            # TODO @Greg - since we automatically receiving the user's info, insert the recent view here.
+            addRecentDoc(email, college_name, "college")
 
             return make_response(jsonify({"mesg": result}), 202)
 
@@ -720,7 +718,7 @@ def view_major_single(major_name, email, token, id):
                 "desc": r['desc']
             }
             
-            # TODO @Greg - since we automatically receiving the user's info, insert the recent view here.
+            addRecentDoc(email, major_name, "major")
 
             return make_response(jsonify({resource}), 202)
 
@@ -728,7 +726,6 @@ def view_major_single(major_name, email, token, id):
 
 
 # Management - Surveys
-
 
 @app.route("/api/v1.2/users/id/<email>/<token>/<id>/surveys/scholarship",  methods=["GET", "POST", "PATCH"])
 def usrSurvey_scholarship(email, token, id):
@@ -1175,7 +1172,9 @@ def getRecentDoc(email, token, id):
             docType = income_data['docType']
 
         return make_response(jsonify(getRecent(user_Ref, email, numDocs, docType)), 202)
-
+    else:
+        return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
+"""
     elif request.method == "POST" and request.is_json:
         
         income_data = request.json
@@ -1202,6 +1201,8 @@ def getRecentDoc(email, token, id):
             return make_response(jsonify({"mesg": "Success!"}), 202)
         else:
             return make_response(jsonify({"mesg": "Wrong email"}), 400)
+"""
 
-    else:
-        return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
+def addRecentDoc(email, title, docType = None):
+    res = addRecent(user_Ref, email, title, docType)
+    return res
