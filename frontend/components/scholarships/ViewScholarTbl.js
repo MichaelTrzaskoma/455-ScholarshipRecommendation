@@ -87,7 +87,7 @@ export default class ViewScholarTbl extends React.Component {
   getDoc = () => {
     const scholarArr = [];
 
-    let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
+    let URL = "http://5bb6bc93a135.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
 
     fetch(URL, {
       method: "GET",
@@ -142,7 +142,7 @@ export default class ViewScholarTbl extends React.Component {
     console.log(this.state.currentBookmarkKey)
 
     //Insert API Call here
-    let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/users/id/"+ this.state.userProfile.email + "/bookmarks/scholarship/"+ this.state.userProfile.jwt+ "/"+ this.state.userProfile.uuid +"/bookmarks";
+    let URL = "http://5bb6bc93a135.ngrok.io/api/v1.2/users/id/"+ this.state.userProfile.email + "/bookmarks/scholarship/"+ this.state.userProfile.jwt+ "/"+ this.state.userProfile.uuid +"/bookmarks";
     fetch(URL, {
       method: "POST",
       headers: {

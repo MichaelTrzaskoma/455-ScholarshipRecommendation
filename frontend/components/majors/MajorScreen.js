@@ -12,17 +12,18 @@ import MajorCategory from "../../ui/majors/MajorCategory";
 import MajorRecommend from "../../ui/majors/MajorRecommend";
 
 function MajorScreen(props) {
+  // console.log("Major props check " + JSON.stringify(props.usrInfo));
   return (
     <View style={styles.container}>
       <View style={styles.container_grp}>
 
         {/* Major Category */}
-        <MajorCategory />
+        <MajorCategory usrProf={props.usrInfo}/>
 
         <View style={styles.recommend_containerStack}>
 
           {/* Major Recommend */}
-          <MajorRecommend />
+          <MajorRecommend usrProf={props.usrInfo}/>
 
           {/* Recent View ScrollView */}
           <View style={styles.recent_container}>

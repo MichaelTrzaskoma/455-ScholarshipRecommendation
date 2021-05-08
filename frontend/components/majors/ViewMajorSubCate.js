@@ -8,7 +8,7 @@ import { FlatList } from "react-native-gesture-handler";
 // console.disableYellowBox = true;
 LogBox.ignoreAllLogs(true);
 
-export default class ViewCollegeSubCate extends React.Component {
+export default class ViewMajorSubCate extends React.Component {
   // navigation.setOptions({ headerTitle: 'Search Screen' })
   constructor(props) {
     super(props);
@@ -28,7 +28,7 @@ export default class ViewCollegeSubCate extends React.Component {
   }
 
   getDoc = () => {
-    let URL = "http://5bb6bc93a135.ngrok.io/api/v1.2/resources/college/view/states/" + this.state.subCate;
+    let URL = "http://5bb6bc93a135.ngrok.io/api/v1.2/resources/major/view/category/" + this.state.subCate;
 
     fetch(URL, {
       method: "GET",
@@ -124,7 +124,7 @@ export default class ViewCollegeSubCate extends React.Component {
   };
 
   render() {
-    // console.log("ViewCollegeSubCate " + JSON.stringify(this.props.route.params.usrInfo));
+    // console.log("ViewCollege " + JSON.stringify(this.props.route.params.usrInfo));
     const { modalVisible } = this.state;
     if (this.state.isLoading) {
       return (
@@ -176,7 +176,7 @@ export default class ViewCollegeSubCate extends React.Component {
                 // we are able to navigate to "ViewSubCate"
                 // since it is one of the stack screens in App.js
                 // therefore, no need to import in this screen
-                this.props.navigation.navigate('ViewCollegeDetail', {
+                this.props.navigation.navigate('ViewMajorDetail', {
                   title: (item),
                   itemKey: item,
                   usrProf: this.state.usrInfo

@@ -34,8 +34,10 @@ import ViewAllCollege from "./components/colleges/ViewAllCollege";
 
 // Major
 import MajorScreen from "./components/majors/MajorScreen";
-import MajorDetail from "./components/majors/MajorDetail";
+import ViewMajorDetail from "./components/majors/ViewMajorDetail";
+import ViewMajorSubCate from "./components/majors/ViewMajorSubCate";
 import MajorSurvey from "./components/majors/MajorSurvey";
+import ViewAllMajor from "./components/majors/ViewAllMajor";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -45,6 +47,7 @@ function getHeaderTitle(route) {
   // This can happen during if there hasn't been any navigation inside the screen
   // In our case, it's "Feed" as that's the first screen inside the navigator
   const routeName = getFocusedRouteNameFromRoute(route) ?? 'Scholarship';
+
 
   switch (routeName) {
     case 'Scholarship':
@@ -156,7 +159,7 @@ export default class App extends Component {
         //   headers: {
         //     "Accept": "application/json",
         //     "Content-Type": "application/json",
-          // },
+        // },
 
         //   body: JSON.stringify({
         //     "paswrd": inputPassword,
@@ -395,6 +398,24 @@ export default class App extends Component {
             />
 
             <Stack.Screen
+              name={"ViewMajorSubCate"}
+              component={ViewMajorSubCate}
+              // pass down the screen header bar title
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
+            />
+
+            <Stack.Screen
               name={"ScholarshipScreen"}
               component={ScholarshipScreen}
               options={({ route }) => ({
@@ -447,6 +468,22 @@ export default class App extends Component {
             <Stack.Screen
               name={"ViewAllCollege"}
               component={ViewAllCollege}
+              options={{
+                title: "Scholarship Categories",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name={"ViewAllMajor"}
+              component={ViewAllMajor}
               options={{
                 title: "Scholarship Categories",
                 headerStyle: {
@@ -549,8 +586,8 @@ export default class App extends Component {
             />
 
             <Stack.Screen
-              name={"MajorDetail"}
-              component={MajorDetail}
+              name={"ViewMajorDetail"}
+              component={ViewMajorDetail}
               options={({ route }) => ({
                 title: route.params.title,
                 headerStyle: {
