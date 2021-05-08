@@ -1523,7 +1523,7 @@ class InputScreen extends React.Component {
 		// 	existing: this.state.firstTime,
 		// }));
 
-		// console.log("Email from InputScreen2: " + this.props);
+		// console.log("Email from InputScreen2: " + this.props)
 
 		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
 		fetch(URL, {
@@ -1601,6 +1601,7 @@ class InputScreen extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
+
 		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
 
 		fetch(URL, {
@@ -1629,16 +1630,18 @@ class InputScreen extends React.Component {
 						selectedDisabilities: json.mesg.dissabilities,
 						selectedEthnicities: json.mesg.ethnicity,
 						firstTime: json.mesg.existing,
+						sat_score: json.mesg.sat,
+						act_score: json.mesg.act,
 					});
 				}
 			});
 	}
 
-	UNSAFE_componentWillUpdate() {
+	componentDidMount() {
 		this.getExistingData();
 		//AsyncStorage.getItem('JWT').then((value) => this.setState({ jwt: value }));
 		//AsyncStorage.getItem('uuid').then((value) => this.setState({ uuid: value }));
-		console.log("UUID: " + this.state.uuid + "\n" + "JWT: " + this.state.jwt);
+		// console.log("UUID: " + this.state.uuid + "\n" + "JWT: " + this.state.jwt);
 	}
 
 

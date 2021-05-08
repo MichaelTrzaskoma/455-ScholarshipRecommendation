@@ -1,94 +1,144 @@
 [{
   "_id": "hchen98x@gmail.com",
-  "paswrd": "Sassy.1234",
+  "paswrd": "515c414be9720d2449ceda9db427343d",
   "active": 1,
-  "activationCode": "JfDIaGqUMoWNNuxLqz7NgpfUmURcS13UdZQpgsqOZMdllKtCd7rRpmYC24uSekWM",
+  "activationCode": "XkKPVbhAS1DpJMactjhYC1L3TecXoCh70E1uKABOTL2bRy98IaYkwqkhIpSULHsd",
   "activationDate": {
-    "$date": "2021-04-27T13:28:11.672Z"
+    "$date": "2021-05-07T15:29:27.290Z"
   },
   "devices": [
     {
-      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6ImV3ZndlZmV3ZmUiLCJleHAiOjE2MjAxODY0ODZ9.OOIRvJIrwP0k8PreZ4A44HL71XDoxPw7lrNscEbBhJE",
-      "unique_id": "ewfwefewfe",
-      "token": "SviLJMhgdmF6bTM5s2F0mSUtPUBqzXoeSeZzBiTKTL7zyrdB9BRpQU8f27GBTyf0",
-      "expireDate": 1620186486
+      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6ImM3ZDg1ODZhLWMwNWYtNDAzNS04ZTU2LTZlYzI5ZGQ5OGJiOSIsImV4cCI6MTYyMTAzNTA2Mn0.y0WBSgMNJv6WGrVHHOdVKKSZF5yK3OdajpG2crugTVA",
+      "unique_id": "c7d8586a-c05f-4035-8e56-6ec29dd98bb9",
+      "token": "sYXVtiP1cmDK3gQQYBbKRh4qYqdppm24ZQ6QaO0pJtP4BfSWxkSINpzRH44B1EyP",
+      "expireDate": 1621035062
     }
   ],
   "survey_scholarship": {
     "gender": "Male",
     "age": "23",
     "states": [
-      "Alabama",
-      "Alaska",
       "Arizona",
-      "Connecticut",
-      "Florida",
-      "Illinois"
+      "Colorado",
+      "Georgia",
+      "Indiana",
+      "Oregon",
+      "New York",
+      "New Hampshire",
+      "Nevada",
+      "Nebraska"
     ],
     "gpa": "3.47",
     "major": [
-      "Business",
+      "Communications",
+      "English",
+      "International Relations",
+      "Political Science",
+      "Criminal Justice",
+      "Computer Science",
+      "Information Technology",
+      "Culinary Arts",
+      "Health Care",
       "Physical Therapy/Rehabilitation",
-      "Finance",
-      "Accounting",
-      "Public Health",
-      "Chemistry",
-      "Computer Science"
+      "Education",
+      "Business",
+      "Finance"
     ],
     "race": [
       "Asian/Pacific Islander"
     ],
-    "ethnicity": [],
+    "ethnicity": [
+      "Chinese"
+    ],
     "religion": [
-      "Buddhist"
+      "Christian",
+      "Catholic"
     ],
     "disabilities": [
-      "ALS (Lou Gehrig's Disease)",
-      "Arthritis/Rheumatism",
-      "Autism/Asperger Syndrome",
-      "Autoimmune Disorder",
-      "Cancer Related",
-      "Cystic Fibrosis",
-      "Hearing Impairment",
-      "Mucopolysaccharidoses (MPS)",
-      "Narcolepsy"
+      "Batten disease",
+      "Clinically Overweight",
+      "Glycogen Storage Disease",
+      "Hepatitis",
+      "Learning Disability",
+      "Medical Disability",
+      "Dyslexia",
+      "Down Syndrome",
+      "Digestive Impairment"
     ],
     "sat_score": "1200",
-    "act_score": "35",
+    "act_score": "40",
     "terms": [
       "Male",
       "Age 23",
       "Minimum Grade Point Average From 3.1 to 3.5",
-      "Alabama",
-      "Alaska",
       "Arizona",
-      "Connecticut",
-      "Florida",
-      "Illinois",
+      "Colorado",
+      "Georgia",
+      "Indiana",
+      "Oregon",
+      "New York",
+      "New Hampshire",
+      "Nevada",
+      "Nebraska",
       "Asian/Pacific Islander",
-      "Buddhist",
-      "ALS (Lou Gehrig's Disease)",
-      "Arthritis/Rheumatism",
-      "Autism/Asperger Syndrome",
-      "Autoimmune Disorder",
-      "Cancer Related",
-      "Cystic Fibrosis",
-      "Hearing Impairment",
-      "Mucopolysaccharidoses (MPS)",
-      "Narcolepsy",
-      "Business",
-      "Physical Therapy/Rehabilitation",
-      "Finance",
-      "Accounting",
-      "Veterinary Medicine",
-      "Public Health",
-      "Chemistry",
+      "Christian",
+      "Catholic",
+      "Batten disease",
+      "Clinically Overweight",
+      "Glycogen Storage Disease",
+      "Hepatitis",
+      "Learning Disability",
+      "Medical Disability",
+      "Dyslexia",
+      "Down Syndrome",
+      "Digestive Impairment",
+      "Chinese",
+      "Communications",
+      "English",
+      "International Affairs",
+      "Political Science",
+      "Criminal Justice",
       "Computer Science",
-      "Environmental Studies",
       "Information Systems",
+      "Culinary Science",
+      "Health Care Administration",
+      "Physical Therapy/Rehabilitation",
+      "Education",
+      "Business",
+      "Finance",
       "SAT Scores From 1,001 To 1,200",
       "ACT Scores Greater Than 31"
     ],
-    "binary": "100000000000000000000000100000100000000100000000000000000000001000001000000000000000000000001000000000000000000000000000000000000000000010000000001000000000000000000100000000001000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000010000000000000000000101110010010000000001000000001001000000000000001000000000010000000000000000000000000011010000001001000010000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    "binary": "000000000000000000000000100000000001000100011000000001000010000000001000000000000001000000001001000000000000000000000000000000000000000010000010000000000000000000000000000000001000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000010000000000000000000000001000100010110100001001100000000000000000001000000000001100000000000000000000000000010000010000100001000000000000011100100000100000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "survey_college": {
+    "regions": [
+      "Arizona",
+      "Colorado",
+      "Georgia",
+      "Indiana",
+      "Oregon",
+      "New York",
+      "New Hampshire",
+      "Nevada",
+      "Nebraska"
+    ],
+    "majors": [
+      "Communications",
+      "English",
+      "International Relations",
+      "Political Science",
+      "Criminal Justice",
+      "Computer Science",
+      "Information Technology",
+      "Culinary Arts",
+      "Health Care",
+      "Physical Therapy/Rehabilitation",
+      "Education",
+      "Business",
+      "Finance"
+    ],
+    "sat": "1200",
+    "act": "40"
   }
 }]

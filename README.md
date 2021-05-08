@@ -186,4 +186,4 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
 
 | Endpoint | Method(s) | Description |
 | :--- | :--- | :--- |
-| /api/v1.2/users/id/<email\>/<token\>/<id\>/recent | GET, POST | View and append history item under user's profile. |
+| /api/v1.2/users/id/<email\>/<token\>/<id\>/recent | GET | View and append history item under user's profile. |

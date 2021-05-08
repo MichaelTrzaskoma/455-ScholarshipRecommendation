@@ -355,7 +355,7 @@ export default class MajorSurvey extends React.Component {
 		}
 		this.setFirstTime(1);
 
-		let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major";
+		let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major";
 		fetch(URL, {
 			method: this.state.currentMethod,
 			headers: {
@@ -499,7 +499,7 @@ export default class MajorSurvey extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
-		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid + "/surveys/major";
+		let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid + "/surveys/major";
 
 
 		fetch(URL, {
