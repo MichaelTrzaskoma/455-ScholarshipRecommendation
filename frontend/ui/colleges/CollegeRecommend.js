@@ -24,6 +24,7 @@ class CollegeRecommender extends React.Component {
 
 	render() {
 		const { navigation } = this.props;
+		console.log("College Recommend Btn: " + JSON.stringify(this.props));
 		return (
 			//Recommend ScrollView 
 			<View style={styles.recommend_container}>
@@ -35,7 +36,7 @@ class CollegeRecommender extends React.Component {
 							onPress={() => navigation.navigate("ViewCollegeDetail",
 								{
 									title: "College Detail",
-									email: this.state.email,
+									usrProf: this.props.userProfile,
 								})
 							}
 						>

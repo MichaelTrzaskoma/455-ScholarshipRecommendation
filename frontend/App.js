@@ -152,53 +152,13 @@ export default class App extends Component {
         const unique_id = getDeviceID();
         // console.log("UUID: " + unique_id);
 
-        let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/managements/users/" + inputEmail;
+        let URL = "http://6bff156668d9.ngrok.io/api/v1.2/managements/users/" + inputEmail;
 
-        // fetch(URL, {
-        //   method: "POST",
-        //   headers: {
-        //     "Accept": "application/json",
-        //     "Content-Type": "application/json",
-        // },
-
-        //   body: JSON.stringify({
-        //     "paswrd": inputPassword,
-        //     "unique_id": unique_id,
-        //   }),
-
-        // })
-        //   .then((response) => response.json())
-        //   .then((json) => {
-
-        //     if (json.mesg === "authorized") {
-
-        //       storeData("signIn", "Yes");
-        //       storeData("JWT", json.token);
-        //       storeData("uuid", unique_id);
-        //       storeData("email", inputEmail);
-
-        //       this.setState({
-        //         usrProfile: {
-        //           email: inputEmail,
-        //           signedIn: true,
-        //           jwt: json.token,
-        //           uuid: unique_id,
-        //         },
-        //       });
-
-        //     } else {
-        //       alert(json.mesg);
-        //     }
-        //   })
-
-        this.setState({
-          usrProfile: {
-            email: inputEmail,
-            signedIn: true,
-            // Testing
-            jwt: "randome_jwt",
-            // jwt: json.token,
-            uuid: "randome_uuid",
+        fetch(URL, {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
           },
 
           body: JSON.stringify({

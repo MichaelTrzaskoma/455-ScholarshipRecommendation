@@ -355,9 +355,10 @@ export default class MajorSurvey extends React.Component {
 		}
 		this.setFirstTime(1);
 
-		let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major";
+		let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major";
 		fetch(URL, {
 			method: this.state.currentMethod,
+			// method: "DELETE",
 			headers: {
 				"Accept": "application/json",
 				"Content-Type": "application/json",
@@ -389,7 +390,8 @@ export default class MajorSurvey extends React.Component {
 					);
 
 				} else {
-					json_mesg = response.json();
+					let json_mesg = response.json();
+					console.log("API response: " + JSON.stringify(response));
 					alert("Error: " + json_mesg.mesg);
 				}
 			})
@@ -499,7 +501,7 @@ export default class MajorSurvey extends React.Component {
 
 	getExistingData = () => {
 		//insert correct URL for user's profile
-		let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid + "/surveys/major";
+		let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid + "/surveys/major";
 
 
 		fetch(URL, {
@@ -542,6 +544,7 @@ export default class MajorSurvey extends React.Component {
 
 	render() {
 		// console.log("MajorSurvey props checking " + JSON.stringify(this.props.route.params.usrInfo));
+		console.log("Hey there, this is Major Survey screen!");
 		return (
 			<KeyboardAwareScrollView
 				style={styles.container}>

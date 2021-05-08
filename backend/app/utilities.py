@@ -96,7 +96,7 @@ def arr2str(target):
     elif l_arr == 0:
         return "None"
     else:
-        return trimmer_underscore(', '.join(trimmer_nextline(e) for e in target)[:-2])
+        return trimmer_underscore(', '.join(trimmer_nextline(e) for e in target))
     
 
 def parseCollegeRanking(target):

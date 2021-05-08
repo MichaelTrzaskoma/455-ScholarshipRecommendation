@@ -118,8 +118,11 @@ export default class ViewCollegeDetail extends React.Component {
   }
 
   handleBookmark () {
+
+    console.log("College Detail page: " + this.props.route.params.usrProf);
     //Insert API Call here
-    let URL = "http://5bb6bc93a135.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
+    // let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/hchen98x@gmail.com/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
     fetch(URL, {
       method: "POST",
       headers: {
@@ -166,8 +169,9 @@ export default class ViewCollegeDetail extends React.Component {
   getDetail = () => {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
-    let URL =
-      "http://5bb6bc93a135.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
+    // console.log("College Detail page: " + JSON.stringify(this.props.route.params.usrProf));
+    // let URL = "http://6bff156668d9.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey + "/hchen98x@gmail.com/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
 
     fetch(URL, {
       method: 'GET',
@@ -179,7 +183,7 @@ export default class ViewCollegeDetail extends React.Component {
       // format the API response into json
       .then((response) => response.json())
       .then((json) => {
-        // console.log("API ranking check " + JSON.stringify(json));
+        // console.log("API returns College detail: " + JSON.stringify(json));
         // set the val to state
         this.setState({
           collegeObj1_1: {
@@ -1752,13 +1756,14 @@ const styles = StyleSheet.create({
   },
   grp7: {
     width: "93%",
-    height: 520,
+    height: "auto",
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 5,
     marginTop: 16,
     marginLeft: 15,
     marginRight: 15,
     alignSelf: "center",
+    marginBottom: 20,
   },
   moreInfoGrp2: {
     height: 273,

@@ -1525,7 +1525,7 @@ class InputScreen extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props)
 
-		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
+		let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
 		fetch(URL, {
 			method: this.state.currentMethod,
 			headers: {
@@ -1602,7 +1602,7 @@ class InputScreen extends React.Component {
 	getExistingData = () => {
 		//insert correct URL for user's profile
 
-		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
+		let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
 
 		fetch(URL, {
 			method: 'GET',
@@ -1614,8 +1614,8 @@ class InputScreen extends React.Component {
 			.then((response) => response.json())
 			
 			.then((json) => {
-				console.log("Exisiting Data: " + JSON.stringify(json));
-				console.log("Email from ScholarSurvey.js: " + this.state.email);
+				// console.log("Exisiting Data: " + JSON.stringify(json));
+				// console.log("Email from ScholarSurvey.js: " + this.state.email);
 				// set the val to state
 				if (json.mesg.existing == 1) {
 					// there's an exisiting data on client's record
@@ -1648,6 +1648,7 @@ class InputScreen extends React.Component {
 	render() {
 		// console.log("ScholarSuvey Checking " + JSON.stringify(this.state.usrProfile));
 		// console.log("scholarSurvey prop check " + JSON.stringify(this.props.route.params.usrInfo));
+		console.log("Hey there, this is Scholarship Survey screen!");
 		return (
 			<DismissKeyboard>
 				<KeyboardAwareScrollView

@@ -271,7 +271,7 @@ def auth(email):
                         hashPass = hashlib.md5(saltedPass.encode()).hexdigest()
 
                         if(hashPass != usr_profile_data["paswrd"]):
-                            return make_response(jsonify({"mesg": "unauthorized"}), 401)
+                            return make_response(jsonify({"mesg": "Incorrect password!"}), 401)
 
                         # generate a new device token
                         secret_code = generateCode()
@@ -710,7 +710,7 @@ def view_major_single(major_name, email, token, id):
                 "unemp_rate": r['unemp_rate'],
                 "autom": r['autom'],
                 'subjects': arr2str(r['subjects']),
-                "var_jobs": arr2str(r['var_jobs']),
+                "var_jobs": r['var_jobs'],
                 "social": r['social'],
                 "env": r['env'],
                 "classes": arr2str(r['classes']),
@@ -720,7 +720,7 @@ def view_major_single(major_name, email, token, id):
             
             addRecentDoc(email, major_name, "major")
 
-            return make_response(jsonify({resource}), 202)
+            return make_response(jsonify(resource), 202)
 
     return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
 
@@ -868,15 +868,15 @@ def usrSurvey_college(email, token, id):
         income_data = request.json
 
         # validate the incoming data
-        if "selectedResidences" not in income_data:
-            return make_response(jsonify({"mesg": "Missing region information"}), 400)
-        if len(income_data["selectedMajors"]) < 1:
-            return make_response(jsonify({"mesg": "Missing region information"}), 400)
+        # if "selectedResidences" not in income_data:
+        #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
+        # if len(income_data["selectedMajors"]) < 1:
+        #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
 
-        if "selectedMajors" not in income_data:
-            return make_response(jsonify({"mesg": "Missing major information"}), 400)
-        if len(income_data["selectedMajors"]) < 1:
-            return make_response(jsonify({"mesg": "Missing major information"}), 400)
+        # if "selectedMajors" not in income_data:
+        #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
+        # if len(income_data["selectedMajors"]) < 1:
+            # return make_response(jsonify({"mesg": "Missing major information"}), 400)
 
         if validate_email(user_Ref, email):
             insert_college_survey(user_Ref, email, income_data["selectedResidences"],
@@ -953,15 +953,15 @@ def usrSurvey_major(email, token, id):
         income_data = request.json
 
         # validate the incoming data
-        if "regions" not in income_data:
-            return make_response(jsonify({"mesg": "Missing region information"}), 400)
-        if len(income_data["regions"]) < 1:
-            return make_response(jsonify({"mesg": "Missing region information"}), 400)
+        # if "regions" not in income_data:
+        #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
+        # if len(income_data["regions"]) < 1:
+        #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
 
-        if "majors" not in income_data:
-            return make_response(jsonify({"mesg": "Missing major information"}), 400)
-        if len(income_data["majors"]) < 1:
-            return make_response(jsonify({"mesg": "Missing major information"}), 400)
+        # if "majors" not in income_data:
+        #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
+        # if len(income_data["majors"]) < 1:
+        #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
 
         # ==================== PLACEHOLDER ====================
         # TODO: some sort of func to append the data into db
