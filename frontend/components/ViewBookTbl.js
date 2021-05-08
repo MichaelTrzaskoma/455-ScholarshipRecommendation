@@ -18,7 +18,7 @@ export default class ViewBookTbl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usrInfo: this.props.route.params.usrProfile,
+      usrInfo: this.props.route.params.usrProf,
       isLoading: true,
       bookArr: [],
       gender: '',
@@ -159,7 +159,7 @@ export default class ViewBookTbl extends React.Component {
   }
 
   render() {
-    // console.log("Checking ViewRecommendTbl " + JSON.stringify(this.props.route.params.usrProfile ));
+    // console.log("Checking Bookmark " + JSON.stringify(this.state.usrInfo));
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>
