@@ -439,12 +439,13 @@ def filter_results(user_Ref, scholar_ref, userId):
         scholarBin = curr_scholar.get('binary')
         # Need to change method for check set to false for now
         value = binCompare(userBin, scholarBin)
-        if(value >= filterVal):
+        if(value[0] >= filterVal):
             scholarInfo = {
                 'Name': str(curr_scholar.get('name')),
                 'Amount': int(parseAmount(curr_scholar.get('amount'))),
                 'Deadline': str(curr_scholar.get('deadline')),
-                'Val': value,
+                'Val': value[0],
+                'Frac': value[1],
             }
             filteredScholar.append(scholarInfo)
     filteredScholar.sort(key=sortKey, reverse=True)
@@ -470,41 +471,43 @@ def binCompare(user_bin, scholar_bin):
         index = containsList[i]
         #Gender
         if index >= 486 and index <= 489 and scholar_bin[index] != '1' and '1' in scholar_bin[486:489]:
-            return 0
+            return [0, 'N\A']
         #age
         elif index >= 177 and index <= 195 and scholar_bin[index] != '1' and '1' in scholar_bin[177:195]:
-            return 0
+            return [0, 'N\A']
         #states
         elif index >= 598 and index <= 658 and scholar_bin[index] != '1' and '1' in scholar_bin[598:658]:
-            return 0
+            return [0, 'N\A']
         #gpa
         elif index >= 490 and index <= 494 and scholar_bin[index] != '1' and '1' in scholar_bin[490:494]:
-            return 0
+            return [0, 'N\A']
         #major
         elif index >= 0 and index <= 171 and scholar_bin[index] != '1' and '1' in scholar_bin[0:171]:
-            return 0
+            return [0, 'N\A']
         #race
         elif index >= 558 and index <= 564 and scholar_bin[index] != '1' and '1' in scholar_bin[558:564]:
-            return 0
+            return [0, 'N\A']
         #ethnicity
         elif index >= 380 and index <= 483 and scholar_bin[index] != '1' and '1' in scholar_bin[380:483]:
-            return 0
+            return [0, 'N\A']
         #religion
         elif index >= 565 and index <= 597 and scholar_bin[index] != '1' and '1' in scholar_bin[565:597]:
-            return 0
+            return [0, 'N\A']
         #disabilities
         elif index >= 510 and index <= 557 and scholar_bin[index] != '1' and '1' in scholar_bin[510:557]:
-            return 0
+            return [0, 'N\A']
         #sat
         elif index >= 659 and index <= 662 and scholar_bin[index] != '1' and '1' in scholar_bin[659:662]:
-            return 0
+            return [0, 'N\A']
         #act
         elif index >= 172 and index <= 176 and scholar_bin[index] != '1' and '1' in scholar_bin[172:176]:
-            return 0
+            return [0, 'N\A']
         elif scholar_bin[index] == '1':
             count = count + 1
-        #print('hi')
-    return count/len(containsList)
+        
+    val = count/len(containsList)
+    frac = str(count) + '/' + str(len(containsList))
+    return [val, frac]
 
 
 def parseAmount(txt):
