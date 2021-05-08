@@ -8,9 +8,10 @@ import TabViewSurvey from './TabViewSurvey';
 import MultiSurveyBtn from "../ui/MultiSurveyBtn";
 import HistoryBtn from "../ui/HistoryBtn";
 import { deleteSecureStorage } from "../functions/secureStorage";
+import { useNavigation } from "@react-navigation/native";
 
 export default function AccScreen({ usrInfo }) {
-
+	const navigation = useNavigation();
 	// console.log("From account " + JSON.stringify(usrInfo));
 	// const user_info = usrInfoObj;
 	return (
@@ -51,12 +52,18 @@ export default function AccScreen({ usrInfo }) {
 					</TouchableOpacity> */}
 
 					{/* This is displayed as "Take Survey" btn which will navigate to TabViewSurvey component */}
-					<MultiSurveyBtn userInfo={usrInfo} />
+					<MultiSurveyBtn userInfo={usrInfo}/>
 
 					{/* This is displayed as "View History" btn which will navigate to ViewHistory component */}
-					<HistoryBtn />
+					<HistoryBtn userInfo={usrInfo}/>
 
-					<TouchableOpacity style={styles.bookmarksBtn}>
+					<TouchableOpacity 
+						onPress= {() => {
+							navigation.navigate("ViewBookTbl", {
+								usrProf: usrInfo
+							})
+						}}
+						style={styles.bookmarksBtn}>
 						<View style={styles.bookmarksIconRow}>
 							<Ionicons
 								name="md-bookmarks"

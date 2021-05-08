@@ -13,9 +13,11 @@ import { getDeviceID } from "./functions/deviceUniqueID";
 import LoginScreen from "./components/LoginScreen";
 import AccScreen from "./components/AccScreen";
 import TabViewSurvey from "./components/TabViewSurvey";
-import ScholarSurvey from "./components/scholarships/ScholarSurvey";
+import ViewBookTbl from "./components/ViewBookTbl";
+import ViewHistory from "./components/ViewHistory";
 
 // Scholarship
+import ScholarSurvey from "./components/scholarships/ScholarSurvey";
 import ScholarshipScreen from "./components/scholarships/ScholarshipScreen";
 import ViewAllScholar from "./components/scholarships/ViewAllScholar";
 import ViewScholarSubCate from "./components/scholarships/ViewScholarSubCate";
@@ -273,6 +275,40 @@ export default class App extends Component {
               component={TabViewSurvey}
               options={{
                 title: "Survey",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name={"ViewBookTbl"}
+              component={ViewBookTbl}
+              options={{
+                title: "Bookmark Lists",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name={"ViewHistory"}
+              component={ViewHistory}
+              options={{
+                title: "History View",
                 headerStyle: {
                   backgroundColor: '#007FF9',
                 },
