@@ -682,15 +682,15 @@ export default class CollegeSurvey extends React.Component {
       // format the API response into json
       .then((response) => response.json())
       .then((json) => {
-        if (json.mesg.existing == 1) {
+        if (json.mesg.existing === 1) {
           // set the val to state
 
           console.log("Exiting College survey data: " + JSON.stringify(json));
 
           this.setState({
-            actScore: json.actScore,
-            satScore: json.satScore,
-            selectedMajors: json.major,
+            actScore: json.mesg.act,
+            satScore: json.mesg.sat,
+            selectedMajors: json.mesg.majors,
             firstTime: json.mesg.existing,
           }).catch((error) => {
             console.log('An error happened: ' + error);
