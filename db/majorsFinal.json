@@ -1,0 +1,2491 @@
+[{
+  "_id": {
+    "$oid": "608d986e88f4fb127170404a"
+  },
+  "id_": "Accounting",
+  "major": "Accounting",
+  "avg_salary": "$68,567.00",
+  "unemp_rate": "2.40%",
+  "autom": "Yes",
+  "subjects": [
+    "Math"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Indoor",
+  "classes": [
+    "Cost Accounting",
+    "Income Tax Accounting",
+    "Computerized Accounting/Accounting Information Systems",
+    "Concepts of Auditing",
+    "Statistics"
+  ],
+  "jobs": [
+    "Forensic Accountant",
+    "Financial Analyst",
+    "Personal Financial Advisor",
+    "Actuary",
+    "Anti-Money Laundering Officer"
+  ],
+  "desc": "Accounting majors learn how to create, maintain and audit a detailed and accurate system that displays the finances of a business or organization. They also study the theory behind accounting and learn how to analyze the financial position of a firm or organization.",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Buisness"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170404b"
+  },
+  "id_": "Agriculture",
+  "major": "Agriculture",
+  "avg_salary": "$66,019.00",
+  "unemp_rate": "2.50%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Outdoor",
+  "classes": [
+    "Biology",
+    "Chemistry",
+    "Economics",
+    "Business and Management",
+    "Environmental Science"
+  ],
+  "jobs": [
+    "Agriculture Sales Professional",
+    "Agricultural and Natural Resources Communication",
+    "Agriculture and Food Science Technician",
+    "Veterinarian (For Livestock)",
+    "Horticulturist"
+  ],
+  "desc": "Agriculture majors study raising plant crops and livestock,learning the essentials of farming and ranching, everything from planting, cultivation, fertilization, harvesting, processing, and fruit and vegetable distribution to the most effective ways to raise, breed, and market livestock.",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170404c"
+  },
+  "id_": "Anthropology",
+  "major": "Anthropology",
+  "avg_salary": "$57,538.00",
+  "unemp_rate": "6%",
+  "autom": "Yes",
+  "subjects": [
+    "History",
+    "Math",
+    "Science",
+    "English"
+  ],
+  "var_jobs": "High",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "Biology",
+    "Evolution",
+    "Cultural Anthropology",
+    "Ethnicity and Identity",
+    "Gender Experiences"
+  ],
+  "jobs": [
+    "Marketing Manager",
+    "Public Relations Manager",
+    "Training And Development Manager",
+    "Sociologist"
+  ],
+  "desc": "Anthropology majors study humans and chimps, analyzing how groups live with each other, and how culture cultivates over time. Analyzing the differences of different cultures and seeing how they came to be.",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170404d"
+  },
+  "id_": "Art",
+  "major": "Art",
+  "avg_salary": "$57,813.00",
+  "unemp_rate": "4.50%",
+  "autom": "Yes",
+  "subjects": [
+    "Arts "
+  ],
+  "var_jobs": "Medium",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Art History",
+    "Painting",
+    "Sculpture",
+    "Ceramics",
+    "Graphic Design"
+  ],
+  "jobs": [
+    "Illustrator",
+    "Designer",
+    "Photographer",
+    "Artist",
+    "Fashion Designer"
+  ],
+  "desc": "Art majors focus on the concepts of creation and interpretation of works and performances. Utilizing the learning skills of auditory, kinesthetic, and visual, to express ideas in various forms.\n",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Arts"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170404e"
+  },
+  "id_": "Biology",
+  "major": "Biology",
+  "avg_salary": "$71,619.00",
+  "unemp_rate": "4.20%",
+  "autom": "Yes",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Biology",
+    "Evolutionary Biology",
+    "Chemistry",
+    "Calculus",
+    "Physics"
+  ],
+  "jobs": [
+    "Biological Technician",
+    "Biochemist",
+    "Microbiologist",
+    "Health Communications Specialist",
+    "Wildlife Biologist"
+  ],
+  "desc": "Biology majors study life, studying the structure of life, the growth, the origin, evolution, and the various organisms across the world. They learn how living things function and interact amongst each other and their environment.",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170404f"
+  },
+  "id_": "Business Management",
+  "major": "Business Management",
+  "avg_salary": "$65,280.00",
+  "unemp_rate": "3.80%",
+  "autom": "No",
+  "subjects": [
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "No",
+  "env": "Indoor",
+  "classes": [
+    "Economics",
+    "Accounting",
+    "Business Law",
+    "Marketing,Business Administration"
+  ],
+  "jobs": [
+    "Personal Assistant",
+    "Program Assistant",
+    "Office Coordinator",
+    "Human Resources Assistant",
+    "Staff Accountant"
+  ],
+  "desc": "Business management majors study business organisations, gaining knowledge of how businesses work financially internally, how they work with markets,  and how they interact with customers. Analyzing strategies and policies that make businesses successful.",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Buisness"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704050"
+  },
+  "id_": "Chemistry",
+  "major": "Chemistry",
+  "avg_salary": "$74,876.00",
+  "unemp_rate": "4%",
+  "autom": "Yes",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Introduction to Chemistry",
+    "Organic Chemsitry",
+    "Inorganic Chemistry",
+    "Calculus",
+    "Physics"
+  ],
+  "jobs": [
+    "Chemical Technician",
+    "Toxicologist",
+    "Water Chemist",
+    "Analytical Chemist",
+    "Quality Control Chemist"
+  ],
+  "desc": "Chemistry majors have a focus on the composition and behavior of matter. Utilizing math and theory as well as experimentation to study how matter interacts under specific environmental conditions down to an atomic level.",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704051"
+  },
+  "id_": "Communications",
+  "major": "Communications",
+  "avg_salary": "$62,427.00",
+  "unemp_rate": "3.60%",
+  "autom": "No",
+  "subjects": [
+    "English"
+  ],
+  "var_jobs": "High",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "Introduction to Communication",
+    "Communication Research",
+    "Media",
+    "Public Speaking",
+    "Writing"
+  ],
+  "jobs": [
+    "Public Relations Specialist",
+    "Event Planner",
+    "College Alumni and Development Officer",
+    "Media Planner",
+    "Social Media Manager"
+  ],
+  "desc": "Communications majors learn how to effectively communicate a variety of information throughout different areas, from business, to politics, to journalism. Understanding the differences of information and the most effective way to portray them through the various mediums for communication.",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704052"
+  },
+  "id_": "Computer Science",
+  "major": "Computer Science",
+  "avg_salary": "$101,896.00",
+  "unemp_rate": "5.20%",
+  "autom": "Yes",
+  "subjects": [
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "No",
+  "env": "Indoor",
+  "classes": [
+    "Calculus",
+    "Programming",
+    "Data Structures",
+    "Discrete Math",
+    "Algorithms"
+  ],
+  "jobs": [
+    "Data Scientist",
+    "Software Tester",
+    "Software Developer",
+    "System Analyst",
+    "Full-Stack Developer "
+  ],
+  "desc": "Computer Science majors not only focus on working with computers and utilizing various programming languages, but also enhance their problem solving skills. Learning how to solve problems effectively and efficiently utilizing algorithms.",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704053"
+  },
+  "id_": "Cosmetology",
+  "major": "Cosmetology",
+  "avg_salary": "$42,824.00",
+  "unemp_rate": "3.70%",
+  "autom": "No",
+  "subjects": [
+    "Arts "
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Introduction to Cosmetology",
+    "Facial Treatment",
+    "Skin Care and Makeup",
+    "Hair Cutting",
+    "Business Management"
+  ],
+  "jobs": [
+    "Permanant Makeup Artist",
+    "Nail Technician",
+    "Massage Therapist",
+    "Fashion Designer",
+    "Barber"
+  ],
+  "desc": "Cosmetology majors learn the theory and practice on how to make individuals look and feel their best through a variety of skills such as haircutting, pedicures, and skin care treatment. Learning the key aspects needed safe, healthy, and effective cosmetic work. ",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Trades & Personal Services"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704054"
+  },
+  "id_": "Criminal Justice",
+  "major": "Criminal Justice",
+  "avg_salary": "$49,657.00",
+  "unemp_rate": "4.30%",
+  "autom": "No",
+  "subjects": [
+    "History",
+    "English"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "Criminology",
+    "Sociology",
+    "Research for Criminal Justice",
+    "Constitutional Law",
+    "Statistics"
+  ],
+  "jobs": [
+    "Lawyer",
+    "Homeland Security",
+    "Homicide Detective",
+    "Criminal Investigator",
+    "DEA Agent"
+  ],
+  "desc": "Criminal Justice majors gain the understanding of the core elements of the justice system: the courts, policing, and corrections. Learning the reasoning and psychology behind criminal behavior to better understand how to preserve society’s safety.",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Protective Services"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704055"
+  },
+  "id_": "Culinary Arts",
+  "major": "Culinary Arts",
+  "avg_salary": "$48,509.00",
+  "unemp_rate": "3.70%",
+  "autom": "Yes",
+  "subjects": [
+    "Arts "
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Culinary Fundamenetals",
+    "Nutrition",
+    "Food Safety",
+    "Introduction to Gastronomy",
+    "Baking and Pastries"
+  ],
+  "jobs": [
+    "Pastry Chef",
+    "Personal Cook",
+    "Recipe Developer",
+    "Food Writer",
+    "Food Stylist"
+  ],
+  "desc": "Culinary Arts majors develop the skills needed to excel in the professional food industry, learning the do’s and don’ts within a kitchen, as well as the theory of food recipes. They learn the key aspects of hospitality, and key aspects of the variety of food industries within the culinary field.",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Trades & Personal Services"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704056"
+  },
+  "id_": "Dental",
+  "major": "Dental",
+  "avg_salary": "$120,000.00",
+  "unemp_rate": "3.90%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Biology",
+    "Inorganic Chemistry",
+    "Organic Chemistry",
+    "Physics",
+    "English"
+  ],
+  "jobs": [
+    "Denist",
+    "Dental Hygienist",
+    "Dental Technician",
+    "Dental Therapist",
+    "Health Improvement Practitioner"
+  ],
+  "desc": "Dental majors learn the ins and outs of dental anatomy, understanding how the human mouth and jaw work. Learning how to clean and preserve a healthy oral cavity, as well as the safe methodologies behind it. ",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Health Professions"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704057"
+  },
+  "id_": "Design",
+  "major": "Design",
+  "avg_salary": "$61,290.00",
+  "unemp_rate": "4.50%",
+  "autom": "Yes",
+  "subjects": [
+    "Arts "
+  ],
+  "var_jobs": "Medium",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "3D Graphics",
+    "Animation",
+    "Art",
+    "Computer Aided Design",
+    "Web Design"
+  ],
+  "jobs": [
+    "Industrial Designer",
+    "Graphic Designer",
+    "Interior Designer",
+    "Fashion Designer",
+    "User Experience Designer"
+  ],
+  "desc": "Design majors learn the science and art of making things aesthetically pleasing to the eye. Understanding how the human mind works when viewing aspects of art, improving their creative skills to apply thought to art when considering the observer. ",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Arts"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704058"
+  },
+  "id_": "Economics",
+  "major": "Economics",
+  "avg_salary": "$93,692.00",
+  "unemp_rate": "4.20%",
+  "autom": "No",
+  "subjects": [
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "No",
+  "env": "Indoor",
+  "classes": [
+    "Microeconomics",
+    "Macroeconomics",
+    "Calculus",
+    "Political Economy",
+    "Statistics"
+  ],
+  "jobs": [
+    "Market Research Analyst",
+    "Economic Consultant",
+    "Actuary",
+    "Credit Analyst",
+    "Policy Analyst"
+  ],
+  "desc": "Economics majors learn how to develop critical thinking, examining resources and efficiently allocating them, as well as evaluating the decisions made on resource allocation during certain situations. Understanding the techniques to research, policymaking, and quantitative analysis dealing with resources of countries as well as companies.",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704059"
+  },
+  "id_": "Education",
+  "major": "Education",
+  "avg_salary": "$53,641.00",
+  "unemp_rate": "1.70%",
+  "autom": "Yes",
+  "subjects": [
+    "English"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Introduction to Education",
+    "Student Teaching",
+    "Classroom Management",
+    "Developmental Psychology",
+    "Chlid Development"
+  ],
+  "jobs": [
+    "Education Administrator",
+    "Curriculum Design",
+    "Student Counsling",
+    "Teacher",
+    "Recreation and Student Life"
+  ],
+  "desc": "Education majors learn the theory of how to make an impact on others inside and outside of a classroom, exploring the best methodologies that people learn from. Evaluating the effectiveness of lesson plans, and being able to adapt to new criteria needed to aid students.",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Education"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170405a"
+  },
+  "id_": "Engineering",
+  "major": "Engineering",
+  "avg_salary": "$85,647.00",
+  "unemp_rate": "4.90%",
+  "autom": "Yes",
+  "subjects": [
+    "Science",
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Calculus",
+    "Physics",
+    "Introduction to Materials Engineering",
+    "Principles to Engineering",
+    "Dynamics"
+  ],
+  "jobs": [
+    "Aerospace Engineer",
+    "Agriculture Engineer",
+    "Automotive Engineer",
+    "Biomedical Engineer",
+    "Chemical Engineer"
+  ],
+  "desc": "Engineering majors understand how to utilize mathematics and scientific principles to solve problems. Learning the design and experimentation process of problem solving as well as the considerations of safety and ethics when designing solutions.",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170405b"
+  },
+  "id_": "English",
+  "major": "English",
+  "avg_salary": "$64,472.00",
+  "unemp_rate": "4.50%",
+  "autom": "Yes",
+  "subjects": [
+    "English"
+  ],
+  "var_jobs": "High",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Literature",
+    "Creative Writing",
+    "Literature and Philisophy",
+    "Poetry",
+    "Prose"
+  ],
+  "jobs": [
+    "Advertising Manager",
+    "Technical Writer",
+    "Writer & Author",
+    "Highschool Teacher",
+    "Editor"
+  ],
+  "desc": "English majors develop critical reading and writing skills, examining literature through history and see the key elements that culture has within one’s writing. Developing effective writing tools to have their literature be effective as possible for the reader.",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170405c"
+  },
+  "id_": "Environmental Science",
+  "major": "Environmental Science",
+  "avg_salary": "$60,064.00",
+  "unemp_rate": "4.30%",
+  "autom": "Yes",
+  "subjects": [
+    "Science",
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "No",
+  "env": "Outdoor",
+  "classes": [
+    "General Biology",
+    "General Physics",
+    "General Chemistry",
+    "Organic Chemistry",
+    "Principles of Ecology "
+  ],
+  "jobs": [
+    "Enviornmental Specialist",
+    "Enviornmental Technician",
+    "Enviornmental Science Teacher",
+    "Marine Biologist",
+    "Enviornmental Chemist"
+  ],
+  "desc": "Environmental Science majors learn how physical and biological processes impact the environment around them. Evaluating how humans have impacted nature as well as solutions to the problems that have been caused due to humans.",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    1
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170405d"
+  },
+  "id_": "Film",
+  "major": "Film",
+  "avg_salary": "$56,684.00",
+  "unemp_rate": "7.30%",
+  "autom": "Yes",
+  "subjects": [
+    "Arts "
+  ],
+  "var_jobs": "Medium",
+  "social": "Job Dependent",
+  "env": "Job Dependent",
+  "classes": [
+    "Introduction to Film",
+    "Film History",
+    "Film Theory",
+    "Film Criticism",
+    "Film Production"
+  ],
+  "jobs": [
+    "Broadcast Presenter",
+    "Film Director",
+    "Film/Video Editor",
+    "Location Manager",
+    "Production Designer"
+  ],
+  "desc": "Film majors develop skills to work with peers and individually to produce their ideas to a script to then a screen. Learning the process of film production and understanding the importance of sound, lighting, and editing when developing a film. ",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "category": "Arts"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170405e"
+  },
+  "id_": "Finance",
+  "major": "Finance",
+  "avg_salary": "$69,864.00",
+  "unemp_rate": "3.50%",
+  "autom": "No",
+  "subjects": [
+    "Math"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Indoor",
+  "classes": [
+    "Corporate Finance",
+    "Derivatives",
+    "Investment Analysis",
+    "Investment Banking Analysis",
+    "Asset Pricing and Portfolio Analysis",
+    "Accounting",
+    "Global Capital Markets",
+    "Corporate Risk Management"
+  ],
+  "jobs": [
+    "Financial Planner",
+    "Financial Analyst",
+    "Investor Relations Associate",
+    "Budget Analyst",
+    "Commerical Real Estate Agent"
+  ],
+  "desc": "Finance majors learn how to do financial planning, investing, and budgeting within a business environment. Learning how to manage finances and aid in making businesses profitable through problem solving financial issues.",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Buisness"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170405f"
+  },
+  "id_": "Food and Nutrition",
+  "major": "Food and Nutrition",
+  "avg_salary": "$56,614.00",
+  "unemp_rate": "3.30%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Biology",
+    "Chemistry",
+    "Physiology",
+    "Introduction to Nutrition",
+    "Food Preparation/Distribution "
+  ],
+  "jobs": [
+    "Animal Nutritionist",
+    "Community Education Officer",
+    "Food Technologist",
+    "Dietitian",
+    "Catering Manager "
+  ],
+  "desc": "Food and Nutrition majors research how nutrients impact the human body, understanding the necessities for a healthy quality of life for people. Learning how certain diets impact human health, learning the biology and chemistry aspects of nutrients within food. ",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Health Professions"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704060"
+  },
+  "id_": "Foreign Language",
+  "major": "Foreign Language",
+  "avg_salary": "$70,750.00",
+  "unemp_rate": "3.30%",
+  "autom": "Yes",
+  "subjects": [
+    "History"
+  ],
+  "var_jobs": "High",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "Foreign Language Proficiency",
+    "Foreign Culture "
+  ],
+  "jobs": [
+    "Foreign Civil Servant",
+    "Flight Attendant",
+    "Advertisement Translator",
+    "Subtitle/Voiceover Translator",
+    "Event Manager "
+  ],
+  "desc": "Foreign language majors study the literature, culture, and media of people who utilize a specific language. Understanding the verbal and nonverbal aspects of a language equips students with a holistic understanding of the culture surrounding a language to be effective in international work.",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704061"
+  },
+  "id_": "Health",
+  "major": "Health",
+  "avg_salary": "$63,930.00",
+  "unemp_rate": "3.90%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Biology",
+    "Chemistry",
+    "Anatomy",
+    "Physiology",
+    "Genetics"
+  ],
+  "jobs": [
+    "Behavior Analyst",
+    "Hearing Aid Specialist",
+    "Health Educator",
+    "Mental Health Counsler",
+    "Patient Care Advocate"
+  ],
+  "desc": "Health majors work in all aspects in the human health field, learning the biology of the human body as well as the chemical compositions within a body. Learning how the human body works, and ways to answer health related problems of the human body.",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Health Professions"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704062"
+  },
+  "id_": "Health Care",
+  "major": "Health Care",
+  "avg_salary": "$61,851.00",
+  "unemp_rate": "3.90%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Healthcare Personnel Management",
+    "Financial Management of Healthcare institutions",
+    "Marketing of Healthcare Organizations",
+    "Healthcare Information Systems",
+    "Quality Assurance in Healthcare"
+  ],
+  "jobs": [
+    "Respiratory Therapist",
+    "Radiologic and MRI Technician",
+    "Orthopedic and Prosthetic Professional",
+    "Dental Hygenist",
+    "Healthcare Executive",
+    "Physician Assistant"
+  ],
+  "desc": "Health Care majors learn the inner workings of the health department such as hospitals, and specialized medical facilities. Learning how to effectively manage a health care environment as well as manage working in a team of medical professionals.",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Health Professions"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704063"
+  },
+  "id_": "History",
+  "major": "History",
+  "avg_salary": "$67,007.00",
+  "unemp_rate": "3.80%",
+  "autom": "Yes",
+  "subjects": [
+    "History"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "American History",
+    "European History",
+    "Freedom and Responsibility",
+    "Non-Western History",
+    "Myth and Reality in American Past"
+  ],
+  "jobs": [
+    "Government Historian",
+    "Political Advisor",
+    "Museum Curator",
+    "Archivist",
+    "Diplomant"
+  ],
+  "desc": "History majors study the views and interpretations of the past, such as documents, landmarks, and other forms of evidence. Learning theories of the past and evaluating the truth of what has once happened within history. ",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704064"
+  },
+  "id_": "Information Technology",
+  "major": "Information Technology",
+  "avg_salary": "$67,407.00",
+  "unemp_rate": "4.90%",
+  "autom": "Yes",
+  "subjects": [
+    "Science",
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "Job Dependent",
+  "env": "Indoor",
+  "classes": [
+    "Computer Networks",
+    "Computer Programming",
+    "Data Center Design",
+    "Database Administration",
+    "Information Storage Management"
+  ],
+  "jobs": [
+    "Network Architect",
+    "Health Information Technologist",
+    "Information Technology Support Specialist",
+    "Information Technology Consultant",
+    "Information Security Analyst"
+  ],
+  "desc": "Information Technology majors study a mix of computer science, business, and communications, learning how computers support industries around the world. Seeing how technology is a foundation for growth and stability within the business world, and how to maintain properly functioning technology within businesses.",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704065"
+  },
+  "id_": "International Relations",
+  "major": "International Relations",
+  "avg_salary": "$74,987.00",
+  "unemp_rate": "4.60%",
+  "autom": "No",
+  "subjects": [
+    "History",
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Economics",
+    "Foreign Language",
+    "Foreign Policy",
+    "Public Relations",
+    "Political Science"
+  ],
+  "jobs": [
+    "Diplomat",
+    "Intelligence Specialist",
+    "Political Analyst. Lobbyist",
+    "Communication Specialist"
+  ],
+  "desc": "International Relations majors study the way the world works politically, economically, and culturally on a global scope. Understanding the key factors that influence foreign decision making and affairs as well as develop critical thinking in solving global conflicts.",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704066"
+  },
+  "id_": "Legal Studies",
+  "major": "Legal Studies",
+  "avg_salary": "$61,274.00",
+  "unemp_rate": "4.30%",
+  "autom": "No",
+  "subjects": [
+    "History",
+    "English"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Linguistics",
+    "Literature",
+    "Politics",
+    "Sociology",
+    "English"
+  ],
+  "jobs": [
+    "Paralegal",
+    "Legal Assistant",
+    "Claims Adjuster",
+    "Real Estate Agent",
+    "Legal Administrator"
+  ],
+  "desc": "Legal Studies majors learn how law impacts the day to day life of common people as well as large corporations. Utilizing past cases, as well as studying the literature of law to familiarize themselves with how the country maintains order. ",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704067"
+  },
+  "id_": "Math",
+  "major": "Math",
+  "avg_salary": "$71,216.00",
+  "unemp_rate": "4.90%",
+  "autom": "Yes",
+  "subjects": [
+    "Math"
+  ],
+  "var_jobs": "High",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Differential Equations",
+    "Complex Variables",
+    "Linear Algebra",
+    "Modern Geometry",
+    "Probability and Statistics"
+  ],
+  "jobs": [
+    "Database Administrator",
+    "Financial Analyst",
+    "Economist",
+    "Operations Research Analyst",
+    "Mathematician"
+  ],
+  "desc": "Math majors utilize thought and logistics, as well as calculations to solve problems within a variety of fields. From utilizing fundamental maths such as algebra and geometry to using number theory for critical thinking, evaluation, modeling, and solving problems.",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704068"
+  },
+  "id_": "Music",
+  "major": "Music",
+  "avg_salary": "$56,616.00",
+  "unemp_rate": "5.10%",
+  "autom": "Yes",
+  "subjects": [
+    "Arts "
+  ],
+  "var_jobs": "Medium",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "Aural Skills",
+    "Counterpoint",
+    "Elements of Music Education",
+    "Instrumentation",
+    "Music Theory"
+  ],
+  "jobs": [
+    "Music Producer",
+    "Music Therapist",
+    "Musician",
+    "Sound Designer",
+    "Sound Engineer",
+    "Music Teacher"
+  ],
+  "desc": "Music majors study a variety of fields within the music area, from instrumental music to vocal performance, learning the important aspects of developing music. Learning from individual instruments to compositions of a group of instruments, learning the theory of sound.",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Arts"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704069"
+  },
+  "id_": "Nursing",
+  "major": "Nursing",
+  "avg_salary": "$86,177.00",
+  "unemp_rate": "1.80%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Health Psychology",
+    "Healthy Aging",
+    "Family and Stress",
+    "Contemporary Moral Problems",
+    "Mental Health Nursing"
+  ],
+  "jobs": [
+    "Legal Nurse Consultant",
+    "Nurse Manager",
+    "Public Health Nurse",
+    "Hospice Nurse",
+    "Nutritionist Nurse"
+  ],
+  "desc": "Nursing majors study various fields such as chemistry, psychology, and anatomy to be equipped with the tools necessary to help patients of all ages. Understanding the inner workings of medical areas to effectively maintain and manage such medical environments. ",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Health Professions"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170406a"
+  },
+  "id_": "Philosophy",
+  "major": "Philosophy",
+  "avg_salary": "$66,023.00",
+  "unemp_rate": "4.30%",
+  "autom": "Yes",
+  "subjects": [
+    "English",
+    "History"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Ancient Philosophy",
+    "Great Philosophers",
+    "Mind and Matter",
+    "Racism and Sexism",
+    "School and Society"
+  ],
+  "jobs": [
+    "College Professor",
+    "Non-Profit Worker",
+    "Public Policy Worker",
+    "Journalist",
+    "Paralegal"
+  ],
+  "desc": "Philosophy majors study the great philosophers of history, examining questions that truly have no correct answer. Developing critical thinking skills, engaging in moral and ethical discussions. ",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170406b"
+  },
+  "id_": "Photography",
+  "major": "Photography",
+  "avg_salary": "$53,779.00",
+  "unemp_rate": "7.30%",
+  "autom": "Yes",
+  "subjects": [
+    "Arts "
+  ],
+  "var_jobs": "Medium",
+  "social": "Job Dependent",
+  "env": "Job Dependent",
+  "classes": [
+    "Photography",
+    "Art",
+    "Design",
+    "Finance",
+    "Management"
+  ],
+  "jobs": [
+    "Advertising Art Director",
+    "Magazine Features Editor",
+    "Medical Illustrator",
+    "Photographer",
+    "Press Photographer"
+  ],
+  "desc": "Photography majors focus on the principles and techniques of displaying information, ideas, and emotions through photographs. Analyzing what distinguishes an effective and ineffective photograph, improving on skills to portray ideas as effectively as possibly through photography.",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "category": "Arts"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170406c"
+  },
+  "id_": "Physical Therapy",
+  "major": "Physical Therapy",
+  "avg_salary": "$86,391.00",
+  "unemp_rate": "3.30%",
+  "autom": "Yes",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Anatomy",
+    "Physiology",
+    "Biology",
+    "Psychology",
+    "General Physics "
+  ],
+  "jobs": [
+    "Physical Therapist",
+    "Physical Therapist Assistant",
+    "Chiropractor",
+    "Recreational Therapist",
+    "Massage Therapist"
+  ],
+  "desc": "Physical Therapist majors study the human body, understanding how the physical body works as a whole. Learning methodologies to ease human pain as well as to regain physical movement and strength.",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Health Professions"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170406d"
+  },
+  "id_": "Physics",
+  "major": "Physics",
+  "avg_salary": "$87,876.00",
+  "unemp_rate": "7.70%",
+  "autom": "Yes",
+  "subjects": [
+    "Science",
+    "Math"
+  ],
+  "var_jobs": "Medium",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "General Physics",
+    "Electricity and Magnetism",
+    "Modern Atomic Physics",
+    "Thermodynamics",
+    "Numerical Methods in Computing Optics"
+  ],
+  "jobs": [
+    "Astronomer",
+    "Geophysicist",
+    "Metallurgist",
+    "Meteorologist",
+    "Nanotechnologist"
+  ],
+  "desc": "Physics majors study how the world is constructed as well as how the world works as a whole. Studying how matter and energy change under various conditions, through lab settings as well as real life environments.\n",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Science, Technology, & Math"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170406e"
+  },
+  "id_": "Political Science",
+  "major": "Political Science",
+  "avg_salary": "$67,085.00",
+  "unemp_rate": "5.20%",
+  "autom": "Yes",
+  "subjects": [
+    "History",
+    "Math"
+  ],
+  "var_jobs": "Low",
+  "social": "Job Dependent",
+  "env": "Indoor",
+  "classes": [
+    "American Foreign Policy",
+    "American National Government",
+    "American Political Thought",
+    "Gender Politics",
+    "World Politics"
+  ],
+  "jobs": [
+    "Policy Analyst",
+    "Legislative Assistant",
+    "Public Relations Specialist",
+    "Political Campaign Staff",
+    "Political Consultant"
+  ],
+  "desc": "Political sciences majors are exposed to the theory and thought process of the governmental environment. Studying the methodology when making political decisions and adapting critical thinking within a political setting.",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb127170406f"
+  },
+  "id_": "Protective Services",
+  "major": "Protective Services",
+  "avg_salary": "$52,331.00",
+  "unemp_rate": "4.30%",
+  "autom": "Yes",
+  "subjects": [
+    "History"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "Criminal Justice",
+    "Public Relations",
+    "Disaster Response",
+    "Sociology",
+    "Emergency Planning"
+  ],
+  "jobs": [
+    "Airport Safety Officer",
+    "Emergency Communications Operator",
+    "Fire Ranger",
+    "House Security Officer",
+    "Protective Services Worker"
+  ],
+  "desc": "Protective services majors focus on the principles and techniques of providing protection to clients throughout various environments and situations. Understanding the mindset of preserving protection while having critical thinking skills under pressure and short time.",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Protective Services"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704070"
+  },
+  "id_": "Psychology",
+  "major": "Psychology",
+  "avg_salary": "$60,033.00",
+  "unemp_rate": "3.90%",
+  "autom": "Yes",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Methods of Inquiry",
+    "Abnormal Psychology",
+    "Counseling Skills",
+    "Language Mind and Brain",
+    "Physiological Psychology"
+  ],
+  "jobs": [
+    "Advertising Agents",
+    "Carrer Counselor",
+    "Case Manager",
+    "Child Care Worker",
+    "Laboratory Assistant"
+  ],
+  "desc": "Psychology majors study the human mind, examining how human behavior and their thought processes under conditions of social interaction or isolation. Learning the structure of the human brain and the key structure to understand why people act the way they do.",
+  "binary": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704071"
+  },
+  "id_": "Public Health",
+  "major": "Public Health",
+  "avg_salary": "$50,444.00",
+  "unemp_rate": "3.90%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Job Dependent",
+  "classes": [
+    "Biostatistics",
+    "Education",
+    "Health",
+    "Nutrition",
+    "Research Methods"
+  ],
+  "jobs": [
+    "Health Education Specialist",
+    "Emergency Response Planner",
+    "Public Health Advocate",
+    "Disease Prevention Specialist",
+    "Public Health Planner"
+  ],
+  "desc": "Public Health majors learn the skills on how to tackle health issues within communities such as vaccination, drug overdoses, and foodborne diseases. Through developing critical thinking and analyzing situations within a community, one will have the tools to problem solve such issues.",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Health Professions"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704072"
+  },
+  "id_": "Public Policy",
+  "major": "Public Policy",
+  "avg_salary": "$67,223.00",
+  "unemp_rate": "4.30%",
+  "autom": "No",
+  "subjects": [
+    "History",
+    "English"
+  ],
+  "var_jobs": "Low",
+  "social": "No",
+  "env": "Indoor",
+  "classes": [
+    "Policy Innovation and Analysis",
+    "The Politics of Public Policy",
+    "Justice in Public Policy",
+    "Economics",
+    "Quntitative Analysis of Public Policy"
+  ],
+  "jobs": [
+    "Public Policy Director",
+    "Public Relations Specialist",
+    "Policy Analyst",
+    "Policy Advisor",
+    "Lobbyist"
+  ],
+  "desc": "Public Policy majors are trained to have critical thinking skills within policy creation to resolve issues that society face. Through evaluation of previous policies and understanding the impacts that a policy has to be able to be effective policy creators.",
+  "binary": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704073"
+  },
+  "id_": "Religious Studies",
+  "major": "Religious Studies",
+  "avg_salary": "$47,500.00",
+  "unemp_rate": "1.50%",
+  "autom": "Yes",
+  "subjects": [
+    "English",
+    "History "
+  ],
+  "var_jobs": "Low",
+  "social": "Job Dependent",
+  "env": "Indoor",
+  "classes": [
+    "Religion in America",
+    "Paths of World Religions",
+    "Literature and World of Old/New Testament",
+    "Apocolypses",
+    "Modern Religious Thought"
+  ],
+  "jobs": [
+    "Teacher",
+    "Media Religion Consultant",
+    "Youth Worker",
+    "Chaplain",
+    "Archivist"
+  ],
+  "desc": "Religious Studies majors learn the implications of faith, and how faith is perceived and it’s impacts globally. Understanding the variety of religions around the world, viewing the holistic scope of global theology.",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704074"
+  },
+  "id_": "Social Services",
+  "major": "Social Services",
+  "avg_salary": "$50,110.00",
+  "unemp_rate": "3.10%",
+  "autom": "Job Dependent",
+  "subjects": [
+    "Science",
+    "Math",
+    "History"
+  ],
+  "var_jobs": "High",
+  "social": "Job Dependent",
+  "env": "Indoor",
+  "classes": [
+    "Community Resources",
+    "Diversity",
+    "Modern Social Problems",
+    "Social Work Practice",
+    "Sociology"
+  ],
+  "jobs": [
+    "Social Workers",
+    "Middle School Teachers",
+    "Human Resource Workers",
+    "Librarians",
+    "Urban and Regional Planners"
+  ],
+  "desc": "Social Services majors study the methodology of how social welfare systems help, protect, and support those in need, whether it’s public or private assistance. Understanding effective ways to distribute such support among people and provide the most effective kind of services to them.",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0
+  ],
+  "category": "Humanities"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704075"
+  },
+  "id_": "Sports Management",
+  "major": "Sports Management",
+  "avg_salary": "$52,546.00",
+  "unemp_rate": "3.80%",
+  "autom": "Yes",
+  "subjects": [
+    "Math"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Indoor",
+  "classes": [
+    "Sports Media",
+    "Sports Marketing",
+    "Sports Accounting and Finance",
+    "Sports Facility Management",
+    "Risk Management"
+  ],
+  "jobs": [
+    "Athletic Coach",
+    "Athletic Director",
+    "Athletic Development Specialist",
+    "Contract Negotiation Manager",
+    "Marketing Consultant"
+  ],
+  "desc": "Sports Management majors are exposed to the factors considered when planning, organizing, managing, and budgeting sports or other physical activities. Learning what makes a sports activity ran the most effectively, as well as how to run sports teams.",
+  "binary": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Buisness"
+},{
+  "_id": {
+    "$oid": "608d986f88f4fb1271704076"
+  },
+  "id_": "Veterinary",
+  "major": "Veterinary",
+  "avg_salary": "$82,092.00",
+  "unemp_rate": "3.90%",
+  "autom": "No",
+  "subjects": [
+    "Science"
+  ],
+  "var_jobs": "Low",
+  "social": "Yes",
+  "env": "Job Dependent",
+  "classes": [
+    "Biology",
+    "Zoology",
+    "Biochemistry",
+    "Genetics",
+    "Animal Nutrition"
+  ],
+  "jobs": [
+    "Animial Nutritionist",
+    "Animal Physiotherapist",
+    "Veterinary Surgeon",
+    "Animal Technicion",
+    "Veterinary Nurse"
+  ],
+  "desc": "Veterinary majors are equipped with the tools to manage the health of animals and animal populations through being able to accurately diagnose and treat health problems that animals face, as well as psychology problems that animals may face under new environments.",
+  "binary": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Health Professions"
+}]
