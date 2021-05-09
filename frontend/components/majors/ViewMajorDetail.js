@@ -1,6 +1,7 @@
 import { TabRouter } from "@react-navigation/routers";
 import React, { Component } from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text, ScrollView,TouchableOpacity } from "react-native";
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 export default class ViewMajorDetail extends React.Component {
   constructor(props) {
@@ -26,10 +27,10 @@ export default class ViewMajorDetail extends React.Component {
 
   handleBookmark() {
 
-    console.log("College Detail page: " + JSON.stringify(this.props));
+    // console.log("College Detail page: " + JSON.stringify(this.props));
     //Insert API Call here
     // let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/hchen98x@gmail.com/bookmarks/college/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/bookmarks";
+    let URL = "http://9127258b7ec8.ngrok.io/api/v1.2/users/id/hchen98x@gmail.com/bookmarks/major/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "POST",
@@ -39,8 +40,8 @@ export default class ViewMajorDetail extends React.Component {
       },
       body: JSON.stringify({
         "email": this.state.usrInfo.email,
-        "title": this.state.collegeObj1_1.uniName,
-        "type": "college",
+        "title": this.state.majorObj1.majorTitle,
+        "type": "Major",
         "unique_id": this.state.usrInfo.uuid,
         "jwt": this.state.usrInfo.jwt,
       }),
@@ -78,10 +79,7 @@ export default class ViewMajorDetail extends React.Component {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
 
-    let URL =
-      "http://6bff156668d9.ngrok.io/api/v1.2/resources/majors/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
-
-
+    let URL = "http://9127258b7ec8.ngrok.io/api/v1.2/resources/majors/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
     fetch(URL, {
       method: 'GET',
       headers: {
@@ -124,7 +122,15 @@ export default class ViewMajorDetail extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.rect}>
-          <View style={styles.bookmarkBtn}></View>
+          {/* <View style={styles.bookmarkBtn}></View> */}
+          <View style={styles.card_grp0}>
+            <TouchableOpacity onPress={() => this.handleBookmark()}>
+              <MaterialCommunityIcons
+                name="bookmark-plus"
+                style={styles.bookmarksIcon}></MaterialCommunityIcons>
+              <Text style={styles.bookmarksTxt}>Bookmark This Scholarship</Text>
+            </TouchableOpacity>
+          </View>
           <View style={styles.generalInfoGrp}>
 
             <View style={styles.majorTitleGrp}>
@@ -206,6 +212,29 @@ const styles = StyleSheet.create({
     backgroundColor: "#E6E6E6",
     width: "100%",
     height: "100%",
+  },
+  card_grp0:{
+    width: '93%',
+    marginTop: 25,
+    height: 50,
+    backgroundColor: 'rgba(255,255,255,1)',
+    borderWidth: 0,
+    borderColor: '#000000',
+    borderRadius: 5,
+    overflow: 'hidden',
+    alignSelf: 'center',
+  },
+  bookmarksIcon:
+  {
+    color: 'rgba(48,132,188,1)',
+		fontSize: 35,
+    marginTop: 5,
+    marginLeft: 20,
+  },
+  bookmarksTxt: {
+    marginLeft: 87,
+    marginTop: -22,
+    color: 'rgba(48,132,188,1)',
   },
   bookmarkBtn: {
     width: "92%",

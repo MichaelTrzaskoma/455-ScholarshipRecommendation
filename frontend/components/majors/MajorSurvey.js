@@ -468,12 +468,12 @@ export default class MajorSurvey extends React.Component {
             //autoTripwire: json.mesg.haveAutonomy,
             varietyTripwire: json.mesg.haveVari,
             salaryValue: json.mesg.avg_salary,
-            unemploymentValue: json.mesg.unemployment_rate,
+            unemploymentValue: json.mesg.unemployRate,
             trueAutonomy: json.mesg.autonomous,
             selectedSubjects: json.mesg.subjects,
-            trueVariety: json.mesg.variety_of_jobs,
-            trueSocialInteraction: json.mesg.high_social_interaction,
-            trueEnvironment: json.mesg.work_environment,
+            trueVariety: json.mesg.variOfJobs,
+            trueSocialInteraction: json.mesg.social,
+            trueEnvironment: json.mesg.workEnv,
             firstTime: json.mesg.existing,
           });
           this.translateTrues();
