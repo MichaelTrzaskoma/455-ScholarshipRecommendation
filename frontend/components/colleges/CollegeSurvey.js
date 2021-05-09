@@ -777,10 +777,12 @@ export default class CollegeSurvey extends React.Component {
   };
 
   componentDidMount() {
+    this.props.navigation
     this.checkExisting();
   }
 
   render() {
+    // console.log("CollegeSurvey test "+ this.props.navigation);
     // const { selectedRegions } = this.state;
     // this.checkMajor()
     // console.log("CollegeSurvey " + JSON.stringify(this.props.route.params.usrInfo));

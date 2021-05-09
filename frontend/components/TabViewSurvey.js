@@ -8,18 +8,35 @@ import { createStackNavigator } from "@react-navigation/stack";
 import ScholarSurvey from './scholarships/ScholarSurvey';
 import CollegeSurvey from './colleges/CollegeSurvey';
 import MajorSurvey from "./majors/MajorSurvey";
+import { useNavigation } from "@react-navigation/native";
 // import InputScreen2 from "./InputInfoScreen2";
+
 
 const Stack = createStackNavigator();
 
-
 function TopTapView(props) {
+  const navigation = useNavigation();
   // console.log("TopTapView function 123" + JSON.stringify(props.route.params.usrInfo));
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Scholarship" component={ScholarSurvey} initialParams={ {usrInfo : props.route.params.usrInfo}}/>
-      <Tab.Screen name="College" component={CollegeSurvey} initialParams={ {usrInfo : props.route.params.usrInfo}}/>
-      <Tab.Screen name="Major" component={MajorSurvey} initialParams={ {usrInfo : props.route.params.usrInfo}}/>
+      <Tab.Screen 
+        name="Scholarship" 
+        component={ScholarSurvey} 
+        initialParams={ {usrInfo : props.route.params.usrInfo}}
+        navigation={navigation}
+      />
+      <Tab.Screen 
+        name="College" 
+        component={CollegeSurvey} 
+        initialParams={ {usrInfo : props.route.params.usrInfo}}
+        navigation={navigation}
+      />
+      <Tab.Screen 
+        name="Major" 
+        component={MajorSurvey} 
+        initialParams={ {usrInfo : props.route.params.usrInfo}}
+        navigation={navigation}
+        />
     </Tab.Navigator>
   );
 }
