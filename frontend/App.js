@@ -8,6 +8,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { storeData } from "./functions/secureStorage";
 import { getDeviceID } from "./functions/deviceUniqueID";
+// import { useNavigation } from "@react-navigation/native";
 // import * as SecureStore from 'expo-secure-store';
 
 import LoginScreen from "./components/LoginScreen";
@@ -66,6 +67,8 @@ function getHeaderTitle(route) {
 
 function TabScreens({ navigation, route }) {
 
+  // console.log("Tap Test " + JSON.stringify(navigation));
+
   React.useLayoutEffect(() => {
     navigation.setOptions({ headerTitle: getHeaderTitle(route) });
   }, [navigation, route]);
@@ -111,7 +114,7 @@ function TabScreens({ navigation, route }) {
     >
       <Tab.Screen name="Scholarship">
         {/* ScholarshipScreen component belong to first Tap navi */}
-        {() => <ScholarshipScreen usrInfo={usr} />}
+        {() => <ScholarshipScreen usrInfo={usr}/>}
       </Tab.Screen>
 
       <Tab.Screen name="College">
@@ -126,7 +129,7 @@ function TabScreens({ navigation, route }) {
 
       <Tab.Screen name="Account">
         {/* AccountScreen component belong to fourth Tap navi */}
-        {() => <AccScreen usrInfo={usr} />}
+        {() => <AccScreen usrInfo={usr}  />}
       </Tab.Screen>
     </Tab.Navigator>
   );
@@ -153,9 +156,7 @@ export default class App extends Component {
         //  &&  String(inputEmail).includes("@")
         const unique_id = getDeviceID();
         // console.log("UUID: " + unique_id);
-
-        let URL = "http://6bff156668d9.ngrok.io/api/v1.2/managements/users/" + inputEmail;
-
+        let URL = "http://f0c8565ebe8e.ngrok.io/api/v1.2/managements/users/" + inputEmail;
         fetch(URL, {
           method: "POST",
           headers: {
