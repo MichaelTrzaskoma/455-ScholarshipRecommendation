@@ -1,20 +1,31 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 
-export default function MajorDetail(props) {
-  return (
-    <View style={styles.container}>
-      <ScrollView style={styles.rect}>
-        <View style={styles.bookmarkBtn}></View>
-        <View style={styles.generalInfoGrp}>
-          
-          <View style={styles.majorTitleGrp}>
-            <Text style={styles.titleTxt}>Title here</Text>
-          </View>
-          
-          <View style={styles.statisticsGrp}>
-            {/* <View style={styles.keyGrpRow}> */}
-              
+export default class ViewMajorDetail extends React.Component {
+  constructor(props){
+    super(props);
+      this.state ={
+        usrInfo: ""
+
+      }
+  }
+  
+  
+  return() {
+    console.log("Checking MajorDetail " + JSON.stringify(this.props));
+    return (
+      <View style={styles.container}>
+        <ScrollView style={styles.rect}>
+          <View style={styles.bookmarkBtn}></View>
+          <View style={styles.generalInfoGrp}>
+
+            <View style={styles.majorTitleGrp}>
+              <Text style={styles.titleTxt}>Title here</Text>
+            </View>
+
+            <View style={styles.statisticsGrp}>
+              {/* <View style={styles.keyGrpRow}> */}
+
               <View style={styles.keyGrp}>
                 <Text style={styles.averageSalary}>Average Salary</Text>
                 <Text style={styles.unemploymentRate}>Unemployment Rate</Text>
@@ -29,7 +40,7 @@ export default function MajorDetail(props) {
                 </Text>
                 <Text style={styles.autonomous}>Autonomous</Text>
               </View>
-              
+
               <View style={styles.valGrp}>
                 <Text style={styles.avg_salaryTxt}>$ 52,546.00</Text>
                 <Text style={styles.unemployRateTxt}>3.8 %</Text>
@@ -39,47 +50,48 @@ export default function MajorDetail(props) {
                 <Text style={styles.autonomousTxt}>Yes</Text>
               </View>
 
-            {/* </View> */}
+              {/* </View> */}
+            </View>
           </View>
-        </View>
 
-        <View style={styles.detailGrp}>
-          <View style={styles.descriptionGrp}>
-            <Text style={styles.description}>Description</Text>
-            <Text style={styles.descriptionTxt}>
-              Cost Accounting, Income Tax Accounting, Computerized
-              Accounting/Accounting Information Systems, Concepts of Auditing,
-              Statistics
+          <View style={styles.detailGrp}>
+            <View style={styles.descriptionGrp}>
+              <Text style={styles.description}>Description</Text>
+              <Text style={styles.descriptionTxt}>
+                Cost Accounting, Income Tax Accounting, Computerized
+                Accounting/Accounting Information Systems, Concepts of Auditing,
+                Statistics
             </Text>
-          </View>
-          <View style={styles.classGrp}>
-            <Text style={styles.classes}>Classes</Text>
-            <Text style={styles.classesTxt}>
-              Cost Accounting, Income Tax Accounting, Computerized
-              Accounting/Accounting Information Systems, Concepts of Auditing,
-              Statistics
+            </View>
+            <View style={styles.classGrp}>
+              <Text style={styles.classes}>Classes</Text>
+              <Text style={styles.classesTxt}>
+                Cost Accounting, Income Tax Accounting, Computerized
+                Accounting/Accounting Information Systems, Concepts of Auditing,
+                Statistics
             </Text>
-          </View>
-          <View style={styles.subjectGrp}>
-            <Text style={styles.subjects}>Subjects</Text>
-            <Text style={styles.text}>
-              Cost Accounting, Income Tax Accounting, Computerized
-              Accounting/Accounting Information Systems, Concepts of Auditing,
-              Statistics
+            </View>
+            <View style={styles.subjectGrp}>
+              <Text style={styles.subjects}>Subjects</Text>
+              <Text style={styles.text}>
+                Cost Accounting, Income Tax Accounting, Computerized
+                Accounting/Accounting Information Systems, Concepts of Auditing,
+                Statistics
             </Text>
-          </View>
-          <View style={styles.jobGrp}>
-            <Text style={styles.jobs}>Jobs</Text>
-            <Text style={styles.jobTxt}>
-              Cost Accounting, Income Tax Accounting, Computerized
-              Accounting/Accounting Information Systems, Concepts of Auditing,
-              Statistics
+            </View>
+            <View style={styles.jobGrp}>
+              <Text style={styles.jobs}>Jobs</Text>
+              <Text style={styles.jobTxt}>
+                Cost Accounting, Income Tax Accounting, Computerized
+                Accounting/Accounting Information Systems, Concepts of Auditing,
+                Statistics
             </Text>
+            </View>
           </View>
-        </View>
-      </ScrollView>
-    </View>
-  );
+        </ScrollView>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
