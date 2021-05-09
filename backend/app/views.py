@@ -1025,63 +1025,54 @@ def usrSurvey_major(email, token, id):
 
         income_data = request.json
 
-        # validate the incoming data
-        # if "regions" not in income_data:
-        #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
-        # if len(income_data["regions"]) < 1:
-        #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
+        if validate_email(user_Ref, email):
+            insert_major_survey(
+                user_Ref,
+                email,
+                income_data['avg_salary'],
+                income_data['unemployment_rate'],
+                income_data['subjects'],
+                income_data['variety_of_jobs'],
+                income_data['high_social_interaction'],
+                income_data['work_environment'],
+                income_data['haveSalary'],
+                income_data['haveVariety'],
+                income_data['haveSocial'],
+                income_data['haveEnvironment']
+            )
 
-        # if "majors" not in income_data:
-        #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
-        # if len(income_data["majors"]) < 1:
-        #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
+            return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
 
-        # ==================== PLACEHOLDER ====================
-        # TODO: some sort of func to append the data into db
-        # append_college_survey(
-        #     db,
-        #     user_Ref,
-        #     income_data["regions"],
-        #     income_data["majors"],
-        #     income_data["sat_score"],
-        #     income_data["act_score"],
-        # )
-        return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
+        return make_response(jsonify({"mesg": "Failed to caputure your information"}), 400)
 
-    elif request.method == "GET" and request.is_json:
+    elif request.method == "GET":
         # TODO: validate the user auth and jwt
 
         income_data = request.json
-
-        # r = user_Ref.count_documents({"_id": email})
         result = {}
 
-        # ==================== PLACEHOLDER ====================
-        # validate the incoming data
-        # if "regions" not in income_data:
-        #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
-        # if len(income_data["regions"]) < 1:
-        #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
-
-        # if "majors" not in income_data:
-        #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
-        # if len(income_data["majors"]) < 1:
-        #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
-
         if validate_email(user_Ref, email):
-            resource = user_Ref.find_one(
-                {"_id": email}, {"_id": 0, "survey_college": 1})
 
-            if "survey_college" in resource:
-                result = {
-                    "existing": int(1),
-                    "regions": resource["survey_college"]["regions"],
-                    "majors": resource["survey_college"]["majors"],
-                    "sat_score": resource["survey_college"]["sat_score"],
-                    "act_score": resource["survey_college"]["act_score"],
-                }
+            if user_Ref.count_documents({"_id": email, "survey_major": {'$exists': True}}) == 1:
+                
+                resource = user_Ref.find_one({"_id": email}, {"_id": 0, "survey_major": 1})
 
-                return make_response(jsonify({"mesg": result}), 202)
+                if "survey_major" in resource:
+                    result = {
+                        "existing": int(1),
+                        "avg_salary": resource['survey_major']['avg_salary'],
+                        "unemployRate": resource['survey_major']['unemployRate'],
+                        "subjects": resource['survey_major']['subjects'],
+                        "variOfJobs": resource['survey_major']['variOfJobs'],
+                        "social": resource['survey_major']['social'],
+                        "workEnv": resource['survey_major']['workEnv'],
+                        "triSal": resource['survey_major']['triSal'],
+                        "triVari": resource['survey_major']['triVari'],
+                        "triSocial": resource['survey_major']['triSocial'],
+                        "triEnv": resource['survey_major']['triEnv']
+                    }
+
+                    return make_response(jsonify({"mesg": result}), 202)
 
         result = {"existing": int(0)}
         return make_response(jsonify({"mesg": result}), 202)
@@ -1090,23 +1081,29 @@ def usrSurvey_major(email, token, id):
         # user try to append the college survey
 
         # TODO: check user's auth and jwt
-        income_data = request.json
-        # r = user_Ref.count_documents({"_id": email})
 
         if validate_email(user_Ref, email):
-            # ==================== PLACEHOLDER ====================
-            # TODO: some sort of func to append the data into db
-            # append_college_survey(
-            #     db,
-            #     user_Ref,
-            #     income_data["regions"],
-            #     income_data["majors"],
-            #     income_data["sat_score"],
-            #     income_data["act_score"],
-            # )
-            return make_response(jsonify({"mesg": "Your college survey has successfully modified!"}), 202)
 
-        return make_response(jsonify({"mesg": "Failed to modify your survey!"}), 400)
+            income_data = request.json
+
+            insert_major_survey(
+                user_Ref,
+                email,
+                income_data['avg_salary'],
+                income_data['unemployment_rate'],
+                income_data['subjects'],
+                income_data['variety_of_jobs'],
+                income_data['high_social_interaction'],
+                income_data['work_environment'],
+                income_data['haveSalary'],
+                income_data['haveVariety'],
+                income_data['haveSocial'],
+                income_data['haveEnvironment']
+            )
+
+            return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
+
+        return make_response(jsonify({"mesg": "Failed to modify your information"}), 400)
 
     else:
         return make_response(jsonify({"mesg": "Method is not allowed"}), 405)
@@ -1180,26 +1177,35 @@ def getBookmarkDoc_all(email, type, token, id):
         # TODO: check if this item is already exist in the record
         # so that we can avoid duplicate submission from the user
 
-        income_data = request.json
+        print("Type: " + type)
 
-        # validate the inputs and incoming data
-        if len(email) < 1:
-            return make_response(jsonify({"mesg": "An email is needed!"}), 400)
+        if validate_email(user_Ref, email):
+            print("Valid user")
+            income_data = request.json
 
-        if 'title' not in income_data:
-            return make_response(jsonify({"mesg": "A title is needed!"}), 400)
+            # validate the inputs and incoming data
+            # if len(email) < 1:
+            #     return make_response(jsonify({"mesg": "An email is needed!"}), 400)
 
-        title = income_data["title"]
+            if 'title' not in income_data:
+                print("Invalid title")
+                return make_response(jsonify({"mesg": "A title is needed!"}), 400)
 
-        title = income_data["title"]
-        docType = type
+            title = income_data["title"]
+            docType = type
 
-        res = addBookmark(user_Ref, email, title, docType)
+            res = addBookmark(user_Ref, email, title, docType)
 
-        if res:
-            return make_response(jsonify({"mesg": "Bookmarked!"}), 202)
-        else:
-            return make_response(jsonify({"mesg": "Bookmark failed!"}), 400)
+            print("Bookmarked!")
+
+            if res:
+                print("Bookmark is true")
+                return make_response(jsonify({"mesg": "Bookmarked!"}), 202)
+            else:
+                print("Faled to bookmark!")
+                return make_response(jsonify({"mesg": "Already Bookmarked!"}), 208)
+            
+        return make_response(jsonify({"mesg": "Bookmark failed!"}), 400)
 
     elif request.method == "DELETE" and request.is_json:
         # Unbookmark a specific item

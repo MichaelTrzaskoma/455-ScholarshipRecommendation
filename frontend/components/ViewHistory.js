@@ -149,7 +149,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
 
     } catch (error) {
       // error handler
-      Alert.alert("An error occurred: " + error);
+      alert("An error occurred: " + error);
     }
 
   };

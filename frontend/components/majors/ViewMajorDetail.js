@@ -79,7 +79,7 @@ export default class ViewMajorDetail extends React.Component {
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
 
     let URL =
-      "http://18edf61630d7.ngrok.io/api/v1.2/resources/majors/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+      "http://6bff156668d9.ngrok.io/api/v1.2/resources/majors/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
 
     fetch(URL, {

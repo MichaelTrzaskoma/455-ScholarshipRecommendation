@@ -195,6 +195,7 @@ def addBookmark(user_Ref, email, title, lstType):
         {'$match': {'bookmarks.title': title}},
         {'$project': {"bookmarks": 1, "_id": 0}}
     ])
+    
     for doc in docs:
         return False
 
@@ -339,3 +340,21 @@ def get_college_survey(college_ref, email):
         "sat": r["survey_college"]['sat'],
         "act": r["survey_college"]['act']
     }
+
+
+def insert_major_survey(majorRef, email, avg_sal, unempl, sub, varietOfJobs, social, workEnv, triSal, triVari, triSocial, triEnv):
+
+    majorRef.update_one({"_id": email}, {"$set": {
+        'survey_major': {
+            "avg_salary": avg_sal,
+            "unemployRate": unempl,
+            "subjects": sub,
+            "variOfJobs": varietOfJobs,
+            "social": social,
+            "workEnv": workEnv,
+            "triSal": triSal,
+            "triVari": triVari,
+            "triSocial": triSocial,
+            "triEnv": triEnv
+        }
+    }})    

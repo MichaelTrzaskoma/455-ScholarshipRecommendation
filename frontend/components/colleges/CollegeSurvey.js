@@ -757,7 +757,7 @@ export default class CollegeSurvey extends React.Component {
         if (response.status == 202) {
 
           // console.log(response);
-          Alert.alert(
+          alert(
             "Your data have been successfully \ninserted! " +
             "You will be navigated back!"
           );
@@ -768,7 +768,7 @@ export default class CollegeSurvey extends React.Component {
 
         } else {
           json_mesg = response.json();
-          Alert.alert("Error: " + json_mesg.mesg);
+          alert("Error: " + json_mesg.mesg);
         }
       })
       .catch((error) => {

@@ -139,7 +139,7 @@ export default class ViewBookTbl extends React.Component {
 
     } catch (error) {
       // error handler
-      Alert.alert("An error occurred: " + error);
+      alert("An error occurred: " + error);
     }
 
   };

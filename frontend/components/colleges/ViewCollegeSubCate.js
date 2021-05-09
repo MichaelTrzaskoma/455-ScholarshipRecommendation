@@ -53,10 +53,9 @@ export default class ViewCollegeSubCate extends React.Component {
     // console.log(this.state.scholarArr);
   }
 
-  handleBookmarkOpen(key)
-  {
+  handleBookmarkOpen(key) {
     this.setModalVisible(true)
-    this.setState({ currentBookmarkKey: key});
+    this.setState({ currentBookmarkKey: key });
   }
 
   setModalVisible = (visible) => {
@@ -64,59 +63,48 @@ export default class ViewCollegeSubCate extends React.Component {
   }
 
   setCurrentBookmarkkey = (itemKey) => {
-    this.setState({ currentBookmarkKey: itemKey});
+    this.setState({ currentBookmarkKey: itemKey });
   }
 
-  handleBookmark () {
+  handleBookmark() {
 
-    this.setState({ modalVisible: false});
-    console.log(this.state.currentBookmarkKey)
+    this.setState({ modalVisible: false });
+    // console.log(this.state.currentBookmarkKey)
 
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/college/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "email": this.state.usrInfo.email, 
         "title": this.state.currentBookmarkKey,
-        "unique_id": this.state.usrInfo.uuid, 
-        "type": "scholarship",
-        "jwt": this.state.usrInfo.jwt,
       }),
     })
-
-      // =============================================
-      // .then((response) => response.json())
-      // .then((json) => {
-      //   console.log("Email: " + this.state.email);
-      //   console.log(json);
-      // })
-      // =============================================
-
       .then((response) => {
         if (response.status == 202) {
 
-          Alert.alert(
-            "Your data have been successfully \ninserted! " +
-            "You will be navigated back!"
-          );
+          alert("Bookmarked!");
+
+        } else if (response.status == 208) {
+
+          alert("Already bookmarked!");
 
         } else {
-          json_mesg = response.json();
-          Alert.alert("Error: " + json_mesg.mesg);
+          
+          alert("Bookmark failed!");
+          
         }
       })
       .catch((error) => {
         console.log(error);
       });
-      
-    console.log("Bookmark Key: "+this.state.currentBookmarkKey);  
+
+    console.log("Bookmark Key: " + this.state.currentBookmarkKey);
     //alert("This College has been bookmarked!");
-   
+
   }
 
   FlatListItemSeparator = () => {
@@ -135,12 +123,12 @@ export default class ViewCollegeSubCate extends React.Component {
     }
     return (
       <View style={styles.container}>
-          <Modal
+        <Modal
           animationType="slide"
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
+            alert("Modal has been closed.");
             this.setModalVisible(!modalVisible);
           }}
         >
@@ -154,24 +142,24 @@ export default class ViewCollegeSubCate extends React.Component {
                 <Text style={styles.textStyle}>Bookmark</Text>
               </Pressable>
               <Pressable
-                style = {[styles.button, styles.buttonClose2]}
-                onPress = {() => this.setModalVisible(false)}
+                style={[styles.button, styles.buttonClose2]}
+                onPress={() => this.setModalVisible(false)}
               >
-                <Text style = {styles.textStyle}> Close   </Text>
+                <Text style={styles.textStyle}> Close   </Text>
               </Pressable>
             </View>
             <View>
-              
+
             </View>
           </View>
-      </Modal>
+        </Modal>
         <FlatList
           data={this.state.scholarArr}
           ItemSeparatorComponent={this.FlatListItemSeparator}
           renderItem={({ item }) => (
             <Text
               style={styles.item}
-              onLongPress = {() => {this.handleBookmarkOpen(item)}}
+              onLongPress={() => { this.handleBookmarkOpen(item) }}
               onPress={() => {
                 // we are able to navigate to "ViewSubCate"
                 // since it is one of the stack screens in App.js

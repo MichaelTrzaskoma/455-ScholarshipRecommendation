@@ -28,7 +28,7 @@ export default class ViewMajorSubCate extends React.Component {
   }
 
   getDoc = () => {
-    let URL = "http://18edf61630d7.ngrok.io/api/v1.2/resources/major/view/category/" + this.state.subCate;
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/resources/major/view/category/" + this.state.subCate;
 
     fetch(URL, {
       method: "GET",
@@ -71,43 +71,34 @@ export default class ViewMajorSubCate extends React.Component {
   handleBookmark () {
 
     this.setState({ modalVisible: false});
-    console.log(this.state.currentBookmarkKey)
+    // console.log(this.state.currentBookmarkKey)
 
-    let URL = "http://18edf61630d7.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
+    // /api/v1.2/users/id/<email>/bookmarks/<type>/<token>/<id></id>
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/major/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
     fetch(URL, {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "email": this.state.usrInfo.email, 
         "title": this.state.currentBookmarkKey,
-        "unique_id": this.state.usrInfo.uuid, 
-        "type": "scholarship",
-        "jwt": this.state.usrInfo.jwt,
       }),
     })
-
-      // =============================================
-      // .then((response) => response.json())
-      // .then((json) => {
-      //   console.log("Email: " + this.state.email);
-      //   console.log(json);
-      // })
-      // =============================================
 
       .then((response) => {
         if (response.status == 202) {
 
-          Alert.alert(
-            "Your data have been successfully \ninserted! " +
-            "You will be navigated back!"
-          );
+          alert("Bookmarked!");
+
+        } else if (response.status == 208) {
+
+          alert("Already bookmarked!");
 
         } else {
-          json_mesg = response.json();
-          Alert.alert("Error: " + json_mesg.mesg);
+          
+          alert("Bookmark failed!");
+          
         }
       })
       .catch((error) => {
@@ -140,7 +131,7 @@ export default class ViewMajorSubCate extends React.Component {
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
+            alert("Modal has been closed.");
             this.setModalVisible(!modalVisible);
           }}
         >

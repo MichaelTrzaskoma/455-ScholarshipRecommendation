@@ -80,7 +80,7 @@ export default class ViewScholarTbl extends React.Component {
   }
 
   setCurrentBookmarkkey = (itemKey) => {
-    this.setState({ currentBookmarkKey: itemKey});
+    this.setState({ currentBookmarkKey: itemKey });
   }
 
 
@@ -130,63 +130,51 @@ export default class ViewScholarTbl extends React.Component {
 
   };
 
-  handleBookmarkOpen(key)
-  {
+  handleBookmarkOpen(key) {
     this.setModalVisible(true)
-    this.setState({ currentBookmarkKey: key});
+    this.setState({ currentBookmarkKey: key });
   }
 
-  handleBookmark () {
+  handleBookmark() {
 
-    this.setState({ modalVisible: false});
+    this.setState({ modalVisible: false });
     console.log(this.state.currentBookmarkKey)
 
     //Insert API Call here
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.userProfile.email + "/bookmarks/scholarship/"+ this.state.userProfile.jwt+ "/"+ this.state.userProfile.uuid;
+    // /api/v1.2/users/id/<email>/bookmarks/<type>/<token>/<id>
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.userProfile.email + "/bookmarks/scholarship/" + this.state.userProfile.jwt + "/" + this.state.userProfile.uuid;
     fetch(URL, {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "email": this.state.userProfile.email, 
         "title": this.state.currentBookmarkKey,
-        "unique_id": this.state.userProfile.uuid, 
-        "type": "scholarship",
-        "jwt": this.state.userProfile.jwt,
-        // "uniqueID": getDeviceID(),
       }),
     })
-
-      // =============================================
-      // .then((response) => response.json())
-      // .then((json) => {
-      //   console.log("Email: " + this.state.email);
-      //   console.log(json);
-      // })
-      // =============================================
-
       .then((response) => {
         if (response.status == 202) {
 
-          Alert.alert(
-            "Your data have been successfully \ninserted! " +
-            "You will be navigated back!"
-          );
+          alert("Bookmarked!");
+
+        } else if (response.status == 208) {
+
+          alert("Already bookmarked!");
 
         } else {
-          json_mesg = response.json();
-          Alert.alert("Error: " + json_mesg.mesg);
+          
+          alert("Bookmark failed!");
+
         }
       })
       .catch((error) => {
         console.log(error);
       });
-      
-    console.log("Bookmark Key: "+this.state.currentBookmarkKey);  
-    alert("This scholarship has been bookmarked!");
-   
+
+    console.log("Bookmark Key: " + this.state.currentBookmarkKey);
+    // alert("This scholarship has been bookmarked!");
+
   }
 
   FlatListItemSeparator = () => {
@@ -197,12 +185,12 @@ export default class ViewScholarTbl extends React.Component {
     const { modalVisible } = this.state;
     return (
       <View>
-      <Modal
+        <Modal
           animationType="slide"
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
+            alert("Modal has been closed.");
             this.setModalVisible(!modalVisible);
           }}
         >
@@ -216,38 +204,38 @@ export default class ViewScholarTbl extends React.Component {
                 <Text style={styles.textStyle}>Bookmark</Text>
               </Pressable>
               <Pressable
-                style = {[styles.button, styles.buttonClose2]}
-                onPress = {() => this.setModalVisible(false)}
+                style={[styles.button, styles.buttonClose2]}
+                onPress={() => this.setModalVisible(false)}
               >
-                <Text style = {styles.textStyle}> Close   </Text>
+                <Text style={styles.textStyle}> Close   </Text>
               </Pressable>
             </View>
             <View>
-              
+
             </View>
           </View>
-      </Modal>
-      <TouchableOpacity
-      onLongPress = {() => {this.handleBookmarkOpen(item.key)}}
-      onPress={() => {
-        // we are able to navigate to "ViewSubCate"
-        // since it is one of the stack screens in App.js
-        // therefore, no need to import in this screen
-        this.props.navigation.navigate('ViewScholarDetail', {
-          title: item.key,
-          itemKey: item.key,
-          userProfile: this.props.route.params.usrProfile
-        });
-      }}
-    >
-      <Text style={styles.item_title}>{item.key}</Text>
-      <Text style={styles.item_subTitle}>Amount: {item.amount}</Text>
-      <Text style={styles.item_deadline}>
-        Deadline: {item.deadline}
-      </Text>
-    </TouchableOpacity>
-    </View>
-   
+        </Modal>
+        <TouchableOpacity
+          onLongPress={() => { this.handleBookmarkOpen(item.key) }}
+          onPress={() => {
+            // we are able to navigate to "ViewSubCate"
+            // since it is one of the stack screens in App.js
+            // therefore, no need to import in this screen
+            this.props.navigation.navigate('ViewScholarDetail', {
+              title: item.key,
+              itemKey: item.key,
+              userProfile: this.props.route.params.usrProfile
+            });
+          }}
+        >
+          <Text style={styles.item_title}>{item.key}</Text>
+          <Text style={styles.item_subTitle}>Amount: {item.amount}</Text>
+          <Text style={styles.item_deadline}>
+            Deadline: {item.deadline}
+          </Text>
+        </TouchableOpacity>
+      </View>
+
     );
   }
 
@@ -290,8 +278,8 @@ export default class ViewScholarTbl extends React.Component {
           renderItem={({ item, index }) => this.renderList(item, index)}
           keyExtractor={item => item.key}
           //onEndReached={this.loadMore}
-          maxToRenderPerBatch = {10}
-          //onEndThreshold={0}
+          maxToRenderPerBatch={10}
+        //onEndThreshold={0}
         ></FlatList>
 
       </View>
