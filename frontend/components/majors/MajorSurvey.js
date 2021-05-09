@@ -334,10 +334,10 @@ export default class MajorSurvey extends React.Component {
         work_environment: this.state.trueEnvironment,
         
         //Tripwires used to determine if user has edited slider (relevant for displayValues)
-        haveSalary: this.state.salaryTripWire,
-        haveVariety: this.varietyTripwire,
-        haveSocial: this.socialTripwire,
-        haveEnvironment: this.environmentTripwire,
+        haveSal: this.state.salaryTripWire,
+        haveVari: this.state.varietyTripwire,
+        haveSocial: this.state.socialTripwire,
+        haveEnv: this.state.environmentTripwire,
       }),
       
     })
@@ -456,17 +456,17 @@ export default class MajorSurvey extends React.Component {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log("Exisiting Data: " + JSON.stringify(json));
-        console.log("Email from ScholarSurvey.js: " + this.state.email);
+        console.log("Exisiting Data from Major Survey: " + JSON.stringify(json));
+       // console.log("Email from MajorSurvey.js: " + this.state.email);
         // set the val to state
         if (json.mesg.existing == 1) {
           // there's an exisiting data on client's record
           this.setState({
-            salaryTripWire: json.mesg.haveSalary,
+            salaryTripWire: json.mesg.haveSal,
             socialTripwire: json.mesg.haveSocial,
-            environmentTripwire: json.mesg.haveEnvironment,
-            autoTripwire: json.mesg.haveAutonomy,
-            varietyTripwire: json.mesg.haveVariety,
+            environmentTripwire: json.mesg.haveEnv,
+            //autoTripwire: json.mesg.haveAutonomy,
+            varietyTripwire: json.mesg.haveVari,
             salaryValue: json.mesg.avg_salary,
             unemploymentValue: json.mesg.unemployment_rate,
             trueAutonomy: json.mesg.autonomous,
@@ -482,7 +482,7 @@ export default class MajorSurvey extends React.Component {
   }
 
   componentDidMount() {
-    // this.getExistingData();
+    this.getExistingData();
   }
 
   render() {
