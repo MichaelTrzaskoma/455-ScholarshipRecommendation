@@ -72,7 +72,7 @@ export default class MajorSurvey extends React.Component {
       workEnvironment: 1,
       trueEnvironment: "",
       //Tripwires used to determine if user has edited slider (relevant for displayValues)
-      autoTripwire: false,
+      //autoTripwire: false,
       salaryTripWire: false,
       varietyTripwire: false,
       socialTripwire: false,
@@ -173,6 +173,7 @@ export default class MajorSurvey extends React.Component {
     });
   }
 
+  /*
   displayAutonomy(val) {
     var strInput = String(val);
     var strDisplay = "";
@@ -189,7 +190,9 @@ export default class MajorSurvey extends React.Component {
       displayAutonomy: strDisplay
     });
   }
+  */
 
+  /*
   handleTrueAutonomy(val) {
     var strInput = String(val);
     var strTrueVal = "";
@@ -206,6 +209,7 @@ export default class MajorSurvey extends React.Component {
       trueAutonomy: strTrueVal
     });
   }
+  */
 
   handleTrueVariety(val) {
     var strInput = String(val);
@@ -311,14 +315,23 @@ export default class MajorSurvey extends React.Component {
   }
 
   upload2server() {
-    if (this.state.firstTime == 1) {
-      this.setState({ currentMethod: "PATCH" });
+
+	const currentExisting = this.state.firstTime;
+	let localMethod = "POST";
+
+    if (currentExisting === 1) {
+      //this.setState({ currentMethod: "PATCH" });
+	  console.log("This is called");
+	  localMethod = "PATCH";
     }
     this.setFirstTime(1);
-
+	console.log( typeof currentExisting);
+	console.log("CurrentExisting: "+currentExisting);
+	//console.log("Current Method: "+ this.state.currentMethod);
+	console.log("Local Method: "+ localMethod);
     let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major";
     fetch(URL, {
-      method: this.state.currentMethod,
+      method: localMethod,
       // method: "DELETE",
       headers: {
         "Accept": "application/json",
@@ -334,10 +347,10 @@ export default class MajorSurvey extends React.Component {
         work_environment: this.state.trueEnvironment,
         
         //Tripwires used to determine if user has edited slider (relevant for displayValues)
-        haveSal: this.state.salaryTripWire,
-        haveVari: this.state.varietyTripwire,
+        haveSalary: this.state.salaryTripWire,
+        haveVariety: this.state.varietyTripwire,
         haveSocial: this.state.socialTripwire,
-        haveEnv: this.state.environmentTripwire,
+        haveEnvironment: this.state.environmentTripwire,
       }),
       
     })
@@ -383,24 +396,6 @@ export default class MajorSurvey extends React.Component {
       else {
         this.setState({
           socialInteraction: 0,
-        });
-      }
-    }
-    if (this.state.autoTripwire) {
-      var strTrueAutonomy = String(this.state.trueAutonomy)
-      if (strTrueAutonomy.localeCompare("Yes") == 0) {
-        this.setState({
-          autonomy: 0
-        });
-      }
-      else if (strTrueAutonomy.localeCompare("Job Dependent") == 0) {
-        this.setState({
-          autonomy: 1
-        });
-      }
-      else {
-        this.setState({
-          autonomy: 2,
         });
       }
     }
@@ -467,15 +462,20 @@ export default class MajorSurvey extends React.Component {
             environmentTripwire: json.mesg.haveEnv,
             //autoTripwire: json.mesg.haveAutonomy,
             varietyTripwire: json.mesg.haveVari,
-            salaryValue: json.mesg.avg_salary,
-            unemploymentValue: json.mesg.unemployRate,
-            trueAutonomy: json.mesg.autonomous,
+            //salaryValue: json.mesg.avg_salary,
+            //unemploymentValue: json.mesg.unemployRate,
+            //trueAutonomy: json.mesg.autonomous,
             selectedSubjects: json.mesg.subjects,
             trueVariety: json.mesg.variOfJobs,
             trueSocialInteraction: json.mesg.social,
             trueEnvironment: json.mesg.workEnv,
             firstTime: json.mesg.existing,
           });
+		  console.log("testing salary: "+ json.mesg.avg_salary);
+		  this.handleSalaryValue(json.mesg.avg_salary);
+		  this.truncateSalary(json.mesg.avg_salary);
+		  this.handleUnemploymentRate(json.mesg.unemployRate);
+		  this.truncateUnemployment(json.mesg.unemployRate);
           this.translateTrues();
         }
       });
@@ -509,8 +509,7 @@ export default class MajorSurvey extends React.Component {
             <Text style={styles.re_text}>Major Survey Questions</Text>
             <Text style={styles.collegeSurveyQA1}>
               What is your desired annual salary? (Nationwide Average)
-      					</Text>
-
+      		</Text>
             <View style={styles.multiSelectorWrapper}>
               <Slider
                 style={{ width: 310, height: 40 }}
