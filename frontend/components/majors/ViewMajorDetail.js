@@ -1,20 +1,139 @@
+import { TabRouter } from "@react-navigation/routers";
 import React, { Component } from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 
-export default function MajorDetail(props) {
-  return (
-    <View style={styles.container}>
-      <ScrollView style={styles.rect}>
-        <View style={styles.bookmarkBtn}></View>
-        <View style={styles.generalInfoGrp}>
-          
-          <View style={styles.majorTitleGrp}>
-            <Text style={styles.titleTxt}>Title here</Text>
-          </View>
-          
-          <View style={styles.statisticsGrp}>
-            {/* <View style={styles.keyGrpRow}> */}
-              
+export default class ViewMajorDetail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      usrInfo: this.props.route.params.usrProf,
+      majorObj1: {
+        majorTitle: "",
+        aveSalary: "",
+        unemployRate: "",
+        flexIndustries: "",
+        socialInteract: "",
+      },
+      majorObj2: {
+        workEnvir: "",
+        auto: "",
+        descri: "",
+        classes: "",
+        subjects: ""
+      }
+    }
+  }
+
+  handleBookmark() {
+
+    console.log("College Detail page: " + JSON.stringify(this.props));
+    //Insert API Call here
+    // let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/hchen98x@gmail.com/bookmarks/college/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/bookmarks";
+
+    fetch(URL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "email": this.state.usrInfo.email,
+        "title": this.state.collegeObj1_1.uniName,
+        "type": "college",
+        "unique_id": this.state.usrInfo.uuid,
+        "jwt": this.state.usrInfo.jwt,
+      }),
+    })
+
+      // =============================================
+      // .then((response) => response.json())
+      // .then((json) => {
+      //   console.log("Email: " + this.state.email);
+      //   console.log(json);
+      // })
+      // =============================================
+
+      .then((response) => {
+        if (response.status == 202) {
+
+          alert(
+            "Your data have been successfully \ninserted! " +
+            "You will be navigated back!"
+          );
+
+        } else {
+          json_mesg = response.json();
+          alert("Error: " + json_mesg.mesg);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // console.log("College bookmark title: "+this.state.collegeObj1_1.uniName);  
+    //alert("This scholarship has been bookmarked!");
+  }
+
+  getDetail = () => {
+    // console.log("The Key: " + this.props.route.params.itemKey);
+    // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
+
+    let URL =
+      "http://18edf61630d7.ngrok.io/api/v1.2/resources/majors/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+
+
+    fetch(URL, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      // format the API response into json
+      .then((response) => response.json())
+      .then((json) => {
+        // console.log("API returns College detail: " + JSON.stringify(json));
+        // set the val to state
+        this.setState({
+          majorObj1: {
+            majorTitle: json.title,
+            aveSalary: json.avg_salary,
+            unemployRate: json.unemp_rate,
+            flexIndustries: json.var_jobs,
+            socialInteract: json.social,
+          },
+          majorObj2: {
+            workEnvir: json.env,
+            auto: json.autom,
+            descri: json.desc,
+            classes: json.classes,
+            subjects: json.subjects
+          }
+        });
+      });
+  }
+
+  UNSAFE_componentWillMount() {
+    // componentDidMount(){
+    this.getDetail();
+  }
+
+  render() {
+    // console.log("Checking MajorDetail " + JSON.stringify(this.props.route.params.usrProf));
+    // console.log("Checking MajorDetail props " + JSON.stringify(this.props));
+    return (
+      <View style={styles.container}>
+        <ScrollView style={styles.rect}>
+          <View style={styles.bookmarkBtn}></View>
+          <View style={styles.generalInfoGrp}>
+
+            <View style={styles.majorTitleGrp}>
+              <Text style={styles.titleTxt}>{this.state.majorObj1.majorTitle}</Text>
+            </View>
+
+            <View style={styles.statisticsGrp}>
+              {/* <View style={styles.keyGrpRow}> */}
+
               <View style={styles.keyGrp}>
                 <Text style={styles.averageSalary}>Average Salary</Text>
                 <Text style={styles.unemploymentRate}>Unemployment Rate</Text>
@@ -29,57 +148,52 @@ export default function MajorDetail(props) {
                 </Text>
                 <Text style={styles.autonomous}>Autonomous</Text>
               </View>
-              
+
               <View style={styles.valGrp}>
-                <Text style={styles.avg_salaryTxt}>$ 52,546.00</Text>
-                <Text style={styles.unemployRateTxt}>3.8 %</Text>
-                <Text style={styles.flexibilityTxt}>Yes</Text>
-                <Text style={styles.socailInteractionTxt}>Yes</Text>
-                <Text style={styles.jobDependent}>Job Dependent</Text>
-                <Text style={styles.autonomousTxt}>Yes</Text>
+                <Text style={styles.avg_salaryTxt}>{this.state.majorObj1.aveSalary}</Text>
+                <Text style={styles.unemployRateTxt}>{this.state.majorObj1.unemployRate}</Text>
+                <Text style={styles.flexibilityTxt}>{this.state.majorObj1.flexIndustries}</Text>
+                <Text style={styles.socailInteractionTxt}>{this.state.majorObj1.socialInteract}</Text>
+                <Text style={styles.jobDependent}>{this.state.majorObj2.workEnvir}</Text>
+                <Text style={styles.autonomousTxt}>{this.state.majorObj2.auto}</Text>
               </View>
 
-            {/* </View> */}
+              {/* </View> */}
+            </View>
           </View>
-        </View>
 
-        <View style={styles.detailGrp}>
-          <View style={styles.descriptionGrp}>
-            <Text style={styles.description}>Description</Text>
-            <Text style={styles.descriptionTxt}>
-              Cost Accounting, Income Tax Accounting, Computerized
-              Accounting/Accounting Information Systems, Concepts of Auditing,
-              Statistics
+          <View style={styles.detailGrp}>
+            <View style={styles.descriptionGrp}>
+              <Text style={styles.description}>Description</Text>
+              <Text style={styles.descriptionTxt}>
+                {this.state.majorObj2.descri}
+              </Text>
+            </View>
+            <View style={styles.classGrp}>
+              <Text style={styles.classes}>Classes</Text>
+              <Text style={styles.classesTxt}>
+                {this.state.majorObj2.classes}
+              </Text>
+            </View>
+            <View style={styles.subjectGrp}>
+              <Text style={styles.subjects}>Subjects</Text>
+              <Text style={styles.text}>
+                {this.state.majorObj2.subjects}
+              </Text>
+            </View>
+            {/* <View style={styles.jobGrp}>
+              <Text style={styles.jobs}>Jobs</Text>
+              <Text style={styles.jobTxt}>
+                Cost Accounting, Income Tax Accounting, Computerized
+                Accounting/Accounting Information Systems, Concepts of Auditing,
+                Statistics
             </Text>
+            </View> */}
           </View>
-          <View style={styles.classGrp}>
-            <Text style={styles.classes}>Classes</Text>
-            <Text style={styles.classesTxt}>
-              Cost Accounting, Income Tax Accounting, Computerized
-              Accounting/Accounting Information Systems, Concepts of Auditing,
-              Statistics
-            </Text>
-          </View>
-          <View style={styles.subjectGrp}>
-            <Text style={styles.subjects}>Subjects</Text>
-            <Text style={styles.text}>
-              Cost Accounting, Income Tax Accounting, Computerized
-              Accounting/Accounting Information Systems, Concepts of Auditing,
-              Statistics
-            </Text>
-          </View>
-          <View style={styles.jobGrp}>
-            <Text style={styles.jobs}>Jobs</Text>
-            <Text style={styles.jobTxt}>
-              Cost Accounting, Income Tax Accounting, Computerized
-              Accounting/Accounting Information Systems, Concepts of Auditing,
-              Statistics
-            </Text>
-          </View>
-        </View>
-      </ScrollView>
-    </View>
-  );
+        </ScrollView>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -117,7 +231,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   titleTxt: {
-
+    fontWeight: 'bold',
     color: "#121212",
     fontSize: 16,
     alignSelf: "center"
@@ -133,28 +247,28 @@ const styles = StyleSheet.create({
     marginRight: 1
   },
   averageSalary: {
-
+    fontWeight: 'bold',
     color: "#121212",
     fontSize: 14,
     marginTop: 10,
     marginLeft: 15
   },
   unemploymentRate: {
-
+    fontWeight: 'bold',
     color: "#121212",
     fontSize: 14,
     marginTop: 10,
     marginLeft: 15
   },
   flexibility: {
-
+    fontWeight: 'bold',
     color: "#121212",
     fontSize: 14,
     marginTop: 9,
     marginLeft: 15
   },
   socialInteraction: {
-
+    fontWeight: 'bold',
     color: "#121212",
     width: 183,
     height: 35,
@@ -162,7 +276,7 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   workEnv: {
-
+    fontWeight: 'bold',
     color: "#121212",
     width: 183,
     height: 35,
@@ -170,7 +284,7 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   autonomous: {
-
+    fontWeight: 'bold',
     color: "#121212",
     width: 183,
     height: 35,
@@ -233,7 +347,7 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   description: {
-
+    fontWeight: 'bold',
     color: "#121212",
     width: 83,
     height: 20,
@@ -253,7 +367,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,1)"
   },
   classes: {
-
+    fontWeight: 'bold',
     color: "#121212",
     width: 50,
     height: 16,
@@ -272,7 +386,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,1)"
   },
   subjects: {
-
+    fontWeight: 'bold',
     color: "#121212",
     width: 59,
     height: 16,

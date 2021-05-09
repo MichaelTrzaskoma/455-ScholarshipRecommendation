@@ -24,7 +24,7 @@ class CollegeRecommender extends React.Component {
 
 	render() {
 		const { navigation } = this.props;
-		console.log("College Recommend Btn: " + JSON.stringify(this.props));
+		// console.log("College Recommend Btn: " + JSON.stringify(this.props));
 		return (
 			//Recommend ScrollView 
 			<View style={styles.recommend_container}>

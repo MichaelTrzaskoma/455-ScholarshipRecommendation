@@ -15,6 +15,7 @@ export default class ViewAllScholar extends React.Component {
     super(props);
 
     this.state = {
+      usrProf: this.props.route.params.usrInfo,
       FlatListItems: [
         { key: "Arts" },
         { key: "Business" },
@@ -32,7 +33,7 @@ export default class ViewAllScholar extends React.Component {
   };
 
   render() {
-    console.log("ViewAllMajor props check " + JSON.stringify(this.props));
+    // console.log("ViewAllMajor props check " + JSON.stringify(this.props.route.params.usrInfo));
     return (
       <View style={styles.container}>
         <FlatList
@@ -48,6 +49,7 @@ export default class ViewAllScholar extends React.Component {
                 this.props.navigation.navigate('ViewMajorSubCate', {
                   title: item.key,
                   itemKey: item.key,
+                  usrInfo: this.state.usrProf
                 });
               }}
             > {item.key} </Text>

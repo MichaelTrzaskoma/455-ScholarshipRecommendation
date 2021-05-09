@@ -154,7 +154,7 @@ export default class App extends Component {
         const unique_id = getDeviceID();
         // console.log("UUID: " + unique_id);
 
-        let URL = "http://6bff156668d9.ngrok.io/api/v1.2/managements/users/" + inputEmail;
+        let URL = "http://18edf61630d7.ngrok.io/api/v1.2/managements/users/" + inputEmail;
 
         fetch(URL, {
           method: "POST",

@@ -22,7 +22,7 @@ class MajorScreen extends React.Component {
 	}
 
   render() {
-    console.log("user obj from major screen: " + JSON.stringify(this.props.usrInfo));
+    // console.log("user obj from major screen: " + JSON.stringify(this.props.usrInfo));
     return (
       <View style={styles.container}>
         <View style={styles.container_grp}>
