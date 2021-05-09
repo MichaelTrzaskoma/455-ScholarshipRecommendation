@@ -1048,7 +1048,6 @@ def usrSurvey_major(email, token, id):
     elif request.method == "GET":
         # TODO: validate the user auth and jwt
 
-        income_data = request.json
         result = {}
 
         if validate_email(user_Ref, email):
@@ -1066,10 +1065,10 @@ def usrSurvey_major(email, token, id):
                         "variOfJobs": resource['survey_major']['variOfJobs'],
                         "social": resource['survey_major']['social'],
                         "workEnv": resource['survey_major']['workEnv'],
-                        "triSal": resource['survey_major']['triSal'],
-                        "triVari": resource['survey_major']['triVari'],
-                        "triSocial": resource['survey_major']['triSocial'],
-                        "triEnv": resource['survey_major']['triEnv']
+                        "haveSal": resource['survey_major']['triSal'],
+                        "haveVari": resource['survey_major']['triVari'],
+                        "haveSocial": resource['survey_major']['triSocial'],
+                        "haveEnv": resource['survey_major']['triEnv']
                     }
 
                     return make_response(jsonify({"mesg": result}), 202)

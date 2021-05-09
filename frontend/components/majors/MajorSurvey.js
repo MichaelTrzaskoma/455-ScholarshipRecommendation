@@ -335,9 +335,9 @@ export default class MajorSurvey extends React.Component {
         
         //Tripwires used to determine if user has edited slider (relevant for displayValues)
         haveSalary: this.state.salaryTripWire,
-        haveVariety: this.varietyTripwire,
-        haveSocial: this.socialTripwire,
-        haveEnvironment: this.environmentTripwire,
+        haveVariety: this.state.varietyTripwire,
+        haveSocial: this.state.socialTripwire,
+        haveEnvironment: this.state.environmentTripwire,
       }),
       
     })
@@ -444,45 +444,50 @@ export default class MajorSurvey extends React.Component {
 
   getExistingData = () => {
     //insert correct URL for user's profile
+    // /api/v1.2/users/id/<email>/<token>/<id>/surveys/major
+    // console.log("User profile obbj from Mjor survey: " + JSON.stringify(this.props.route.params.usrInfo));
+
+    // let URL = http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major
     let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major";
 
-
     fetch(URL, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        "Accept": 'application/json',
-        'Content-Type': 'application/json',
+        "Accept": "application/json",
+        "Content-Type": "application/json",
       },
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log("Exisiting Data: " + JSON.stringify(json));
-        console.log("Email from ScholarSurvey.js: " + this.state.email);
+        console.log("Exisiting Major Data: " + JSON.stringify(json));
+        // console.log("Email from ScholarSurvey.js: " + this.state.email);
         // set the val to state
-        if (json.mesg.existing == 1) {
+        if (json.mesg.existing === 1) {
           // there's an exisiting data on client's record
-          this.setState({
-            salaryTripWire: json.mesg.haveSalary,
-            socialTripwire: json.mesg.haveSocial,
-            environmentTripwire: json.mesg.haveEnvironment,
-            autoTripwire: json.mesg.haveAutonomy,
-            varietyTripwire: json.mesg.haveVariety,
-            salaryValue: json.mesg.avg_salary,
-            unemploymentValue: json.mesg.unemployment_rate,
-            trueAutonomy: json.mesg.autonomous,
-            selectedSubjects: json.mesg.subjects,
-            trueVariety: json.mesg.variety_of_jobs,
-            trueSocialInteraction: json.mesg.high_social_interaction,
-            trueEnvironment: json.mesg.work_environment,
-            firstTime: json.mesg.existing,
-          });
-          this.translateTrues();
+          // this.setState({
+          //   salaryTripWire: json.mesg.haveSalary,
+          //   socialTripwire: json.mesg.haveSocial,
+          //   environmentTripwire: json.mesg.haveEnvironment,
+          //   autoTripwire: json.mesg.haveAutonomy,
+          //   varietyTripwire: json.mesg.haveVariety,
+          //   salaryValue: json.mesg.avg_salary,
+          //   unemploymentValue: json.mesg.unemployment_rate,
+          //   trueAutonomy: json.mesg.autonomous,
+          //   selectedSubjects: json.mesg.subjects,
+          //   trueVariety: json.mesg.variety_of_jobs,
+          //   trueSocialInteraction: json.mesg.high_social_interaction,
+          //   trueEnvironment: json.mesg.work_environment,
+          //   firstTime: json.mesg.existing,
+          // });
+          // this.translateTrues();
         }
+      }).catch((error) => {
+        console.log(error);
       });
   }
 
   componentDidMount() {
-    // this.getExistingData();
+    this.getExistingData();
   }
 
   render() {
