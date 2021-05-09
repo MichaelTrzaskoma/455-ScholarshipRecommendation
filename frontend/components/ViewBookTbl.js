@@ -11,17 +11,16 @@ import {
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Menu, Provider } from 'react-native-paper';
-import { parseMonth, parseAmount, parseSimilarScore, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../../functions/utilities";
+import { parseMonth, parseAmount, parseSimilarScore, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../functions/utilities";
 import { FlatList } from 'react-native-gesture-handler';
 
 export default class ViewBookTbl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usrInfo: this.props.route.params.usrProfile,
+      usrInfo: this.props.route.params.usrProf,
       isLoading: true,
       bookArr: [],
-      gender: '',
       opt_title_visible: false,
       opt_deadline_visible: false,
       opt_score_visible: false,
@@ -42,44 +41,44 @@ export default class ViewBookTbl extends React.Component {
   _closeAmountMenu = () => { this.setState({ opt_amount_visible: false }) };
 
   sortTitleHandler_a2z() {
-    this.state.scholarArr.sort(dynamicSort("key"));
+    this.state.bookArr.sort(dynamicSort("key"));
     // console.log(this.state.scholarArr);
     this._closeTitleMenu();
   }
 
   sortTitleHandler_z2a() {
-    this.state.scholarArr.sort(dynamicSort("-key"));
+    this.state.bookArr.sort(dynamicSort("-key"));
     // console.log(this.state.scholarArr);
     this._closeTitleMenu();
   }
 
   sortDeadlineHandler_a2z() {
-    this.state.scholarArr.sort(dynamicSort("deadline"));
+    this.state.bookArr.sort(dynamicSort("time"));
     // console.log(this.state.scholarArr);
     this._closeDeadlineMenu();
   }
 
   sortDeadlineHandler_z2a() {
-    this.state.scholarArr.sort(dynamicSort("-deadline"));
+    this.state.bookArr.sort(dynamicSort("-time"));
     // console.log(this.state.scholarArr);
     this._closeDeadlineMenu();
   }
 
   sortScoreHandler_a2z() {
-    this.state.scholarArr.sort(dynamicSort("score"));
+    this.state.bookArr.sort(dynamicSort("type"));
     // console.log(this.state.scholarArr);
     this._closeScoreMenu();
   }
 
   sortScoreHandler_z2a() {
-    this.state.scholarArr.sort(dynamicSort("-score"));
+    this.state.bookArr.sort(dynamicSort("-type"));
     // console.log(this.state.scholarArr);
     this._closeScoreMenu();
   }
 
   sortAmountHandler_a2z() {
     this.setState({
-      scholarArr: mergeSort_a2z(this.state.scholarArr),
+      bookArr: mergeSort_a2z(this.state.bookArr),
     });
     // this.state.scholarArr.sort(sortAmount("amount"));
     // console.log(this.state.scholarArr);
@@ -89,7 +88,7 @@ export default class ViewBookTbl extends React.Component {
   sortAmountHandler_z2a() {
     // mergeSort_z2a
     this.setState({
-      scholarArr: mergeSort_z2a(this.state.scholarArr),
+      bookArr: mergeSort_z2a(this.state.bookArr),
     });
     // this.state.scholarArr.sort(sortAmount("-amount"));
     // console.log(this.state.scholarArr);
@@ -103,9 +102,9 @@ export default class ViewBookTbl extends React.Component {
   getRecommend_scholarship() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid+ "/recommends/scholarship";  "/recommends/scholarship"
+      let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email +"/bookmarks/all/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid;  
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
-      const scholarArr = [];
+      const bookArr = [];
 
       fetch(URL, {
         method: "GET",
@@ -116,32 +115,23 @@ export default class ViewBookTbl extends React.Component {
       })
         .then((response) => response.json())
         .then((json) => {
+          console.log(JSON.stringify(json));
           json.forEach((res) => {
-
-            // parse the deadline
-            let deadline = "";
-
-            if (res.Deadline == "Deadline Varies") {
-              deadline = "Varies";
-            } else {
-              const fields = res.Deadline.split(" ");
-              const subFields = fields[1].split(",");
-              deadline = parseMonth(fields[0]) + "/" + subFields[0] + "/" + fields[2];
-            }
+          
+            
 
             // append the API data to local var
-            scholarArr.push({
-              key: res.Name,
+            bookArr.push({
+              key: res.title,
               // amount: parseInt(parseAmount(res.Amount)),
-              amount: parseInt(res.Amount),
-              deadline: deadline,
-              score: parseSimilarScore(res.Val),
+              type: res.type,
+              time: res.timeAdded,
             });
           });
 
           // set the local var to state var
           this.setState({
-            scholarArr,
+            bookArr,
             isLoading: false,
           });
 
@@ -159,7 +149,7 @@ export default class ViewBookTbl extends React.Component {
   }
 
   render() {
-    // console.log("Checking ViewRecommendTbl " + JSON.stringify(this.props.route.params.usrProfile ));
+    // console.log("Checking Bookmark " + JSON.stringify(this.state.usrInfo));
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>
@@ -321,7 +311,7 @@ export default class ViewBookTbl extends React.Component {
             <View style={styles.scrollArea}>
 
               <FlatList
-                data={this.state.scholarArr}
+                data={this.state.bookArr}
                 showsVerticalScrollIndicator={false}
                 ItemSeparatorComponent={this.FlatListItemSeparator}
                 renderItem={({ item }) => (
@@ -348,19 +338,19 @@ export default class ViewBookTbl extends React.Component {
                         <View style={styles.rect5Stack}>
                           <View style={styles.rect5}>
                             <View style={styles.text2Row}>
-                              <Text style={styles.text2}>{item.score}</Text>
+                              <Text style={styles.text2}>{item.time}</Text>
                               <FontAwesome
                                 name="star"
                                 style={styles.icon3}></FontAwesome>
                             </View>
                           </View>
                           <View style={styles.rect6}>
-                            <Text style={styles.text3}>{parseAmount(item.amount)}</Text>
+                             <Text style={styles.text3}>{item.type}</Text> 
                           </View>
                         </View>
-                        <View style={styles.rect7}>
-                          <Text style={styles.text4}>{item.deadline}</Text>
-                        </View>
+                        {/* <View style={styles.rect7}> */}
+                          <Text style={styles.text4}>{item.time}</Text>
+                        {/* </View> */}
                       </View>
                     </View>
                   </TouchableOpacity>

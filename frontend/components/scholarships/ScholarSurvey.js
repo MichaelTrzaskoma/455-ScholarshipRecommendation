@@ -1624,7 +1624,7 @@ class InputScreen extends React.Component {
 						gender: json.mesg.gender,
 						gpa: json.mesg.gpa,
 						selectedResidences: json.mesg.states,
-						selectedMajors: json.mesg.major,
+						selectedMajors: json.mesg.majors,
 						selectedRaces: json.mesg.race,
 						selectedReligions: json.mesg.religion,
 						selectedDisabilities: json.mesg.dissabilities,
@@ -1634,11 +1634,19 @@ class InputScreen extends React.Component {
 						act_score: json.mesg.act,
 					});
 				}
+				else if(json.mesg.existing === 2){
+					this.setState({
+						sat_score : json.mesg.sat,
+						act_score: json.mesg.act,
+						selectedResidences: json.mesg.states,
+						selectedMajors : json.mesg.majors,
+					})
+				}
 			});
 	}
 
 	componentDidMount() {
-		// console.log("Naviation: " + JSON.stringify(this.props.navigation));
+		console.log(JSON.stringify(this.props));
 		this.getExistingData();
 		//AsyncStorage.getItem('JWT').then((value) => this.setState({ jwt: value }));
 		//AsyncStorage.getItem('uuid').then((value) => this.setState({ uuid: value }));

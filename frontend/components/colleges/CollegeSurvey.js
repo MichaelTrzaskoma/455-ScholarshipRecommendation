@@ -676,9 +676,6 @@ export default class CollegeSurvey extends React.Component {
       // format the API response into json
       .then((response) => response.json())
       .then((json) => {
-
-        // console.log("Existing College Survey: " + JSON.stringify(json));
-
         if (json.mesg.existing === 1) {
           // set the val to state
 
@@ -1119,5 +1116,3 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
-
-
