@@ -137,7 +137,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       usrProfile: {
-        signedIn: true,
+        signedIn: false,
         email: "hchen98x@gmail.com",
         jwt: "",
         uuid: "",
@@ -154,7 +154,7 @@ export default class App extends Component {
         const unique_id = getDeviceID();
         // console.log("UUID: " + unique_id);
 
-        let URL = "http://0b19484e2a8a.ngrok.io/api/v1.2/managements/users/" + inputEmail;
+        let URL = "http://18edf61630d7.ngrok.io/api/v1.2/managements/users/" + inputEmail;
 
         fetch(URL, {
           method: "POST",

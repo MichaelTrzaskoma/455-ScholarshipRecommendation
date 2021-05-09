@@ -19,7 +19,7 @@ db = MongoClient(app.config["DB_IP"], app.config["DB_PORT"], serverSelectionTime
 scholarDb = db.test
 scholar_ref = db.test.scholarships
 college_ref = db.test.colleges
-major_ref = db.test.majorsWithCat
+major_ref = db.test.majorsFinal
 user_Ref = db.test.client_profile
 
 ACTIVE_CODE_LENGTH = 64
@@ -656,12 +656,10 @@ def view_college_single(college_name, email, token, id):
 
 
 # Resources - Major 
-
-
 @app.route("/api/v1.2/resources/major/view/category/<sub>")
 def view_major_subjectIndex(sub):
-    # view all majors that follow unders a specific subject
-    # INPUT: sub (str) name of the subject
+    # view all majors that follow unders a specific category
+    # INPUT: sub (str) name of the category
     # OUTPUT: return a list of major name
 
     if request.method == "GET":

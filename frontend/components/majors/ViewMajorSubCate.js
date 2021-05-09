@@ -28,7 +28,7 @@ export default class ViewMajorSubCate extends React.Component {
   }
 
   getDoc = () => {
-    let URL = "http://0b19484e2a8a.ngrok.io/api/v1.2/resources/major/view/category/" + this.state.subCate;
+    let URL = "http://18edf61630d7.ngrok.io/api/v1.2/resources/major/view/category/" + this.state.subCate;
 
     fetch(URL, {
       method: "GET",
@@ -73,7 +73,7 @@ export default class ViewMajorSubCate extends React.Component {
     this.setState({ modalVisible: false});
     console.log(this.state.currentBookmarkKey)
 
-    let URL = "http://0b19484e2a8a.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
+    let URL = "http://18edf61630d7.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
     fetch(URL, {
       method: "POST",
       headers: {
@@ -124,7 +124,7 @@ export default class ViewMajorSubCate extends React.Component {
   };
 
   render() {
-    // console.log("ViewCollege " + JSON.stringify(this.props.route.params.usrInfo));
+    // console.log("ViewMajorSubCate Props Check " + JSON.stringify(this.props.route.params.usrInfo));
     const { modalVisible } = this.state;
     if (this.state.isLoading) {
       return (
