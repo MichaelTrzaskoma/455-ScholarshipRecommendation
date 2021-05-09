@@ -102,7 +102,7 @@ export default class ViewBookTbl extends React.Component {
   getRecommend_scholarship() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      let URL = "http://9127258b7ec8.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email +"/bookmarks/all/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid;  
+      let URL = "http://00bd1ae1b950.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email +"/bookmarks/all/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid;  
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
       const bookArr = [];
 
@@ -171,8 +171,6 @@ export default class ViewBookTbl extends React.Component {
                 contentContainerStyle={
                   styles.scrollArea2_contentContainerStyle
                 }>
-
-
                 <Menu
                   visible={this.state.opt_title_visible}
                   onDismiss={this._closeTitleMenu}

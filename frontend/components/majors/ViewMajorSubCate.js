@@ -28,7 +28,7 @@ export default class ViewMajorSubCate extends React.Component {
   }
 
   getDoc = () => {
-    let URL = "http://9127258b7ec8.ngrok.io/api/v1.2/resources/major/view/category/" + this.state.subCate;
+    let URL = "http://00bd1ae1b950.ngrok.io/api/v1.2/resources/major/view/category/" + this.state.subCate;
 
     fetch(URL, {
       method: "GET",
@@ -72,7 +72,7 @@ export default class ViewMajorSubCate extends React.Component {
 
     this.setState({ modalVisible: false});
     // console.log(this.state.currentBookmarkKey)
-    let URL = "http://9127258b7ec8.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/major/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "http://00bd1ae1b950.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/major/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
 
 
     fetch(URL, {
@@ -118,7 +118,8 @@ export default class ViewMajorSubCate extends React.Component {
   };
 
   render() {
-    console.log("ViewMajorSubCate Props Check " + JSON.stringify(this.props.route.params.usrInfo));
+    console.log("Checking to see ViewMajorSubCate");
+    // console.log("ViewMajorSubCate Props Check " + JSON.stringify(this.props.route.params.usrInfo));
     const { modalVisible } = this.state;
     if (this.state.isLoading) {
       return (
@@ -163,6 +164,7 @@ export default class ViewMajorSubCate extends React.Component {
           data={this.state.scholarArr}
           ItemSeparatorComponent={this.FlatListItemSeparator}
           renderItem={({ item }) => (
+            // console.log("Checking item in ViewScholarTbl " + JSON.stringify(item));
             <Text
               style={styles.item}
               onLongPress = {() => {this.handleBookmarkOpen(item)}}

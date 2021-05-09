@@ -72,14 +72,14 @@ export default class ViewScholarTbl extends React.Component {
   }
 
   componentDidMount() {
+    // NSAFE_componentWillMount() {
     this.getDoc();
-
   }
 
   getDoc = () => {
     const scholarArr = [];
 
-    let URL = "http://9127258b7ec8.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
+    let URL = "http://00bd1ae1b950.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
 
     fetch(URL, {
       method: "GET",
@@ -144,7 +144,7 @@ export default class ViewScholarTbl extends React.Component {
     console.log(this.state.currentBookmarkKey)
 
     //Insert API Call here
-    let URL = "http://9127258b7ec8.ngrok.io/api/v1.2/users/id/"+ this.state.userProfile.email + "/bookmarks/scholarship/"+ this.state.userProfile.jwt+ "/"+ this.state.userProfile.uuid;
+    let URL = "http://00bd1ae1b950.ngrok.io/api/v1.2/users/id/"+ this.state.userProfile.email + "/bookmarks/scholarship/"+ this.state.userProfile.jwt+ "/"+ this.state.userProfile.uuid;
 
     fetch(URL, {
       method: "POST",
@@ -185,39 +185,8 @@ export default class ViewScholarTbl extends React.Component {
   };
 
   renderList(item, i) {
-    const { modalVisible } = this.state;
     return (
       <View>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            alert("Modal has been closed.");
-            this.setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>{this.state.currentBookmarkKey}</Text>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => this.handleBookmark()}
-              >
-                <Text style={styles.textStyle}>Bookmark</Text>
-              </Pressable>
-              <Pressable
-                style={[styles.button, styles.buttonClose2]}
-                onPress={() => this.setModalVisible(false)}
-              >
-                <Text style={styles.textStyle}> Close   </Text>
-              </Pressable>
-            </View>
-            <View>
-
-            </View>
-          </View>
-        </Modal>
         <TouchableOpacity
           onLongPress={() => { this.handleBookmarkOpen(item.key) }}
           onPress={() => {
@@ -264,6 +233,7 @@ export default class ViewScholarTbl extends React.Component {
 
 
   render() {
+    const { modalVisible } = this.state;
     // console.log("Checking ViewScholarTbl " + JSON.stringify(this.props.route.params.usrProfile));
     if (this.state.isLoading) {
       return (
@@ -275,6 +245,36 @@ export default class ViewScholarTbl extends React.Component {
 
     return (
       <View style={styles.container}>
+         <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            alert("Modal has been closed.");
+            this.setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>{this.state.currentBookmarkKey}</Text>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => this.handleBookmark()}
+              >
+                <Text style={styles.textStyle}>Bookmark</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.button, styles.buttonClose2]}
+                onPress={() => this.setModalVisible(false)}
+              >
+                <Text style={styles.textStyle}>Close</Text>
+              </Pressable>
+            </View>
+            <View>
+
+            </View>
+          </View>
+        </Modal>
         <FlatList
           data={this.state.scholarArr}
           ItemSeparatorComponent={this.FlatListItemSeparator}
