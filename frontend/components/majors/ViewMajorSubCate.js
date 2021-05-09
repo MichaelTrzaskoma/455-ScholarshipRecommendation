@@ -28,7 +28,7 @@ export default class ViewMajorSubCate extends React.Component {
   }
 
   getDoc = () => {
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/resources/major/view/category/" + this.state.subCate;
+    let URL = "http://9127258b7ec8.ngrok.io/api/v1.2/resources/major/view/category/" + this.state.subCate;
 
     fetch(URL, {
       method: "GET",
@@ -72,9 +72,9 @@ export default class ViewMajorSubCate extends React.Component {
 
     this.setState({ modalVisible: false});
     // console.log(this.state.currentBookmarkKey)
+    let URL = "http://9127258b7ec8.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/major/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
 
-    // /api/v1.2/users/id/<email>/bookmarks/<type>/<token>/<id></id>
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/major/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+
     fetch(URL, {
       method: "POST",
       headers: {
@@ -83,6 +83,9 @@ export default class ViewMajorSubCate extends React.Component {
       },
       body: JSON.stringify({
         "title": this.state.currentBookmarkKey,
+        "unique_id": this.state.usrInfo.uuid, 
+        "type": "major",
+        "jwt": this.state.usrInfo.jwt,
       }),
     })
 
@@ -115,7 +118,7 @@ export default class ViewMajorSubCate extends React.Component {
   };
 
   render() {
-    // console.log("ViewMajorSubCate Props Check " + JSON.stringify(this.props.route.params.usrInfo));
+    console.log("ViewMajorSubCate Props Check " + JSON.stringify(this.props.route.params.usrInfo));
     const { modalVisible } = this.state;
     if (this.state.isLoading) {
       return (

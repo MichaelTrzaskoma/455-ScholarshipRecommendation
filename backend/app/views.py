@@ -1163,8 +1163,6 @@ def getRecommend_major(email, token, id):
 
 
 # Bookmarks
-
-
 @app.route("/api/v1.2/users/id/<email>/bookmarks/<type>/<token>/<id>",  methods=["GET", "POST", "DELETE"])
 def getBookmarkDoc_all(email, type, token, id):
     if request.method == "GET" and type == "all":

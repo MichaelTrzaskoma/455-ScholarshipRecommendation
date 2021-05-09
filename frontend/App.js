@@ -156,7 +156,7 @@ export default class App extends Component {
         //  &&  String(inputEmail).includes("@")
         const unique_id = getDeviceID();
         // console.log("UUID: " + unique_id);
-        let URL = "http://f0c8565ebe8e.ngrok.io/api/v1.2/managements/users/" + inputEmail;
+        let URL = "http://9127258b7ec8.ngrok.io/api/v1.2/managements/users/" + inputEmail;
         fetch(URL, {
           method: "POST",
           headers: {
