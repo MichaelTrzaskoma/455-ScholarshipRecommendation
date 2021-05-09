@@ -1614,10 +1614,10 @@ class InputScreen extends React.Component {
 			.then((response) => response.json())
 			
 			.then((json) => {
-				// console.log("Exisiting Data: " + JSON.stringify(json));
+				console.log("Exisiting Data Scholarship: " + JSON.stringify(json));
 				// console.log("Email from ScholarSurvey.js: " + this.state.email);
 				// set the val to state
-				if (json.mesg.existing == 1) {
+				if (json.mesg.existing === 1) {
 					// there's an exisiting data on client's record
 					this.setState({
 						dob: json.mesg.age,
@@ -1638,6 +1638,7 @@ class InputScreen extends React.Component {
 	}
 
 	componentDidMount() {
+		// console.log("Naviation: " + JSON.stringify(this.props.navigation));
 		this.getExistingData();
 		//AsyncStorage.getItem('JWT').then((value) => this.setState({ jwt: value }));
 		//AsyncStorage.getItem('uuid').then((value) => this.setState({ uuid: value }));

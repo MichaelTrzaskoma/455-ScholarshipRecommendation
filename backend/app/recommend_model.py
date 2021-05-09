@@ -1,5 +1,5 @@
-from datetime import datetime
-from datetime import date
+from datetime import datetime, date
+# from datetime import date
 from pyzipcode import ZipCodeDatabase
 from pymongo import MongoClient
 
@@ -19,100 +19,6 @@ zcdb = ZipCodeDatabase()
 # user_Ref = db.test.client_profile
 # table_Ref = db.collection("Index Table").document("Terms")
 # refList = table_Ref.get().to_dict().get('Terms')
-
-
-def updtUser(
-        db,
-        user_Ref,
-        email,
-        gender,
-        age,
-        gpa,
-        state=[],
-        major=[],
-        race=[],
-        ethnicity=[],
-        religion=[],
-        dissabilities=[],
-        sat=''):
-    # Used to initiation user or update their information, specify when using optional attributes
-    list1 = [gender]
-    list1.append(catAge(age))
-    list1.append(catGPA(gpa))
-   
-    majorUpdt = list(major)
-    
-    if majorUpdt !=[]:
-        majorUpdt = catMajor(majorUpdt)
-
-    list2 = [state, race, religion, dissabilities, ethnicity, majorUpdt]
-    for i in range(len(list2)):
-        if list2[i] != []:
-            list1.extend(list2[i])
-        
-
-    if (sat != ''):
-        list1.append(catSat(sat))
-
-    binary = setBin(db, list1)
-
-    user_Ref.insert_one({
-        "_id": userEmail,
-        "email": userEmail,
-        "paswrd": "place holder 2",
-        "jwt": "place holder 3",
-        # max 15 items
-        "recent_viewed": [
-            {
-                "type": "scholarship",
-                "title": "place holder 4",
-            },
-            {
-                "type": "college",
-                "title": "place holder 5",
-            },
-            {
-                "type": "major",
-                "title": "place holder 6",
-            },
-        ],
-        # no limit to bookmark item
-        "bookmarks": [
-            {
-                "type": "scholarship",
-                "title": "place holder 7",
-            },
-            {
-                "type": "college",
-                "title": "place holder 8",
-            },
-            {
-                "type": "major",
-                "title": "place holder 9",
-            },
-        ],
-        "survey_scholarship": {
-            "gender": gender,
-            "age": age,
-            "states": state,
-            "gpa": gpa,
-            "major": major,
-            "race": race,
-            "ethnicity": ethnicity,
-            "religion": religion,
-            "disabilities": dissabilities,
-            "sat_score": sat,
-            "terms": list1,
-            "binary": binary, 
-        },
-        "survey_college": {
-            "x": "place holder 16",
-        },
-        "survey_major": {
-            "y": "place holder 17",
-        },
-    })
-
 
 #Focus on this method 
 def updtScholarSurvey(
@@ -140,7 +46,7 @@ def updtScholarSurvey(
     if majorUpdt !=[]:
         majorUpdt = catMajor(majorUpdt)
 
-    print(majorUpdt)
+    # print(majorUpdt)
     list2 = [state, race, religion, dissabilities, ethnicity, majorUpdt]
     for i in range(len(list2)):
         if list2[i] != []:

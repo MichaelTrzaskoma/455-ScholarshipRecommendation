@@ -539,7 +539,7 @@ export default class MajorSurvey extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getExistingData();
+		// this.getExistingData();
 	}
 
 	render() {

@@ -20,209 +20,209 @@ const items = [
     // these are the children or 'sub items'
     children: [
       {
-        name: 'No Preference',
-        id: 1,
-      },
-      {
-        name: 'Alabama',
-        id: 2,
-      },
-      {
-        name: 'Alaska',
-        id: 3,
-      },
-      {
-        name: 'Arizona',
-        id: 4,
-      },
-      {
-        name: 'Arkansas',
-        id: 5,
-      },
-      {
-        name: 'California',
-        id: 6,
-      },
-      {
-        name: 'Colorado',
-        id: 7,
-      },
-      {
-        name: 'Connecticut',
-        id: 8,
-      },
-      {
-        name: 'Delaware',
-        id: 9,
-      },
-      {
-        name: 'Flordia',
-        id: 10,
-      },
-      {
-        name: 'Georgia',
-        id: 11,
-      },
-      {
-        name: 'Hawaii',
-        id: 12,
-      },
-      {
-        name: 'Idaho',
-        id: 13,
-      },
-      {
-        name: 'Illinois',
-        id: 14,
-      },
-      {
-        name: 'Indiana',
-        id: 15,
-      },
-      {
-        name: 'Iowa',
-        id: 16,
-      },
-      {
-        name: 'Kansas',
-        id: 17,
-      },
-      {
-        name: 'Kentucky',
-        id: 18,
-      },
-      {
-        name: 'Louisiana',
-        id: 19,
-      },
-      {
-        name: 'Maine',
-        id: 20,
-      },
-      {
-        name: 'Maryland',
-        id: 21,
-      },
-      {
-        name: 'Massachusetts',
-        id: 22,
-      },
-      {
-        name: 'Michigan',
-        id: 23,
-      },
-      {
-        name: 'Minnesota',
-        id: 24,
-      },
-      {
-        name: 'Mississippi',
-        id: 25,
-      },
-      {
-        name: 'Missouri',
-        id: 26,
-      },
-      {
-        name: 'Montana',
-        id: 27,
-      },
-      {
-        name: 'Nebraska',
-        id: 28,
-      },
-      {
-        name: 'Nevada',
-        id: 29,
-      },
-      {
-        name: 'New Hampshire',
-        id: 30,
-      },
-      {
-        name: 'New Jersey',
-        id: 31,
-      },
-      {
-        name: 'New Mexico',
-        id: 32,
-      },
-      {
-        name: 'New York',
-        id: 33,
-      },
-      {
-        name: 'North Carolina',
-        id: 34,
-      },
-      {
-        name: 'North Dakota',
-        id: 35,
-      },
-      {
-        name: 'Ohio',
-        id: 36,
-      },
-      {
-        name: 'Oklahoma',
-        id: 37,
-      },
-      {
-        name: 'Oregon',
-        id: 38,
-      },
-      {
-        name: 'Pennsylvania',
-        id: 39,
-      },
-      {
-        name: 'Rhode Island',
-        id: 40,
-      },
-      {
-        name: 'South Carolina',
-        id: 41,
-      },
-      {
-        name: 'South Dakota',
-        id: 42,
-      },
-      {
-        name: 'Tennessee',
-        id: 43,
-      },
-      {
-        name: 'Texas',
-        id: 44,
-      },
-      {
-        name: 'Utah',
-        id: 45,
-      },
-      {
-        name: 'Vermont',
-        id: 46,
-      },
-      {
-        name: 'Virginia',
-        id: 47,
-      },
-      {
-        name: 'Washington',
-        id: 48,
-      },
-      {
-        name: 'West Virgina',
-        id: 49,
-      },
-      {
-        name: 'Wisconsin',
-        id: 50,
-      },
-      {
-        name: 'Wyoming',
-        id: 51,
-      },
+				name: 'No Preference',
+				id: 1193,
+			},
+			{
+				name: 'Alabama',
+				id: 1194,
+			},
+			{
+				name: 'Alaska',
+				id: 1195,
+			},
+			{
+				name: 'Arizona',
+				id: 1196,
+			},
+			{
+				name: 'Arkansas',
+				id: 1197,
+			},
+			{
+				name: 'California',
+				id: 1198,
+			},
+			{
+				name: 'Colorado',
+				id: 1199,
+			},
+			{
+				name: 'Connecticut',
+				id: 1200,
+			},
+			{
+				name: 'Delaware',
+				id: 1201,
+			},
+			{
+				name: 'Florida',
+				id: 1202,
+			},
+			{
+				name: 'Georgia',
+				id: 1203,
+			},
+			{
+				name: 'Hawaii',
+				id: 1204,
+			},
+			{
+				name: 'Idaho',
+				id: 1205,
+			},
+			{
+				name: 'Illinois',
+				id: 1206,
+			},
+			{
+				name: 'Indiana',
+				id: 1207,
+			},
+			{
+				name: 'Iowa',
+				id: 1208,
+			},
+			{
+				name: 'Kansas',
+				id: 1209,
+			},
+			{
+				name: 'Kentucky',
+				id: 1210,
+			},
+			{
+				name: 'Louisiana',
+				id: 1211,
+			},
+			{
+				name: 'Maine',
+				id: 1212,
+			},
+			{
+				name: 'Maryland',
+				id: 1213,
+			},
+			{
+				name: 'Massachusetts',
+				id: 1214,
+			},
+			{
+				name: 'Michigan',
+				id: 1215,
+			},
+			{
+				name: 'Minnesota',
+				id: 1216,
+			},
+			{
+				name: 'Mississippi',
+				id: 1217,
+			},
+			{
+				name: 'Missouri',
+				id: 1218,
+			},
+			{
+				name: 'Montana',
+				id: 1219,
+			},
+			{
+				name: 'Nebraska',
+				id: 1220,
+			},
+			{
+				name: 'Nevada',
+				id: 1221,
+			},
+			{
+				name: 'New Hampshire',
+				id: 1222,
+			},
+			{
+				name: 'New Jersey',
+				id: 1223,
+			},
+			{
+				name: 'New Mexico',
+				id: 1224,
+			},
+			{
+				name: 'New York',
+				id: 1225,
+			},
+			{
+				name: 'North Carolina',
+				id: 1226,
+			},
+			{
+				name: 'North Dakota',
+				id: 1227,
+			},
+			{
+				name: 'Ohio',
+				id: 1228,
+			},
+			{
+				name: 'Oklahoma',
+				id: 1229,
+			},
+			{
+				name: 'Oregon',
+				id: 1230,
+			},
+			{
+				name: 'Pennsylvania',
+				id: 1231,
+			},
+			{
+				name: 'Rhode Island',
+				id: 1232,
+			},
+			{
+				name: 'South Carolina',
+				id: 1233,
+			},
+			{
+				name: 'South Dakota',
+				id: 1234,
+			},
+			{
+				name: 'Tennessee',
+				id: 1235,
+			},
+			{
+				name: 'Texas',
+				id: 1236,
+			},
+			{
+				name: 'Utah',
+				id: 1237,
+			},
+			{
+				name: 'Vermont',
+				id: 1238,
+			},
+			{
+				name: 'Virginia',
+				id: 1239,
+			},
+			{
+				name: 'Washington',
+				id: 1240,
+			},
+			{
+				name: 'West Virginia',
+				id: 1241,
+			},
+			{
+				name: 'Wisconsin',
+				id: 1242,
+			},
+			{
+				name: 'Wyoming',
+				id: 1243,
+			},
     ],
   },
   {
@@ -284,10 +284,6 @@ const items = [
         id: 54,
       },
       {
-        name: 'Film and Photography',
-        id: 55,
-      },
-      {
         name: 'Film',
         id: 55,
       },
@@ -310,15 +306,19 @@ const items = [
         id: 59,
       },
       {
-        name: 'Business and Management',
+        name: 'Business',
         id: 60,
       },
       {
-        name: 'Finance and Accounting',
+        name: 'Finance',
         id: 61,
       },
       {
-        name: 'Sports Management',
+				name: 'Accounting',
+				id: 610,
+			},
+      {
+        name: 'Sport Management',
         id: 62,
       },
     ],
@@ -354,17 +354,9 @@ const items = [
         id: 69,
       },
       {
-        name: 'Kinesiology',
-        id: 70,
-      },
-      {
-        name: 'Physical Therapy',
-        id: 71,
-      },
-      {
-        name: "Kinesiology and Physical Therapy",
-        id: 72,
-      },
+				name: 'Physical Therapy/Rehabilitation',
+				id: 70,
+			},
       {
         name: 'Medical',
         id: 73,
@@ -388,57 +380,61 @@ const items = [
     id: 77,
     children: [
       {
-        name: 'Anthropology',
-        id: 78,
-      },
-      {
-        name: 'Communications',
-        id: 79,
-      },
-      {
-        name: 'Economics',
-        id: 80,
-      },
-      {
-        name: 'English',
-        id: 81,
-      },
-      {
-        name: 'Foreign Language',
-        id: 82,
-      },
-      {
-        name: 'History',
-        id: 83,
-      },
-      {
-        name: 'International Relations',
-        id: 84,
-      },
-      {
-        name: 'Legal Studies',
-        id: 85,
-      },
-      {
-        name: 'Philosophy',
-        id: 86,
-      },
-      {
-        name: 'Political Science',
-        id: 87,
-      },
-      {
-        name: 'Psychology',
-        id: 88,
-      },
-      {
-        name: 'Public Policy and Social Services',
-        id: 89,
-      },
-      {
-        name: 'Religious Studies',
-        id: 90,
-      }
+				name: 'Anthropology',
+				id: 51,
+			},
+			{
+				name: 'Communications',
+				id: 52,
+			},
+			{
+				name: 'Economics',
+				id: 53,
+			},
+			{
+				name: 'English',
+				id: 54,
+			},
+			{
+				name: 'Foreign Language',
+				id: 55,
+			},
+			{
+				name: 'History',
+				id: 56,
+			},
+			{
+				name: 'International Relations',
+				id: 57,
+			},
+			{
+				name: 'Legal Studies',
+				id: 58,
+			},
+			{
+				name: 'Philosophy',
+				id: 59,
+			},
+			{
+				name: 'Political Science',
+				id: 591,
+			},
+			{
+				name: 'Psychology',
+				id: 592,
+			},
+			{
+				name: "Public Policy",
+				id: 594,
+			},
+			{
+				name: "Social Services",
+				id: 595,
+			},
+			{
+				name: 'Religious Studies',
+				id: 596,
+			}
     ],
   },
   {
@@ -501,19 +497,15 @@ const items = [
     name: 'Trades & Personal Services',
     id: 104,
     children: [
-      {
-        name: 'Cosmetology',
-        id: 105,
-      },
-      {
-        name: 'Culinary Arts',
-        id: 106,
-      },
-      {
-        name: 'Mechanics',
-        id: 107,
-      },
-    ],
+			{
+				name: 'Cosmetology',
+				id: 81,
+			},
+			{
+				name: 'Culinary Arts',
+				id: 82,
+			},
+		],
   },
 ];
 
@@ -670,6 +662,8 @@ export default class CollegeSurvey extends React.Component {
 
   checkExisting() {
     // console.log("checkExisting " + JSON.stringify(this.state.usrInfo));
+    console.log("User profile obbj: " + JSON.stringify(this.props.route.params.usrInfo));
+
     let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/" + "surveys/college";
 
     fetch(URL, {
@@ -682,15 +676,19 @@ export default class CollegeSurvey extends React.Component {
       // format the API response into json
       .then((response) => response.json())
       .then((json) => {
-        if (json.mesg.existing == 1) {
+
+        // console.log("Existing College Survey: " + JSON.stringify(json));
+
+        if (json.mesg.existing === 1) {
           // set the val to state
 
-          console.log("Exiting College survey data: " + JSON.stringify(json));
+          // console.log("Exiting College survey data: " + JSON.stringify(json));
 
           this.setState({
-            actScore: json.actScore,
-            satScore: json.satScore,
-            selectedMajors: json.major,
+            actScore: json.mesg.act,
+            satScore: json.mesg.sat,
+            selectedMajors: json.mesg.majors,
+            selectedRegions: json.mesg.regions,
             firstTime: json.mesg.existing,
           }).catch((error) => {
             console.log('An error happened: ' + error);
@@ -842,7 +840,7 @@ export default class CollegeSurvey extends React.Component {
                   ></MaterialCommunityIcons>
 
                   <TextInput
-                    placeholder={this.state.satScore}
+                    value={this.state.satScore}
                     keyboardAppearance="light"
                     blurOnSubmit={false}
                     onChangeText={this.handleSAT}
@@ -887,7 +885,7 @@ export default class CollegeSurvey extends React.Component {
                     style={styles.icon1}
                   ></MaterialCommunityIcons>
                   <TextInput
-                    placeholder={this.state.actScore}
+                    value={this.state.actScore}
                     keyboardAppearance="light"
                     maxLength={2}
                     blurOnSubmit={false}
