@@ -30,10 +30,6 @@ export default class ViewScholarTbl extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.getDoc();
-  }
-
   parseMonth(month) {
     switch (month) {
       case "January":
@@ -75,19 +71,15 @@ export default class ViewScholarTbl extends React.Component {
     }
   }
 
-  setModalVisible = (visible) => {
-    this.setState({ modalVisible: visible });
-  }
+  componentDidMount() {
+    this.getDoc();
 
-  setCurrentBookmarkkey = (itemKey) => {
-    this.setState({ currentBookmarkKey: itemKey });
   }
-
 
   getDoc = () => {
     const scholarArr = [];
 
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
+    let URL = "http://9127258b7ec8.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
 
     fetch(URL, {
       method: "GET",
@@ -130,19 +122,30 @@ export default class ViewScholarTbl extends React.Component {
 
   };
 
-  handleBookmarkOpen(key) {
+
+  setModalVisible = (visible) => {
+    this.setState({ modalVisible: visible });
+  }
+
+  setCurrentBookmarkkey = (itemKey) => {
+    this.setState({ currentBookmarkKey: itemKey});
+  }
+
+  handleBookmarkOpen(key)
+  {
     this.setModalVisible(true)
     this.setState({ currentBookmarkKey: key });
   }
 
   handleBookmark() {
 
-    this.setState({ modalVisible: false });
+    console.log("Here is ViewScholarTbl and triggered bookmark")
+    this.setState({ modalVisible: false});
     console.log(this.state.currentBookmarkKey)
 
     //Insert API Call here
-    // /api/v1.2/users/id/<email>/bookmarks/<type>/<token>/<id>
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.userProfile.email + "/bookmarks/scholarship/" + this.state.userProfile.jwt + "/" + this.state.userProfile.uuid;
+    let URL = "http://9127258b7ec8.ngrok.io/api/v1.2/users/id/"+ this.state.userProfile.email + "/bookmarks/scholarship/"+ this.state.userProfile.jwt+ "/"+ this.state.userProfile.uuid;
+
     fetch(URL, {
       method: "POST",
       headers: {
