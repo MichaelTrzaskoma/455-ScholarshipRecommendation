@@ -851,17 +851,10 @@ const styles = StyleSheet.create({
     marginTop: 1,
   },
   text2Row: {
-<<<<<<< HEAD
     height: 20,
     flexDirection: 'row',
     flex: 1,
     marginRight: 7,
-=======
-    height: 16,
-    //flexDirection: 'row',
-    //flex: 1,
-    marginRight: -10,
->>>>>>> f396800289e2a2ab07cbbde073f574c3ab4c839c
     marginTop: 5,
   },
   rect6: {
