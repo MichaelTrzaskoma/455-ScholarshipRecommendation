@@ -195,7 +195,7 @@ def addBookmark(user_Ref, email, title, lstType):
         {'$match': {'bookmarks.title': title}},
         {'$project': {"bookmarks": 1, "_id": 0}}
     ])
-    
+
     for doc in docs:
         return False
 
@@ -206,7 +206,7 @@ def addBookmark(user_Ref, email, title, lstType):
                 "bookmarks": {
                     "title": title,
                     "type": lstType,
-                    "timeAddded": datetime.utcnow()
+                    "timeAdded": datetime.utcnow()
                 }
             }
         }
@@ -233,7 +233,7 @@ def removeBookmark(user_Ref, email, title):
 def getRecent(user_Ref, email, numRes, lstType=None):
     if(user_Ref.count_documents({'_id': email, 'recent_viewed': {'$exists': True}}) == 0):
         return {"existing": int(0)}
-    
+
     if(lstType == None):
         user = user_Ref.find_one({'_id': email})
         return user["recent_viewed"][-numRes:]
@@ -246,10 +246,10 @@ def getRecent(user_Ref, email, numRes, lstType=None):
     ])
 
     recent = []
-    
+
     for doc in docs:
         recent.append(doc['recent_viewed'])
-    
+
     return recent
 
 
@@ -262,7 +262,9 @@ def addRecent(user_Ref, email, title, lstType):
         {'$match': {'recent_viewed.title': title}},
         {'$project': {"recent_viewed": 1, "_id": 0}}
     ])
+
     update = False
+
     for doc in docs:
         user_Ref.update(
             {
@@ -276,8 +278,10 @@ def addRecent(user_Ref, email, title, lstType):
             }
         )
         update = True
+
     if(update):
         return True
+
     user_Ref.update_one(
         {'_id': email},
         {
@@ -331,7 +335,6 @@ def append_scholarSurvey_fromCollegeSurvey(scholar_ref, email, states, majors, s
 def get_college_survey(college_ref, email):
     # retrieve college survey info from db
 
-    
     r = college_ref.find_one({"_id": email}, {"_id": 0, "survey_college": 1})
 
     return {
@@ -357,4 +360,4 @@ def insert_major_survey(majorRef, email, avg_sal, unempl, sub, varietOfJobs, soc
             "triSocial": triSocial,
             "triEnv": triEnv
         }
-    }})    
+    }})

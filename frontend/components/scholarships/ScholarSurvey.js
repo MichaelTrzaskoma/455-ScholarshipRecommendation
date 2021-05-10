@@ -1545,7 +1545,6 @@ class InputScreen extends React.Component {
 				selectedEthnicities: this.state.selectedEthnicities,
 				selectedReligions: this.state.selectedReligions,
 				selectedDisabilities: this.state.selectedDisabilities,
-				existing: this.state.firstTime,
 			}),
 		})
 			.then((response) => {

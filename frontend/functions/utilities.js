@@ -45,6 +45,15 @@ export function parseMonth(month) {
 }
 
 
+export function parse_UTCTimeStamp(timer){
+  // parse utc timestamp
+  // INPUT: timer (utc time stamp)
+  // OUTPUT: returns a parsed time stamp in MM/DD/YYYY
+  fields = String(timer).split(" ");
+  return (parseMonth(fields[2]) + "/" + fields[1] + "/" + fields[3]);
+}
+
+
 export function parseAmount(amount) {
   // parse the amount attribute
   // INPUT: amount (int)
@@ -100,6 +109,7 @@ export function mergeSort_a2z(arr) {
   return merge_a2z(left, right);
 };
 
+
 function merge_a2z(arr1, arr2) {
   let sorted = [];
 
@@ -124,6 +134,7 @@ export function mergeSort_z2a(arr) {
 
   return merge_z2a(left, right);
 };
+
 
 function merge_z2a(arr1, arr2) {
   let sorted = [];

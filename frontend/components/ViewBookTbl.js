@@ -5,20 +5,19 @@ import {
   ScrollView,
   Text,
   TouchableOpacity,
-  Alert,
   StatusBar,
   ActivityIndicator
 } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Menu, Provider } from 'react-native-paper';
-import { parseMonth, parseAmount, parseSimilarScore, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../functions/utilities";
+import { parse_UTCTimeStamp, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../functions/utilities";
 import { FlatList } from 'react-native-gesture-handler';
 
 export default class ViewBookTbl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usrInfo: this.props.route.params.usrProf,
+      usrInfo: this.props.route.params.usrInfo,
       isLoading: true,
       bookArr: [],
       opt_title_visible: false,
@@ -96,13 +95,14 @@ export default class ViewBookTbl extends React.Component {
   }
 
   componentDidMount() {
-    this.getRecommend_scholarship();
+    this.getBookmarks();
   }
 
-  getRecommend_scholarship() {
+  getBookmarks() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      let URL = "http://9127258b7ec8.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email +"/bookmarks/all/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid;  
+      console.log("User profile from ViewBookmarksTbl: " + JSON.stringify(this.props.route.params.usrInfo));
+      let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
       const bookArr = [];
 
@@ -115,17 +115,16 @@ export default class ViewBookTbl extends React.Component {
       })
         .then((response) => response.json())
         .then((json) => {
-          console.log(JSON.stringify(json));
+          // console.log(JSON.stringify(json));
           json.forEach((res) => {
-          
-            
+
+
 
             // append the API data to local var
             bookArr.push({
               key: res.title,
-              // amount: parseInt(parseAmount(res.Amount)),
               type: res.type,
-              time: res.timeAdded,
+              timer: parse_UTCTimeStamp(res.timeAddded),
             });
           });
 
@@ -148,6 +147,37 @@ export default class ViewBookTbl extends React.Component {
     return <View style={styles.ItemSeparator} />;
   }
 
+  parseICON(types) {
+    // parse ICONS for the bookmarks and recent view listing components
+    // INPUT: types (str) of scholar - either by scholarship, major, or college
+    // OUTPUT: return the component with its associate icon
+
+    const r = String(types);
+    switch (r) {
+      case "scholarship":
+        return (
+          <FontAwesome
+            name="graduation-cap"
+            style={styles.icon2}></FontAwesome>
+        );
+        break;
+      case "major":
+        return (
+          <MaterialCommunityIcons
+            name="bank"
+            style={styles.icon2}></MaterialCommunityIcons>
+        );
+        break;
+      default:
+        return (
+          <MaterialCommunityIcons
+            name="book-open-page-variant"
+            style={styles.icon2}></MaterialCommunityIcons>
+        );
+        break;
+    }
+  }
+
   render() {
     // console.log("Checking Bookmark " + JSON.stringify(this.state.usrInfo));
     if (this.state.isLoading) {
@@ -164,6 +194,7 @@ export default class ViewBookTbl extends React.Component {
         <View style={styles.container}>
           <View style={styles.scrollArea2Stack}>
 
+            {/* sorting options here */}
             <View style={styles.scrollArea2}>
               <ScrollView
                 horizontal={true}
@@ -308,6 +339,7 @@ export default class ViewBookTbl extends React.Component {
               </ScrollView>
             </View>
 
+            {/* Main content area here */}
             <View style={styles.scrollArea}>
 
               <FlatList
@@ -326,32 +358,31 @@ export default class ViewBookTbl extends React.Component {
                     }}
                   >
                     <View style={styles.iconGrp}>
-                      <FontAwesome
-                        name="graduation-cap"
-                        style={styles.icon2}></FontAwesome>
+                      {this.parseICON(item.type)}
                     </View>
+
                     <View style={styles.txtGrp}>
+
                       <View style={styles.txtUpGrp}>
                         <Text style={styles.text}>{item.key}</Text>
                       </View>
+
                       <View style={styles.txtDownGrp}>
+
                         <View style={styles.rect5Stack}>
                           <View style={styles.rect5}>
                             <View style={styles.text2Row}>
-                              <Text style={styles.text2}>{item.time}</Text>
-                              <FontAwesome
-                                name="star"
-                                style={styles.icon3}></FontAwesome>
+                              <Text style={styles.text2}>{item.type}</Text>
                             </View>
                           </View>
-                          <View style={styles.rect6}>
-                             <Text style={styles.text3}>{item.type}</Text> 
-                          </View>
                         </View>
-                        {/* <View style={styles.rect7}> */}
-                          <Text style={styles.text4}>{item.time}</Text>
-                        {/* </View> */}
+
+                        <View style={styles.rect7}>
+                          <Text style={styles.text4}>{item.timer}</Text>
+                        </View>
+
                       </View>
+
                     </View>
                   </TouchableOpacity>
 
@@ -660,6 +691,7 @@ const styles = StyleSheet.create({
   },
   text2: {
     color: '#121212',
+    width: 100,
   },
   icon3: {
     color: 'rgba(248,194,28,1)',
@@ -668,7 +700,7 @@ const styles = StyleSheet.create({
     marginTop: 1,
   },
   text2Row: {
-    height: 16,
+    height: 20,
     flexDirection: 'row',
     flex: 1,
     marginRight: 7,

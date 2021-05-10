@@ -9,7 +9,7 @@ import {
   StatusBar,
   ActivityIndicator
 } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Menu, Provider } from 'react-native-paper';
 import { parseMonth, parseAmount, parseSimilarScore, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../functions/utilities";
 import { FlatList } from 'react-native-gesture-handler';
@@ -100,10 +100,41 @@ export default class ViewRecommendTbl_3 extends React.Component {
     this.getRecommend_scholarship();
   }
 
+  parseICON(types) {
+    // parse ICONS for the bookmarks and recent view listing components
+    // INPUT: types (str) of scholar - either by scholarship, major, or college
+    // OUTPUT: return the component with its associate icon
+
+    const r = String(types);
+    switch (r) {
+      case "scholarship":
+        return (
+          <FontAwesome
+            name="graduation-cap"
+            style={styles.icon2}></FontAwesome>
+        );
+        break;
+      case "major":
+        return (
+          <MaterialCommunityIcons
+            name="bank"
+            style={styles.icon2}></MaterialCommunityIcons>
+        );
+        break;
+      default:
+        return (
+          <MaterialCommunityIcons
+            name="book-open-page-variant"
+            style={styles.icon2}></MaterialCommunityIcons>
+        );
+        break;
+    }
+  }
+
   getRecommend_scholarship() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid+ "/recommends/scholarship";  "/recommends/scholarship"
+      let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid+ "/recommends/scholarship";  "/recommends/scholarship"
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
       const scholarArr = [];
 
@@ -336,9 +367,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
                     }}
                   >
                     <View style={styles.iconGrp}>
-                      <FontAwesome
-                        name="graduation-cap"
-                        style={styles.icon2}></FontAwesome>
+                      {parseICON(item.types)}
                     </View>
                     <View style={styles.txtGrp}>
                       <View style={styles.txtUpGrp}>
