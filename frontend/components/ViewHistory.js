@@ -11,16 +11,22 @@ import {
 } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Menu, Provider } from 'react-native-paper';
-import { parseMonth, parseAmount, parseSimilarScore, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../functions/utilities";
+import { parse_UTCTimeStamp, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../functions/utilities";
 import { FlatList } from 'react-native-gesture-handler';
+import { useNavigation } from "@react-navigation/native";
 
-export default class ViewRecommendTbl_3 extends React.Component {
+export default function ViewHistory(props) {
+  const navigation = useNavigation();
+
+  return <ViewHistoryClass {...props} navigation={navigation} />;
+}
+class ViewHistoryClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       usrInfo: this.props.route.params.usrInfo,
       isLoading: true,
-      scholarArr: [],
+      historyArr: [],
       gender: '',
       opt_title_visible: false,
       opt_deadline_visible: false,
@@ -96,7 +102,48 @@ export default class ViewRecommendTbl_3 extends React.Component {
     this._closeAmountMenu();
   }
 
-  componentDidMount() {
+
+  typeNavigator(itemKey, itemType) {
+    // navigate the user to respective detail page
+    // INPUT
+    // : itemKey (str) the title of the respective unique identifier
+    // : itemType (str) the item types - it can only be scholarship, major, or college
+    // NOTE: when navigate the client, we also pass down the userProfile obj
+
+    const t = String(itemType);
+
+    switch (t) {
+      case "scholarship":
+        this.props.navigation.navigate('ViewScholarDetail', {
+          title: itemKey,
+          itemKey: itemKey,
+          userProfile: this.props.route.params.usrInfo,
+          bk: "from bk",
+        });
+        break;
+
+      case "major":
+        this.props.navigation.navigate('ViewMajorDetail', {
+          title: itemKey,
+          itemKey: itemKey,
+          userProfile: this.props.route.params.usrInfo,
+          bk: "from bk",
+        });
+        break;
+
+      default:
+        this.props.navigation.navigate('ViewCollegeDetail', {
+          title: itemKey,
+          itemKey: itemKey,
+          userProfile: this.props.route.params.usrInfo,
+          bk: "from bk",
+        });
+        break;
+    }
+  }
+
+  UNSAFE_componentWillMount() {
+    console.log("User profile from ViewHistory: " + JSON.stringify(this.props));
     this.getHistory();
   }
 
@@ -134,9 +181,10 @@ export default class ViewRecommendTbl_3 extends React.Component {
   getHistory() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      let URL = "http://35f9419b9dde.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid+ "/recent/all/5";  
+      let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recent/all/15";
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
-      const scholarArr = [];
+      
+      const historyArr = [];
 
       fetch(URL, {
         method: "GET",
@@ -148,30 +196,17 @@ export default class ViewRecommendTbl_3 extends React.Component {
         .then((response) => response.json())
         .then((json) => {
           json.forEach((res) => {
-            // console.log("Checking ViewHistory " + JSON.stringify(res));
-            // parse the deadline
-            // let deadline = "";
 
-            // if (res.Deadline == "Deadline Varies") {
-            //   deadline = "Varies";
-            // } else {
-            //   const fields = res.Deadline.split(" ");
-            //   const subFields = fields[1].split(",");
-            //   deadline = parseMonth(fields[0]) + "/" + subFields[0] + "/" + fields[2];
-            // }
-
-            // append the API data to local var
-            scholarArr.push({
-              timeAdded: res.timeAdded,
-              // amount: parseInt(parseAmount(res.Amount)),
-              title: res.title,
-              type: res.type
+            historyArr.push({
+              key: res.title,
+              type: res.type,
+              timer: parse_UTCTimeStamp(res.timeAdded),
             });
           });
 
           // set the local var to state var
           this.setState({
-            scholarArr,
+            historyArr,
             isLoading: false,
           });
 
@@ -185,12 +220,12 @@ export default class ViewRecommendTbl_3 extends React.Component {
   };
 
   FlatListItemSeparator = () => {
-    return <View style={styles.ItemSeparator} />;
+    return <View style={styles.itemSeparater} />;
   }
 
   render() {
-    // console.log("Checking ViewHistory " + JSON.stringify(this.props.route.params.usrInfo));
-    // console.log("Checking scholarArr " +  JSON.stringify(this.state.scholarArr));
+    const { navigation } = this.props;
+
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>
@@ -205,6 +240,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
         <View style={styles.container}>
           <View style={styles.scrollArea2Stack}>
 
+            {/* sorting options here */}
             <View style={styles.scrollArea2}>
               <ScrollView
                 horizontal={true}
@@ -258,7 +294,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
                         <FontAwesome
                           name="sort-alpha-asc"
                           style={styles.icon18}></FontAwesome>
-                        <Text style={styles.deadline}>Deadline</Text>
+                        <Text style={styles.deadline}>Time</Text>
                         <FontAwesome
                           name="sort-down"
                           style={styles.icon19}></FontAwesome>
@@ -291,7 +327,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
                         <FontAwesome
                           name="sort-alpha-asc"
                           style={styles.icon20}></FontAwesome>
-                        <Text style={styles.score}>Score</Text>
+                        <Text style={styles.score}>Type</Text>
                         <FontAwesome
                           name="sort-down"
                           style={styles.icon21}></FontAwesome>
@@ -347,10 +383,11 @@ export default class ViewRecommendTbl_3 extends React.Component {
               </ScrollView>
             </View>
 
+            {/* Main content area here */}
             <View style={styles.scrollArea}>
 
               <FlatList
-                data={this.state.scholarArr}
+                data={this.state.historyArr}
                 showsVerticalScrollIndicator={false}
                 ItemSeparatorComponent={this.FlatListItemSeparator}
                 renderItem={({ item }) => (
@@ -358,37 +395,36 @@ export default class ViewRecommendTbl_3 extends React.Component {
                   <TouchableOpacity
                     style={styles.itemN2}
                     onPress={() => {
-                      this.props.navigation.navigate("ViewScholarDetail", {
-                        title: item.key,
-                        itemKey: item.key,
-                      });
+                      this.typeNavigator(item.key, item.type)
                     }}
                   >
                     <View style={styles.iconGrp}>
-                      {parseICON(item.types)}
+                      {this.parseICON(item.type)}
+
                     </View>
+
                     <View style={styles.txtGrp}>
+
                       <View style={styles.txtUpGrp}>
-                        <Text style={styles.text}>{item.title}</Text>
+                        <Text style={styles.text}>{item.key}</Text>
                       </View>
+
                       <View style={styles.txtDownGrp}>
+
                         <View style={styles.rect5Stack}>
                           <View style={styles.rect5}>
                             <View style={styles.text2Row}>
-                              {/* <Text style={styles.text2}>{item.timeAdded}</Text> */}
-                              {/* <FontAwesome
-                                name="star"
-                                style={styles.icon3}></FontAwesome> */}
+                              <Text style={styles.text2}>{item.type}</Text>
                             </View>
                           </View>
-                          <View style={styles.rect6}>
-                            <Text style={styles.text3}>{item.type}</Text>
-                          </View>
                         </View>
+
                         <View style={styles.rect7}>
-                          <Text style={styles.text4}>{item.timeAdded}</Text>
+                          <Text style={styles.text4}>{item.timer}</Text>
                         </View>
+
                       </View>
+
                     </View>
                   </TouchableOpacity>
 
@@ -574,17 +610,6 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: 'white',
   },
-  scrollArea_contentContainerStyle: {
-    height: 810,
-  },
-  itemN1: {
-    height: 90,
-    borderWidth: 0,
-    // borderColor: "rgba(203,199,199,1)",
-    // borderTopWidth: 1,
-    flexDirection: 'row',
-    backgroundColor: 'white',
-  },
   iconGrp: {
     borderRadius: 5,
     backgroundColor: 'rgba(230, 230, 230,1)',
@@ -593,11 +618,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 14,
     marginLeft: 10,
-    alignSelf: 'center',
-  },
-  icon: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
     alignSelf: 'center',
   },
   txtUpGrp: {
@@ -616,55 +636,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     flexDirection: 'row',
-  },
-  ratingGrp: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  ratingTxt: {
-    color: '#121212',
-  },
-  ratingIcon: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  ratingTxtRow: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  amountGrp: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  amountTxt: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  ratingGrpStack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  dateGrp: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  dateTxt: {
-    color: '#121212',
-    alignSelf: 'center',
   },
   txtGrp: {
     width: 266,
@@ -694,37 +665,18 @@ const styles = StyleSheet.create({
     right: 61,
     bottom: 2,
     flexDirection: 'row',
+    marginRight: 0,
   },
   text2: {
     color: '#121212',
-  },
-  icon3: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
+    width: 100,
   },
   text2Row: {
-    height: 16,
+    height: 20,
     flexDirection: 'row',
     flex: 1,
     marginRight: 7,
     marginTop: 5,
-  },
-  rect6: {
-    marginLeft: 60,
-    width: 120,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    textAlign: "left"
-  },
-  text3: {
-    color: '#121212',
-    // alignSelf: 'center',
-    // width: 100,
-    marginLeft: -60,
   },
   rect5Stack: {
     flex: 1,
@@ -738,434 +690,14 @@ const styles = StyleSheet.create({
   text4: {
     color: '#121212',
     alignSelf: 'center',
-    width: 220,
-    marginLeft: -33
-  },
-  icon4: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
-    alignSelf: 'center',
-  },
-  text5: {
-    color: '#121212',
-    fontSize: 14,
-    textAlign: 'left',
-    height: 35,
-  },
-  rect11: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  text6: {
-    color: '#121212',
-  },
-  icon5: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  text6Row: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  rect12: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  text7: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  rect11Stack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  rect13: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  text8: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  icon6: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
-    alignSelf: 'center',
-  },
-  text9: {
-    color: '#121212',
-    fontSize: 14,
-    textAlign: 'left',
-    height: 35,
-  },
-  rect17: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  text10: {
-    color: '#121212',
-  },
-  icon7: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  text10Row: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  rect18: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  text11: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  rect17Stack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  rect19: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  text12: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  icon8: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
-    alignSelf: 'center',
-  },
-  text13: {
-    color: '#121212',
-    fontSize: 14,
-    textAlign: 'left',
-    height: 35,
-  },
-  rect23: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  text14: {
-    color: '#121212',
-  },
-  icon9: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  text14Row: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  rect24: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  text15: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  rect23Stack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  rect25: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  text16: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  icon10: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
-    alignSelf: 'center',
-  },
-  text17: {
-    color: '#121212',
-    fontSize: 14,
-    textAlign: 'left',
-    height: 35,
-  },
-  rect29: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  text18: {
-    color: '#121212',
-  },
-  icon11: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  text18Row: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  rect30: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  text19: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  rect29Stack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  rect31: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  text20: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  icon12: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
-    alignSelf: 'center',
-  },
-  text21: {
-    color: '#121212',
-    fontSize: 14,
-    textAlign: 'left',
-    height: 35,
-  },
-  rect35: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  text22: {
-    color: '#121212',
-  },
-  icon13: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  text22Row: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  rect36: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  text23: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  rect35Stack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  rect37: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  text24: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  icon14: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
-    alignSelf: 'center',
-  },
-  text25: {
-    color: '#121212',
-    fontSize: 14,
-    textAlign: 'left',
-    height: 35,
-  },
-  rect41: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  text26: {
-    color: '#121212',
-  },
-  icon15: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  text26Row: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  rect42: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  text27: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  rect41Stack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  rect43: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  text28: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  icon16: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
-    alignSelf: 'center',
-  },
-  text29: {
-    color: '#121212',
-    fontSize: 14,
-    textAlign: 'left',
-    height: 35,
-  },
-  rect47: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  text30: {
-    color: '#121212',
-  },
-  icon17: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  text30Row: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  rect48: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  text31: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  rect47Stack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  rect49: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  text32: {
-    color: '#121212',
-    alignSelf: 'center',
+    marginLeft: -12,
+    marginTop: 13,
   },
   scrollArea2Stack: {
     flex: 1,
     // marginBottom: -1
   },
-  ItemSeparator: {
+  itemSeparater: {
     height: 1,
     width: "100%",
     backgroundColor: "rgba(203,199,199,1)",
@@ -1178,5 +710,47 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  buttonClose2: {
+    backgroundColor: "#c42e23",
+    marginTop: 20,
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
   },
 });

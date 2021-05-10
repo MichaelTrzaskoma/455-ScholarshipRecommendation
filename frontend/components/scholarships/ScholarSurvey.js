@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-	Alert,
 	StyleSheet,
 	View,
 	Text,
@@ -21,8 +20,6 @@ import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { MaterialIcons, Feather } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import CollapsibleView from "@eliav2/react-native-collapsible-view";
-// import { storeData, getData } from "../../functions/secureStorage";
-// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const items = [
 	// this is the parent or 'item'

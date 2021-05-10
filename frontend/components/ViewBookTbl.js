@@ -194,16 +194,11 @@ class ViewBookTblClass extends React.Component {
           // console.log(JSON.stringify(json));
           json.forEach((res) => {
 
-
-
             // append the API data to local var
             bookArr.push({
               key: res.title,
               type: res.type,
               timer: parse_UTCTimeStamp(res.timeAddded)
-
-              // time: String(Date(res.timeAdded)),
-              // displayTime: Date(res.timeAdded)
             });
           });
 
@@ -237,6 +232,7 @@ class ViewBookTblClass extends React.Component {
           title: itemKey,
           itemKey: itemKey,
           userProfile: this.props.route.params.usrInfo,
+          bk: "from bk",
         });
         break;
 
@@ -245,6 +241,7 @@ class ViewBookTblClass extends React.Component {
           title: itemKey,
           itemKey: itemKey,
           userProfile: this.props.route.params.usrInfo,
+          bk: "from bk",
         });
         break;
 
@@ -253,13 +250,14 @@ class ViewBookTblClass extends React.Component {
           title: itemKey,
           itemKey: itemKey,
           userProfile: this.props.route.params.usrInfo,
+          bk: "from bk",
         });
         break;
     }
   }
 
   FlatListItemSeparator = () => {
-    return <View style={styles.ItemSeparator} />;
+    return <View style={styles.itemSeparater} />;
   }
 
   parseICON(types) {
@@ -715,17 +713,6 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: 'white',
   },
-  scrollArea_contentContainerStyle: {
-    height: 810,
-  },
-  itemN1: {
-    height: 90,
-    borderWidth: 0,
-    // borderColor: "rgba(203,199,199,1)",
-    // borderTopWidth: 1,
-    flexDirection: 'row',
-    backgroundColor: 'white',
-  },
   iconGrp: {
     borderRadius: 5,
     backgroundColor: 'rgba(230, 230, 230,1)',
@@ -734,11 +721,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 14,
     marginLeft: 10,
-    alignSelf: 'center',
-  },
-  icon: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
     alignSelf: 'center',
   },
   txtUpGrp: {
@@ -757,55 +739,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     flexDirection: 'row',
-  },
-  ratingGrp: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  ratingTxt: {
-    color: '#121212',
-  },
-  ratingIcon: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  ratingTxtRow: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  amountGrp: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  amountTxt: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  ratingGrpStack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  dateGrp: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  dateTxt: {
-    color: '#121212',
-    alignSelf: 'center',
   },
   txtGrp: {
     width: 266,
@@ -841,30 +774,12 @@ const styles = StyleSheet.create({
     color: '#121212',
     width: 100,
   },
-  icon3: {
-    color: 'rgba(48,132,188,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
   text2Row: {
     height: 20,
     flexDirection: 'row',
     flex: 1,
     marginRight: 7,
     marginTop: 5,
-  },
-  rect6: {
-    marginLeft: 0,
-    width: 120,
-    position: 'absolute',
-    top: 'auto',
-    bottom: 0,
-    justifyContent: 'center',
-    textAlign: "left",
-  },
-  text3: {
-    color: '#121212',
   },
   rect5Stack: {
     flex: 1,
@@ -881,431 +796,11 @@ const styles = StyleSheet.create({
     marginLeft: -12,
     marginTop: 13,
   },
-  icon4: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
-    alignSelf: 'center',
-  },
-  text5: {
-    color: '#121212',
-    fontSize: 14,
-    textAlign: 'left',
-    height: 35,
-  },
-  rect11: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  text6: {
-    color: '#121212',
-  },
-  icon5: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  text6Row: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  rect12: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  text7: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  rect11Stack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  rect13: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  text8: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  icon6: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
-    alignSelf: 'center',
-  },
-  text9: {
-    color: '#121212',
-    fontSize: 14,
-    textAlign: 'left',
-    height: 35,
-  },
-  rect17: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  text10: {
-    color: '#121212',
-  },
-  icon7: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  text10Row: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  rect18: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  text11: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  rect17Stack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  rect19: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  text12: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  icon8: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
-    alignSelf: 'center',
-  },
-  text13: {
-    color: '#121212',
-    fontSize: 14,
-    textAlign: 'left',
-    height: 35,
-  },
-  rect23: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  text14: {
-    color: '#121212',
-  },
-  icon9: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  text14Row: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  rect24: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  text15: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  rect23Stack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  rect25: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  text16: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  icon10: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
-    alignSelf: 'center',
-  },
-  text17: {
-    color: '#121212',
-    fontSize: 14,
-    textAlign: 'left',
-    height: 35,
-  },
-  rect29: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  text18: {
-    color: '#121212',
-  },
-  icon11: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  text18Row: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  rect30: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  text19: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  rect29Stack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  rect31: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  text20: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  icon12: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
-    alignSelf: 'center',
-  },
-  text21: {
-    color: '#121212',
-    fontSize: 14,
-    textAlign: 'left',
-    height: 35,
-  },
-  rect35: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  text22: {
-    color: '#121212',
-  },
-  icon13: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  text22Row: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  rect36: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  text23: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  rect35Stack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  rect37: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  text24: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  icon14: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
-    alignSelf: 'center',
-  },
-  text25: {
-    color: '#121212',
-    fontSize: 14,
-    textAlign: 'left',
-    height: 35,
-  },
-  rect41: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  text26: {
-    color: '#121212',
-  },
-  icon15: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  text26Row: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  rect42: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  text27: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  rect41Stack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  rect43: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  text28: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  icon16: {
-    color: 'rgba(143,143,143,1)',
-    fontSize: 40,
-    alignSelf: 'center',
-  },
-  text29: {
-    color: '#121212',
-    fontSize: 14,
-    textAlign: 'left',
-    height: 35,
-  },
-  rect47: {
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    right: 61,
-    bottom: 2,
-    flexDirection: 'row',
-  },
-  text30: {
-    color: '#121212',
-  },
-  icon17: {
-    color: 'rgba(248,194,28,1)',
-    fontSize: 15,
-    marginLeft: 7,
-    marginTop: 1,
-  },
-  text30Row: {
-    height: 16,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 7,
-    marginTop: 6,
-  },
-  rect48: {
-    left: 45,
-    width: 63,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-  },
-  text31: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
-  rect47Stack: {
-    flex: 1,
-    marginRight: 54,
-  },
-  rect49: {
-    width: 110,
-    justifyContent: 'center',
-    marginRight: -6,
-  },
-  text32: {
-    color: '#121212',
-    alignSelf: 'center',
-  },
   scrollArea2Stack: {
     flex: 1,
     // marginBottom: -1
   },
-  ItemSeparator: {
+  itemSeparater: {
     height: 1,
     width: "100%",
     backgroundColor: "rgba(203,199,199,1)",
@@ -1344,9 +839,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
   },
   buttonClose: {
     backgroundColor: "#2196F3",

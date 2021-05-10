@@ -14,7 +14,7 @@ export default function ViewHistory(props) {
 	return (
 		<TouchableOpacity style={styles.button}
 			onPress={() => navigation.navigate('ViewHistory', {
-				"usrInfo": props.userInfo,
+				usrInfo: props.usrInfo,
 			})}
 		>
 			<View style={styles.addProfileDetailIconRow}>

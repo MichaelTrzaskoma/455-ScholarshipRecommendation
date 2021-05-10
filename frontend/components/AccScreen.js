@@ -12,7 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function AccScreen({ usrInfo }) {
 	const navigation = useNavigation();
-	console.log("From account " + JSON.stringify(usrInfo));
+	// console.log("From account " + JSON.stringify(usrInfo));
 	// const user_info = usrInfoObj;
 	return (
 		<View style={styles.container}>
@@ -33,7 +33,7 @@ export default function AccScreen({ usrInfo }) {
 				<View style={styles.accBtnGrp}>
 
 					{/* This is displayed as "Take Survey" btn which will navigate to TabViewSurvey component */}
-					<MultiSurveyBtn userInfo={usrInfo}/>
+					<MultiSurveyBtn usrInfo={usrInfo}/>
 
 					{/* This is displayed as "View History" btn which will navigate to ViewHistory component */}
 					<HistoryBtn usrInfo={usrInfo}/>
