@@ -720,9 +720,16 @@ export default class CollegeSurvey extends React.Component {
     // console.log(this.props.route.params.email);
     // console.log("Email from InputScreen2: " + this.props);
     let apiMethod = "POST";
+	let currentExising = this.state.firstTime;
+	/*
     if (this.state.firstTime = 1) {
       apiMethod = "PATCH";
     }
+	*/
+	if(currentExising === 1)
+	{
+		apiMethod = "PATCH";
+	}
 
     this.setFirstTime(1);
 
