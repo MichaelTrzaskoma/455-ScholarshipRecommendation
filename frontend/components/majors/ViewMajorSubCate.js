@@ -28,7 +28,7 @@ export default class ViewMajorSubCate extends React.Component {
   }
 
   getDoc = () => {
-    let URL = "http://00bd1ae1b950.ngrok.io/api/v1.2/resources/major/view/category/" + this.state.subCate;
+    let URL = "http://3efdd482435b.ngrok.io/api/v1.2/resources/major/view/category/" + this.state.subCate;
 
     fetch(URL, {
       method: "GET",
@@ -72,7 +72,7 @@ export default class ViewMajorSubCate extends React.Component {
 
     this.setState({ modalVisible: false});
     // console.log(this.state.currentBookmarkKey)
-    let URL = "http://00bd1ae1b950.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/major/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/major/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
 
 
     fetch(URL, {

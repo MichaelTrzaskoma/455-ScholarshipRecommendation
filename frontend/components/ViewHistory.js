@@ -97,7 +97,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
   }
 
   componentDidMount() {
-    this.getRecommend_scholarship();
+    this.getHistory();
   }
 
   parseICON(types) {
@@ -131,10 +131,10 @@ export default class ViewRecommendTbl_3 extends React.Component {
     }
   }
 
-  getRecommend_scholarship() {
+  getHistory() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid+ "/recommends/scholarship";  "/recommends/scholarship"
+      let URL = "http://35f9419b9dde.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid+ "/recent/all/5";  
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
       const scholarArr = [];
 
@@ -148,25 +148,24 @@ export default class ViewRecommendTbl_3 extends React.Component {
         .then((response) => response.json())
         .then((json) => {
           json.forEach((res) => {
-
+            // console.log("Checking ViewHistory " + JSON.stringify(res));
             // parse the deadline
-            let deadline = "";
+            // let deadline = "";
 
-            if (res.Deadline == "Deadline Varies") {
-              deadline = "Varies";
-            } else {
-              const fields = res.Deadline.split(" ");
-              const subFields = fields[1].split(",");
-              deadline = parseMonth(fields[0]) + "/" + subFields[0] + "/" + fields[2];
-            }
+            // if (res.Deadline == "Deadline Varies") {
+            //   deadline = "Varies";
+            // } else {
+            //   const fields = res.Deadline.split(" ");
+            //   const subFields = fields[1].split(",");
+            //   deadline = parseMonth(fields[0]) + "/" + subFields[0] + "/" + fields[2];
+            // }
 
             // append the API data to local var
             scholarArr.push({
-              key: res.Name,
+              timeAdded: res.timeAdded,
               // amount: parseInt(parseAmount(res.Amount)),
-              amount: parseInt(res.Amount),
-              deadline: deadline,
-              score: parseSimilarScore(res.Val),
+              title: res.title,
+              type: res.type
             });
           });
 
@@ -190,7 +189,8 @@ export default class ViewRecommendTbl_3 extends React.Component {
   }
 
   render() {
-    // console.log("Checking ViewHistory " + JSON.stringify(this.state.usrInfo));
+    // console.log("Checking ViewHistory " + JSON.stringify(this.props.route.params.usrInfo));
+    // console.log("Checking scholarArr " +  JSON.stringify(this.state.scholarArr));
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>
@@ -212,8 +212,6 @@ export default class ViewRecommendTbl_3 extends React.Component {
                 contentContainerStyle={
                   styles.scrollArea2_contentContainerStyle
                 }>
-
-
                 <Menu
                   visible={this.state.opt_title_visible}
                   onDismiss={this._closeTitleMenu}
@@ -371,24 +369,24 @@ export default class ViewRecommendTbl_3 extends React.Component {
                     </View>
                     <View style={styles.txtGrp}>
                       <View style={styles.txtUpGrp}>
-                        <Text style={styles.text}>{item.key}</Text>
+                        <Text style={styles.text}>{item.title}</Text>
                       </View>
                       <View style={styles.txtDownGrp}>
                         <View style={styles.rect5Stack}>
                           <View style={styles.rect5}>
                             <View style={styles.text2Row}>
-                              <Text style={styles.text2}>{item.score}</Text>
-                              <FontAwesome
+                              {/* <Text style={styles.text2}>{item.timeAdded}</Text> */}
+                              {/* <FontAwesome
                                 name="star"
-                                style={styles.icon3}></FontAwesome>
+                                style={styles.icon3}></FontAwesome> */}
                             </View>
                           </View>
                           <View style={styles.rect6}>
-                            <Text style={styles.text3}>{parseAmount(item.amount)}</Text>
+                            <Text style={styles.text3}>{item.type}</Text>
                           </View>
                         </View>
                         <View style={styles.rect7}>
-                          <Text style={styles.text4}>{item.deadline}</Text>
+                          <Text style={styles.text4}>{item.timeAdded}</Text>
                         </View>
                       </View>
                     </View>
@@ -726,7 +724,7 @@ const styles = StyleSheet.create({
     color: '#121212',
     // alignSelf: 'center',
     // width: 100,
-    // marginLeft: 50,
+    marginLeft: -60,
   },
   rect5Stack: {
     flex: 1,
@@ -740,6 +738,8 @@ const styles = StyleSheet.create({
   text4: {
     color: '#121212',
     alignSelf: 'center',
+    width: 220,
+    marginLeft: -33
   },
   icon4: {
     color: 'rgba(143,143,143,1)',
