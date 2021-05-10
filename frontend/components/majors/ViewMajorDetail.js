@@ -7,7 +7,7 @@ export default class ViewMajorDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usrInfo: this.props.route.params.usrProf,
+      usrInfo: this.props.route.params.userProfile,
       majorObj1: {
         majorTitle: "",
         aveSalary: "",
@@ -29,8 +29,8 @@ export default class ViewMajorDetail extends React.Component {
 
     // console.log("College Detail page: " + JSON.stringify(this.props));
     //Insert API Call here
-    // let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
-    let URL = "http://00bd1ae1b950.ngrok.io/api/v1.2/users/id/hchen98x@gmail.com/bookmarks/major/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    // let URL = "http://00bd1ae1b950.ngrok.io/api/v1.2/users/id/hchen98x@gmail.com/bookmarks/major/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "POST",
@@ -46,21 +46,11 @@ export default class ViewMajorDetail extends React.Component {
         "jwt": this.state.usrInfo.jwt,
       }),
     })
-
-      // =============================================
-      // .then((response) => response.json())
-      // .then((json) => {
-      //   console.log("Email: " + this.state.email);
-      //   console.log(json);
-      // })
-      // =============================================
-
       .then((response) => {
         if (response.status == 202) {
 
           alert(
-            "Your data have been successfully \ninserted! " +
-            "You will be navigated back!"
+            "Bookmarked!"
           );
 
         } else {
@@ -79,11 +69,11 @@ export default class ViewMajorDetail extends React.Component {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
 
-    let URL = "http://00bd1ae1b950.ngrok.io/api/v1.2/resources/majors/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/resources/majors/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
     fetch(URL, {
       method: 'GET',
       headers: {
-        Accept: 'application/json',
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
     })
@@ -111,8 +101,8 @@ export default class ViewMajorDetail extends React.Component {
       });
   }
 
-  UNSAFE_componentWillMount() {
-    // componentDidMount(){
+  componentDidMount() {
+    // console.log("User profile from ViewMajorDetail: " + JSON.stringify(this.props));
     this.getDetail();
   }
 

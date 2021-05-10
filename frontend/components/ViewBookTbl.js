@@ -8,15 +8,12 @@ import {
   StatusBar,
   ActivityIndicator,
   Modal,
-  Pressable,
+  Pressable
 } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { Menu, Provider } from 'react-native-paper';
 import { parse_UTCTimeStamp, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../functions/utilities";
 import { FlatList } from 'react-native-gesture-handler';
-import ViewScholarDetail from "./scholarships/ViewScholarDetail";
-import ViewCollegeDetail from "./colleges/ViewCollegeDetail";
-import ViewMajorDetail from "./majors/ViewMajorDetail";
 import { useNavigation } from "@react-navigation/native";
 
 export default function ViewBookTbl(props) {
@@ -26,6 +23,7 @@ export default function ViewBookTbl(props) {
 }
 
 class ViewBookTblClass extends React.Component {
+// export default class ViewBookTbl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -108,13 +106,6 @@ class ViewBookTblClass extends React.Component {
     this._closeAmountMenu();
   }
 
-  truncateTime(input) {
-    let dateTime = Date(input);
-    let posColon = String(dateTime).indexOf(":");
-    let truncated = String(dateTime).substring(0, posColon - 2);
-    return truncated;
-  }
-
   handleBookmarkOpen(key) {
     this.setModalVisible(true)
     this.setState({ currentBookmarkKey: key });
@@ -173,6 +164,9 @@ class ViewBookTblClass extends React.Component {
   }
 
   componentDidMount() {
+    // console.log("\n");
+    // console.log("User profile from ViewBookmarkTbl: " + JSON.stringify(this.props.route.params.usrInfo));
+    // console.log("\n");
     this.getBookmarks();
   }
 
@@ -228,34 +222,38 @@ class ViewBookTblClass extends React.Component {
   };
 
   typeNavigator(itemKey, itemType) {
-    let typeCollege = "college";
-    let typeScholarship = "scholarship";
-    let typeMajor = "major";
+    // navigate the user to respective detail page
+    // INPUT
+    // : itemKey (str) the title of the respective unique identifier
+    // : itemType (str) the item types - it can only be scholarship, major, or college
+    // NOTE: when navigate the client, we also pass down the userProfile obj
 
-    // console.log("typeNavigator itemKey: "+itemKey);
-    // console.log("typeNavigator itemType: " + itemType);
+    const t = String(itemType);
 
-    if (itemType.localeCompare(typeCollege) == 0) {
-      this.props.navigation.navigate('ViewCollegeDetail', {
-        title: itemKey,
-        userProfile: this.state.usrInfo,
-      });
-    }
-    else if (itemType.localeCompare(typeScholarship) == 0) {
-      // console.log("passed userInfo: "+JSON.stringify(this.state.usrInfo));
-      this.props.navigation.navigate('ViewScholarDetail', {
-        title: itemKey,
-        usrInfo: this.state.usrInfo,
-      });
-    }
-    else if (itemType.localeCompare(typeMajor) == 0) {
-      this.props.navigation.navigate('ViewMajorDetail', {
-        title: itemKey,
-        usrInfo: this.state.usrInfo,
-      });
-    }
-    else {
-      console.log("bookmark type was not found for navigation");
+    switch (t) {
+      case "scholarship":
+        this.props.navigation.navigate('ViewScholarDetail', {
+          title: itemKey,
+          itemKey: itemKey,
+          userProfile: this.props.route.params.usrInfo,
+        });
+        break;
+
+      case "major":
+        this.props.navigation.navigate('ViewMajorDetail', {
+          title: itemKey,
+          itemKey: itemKey,
+          userProfile: this.props.route.params.usrInfo,
+        });
+        break;
+
+      default:
+        this.props.navigation.navigate('ViewCollegeDetail', {
+          title: itemKey,
+          itemKey: itemKey,
+          userProfile: this.props.route.params.usrInfo,
+        });
+        break;
     }
   }
 
@@ -298,6 +296,8 @@ class ViewBookTblClass extends React.Component {
     // console.log("Checking Bookmark " + JSON.stringify(this.state.usrInfo));
     const { modalVisible } = this.state;
     const { navigation } = this.props;
+
+
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>
@@ -310,6 +310,8 @@ class ViewBookTblClass extends React.Component {
       <Provider>
         <StatusBar backgroundColor="#007FF9" barStyle="light-content" />
         <View style={styles.container}>
+
+          {/* Bookmark modal */}
           <Modal
             animationType="slide"
             transparent={true}
@@ -335,15 +337,13 @@ class ViewBookTblClass extends React.Component {
                   <Text style={styles.textStyle}> Close   </Text>
                 </Pressable>
               </View>
-              <View>
-
-                {/* sorting options here */}
-
-              </View>
             </View>
           </Modal>
+
+
           <View style={styles.scrollArea2Stack}>
 
+            {/* sorting options here */}
             <View style={styles.scrollArea2}>
               <ScrollView
                 horizontal={true}
@@ -499,11 +499,7 @@ class ViewBookTblClass extends React.Component {
                     style={styles.itemN2}
                     onLongPress={() => { this.handleBookmarkOpen(item.key) }}
                     onPress={() => {
-                      this.typeNavigator(item.key, item.type);
-                      // this.props.navigation.navigate("ViewScholarDetail", {
-                      //   title: item.key,
-                      //   itemKey: item.key,
-                      // });
+                      this.typeNavigator(item.key, item.type)
                     }}
                   >
                     <View style={styles.iconGrp}>
@@ -868,14 +864,10 @@ const styles = StyleSheet.create({
   },
   text3: {
     color: '#121212',
-    // alignSelf: 'center',
-    // width: 100,
-    // marginLeft: 50,
   },
   rect5Stack: {
     flex: 1,
     marginRight: 54,
-    //marginRight was originally 54
   },
   rect7: {
     width: 110,

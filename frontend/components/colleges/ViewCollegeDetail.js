@@ -7,9 +7,7 @@ export default class ViewCollegeDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usrInfo: this.props.route.params.usrProf,
-      collegeState: this.props.route.params.title,
-      collegeKey: this.props.route.params.itemKey,
+      usrInfo: this.props.route.params.userProfile,
       collegeObj1_1: {
         uniName: '',
         address: '',
@@ -111,7 +109,7 @@ export default class ViewCollegeDetail extends React.Component {
         popMajor: ''
       },
       applyLinkVisible: false,
-      email: this.props.route.params.email,
+      // email: this.props.route.params.email,
     };
     // this.handleApplyLinkVisible = this.handleApplyLinkVisible.bind(this);
     // this.handleBookmark = this.handleBookmark.bind(this);
@@ -119,10 +117,10 @@ export default class ViewCollegeDetail extends React.Component {
 
   handleBookmark () {
 
-    console.log("College Detail page: " + this.props.route.params.usrProf);
+    // console.log("College Detail page: " + this.props.route.params.usrProf);
     //Insert API Call here
-    // let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
-    let URL = "http://00bd1ae1b950.ngrok.io/api/v1.2/users/id/hchen98x@gmail.com/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    // let URL = "http://00bd1ae1b950.ngrok.io/api/v1.2/users/id/hchen98x@gmail.com/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "POST",
@@ -138,21 +136,11 @@ export default class ViewCollegeDetail extends React.Component {
         "jwt": this.state.usrInfo.jwt,
       }),
     })
-
-      // =============================================
-      // .then((response) => response.json())
-      // .then((json) => {
-      //   console.log("Email: " + this.state.email);
-      //   console.log(json);
-      // })
-      // =============================================
-
       .then((response) => {
         if (response.status == 202) {
 
           alert(
-            "Your data have been successfully \ninserted! " +
-            "You will be navigated back!"
+            "Bookmarked!"
           );
 
         } else {
@@ -169,10 +157,9 @@ export default class ViewCollegeDetail extends React.Component {
 
   getDetail = () => {
     // console.log("The Key: " + this.props.route.params.itemKey);
-    // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
 
     let URL =
-      "http://00bd1ae1b950.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
+      "http://6bff156668d9.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
 
 
     fetch(URL, {
@@ -295,7 +282,7 @@ export default class ViewCollegeDetail extends React.Component {
   }
 
   UNSAFE_componentWillMount() {
-    // componentDidMount(){
+    // console.log("User profile from ViewCollegeDetail: " + JSON.stringify(this.props.route.params.userProfile));
     this.getDetail();
   }
 
