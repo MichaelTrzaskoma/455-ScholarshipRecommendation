@@ -81,6 +81,9 @@ export default class ViewScholarTbl extends React.Component {
 
     let URL = "http://6bff156668d9.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
 
+    // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
+
+
     fetch(URL, {
       method: "GET",
       headers: {
@@ -128,11 +131,10 @@ export default class ViewScholarTbl extends React.Component {
   }
 
   setCurrentBookmarkkey = (itemKey) => {
-    this.setState({ currentBookmarkKey: itemKey});
+    this.setState({ currentBookmarkKey: itemKey });
   }
 
-  handleBookmarkOpen(key)
-  {
+  handleBookmarkOpen(key) {
     this.setModalVisible(true)
     this.setState({ currentBookmarkKey: key });
   }
@@ -140,11 +142,14 @@ export default class ViewScholarTbl extends React.Component {
   handleBookmark() {
 
     console.log("Here is ViewScholarTbl and triggered bookmark")
-    this.setState({ modalVisible: false});
+    this.setState({ modalVisible: false });
     console.log(this.state.currentBookmarkKey)
 
     //Insert API Call here
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.userProfile.email + "/bookmarks/scholarship/"+ this.state.userProfile.jwt+ "/"+ this.state.userProfile.uuid;
+
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.userProfile.email + "/bookmarks/scholarship/" + this.state.userProfile.jwt + "/" + this.state.userProfile.uuid;
+
+    // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.userProfile.email + "/bookmarks/scholarship/"+ this.state.userProfile.jwt+ "/"+ this.state.userProfile.uuid;
 
     fetch(URL, {
       method: "POST",
@@ -166,7 +171,7 @@ export default class ViewScholarTbl extends React.Component {
           alert("Already bookmarked!");
 
         } else {
-          
+
           alert("Bookmark failed!");
 
         }
@@ -196,7 +201,7 @@ export default class ViewScholarTbl extends React.Component {
             this.props.navigation.navigate('ViewScholarDetail', {
               title: item.key,
               itemKey: item.key,
-              userProfile: this.props.route.params.usrProfile
+              usrProf: this.props.route.params.usrProfile
             });
           }}
         >
@@ -245,7 +250,7 @@ export default class ViewScholarTbl extends React.Component {
 
     return (
       <View style={styles.container}>
-         <Modal
+        <Modal
           animationType="slide"
           transparent={true}
           visible={modalVisible}

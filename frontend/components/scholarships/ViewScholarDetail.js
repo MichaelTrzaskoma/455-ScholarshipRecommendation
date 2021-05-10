@@ -35,7 +35,9 @@ export default class ViewScholarDetail extends React.Component {
 
   handleBookmark () {
     //Insert API Call here
-    let URL = "http://b91079d57729.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+
+    let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+
     fetch(URL, {
       method: "POST",
       headers: {
@@ -75,6 +77,8 @@ export default class ViewScholarDetail extends React.Component {
     let URL =
       "http://6bff156668d9.ngrok.io/api/v1.2/resources/scholarships/view/titles/" + this.props.route.params.itemKey +"/"+ this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid ;
 
+      // "http://3efdd482435b.ngrok.io/api/v1.2/resources/scholarships/view/titles/" + this.props.route.params.itemKey +"/"+ this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid ;
+
     fetch(URL, {
       method: 'GET',
       headers: {
@@ -97,7 +101,7 @@ export default class ViewScholarDetail extends React.Component {
             description: json.description,
           },
         });
-        
+
       }).catch((error) => {
         console.log('An error happened: ' + error);
       });

@@ -178,6 +178,7 @@ class ViewBookTblClass extends React.Component {
 
       // let URL = "http://b91079d57729.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email +"/bookmarks/all/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid;  
 
+
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
       const bookArr = [];
 
