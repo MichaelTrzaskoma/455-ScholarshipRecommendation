@@ -72,7 +72,7 @@ export default class MajorSurvey extends React.Component {
       workEnvironment: 1,
       trueEnvironment: "",
       //Tripwires used to determine if user has edited slider (relevant for displayValues)
-      autoTripwire: false,
+      //autoTripwire: false,
       salaryTripWire: false,
       varietyTripwire: false,
       socialTripwire: false,
@@ -173,6 +173,7 @@ export default class MajorSurvey extends React.Component {
     });
   }
 
+  /*
   displayAutonomy(val) {
     var strInput = String(val);
     var strDisplay = "";
@@ -189,7 +190,9 @@ export default class MajorSurvey extends React.Component {
       displayAutonomy: strDisplay
     });
   }
+  */
 
+  /*
   handleTrueAutonomy(val) {
     var strInput = String(val);
     var strTrueVal = "";
@@ -206,6 +209,7 @@ export default class MajorSurvey extends React.Component {
       trueAutonomy: strTrueVal
     });
   }
+  */
 
   handleTrueVariety(val) {
     var strInput = String(val);
@@ -311,14 +315,23 @@ export default class MajorSurvey extends React.Component {
   }
 
   upload2server() {
-    if (this.state.firstTime == 1) {
-      this.setState({ currentMethod: "PATCH" });
+
+	const currentExisting = this.state.firstTime;
+	let localMethod = "POST";
+
+    if (currentExisting === 1) {
+      //this.setState({ currentMethod: "PATCH" });
+	  console.log("This is called");
+	  localMethod = "PATCH";
     }
     this.setFirstTime(1);
-
+	console.log( typeof currentExisting);
+	console.log("CurrentExisting: "+currentExisting);
+	//console.log("Current Method: "+ this.state.currentMethod);
+	console.log("Local Method: "+ localMethod);
     let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major";
     fetch(URL, {
-      method: this.state.currentMethod,
+      method: localMethod,
       // method: "DELETE",
       headers: {
         "Accept": "application/json",
@@ -386,24 +399,6 @@ export default class MajorSurvey extends React.Component {
         });
       }
     }
-    if (this.state.autoTripwire) {
-      var strTrueAutonomy = String(this.state.trueAutonomy)
-      if (strTrueAutonomy.localeCompare("Yes") == 0) {
-        this.setState({
-          autonomy: 0
-        });
-      }
-      else if (strTrueAutonomy.localeCompare("Job Dependent") == 0) {
-        this.setState({
-          autonomy: 1
-        });
-      }
-      else {
-        this.setState({
-          autonomy: 2,
-        });
-      }
-    }
     if (this.state.varietyTripwire) {
       var strTrueVariety = String(this.state.trueVariety)
       if (strTrueVariety.localeCompare("Low") == 0) {
@@ -444,45 +439,45 @@ export default class MajorSurvey extends React.Component {
 
   getExistingData = () => {
     //insert correct URL for user's profile
-    // /api/v1.2/users/id/<email>/<token>/<id>/surveys/major
-    // console.log("User profile obbj from Mjor survey: " + JSON.stringify(this.props.route.params.usrInfo));
-
-    // let URL = http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major
     let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major";
 
+
     fetch(URL, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
+        "Accept": 'application/json',
+        'Content-Type': 'application/json',
       },
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log("Exisiting Major Data: " + JSON.stringify(json));
-        // console.log("Email from ScholarSurvey.js: " + this.state.email);
+        console.log("Exisiting Data from Major Survey: " + JSON.stringify(json));
+       // console.log("Email from MajorSurvey.js: " + this.state.email);
         // set the val to state
-        if (json.mesg.existing === 1) {
+        if (json.mesg.existing == 1) {
           // there's an exisiting data on client's record
-          // this.setState({
-          //   salaryTripWire: json.mesg.haveSalary,
-          //   socialTripwire: json.mesg.haveSocial,
-          //   environmentTripwire: json.mesg.haveEnvironment,
-          //   autoTripwire: json.mesg.haveAutonomy,
-          //   varietyTripwire: json.mesg.haveVariety,
-          //   salaryValue: json.mesg.avg_salary,
-          //   unemploymentValue: json.mesg.unemployment_rate,
-          //   trueAutonomy: json.mesg.autonomous,
-          //   selectedSubjects: json.mesg.subjects,
-          //   trueVariety: json.mesg.variety_of_jobs,
-          //   trueSocialInteraction: json.mesg.high_social_interaction,
-          //   trueEnvironment: json.mesg.work_environment,
-          //   firstTime: json.mesg.existing,
-          // });
-          // this.translateTrues();
+          this.setState({
+            salaryTripWire: json.mesg.haveSal,
+            socialTripwire: json.mesg.haveSocial,
+            environmentTripwire: json.mesg.haveEnv,
+            //autoTripwire: json.mesg.haveAutonomy,
+            varietyTripwire: json.mesg.haveVari,
+            //salaryValue: json.mesg.avg_salary,
+            //unemploymentValue: json.mesg.unemployRate,
+            //trueAutonomy: json.mesg.autonomous,
+            selectedSubjects: json.mesg.subjects,
+            trueVariety: json.mesg.variOfJobs,
+            trueSocialInteraction: json.mesg.social,
+            trueEnvironment: json.mesg.workEnv,
+            firstTime: json.mesg.existing,
+          });
+		  console.log("testing salary: "+ json.mesg.avg_salary);
+		  this.handleSalaryValue(json.mesg.avg_salary);
+		  this.truncateSalary(json.mesg.avg_salary);
+		  this.handleUnemploymentRate(json.mesg.unemployRate);
+		  this.truncateUnemployment(json.mesg.unemployRate);
+          this.translateTrues();
         }
-      }).catch((error) => {
-        console.log(error);
       });
   }
 
@@ -514,8 +509,7 @@ export default class MajorSurvey extends React.Component {
             <Text style={styles.re_text}>Major Survey Questions</Text>
             <Text style={styles.collegeSurveyQA1}>
               What is your desired annual salary? (Nationwide Average)
-      					</Text>
-
+      		</Text>
             <View style={styles.multiSelectorWrapper}>
               <Slider
                 style={{ width: 310, height: 40 }}

@@ -1501,10 +1501,18 @@ class InputScreen extends React.Component {
 	}
 
 	upload2sever = () => {
-		if (this.state.firstTime == 1) {
+		let localMethod = "POST";
+		let currentExisting = this.state.firstTime;
+		/*
+		if (this.state.firstTime === 1) {
 			this.setState({ currentMethod: "PATCH" });
 		}
-
+		*/
+		if(currentExisting ===1)
+		{
+			localMethod = "PATCH";
+		}
+		console.log("local method: "+localMethod);
 		this.setFirstTime(1);
 
 		// console.log(JSON.stringify({
@@ -1526,8 +1534,9 @@ class InputScreen extends React.Component {
 		// console.log("Email from InputScreen2: " + this.props)
 
 		let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
+		console.log("URL"+ URL);
 		fetch(URL, {
-			method: this.state.currentMethod,
+			method: localMethod,
 			headers: {
 				"Accept": "application/json",
 				"Content-Type": "application/json",
@@ -1544,7 +1553,7 @@ class InputScreen extends React.Component {
 				selectedRaces: this.state.selectedRaces,
 				selectedEthnicities: this.state.selectedEthnicities,
 				selectedReligions: this.state.selectedReligions,
-				selectedDisabilities: this.state.selectedDisabilities,
+				selectedDisabilities: this.state.selectedDisabilities
 			}),
 		})
 			.then((response) => {
@@ -1575,7 +1584,7 @@ class InputScreen extends React.Component {
 			&& this.gpaErrorHandling(this.state.gpa)
 			&& this.satErrorHandling(this.state.sat_score)) {
 			this.upload2sever();
-
+			console.log("AFTER UPLOAD2SEVER IN ONSUBMIT METHODS:")
 			console.log("Gender: "+this.state.gender);
 			console.log("Age: "+this.state.dob);
 			console.log("State of residence: "+ this.state.selectedResidences);
@@ -1616,6 +1625,7 @@ class InputScreen extends React.Component {
 				console.log("Exisiting Data Scholarship: " + JSON.stringify(json));
 				// console.log("Email from ScholarSurvey.js: " + this.state.email);
 				// set the val to state
+				
 				if (json.mesg.existing === 1) {
 					// there's an exisiting data on client's record
 					this.setState({
@@ -1623,7 +1633,7 @@ class InputScreen extends React.Component {
 						gender: json.mesg.gender,
 						gpa: json.mesg.gpa,
 						selectedResidences: json.mesg.states,
-						selectedMajors: json.mesg.majors,
+						selectedMajors: json.mesg.major,
 						selectedRaces: json.mesg.race,
 						selectedReligions: json.mesg.religion,
 						selectedDisabilities: json.mesg.dissabilities,
@@ -1638,7 +1648,7 @@ class InputScreen extends React.Component {
 						sat_score : json.mesg.sat,
 						act_score: json.mesg.act,
 						selectedResidences: json.mesg.states,
-						selectedMajors : json.mesg.majors,
+						selectedMajors : json.mesg.major,
 					})
 				}
 			});

@@ -6,14 +6,26 @@ import {
   Text,
   TouchableOpacity,
   StatusBar,
-  ActivityIndicator
+  ActivityIndicator,
+  Modal,
+  Pressable,
 } from 'react-native';
-import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { Menu, Provider } from 'react-native-paper';
 import { parse_UTCTimeStamp, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../functions/utilities";
 import { FlatList } from 'react-native-gesture-handler';
+import ViewScholarDetail from "./scholarships/ViewScholarDetail";
+import ViewCollegeDetail from "./colleges/ViewCollegeDetail";
+import ViewMajorDetail from "./majors/ViewMajorDetail";
+import { useNavigation } from "@react-navigation/native";
 
-export default class ViewBookTbl extends React.Component {
+export default function ViewBookTbl(props) {
+  const navigation = useNavigation();
+
+  return <ViewBookTblClass {...props} navigation={navigation} />;
+}
+
+class ViewBookTblClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,6 +36,8 @@ export default class ViewBookTbl extends React.Component {
       opt_deadline_visible: false,
       opt_score_visible: false,
       opt_amount_visible: false,
+      modalVisible: false,
+      currentBookmarkKey: "",
     };
   }
 
@@ -94,6 +108,70 @@ export default class ViewBookTbl extends React.Component {
     this._closeAmountMenu();
   }
 
+  truncateTime(input) {
+    let dateTime = Date(input);
+    let posColon = String(dateTime).indexOf(":");
+    let truncated = String(dateTime).substring(0, posColon - 2);
+    return truncated;
+  }
+
+  handleBookmarkOpen(key) {
+    this.setModalVisible(true)
+    this.setState({ currentBookmarkKey: key });
+  }
+
+  setModalVisible = (visible) => {
+    this.setState({ modalVisible: visible });
+  }
+
+  setCurrentBookmarkkey = (itemKey) => {
+    this.setState({ currentBookmarkKey: itemKey });
+  }
+
+  removeBookmark() {
+
+    this.setState({ modalVisible: false });
+    // console.log(this.state.currentBookmarkKey)
+
+    let URL = "http://b91079d57729.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+
+    fetch(URL, {
+      method: "DELETE",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "title": this.state.currentBookmarkKey,
+      }),
+    })
+      .then((response) => {
+        if (response.status == 202) {
+
+          alert("Bookmarked Removed!");
+          console.log("Bookmarked Removed");
+          this.getRecommend_scholarship();
+
+
+        } else if (response.status == 208) {
+
+          alert("Already Removed!");
+
+        } else {
+
+          alert("Something else happened!");
+
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    console.log("Bookmark Key: " + this.state.currentBookmarkKey);
+    //alert("This College has been bookmarked!");
+
+  }
+
   componentDidMount() {
     this.getBookmarks();
   }
@@ -103,6 +181,9 @@ export default class ViewBookTbl extends React.Component {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
       console.log("User profile from ViewBookmarksTbl: " + JSON.stringify(this.props.route.params.usrInfo));
       let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+
+      // let URL = "http://b91079d57729.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email +"/bookmarks/all/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid;  
+
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
       const bookArr = [];
 
@@ -124,7 +205,10 @@ export default class ViewBookTbl extends React.Component {
             bookArr.push({
               key: res.title,
               type: res.type,
-              timer: parse_UTCTimeStamp(res.timeAddded),
+              timer: parse_UTCTimeStamp(res.timeAddded)
+
+              // time: String(Date(res.timeAdded)),
+              // displayTime: Date(res.timeAdded)
             });
           });
 
@@ -142,6 +226,38 @@ export default class ViewBookTbl extends React.Component {
     }
 
   };
+
+  typeNavigator(itemKey, itemType) {
+    let typeCollege = "college";
+    let typeScholarship = "scholarship";
+    let typeMajor = "major";
+
+    // console.log("typeNavigator itemKey: "+itemKey);
+    // console.log("typeNavigator itemType: " + itemType);
+
+    if (itemType.localeCompare(typeCollege) == 0) {
+      this.props.navigation.navigate('ViewCollegeDetail', {
+        title: itemKey,
+        userProfile: this.state.usrInfo,
+      });
+    }
+    else if (itemType.localeCompare(typeScholarship) == 0) {
+      // console.log("passed userInfo: "+JSON.stringify(this.state.usrInfo));
+      this.props.navigation.navigate('ViewScholarDetail', {
+        title: itemKey,
+        usrInfo: this.state.usrInfo,
+      });
+    }
+    else if (itemType.localeCompare(typeMajor) == 0) {
+      this.props.navigation.navigate('ViewMajorDetail', {
+        title: itemKey,
+        usrInfo: this.state.usrInfo,
+      });
+    }
+    else {
+      console.log("bookmark type was not found for navigation");
+    }
+  }
 
   FlatListItemSeparator = () => {
     return <View style={styles.ItemSeparator} />;
@@ -180,6 +296,8 @@ export default class ViewBookTbl extends React.Component {
 
   render() {
     // console.log("Checking Bookmark " + JSON.stringify(this.state.usrInfo));
+    const { modalVisible } = this.state;
+    const { navigation } = this.props;
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>
@@ -192,9 +310,40 @@ export default class ViewBookTbl extends React.Component {
       <Provider>
         <StatusBar backgroundColor="#007FF9" barStyle="light-content" />
         <View style={styles.container}>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              alert("Modal has been closed.");
+              this.setModalVisible(!modalVisible);
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text style={styles.modalText}>{this.state.currentBookmarkKey}</Text>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => this.removeBookmark()}
+                >
+                  <Text style={styles.textStyle}>Remove Bookmark</Text>
+                </Pressable>
+                <Pressable
+                  style={[styles.button, styles.buttonClose2]}
+                  onPress={() => this.setModalVisible(false)}
+                >
+                  <Text style={styles.textStyle}> Close   </Text>
+                </Pressable>
+              </View>
+              <View>
+
+                {/* sorting options here */}
+
+              </View>
+            </View>
+          </Modal>
           <View style={styles.scrollArea2Stack}>
 
-            {/* sorting options here */}
             <View style={styles.scrollArea2}>
               <ScrollView
                 horizontal={true}
@@ -202,8 +351,6 @@ export default class ViewBookTbl extends React.Component {
                 contentContainerStyle={
                   styles.scrollArea2_contentContainerStyle
                 }>
-
-
                 <Menu
                   visible={this.state.opt_title_visible}
                   onDismiss={this._closeTitleMenu}
@@ -250,7 +397,7 @@ export default class ViewBookTbl extends React.Component {
                         <FontAwesome
                           name="sort-alpha-asc"
                           style={styles.icon18}></FontAwesome>
-                        <Text style={styles.deadline}>Deadline</Text>
+                        <Text style={styles.deadline}>Time</Text>
                         <FontAwesome
                           name="sort-down"
                           style={styles.icon19}></FontAwesome>
@@ -283,7 +430,7 @@ export default class ViewBookTbl extends React.Component {
                         <FontAwesome
                           name="sort-alpha-asc"
                           style={styles.icon20}></FontAwesome>
-                        <Text style={styles.score}>Score</Text>
+                        <Text style={styles.score}>Type</Text>
                         <FontAwesome
                           name="sort-down"
                           style={styles.icon21}></FontAwesome>
@@ -350,15 +497,18 @@ export default class ViewBookTbl extends React.Component {
 
                   <TouchableOpacity
                     style={styles.itemN2}
+                    onLongPress={() => { this.handleBookmarkOpen(item.key) }}
                     onPress={() => {
-                      this.props.navigation.navigate("ViewScholarDetail", {
-                        title: item.key,
-                        itemKey: item.key,
-                      });
+                      this.typeNavigator(item.key, item.type);
+                      // this.props.navigation.navigate("ViewScholarDetail", {
+                      //   title: item.key,
+                      //   itemKey: item.key,
+                      // });
                     }}
                   >
                     <View style={styles.iconGrp}>
                       {this.parseICON(item.type)}
+
                     </View>
 
                     <View style={styles.txtGrp}>
@@ -688,32 +838,40 @@ const styles = StyleSheet.create({
     right: 61,
     bottom: 2,
     flexDirection: 'row',
+    marginRight: 0,
   },
   text2: {
     color: '#121212',
     width: 100,
   },
   icon3: {
-    color: 'rgba(248,194,28,1)',
+    color: 'rgba(48,132,188,1)',
     fontSize: 15,
     marginLeft: 7,
     marginTop: 1,
   },
   text2Row: {
+<<<<<<< HEAD
     height: 20,
     flexDirection: 'row',
     flex: 1,
     marginRight: 7,
+=======
+    height: 16,
+    //flexDirection: 'row',
+    //flex: 1,
+    marginRight: -10,
+>>>>>>> f396800289e2a2ab07cbbde073f574c3ab4c839c
     marginTop: 5,
   },
   rect6: {
-    marginLeft: 60,
+    marginLeft: 0,
     width: 120,
     position: 'absolute',
-    top: 0,
+    top: 'auto',
     bottom: 0,
     justifyContent: 'center',
-    textAlign: "left"
+    textAlign: "left",
   },
   text3: {
     color: '#121212',
@@ -724,6 +882,7 @@ const styles = StyleSheet.create({
   rect5Stack: {
     flex: 1,
     marginRight: 54,
+    //marginRight was originally 54
   },
   rect7: {
     width: 110,
@@ -733,6 +892,8 @@ const styles = StyleSheet.create({
   text4: {
     color: '#121212',
     alignSelf: 'center',
+    marginLeft: -12,
+    marginTop: 13,
   },
   icon4: {
     color: 'rgba(143,143,143,1)',
@@ -1171,5 +1332,50 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  buttonClose2: {
+    backgroundColor: "#c42e23",
+    marginTop: 20,
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
   },
 });
