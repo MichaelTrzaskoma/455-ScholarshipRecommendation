@@ -8,9 +8,10 @@ import TabViewSurvey from './TabViewSurvey';
 import MultiSurveyBtn from "../ui/MultiSurveyBtn";
 import HistoryBtn from "../ui/HistoryBtn";
 import { deleteSecureStorage } from "../functions/secureStorage";
+import { useNavigation } from "@react-navigation/native";
 
 export default function AccScreen({ usrInfo }) {
-
+	const navigation = useNavigation();
 	// console.log("From account " + JSON.stringify(usrInfo));
 	// const user_info = usrInfoObj;
 	return (
@@ -31,32 +32,19 @@ export default function AccScreen({ usrInfo }) {
 				</View>
 				<View style={styles.accBtnGrp}>
 
-					{/* Sub Add Profile Detail btn Component */}
-					{/* <AddProfile email={usrInfo.email} /> */}
-
-					{/* Sub Add College Preferences btn Component */}
-					{/* <AddCollege /> */}
-
-					{/* <TouchableOpacity style={styles.addMajorQuizBtn}>
-						<View style={styles.addMajorQuizIconRow}>
-							<MaterialIcons
-								name="playlist-add"
-								style={styles.addMajorQuizIcon}></MaterialIcons>
-							<Text style={styles.addMajorQuizTxt}>Add Major Quiz</Text>
-						</View>
-						<View style={styles.addMajorQuizIconRowFiller}></View>
-						<Entypo
-							name="chevron-small-right"
-							style={styles.rightArrowIcon3}></Entypo>
-					</TouchableOpacity> */}
-
 					{/* This is displayed as "Take Survey" btn which will navigate to TabViewSurvey component */}
-					<MultiSurveyBtn userInfo={usrInfo} />
+					<MultiSurveyBtn usrInfo={usrInfo}/>
 
 					{/* This is displayed as "View History" btn which will navigate to ViewHistory component */}
-					<HistoryBtn />
+					<HistoryBtn usrInfo={usrInfo}/>
 
-					<TouchableOpacity style={styles.bookmarksBtn}>
+					<TouchableOpacity 
+						onPress= {() => {
+							navigation.navigate("ViewBookTbl", {
+								usrInfo: usrInfo
+							})
+						}}
+						style={styles.bookmarksBtn}>
 						<View style={styles.bookmarksIconRow}>
 							<Ionicons
 								name="md-bookmarks"

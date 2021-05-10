@@ -6,12 +6,13 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { FontAwesome, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
-export default function MajorCategory() {
-
+export default function MajorCategory(props) {
+  const navigation = useNavigation();
+  // console.log("Major Category check" + JSON.stringify(props.usrProf));
   return (
-
     // Cateogry ScrollView */}
     <View style={styles.category_container}>
       <View style={styles.categoryGrp}>
@@ -23,7 +24,15 @@ export default function MajorCategory() {
             contentContainerStyle={styles.scrollArea1_contentContainerStyle}
           >
             <View style={styles.artBtnRow}>
-              <TouchableOpacity style={styles.artBtn}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("ViewMajorSubCate", {
+                    title: "Art Majors",
+                    itemKey: "Arts",
+                    usrInfo: props.usrProf
+                  })
+                }}
+                style={styles.artBtn}>
                 <Ionicons
                   name="ios-brush"
                   style={styles.artIcon}
@@ -31,14 +40,30 @@ export default function MajorCategory() {
                 <View style={styles.artIconFiller}></View>
                 <Text style={styles.artTxt}>Arts</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.bnBtn}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("ViewMajorSubCate", {
+                    title: "Business Majors",
+                    itemKey: "Business",
+                    usrInfo: props.usrProf
+                  })
+                }}
+                style={styles.bnBtn}>
                 <Ionicons
                   name="md-business"
                   style={styles.bnIcon}
                 ></Ionicons>
                 <Text style={styles.bnTxt}>Business</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.bnBtn}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("ViewMajorSubCate", {
+                    title: "Education Majors",
+                    itemKey: "Education",
+                    usrInfo: props.usrProf
+                  })
+                }}
+                style={styles.bnBtn}>
                 <Ionicons
                   name="ios-school"
                   style={styles.edIcon}
@@ -46,15 +71,31 @@ export default function MajorCategory() {
                 <View style={styles.edIconFiller}></View>
                 <Text style={styles.edTxt}>Education</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.bnBtn}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("ViewMajorSubCate", {
+                    title: "Health Profession Majors",
+                    itemKey: "Health Professions",
+                    usrInfo: props.usrProf
+                  })
+                }}
+                style={styles.bnBtn}>
                 <MaterialCommunityIcons
                   name="hospital-building"
                   style={styles.hPIcon}
                 ></MaterialCommunityIcons>
                 <View style={styles.hPIconFiller}></View>
-                <Text style={styles.hPTxt}>North Dakota</Text>
+                <Text style={styles.hPTxt}>Health Professions</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.bnBtn}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("ViewMajorSubCate", {
+                    title: "Science, Technology, & Math",
+                    itemKey: "Science, Technology, & Math",
+                    usrInfo: props.usrProf
+                  })
+                }}
+                style={styles.bnBtn}>
                 <MaterialCommunityIcons
                   name="lightbulb-on-outline"
                   style={styles.sTMIcon}
@@ -64,7 +105,14 @@ export default function MajorCategory() {
                   Sci, Tech & Math
                     </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.bnBtn}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("ViewAllMajor", {
+                    title: "All Majors List",
+                    usrInfo: props.usrProf
+                  });
+                }}
+                style={styles.bnBtn}>
                 <FontAwesome
                   name="arrow-circle-right"
                   style={styles.customIcon}>
@@ -129,13 +177,13 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
     backgroundColor: "white",
     shadowColor: "rgba(0,0,0,1)",
-		shadowOffset: {
-			width: 3,
-			height: 3,
-		},
-		elevation: 5,
-		shadowOpacity: 0.01,
-		shadowRadius: 0,
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    elevation: 5,
+    shadowOpacity: 0.01,
+    shadowRadius: 0,
     marginLeft: 10,
   },
   artIcon: {
@@ -166,13 +214,13 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginLeft: 12,
     shadowColor: "rgba(0,0,0,1)",
-		shadowOffset: {
-			width: 3,
-			height: 3,
-		},
-		elevation: 5,
-		shadowOpacity: 0.01,
-		shadowRadius: 0,
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    elevation: 5,
+    shadowOpacity: 0.01,
+    shadowRadius: 0,
   },
   bnIcon: {
     color: "rgba(128,128,128,1)",
@@ -240,8 +288,8 @@ const styles = StyleSheet.create({
     color: "#121212",
     fontSize: 14,
     width: 90,
-    height: 24,
-    marginBottom: 9,
+    height: 40,
+    marginBottom: 5,
     marginLeft: 10
   },
   sTMBtn: {

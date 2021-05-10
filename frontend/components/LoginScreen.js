@@ -76,7 +76,7 @@ export default function LoginScreen(props) {
 						// Reguired for closing the modal
 						onPressClose={() => setVisible2(false)}
 						// use tunnel network here to local test env
-						url={'http://d95c75595ad1.ngrok.io/api/v1.2/managements/users/forgotpassword'}
+						url={'http://6bff156668d9.ngrok.io/api/v1.2/managements/users/forgotpassword'}
 					/>
 					<TouchableOpacity style={styles.forgotPasswrdBtn} onPress={forgotPaswrdBtnHandler}>
 						<Text style={styles.forgotPasswrd_txt}>Forgot Password?</Text>
@@ -91,7 +91,7 @@ export default function LoginScreen(props) {
 							// Reguired for closing the modal
 							onPressClose={() => setVisible(false)}
 							// use tunnel network here to local test env
-							url={'http://d95c75595ad1.ngrok.io/api/v1.2/managements/users/signup'}
+							url={'http://6bff156668d9.ngrok.io/api/v1.2/managements/users/signup'}
 						/>
 						<TouchableOpacity style={styles.signupBtn} onPress={signUpBtnHandler}>
 							<Text style={styles.foot_txt}>Don't have an account? <Text style={styles.signUp_txt}>Sign Up</Text></Text>

@@ -10,8 +10,7 @@ export default class ViewScholarDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usrInfo : this.props.route.params.userProfile,
-      scholarshipKey: this.props.itemKey,
+      usrInfo: this.props.route.params.userProfile,
       scholarshipObj: {
         amount: '',
         ava: '',
@@ -22,10 +21,10 @@ export default class ViewScholarDetail extends React.Component {
         title: '',
       },
       applyLinkVisible: false,
-      email: this.props.route.params.email,
+      // email: this.props.route.params.email,
     };
     this.handleApplyLinkVisible = this.handleApplyLinkVisible.bind(this);
-    this.handleBookmark = this.handleBookmark.bind(this);
+    // this.handleBookmark = this.handleBookmark.bind(this);
   }
 
   handleApplyLinkVisible(boolean) {
@@ -36,7 +35,9 @@ export default class ViewScholarDetail extends React.Component {
 
   handleBookmark () {
     //Insert API Call here
-    let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid +"/bookmarks";
+
+    let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+
     fetch(URL, {
       method: "POST",
       headers: {
@@ -44,29 +45,14 @@ export default class ViewScholarDetail extends React.Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "email": this.state.usrInfo.email, 
         "title": this.state.scholarshipObj.title,
-        "type" : "scholarship",
-        "unique_id": this.state.usrInfo.uuid,
-        "jwt": this.state.usrInfo.jwt,
-        // "uniqueID": getDeviceID(),
       }),
     })
-
-      // =============================================
-      // .then((response) => response.json())
-      // .then((json) => {
-      //   console.log("Email: " + this.state.email);
-      //   console.log(json);
-      // })
-      // =============================================
-
       .then((response) => {
         if (response.status == 202) {
 
           alert(
-            "Your data have been successfully \ninserted! " +
-            "You will be navigated back!"
+            "Bookmarked!"
           );
 
         } else {
@@ -81,20 +67,22 @@ export default class ViewScholarDetail extends React.Component {
     //alert("This scholarship has been bookmarked!");
   }
 
-  componentDidMount() {
+  UNSAFE_componentWillMount() {
+    // console.log("User profile from ViewScholarDetail: " + JSON.stringify(this.props.route.params));
     this.getDetail();
   }
 
   getDetail = () => {
-    // console.log("The Key: " + this.props.route.params.itemKey);
-    // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
+    
     let URL =
-      "http://b9d79f8fdd3c.ngrok.io/api/v1.2/resources/scholarships/view/titles/" + this.props.route.params.itemKey +"/"+ this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid ;
+      "http://6bff156668d9.ngrok.io/api/v1.2/resources/scholarships/view/titles/" + this.props.route.params.itemKey +"/"+ this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid ;
+
+      // "http://3efdd482435b.ngrok.io/api/v1.2/resources/scholarships/view/titles/" + this.props.route.params.itemKey +"/"+ this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid ;
 
     fetch(URL, {
       method: 'GET',
       headers: {
-        Accept: 'application/json',
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
     })
@@ -112,9 +100,10 @@ export default class ViewScholarDetail extends React.Component {
             title: json.name,
             description: json.description,
           },
-        }).catch((error) => {
-          console.log('An error happened: ' + error);
         });
+
+      }).catch((error) => {
+        console.log('An error happened: ' + error);
       });
   }
 

@@ -8,14 +8,17 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { storeData } from "./functions/secureStorage";
 import { getDeviceID } from "./functions/deviceUniqueID";
+// import { useNavigation } from "@react-navigation/native";
 // import * as SecureStore from 'expo-secure-store';
 
 import LoginScreen from "./components/LoginScreen";
 import AccScreen from "./components/AccScreen";
 import TabViewSurvey from "./components/TabViewSurvey";
-import ScholarSurvey from "./components/scholarships/ScholarSurvey";
+import ViewBookTbl from "./components/ViewBookTbl";
+import ViewHistory from "./components/ViewHistory";
 
 // Scholarship
+import ScholarSurvey from "./components/scholarships/ScholarSurvey";
 import ScholarshipScreen from "./components/scholarships/ScholarshipScreen";
 import ViewAllScholar from "./components/scholarships/ViewAllScholar";
 import ViewScholarSubCate from "./components/scholarships/ViewScholarSubCate";
@@ -34,8 +37,10 @@ import ViewAllCollege from "./components/colleges/ViewAllCollege";
 
 // Major
 import MajorScreen from "./components/majors/MajorScreen";
-import MajorDetail from "./components/majors/MajorDetail";
+import ViewMajorDetail from "./components/majors/ViewMajorDetail";
+import ViewMajorSubCate from "./components/majors/ViewMajorSubCate";
 import MajorSurvey from "./components/majors/MajorSurvey";
+import ViewAllMajor from "./components/majors/ViewAllMajor";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -45,6 +50,7 @@ function getHeaderTitle(route) {
   // This can happen during if there hasn't been any navigation inside the screen
   // In our case, it's "Feed" as that's the first screen inside the navigator
   const routeName = getFocusedRouteNameFromRoute(route) ?? 'Scholarship';
+
 
   switch (routeName) {
     case 'Scholarship':
@@ -60,6 +66,8 @@ function getHeaderTitle(route) {
 
 
 function TabScreens({ navigation, route }) {
+
+  // console.log("Tap Test " + JSON.stringify(navigation));
 
   React.useLayoutEffect(() => {
     navigation.setOptions({ headerTitle: getHeaderTitle(route) });
@@ -106,7 +114,7 @@ function TabScreens({ navigation, route }) {
     >
       <Tab.Screen name="Scholarship">
         {/* ScholarshipScreen component belong to first Tap navi */}
-        {() => <ScholarshipScreen usrInfo={usr} />}
+        {() => <ScholarshipScreen usrInfo={usr}/>}
       </Tab.Screen>
 
       <Tab.Screen name="College">
@@ -121,7 +129,7 @@ function TabScreens({ navigation, route }) {
 
       <Tab.Screen name="Account">
         {/* AccountScreen component belong to fourth Tap navi */}
-        {() => <AccScreen usrInfo={usr} />}
+        {() => <AccScreen usrInfo={usr}  />}
       </Tab.Screen>
     </Tab.Navigator>
   );
@@ -149,53 +157,15 @@ export default class App extends Component {
         const unique_id = getDeviceID();
         // console.log("UUID: " + unique_id);
 
-        let URL = "http://d95c75595ad1.ngrok.io/api/v1.2/managements/users/" + inputEmail;
+        // let URL = "http://35f9419b9dde.ngrok.io/api/v1.2/managements/users/" + inputEmail;
 
-        // fetch(URL, {
-        //   method: "POST",
-        //   headers: {
-        //     "Accept": "application/json",
-        //     "Content-Type": "application/json",
-          // },
+        let URL = "http://6bff156668d9.ngrok.io/api/v1.2/managements/users/" + inputEmail;
 
-        //   body: JSON.stringify({
-        //     "paswrd": inputPassword,
-        //     "unique_id": unique_id,
-        //   }),
-
-        // })
-        //   .then((response) => response.json())
-        //   .then((json) => {
-
-        //     if (json.mesg === "authorized") {
-
-        //       storeData("signIn", "Yes");
-        //       storeData("JWT", json.token);
-        //       storeData("uuid", unique_id);
-        //       storeData("email", inputEmail);
-
-        //       this.setState({
-        //         usrProfile: {
-        //           email: inputEmail,
-        //           signedIn: true,
-        //           jwt: json.token,
-        //           uuid: unique_id,
-        //         },
-        //       });
-
-        //     } else {
-        //       alert(json.mesg);
-        //     }
-        //   })
-
-        this.setState({
-          usrProfile: {
-            email: inputEmail,
-            signedIn: true,
-            // Testing
-            jwt: "randome_jwt",
-            // jwt: json.token,
-            uuid: "randome_uuid",
+        fetch(URL, {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
           },
 
           body: JSON.stringify({
@@ -322,6 +292,40 @@ export default class App extends Component {
               }}
             />
 
+            <Stack.Screen
+              name={"ViewBookTbl"}
+              component={ViewBookTbl}
+              options={{
+                title: "Bookmark Lists",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name={"ViewHistory"}
+              component={ViewHistory}
+              options={{
+                title: "History View",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
+            />
+
             {/* CollegeSurvey component stacked */}
             <Stack.Screen
               name={"CollegeSurvey"}
@@ -395,6 +399,24 @@ export default class App extends Component {
             />
 
             <Stack.Screen
+              name={"ViewMajorSubCate"}
+              component={ViewMajorSubCate}
+              // pass down the screen header bar title
+              options={({ route }) => ({
+                title: route.params.title,
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              })}
+            />
+
+            <Stack.Screen
               name={"ScholarshipScreen"}
               component={ScholarshipScreen}
               options={({ route }) => ({
@@ -447,6 +469,22 @@ export default class App extends Component {
             <Stack.Screen
               name={"ViewAllCollege"}
               component={ViewAllCollege}
+              options={{
+                title: "Scholarship Categories",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
+            />
+
+            <Stack.Screen
+              name={"ViewAllMajor"}
+              component={ViewAllMajor}
               options={{
                 title: "Scholarship Categories",
                 headerStyle: {
@@ -549,8 +587,8 @@ export default class App extends Component {
             />
 
             <Stack.Screen
-              name={"MajorDetail"}
-              component={MajorDetail}
+              name={"ViewMajorDetail"}
+              component={ViewMajorDetail}
               options={({ route }) => ({
                 title: route.params.title,
                 headerStyle: {

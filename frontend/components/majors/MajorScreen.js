@@ -11,89 +11,101 @@ import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import MajorCategory from "../../ui/majors/MajorCategory";
 import MajorRecommend from "../../ui/majors/MajorRecommend";
 
-function MajorScreen(props) {
-  return (
-    <View style={styles.container}>
-      <View style={styles.container_grp}>
+class MajorScreen extends React.Component {
+  // console.log("Major props check " + JSON.stringify(props.usrInfo));
 
-        {/* Major Category */}
-        <MajorCategory />
+  constructor(props) {
+		super(props);
+		this.state = {
+			userProfile: this.props.usrInfo,
+		};
+	}
 
-        <View style={styles.recommend_containerStack}>
+  render() {
+    // console.log("user obj from major screen: " + JSON.stringify(this.props.usrInfo));
+    return (
+      <View style={styles.container}>
+        <View style={styles.container_grp}>
 
-          {/* Major Recommend */}
-          <MajorRecommend />
+          {/* Major Category */}
+          <MajorCategory usrProf={this.props.usrInfo} />
 
-          {/* Recent View ScrollView */}
-          <View style={styles.recent_container}>
-            <View style={styles.recentGrp}>
-              <Text style={styles.recentTxt}>Recent Viewed</Text>
-              <View style={styles.scrollArea2}>
-                <ScrollView
-                  horizontal={true}
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={
-                    styles.scrollArea2_contentContainerStyle
-                  }
-                >
-                  <View style={styles.rvBtn1Row}>
-                    <TouchableOpacity style={styles.rvBtn1}>
-                      <MaterialCommunityIcons
-                        name="table-of-contents"
-                        style={styles.rvIcon1}
-                      ></MaterialCommunityIcons>
-                      <View style={styles.rvIcon1Filler}></View>
-                      <Text style={styles.rvTxt1}>Place{"\n"}Holder 1</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.rvBtn2}>
-                      <MaterialCommunityIcons
-                        name="table-of-contents"
-                        style={styles.rvIcon2}
-                      ></MaterialCommunityIcons>
-                      <View style={styles.rvIcon2Filler}></View>
-                      <Text style={styles.rvTxt2}>Place{"\n"}Holder 2</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.rvBtn2}>
-                      <MaterialCommunityIcons
-                        name="table-of-contents"
-                        style={styles.rvIcon3}
-                      ></MaterialCommunityIcons>
-                      <View style={styles.rvIcon3Filler}></View>
-                      <Text style={styles.rvTxt3}>Place{"\n"}Holder 3</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.rvBtn2}>
-                      <MaterialCommunityIcons
-                        name="table-of-contents"
-                        style={styles.rvIcon4}
-                      ></MaterialCommunityIcons>
-                      <View style={styles.rvIcon4Filler}></View>
-                      <Text style={styles.rvTxt4}>Place{"\n"}Holder 4</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.rvBtn2}>
-                      <MaterialCommunityIcons
-                        name="table-of-contents"
-                        style={styles.rvIcon5}
-                      ></MaterialCommunityIcons>
-                      <View style={styles.rvIcon5Filler}></View>
-                      <Text style={styles.rvTxt5}>Place{"\n"}Holder 5</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.rvBtn2}>
-                      <FontAwesome
-                        name="arrow-circle-right"
-                        style={styles.customIcon}>
-                      </FontAwesome>
-                      <View style={styles.viewAllIconFiller}></View>
-                      <Text style={styles.viewAllTxt}>View All</Text>
-                    </TouchableOpacity>
-                  </View>
-                </ScrollView>
+          <View style={styles.recommend_containerStack}>
+
+            {/* Major Recommend */}
+            <MajorRecommend usrProf={this.props.usrInfo} />
+
+            {/* Recent View ScrollView */}
+            <View style={styles.recent_container}>
+              <View style={styles.recentGrp}>
+                <Text style={styles.recentTxt}>Recent Viewed</Text>
+                <View style={styles.scrollArea2}>
+                  <ScrollView
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={
+                      styles.scrollArea2_contentContainerStyle
+                    }
+                  >
+                    <View style={styles.rvBtn1Row}>
+                      <TouchableOpacity style={styles.rvBtn1}>
+                        <MaterialCommunityIcons
+                          name="table-of-contents"
+                          style={styles.rvIcon1}
+                        ></MaterialCommunityIcons>
+                        <View style={styles.rvIcon1Filler}></View>
+                        <Text style={styles.rvTxt1}>Place{"\n"}Holder 1</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={styles.rvBtn2}>
+                        <MaterialCommunityIcons
+                          name="table-of-contents"
+                          style={styles.rvIcon2}
+                        ></MaterialCommunityIcons>
+                        <View style={styles.rvIcon2Filler}></View>
+                        <Text style={styles.rvTxt2}>Place{"\n"}Holder 2</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={styles.rvBtn2}>
+                        <MaterialCommunityIcons
+                          name="table-of-contents"
+                          style={styles.rvIcon3}
+                        ></MaterialCommunityIcons>
+                        <View style={styles.rvIcon3Filler}></View>
+                        <Text style={styles.rvTxt3}>Place{"\n"}Holder 3</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={styles.rvBtn2}>
+                        <MaterialCommunityIcons
+                          name="table-of-contents"
+                          style={styles.rvIcon4}
+                        ></MaterialCommunityIcons>
+                        <View style={styles.rvIcon4Filler}></View>
+                        <Text style={styles.rvTxt4}>Place{"\n"}Holder 4</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={styles.rvBtn2}>
+                        <MaterialCommunityIcons
+                          name="table-of-contents"
+                          style={styles.rvIcon5}
+                        ></MaterialCommunityIcons>
+                        <View style={styles.rvIcon5Filler}></View>
+                        <Text style={styles.rvTxt5}>Place{"\n"}Holder 5</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={styles.rvBtn2}>
+                        <FontAwesome
+                          name="arrow-circle-right"
+                          style={styles.customIcon}>
+                        </FontAwesome>
+                        <View style={styles.viewAllIconFiller}></View>
+                        <Text style={styles.viewAllTxt}>View All</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </ScrollView>
+                </View>
               </View>
             </View>
           </View>
         </View>
       </View>
-    </View>
-  );
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -397,13 +409,13 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
     backgroundColor: "white",
     shadowColor: "rgba(0,0,0,1)",
-		shadowOffset: {
-			width: 3,
-			height: 3,
-		},
-		elevation: 5,
-		shadowOpacity: 0.01,
-		shadowRadius: 0,
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    elevation: 5,
+    shadowOpacity: 0.01,
+    shadowRadius: 0,
     marginLeft: 10,
   },
   rvIcon1: {
@@ -436,13 +448,13 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginLeft: 12,
     shadowColor: "rgba(0,0,0,1)",
-		shadowOffset: {
-			width: 3,
-			height: 3,
-		},
-		elevation: 5,
-		shadowOpacity: 0.01,
-		shadowRadius: 0,
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    elevation: 5,
+    shadowOpacity: 0.01,
+    shadowRadius: 0,
   },
   rvIcon2: {
     color: "rgba(128,128,128,1)",

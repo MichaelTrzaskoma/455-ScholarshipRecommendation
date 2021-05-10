@@ -7,7 +7,7 @@ import { FlatList } from "react-native-gesture-handler";
 // console.disableYellowBox = true;
 LogBox.ignoreAllLogs(true);
 
-export default class ViewSubCate extends React.Component {
+export default class ViewScholarSubCate extends React.Component {
   // navigation.setOptions({ headerTitle: 'Search Screen' })
   constructor(props) {
     super(props);
@@ -21,13 +21,15 @@ export default class ViewSubCate extends React.Component {
   }
 
   componentDidMount() {
-    
     this.getDoc();
   }
 
 
   getDoc = () => {
-        let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/resources/scholarships/view/categories/" + this.state.subCate;
+
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/resources/scholarships/view/categories/" + this.state.subCate;
+
+    // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/resources/scholarships/view/categories/" + this.state.subCate;
 
     fetch(URL, {
       method: "GET",
@@ -38,7 +40,7 @@ export default class ViewSubCate extends React.Component {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log("Checking SubCate state.subCate " + this.props.route.params.itemKey);
+        // console.log("Checking SubCate state.subCate " + this.props.route.params.itemKey);
         // console.log("Testing " + JSON.stringify(json));
         this.setState({
           scholarArr: json,
@@ -59,8 +61,8 @@ export default class ViewSubCate extends React.Component {
   };
 
   render() {
-    console.log("Checking SubCate state.subCate " + JSON.stringify(this.state.subCate));
-    // console.log("Checking SubCate state " + JSON.stringify(this.state.usrInfo));
+    // console.log("Checking SubCate state.subCate " + JSON.stringify(this.state.subCate));
+    console.log("Checking SubCate state " + JSON.stringify(this.state.usrInfo));
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>

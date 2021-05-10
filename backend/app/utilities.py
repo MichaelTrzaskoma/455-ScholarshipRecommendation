@@ -1,6 +1,7 @@
 # This is a utilities file for the APIs and recommendation model
 from datetime import datetime
 
+
 def trimmer_keySlash(key):
     # trim the slash from the key
     # INPUT: key (str)
@@ -69,7 +70,7 @@ def trimmer_na(key):
         return str(key).replace("N\\A", "")
     else:
         return key
-        
+
 
 def extractKey(target):
     # extract key from a dictionary
@@ -97,7 +98,22 @@ def arr2str(target):
         return "None"
     else:
         return trimmer_underscore(', '.join(trimmer_nextline(e) for e in target)[:-2])
-    
+
+
+def arr2str_special(target):
+    # special case of convert arr to string
+    # INPUT: target (arr)
+    # OUTPUT: return a str
+
+    l_arr = len(target)
+
+    if l_arr == 1:
+        return target[0]
+    elif l_arr == 0:
+        return "None"
+    else:
+        return trimmer_underscore(', '.join(trimmer_nextline(e) for e in target))
+
 
 def parseCollegeRanking(target):
     # parse college ranking dict
@@ -109,7 +125,7 @@ def parseCollegeRanking(target):
         temp = trimmer_underscore(key)
         temp = trimmer_nextline(temp)
         result.append({"title": temp, "rank": val})
-    
+
     return result
 
 
@@ -119,7 +135,7 @@ def check_nest1(cursor, key):
     # :mongodb cursor
     # :key (str) target
     # OUTPUT: return boolean to indicate if this target key is existed
-    
+
     return True if str(key) in cursor else False
 
 
@@ -129,11 +145,14 @@ def check_nest2(cursor, key1, key2):
     # :mongodb cursor
     # :key (str) target
     # OUTPUT: return boolean to indicate if this target key is existed
-    
+
+    if cursor == None:
+        return False
+
     if str(key1) in cursor:
         if str(key2) in cursor[key1]:
             return True
-    
+
     return False
 
 
@@ -143,99 +162,112 @@ def check_nest3(cursor, key1, key2, key3):
     # :mongodb cursor
     # :key (str) target
     # OUTPUT: return boolean to indicate if this target key is existed
-    
+
     if str(key1) in cursor:
         if str(key2) in cursor[key1]:
             if str(key3) in cursor[key1][key2]:
                 return True
-    
+
     return False
 
 
-def getBookmarks(user_Ref, email, lstType = None):
-    if(user_Ref.count_documents({'_id': email, 'bookmarks': {'$exists': True}}) == 0):
-        return {"existing": int(0)} 
-    if(lstType == None):
-        user = user_Ref.find_one({'_id':email})
-        return user["bookmarks"]
-    docs = user_Ref.aggregate([
-        { '$match': {"_id":email}},
-        { '$unwind': '$bookmarks'},
-        { '$match': {'bookmarks.type': lstType}},
-        { '$project': {"bookmarks": 1, "_id": 0}}
-    ])
+def getBookmarks(user_Ref, email):
+    if(user_Ref.count_documents({'_id': email}) == 0):
+        return {"exi    sting": int(0)}
+
+    docs = user_Ref.find_one({"_id": email}, {"_id": 0, "bookmarks": 1})
+
     bkmrks = []
-    for doc in docs:
-        bkmrks.append(doc['bookmarks'])
+    print(docs)
+    for doc in docs['bookmarks']:
+        bkmrks.append(doc)
+
     return bkmrks
+
 
 def addBookmark(user_Ref, email, title, lstType):
     if(user_Ref.count_documents({'_id': email}) == 0):
         return False
 
     docs = user_Ref.aggregate([
-        { '$match': {"_id":email}},
-        { '$unwind': '$bookmarks'},
-        { '$match': {'bookmarks.title': title}},
-        { '$project': {"bookmarks": 1, "_id": 0}}
+        {'$match': {"_id": email}},
+        {'$unwind': '$bookmarks'},
+        {'$match': {'bookmarks.title': title}},
+        {'$project': {"bookmarks": 1, "_id": 0}}
     ])
+
     for doc in docs:
         return False
 
     user_Ref.update_one(
-        {'_id':email},
+        {'_id': email},
         {
             '$push': {
                 "bookmarks": {
                     "title": title,
                     "type": lstType,
-                    "timeAddded": datetime.utcnow()
+                    "timeAdded": datetime.utcnow()
                 }
             }
         }
     )
     return True
 
+
 def removeBookmark(user_Ref, email, title):
-    if(user_Ref.count_documents({'_id': email, 'bookmarks': {'$exists': True}}) == 0):
+    if(user_Ref.count_documents({"_id": email, "bookmarks": {"$exists": True}}) == 0):
         return False
+
     user_Ref.update(
         {
             "_id": email
         },
         {
-            '$pull': { "bookmarks": {"title": title } }
+            "$pull": {"bookmarks": {"title": title}}
         }
     )
-    
 
-def getRecent(user_Ref, email, numRes, lstType = None):
+    return True
+
+
+def getRecent(user_Ref, email, numRes, lstType=None):
     if(user_Ref.count_documents({'_id': email, 'recent_viewed': {'$exists': True}}) == 0):
         return {"existing": int(0)}
+
     if(lstType == None):
-        user = user_Ref.find_one({'_id':email})
+        user = user_Ref.find_one({'_id': email})
         return user["recent_viewed"][-numRes:]
+
     docs = user_Ref.aggregate([
-        { '$match': {"_id":email}},
-        { '$unwind': '$recent_viewed'},
-        { '$match': {'recent_viewed.type': lstType}},
-        { '$project': {"recent_viewed": 1, "_id": 0}}
+        {'$match': {"_id": email}},
+        {'$unwind': '$recent_viewed'},
+        {'$match': {'recent_viewed.type': lstType}},
+        {'$project': {"recent_viewed": 1, "_id": 0}},
+        {'$sort': {'recent_viewed.timeAdded': -1}}
     ])
+
     recent = []
+
     for doc in docs:
         recent.append(doc['recent_viewed'])
+        if(len(recent) >= numRes):
+            break
+
     return recent
+
 
 def addRecent(user_Ref, email, title, lstType):
     if(user_Ref.count_documents({'_id': email}) == 0):
         return False
     docs = user_Ref.aggregate([
-        { '$match': {"_id":email}},
-        { '$unwind': '$recent_viewed'},
-        { '$match': {'recent_viewed.title': title}},
-        { '$project': {"recent_viewed": 1, "_id": 0}}
+        {'$match': {"_id": email}},
+        {'$unwind': '$recent_viewed'},
+        {'$match': {'recent_viewed.title': title}},
+        {'$project': {"recent_viewed": 1, "_id": 0}}
     ])
+
     update = False
+
     for doc in docs:
         user_Ref.update(
             {
@@ -249,10 +281,12 @@ def addRecent(user_Ref, email, title, lstType):
             }
         )
         update = True
+
     if(update):
         return True
+
     user_Ref.update_one(
-        {'_id':email},
+        {'_id': email},
         {
             '$push': {
                 "recent_viewed": {
@@ -281,7 +315,7 @@ def insert_college_survey(college_ref, email, states, majors, sat='', act=''):
             }
         }
     })
-    
+
 
 def append_scholarSurvey_fromCollegeSurvey(scholar_ref, email, states, majors, sat='', act=''):
     # insert the scholarship survey (partly) since there's input data from the college
@@ -292,10 +326,10 @@ def append_scholarSurvey_fromCollegeSurvey(scholar_ref, email, states, majors, s
     r = scholar_ref.update_one({"_id": email}, {
         '$set': {
             "survey_scholarship": {
-                "regions": states,
-                "majors": majors,
-                "sat": sat,
-                "act": act
+                "states": states,
+                "major": majors,
+                "sat_score": sat,
+                "act_score": act
             }
         }
     })
@@ -313,3 +347,20 @@ def get_college_survey(college_ref, email):
         "act": r["survey_college"]['act']
     }
 
+
+def insert_major_survey(majorRef, email, avg_sal, unempl, sub, varietOfJobs, social, workEnv, triSal, triVari, triSocial, triEnv):
+
+    majorRef.update_one({"_id": email}, {"$set": {
+        'survey_major': {
+            "avg_salary": avg_sal,
+            "unemployRate": unempl,
+            "subjects": sub,
+            "variOfJobs": varietOfJobs,
+            "social": social,
+            "workEnv": workEnv,
+            "triSal": triSal,
+            "triVari": triVari,
+            "triSocial": triSocial,
+            "triEnv": triEnv
+        }
+    }})

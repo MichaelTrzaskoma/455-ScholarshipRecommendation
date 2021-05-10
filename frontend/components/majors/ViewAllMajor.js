@@ -13,33 +13,17 @@ import {
 export default class ViewAllScholar extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      usrProf: this.props.route.params.usrProfile,
+      usrProf: this.props.route.params.usrInfo,
       FlatListItems: [
-        { key: "Academic Major" },
-        { key: "ACT Score" },
-        { key: "Age" },
-        { key: "Artistic Ability" },
-        { key: "Athletic Ability" },
-        { key: "Deadline" },
-        { key: "Employer" },
-        { key: "Ethnicity" },
-        { key: "Financial Need" },
-        { key: "Gender" },
-        { key: "Grade Point Average" },
-        { key: "Honors Organization" },
-        { key: "Military Affiliation" },
-        { key: "Number of Scholarships Available" },
-        { key: "Physical Disabilities" },
-        { key: "Race" },
-        { key: "Religion" },
-        { key: "Residence State" },
-        { key: "SAT Score" },
-        { key: "Scholarship Amount" },
-        { key: "School Attendance State" },
-        { key: "School Year" },
-        { key: "Special Attributes" },
-        { key: "Student Organization" },
+        { key: "Arts" },
+        { key: "Business" },
+        { key: "Education" },
+        { key: "Health Professions" },
+        { key: "Humanities" },
+        { key: "Science, Technology, & Math" },
+        { key: "Protective Services" },
       ],
     };
   }
@@ -49,7 +33,7 @@ export default class ViewAllScholar extends React.Component {
   };
 
   render() {
-    // console.log("View All scholar " + JSON.stringify(this.state.usrProf));
+    // console.log("ViewAllMajor props check " + JSON.stringify(this.props.route.params.usrInfo));
     return (
       <View style={styles.container}>
         <FlatList
@@ -62,8 +46,8 @@ export default class ViewAllScholar extends React.Component {
                 // we are able to navigate to "ViewSubCate"
                 // since it is one of the stack screens in App.js
                 // therefore, no need to import in this screen
-                this.props.navigation.navigate('ViewScholarSubCate', {
-                  title: (item.key + " List"),
+                this.props.navigation.navigate('ViewMajorSubCate', {
+                  title: item.key,
                   itemKey: item.key,
                   usrInfo: this.state.usrProf
                 });

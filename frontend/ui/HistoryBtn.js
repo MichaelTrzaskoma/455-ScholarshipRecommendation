@@ -6,15 +6,15 @@ import { FontAwesome5 } from '@expo/vector-icons';
 // import TabViewSurvey from '../components/TabViewSurvey';
 
 
-export default function ViewHistory(email) {
+export default function ViewHistory(props) {
 	const navigation = useNavigation();
+	// console.log("Checking History props " + JSON.stringify(props.userInfo))
 	// console.log("Email from AddProfile: " + email.email);
 
 	return (
 		<TouchableOpacity style={styles.button}
-			onPress={() => navigation.navigate('TabViewSurvey', {
-				"title": "Input Required Info",
-				"email": email.email,
+			onPress={() => navigation.navigate('ViewHistory', {
+				usrInfo: props.usrInfo,
 			})}
 		>
 			<View style={styles.addProfileDetailIconRow}>

@@ -19,6 +19,8 @@ export default class CollegeScreen extends React.Component {
 	}
 
 	render() {
+		// console.log("user obj from college screen: " + JSON.stringify(this.props.usrInfo));
+		// console.log("user obj from college screen: " + JSON.stringify(this.state.userProfile));
 		// console.log("Checking " + JSON.stringify(this.state.userProfile))
 		return (
 			<View style={styles.container}>

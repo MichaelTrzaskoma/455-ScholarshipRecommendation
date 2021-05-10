@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-	Alert,
 	StyleSheet,
 	View,
 	Text,
@@ -21,8 +20,6 @@ import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import { MaterialIcons, Feather } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import CollapsibleView from "@eliav2/react-native-collapsible-view";
-// import { storeData, getData } from "../../functions/secureStorage";
-// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const items = [
 	// this is the parent or 'item'
@@ -1501,10 +1498,18 @@ class InputScreen extends React.Component {
 	}
 
 	upload2sever = () => {
-		if (this.state.firstTime == 1) {
+		let localMethod = "POST";
+		let currentExisting = this.state.firstTime;
+		/*
+		if (this.state.firstTime === 1) {
 			this.setState({ currentMethod: "PATCH" });
 		}
-
+		*/
+		if(currentExisting ===1)
+		{
+			localMethod = "PATCH";
+		}
+		console.log("local method: "+localMethod);
 		this.setFirstTime(1);
 
 		// console.log(JSON.stringify({
@@ -1525,9 +1530,10 @@ class InputScreen extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props)
 
-		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
+		let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
+		console.log("URL"+ URL);
 		fetch(URL, {
-			method: this.state.currentMethod,
+			method: localMethod,
 			headers: {
 				"Accept": "application/json",
 				"Content-Type": "application/json",
@@ -1544,22 +1550,21 @@ class InputScreen extends React.Component {
 				selectedRaces: this.state.selectedRaces,
 				selectedEthnicities: this.state.selectedEthnicities,
 				selectedReligions: this.state.selectedReligions,
-				selectedDisabilities: this.state.selectedDisabilities,
-				existing: this.state.firstTime,
+				selectedDisabilities: this.state.selectedDisabilities
 			}),
 		})
 			.then((response) => {
 				if (response.status == 202) {
 
 					// console.log(response);
-					Alert.alert(
+					alert(
 						"Your data have been successfully \ninserted! " +
 						"You will be navigated back!"
 					);
 
 				} else {
 					json_mesg = response.json();
-					Alert.alert("Error: " + json_mesg.mesg);
+					alert("Error: " + json_mesg.mesg);
 				}
 			})
 			.catch((error) => {
@@ -1576,7 +1581,7 @@ class InputScreen extends React.Component {
 			&& this.gpaErrorHandling(this.state.gpa)
 			&& this.satErrorHandling(this.state.sat_score)) {
 			this.upload2sever();
-
+			console.log("AFTER UPLOAD2SEVER IN ONSUBMIT METHODS:")
 			console.log("Gender: "+this.state.gender);
 			console.log("Age: "+this.state.dob);
 			console.log("State of residence: "+ this.state.selectedResidences);
@@ -1602,7 +1607,7 @@ class InputScreen extends React.Component {
 	getExistingData = () => {
 		//insert correct URL for user's profile
 
-		let URL = "http://29b8d98f34dd.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
+		let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
 
 		fetch(URL, {
 			method: 'GET',
@@ -1614,10 +1619,11 @@ class InputScreen extends React.Component {
 			.then((response) => response.json())
 			
 			.then((json) => {
-				console.log("Exisiting Data: " + JSON.stringify(json));
-				console.log("Email from ScholarSurvey.js: " + this.state.email);
+				console.log("Exisiting Data Scholarship: " + JSON.stringify(json));
+				// console.log("Email from ScholarSurvey.js: " + this.state.email);
 				// set the val to state
-				if (json.mesg.existing == 1) {
+				
+				if (json.mesg.existing === 1) {
 					// there's an exisiting data on client's record
 					this.setState({
 						dob: json.mesg.age,
@@ -1634,10 +1640,19 @@ class InputScreen extends React.Component {
 						act_score: json.mesg.act,
 					});
 				}
+				else if(json.mesg.existing === 2){
+					this.setState({
+						sat_score : json.mesg.sat,
+						act_score: json.mesg.act,
+						selectedResidences: json.mesg.states,
+						selectedMajors : json.mesg.major,
+					})
+				}
 			});
 	}
 
 	componentDidMount() {
+		console.log(JSON.stringify(this.props));
 		this.getExistingData();
 		//AsyncStorage.getItem('JWT').then((value) => this.setState({ jwt: value }));
 		//AsyncStorage.getItem('uuid').then((value) => this.setState({ uuid: value }));
@@ -1648,6 +1663,7 @@ class InputScreen extends React.Component {
 	render() {
 		// console.log("ScholarSuvey Checking " + JSON.stringify(this.state.usrProfile));
 		// console.log("scholarSurvey prop check " + JSON.stringify(this.props.route.params.usrInfo));
+		console.log("Hey there, this is Scholarship Survey screen!");
 		return (
 			<DismissKeyboard>
 				<KeyboardAwareScrollView

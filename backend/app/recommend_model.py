@@ -1,5 +1,5 @@
-from datetime import datetime
-from datetime import date
+from datetime import datetime, date
+# from datetime import date
 from pyzipcode import ZipCodeDatabase
 from pymongo import MongoClient
 
@@ -19,100 +19,6 @@ zcdb = ZipCodeDatabase()
 # user_Ref = db.test.client_profile
 # table_Ref = db.collection("Index Table").document("Terms")
 # refList = table_Ref.get().to_dict().get('Terms')
-
-
-def updtUser(
-        db,
-        user_Ref,
-        email,
-        gender,
-        age,
-        gpa,
-        state=[],
-        major=[],
-        race=[],
-        ethnicity=[],
-        religion=[],
-        dissabilities=[],
-        sat=''):
-    # Used to initiation user or update their information, specify when using optional attributes
-    list1 = [gender]
-    list1.append(catAge(age))
-    list1.append(catGPA(gpa))
-   
-    majorUpdt = list(major)
-    
-    if majorUpdt !=[]:
-        majorUpdt = catMajor(majorUpdt)
-
-    list2 = [state, race, religion, dissabilities, ethnicity, majorUpdt]
-    for i in range(len(list2)):
-        if list2[i] != []:
-            list1.extend(list2[i])
-        
-
-    if (sat != ''):
-        list1.append(catSat(sat))
-
-    binary = setBin(db, list1)
-
-    user_Ref.insert_one({
-        "_id": userEmail,
-        "email": userEmail,
-        "paswrd": "place holder 2",
-        "jwt": "place holder 3",
-        # max 15 items
-        "recent_viewed": [
-            {
-                "type": "scholarship",
-                "title": "place holder 4",
-            },
-            {
-                "type": "college",
-                "title": "place holder 5",
-            },
-            {
-                "type": "major",
-                "title": "place holder 6",
-            },
-        ],
-        # no limit to bookmark item
-        "bookmarks": [
-            {
-                "type": "scholarship",
-                "title": "place holder 7",
-            },
-            {
-                "type": "college",
-                "title": "place holder 8",
-            },
-            {
-                "type": "major",
-                "title": "place holder 9",
-            },
-        ],
-        "survey_scholarship": {
-            "gender": gender,
-            "age": age,
-            "states": state,
-            "gpa": gpa,
-            "major": major,
-            "race": race,
-            "ethnicity": ethnicity,
-            "religion": religion,
-            "disabilities": dissabilities,
-            "sat_score": sat,
-            "terms": list1,
-            "binary": binary, 
-        },
-        "survey_college": {
-            "x": "place holder 16",
-        },
-        "survey_major": {
-            "y": "place holder 17",
-        },
-    })
-
 
 #Focus on this method 
 def updtScholarSurvey(
@@ -140,7 +46,7 @@ def updtScholarSurvey(
     if majorUpdt !=[]:
         majorUpdt = catMajor(majorUpdt)
 
-    print(majorUpdt)
+    # print(majorUpdt)
     list2 = [state, race, religion, dissabilities, ethnicity, majorUpdt]
     for i in range(len(list2)):
         if list2[i] != []:
@@ -182,77 +88,6 @@ def updtScholarSurvey(
 
 
 
-# def binaryConvert():
-# refers to a list
-
-# def updateAccount():
-# update all fields? not too sure
-
-#Not utilized 
-def catState(zipC):
-    zipcode = zcdb[zipC]
-    state = abrevConv[zipcode.state]
-    return state
-
-
-abrevConv = {
-    'AL': 'Alabama',
-    'AK': 'Alaska',
-    'AS': 'American Samoa',
-    'AZ': 'Arizona',
-    'AR': 'Arkansas',
-    'CA': 'California',
-    'CO': 'Colorado',
-    'CT': 'Connecticut',
-    'DE': 'Delaware',
-    'DC': 'District of Columbia',
-    'FL': 'Florida',
-    'GA': 'Georgia',
-    'GU': 'Guam',
-    'HI': 'Hawaii',
-    'ID': 'Idaho',
-    'IL': 'Illinois',
-    'IN': 'Indiana',
-    'IA': 'Iowa',
-    'KS': 'Kansas',
-    'KY': 'Kentucky',
-    'LA': 'Louisiana',
-    'ME': 'Maine',
-    'MD': 'Maryland',
-    'MA': 'Massachusetts',
-    'MI': 'Michigan',
-    'MN': 'Minnesota',
-    'MS': 'Mississippi',
-    'MO': 'Missouri',
-    'MT': 'Montana',
-    'NE': 'Nebraska',
-    'NV': 'Nevada',
-    'NH': 'New Hampshire',
-    'NJ': 'New Jersey',
-    'NM': 'New Mexico',
-    'NY': 'New York',
-    'NC': 'North Carolina',
-    'ND': 'North Dakota',
-    'MP': 'Northern Mariana Islands',
-    'OH': 'Ohio',
-    'OK': 'Oklahoma',
-    'OR': 'Oregon',
-    'PA': 'Pennsylvania',
-    'PR': 'Puerto Rico',
-    'RI': 'Rhode Island',
-    'SC': 'South Carolina',
-    'SD': 'South Dakota',
-    'TN': 'Tennessee',
-    'TX': 'Texas',
-    'UT': 'Utah',
-    'VT': 'Vermont',
-    'VI': 'Virgin Islands',
-    'VA': 'Virginia',
-    'WA': 'Washington',
-    'WV': 'West Virginia',
-    'WI': 'Wisconsin',
-    'WY': 'Wyoming'
-}
 
 
 def catGPA(gpa):
@@ -403,27 +238,34 @@ def toString(list):
     return (str.join(list))
 
 
-def catIndex(db, word):
+def catIndex(db, listIn):
     # Finds the index of the word based on a table generated from the driver
     # Input -> string, the word
     # output -> int, the index
-    subCatCursor = db.test.subcatlist.find(
-        {"subCat": word}, {"subCat": 1, "_id": 0})
+    subCatCursor = list(db.test.subcatlist.find(
+        {}, {"subCat": 1, "_id": 0}))
 
     refListDict = subCatCursor[0]
     refList = refListDict.get("subCat")
-    ind = refList.index(word)
-    return ind
+    hasIndexs = []
+    for i in range(len(listIn)):
+        if listIn[i] in refList:
+            ind = refList.index(listIn[i])
+            hasIndexs.append(ind)
+    
+    return hasIndexs
 
 
-def setBin(db, list):
-    binaryInitial = '0' * 810  # Changed to 810 to match scholarship binary length
-    usrList = splitStr(binaryInitial)
-    for i in range(len(list)):
-        ind = catIndex(db, list[i])
-        usrList[ind] = "1"
-    binaryStr = toString(usrList)
-    return binaryStr
+def setBin(db, listIn):
+    binaryInitial = [0] * 810  # Changed to 810 to match scholarship binary length
+    indexs = catIndex(db, listIn)
+    #usrList = splitStr(binaryInitial)
+    for i in range(len(indexs)):
+        ind = indexs[i]
+        binaryInitial[ind] = 1
+    #binaryStr = toString(usrList)
+    #print(binaryInitial)
+    return binaryInitial
 
 
 # Updates the binary based on the word in firestore
@@ -502,30 +344,76 @@ def filter_results(user_Ref, scholar_ref, userId):
         curr_scholar = queryRes[i]
         scholarBin = curr_scholar.get('binary')
         # Need to change method for check set to false for now
-        if binCompare(userBin, scholarBin) == False:
-            value = comparison(scholarBin, userBin)
-            if(value >= filterVal):
-                scholarInfo = {
-                    'Name': str(curr_scholar.get('name')),
-                    'Amount': int(parseAmount(curr_scholar.get('amount'))),
-                    'Deadline': str(curr_scholar.get('deadline')),
-                    'Val': value,
-                }
-                filteredScholar.append(scholarInfo)
-                filteredScholar.sort(key=sortKey, reverse=True)
+        value = binCompare(userBin, scholarBin)
+        if(value[0] >= filterVal):
+            scholarInfo = {
+                'Name': str(curr_scholar.get('name')),
+                'Amount': int(parseAmount(curr_scholar.get('amount'))),
+                'Deadline': str(curr_scholar.get('deadline')),
+                'Val': value[0],
+                'Frac': value[1],
+            }
+            filteredScholar.append(scholarInfo)
+    filteredScholar.sort(key=sortKey, reverse=True)
     return filteredScholar
 
 
 def binCompare(user_bin, scholar_bin):
+    # 11 if statements for check
+    #gender, age, states, gpa, major, race, ethnicity, religion, disabilities, sat, act,
     # Method to compare and see hard conditions
     # Input - > 2 strings, user binary, scholarship binary
     # Output - > boolean, true if good, false if bad
-    userList = splitInt(user_bin)
-    scholarList = splitInt(scholar_bin)
-    for y in range(len(userList)):
-        if userList[y] < scholarList[y]:
-            return False
-    return True
+    containsList = []
+    for i in range(len(user_bin)):
+        if user_bin[i] != 0:
+            containsList.append(i)
+    scholar_bin = list(scholar_bin)
+    count = 0
+    #print(scholar_bin)
+    #print(containsList)
+    #print(containsList)
+    for i in range(len(containsList)):
+        index = containsList[i]
+        #Gender
+        if index >= 486 and index <= 489 and scholar_bin[index] != '1' and '1' in scholar_bin[486:489]:
+            return [0, 'N\A']
+        #age
+        elif index >= 177 and index <= 195 and scholar_bin[index] != '1' and '1' in scholar_bin[177:195]:
+            return [0, 'N\A']
+        #states
+        elif index >= 598 and index <= 658 and scholar_bin[index] != '1' and '1' in scholar_bin[598:658]:
+            return [0, 'N\A']
+        #gpa
+        elif index >= 490 and index <= 494 and scholar_bin[index] != '1' and '1' in scholar_bin[490:494]:
+            return [0, 'N\A']
+        #major
+        elif index >= 0 and index <= 171 and scholar_bin[index] != '1' and '1' in scholar_bin[0:171]:
+            return [0, 'N\A']
+        #race
+        elif index >= 558 and index <= 564 and scholar_bin[index] != '1' and '1' in scholar_bin[558:564]:
+            return [0, 'N\A']
+        #ethnicity
+        elif index >= 380 and index <= 483 and scholar_bin[index] != '1' and '1' in scholar_bin[380:483]:
+            return [0, 'N\A']
+        #religion
+        elif index >= 565 and index <= 597 and scholar_bin[index] != '1' and '1' in scholar_bin[565:597]:
+            return [0, 'N\A']
+        #disabilities
+        elif index >= 510 and index <= 557 and scholar_bin[index] != '1' and '1' in scholar_bin[510:557]:
+            return [0, 'N\A']
+        #sat
+        elif index >= 659 and index <= 662 and scholar_bin[index] != '1' and '1' in scholar_bin[659:662]:
+            return [0, 'N\A']
+        #act
+        elif index >= 172 and index <= 176 and scholar_bin[index] != '1' and '1' in scholar_bin[172:176]:
+            return [0, 'N\A']
+        elif scholar_bin[index] == '1':
+            count = count + 1
+        
+    val = count/len(containsList)
+    frac = str(count) + '/' + str(len(containsList))
+    return [val, frac]
 
 
 def parseAmount(txt):

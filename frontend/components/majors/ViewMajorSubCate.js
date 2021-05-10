@@ -8,7 +8,7 @@ import { FlatList } from "react-native-gesture-handler";
 // console.disableYellowBox = true;
 LogBox.ignoreAllLogs(true);
 
-export default class ViewCollegeSubCate extends React.Component {
+export default class ViewMajorSubCate extends React.Component {
   // navigation.setOptions({ headerTitle: 'Search Screen' })
   constructor(props) {
     super(props);
@@ -28,7 +28,8 @@ export default class ViewCollegeSubCate extends React.Component {
   }
 
   getDoc = () => {
-    let URL = "http://3efdd482435b.ngrok.io/api/v1.2/resources/college/view/states/" + this.state.subCate;
+    let URL = "http://3efdd482435b.ngrok.io/api/v1.2/resources/major/view/category/" + this.state.subCate;
+
     fetch(URL, {
       method: "GET",
       headers: {
@@ -53,9 +54,10 @@ export default class ViewCollegeSubCate extends React.Component {
     // console.log(this.state.scholarArr);
   }
 
-  handleBookmarkOpen(key) {
+  handleBookmarkOpen(key)
+  {
     this.setModalVisible(true)
-    this.setState({ currentBookmarkKey: key });
+    this.setState({ currentBookmarkKey: key});
   }
 
   setModalVisible = (visible) => {
@@ -63,15 +65,15 @@ export default class ViewCollegeSubCate extends React.Component {
   }
 
   setCurrentBookmarkkey = (itemKey) => {
-    this.setState({ currentBookmarkKey: itemKey });
+    this.setState({ currentBookmarkKey: itemKey});
   }
 
-  handleBookmark() {
+  handleBookmark () {
 
-    this.setState({ modalVisible: false });
+    this.setState({ modalVisible: false});
     // console.log(this.state.currentBookmarkKey)
+    let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/major/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
 
-    let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "POST",
@@ -82,10 +84,11 @@ export default class ViewCollegeSubCate extends React.Component {
       body: JSON.stringify({
         "title": this.state.currentBookmarkKey,
         "unique_id": this.state.usrInfo.uuid, 
-        "type": "college",
+        "type": "major",
         "jwt": this.state.usrInfo.jwt,
       }),
     })
+
       .then((response) => {
         if (response.status == 202) {
 
@@ -104,10 +107,10 @@ export default class ViewCollegeSubCate extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-
-    console.log("Bookmark Key: " + this.state.currentBookmarkKey);
+      
+    console.log("Bookmark Key: "+this.state.currentBookmarkKey);  
     //alert("This College has been bookmarked!");
-
+   
   }
 
   FlatListItemSeparator = () => {
@@ -115,7 +118,8 @@ export default class ViewCollegeSubCate extends React.Component {
   };
 
   render() {
-    // console.log("ViewCollegeSubCate " + JSON.stringify(this.props.route.params.usrInfo));
+    console.log("Checking to see ViewMajorSubCate");
+    // console.log("ViewMajorSubCate Props Check " + JSON.stringify(this.props.route.params.usrInfo));
     const { modalVisible } = this.state;
     if (this.state.isLoading) {
       return (
@@ -126,7 +130,7 @@ export default class ViewCollegeSubCate extends React.Component {
     }
     return (
       <View style={styles.container}>
-        <Modal
+          <Modal
           animationType="slide"
           transparent={true}
           visible={modalVisible}
@@ -145,30 +149,31 @@ export default class ViewCollegeSubCate extends React.Component {
                 <Text style={styles.textStyle}>Bookmark</Text>
               </Pressable>
               <Pressable
-                style={[styles.button, styles.buttonClose2]}
-                onPress={() => this.setModalVisible(false)}
+                style = {[styles.button, styles.buttonClose2]}
+                onPress = {() => this.setModalVisible(false)}
               >
-                <Text style={styles.textStyle}> Close   </Text>
+                <Text style = {styles.textStyle}> Close   </Text>
               </Pressable>
             </View>
             <View>
-
+              
             </View>
           </View>
-        </Modal>
+      </Modal>
         <FlatList
           data={this.state.scholarArr}
           ItemSeparatorComponent={this.FlatListItemSeparator}
           renderItem={({ item }) => (
+            // console.log("Checking item in ViewScholarTbl " + JSON.stringify(item));
             <Text
               style={styles.item}
-              onLongPress={() => { this.handleBookmarkOpen(item) }}
+              onLongPress = {() => {this.handleBookmarkOpen(item)}}
               onPress={() => {
                 // we are able to navigate to "ViewSubCate"
                 // since it is one of the stack screens in App.js
                 // therefore, no need to import in this screen
-                this.props.navigation.navigate('ViewCollegeDetail', {
-                  title: (item),
+                this.props.navigation.navigate('ViewMajorDetail', {
+                  title: item,
                   itemKey: item,
                   usrProf: this.state.usrInfo
                 });

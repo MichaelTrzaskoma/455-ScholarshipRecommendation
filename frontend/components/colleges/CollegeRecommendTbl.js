@@ -14,13 +14,13 @@ import { Menu, Provider } from 'react-native-paper';
 import { parseMonth, parseAmount, parseSimilarScore, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../../functions/utilities";
 import { FlatList } from 'react-native-gesture-handler';
 
-export default class ViewRecommendTbl_3 extends React.Component {
+export default class CollegeRecommendTbl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       usrInfo: this.props.route.params.usrProfile,
       isLoading: true,
-      scholarArr: [],
+      collegeArr: [],
       gender: '',
       opt_title_visible: false,
       opt_deadline_visible: false,
@@ -42,70 +42,70 @@ export default class ViewRecommendTbl_3 extends React.Component {
   _closeAmountMenu = () => { this.setState({ opt_amount_visible: false }) };
 
   sortTitleHandler_a2z() {
-    this.state.scholarArr.sort(dynamicSort("key"));
-    // console.log(this.state.scholarArr);
+    this.state.collegeArr.sort(dynamicSort("key"));
+    // console.log(this.state.collegeArr);
     this._closeTitleMenu();
   }
 
   sortTitleHandler_z2a() {
-    this.state.scholarArr.sort(dynamicSort("-key"));
-    // console.log(this.state.scholarArr);
+    this.state.collegeArr.sort(dynamicSort("-key"));
+    // console.log(this.state.collegeArr);
     this._closeTitleMenu();
   }
 
   sortDeadlineHandler_a2z() {
-    this.state.scholarArr.sort(dynamicSort("deadline"));
-    // console.log(this.state.scholarArr);
+    this.state.collegeArr.sort(dynamicSort("deadline"));
+    // console.log(this.state.collegeArr);
     this._closeDeadlineMenu();
   }
 
   sortDeadlineHandler_z2a() {
-    this.state.scholarArr.sort(dynamicSort("-deadline"));
-    // console.log(this.state.scholarArr);
+    this.state.collegeArr.sort(dynamicSort("-deadline"));
+    // console.log(this.state.collegeArr);
     this._closeDeadlineMenu();
   }
 
   sortScoreHandler_a2z() {
-    this.state.scholarArr.sort(dynamicSort("score"));
-    // console.log(this.state.scholarArr);
+    this.state.collegeArr.sort(dynamicSort("score"));
+    // console.log(this.state.collegeArr);
     this._closeScoreMenu();
   }
 
   sortScoreHandler_z2a() {
-    this.state.scholarArr.sort(dynamicSort("-score"));
-    // console.log(this.state.scholarArr);
+    this.state.collegeArr.sort(dynamicSort("-score"));
+    // console.log(this.state.collegeArr);
     this._closeScoreMenu();
   }
 
   sortAmountHandler_a2z() {
     this.setState({
-      scholarArr: mergeSort_a2z(this.state.scholarArr),
+      collegeArr: mergeSort_a2z(this.state.collegeArr),
     });
-    // this.state.scholarArr.sort(sortAmount("amount"));
-    // console.log(this.state.scholarArr);
+    // this.state.collegeArr.sort(sortAmount("amount"));
+    // console.log(this.state.collegeArr);
     this._closeAmountMenu();
   }
 
   sortAmountHandler_z2a() {
     // mergeSort_z2a
     this.setState({
-      scholarArr: mergeSort_z2a(this.state.scholarArr),
+      collegeArr: mergeSort_z2a(this.state.collegeArr),
     });
-    // this.state.scholarArr.sort(sortAmount("-amount"));
-    // console.log(this.state.scholarArr);
+    // this.state.collegeArr.sort(sortAmount("-amount"));
+    // console.log(this.state.collegeArr);
     this._closeAmountMenu();
   }
 
   componentDidMount() {
-    this.getRecommend_scholarship();
+    this.getRecommend_college();
   }
 
-  getRecommend_scholarship() {
+  getRecommend_college() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid+ "/recommends/scholarship";  "/recommends/scholarship"
+      let URL = "http://b9d79f8fdd3c.ngrok.io//api/v1.2/users/id/"+ this.state.usrInfo.email + "/"+this.state.usrInfo.jwt + "/"+this.state.usrInfo.uuid+ "/recommends/college";   
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
-      const scholarArr = [];
+      const collegeArr = [];
 
       fetch(URL, {
         method: "GET",
@@ -118,19 +118,8 @@ export default class ViewRecommendTbl_3 extends React.Component {
         .then((json) => {
           json.forEach((res) => {
 
-            // parse the deadline
-            let deadline = "";
-
-            if (res.Deadline == "Deadline Varies") {
-              deadline = "Varies";
-            } else {
-              const fields = res.Deadline.split(" ");
-              const subFields = fields[1].split(",");
-              deadline = parseMonth(fields[0]) + "/" + subFields[0] + "/" + fields[2];
-            }
-
             // append the API data to local var
-            scholarArr.push({
+            collegeArr.push({
               key: res.Name,
               // amount: parseInt(parseAmount(res.Amount)),
               amount: parseInt(res.Amount),
@@ -141,7 +130,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
 
           // set the local var to state var
           this.setState({
-            scholarArr,
+            collegeArr,
             isLoading: false,
           });
 
@@ -321,7 +310,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
             <View style={styles.scrollArea}>
 
               <FlatList
-                data={this.state.scholarArr}
+                data={this.state.collegeArr}
                 showsVerticalScrollIndicator={false}
                 ItemSeparatorComponent={this.FlatListItemSeparator}
                 renderItem={({ item }) => (
