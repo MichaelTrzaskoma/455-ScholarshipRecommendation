@@ -1652,7 +1652,7 @@ class InputScreen extends React.Component {
 	}
 
 	componentDidMount() {
-		console.log(JSON.stringify(this.props));
+		// console.log(JSON.stringify(this.props.route.params.usrInfo,));
 		this.getExistingData();
 		//AsyncStorage.getItem('JWT').then((value) => this.setState({ jwt: value }));
 		//AsyncStorage.getItem('uuid').then((value) => this.setState({ uuid: value }));

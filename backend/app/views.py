@@ -278,7 +278,7 @@ def auth(email):
                         secret_code = generateCode()
 
                         timer = int(time.mktime(
-                            (datetime.datetime.utcnow() + timedelta(days=7)).timetuple()))
+                            (datetime.utcnow() + timedelta(days=7)).timetuple()))
 
                         # generate a new jwt code by using current device info
                         new_jwt = encode_jwt(
@@ -1256,26 +1256,20 @@ def getBookmarkDoc_all(email, type, token, id):
 
 @app.route("/api/v1.2/users/id/<email>/<token>/<id>/recent/<type>/<doc_num>")
 def getRecentDoc(email, token, id, type, doc_num):
-    email = "gsalvesen165@gmail.com"
-    numDocs = 5
-    docType = "College"
-    addRecentDoc(email, "Dartmouth", "College")
-    return make_response(jsonify(getRecent(user_Ref, email, numDocs, docType)), 202)
     if request.method == "GET":
-        numDocs = 15
-        docType = None
+        scholar_arr = ["scholarship", "college", "major"]
+        
+        # doc_num = int(0)
+        doc_num = int(doc_num)
 
-        docType_arr = ["scholarship", "major", "college"]
+        # if incoming_num == 5:
+        #     doc_num = int(5)
 
-        if doc_num == 5:
-            numDocs = 5
 
-        if type in docType_arr:
-            docType = type
-
-        return make_response(jsonify(getRecent(user_Ref, email, numDocs, docType)), 202)
-    else:
-        return make_response(jsonify({"mesg": "Method not allowed!"}), 405)
+        if type in scholar_arr:
+            return make_response(jsonify(getRecent(user_Ref, email, doc_num, lstType=type)), 202)
+        else:
+            return make_response(jsonify(getRecent(user_Ref, email, doc_num)), 202)
 
 
 def addRecentDoc(email, title, docType=None):

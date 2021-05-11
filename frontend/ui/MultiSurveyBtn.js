@@ -12,8 +12,8 @@ export default function AddProfile(props) {
 	return (
 		<TouchableOpacity style={styles.button}
 			onPress={() => navigation.navigate('TabViewSurvey', {
-				"title": "Input Required Info",
-				"usrInfo": props.userInfo,
+				title: "Input Required Info",
+				usrInfo: props.usrInfo,
 			})}
 			// onPress={() => console.log(email)}
 		>
