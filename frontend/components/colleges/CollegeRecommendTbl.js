@@ -54,13 +54,13 @@ export default class CollegeRecommendTbl extends React.Component {
   }
 
   sortDeadlineHandler_a2z() {
-    this.state.collegeArr.sort(dynamicSort("deadline"));
+    this.state.collegeArr.sort(dynamicSort("val"));
     // console.log(this.state.collegeArr);
     this._closeDeadlineMenu();
   }
 
   sortDeadlineHandler_z2a() {
-    this.state.collegeArr.sort(dynamicSort("-deadline"));
+    this.state.collegeArr.sort(dynamicSort("-val"));
     // console.log(this.state.collegeArr);
     this._closeDeadlineMenu();
   }

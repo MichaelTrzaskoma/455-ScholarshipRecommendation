@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { getDeviceID } from "../../functions/deviceUniqueID";
 import { getSecureStorage } from "../../functions/secureStorage";
+import * as WebBrowser from 'expo-web-browser';
 
 export default class ViewScholarDetail extends React.Component {
   constructor(props) {
@@ -137,6 +138,12 @@ export default class ViewScholarDetail extends React.Component {
     // }
   }
 
+  _handleOpenWithWebBrowser = () => {
+    let link = this.state.scholarshipObj.applyLink;
+    WebBrowser.openBrowserAsync(link);
+  };
+
+
   componentDidMount(){
     this.getApplicationLink();
   }
@@ -247,17 +254,17 @@ export default class ViewScholarDetail extends React.Component {
 
           <View style={styles.apply_grp}>
             <View style={styles.txt_applyRow}>
-              <BeautyWebView
+              {/* <BeautyWebView
                 // Reguired for open and close
                 visible={this.state.applyLinkVisible}
                 // Reguired for closing the modal
                 onPressClose={() => this.handleApplyLinkVisible(false)}
                 // use tunnel network here to local test env
                 url={this.getApplicationLink()}
-              />
+              /> */}
               <TouchableOpacity
                 style={styles.applyRow}
-                onPress={() => { this.handleApplyLinkVisible(true) }}>
+                onPress={this._handleOpenWithWebBrowser}>
                 <Text style={styles.txt_apply}>Apply Link:</Text>
                 <Text numberOfLines={5} style={styles.apply}>
                   {this.state.scholarshipObj.applyLink}
