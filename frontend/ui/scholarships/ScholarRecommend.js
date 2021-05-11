@@ -34,7 +34,7 @@ class ScholarRecommender extends Component {
               style={styles.recommendBtn}
               onPress={() => navigation.navigate("ViewRecommendTbl_3",
                 {
-                  title: "Scholarship Detail",
+                  title: "Scholarship Recommendation",
                   usrInfo: this.props.usrInfo,
                 })
               }>

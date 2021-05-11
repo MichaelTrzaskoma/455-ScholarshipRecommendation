@@ -9,18 +9,18 @@ import {
   StatusBar,
   ActivityIndicator
 } from 'react-native';
-import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import { Menu, Provider } from 'react-native-paper';
 import { parseMonth, parseAmount, parseSimilarScore, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../../functions/utilities";
 import { FlatList } from 'react-native-gesture-handler';
 
-export default class CollegeRecommendTbl extends React.Component {
+export default class MajorRecommendTbl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       usrInfo: this.props.route.params.usrInfo,
       isLoading: true,
-      collegeArr: [],
+      majorArr: [],
       gender: '',
       opt_title_visible: false,
       opt_deadline_visible: false,
@@ -42,70 +42,70 @@ export default class CollegeRecommendTbl extends React.Component {
   _closeAmountMenu = () => { this.setState({ opt_amount_visible: false }) };
 
   sortTitleHandler_a2z() {
-    this.state.collegeArr.sort(dynamicSort("key"));
-    // console.log(this.state.collegeArr);
+    this.state.majorArr.sort(dynamicSort("category"));
+    // console.log(this.state.majorArr);
     this._closeTitleMenu();
   }
 
   sortTitleHandler_z2a() {
-    this.state.collegeArr.sort(dynamicSort("-key"));
-    // console.log(this.state.collegeArr);
+    this.state.majorArr.sort(dynamicSort("-category"));
+    // console.log(this.state.majorArr);
     this._closeTitleMenu();
   }
 
   sortDeadlineHandler_a2z() {
-    this.state.collegeArr.sort(dynamicSort("deadline"));
-    // console.log(this.state.collegeArr);
+    this.state.majorArr.sort(dynamicSort("val"));
+    // console.log(this.state.majorArr);
     this._closeDeadlineMenu();
   }
 
   sortDeadlineHandler_z2a() {
-    this.state.collegeArr.sort(dynamicSort("-deadline"));
-    // console.log(this.state.collegeArr);
+    this.state.majorArr.sort(dynamicSort("-val"));
+    // console.log(this.state.majorArr);
     this._closeDeadlineMenu();
   }
 
   sortScoreHandler_a2z() {
-    this.state.collegeArr.sort(dynamicSort("score"));
-    // console.log(this.state.collegeArr);
+    this.state.majorArr.sort(dynamicSort("score"));
+    // console.log(this.state.majorArr);
     this._closeScoreMenu();
   }
 
   sortScoreHandler_z2a() {
-    this.state.collegeArr.sort(dynamicSort("-score"));
-    // console.log(this.state.collegeArr);
+    this.state.majorArr.sort(dynamicSort("-score"));
+    // console.log(this.state.majorArr);
     this._closeScoreMenu();
   }
 
   sortAmountHandler_a2z() {
     this.setState({
-      collegeArr: mergeSort_a2z(this.state.collegeArr),
+      majorArr: mergeSort_a2z(this.state.majorArr),
     });
-    // this.state.collegeArr.sort(sortAmount("amount"));
-    // console.log(this.state.collegeArr);
+    // this.state.majorArr.sort(sortAmount("amount"));
+    // console.log(this.state.majorArr);
     this._closeAmountMenu();
   }
 
   sortAmountHandler_z2a() {
     // mergeSort_z2a
     this.setState({
-      collegeArr: mergeSort_z2a(this.state.collegeArr),
+      majorArr: mergeSort_z2a(this.state.majorArr),
     });
-    // this.state.collegeArr.sort(sortAmount("-amount"));
-    // console.log(this.state.collegeArr);
+    // this.state.majorArr.sort(sortAmount("-amount"));
+    // console.log(this.state.majorArr);
     this._closeAmountMenu();
   }
 
   componentDidMount() {
-    this.getRecommend_college();
+    this.getRecommend_major();
   }
 
-  getRecommend_college() {
+  getRecommend_major() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
       let URL = "http://b9d79f8fdd3c.ngrok.io//api/v1.2/users/id/"+ this.state.usrInfo.email + "/"+this.state.usrInfo.jwt + "/"+this.state.usrInfo.uuid+ "/recommends/college";   
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
-      const collegeArr = [];
+      const majorArr = [];
     console.log("College Recommend URL: " + URL);
       fetch(URL, {
         method: "GET",
@@ -119,16 +119,16 @@ export default class CollegeRecommendTbl extends React.Component {
           json.forEach((res) => {
 
             // append the API data to local var
-            collegeArr.push({
-              key: res.Name,
+            majorArr.push({
               // amount: parseInt(parseAmount(res.Amount)),
+              category: res.category,
               val: parseSimilarScore(res.Val),
             });
           });
 
           // set the local var to state var
           this.setState({
-            collegeArr,
+            majorArr,
             isLoading: false,
           });
 
@@ -138,11 +138,11 @@ export default class CollegeRecommendTbl extends React.Component {
       // error handler
       alert("An error occurred: " + error);
     }
-    if(this.state.collegeArr.length === 0)
+    if(this.state.majorArr.length === 0)
     {
       alert("Attention user, you have no recommendation results, please edit your survey to receive results");
     }
-    else if(this.state.collegeArr.length<5)
+    else if(this.state.majorArr.length<5)
     {
       alert("Attention User, please modify your survey to receive more results");
     }
@@ -316,7 +316,7 @@ export default class CollegeRecommendTbl extends React.Component {
             <View style={styles.scrollArea}>
 
               <FlatList
-                data={this.state.collegeArr}
+                data={this.state.majorArr}
                 showsVerticalScrollIndicator={false}
                 ItemSeparatorComponent={this.FlatListItemSeparator}
                 renderItem={({ item }) => (
@@ -324,9 +324,8 @@ export default class CollegeRecommendTbl extends React.Component {
                   <TouchableOpacity
                     style={styles.itemN2}
                     onPress={() => {
-                      this.props.navigation.navigate("ViewScholarDetail", {
-                        title: item.key,
-                        itemKey: item.key,
+                      this.props.navigation.navigate("ViewMajorSubCate", {
+                        itemKey: item.category,
                       });
                     }}
                   >
@@ -337,16 +336,16 @@ export default class CollegeRecommendTbl extends React.Component {
                     </View>
                     <View style={styles.txtGrp}>
                       <View style={styles.txtUpGrp}>
-                        <Text style={styles.text}>{item.key}</Text>
+                        <Text style={styles.text}>{item.category}</Text>
                       </View>
                       <View style={styles.txtDownGrp}>
                         <View style={styles.rect5Stack}>
                           <View style={styles.rect5}>
                             <View style={styles.text2Row}>
                               <Text style={styles.text2}>{item.val}</Text>
-                              <MaterialCommunityIcons
-                                name="dna"
-                                style={styles.icon3}></MaterialCommunityIcons>
+                              <FontAwesome
+                                name="star"
+                                style={styles.icon3}></FontAwesome>
                             </View>
                           </View>
                           {/* <View style={styles.rect6}>

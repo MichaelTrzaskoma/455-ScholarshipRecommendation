@@ -34,6 +34,7 @@ import CollegeSurvey from "./components/colleges/CollegeSurvey";
 import ViewCollegeDetail from "./components/colleges/ViewCollegeDetail";
 import ViewCollegeSubCate from "./components/colleges/ViewCollegeSubCate";
 import ViewAllCollege from "./components/colleges/ViewAllCollege";
+import CollegeRecommendTbl from "./components/colleges/CollegeRecommendTbl";
 
 // Major
 import MajorScreen from "./components/majors/MajorScreen";
@@ -41,6 +42,7 @@ import ViewMajorDetail from "./components/majors/ViewMajorDetail";
 import ViewMajorSubCate from "./components/majors/ViewMajorSubCate";
 import MajorSurvey from "./components/majors/MajorSurvey";
 import ViewAllMajor from "./components/majors/ViewAllMajor";
+import MajorRecommendTbl from "./components/majors/MajorRecommendTbl";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -306,6 +308,41 @@ export default class App extends Component {
                 },
               }}
             />
+            <Stack.Screen
+              name={"CollegeRecommendTbl"}
+              component={CollegeRecommendTbl}
+              options={{
+                title: "College Recommendation",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
+            />
+
+              <Stack.Screen
+              name={"MajorRecommendTbl"}
+              component={CollegeRecommendTbl}
+              options={{
+                title: "Major Recommendation",
+                headerStyle: {
+                  backgroundColor: '#007FF9',
+                },
+                headerTintColor: 'white',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: "white",
+                },
+              }}
+            />  
+
+            
 
             <Stack.Screen
               name={"ViewHistory"}
