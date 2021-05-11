@@ -1,13 +1,11 @@
 from datetime import datetime, date
 # from datetime import date
-from pyzipcode import ZipCodeDatabase
 from pymongo import MongoClient
 
 # CosSim Calc
 from numpy import dot
 from numpy.linalg import norm
 
-zcdb = ZipCodeDatabase()
 
 #db = MongoClient('localhost', 27017)
  
