@@ -304,7 +304,7 @@ def auth(email):
                 # generate a new device token
                 secret_code = generateCode()
                 timer = int(time.mktime(
-                    (datetime.datetime.utcnow() + timedelta(days=7)).timetuple()))
+                    (datetime.utcnow() + timedelta(days=7)).timetuple()))
 
                 # generate a new jwt code by using current device info
                 new_jwt = encode_jwt(
