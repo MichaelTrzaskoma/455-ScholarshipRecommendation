@@ -116,6 +116,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
       })
         .then((response) => response.json())
         .then((json) => {
+          
           json.forEach((res) => {
 
             // parse the deadline
