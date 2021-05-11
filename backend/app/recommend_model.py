@@ -1,13 +1,11 @@
 from datetime import datetime, date
 # from datetime import date
-from pyzipcode import ZipCodeDatabase
 from pymongo import MongoClient
 
 # CosSim Calc
 from numpy import dot
 from numpy.linalg import norm
 
-zcdb = ZipCodeDatabase()
 
 #db = MongoClient('localhost', 27017)
  
@@ -370,51 +368,56 @@ def binCompare(user_bin, scholar_bin):
             containsList.append(i)
     scholar_bin = list(scholar_bin)
     count = 0
+   
+    scholar_bin = [int(i) for i in scholar_bin]
+    
+    diff = np.subtract(user_bin, scholar_bin)
+    #print(diff)
     #print(scholar_bin)
     #print(containsList)
+
     #print(containsList)
     for i in range(len(containsList)):
         index = containsList[i]
         #Gender
-        if index >= 486 and index <= 489 and scholar_bin[index] != '1' and '1' in scholar_bin[486:489]:
+        if index >= 486 and index <= 489 and scholar_bin[index] != 1 and -1 in diff[486:489]:
             return [0, 'N\A']
         #age
-        elif index >= 177 and index <= 195 and scholar_bin[index] != '1' and '1' in scholar_bin[177:195]:
+        elif index >= 177 and index <= 195 and scholar_bin[index] != 1 and -1 in diff[177:195]:
             return [0, 'N\A']
         #states
-        elif index >= 598 and index <= 658 and scholar_bin[index] != '1' and '1' in scholar_bin[598:658]:
+        elif index >= 598 and index <= 658 and scholar_bin[index] != 1 and -1 in diff[598:658]:
             return [0, 'N\A']
         #gpa
-        elif index >= 490 and index <= 494 and scholar_bin[index] != '1' and '1' in scholar_bin[490:494]:
+        elif index >= 490 and index <= 494 and scholar_bin[index] != 1 and -1 in diff[490:494]:
             return [0, 'N\A']
         #major
-        elif index >= 0 and index <= 171 and scholar_bin[index] != '1' and '1' in scholar_bin[0:171]:
+        elif index >= 0 and index <= 171 and scholar_bin[index] != 1 and -1 in diff[0:171]:
             return [0, 'N\A']
         #race
-        elif index >= 558 and index <= 564 and scholar_bin[index] != '1' and '1' in scholar_bin[558:564]:
+        elif index >= 558 and index <= 564 and scholar_bin[index] != 1 and -1 in diff[558:564]:
             return [0, 'N\A']
         #ethnicity
-        elif index >= 380 and index <= 483 and scholar_bin[index] != '1' and '1' in scholar_bin[380:483]:
+        elif index >= 380 and index <= 483 and scholar_bin[index] != 1 and -1 in diff[380:483]:
             return [0, 'N\A']
         #religion
-        elif index >= 565 and index <= 597 and scholar_bin[index] != '1' and '1' in scholar_bin[565:597]:
+        elif index >= 565 and index <= 597 and scholar_bin[index] != 1 and -1 in diff[565:597]:
             return [0, 'N\A']
         #disabilities
-        elif index >= 510 and index <= 557 and scholar_bin[index] != '1' and '1' in scholar_bin[510:557]:
+        elif index >= 510 and index <= 557 and scholar_bin[index] != 1 and -1 in diff[510:557]:
             return [0, 'N\A']
         #sat
-        elif index >= 659 and index <= 662 and scholar_bin[index] != '1' and '1' in scholar_bin[659:662]:
+        elif index >= 659 and index <= 662 and scholar_bin[index] != 1 and -1 in diff[659:662]:
             return [0, 'N\A']
         #act
-        elif index >= 172 and index <= 176 and scholar_bin[index] != '1' and '1' in scholar_bin[172:176]:
+        elif index >= 172 and index <= 176 and scholar_bin[index] != 1 and -1 in diff[172:176]:
             return [0, 'N\A']
-        elif scholar_bin[index] == '1':
+        elif scholar_bin[index] == 1:
             count = count + 1
-        
+        #print('hi')
     val = count/len(containsList)
     frac = str(count) + '/' + str(len(containsList))
     return [val, frac]
-
 
 def parseAmount(txt):
     if "$" in txt: 
