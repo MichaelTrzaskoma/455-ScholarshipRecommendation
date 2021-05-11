@@ -1,5 +1,3 @@
-# from typing_extensions import Required
-from werkzeug.datastructures import Authorization
 from app import app
 from flask import json, render_template, jsonify, request, make_response, redirect, url_for
 import mailhandler
@@ -9,7 +7,9 @@ from datetime import date, datetime, timedelta
 import time
 
 from .auths import generateCode, init_usrProfileDB, check_email_verification_status, encode_jwt, update_deviceInfo, initial_device, update_deviceInfo, validate_token, validate_email
-from .recommend_model import filter_results, updtScholarSurvey
+from .recommend_model import recommend_scholarship, updtScholarSurvey
+from .college_reccommend import updtCollegeSurvey, collegeFilter
+from .major_recommendation import updtMajorSurvey, filter_majors
 from .utilities import *
 
 MINS_TIL_ACTIVE_CODE_EXPIRY = 15
@@ -429,6 +429,7 @@ def view_scholarship_single(scholarship_title, email, token, id):
         scholarship["direct_link"] = result.get("direct Link")
         scholarship["description"] = result.get("description")
         scholarship["contact_info"] = result.get("contact Info")
+        scholarship["isBooked"] = checkBookmarkStatus(user_Ref, email, "scholarship", scholarship_title)
 
         addRecentDoc(email, scholarship_title, "scholarship")
 
@@ -645,7 +646,8 @@ def view_college_single(college_name, email, token, id):
                 "residence_out_state": trimmer_na(r['major']['residence']['Out-of-State']) if check_nest3(r, "major", "racial_diversity", "Out-of-State") else "None",
                 "uni_name": trimmer_na(r['name']) if check_nest1(r, "name") else "None",
                 "ranking": parseCollegeRanking(r['ranking']) if len(r['ranking']) > 0 else "None",
-                "offical_site": trimmer_na(r['site']) if len(r['site']) > 0 else "None"
+                "offical_site": trimmer_na(r['site']) if len(r['site']) > 0 else "None",
+                "isBooked": checkBookmarkStatus(user_Ref, email, "college", college_name)
             }
 
             addRecentDoc(email, college_name, "college")
@@ -715,7 +717,8 @@ def view_major_single(major_name, email, token, id):
                 "env": r['env'],
                 "classes": arr2str_special(r['classes']),
                 "jobs": arr2str_special(r['jobs']),
-                "desc": r['desc']
+                "desc": r['desc'],
+                "isBooked": checkBookmarkStatus(user_Ref, email, "major", major_name)
             }
 
             addRecentDoc(email, major_name, "major")
@@ -780,8 +783,11 @@ def usrSurvey_scholarship(email, token, id):
         )
 
         # append to college survey
-        insert_college_survey(user_Ref, email, income_data["selectedReligions"],
-                              income_data['selectedMajors'], sat=income_data['sat_score'], act=income_data['act_score'])
+        # insert_college_survey(user_Ref, email, income_data["selectedResidences"],
+        #                       income_data['selectedMajors'], sat=income_data['sat_score'], act=income_data['act_score'])
+
+        updtCollegeSurvey(db, user_Ref, email, state=income_data["selectedResidences"], sat=income_data['sat_score'], act=income_data['act_score'], majors=income_data['selectedMajors'])
+
 
         return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
 
@@ -873,10 +879,11 @@ def usrSurvey_scholarship(email, token, id):
             )
 
             # append the survey to college attribute
-            insert_college_survey(user_Ref, email, income_data["selectedReligions"],
-                              income_data['selectedMajors'], sat=income_data['sat_score'], act=income_data['act_score'])
-            insert_college_survey(user_Ref, email, income_data["selectedResidences"],
-                                  income_data['selectedMajors'], sat=income_data['sat_score'], act=income_data['act_score'])
+            # insert_college_survey(user_Ref, email, income_data["selectedReligions"],
+            #                   income_data['selectedMajors'], sat=income_data['sat_score'], act=income_data['act_score'])
+
+            updtCollegeSurvey(db, user_Ref, email, state=income_data["selectedResidences"], sat=income_data['sat_score'], act=income_data['act_score'], majors=income_data['selectedMajors'])
+
 
             return make_response(jsonify({"mesg": "Your scholarship survey has successfully modified!"}), 202)
 
@@ -892,16 +899,16 @@ def usrSurvey_college(email, token, id):
     if request.method == "POST" and request.is_json:
 
         # TODO: validate the user auth and jwt
-
-        income_data = request.json
-        resource = None
-
-        # validate the incoming data
-        if "selectedReligions" not in income_data:
-            return make_response(jsonify({"mesg": "Missing region information"}), 400)
-        if len(income_data["selectedMajors"]) < 1:
-            return make_response(jsonify({"mesg": "Missing region information"}), 400)
         if validate_email(user_Ref, email):
+            income_data = request.json
+            resource = None
+
+            # validate the incoming data
+            if "selectedResidences" not in income_data:
+                return make_response(jsonify({"mesg": "Missing region information"}), 400)
+            if len(income_data["selectedMajors"]) < 1:
+                return make_response(jsonify({"mesg": "Missing region information"}), 400)
+                
             
             if user_Ref.count_documents({"_id": email, "survey_scholarship": {'$exists': True}}) == 1:
                 
@@ -932,16 +939,16 @@ def usrSurvey_college(email, token, id):
             
             else:
                 append_scholarSurvey_fromCollegeSurvey(user_Ref, email, income_data["regions"], income_data['majors'], income_data['sat_score'], income_data['act_score'])
-            insert_college_survey(user_Ref, email, income_data["regions"],
-                                  income_data['majors'], sat=income_data['sat_score'], act=income_data['act_score'])
+            
+            
+            # insert_college_survey(user_Ref, email, income_data["regions"],
+            #                     income_data['majors'], sat=income_data['sat_score'], act=income_data['act_score'])
 
-        if validate_email(user_Ref, email):
-            insert_college_survey(user_Ref, email, income_data["selectedReligions"],
-                                income_data['selectedMajors'], sat=income_data['sat_score'], act=income_data['act_score'])
+            updtCollegeSurvey(db, user_Ref, email, state=income_data["selectedResidences"], sat=income_data['sat_score'], act=income_data['act_score'], majors=income_data['majors'])
 
             return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
-
-        return make_response(jsonify({"mesg": "Capture your information failed!"}), 400)
+        else:
+            return make_response(jsonify({"mesg": "Failed to modify your information!"}), 400)
 
     elif request.method == "GET":
         # retrieve existing college survey data
@@ -977,27 +984,21 @@ def usrSurvey_college(email, token, id):
         resource = None
 
         # validate the incoming data
-        if "selectedReligions" not in income_data:
-            return make_response(jsonify({"mesg": "Missing region information"}), 400)
-        if len(income_data["selectedMajors"]) < 1:
-            return make_response(jsonify({"mesg": "Missing region information"}), 400)
+        # if "selectedResidences" not in income_data:
+        #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
+        # if len(income_data["regions"]) < 1:
+        #     return make_response(jsonify({"mesg": "Missing region information"}), 400)
 
-        if "selectedMajors" not in income_data:
-            return make_response(jsonify({"mesg": "Missing major information"}), 400)
-        if len(income_data["selectedMajors"]) < 1:
-            return make_response(jsonify({"mesg": "Missing major information"}), 400)
+        # if "selectedMajors" not in income_data:
+        #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
+        # if len(income_data["selectedMajors"]) < 1:
+        #     return make_response(jsonify({"mesg": "Missing major information"}), 400)
+
+        # for item in income_data:
+        #     print(item)
 
 
         if validate_email(user_Ref, email):
-            insert_college_survey(user_Ref, email, income_data["selectedReligions"],
-                        income_data['selectedMajors'], sat=income_data['sat_score'], act=income_data['act_score'])
-
-            # append the data into scholarship survey attribute
-            append_scholarSurvey_fromCollegeSurvey(user_Ref, email, income_data["selectedReligions"],
-                        income_data['selectedMajors'], sat=income_data['sat_score'], act=income_data['act_score'])
-        if validate_email(user_Ref, email):
-
-
             if user_Ref.count_documents({"_id": email, "survey_scholarship": {'$exists': True}}) == 1:
                 
                 resource = user_Ref.find_one({"_id": email}, {"_id": 0, "survey_scholarship": 1})
@@ -1032,8 +1033,11 @@ def usrSurvey_college(email, token, id):
             else:
                 append_scholarSurvey_fromCollegeSurvey(user_Ref, email, income_data["regions"], income_data['majors'], income_data['sat_score'], income_data['act_score'])
             
-            insert_college_survey(user_Ref, email, income_data["regions"],
-                                  income_data['majors'], sat=income_data['sat_score'], act=income_data['act_score'])
+            # insert_college_survey(user_Ref, email, income_data["regions"],
+            #                       income_data['majors'], sat=income_data['sat_score'], act=income_data['act_score'])
+
+            updtCollegeSurvey(db, user_Ref, email, state=income_data["regions"], sat=income_data['sat_score'], act=income_data['act_score'], majors=income_data['majors'])
+
 
             return make_response(jsonify({"mesg": "Your college survey has successfully modified!"}), 202)
 
@@ -1053,7 +1057,9 @@ def usrSurvey_major(email, token, id):
         income_data = request.json
 
         if validate_email(user_Ref, email):
-            insert_major_survey(
+
+            updtMajorSurvey(
+                db,
                 user_Ref,
                 email,
                 income_data['avg_salary'],
@@ -1067,6 +1073,21 @@ def usrSurvey_major(email, token, id):
                 income_data['haveSocial'],
                 income_data['haveEnvironment']
             )
+
+            # insert_major_survey(
+            #     user_Ref,
+            #     email,
+            #     income_data['avg_salary'],
+            #     income_data['unemployment_rate'],
+            #     income_data['subjects'],
+            #     income_data['variety_of_jobs'],
+            #     income_data['high_social_interaction'],
+            #     income_data['work_environment'],
+            #     income_data['haveSalary'],
+            #     income_data['haveVariety'],
+            #     income_data['haveSocial'],
+            #     income_data['haveEnvironment']
+            # )
 
             return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
 
@@ -1112,7 +1133,8 @@ def usrSurvey_major(email, token, id):
 
             income_data = request.json
 
-            insert_major_survey(
+            updtMajorSurvey(
+                db,
                 user_Ref,
                 email,
                 income_data['avg_salary'],
@@ -1126,6 +1148,21 @@ def usrSurvey_major(email, token, id):
                 income_data['haveSocial'],
                 income_data['haveEnvironment']
             )
+
+            # insert_major_survey(
+            #     user_Ref,
+            #     email,
+            #     income_data['avg_salary'],
+            #     income_data['unemployment_rate'],
+            #     income_data['subjects'],
+            #     income_data['variety_of_jobs'],
+            #     income_data['high_social_interaction'],
+            #     income_data['work_environment'],
+            #     income_data['haveSalary'],
+            #     income_data['haveVariety'],
+            #     income_data['haveSocial'],
+            #     income_data['haveEnvironment']
+            # )
 
             return make_response(jsonify({"mesg": "Your information has successfully captured!"}), 202)
 
@@ -1148,7 +1185,7 @@ def getRecommend_scholarship(email, token, id):
     #      religion=["Buddhist"])
 
     if request.method == "GET":
-        result = filter_results(user_Ref, scholar_ref, email)
+        result = recommend_scholarship(user_Ref, scholar_ref, email)
         return make_response(jsonify(result), 202)
     else:
         return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
@@ -1159,13 +1196,9 @@ def getRecommend_college(email, token, id):
     # get scholarship recommendations
     # INPUT: email (string)
     # OUTPUT: scholarship title, amount, and deadline
-    # updtUser(db, user_Ref, "hchen60@nyit.edu", "Male", "01/18/1998", "11223", "3.41",
-    #      "Computer Science", race=["Asian/Pacific Islander"], ethnicity=["Chinese"],
-    #      religion=["Buddhist"])
 
     if request.method == "GET":
-        # result = filter_results(user_Ref, scholar_ref, email)
-        result = "x"
+        result = collegeFilter(user_Ref, college_ref, email)
         return make_response(jsonify(result), 202)
     else:
         return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
@@ -1181,8 +1214,7 @@ def getRecommend_major(email, token, id):
     #      religion=["Buddhist"])
 
     if request.method == "GET":
-        # result = filter_results(user_Ref, scholar_ref, email)
-        result = "x"
+        result = filter_majors(db, user_Ref, email)
         return make_response(jsonify(result), 202)
     else:
         return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)

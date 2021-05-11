@@ -1,8 +1,9 @@
 from datetime import datetime, date
 # from datetime import date
-from pymongo import MongoClient
+# from pymongo import MongoClient
 
 # CosSim Calc
+import numpy as np
 from numpy import dot
 from numpy.linalg import norm
 
@@ -308,7 +309,7 @@ def sortKey(e):
     return e['Val']
 
 
-def filter_results(user_Ref, scholar_ref, userId):
+def recommend_scholarship(user_Ref, scholar_ref, userId):
     # For filtereing after a query is done, returns a list of id's that we can loop through to pull info of those scholarships
     # Input -> Query generator object, string user id, filtering float number
     # Output -> List of strings, these are id's that can be used to pull information

@@ -1,34 +1,35 @@
-from pymongo import MongoClient
+# from pymongo import MongoClient
 from numpy import dot
 from numpy.linalg import norm
 from numpy import isnan
 import numpy as np
 
-db = MongoClient('localhost', 27017)
-user_Ref = db.test.client_profile
-college_ref = db.test.colleges
+# db = MongoClient('localhost', 27017)
+# user_Ref = db.test.client_profile
+# college_ref = db.test.colleges
 
 def updtCollegeSurvey(
                 db,
+                user_Ref,
                 email,
                 state = [],
                 sat = '',
                 act = '',
-                major = [],
+                majors = [],
                 ):
     
     
-    binary = binaryCollege(major)
+    binary = binaryCollege(majors)
 
-    user_Ref.update(
+    user_Ref.update_one(
         {'_id':email},
         {'$set':
             {
            'survey_college':{
                 "regions": state,
-                "major": major,
-                "sat_score": sat,
-                "act_score": act,
+                "majors": majors,
+                "sat": sat,
+                "act": act,
                 "binary": binary, 
            } 
         }}
@@ -195,17 +196,17 @@ def comparison(user_bin, input_bin):
     cos_sim = dot(userList, inputList)/(norm(userList)*norm(inputList))
     return cos_sim
 
-def collegeFilter(userEmail):
+def collegeFilter(user_Ref, college_ref, userEmail):
     #do something
 
     userCursor = user_Ref.find(
         {"_id": userEmail}, {"_id": 0})
     userProf = userCursor[0]
     userStates = userProf.get('survey_college').get('regions') 
-    userMajor = userProf.get('survey_college').get('major')
+    userMajor = userProf.get('survey_college').get('majors')
     userBin = userProf.get('survey_college').get('binary')
-    userSat = userProf.get('survey_college').get('sat_score')
-    userAct = userProf.get('survey_college').get('act_score')
+    userSat = userProf.get('survey_college').get('sat')
+    userAct = userProf.get('survey_college').get('act')
 
     initialQuery = []
 
@@ -258,6 +259,7 @@ def collegeFilter(userEmail):
             queryRes.append(collegeDict)
 
     finalCollegeList = []
+    
     if list(userMajor) !=[]:
         count = 0
         for k in range(len(queryRes)):
@@ -281,7 +283,7 @@ def collegeFilter(userEmail):
                 'Val': 'N\A'
             }
             finalCollegeList.append(collegeInfo)
-        return finalCollege(List)
+        return finalCollegeList
 
 
 def sortKey(e):

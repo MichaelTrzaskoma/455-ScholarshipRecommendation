@@ -358,9 +358,35 @@ def insert_major_survey(majorRef, email, avg_sal, unempl, sub, varietOfJobs, soc
             "variOfJobs": varietOfJobs,
             "social": social,
             "workEnv": workEnv,
+            
             "triSal": triSal,
             "triVari": triVari,
             "triSocial": triSocial,
             "triEnv": triEnv
         }
     }})
+
+
+def checkBookmarkStatus(clientRef, email, docType, title):
+    # check if a specific scholar item is bookmarked or not
+
+    r = clientRef.aggregate([
+        {'$match': {"_id": email}},
+        {'$unwind': '$bookmarks'},
+        {'$match': {'bookmarks.title': title}},
+        {'$match': {'bookmarks.type': docType}},
+        {'$project': {"bookmarks": 1, "_id": 0}}
+    ])
+
+    x = []
+        
+    for i in r:
+        x.append(i)
+
+    if len(x) == 0:
+        return False
+
+    if title == x[0]['bookmarks']['title']:
+        return True
+    else:
+        return False
