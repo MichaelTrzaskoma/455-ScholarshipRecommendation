@@ -20,7 +20,7 @@ class MajorRecommender extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: this.props.email,
+      usrInfo: this.props.usrInfo,
     };
   }
 
@@ -35,10 +35,10 @@ class MajorRecommender extends React.Component {
           <View style={styles.customContainer}>
             <TouchableOpacity
               style={styles.customBtn}
-              onPress={() => navigation.navigate("MajorDetail",
+              onPress={() => navigation.navigate("MajorRecommendTbl",
                 {
-                  title: "Major Detail",
-                  email: this.state.email,
+                  title: "Major Recommendation",
+                  usrInfo: this.props.usrInfo,
                 })
               }
             >

@@ -121,7 +121,7 @@ export default class ViewCollegeDetail extends React.Component {
     // console.log("College Detail page: " + this.props.route.params.usrInfo);
     //Insert API Call here
 
-    let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
     // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/hchen98x@gmail.com/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
 
 
@@ -214,7 +214,7 @@ export default class ViewCollegeDetail extends React.Component {
     // console.log("User profile from ViewCollegeDetail: " + JSON.stringify(this.props.route.params));
     
     let URL =
-      "http://2d071003be2e.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
+      "http://6bff156668d9.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
 
       // "http://3efdd482435b.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
     console.log("College Detail URL: "+URL);
@@ -228,125 +228,8 @@ export default class ViewCollegeDetail extends React.Component {
       // format the API response into json
       .then((response) => response.json())
       .then((json) => {
-
-        // json.mesg.ranking.forEach((res) => {
-        //   console.log("Checking ViewCollegeDetail " + JSON.stringify(res));
-        // })
-
-        if (json.mesg.ranking === "None" ){
-          this.setState({
-            collegeObj1_1: {
-              uniName: json.mesg.uni_name,
-              address: json.mesg.address,
-              tag1: json.mesg.tag_1,
-              tag2: json.mesg.tag_2,
-            },
-            collegeObj1_2: {
-              tuitionIn: json.mesg.tuition_in_state,
-              tuitionOut: json.mesg.tuition_out_state,
-              avgHousing: json.mesg.avg_housing,
-              deadLine: json.mesg.application_deadline
-            },
-            collegeObj2_1: {
-              description: json.mesg.description,
-              athDivi: json.mesg.athleticsD,
-              athCon: json.mesg.athleticsC,
-              accepRate: json.mesg.acceptance_rate,
-            },
-            collegeObj2_2: {
-              gradRate: json.mesg.graduation_rate,
-              earningAfter: json.mesg.earning_after_uni,
-              employAfteCollege: json.mesg.employ_after_uni,
-              website: json.mesg.offical_site,
-              applyLink: json.mesg.application_website,
-            },
-            // collegeObj3_1: {
-            //   rankingTitle1: json.mesg.ranking[0].title,
-            //   rankingRank1: json.mesg.ranking[0].rank,
-            //   rankingTitle2: json.mesg.ranking[1].title,
-            //   rankingRank2: json.mesg.ranking[1].rank,
-            //   rankingTitle3: json.mesg.ranking[2].title,
-            //   rankingRank3: json.mesg.ranking[2].rank,
-            // },
-            // collegeObj3_2: {
-            //   rankingTitle4: json.mesg.ranking[3].title,
-            //   rankingRank4: json.mesg.ranking[3].rank,
-            //   rankingTitle5: json.mesg.ranking[4].title,
-            //   rankingRank5: json.mesg.ranking[4].rank,
-            //   rankingTitle6: json.mesg.ranking[5].title,
-            //   rankingRank6: json.mesg.ranking[5].rank,
-            // },
-            collegeObj4_1: {
-              acceptSAT: json.mesg.sat_accept_score_range,
-              readingSAT: json.mesg.sat_read_score_range,
-              mathSAT: json.mesg.sat_math_score_range,
-              acceptACT: json.mesg.act_accept_score_range,
-              englishACT: json.mesg.act_eng_score_range,
-              mathACT: json.mesg.act_write_score_range,
-              writingACT: json.mesg.act_write_score_range,
-              comAppli: json.mesg.comm_app,
-            },
-            collegeObj4_2: {
-              coalAppli: json.mesg.coalition_app,
-              highSchGPA: json.mesg.highSchool_gpa,
-              highSchRank: json.mesg.highSchool_rank,
-              highSchTrans: json.mesg.highSchool_transcripts,
-              collegePrecour: json.mesg.uni_precourse,
-              sat_actScore: json.mesg.sat_or_act,
-              recommend: json.mesg.recommendationLetter,
-              averMealPlan: json.mesg.avg_meal_plan,
-              bookCost: json.mesg.book_cost,
-            },
-            collegeObj5_1: {
-              femUnder: json.mesg.female_undergrads_ratio,
-              malUnder: json.mesg.male_undergrads_ratio,
-              inStateResi: json.mesg.residence_in_state,
-              outStateResi: json.mesg.residence_out_state,
-              interResi: json.mesg.residence_international,
-              under18: json.mesg.student_age_Under_18,
-              a18_19: json.mesg.student_age_18TO19,
-              a20_21: json.mesg.student_age_20TO21,
-              a22_24: json.mesg.student_age_22TO24,
-            },
-            collegeObj5_2: {
-              over25: json.mesg.student_age_25UP,
-              AfricanAmerican: json.mesg.racial_aa,
-              Asian: json.mesg.racial_asian,
-              Hispanic: json.mesg.racial_hispanic,
-              International: json.mesg.racial_international,
-              Multi: json.mesg.racial_international,
-              NativeAmerican: json.mesg.racial_na,
-              PacificIslander: json.mesg.racial_pi,
-              White: json.mesg.racial_white
-            },
-            collegeObj6_1: {
-              mSports: json.mesg.sport_male,
-              fSports: json.mesg.sport_female,
-              clubs: json.mesg.club,
-              music: json.mesg.music,
-              classRadio2_19: json.mesg.class_ratio_2TO19,
-              classRadio20_39: json.mesg.class_ratio_20TO39,
-            },
-            collegeObj6_2: {
-              classRadio40_99: json.mesg.class_ratio_40TO99,
-              classRadio100: json.mesg.class_ratio_100UP,
-              FacultyRatio: json.mesg.faculty_ratio,
-              FemFaculty: json.mesg.faculty_female,
-              malFaculty: json.mesg.faculty_male,
-              popMajor: json.mesg.popular_majors
-            },
-            // applyLinkVisible: false,
-            // email: this.props.route.params.email,
-          });
-        }
-        
-        // console.log("checking ViewCollegeDetail " + JSON.stringify(json.mesg.ranking));
         // console.log("API returns College detail: " + JSON.stringify(json));
         // set the val to state
-
-         json.mesg.ranking.forEach((res) => {
-           console.log("Checking ViewCollegeDetail " + JSON.stringify(res));
-        
         this.setState({
           isBooked: json.mesg.isBooked,
           collegeObj1_1: {
@@ -375,20 +258,20 @@ export default class ViewCollegeDetail extends React.Component {
             applyLink: json.mesg.application_website,
           },
           collegeObj3_1: {
-            rankingTitle1: json.mesg.res.title,
-            rankingRank1: json.mesg.res.rank,
-            rankingTitle2: json.mesg.res.title,
-            rankingRank2: json.mesg.res.rank,
-            rankingTitle3: json.mesg.res.title,
-            rankingRank3: json.mesg.res.rank,
+            rankingTitle1: json.mesg.ranking[0].title,
+            rankingRank1: json.mesg.ranking[0].rank,
+            rankingTitle2: json.mesg.ranking[1].title,
+            rankingRank2: json.mesg.ranking[1].rank,
+            rankingTitle3: json.mesg.ranking[2].title,
+            rankingRank3: json.mesg.ranking[2].rank,
           },
           collegeObj3_2: {
-            rankingTitle4: json.mesg.res.title,
-            rankingRank4: json.mesg.res.rank,
-            rankingTitle5: json.mesg.res.title,
-            rankingRank5: json.mesg.res.rank,
-            rankingTitle6: json.mesg.res.title,
-            rankingRank6: json.mesg.res.rank,
+            rankingTitle4: json.mesg.ranking[3].title,
+            rankingRank4: json.mesg.ranking[3].rank,
+            rankingTitle5: json.mesg.ranking[4].title,
+            rankingRank5: json.mesg.ranking[4].rank,
+            rankingTitle6: json.mesg.ranking[5].title,
+            rankingRank6: json.mesg.ranking[5].rank,
           },
           collegeObj4_1: {
             acceptSAT: json.mesg.sat_accept_score_range,
@@ -452,7 +335,6 @@ export default class ViewCollegeDetail extends React.Component {
           // applyLinkVisible: false,
           // email: this.props.route.params.email,
         });
-      })
       });
   }
 
@@ -464,9 +346,7 @@ export default class ViewCollegeDetail extends React.Component {
 
 
   render() {
-    // console.log("From ViewCollegeDetail props " + JSON.stringify(this.props.route.params.usrProf));
-    console.log("Checking ViewCollegeDetail state " + JSON.stringify(this.state.collegeObj3_1));
-
+    // console.log("From ViewCollegeDetail props " + JSON.stringify(this.props.route.params.usrInfo));
     return (
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false} style={styles.mainContainer}>
@@ -613,7 +493,6 @@ export default class ViewCollegeDetail extends React.Component {
             <View style={styles.rankingGrp1}>
               <View style={styles.moreInfoLeftGrp2}>
                 <Text style={styles.rankingDetail1}>Ranking Details</Text>
-                { }
                 <Text style={styles.rankTitle1}>
                   {this.state.collegeObj3_1.rankingTitle1}
                 </Text>

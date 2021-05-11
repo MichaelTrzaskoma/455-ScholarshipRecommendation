@@ -18,12 +18,13 @@ class CollegeRecommender extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: this.props.email,
+			usrInfo: this.props.usrInfo,
 		};
 	}
 
 	render() {
 		const { navigation } = this.props;
+		console.log("USr object from collegeRecommend:  "+ JSON.stringify(this.props.usrInfo));
 		// console.log("CollegeRecommend " + navigation);
 		// console.log("College Recommend Btn: " + JSON.stringify(this.props));
 		return (
@@ -34,9 +35,9 @@ class CollegeRecommender extends React.Component {
 					<View style={styles.customContainer}>
 						<TouchableOpacity
 							style={styles.customBtn}
-							onPress={() => navigation.navigate("ViewCollegeDetail",
+							onPress={() => navigation.navigate("CollegeRecommendTbl",
 								{
-									title: "College Detail",
+									title: "College Recommend",
 									usrInfo: this.props.usrInfo,
 								})
 							}
