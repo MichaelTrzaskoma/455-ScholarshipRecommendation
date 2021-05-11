@@ -8,6 +8,7 @@ export default class ViewCollegeDetail extends React.Component {
     super(props);
     this.state = {
       usrInfo: this.props.route.params.usrInfo,
+      isBooked: false,
       collegeObj1_1: {
         uniName: '',
         address: '',
@@ -144,6 +145,7 @@ export default class ViewCollegeDetail extends React.Component {
           alert(
             "Bookmarked!"
           );
+          this.getDetail();
 
         } else {
           json_mesg = response.json();
@@ -157,15 +159,65 @@ export default class ViewCollegeDetail extends React.Component {
     //alert("This scholarship has been bookmarked!");
   }
 
+  removeBookmark() {
+
+    // this.setState({ modalVisible: false });
+    // console.log(this.state.currentBookmarkKey)
+
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+
+    fetch(URL, {
+      method: "DELETE",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "title": this.state.collegeObj1_1.uniName,
+      }),
+    })
+      .then((response) => {
+        if (response.status == 202) {
+
+          alert("Bookmarked Removed!");
+          // console.log("Bookmarked Removed");
+          // this.getRecommend_scholarship();
+          // this.setState({
+          //   scholarshipObj :{
+          //     isBooked: false,
+          //   },
+          // });
+          this.getDetail();
+
+
+        } else if (response.status == 208) {
+
+          alert("Already Removed!");
+
+        } else {
+
+          alert("Something else happened!");
+
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    // console.log("Bookmark Key: " + this.state.currentBookmarkKey);
+    //alert("This College has been bookmarked!");
+
+  }
+
   getDetail = () => {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // console.log("User profile from ViewCollegeDetail: " + JSON.stringify(this.props.route.params));
-
+    
     let URL =
       "http://2d071003be2e.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
 
       // "http://3efdd482435b.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
-
+    console.log("College Detail URL: "+URL);
     fetch(URL, {
       method: 'GET',
       headers: {
@@ -296,6 +348,7 @@ export default class ViewCollegeDetail extends React.Component {
            console.log("Checking ViewCollegeDetail " + JSON.stringify(res));
         
         this.setState({
+          isBooked: json.mesg.isBooked,
           collegeObj1_1: {
             uniName: json.mesg.uni_name,
             address: json.mesg.address,
@@ -417,6 +470,17 @@ export default class ViewCollegeDetail extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false} style={styles.mainContainer}>
+        {this.state.isBooked ?
+        <View style = {styles.card_grp0}>
+        <TouchableOpacity onPress={() => this.removeBookmark()}>
+        <MaterialCommunityIcons
+                name="bookmark-minus"
+                style={styles.unbookmarksIcon}></MaterialCommunityIcons>
+              <Text style={styles.removeBookmarksTxt}>Remove Bookmark</Text>
+              
+        </TouchableOpacity>
+      </View>
+        :  
         <View style = {styles.card_grp0}>
           <TouchableOpacity onPress={() => this.handleBookmark()}>
           <MaterialCommunityIcons
@@ -425,6 +489,7 @@ export default class ViewCollegeDetail extends React.Component {
 							  <Text style={styles.bookmarksTxt}>Bookmark This Scholarship</Text>
           </TouchableOpacity>
         </View>
+        }
           <View style={styles.grp1}>
             <View style={styles.titleGrpStack}>
               <View style={styles.titleGrp}>
@@ -773,10 +838,22 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginLeft: 20,
   },
+  unbookmarksIcon:
+  {
+    color: 'rgb(255, 0, 0)',
+		fontSize: 35,
+    marginTop: 5,
+    marginLeft: 20,
+  },
   bookmarksTxt: {
     marginLeft: 87,
     marginTop: -22,
     color: 'rgba(48,132,188,1)',
+  },
+  removeBookmarksTxt: {
+    marginLeft: 87,
+    marginTop: -22,
+    color: 'rgb(175, 7, 45)',
   },
   grp1: {
     width: "93%",

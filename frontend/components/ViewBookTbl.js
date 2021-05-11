@@ -15,11 +15,12 @@ import { Menu, Provider } from 'react-native-paper';
 import { parse_UTCTimeStamp, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../functions/utilities";
 import { FlatList } from 'react-native-gesture-handler';
 import { useNavigation } from "@react-navigation/native";
+import { useIsFocused } from '@react-navigation/native';
 
 export default function ViewBookTbl(props) {
   const navigation = useNavigation();
-
-  return <ViewBookTblClass {...props} navigation={navigation} />;
+  const isFocused = useIsFocused();
+  return <ViewBookTblClass {...props} isFocused ={isFocused} navigation={navigation} />;
 }
 
 class ViewBookTblClass extends React.Component {
@@ -35,6 +36,8 @@ class ViewBookTblClass extends React.Component {
       opt_score_visible: false,
       modalVisible: false,
       currentBookmarkKey: "",
+      navigatedAway: false,
+      continueGet: true,
     };
   }
 
@@ -103,7 +106,7 @@ class ViewBookTblClass extends React.Component {
     this.setState({ modalVisible: false });
     // console.log(this.state.currentBookmarkKey)
 
-    let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "DELETE",
@@ -120,7 +123,7 @@ class ViewBookTblClass extends React.Component {
 
           alert("Bookmarked Removed!");
           // console.log("Bookmarked Removed");
-          this.getRecommend_scholarship();
+          this.getBookmarks();
 
 
         } else if (response.status == 208) {
@@ -139,7 +142,19 @@ class ViewBookTblClass extends React.Component {
 
     // console.log("Bookmark Key: " + this.state.currentBookmarkKey);
     //alert("This College has been bookmarked!");
+      this.forceUpdate();
+  }
 
+  handleRefresh()
+  {
+    if(!this.props.isFocused)
+    {
+      if(this.props.isFocused && this.state.continueGet)
+      {
+          this.getBookmarks();
+          this.setState({continueGet: false});
+      }
+    }
   }
 
   componentDidMount() {
@@ -200,7 +215,8 @@ class ViewBookTblClass extends React.Component {
     // : itemKey (str) the title of the respective unique identifier
     // : itemType (str) the item types - it can only be scholarship, major, or college
     // NOTE: when navigate the client, we also pass down the userProfile obj
-
+    // this.setState({navigatedAway: true});
+    // this.handleRefresh();
     const t = String(itemType);
 
     switch (t) {
@@ -210,6 +226,7 @@ class ViewBookTblClass extends React.Component {
           itemKey: itemKey,
           usrInfo: this.props.route.params.usrInfo
         });
+        
         break;
 
       case "major":
@@ -280,7 +297,8 @@ class ViewBookTblClass extends React.Component {
     // console.log("Checking Bookmark " + JSON.stringify(this.state.usrInfo));
     const { modalVisible } = this.state;
     const { navigation } = this.props;
-
+    const {isFocused} = this.props;
+    // this.handleRefresh();
 
     if (this.state.isLoading) {
       return (
