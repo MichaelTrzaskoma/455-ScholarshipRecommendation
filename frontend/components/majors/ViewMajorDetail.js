@@ -105,12 +105,12 @@ export default class ViewMajorDetail extends React.Component {
   }
 
   componentDidMount() {
-    // console.log("User profile from ViewMajorDetail: " + JSON.stringify(this.props.route.params.usrInfo));
+    console.log("User profile from ViewMajorDetail: " + JSON.stringify(this.props.route.params.usrInfo));
     this.getDetail();
   }
 
   render() {
-    // console.log("Checking MajorDetail " + JSON.stringify(this.props.route.params.usrProf));
+    // console.log("Checking MajorDetail " + JSON.stringify(this.props.route.params.usrInfo));
     // console.log("Checking MajorDetail props " + JSON.stringify(this.props));
     return (
       <View style={styles.container}>

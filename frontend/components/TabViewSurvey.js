@@ -61,8 +61,8 @@ export default function TabViewSurvey(props) {
           name={"InputScreen2"}
           component={InputScreen2}
           options={{ headerShown: false }}
-        // options={{ title: "Optional Info", email: this.state.usrProfile.email }}
-        // initialParams={{ email: this.state.usrProfile.email }}
+        // options={{ title: "Optional Info", email: this.state.usrInfo.email }}
+        // initialParams={{ email: this.state.usrInfo.email }}
         /> */}
       </Stack.Navigator>
     </NavigationContainer>

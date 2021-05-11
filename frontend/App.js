@@ -431,7 +431,7 @@ export default class App extends Component {
                   color: "white",
                 },
               })}
-              initialParams={{ usrProfile: this.state.usrProfile }}
+              initialParams={{ usrInfo: this.state.usrProfile }}
             />
 
             <Stack.Screen
@@ -448,7 +448,7 @@ export default class App extends Component {
                   color: "white",
                 },
               })}
-              initialParams={{ usrProfile: this.state.usrProfile }}
+              initialParams={{ usrInfo: this.state.usrProfile }}
             />
 
             <Stack.Screen
@@ -514,7 +514,7 @@ export default class App extends Component {
                   color: "white",
                 },
               })}
-              initialParams={{ usrProfile: this.state.usrProfile }}
+              initialParams={{ usrInfo: this.state.usrProfile }}
             />
 
             <Stack.Screen
@@ -531,7 +531,7 @@ export default class App extends Component {
                   color: "white",
                 },
               })}
-              initialParams={{ usrProfile: this.state.usrProfile }}
+              initialParams={{ usrInfo: this.state.usrProfile }}
             />
 
             <Stack.Screen
@@ -548,7 +548,7 @@ export default class App extends Component {
                   color: "white",
                 },
               })}
-              initialParams={{ usrProfile: this.state.usrProfile }}
+              initialParams={{ usrInfo: this.state.usrProfile }}
             />
 
             <Stack.Screen
@@ -567,7 +567,7 @@ export default class App extends Component {
                 },
               })}
               initialParams={{
-                email: this.state.usrProfile.email
+                usrInfo: this.state.usrProfile
               }}
             />
 

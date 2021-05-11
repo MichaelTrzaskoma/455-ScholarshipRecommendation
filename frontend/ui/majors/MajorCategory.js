@@ -11,7 +11,7 @@ import { FontAwesome, MaterialCommunityIcons, Ionicons } from '@expo/vector-icon
 
 export default function MajorCategory(props) {
   const navigation = useNavigation();
-  // console.log("Major Category check" + JSON.stringify(props.usrProf));
+  // console.log("Major Category check" + JSON.stringify(props.usrInfo));
   return (
     // Cateogry ScrollView */}
     <View style={styles.category_container}>

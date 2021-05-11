@@ -10,7 +10,7 @@ export default class ViewScholarDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usrInfo: this.props.route.params,
+      usrInfo: this.props.route.params.usrInfo,
       scholarshipObj: {
         amount: '',
         ava: '',
@@ -71,9 +71,9 @@ export default class ViewScholarDetail extends React.Component {
   UNSAFE_componentWillMount() {
     // console.log("User profile from ViewScholarDetail: " + JSON.stringify(this.props.route.params));
     this.getDetail();
-    console.log("usrInfo jwt: "+ this.state.usrInfo.jwt);
-    console.log("usrInfo uuid: "+ this.state.usrInfo.uuid);
-    console.log("Usr info: "+JSON.stringify(this.props.route.params.usrInfo));
+    console.log("JWT: " + JSON.stringify(this.state.usrInfo.jwt));
+    console.log("USer obj: " + JSON.stringify(this.state.usrInfo));
+    console.log("UUID: " + this.state.usrInfo.uuid);
   }
 
   getDetail = () => {

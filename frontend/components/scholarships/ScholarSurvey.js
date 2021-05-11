@@ -1287,7 +1287,7 @@ class InputScreen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			usrProfile: this.props.route.params.usrInfo,
+			usrInfo: this.props.route.params.usrInfo,
 			gender: "",
 			dob: "",
 			gpa: "",
@@ -1530,7 +1530,7 @@ class InputScreen extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props)
 
-		let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
+		let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt+"/"+this.state.usrInfo.uuid+"/"+"surveys/scholarship";
 		// console.log("URL"+ URL);
 		fetch(URL, {
 			method: localMethod,
@@ -1607,7 +1607,7 @@ class InputScreen extends React.Component {
 	getExistingData = () => {
 		//insert correct URL for user's profile
 
-		let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
+		let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt+"/"+this.state.usrInfo.uuid+"/"+"surveys/scholarship";
 
 		fetch(URL, {
 			method: 'GET',
@@ -1661,7 +1661,7 @@ class InputScreen extends React.Component {
 
 
 	render() {
-		// console.log("ScholarSuvey Checking " + JSON.stringify(this.state.usrProfile));
+		// console.log("ScholarSuvey Checking " + JSON.stringify(this.state.usrInfo));
 		// console.log("scholarSurvey prop check " + JSON.stringify(this.props.route.params.usrInfo));
 		// console.log("Hey there, this is Scholarship Survey screen!");
 		return (
