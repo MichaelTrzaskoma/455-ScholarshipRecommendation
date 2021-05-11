@@ -10,6 +10,7 @@ import {
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import MajorCategory from "../../ui/majors/MajorCategory";
 import MajorRecommend from "../../ui/majors/MajorRecommend";
+import MajorRecent from "../../ui/majors/MajorRecent";
 
 class MajorScreen extends React.Component {
   // console.log("Major props check " + JSON.stringify(props.usrInfo));
@@ -37,71 +38,8 @@ class MajorScreen extends React.Component {
             <MajorRecommend usrInfo={this.props.usrInfo} />
 
             {/* Recent View ScrollView */}
-            <View style={styles.recent_container}>
-              <View style={styles.recentGrp}>
-                <Text style={styles.recentTxt}>Recent Viewed</Text>
-                <View style={styles.scrollArea2}>
-                  <ScrollView
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={
-                      styles.scrollArea2_contentContainerStyle
-                    }
-                  >
-                    <View style={styles.rvBtn1Row}>
-                      <TouchableOpacity style={styles.rvBtn1}>
-                        <MaterialCommunityIcons
-                          name="table-of-contents"
-                          style={styles.rvIcon1}
-                        ></MaterialCommunityIcons>
-                        <View style={styles.rvIcon1Filler}></View>
-                        <Text style={styles.rvTxt1}>Place{"\n"}Holder 1</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity style={styles.rvBtn2}>
-                        <MaterialCommunityIcons
-                          name="table-of-contents"
-                          style={styles.rvIcon2}
-                        ></MaterialCommunityIcons>
-                        <View style={styles.rvIcon2Filler}></View>
-                        <Text style={styles.rvTxt2}>Place{"\n"}Holder 2</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity style={styles.rvBtn2}>
-                        <MaterialCommunityIcons
-                          name="table-of-contents"
-                          style={styles.rvIcon3}
-                        ></MaterialCommunityIcons>
-                        <View style={styles.rvIcon3Filler}></View>
-                        <Text style={styles.rvTxt3}>Place{"\n"}Holder 3</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity style={styles.rvBtn2}>
-                        <MaterialCommunityIcons
-                          name="table-of-contents"
-                          style={styles.rvIcon4}
-                        ></MaterialCommunityIcons>
-                        <View style={styles.rvIcon4Filler}></View>
-                        <Text style={styles.rvTxt4}>Place{"\n"}Holder 4</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity style={styles.rvBtn2}>
-                        <MaterialCommunityIcons
-                          name="table-of-contents"
-                          style={styles.rvIcon5}
-                        ></MaterialCommunityIcons>
-                        <View style={styles.rvIcon5Filler}></View>
-                        <Text style={styles.rvTxt5}>Place{"\n"}Holder 5</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity style={styles.rvBtn2}>
-                        <FontAwesome
-                          name="arrow-circle-right"
-                          style={styles.customIcon}>
-                        </FontAwesome>
-                        <View style={styles.viewAllIconFiller}></View>
-                        <Text style={styles.viewAllTxt}>View All</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </ScrollView>
-                </View>
-              </View>
-            </View>
+            <MajorRecent usrInfo={this.props.usrInfo} />
+
           </View>
         </View>
       </View>

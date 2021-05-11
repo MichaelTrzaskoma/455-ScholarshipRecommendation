@@ -10,14 +10,14 @@ import { FlatList } from 'react-native-gesture-handler';
 import { useNavigation } from "@react-navigation/native";
 
 
-export default function ScholarRecent(props) {
+export default function CollegeRecent(props) {
   const navigation = useNavigation();
 
-  return <ScholarRecentClassd {...props} navigation={navigation} />;
+  return <CollegeRecentClass {...props} navigation={navigation} />;
 }
 
 
-class ScholarRecentClassd extends Component {
+class CollegeRecentClass extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +30,7 @@ class ScholarRecentClassd extends Component {
 
   getRecentViewed = () => {
     // /api/v1.2/users/id/<email>/<token>/<id>/recent/<type>/<doc_num>
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recent/scholarship/5"
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recent/college/5"
     try {
 
       let recentArr = [];
@@ -78,7 +78,6 @@ class ScholarRecentClassd extends Component {
 
   render() {
     const { navigation } = this.props;
-
     if (this.state.isHistory) {
       return (
         <View style={styles.recent_container}>

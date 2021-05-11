@@ -43,11 +43,6 @@ export default class ScholarshipScreen extends React.Component {
 
             <ScholarRecent usrInfo={this.state.usrInfo} nav={this.state.nav} />
 
-                {/* </View>
-              </View>
-            </View> */}
-
-
           </View>
         </View>
       </View>

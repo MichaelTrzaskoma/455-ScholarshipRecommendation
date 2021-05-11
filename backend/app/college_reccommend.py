@@ -199,8 +199,8 @@ def comparison(user_bin, input_bin):
 def collegeFilter(user_Ref, college_ref, userEmail):
     #do something
 
-    userCursor = user_Ref.find(
-        {"_id": userEmail}, {"_id": 0})
+    userCursor = user_Ref.find({"_id": userEmail}, {"_id": 0})
+
     userProf = userCursor[0]
     userStates = userProf.get('survey_college').get('regions') 
     userMajor = userProf.get('survey_college').get('majors')
@@ -270,8 +270,8 @@ def collegeFilter(user_Ref, college_ref, userEmail):
                 value = comparison(userBin, collegeBin)
                 if np.isnan(value) == False and value != 0:
                     collegeInfo = {
-                        'Name': queryRes[k].get('name'),
-                        'Val': value
+                        "Name": str(queryRes[k].get('name')),
+                        "Val": str(value)
                     }
                     finalCollegeList.append(collegeInfo)
         finalCollegeList.sort(key=sortKey, reverse=True)
@@ -279,8 +279,8 @@ def collegeFilter(user_Ref, college_ref, userEmail):
     else:
         for l in range(len(queryRes)):
             collegeInfo = {
-                'Name': queryRes.get('name'),
-                'Val': 'N\A'
+                "Name": str(queryRes.get('name')),
+                "Val": "N\A"
             }
             finalCollegeList.append(collegeInfo)
         return finalCollegeList
@@ -293,4 +293,4 @@ def sortKey(e):
     return e['Val']
 
 #updtCollegeSurvey(db, 'mtrzasko@nyit.edu', act = '20', major =['Math'])
-#print(collegeFilter('mtrzasko@nyit.edu'))
+# print(collegeFilter(user_Ref, college_ref, 'hchen98x@gmail.com'))

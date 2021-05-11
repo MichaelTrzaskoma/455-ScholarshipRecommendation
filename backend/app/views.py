@@ -1199,6 +1199,7 @@ def getRecommend_college(email, token, id):
 
     if request.method == "GET":
         result = collegeFilter(user_Ref, college_ref, email)
+        print(result)
         return make_response(jsonify(result), 202)
     else:
         return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
