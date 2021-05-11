@@ -91,9 +91,13 @@ def arr2str(target):
     # OUTPUT: return a str
 
     l_arr = len(target)
+    # print(f"{target}: {l_arr}")
+    # print(type(target))
+    # print()
 
     if l_arr == 1:
-        return target[0]
+        return target
+
     elif l_arr == 0:
         return "None"
     else:
@@ -178,7 +182,7 @@ def getBookmarks(user_Ref, email):
     docs = user_Ref.find_one({"_id": email}, {"_id": 0, "bookmarks": 1})
 
     bkmrks = []
-    print(docs)
+    # print(docs)
     for doc in docs['bookmarks']:
         bkmrks.append(doc)
 

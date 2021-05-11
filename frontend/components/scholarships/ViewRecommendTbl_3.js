@@ -59,11 +59,13 @@ export default class ViewRecommendTbl_3 extends React.Component {
     this._closeDeadlineMenu();
   }
 
+
   sortDeadlineHandler_z2a() {
     this.state.scholarArr.sort(dynamicSort("-deadline"));
     // console.log(this.state.scholarArr);
     this._closeDeadlineMenu();
   }
+
 
   sortScoreHandler_a2z() {
     this.state.scholarArr.sort(dynamicSort("score"));
@@ -71,11 +73,13 @@ export default class ViewRecommendTbl_3 extends React.Component {
     this._closeScoreMenu();
   }
 
+
   sortScoreHandler_z2a() {
     this.state.scholarArr.sort(dynamicSort("-score"));
     // console.log(this.state.scholarArr);
     this._closeScoreMenu();
   }
+
 
   sortAmountHandler_a2z() {
     this.setState({
@@ -85,6 +89,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
     // console.log(this.state.scholarArr);
     this._closeAmountMenu();
   }
+
 
   sortAmountHandler_z2a() {
     // mergeSort_z2a
@@ -96,9 +101,11 @@ export default class ViewRecommendTbl_3 extends React.Component {
     this._closeAmountMenu();
   }
 
+
   componentDidMount() {
     this.getRecommend_scholarship();
   }
+
 
   getRecommend_scholarship() {
     try {
@@ -116,6 +123,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
       })
         .then((response) => response.json())
         .then((json) => {
+          
           json.forEach((res) => {
 
             // parse the deadline
@@ -154,9 +162,23 @@ export default class ViewRecommendTbl_3 extends React.Component {
 
   };
 
+
   FlatListItemSeparator = () => {
     return <View style={styles.ItemSeparator} />;
   }
+
+
+  parseSortICON(types) {
+    const r = String(types);
+    if (r === "A - Z") {
+      return (
+          <FontAwesome name="sort-alpha-asc" size={16} color="black">  A - Z</FontAwesome>
+        );
+    } else {
+      return (<FontAwesome name="sort-alpha-desc" size={16} color="black">  Z - A</FontAwesome>);
+    }
+  }
+
 
   render() {
     // console.log("Checking ViewRecommendTbl " + JSON.stringify(this.props.route.params.usrInfo ));
@@ -208,13 +230,15 @@ export default class ViewRecommendTbl_3 extends React.Component {
                     onPress={() => {
                       this.sortTitleHandler_a2z();
                     }}
-                    title="A - Z"
+                    title={this.parseSortICON("A - Z")}
                   />
                   <Menu.Item
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
                       this.sortTitleHandler_z2a();
-                    }} title="Z - A" />
+                    }} 
+                    title={this.parseSortICON("Z - A")}
+                    />
                 </Menu>
 
 
@@ -241,13 +265,15 @@ export default class ViewRecommendTbl_3 extends React.Component {
                     onPress={() => {
                       this.sortDeadlineHandler_a2z();
                     }}
-                    title="A - Z"
+                    title={this.parseSortICON("A - Z")}
                   />
                   <Menu.Item
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
                       this.sortDeadlineHandler_z2a();
-                    }} title="Z - A" />
+                    }} 
+                    title={this.parseSortICON("Z - A")}
+                    />
                 </Menu>
 
 
@@ -273,13 +299,15 @@ export default class ViewRecommendTbl_3 extends React.Component {
                     onPress={() => {
                       this.sortScoreHandler_a2z();
                     }}
-                    title="A - Z"
+                    title={this.parseSortICON("A - Z")}
                   />
                   <Menu.Item
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
                       this.sortScoreHandler_z2a();
-                    }} title="Z - A" />
+                    }} 
+                    title={this.parseSortICON("Z - A")}
+                    />
                 </Menu>
 
 
@@ -305,13 +333,15 @@ export default class ViewRecommendTbl_3 extends React.Component {
                     onPress={() => {
                       this.sortAmountHandler_a2z();
                     }}
-                    title="A - Z"
+                    title={this.parseSortICON("A - Z")}
                   />
                   <Menu.Item
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
                       this.sortAmountHandler_z2a();
-                    }} title="Z - A" />
+                    }} 
+                    title={this.parseSortICON("Z - A")}
+                     />
                 </Menu>
 
 
@@ -459,7 +489,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginLeft: 8,
     marginTop: 2,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
   },
   group2: {
     width: 90,
@@ -494,7 +524,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginLeft: 8,
     marginTop: 2,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
   },
   group3: {
     width: 100,
@@ -529,7 +559,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginLeft: 8,
     marginTop: 2,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
   },
   group0: {
     width: 80,

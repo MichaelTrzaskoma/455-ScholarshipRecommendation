@@ -51,7 +51,7 @@ def thankYou():
     if(request.method == "POST"):
         page = request.form['pagePost']
         text = ""
-        print("Page: " + page)
+        # print("Page: " + page)
         if(page == "signup"):
             email = request.form['inputEmail']
             password = request.form['inputPassword']
@@ -80,7 +80,7 @@ def thankYou():
             text = "<strong>Please check your email</strong> for further instructions on how to complete your account setup."
         elif(page == "forgot"):
             email = request.form['email']
-            print(email)
+            # print(email)
 
             # Try to look up email in database
             # results = user_Ref.count_documents({"_id": email})
@@ -117,7 +117,7 @@ def thankYou():
                 text = "<strong>Your account is now active!</strong>"
         elif(page == "reset"):
             code = request.form['code']
-            print("Code: " + code)
+            # print("Code: " + code)
             results = scholarDb.users.find({"resetCode": code})
             if(results.count() == 0):
                 redirect(url_for('error', error="invalidcode"))
@@ -626,7 +626,7 @@ def view_college_single(college_name, email, token, id):
 
                 # major
                 "popular_majors": trimmer_na(arr2str(r['academic']['popular_major'])) if check_nest2(r, "academic", "popular_major") else "None",
-
+ 
                 # gender ratio
                 "female_undergrads_ratio": trimmer_na(r['major']['gender_ratio']['female_undergrads']) if check_nest3(r, "major", "gender_ratio", "female_undergrads") else "None",
                 "male_undergrads_ratio": trimmer_na(r['major']['gender_ratio']['male_undergrads']) if check_nest3(r, "major", "gender_ratio", "male_undergrads") else "None",
@@ -1233,10 +1233,10 @@ def getBookmarkDoc_all(email, type, token, id):
         # TODO: check if this item is already exist in the record
         # so that we can avoid duplicate submission from the user
 
-        print("Type: " + type)
+        # print("Type: " + type)
 
         if validate_email(user_Ref, email):
-            print("Valid user")
+            # print("Valid user")
             income_data = request.json
 
             # validate the inputs and incoming data
@@ -1244,7 +1244,7 @@ def getBookmarkDoc_all(email, type, token, id):
             #     return make_response(jsonify({"mesg": "An email is needed!"}), 400)
 
             if 'title' not in income_data:
-                print("Invalid title")
+                # print("Invalid title")
                 return make_response(jsonify({"mesg": "A title is needed!"}), 400)
 
             title = income_data["title"]
@@ -1252,13 +1252,13 @@ def getBookmarkDoc_all(email, type, token, id):
 
             res = addBookmark(user_Ref, email, title, docType)
 
-            print("Bookmarked!")
+            # print("Bookmarked!")
 
             if res:
-                print("Bookmark is true")
+                # print("Bookmark is true")
                 return make_response(jsonify({"mesg": "Bookmarked!"}), 202)
             else:
-                print("Faled to bookmark!")
+                # print("Faled to bookmark!")
                 return make_response(jsonify({"mesg": "Already Bookmarked!"}), 208)
             
         return make_response(jsonify({"mesg": "Bookmark failed!"}), 400)

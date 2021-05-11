@@ -29,7 +29,7 @@ export default class ViewCollegeSubCate extends React.Component {
 
   getDoc = () => {
     // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/resources/college/view/states/" + this.state.subCate;
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/resources/college/view/states/" + this.state.subCate;
+    let URL = "http://2d071003be2e.ngrok.io/api/v1.2/resources/college/view/states/" + this.state.subCate;
 
     fetch(URL, {
       method: "GET",
@@ -74,7 +74,7 @@ export default class ViewCollegeSubCate extends React.Component {
     // console.log(this.state.currentBookmarkKey)
 
     // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "POST",

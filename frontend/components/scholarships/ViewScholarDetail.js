@@ -2,10 +2,10 @@ import React from 'react';
 import { StyleSheet, ScrollView, View, Text, TouchableOpacity, } from 'react-native';
 import BeautyWebView from 'react-native-beauty-webview';
 import { Ionicons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { getDeviceID } from "../../functions/deviceUniqueID";
 import { getSecureStorage } from "../../functions/secureStorage";
- 
+
 export default class ViewScholarDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +24,7 @@ export default class ViewScholarDetail extends React.Component {
       applyLinkVisible: false,
       // email: this.props.route.params.email,
     };
-    this.handleApplyLinkVisible = this.handleApplyLinkVisible.bind(this);
+    // this.handleApplyLinkVisible = this.handleApplyLinkVisible.bind(this);
     // this.handleBookmark = this.handleBookmark.bind(this);
   }
 
@@ -34,7 +34,7 @@ export default class ViewScholarDetail extends React.Component {
     });
   }
 
-  handleBookmark () {
+  handleBookmark() {
     //Insert API Call here
 
     let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
@@ -129,8 +129,20 @@ export default class ViewScholarDetail extends React.Component {
 
   }
 
+  getApplicationLink = () => {
+    // if (String(this.state.scholarshipObj.applyLink).length > 1){
+    return (this.state.scholarshipObj.applyLink);
+    // } else {
+    //   return ("about:blank");
+    // }
+  }
+
+  componentDidMount(){
+    this.getApplicationLink();
+  }
+
   getDetail = () => {
-    
+
     let URL =
       //"http://2d071003be2e.ngrok.io/api/v1.2/resources/scholarships/view/titles/" + this.props.route.params.itemKey +"/"+ this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid ;
       "http://6bff156668d9.ngrok.io/api/v1.2/resources/scholarships/view/titles/" + this.props.route.params.itemKey +"/"+ this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid ;
@@ -146,6 +158,7 @@ export default class ViewScholarDetail extends React.Component {
       // format the API response into json
       .then((response) => response.json())
       .then((json) => {
+        
         // set the val to state
         this.setState({
           scholarshipObj: {
@@ -159,6 +172,8 @@ export default class ViewScholarDetail extends React.Component {
             isBooked: json.isBooked,
           },
         });
+        this.forceUpdate();
+        // console.log(json.direct_link);
 
       }).catch((error) => {
         console.log('An error happened: ' + error);
@@ -167,7 +182,7 @@ export default class ViewScholarDetail extends React.Component {
 
   render() {
     // console.log("Checking ScholarDetail " + JSON.stringify(this.state.usrInfo));
-    
+
     // console.log("isBooked: "+this.state.isBooked);
     // console.log("usrInfo: "+JSON.stringify(this.state.usrInfo));
     // console.log("usrInfo jwt: "+ JSON.stringify(this.state.usrInfo.jwt));
@@ -196,6 +211,8 @@ export default class ViewScholarDetail extends React.Component {
           </TouchableOpacity>
         </View>
         }
+
+
         <View style={styles.card_grp1}>
           <View style={styles.title_grp}>
             <Text style={styles.title}>{this.state.scholarshipObj.title}</Text>
@@ -225,26 +242,30 @@ export default class ViewScholarDetail extends React.Component {
             </View>
           </View>
         </View>
+
         <View style={styles.card_grp2}>
+
           <View style={styles.apply_grp}>
             <View style={styles.txt_applyRow}>
-              <TouchableOpacity style={styles.applyRow} onPress={() => { this.handleApplyLinkVisible(true) }}>
-                <Text style={styles.txt_apply}>Apply Link:</Text>
-                <Text numberOfLines={5} style={styles.apply}>
-                  {this.state.scholarshipObj.applyLink}
-                </Text>
-              </TouchableOpacity>
               <BeautyWebView
                 // Reguired for open and close
                 visible={this.state.applyLinkVisible}
                 // Reguired for closing the modal
                 onPressClose={() => this.handleApplyLinkVisible(false)}
                 // use tunnel network here to local test env
-                url={this.state.scholarshipObj.applyLink}
+                url={this.getApplicationLink()}
               />
-
+              <TouchableOpacity
+                style={styles.applyRow}
+                onPress={() => { this.handleApplyLinkVisible(true) }}>
+                <Text style={styles.txt_apply}>Apply Link:</Text>
+                <Text numberOfLines={5} style={styles.apply}>
+                  {this.state.scholarshipObj.applyLink}
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
+
           <View style={styles.description_grp}>
             <Text style={styles.description2}>Description:</Text>
             <View style={styles.description}>
@@ -253,6 +274,7 @@ export default class ViewScholarDetail extends React.Component {
               </Text>
             </View>
           </View>
+
           <View style={styles.contact_grp}>
             <Text style={styles.txt_contact}>Contact:</Text>
             <View style={styles.rect}>
@@ -261,6 +283,7 @@ export default class ViewScholarDetail extends React.Component {
               </Text>
             </View>
           </View>
+
         </View>
       </ScrollView>
     );
@@ -287,14 +310,14 @@ const styles = StyleSheet.create({
   bookmarksIcon:
   {
     color: 'rgba(48,132,188,1)',
-		fontSize: 35,
+    fontSize: 35,
     marginTop: 5,
     marginLeft: 20,
   },
   unbookmarksIcon:
   {
     color: 'rgb(255, 0, 0)',
-		fontSize: 35,
+    fontSize: 35,
     marginTop: 5,
     marginLeft: 20,
   },
@@ -326,10 +349,10 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#121212',
-    fontSize: 16,
-    height: 52,
+    fontSize: 20,
+    height: "auto",
     width: '90%',
-    textAlign: 'left',
+    textAlign: 'center',
     alignSelf: 'center',
     fontWeight: 'bold',
   },
@@ -442,10 +465,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 19,
     alignSelf: 'center',
+    marginBottom: 20,
   },
   apply_grp: {
     backgroundColor: 'rgba(255,255,255,1)',
-    height: 80,
+    height: "auto",
     borderWidth: 0,
     borderColor: '#000000',
     borderRadius: 5,
@@ -459,12 +483,12 @@ const styles = StyleSheet.create({
   },
   apply: {
     color: '#121212',
-    height: 80,
+    height: "auto",
     width: 250,
-    marginLeft: 9,
+    // marginLeft: 9,
   },
   txt_applyRow: {
-    height: 19,
+    height: "auto",
     flexDirection: 'row',
     flex: 1,
     marginRight: 197,
@@ -474,7 +498,7 @@ const styles = StyleSheet.create({
   },
   description_grp: {
     backgroundColor: 'rgba(255,255,255,1)',
-    height: 330,
+    height: "auto",
   },
   description2: {
     color: '#121212',
@@ -485,8 +509,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   description: {
-    width: 300,
-    height: 281,
+    width: "90%",
+    minHeight: 280,
+    height: "auto",
     backgroundColor: 'rgba(255,255,255,1)',
     marginTop: 9,
     marginLeft: 18,
@@ -494,10 +519,11 @@ const styles = StyleSheet.create({
   xtxt: {
     color: '#121212',
     flex: 1,
+    height: "auto",
   },
   contact_grp: {
     backgroundColor: 'rgba(255,255,255,1)',
-    height: 135,
+    height: "auto",
     borderWidth: 0,
     borderColor: '#000000',
     borderRadius: 5,
@@ -505,7 +531,7 @@ const styles = StyleSheet.create({
   txt_contact: {
     color: '#121212',
     width: 71,
-    height: 19,
+    height: "auto",
     marginTop: 15,
     marginLeft: 18,
     fontWeight: 'bold',
@@ -520,6 +546,7 @@ const styles = StyleSheet.create({
   contact: {
     color: '#121212',
     flex: 1,
+    // height: "auto",
     // marginBottom: 10,
   },
 });
