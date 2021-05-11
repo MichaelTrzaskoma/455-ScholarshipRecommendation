@@ -1,0 +1,29 @@
+[{
+  "_id": {
+    "$oid": "60916c3662619f7c04d0f5ad"
+  },
+  "majorCatList": [
+    "<57,000",
+    "57,000 - 64,000",
+    "64,000 - 71,000",
+    "71,000<",
+    "<3.7",
+    "3.7 - 4",
+    "4 - 4.5",
+    "4.5<",
+    "Autonomous",
+    "Not Autonomous",
+    "Math",
+    "English",
+    "History",
+    "Science",
+    "Arts",
+    "Low Job Variety",
+    "Med Job Variety",
+    "High Job Variety",
+    "Low Social Interaction",
+    "High Social Interaction",
+    "Indoor",
+    "Outdoor"
+  ]
+}]
