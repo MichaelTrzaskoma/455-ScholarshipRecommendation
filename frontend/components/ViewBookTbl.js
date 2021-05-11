@@ -124,7 +124,7 @@ class ViewBookTblClass extends React.Component {
     this.setState({ modalVisible: false });
     // console.log(this.state.currentBookmarkKey)
 
-    let URL = "http://b91079d57729.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+    let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "DELETE",
@@ -174,9 +174,9 @@ class ViewBookTblClass extends React.Component {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
       // console.log("User profile from ViewBookmarksTbl: " + JSON.stringify(this.props.route.params.usrInfo));
-      let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+      // let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
-      // let URL = "http://b91079d57729.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email +"/bookmarks/all/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid;  
+      let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email +"/bookmarks/all/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid;  
 
 
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship

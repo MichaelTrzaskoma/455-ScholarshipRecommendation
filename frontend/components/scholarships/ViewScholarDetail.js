@@ -19,6 +19,7 @@ export default class ViewScholarDetail extends React.Component {
         description: '',
         applyLink: '',
         title: '',
+        isBooked: false,
       },
       applyLinkVisible: false,
       // email: this.props.route.params.email,
@@ -36,7 +37,7 @@ export default class ViewScholarDetail extends React.Component {
   handleBookmark () {
     //Insert API Call here
 
-    let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "POST",
@@ -78,10 +79,10 @@ export default class ViewScholarDetail extends React.Component {
   getDetail = () => {
     
     let URL =
+      //"http://2d071003be2e.ngrok.io/api/v1.2/resources/scholarships/view/titles/" + this.props.route.params.itemKey +"/"+ this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid ;
       "http://6bff156668d9.ngrok.io/api/v1.2/resources/scholarships/view/titles/" + this.props.route.params.itemKey +"/"+ this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid ;
-
       // "http://3efdd482435b.ngrok.io/api/v1.2/resources/scholarships/view/titles/" + this.props.route.params.itemKey +"/"+ this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid ;
-
+    console.log("URL: "+ URL);
     fetch(URL, {
       method: 'GET',
       headers: {
@@ -102,6 +103,7 @@ export default class ViewScholarDetail extends React.Component {
             applyLink: json.direct_link,
             title: json.name,
             description: json.description,
+            isBooked: json.isBooked,
           },
         });
 
@@ -112,8 +114,25 @@ export default class ViewScholarDetail extends React.Component {
 
   render() {
     // console.log("Checking ScholarDetail " + JSON.stringify(this.state.usrInfo));
+    
+    // console.log("isBooked: "+this.state.isBooked);
+    // console.log("usrInfo: "+JSON.stringify(this.state.usrInfo));
+    // console.log("usrInfo jwt: "+ JSON.stringify(this.state.usrInfo.jwt));
+    // console.log("usrInfo uuid: "+ JSON.stringify(this.state.usrInfo.uuid));
+
     return (
       <ScrollView horizontal={false} style={styles.container}>
+        {this.state.isBooked ?
+        <View style = {styles.card_grp0}>
+        <TouchableOpacity onPress={() => this.handleBookmark()}>
+        <MaterialCommunityIcons
+                name="bookmark-minus"
+                style={styles.unbookmarksIcon}></MaterialCommunityIcons>
+              <Text style={styles.bookmarksTxt}>Remove Bookmark</Text>
+              
+        </TouchableOpacity>
+      </View>
+        :
         <View style = {styles.card_grp0}>
           <TouchableOpacity onPress={() => this.handleBookmark()}>
           <MaterialCommunityIcons
@@ -123,6 +142,7 @@ export default class ViewScholarDetail extends React.Component {
                 
           </TouchableOpacity>
         </View>
+        }
         <View style={styles.card_grp1}>
           <View style={styles.title_grp}>
             <Text style={styles.title}>{this.state.scholarshipObj.title}</Text>
@@ -214,6 +234,13 @@ const styles = StyleSheet.create({
   bookmarksIcon:
   {
     color: 'rgba(48,132,188,1)',
+		fontSize: 35,
+    marginTop: 5,
+    marginLeft: 20,
+  },
+  unbookmarksIcon:
+  {
+    color: 'rgb(255, 0, 0)',
 		fontSize: 35,
     marginTop: 5,
     marginLeft: 20,
