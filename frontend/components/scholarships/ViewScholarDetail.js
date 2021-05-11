@@ -37,7 +37,7 @@ export default class ViewScholarDetail extends React.Component {
   handleBookmark () {
     //Insert API Call here
 
-    let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "POST",
@@ -55,6 +55,7 @@ export default class ViewScholarDetail extends React.Component {
           alert(
             "Bookmarked!"
           );
+          this.getDetail();
 
         } else {
           json_mesg = response.json();
@@ -71,9 +72,61 @@ export default class ViewScholarDetail extends React.Component {
   UNSAFE_componentWillMount() {
     // console.log("User profile from ViewScholarDetail: " + JSON.stringify(this.props.route.params));
     this.getDetail();
-    console.log("JWT: " + JSON.stringify(this.state.usrInfo.jwt));
-    console.log("USer obj: " + JSON.stringify(this.state.usrInfo));
-    console.log("UUID: " + this.state.usrInfo.uuid);
+    // console.log("JWT: " + JSON.stringify(this.state.usrInfo.jwt));
+    // console.log("USer obj: " + JSON.stringify(this.state.usrInfo));
+    // console.log("UUID: " + this.state.usrInfo.uuid);
+    console.log("isBooked: "+this.state.scholarshipObj.isBooked);
+
+  }
+
+  removeBookmark() {
+
+    // this.setState({ modalVisible: false });
+    // console.log(this.state.currentBookmarkKey)
+
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+
+    fetch(URL, {
+      method: "DELETE",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "title": this.state.scholarshipObj.title,
+      }),
+    })
+      .then((response) => {
+        if (response.status == 202) {
+
+          alert("Bookmarked Removed!");
+          // console.log("Bookmarked Removed");
+          // this.getRecommend_scholarship();
+          // this.setState({
+          //   scholarshipObj :{
+          //     isBooked: false,
+          //   },
+          // });
+          this.getDetail();
+
+
+        } else if (response.status == 208) {
+
+          alert("Already Removed!");
+
+        } else {
+
+          alert("Something else happened!");
+
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    // console.log("Bookmark Key: " + this.state.currentBookmarkKey);
+    //alert("This College has been bookmarked!");
+
   }
 
   getDetail = () => {
@@ -82,7 +135,7 @@ export default class ViewScholarDetail extends React.Component {
       //"http://2d071003be2e.ngrok.io/api/v1.2/resources/scholarships/view/titles/" + this.props.route.params.itemKey +"/"+ this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid ;
       "http://6bff156668d9.ngrok.io/api/v1.2/resources/scholarships/view/titles/" + this.props.route.params.itemKey +"/"+ this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid ;
       // "http://3efdd482435b.ngrok.io/api/v1.2/resources/scholarships/view/titles/" + this.props.route.params.itemKey +"/"+ this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid ;
-    console.log("URL: "+ URL);
+    // console.log("URL: "+ URL);
     fetch(URL, {
       method: 'GET',
       headers: {
@@ -122,13 +175,13 @@ export default class ViewScholarDetail extends React.Component {
 
     return (
       <ScrollView horizontal={false} style={styles.container}>
-        {this.state.isBooked ?
+        {this.state.scholarshipObj.isBooked ?
         <View style = {styles.card_grp0}>
-        <TouchableOpacity onPress={() => this.handleBookmark()}>
+        <TouchableOpacity onPress={() => this.removeBookmark()}>
         <MaterialCommunityIcons
                 name="bookmark-minus"
                 style={styles.unbookmarksIcon}></MaterialCommunityIcons>
-              <Text style={styles.bookmarksTxt}>Remove Bookmark</Text>
+              <Text style={styles.removeBookmarksTxt}>Remove Bookmark</Text>
               
         </TouchableOpacity>
       </View>
@@ -249,6 +302,11 @@ const styles = StyleSheet.create({
     marginLeft: 87,
     marginTop: -22,
     color: 'rgba(48,132,188,1)',
+  },
+  removeBookmarksTxt: {
+    marginLeft: 87,
+    marginTop: -22,
+    color: 'rgb(175, 7, 45)',
   },
   card_grp1: {
     width: '90%',
