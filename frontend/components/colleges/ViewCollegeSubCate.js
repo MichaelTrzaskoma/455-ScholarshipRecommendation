@@ -28,7 +28,9 @@ export default class ViewCollegeSubCate extends React.Component {
   }
 
   getDoc = () => {
-    let URL = "http://3efdd482435b.ngrok.io/api/v1.2/resources/college/view/states/" + this.state.subCate;
+    // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/resources/college/view/states/" + this.state.subCate;
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/resources/college/view/states/" + this.state.subCate;
+
     fetch(URL, {
       method: "GET",
       headers: {
@@ -45,7 +47,7 @@ export default class ViewCollegeSubCate extends React.Component {
         });
       })
       .catch((e) => {
-        console.log("Ann error occured: " + e);
+        // console.log("Ann error occured: " + e);
       });
 
     // console.log("The subcategory is: " + this.state.subCate);
@@ -71,7 +73,8 @@ export default class ViewCollegeSubCate extends React.Component {
     this.setState({ modalVisible: false });
     // console.log(this.state.currentBookmarkKey)
 
-    let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "POST",
@@ -105,7 +108,7 @@ export default class ViewCollegeSubCate extends React.Component {
         console.log(error);
       });
 
-    console.log("Bookmark Key: " + this.state.currentBookmarkKey);
+    // console.log("Bookmark Key: " + this.state.currentBookmarkKey);
     //alert("This College has been bookmarked!");
 
   }
@@ -170,7 +173,7 @@ export default class ViewCollegeSubCate extends React.Component {
                 this.props.navigation.navigate('ViewCollegeDetail', {
                   title: (item),
                   itemKey: item,
-                  usrProf: this.state.usrInfo
+                  usrInfo: this.state.usrInfo
                 });
               }}
             > {item} </Text>

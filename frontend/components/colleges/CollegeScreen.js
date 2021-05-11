@@ -14,7 +14,7 @@ export default class CollegeScreen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			userProfile: this.props.usrInfo,
+			usrInfo: this.props.usrInfo,
 		};
 	}
 
@@ -28,12 +28,12 @@ export default class CollegeScreen extends React.Component {
 				<View style={styles.container_grp}>
 
 					{/* College Category: passing down state.userProfile as prop */}
-					<CollegeCategory userProfile={this.state.userProfile} />
+					<CollegeCategory usrInfo={this.state.usrInfo} />
 
 					<View style={styles.recommend_containerStack}>
 
 						{/* College Recommend: passing down state.userProfile as prop*/}
-						<CollegeRecommend userProfile={this.state.userProfile} />
+						<CollegeRecommend usrInfo={this.state.usrInfo} />
 
 						{/* Recent View ScrollView */}
 						<View style={styles.recent_container}>

@@ -1509,7 +1509,7 @@ class InputScreen extends React.Component {
 		{
 			localMethod = "PATCH";
 		}
-		console.log("local method: "+localMethod);
+		// console.log("local method: "+localMethod);
 		this.setFirstTime(1);
 
 		// console.log(JSON.stringify({
@@ -1531,7 +1531,7 @@ class InputScreen extends React.Component {
 		// console.log("Email from InputScreen2: " + this.props)
 
 		let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrProfile.email +"/"+ this.state.usrProfile.jwt+"/"+this.state.usrProfile.uuid+"/"+"surveys/scholarship";
-		console.log("URL"+ URL);
+		// console.log("URL"+ URL);
 		fetch(URL, {
 			method: localMethod,
 			headers: {
@@ -1581,18 +1581,18 @@ class InputScreen extends React.Component {
 			&& this.gpaErrorHandling(this.state.gpa)
 			&& this.satErrorHandling(this.state.sat_score)) {
 			this.upload2sever();
-			console.log("AFTER UPLOAD2SEVER IN ONSUBMIT METHODS:")
-			console.log("Gender: "+this.state.gender);
-			console.log("Age: "+this.state.dob);
-			console.log("State of residence: "+ this.state.selectedResidences);
-			console.log("GPA: "+ this.state.gpa);
-			console.log("Academic Major: "+ this.state.selectedMajors);
-			console.log("Race: "+this.state.selectedRaces);
-			console.log("Religion: "+ this.state.selectedReligions);
-			console.log("Disabilities: "+ this.state.selectedDisabilities);
-			console.log("ACT: "+ this.state.act_score);
-			console.log("SAT: "+ this.state.sat_score);
-			console.log("Ethnicity: "+ this.state.selectedEthnicities);
+			// console.log("AFTER UPLOAD2SEVER IN ONSUBMIT METHODS:")
+			// console.log("Gender: "+this.state.gender);
+			// console.log("Age: "+this.state.dob);
+			// console.log("State of residence: "+ this.state.selectedResidences);
+			// console.log("GPA: "+ this.state.gpa);
+			// console.log("Academic Major: "+ this.state.selectedMajors);
+			// console.log("Race: "+this.state.selectedRaces);
+			// console.log("Religion: "+ this.state.selectedReligions);
+			// console.log("Disabilities: "+ this.state.selectedDisabilities);
+			// console.log("ACT: "+ this.state.act_score);
+			// console.log("SAT: "+ this.state.sat_score);
+			// console.log("Ethnicity: "+ this.state.selectedEthnicities);
 
 		} else if (this.gpaErrorHandling(this.state.gpa) == false) {
 			alert("Please Enter a Valid GPA");
@@ -1619,7 +1619,7 @@ class InputScreen extends React.Component {
 			.then((response) => response.json())
 			
 			.then((json) => {
-				console.log("Exisiting Data Scholarship: " + JSON.stringify(json));
+				// console.log("Exisiting Data Scholarship: " + JSON.stringify(json));
 				// console.log("Email from ScholarSurvey.js: " + this.state.email);
 				// set the val to state
 				
@@ -1663,7 +1663,7 @@ class InputScreen extends React.Component {
 	render() {
 		// console.log("ScholarSuvey Checking " + JSON.stringify(this.state.usrProfile));
 		// console.log("scholarSurvey prop check " + JSON.stringify(this.props.route.params.usrInfo));
-		console.log("Hey there, this is Scholarship Survey screen!");
+		// console.log("Hey there, this is Scholarship Survey screen!");
 		return (
 			<DismissKeyboard>
 				<KeyboardAwareScrollView

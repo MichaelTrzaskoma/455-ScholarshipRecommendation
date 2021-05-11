@@ -617,15 +617,15 @@ export default class CollegeSurvey extends React.Component {
     //Checking for completion
     if (this.checkMajorField() && this.checkRegionField()) {
       complete = true;
-      console.log("we have majors and regions");
+      // console.log("we have majors and regions");
     }
     else if (this.checkExamField() && this.checkRegionField()) {
       complete = true;
-      console.log("We have exam and regions");
+      // console.log("We have exam and regions");
     }
     else if (this.checkExamField() && this.checkMajorField()) {
       complete = true;
-      console.log("we have exam and majors ");
+      // console.log("we have exam and majors ");
     }
 
     return complete;
@@ -654,7 +654,7 @@ export default class CollegeSurvey extends React.Component {
         alert("success");
       }
       else {
-        console.log("location: " + this.state.selectedRegions);
+        // console.log("location: " + this.state.selectedRegions);
         this.checkMissing();
       }
     }
@@ -662,7 +662,7 @@ export default class CollegeSurvey extends React.Component {
 
   checkExisting() {
     // console.log("checkExisting " + JSON.stringify(this.state.usrInfo));
-    console.log("User profile obbj: " + JSON.stringify(this.props.route.params.usrInfo));
+    // console.log("User profile obbj: " + JSON.stringify(this.props.route.params.usrInfo));
 
     let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/" + "surveys/college";
 
@@ -793,7 +793,7 @@ export default class CollegeSurvey extends React.Component {
     // const { selectedRegions } = this.state;
     // this.checkMajor()
     // console.log("CollegeSurvey " + JSON.stringify(this.props.route.params.usrInfo));
-    console.log("Hey there, this is College Survey screen!");
+    // console.log("Hey there, this is College Survey screen!");
     return (
       <KeyboardAwareScrollView
         style={styles.container}>

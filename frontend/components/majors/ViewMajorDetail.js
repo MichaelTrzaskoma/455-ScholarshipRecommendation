@@ -7,7 +7,7 @@ export default class ViewMajorDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usrInfo: this.props.route.params.userProfile,
+      usrInfo: this.props.route.params.usrInfo,
       majorObj1: {
         majorTitle: "",
         aveSalary: "",
@@ -67,10 +67,10 @@ export default class ViewMajorDetail extends React.Component {
 
   getDetail = () => {
     // console.log("The Key: " + this.props.route.params.itemKey);
-    // let URL = "http://341fad54d4fc.ngrok.io/api/v1.2/scholarship/view/title/" + this.props.route.params.itemKey;
-
+    // /api/v1.2/resources/majors/view/titles/<major_name>/<email>/<token>/<id>
     let URL = "http://6bff156668d9.ngrok.io/api/v1.2/resources/majors/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
+    // console.log("URL: " + URL);
     // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/resources/majors/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
     fetch(URL, {
@@ -105,7 +105,7 @@ export default class ViewMajorDetail extends React.Component {
   }
 
   componentDidMount() {
-    // console.log("User profile from ViewMajorDetail: " + JSON.stringify(this.props));
+    // console.log("User profile from ViewMajorDetail: " + JSON.stringify(this.props.route.params.usrInfo));
     this.getDetail();
   }
 

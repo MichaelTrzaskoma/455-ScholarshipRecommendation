@@ -12,7 +12,7 @@ $(function () {
 
     $requirements.addClass("wrong");
     $password.on("focus", function(){
-        console.log("Active");
+        // console.log("Active");
         $passwordAlert.show();});
 
     $password.on("input blur", function (e) {

@@ -88,7 +88,7 @@ export default class ViewAllScholar extends React.Component {
                 this.props.navigation.navigate('ViewCollegeSubCate', {
                   title: item.key,
                   itemKey: item.key,
-                  usrInfo: this.state.usrProf
+                  usrInfo: this.state.usrInfo
                 });
               }}
             > {item.key} </Text>

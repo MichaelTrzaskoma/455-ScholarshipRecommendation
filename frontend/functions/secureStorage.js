@@ -27,7 +27,7 @@ export async function getData(key) {
   try {
     AsyncStorage.getItem(key).then((value) => {
       if (value !== null) {
-        console.log("Read value: " + value);
+        // console.log("Read value: " + value);
         return value;
       }
     })
@@ -45,7 +45,7 @@ export async function deleteSecureStorage(key) {
   console.log(key + " value is: " + JSON.stringify(r));
 
   if (await SecureStore.deleteItemAsync(String(key))) {
-    console.log("Deleted the key: " + key);
+    // console.log("Deleted the key: " + key);
     alert("You are logged out!");
   }
   else {

@@ -28,17 +28,20 @@ export default class ViewMajorSubCate extends React.Component {
   }
 
   getDoc = () => {
-    let URL = "http://3efdd482435b.ngrok.io/api/v1.2/resources/major/view/category/" + this.state.subCate;
+    // console.log("Item Key: " + this.state.subCate);
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/resources/major/view/subjects/" + this.state.subCate;
+    // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/resources/major/view/subjects/" + this.state.subCate;
 
     fetch(URL, {
       method: "GET",
       headers: {
-        Accept: 'application/json',
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
     })
       .then((response) => response.json())
       .then((json) => {
+        // console.log("API results: " + JSON.stringify(json));
         // console.log("Testing " + JSON.stringify(json.mesg));
         this.setState({
           scholarArr: json.mesg,
@@ -72,7 +75,8 @@ export default class ViewMajorSubCate extends React.Component {
 
     this.setState({ modalVisible: false});
     // console.log(this.state.currentBookmarkKey)
-    let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/major/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/major/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/major/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
 
 
     fetch(URL, {
@@ -108,7 +112,7 @@ export default class ViewMajorSubCate extends React.Component {
         console.log(error);
       });
       
-    console.log("Bookmark Key: "+this.state.currentBookmarkKey);  
+    // console.log("Bookmark Key: "+this.state.currentBookmarkKey);  
     //alert("This College has been bookmarked!");
    
   }
@@ -118,8 +122,8 @@ export default class ViewMajorSubCate extends React.Component {
   };
 
   render() {
-    console.log("Checking to see ViewMajorSubCate");
-    // console.log("ViewMajorSubCate Props Check " + JSON.stringify(this.props.route.params.usrInfo));
+    // console.log("Checking to see ViewMajorSubCate");
+    // console.log("user obj from ViewMajorSubCate: " + JSON.stringify(this.props.route.params.usrInfo));
     const { modalVisible } = this.state;
     if (this.state.isLoading) {
       return (
@@ -175,7 +179,7 @@ export default class ViewMajorSubCate extends React.Component {
                 this.props.navigation.navigate('ViewMajorDetail', {
                   title: item,
                   itemKey: item,
-                  usrProf: this.state.usrInfo
+                  usrInfo: this.state.usrInfo
                 });
               }}
             > {item} </Text>

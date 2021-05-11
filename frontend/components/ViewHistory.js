@@ -117,8 +117,7 @@ class ViewHistoryClass extends React.Component {
         this.props.navigation.navigate('ViewScholarDetail', {
           title: itemKey,
           itemKey: itemKey,
-          userProfile: this.props.route.params.usrInfo,
-          bk: "from bk",
+          usrInfo: this.props.route.params.usrInfo
         });
         break;
 
@@ -126,8 +125,7 @@ class ViewHistoryClass extends React.Component {
         this.props.navigation.navigate('ViewMajorDetail', {
           title: itemKey,
           itemKey: itemKey,
-          userProfile: this.props.route.params.usrInfo,
-          bk: "from bk",
+          usrInfo: this.props.route.params.usrInfo
         });
         break;
 
@@ -135,15 +133,14 @@ class ViewHistoryClass extends React.Component {
         this.props.navigation.navigate('ViewCollegeDetail', {
           title: itemKey,
           itemKey: itemKey,
-          userProfile: this.props.route.params.usrInfo,
-          bk: "from bk",
+          usrInfo: this.props.route.params.usrInfo
         });
         break;
     }
   }
 
   UNSAFE_componentWillMount() {
-    console.log("User profile from ViewHistory: " + JSON.stringify(this.props));
+    // console.log("User profile from ViewHistory: " + JSON.stringify(this.props));
     this.getHistory();
   }
 

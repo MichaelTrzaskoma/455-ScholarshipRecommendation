@@ -30,7 +30,7 @@ export default function CollegeCategory(props) {
 									navigation.navigate("ViewCollegeSubCate", {
 										title: "Universities in NY",
 										itemKey: "New York",
-										usrInfo: props.userProfile
+										usrInfo: props.usrInfo
 									})
 								}}
 								style={styles.nYBtn}>
@@ -43,7 +43,7 @@ export default function CollegeCategory(props) {
 									navigation.navigate("ViewCollegeSubCate", {
 										title: "Universities in NJ",
 										itemKey: "New Jersey",
-										usrInfo: props.userProfile
+										usrInfo: props.usrInfo
 					
 									})
 								}}
@@ -57,7 +57,7 @@ export default function CollegeCategory(props) {
 									navigation.navigate("ViewCollegeSubCate", {
 										title: "Universities in NC",
 										itemKey: "North Carolina",
-										usrInfo: props.userProfile
+										usrInfo: props.usrInfo
 									})
 								}}
 								style={styles.nJBtn}>
@@ -70,7 +70,7 @@ export default function CollegeCategory(props) {
 									navigation.navigate("ViewCollegeSubCate", {
 										title: "Universities in ND",
 										itemKey: "North Dakota",
-										usrInfo: props.userProfile
+										usrInfo: props.usrInfo
 									})
 								}}
 								style={styles.nJBtn}>
@@ -83,7 +83,7 @@ export default function CollegeCategory(props) {
 									navigation.navigate("ViewCollegeSubCate", {
 										title: "Universities in OH",
 										itemKey: "Ohio",
-										usrInfo: props.userProfile
+										usrInfo: props.usrInfo
 									})
 								}}
 								style={styles.nJBtn}>
@@ -95,7 +95,7 @@ export default function CollegeCategory(props) {
 								onPress={() => {
                                     navigation.navigate("ViewAllCollege", {
                                         title: "All Universities List",
-										usrInfo: props.userProfile
+										usrInfo: props.usrInfo
                                     });
                                 }}
 								style={styles.nJBtn}>

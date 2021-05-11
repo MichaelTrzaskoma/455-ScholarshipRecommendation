@@ -141,7 +141,7 @@ export default class ViewScholarTbl extends React.Component {
 
   handleBookmark() {
 
-    console.log("Here is ViewScholarTbl and triggered bookmark")
+    // console.log("Here is ViewScholarTbl and triggered bookmark")
     this.setState({ modalVisible: false });
     console.log(this.state.currentBookmarkKey)
 
@@ -180,7 +180,7 @@ export default class ViewScholarTbl extends React.Component {
         console.log(error);
       });
 
-    console.log("Bookmark Key: " + this.state.currentBookmarkKey);
+    // console.log("Bookmark Key: " + this.state.currentBookmarkKey);
     // alert("This scholarship has been bookmarked!");
 
   }
@@ -216,30 +216,12 @@ export default class ViewScholarTbl extends React.Component {
     );
   }
 
-  /*
-  loadMore = ()  => {
-  
-    //const { pageNumber, scholarArr } = this.state;
-    const tempPageNumber = this.state.pageNumber;
-    const currentScholarArr = this.state.scholarArr;
-    const start = tempPageNumber*itemsPerPage;
-    const end = (tempPageNumber+1)*itemsPerPage-1;
-    const stagingArea = this.state.stagingArea;
-
-    // here, we will receive next batch of the items
-    const newData = currentScholarArr.slice(start, end); 
-     // here we are appending new batch to existing batch
-    this.setState({
-      stagingArea: [...stagingArea, ...newData],
-      //pageNumber : tempPageNumber + 1,
-    });
-  }
-  */
-
 
   render() {
     const { modalVisible } = this.state;
-    // console.log("Checking ViewScholarTbl " + JSON.stringify(this.props.route.params.usrProfile));
+    
+    // console.log("User profile from ViewSholarTbl: "+ JSON.stringify(this.props.route.params.usrInfo));
+
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>

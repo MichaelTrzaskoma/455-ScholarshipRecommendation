@@ -7,7 +7,7 @@ export default class ViewCollegeDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usrInfo: this.props.route.params.userProfile,
+      usrInfo: this.props.route.params.usrInfo,
       collegeObj1_1: {
         uniName: '',
         address: '',
@@ -159,6 +159,7 @@ export default class ViewCollegeDetail extends React.Component {
 
   getDetail = () => {
     // console.log("The Key: " + this.props.route.params.itemKey);
+    // console.log("User profile from ViewCollegeDetail: " + JSON.stringify(this.props.route.params));
 
     let URL =
       "http://6bff156668d9.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
@@ -285,7 +286,7 @@ export default class ViewCollegeDetail extends React.Component {
   }
 
   UNSAFE_componentWillMount() {
-    // console.log("User profile from ViewCollegeDetail: " + JSON.stringify(this.props.route.params.userProfile));
+    // console.log("User profile from ViewCollegeDetail: " + JSON.stringify(this.props.route.params));
     this.getDetail();
   }
 

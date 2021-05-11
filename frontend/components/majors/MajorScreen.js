@@ -23,17 +23,18 @@ class MajorScreen extends React.Component {
 
   render() {
     // console.log("user obj from major screen: " + JSON.stringify(this.props.usrInfo));
+
     return (
       <View style={styles.container}>
         <View style={styles.container_grp}>
 
           {/* Major Category */}
-          <MajorCategory usrProf={this.props.usrInfo} />
+          <MajorCategory usrInfo={this.props.usrInfo} />
 
           <View style={styles.recommend_containerStack}>
 
             {/* Major Recommend */}
-            <MajorRecommend usrProf={this.props.usrInfo} />
+            <MajorRecommend usrInfo={this.props.usrInfo} />
 
             {/* Recent View ScrollView */}
             <View style={styles.recent_container}>

@@ -140,7 +140,7 @@ class ViewBookTblClass extends React.Component {
         if (response.status == 202) {
 
           alert("Bookmarked Removed!");
-          console.log("Bookmarked Removed");
+          // console.log("Bookmarked Removed");
           this.getRecommend_scholarship();
 
 
@@ -158,7 +158,7 @@ class ViewBookTblClass extends React.Component {
         console.log(error);
       });
 
-    console.log("Bookmark Key: " + this.state.currentBookmarkKey);
+    // console.log("Bookmark Key: " + this.state.currentBookmarkKey);
     //alert("This College has been bookmarked!");
 
   }
@@ -173,7 +173,7 @@ class ViewBookTblClass extends React.Component {
   getBookmarks() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      console.log("User profile from ViewBookmarksTbl: " + JSON.stringify(this.props.route.params.usrInfo));
+      // console.log("User profile from ViewBookmarksTbl: " + JSON.stringify(this.props.route.params.usrInfo));
       let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
       // let URL = "http://b91079d57729.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email +"/bookmarks/all/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid;  
@@ -231,8 +231,7 @@ class ViewBookTblClass extends React.Component {
         this.props.navigation.navigate('ViewScholarDetail', {
           title: itemKey,
           itemKey: itemKey,
-          userProfile: this.props.route.params.usrInfo,
-          bk: "from bk",
+          usrInfo: this.props.route.params.usrInfo
         });
         break;
 
@@ -240,8 +239,7 @@ class ViewBookTblClass extends React.Component {
         this.props.navigation.navigate('ViewMajorDetail', {
           title: itemKey,
           itemKey: itemKey,
-          userProfile: this.props.route.params.usrInfo,
-          bk: "from bk",
+          usrInfo: this.props.route.params.usrInfo
         });
         break;
 
@@ -249,8 +247,7 @@ class ViewBookTblClass extends React.Component {
         this.props.navigation.navigate('ViewCollegeDetail', {
           title: itemKey,
           itemKey: itemKey,
-          userProfile: this.props.route.params.usrInfo,
-          bk: "from bk",
+          usrInfo: this.props.route.params.usrInfo
         });
         break;
     }

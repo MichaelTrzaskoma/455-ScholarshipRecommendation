@@ -10,7 +10,7 @@ export default class ViewScholarDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usrInfo: this.props.route.params.userProfile,
+      usrInfo: this.props.route.params,
       scholarshipObj: {
         amount: '',
         ava: '',
@@ -63,7 +63,7 @@ export default class ViewScholarDetail extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-    console.log("scholar bookmark title: "+this.state.scholarshipObj.title);  
+    // console.log("scholar bookmark title: "+this.state.scholarshipObj.title);  
     //alert("This scholarship has been bookmarked!");
   }
 

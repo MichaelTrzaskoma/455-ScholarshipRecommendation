@@ -29,7 +29,7 @@ export default function MajorCategory(props) {
                   navigation.navigate("ViewMajorSubCate", {
                     title: "Art Majors",
                     itemKey: "Arts",
-                    usrInfo: props.usrProf
+                    usrInfo: props.usrInfo
                   })
                 }}
                 style={styles.artBtn}>
@@ -45,7 +45,7 @@ export default function MajorCategory(props) {
                   navigation.navigate("ViewMajorSubCate", {
                     title: "Business Majors",
                     itemKey: "Business",
-                    usrInfo: props.usrProf
+                    usrInfo: props.usrInfo
                   })
                 }}
                 style={styles.bnBtn}>
@@ -60,7 +60,7 @@ export default function MajorCategory(props) {
                   navigation.navigate("ViewMajorSubCate", {
                     title: "Education Majors",
                     itemKey: "Education",
-                    usrInfo: props.usrProf
+                    usrInfo: props.usrInfo
                   })
                 }}
                 style={styles.bnBtn}>
@@ -76,7 +76,7 @@ export default function MajorCategory(props) {
                   navigation.navigate("ViewMajorSubCate", {
                     title: "Health Profession Majors",
                     itemKey: "Health Professions",
-                    usrInfo: props.usrProf
+                    usrInfo: props.usrInfo
                   })
                 }}
                 style={styles.bnBtn}>
@@ -92,7 +92,7 @@ export default function MajorCategory(props) {
                   navigation.navigate("ViewMajorSubCate", {
                     title: "Science, Technology, & Math",
                     itemKey: "Science, Technology, & Math",
-                    usrInfo: props.usrProf
+                    usrInfo: props.usrInfo
                   })
                 }}
                 style={styles.bnBtn}>
@@ -109,7 +109,7 @@ export default function MajorCategory(props) {
                 onPress={() => {
                   navigation.navigate("ViewAllMajor", {
                     title: "All Majors List",
-                    usrInfo: props.usrProf
+                    usrInfo: props.usrInfo
                   });
                 }}
                 style={styles.bnBtn}>

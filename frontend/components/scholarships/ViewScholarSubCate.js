@@ -62,7 +62,8 @@ export default class ViewScholarSubCate extends React.Component {
 
   render() {
     // console.log("Checking SubCate state.subCate " + JSON.stringify(this.state.subCate));
-    console.log("Checking SubCate state " + JSON.stringify(this.state.usrInfo));
+    // console.log("User profile from ViewScholarSubCate: "+ JSON.stringify(this.props.route.params.usrInfo));
+
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>
@@ -85,7 +86,7 @@ export default class ViewScholarSubCate extends React.Component {
                 this.props.navigation.navigate('ViewScholarTbl', {
                   title: (item + " List"),
                   itemKey: item,
-                  usrProfile: this.props.route.params.usrProfile
+                  usrInfo: this.props.route.params.usrInfo
                 });
               }}
             > {item} </Text>

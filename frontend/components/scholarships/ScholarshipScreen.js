@@ -18,26 +18,27 @@ export default class ScholarshipScreen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			userProfile: this.props.usrInfo,
+			// : this.props.usrInfo,
+			usrInfo: this.props.usrInfo,
 			email: this.props.usrInfo.email,
 		};
 	}
 
 	render() {
-		// console.log("Email from ScholarshipScreen.js: " + this.state.email);
-		// console.log("Checking passing props: "+ JSON.stringify(this.state.userProfile))
+		// console.log("User profile from ScholarshipScreen: "+ JSON.stringify(this.props.usrInfo));
+
 		return (
 			<View style={styles.container}>
 				<StatusBar backgroundColor="#007FF9" barStyle="light-content" />
 				<View style={styles.container_grp}>
 
 					{/* Scholarship Category: passing down state.userProfile as prop */}
-					<ScholarCategory userProfile={this.state.userProfile}/>
+					<ScholarCategory usrInfo={this.state.usrInfo}/>
 
 					<View style={styles.recommendGrpStack}>
 
 						{/* Scholarship Recommend: passing down state.userProfile as prop */}
-						<ScholarRecommend usrProfile={this.state.userProfile} nav={this.state.nav} />
+						<ScholarRecommend usrInfo={this.state.usrInfo} nav={this.state.nav} />
 
 						<View style={styles.recent_container}>
 							<View style={styles.recentGrp}>

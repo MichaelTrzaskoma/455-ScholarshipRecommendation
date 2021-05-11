@@ -307,11 +307,11 @@ export default class MajorSurvey extends React.Component {
   }
 
   debugPrinter() {
-    console.log("Salary Value: " + this.state.salaryValue);
-    console.log("Unemployment Value: " + this.state.unemploymentValue);
-    console.log("Display Autonomy: " + this.state.unemploymentDisplay);
-    console.log("True Autonomy Value: " + this.state.trueAutonomy);
-    console.log("True Variety Value: " + this.state.trueVariety);
+    // console.log("Salary Value: " + this.state.salaryValue);
+    // console.log("Unemployment Value: " + this.state.unemploymentValue);
+    // console.log("Display Autonomy: " + this.state.unemploymentDisplay);
+    // console.log("True Autonomy Value: " + this.state.trueAutonomy);
+    // console.log("True Variety Value: " + this.state.trueVariety);
   }
 
   upload2server() {
@@ -321,14 +321,14 @@ export default class MajorSurvey extends React.Component {
 
     if (currentExisting === 1) {
       //this.setState({ currentMethod: "PATCH" });
-	  console.log("This is called");
+	  // console.log("This is called");
 	  localMethod = "PATCH";
     }
     this.setFirstTime(1);
 	console.log( typeof currentExisting);
-	console.log("CurrentExisting: "+currentExisting);
-	//console.log("Current Method: "+ this.state.currentMethod);
-	console.log("Local Method: "+ localMethod);
+	// console.log("CurrentExisting: "+currentExisting);
+	// console.log("Current Method: "+ this.state.currentMethod);
+	// console.log("Local Method: "+ localMethod);
     let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major";
     fetch(URL, {
       method: localMethod,
@@ -365,7 +365,7 @@ export default class MajorSurvey extends React.Component {
 
         } else {
           let json_mesg = response.json();
-          console.log("API response: " + JSON.stringify(response));
+          // console.log("API response: " + JSON.stringify(response));
           alert("Error: " + json_mesg.mesg);
         }
       })
@@ -451,7 +451,7 @@ export default class MajorSurvey extends React.Component {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log("Exisiting Data from Major Survey: " + JSON.stringify(json));
+        // console.log("Exisiting Data from Major Survey: " + JSON.stringify(json));
        // console.log("Email from MajorSurvey.js: " + this.state.email);
         // set the val to state
         if (json.mesg.existing == 1) {
@@ -471,7 +471,7 @@ export default class MajorSurvey extends React.Component {
             trueEnvironment: json.mesg.workEnv,
             firstTime: json.mesg.existing,
           });
-		  console.log("testing salary: "+ json.mesg.avg_salary);
+		  // console.log("testing salary: "+ json.mesg.avg_salary);
 		  this.handleSalaryValue(json.mesg.avg_salary);
 		  this.truncateSalary(json.mesg.avg_salary);
 		  this.handleUnemploymentRate(json.mesg.unemployRate);
@@ -487,7 +487,7 @@ export default class MajorSurvey extends React.Component {
 
   render() {
     // console.log("MajorSurvey props checking " + JSON.stringify(this.props.route.params.usrInfo));
-    console.log("Hey there, this is Major Survey screen!");
+    // console.log("Hey there, this is Major Survey screen!");
     return (
       <KeyboardAwareScrollView
         style={styles.container}>
