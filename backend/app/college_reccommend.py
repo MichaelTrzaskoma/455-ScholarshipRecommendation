@@ -201,7 +201,7 @@ def collegeFilter(userEmail):
     userCursor = user_Ref.find(
         {"_id": userEmail}, {"_id": 0})
     userProf = userCursor[0]
-    userStates = userProf.get('survey_college').get('states') 
+    userStates = userProf.get('survey_college').get('regions') 
     userMajor = userProf.get('survey_college').get('major')
     userBin = userProf.get('survey_college').get('binary')
     userSat = userProf.get('survey_college').get('sat_score')
