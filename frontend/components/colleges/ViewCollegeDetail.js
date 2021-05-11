@@ -117,7 +117,7 @@ export default class ViewCollegeDetail extends React.Component {
 
   handleBookmark () {
 
-    // console.log("College Detail page: " + this.props.route.params.usrProf);
+    // console.log("College Detail page: " + this.props.route.params.usrInfo);
     //Insert API Call here
 
     let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
@@ -293,7 +293,7 @@ export default class ViewCollegeDetail extends React.Component {
 
 
   render() {
-    // console.log("From ViewCollegeDetail props " + JSON.stringify(this.props.route.params.usrProf));
+    // console.log("From ViewCollegeDetail props " + JSON.stringify(this.props.route.params.usrInfo));
     return (
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false} style={styles.mainContainer}>

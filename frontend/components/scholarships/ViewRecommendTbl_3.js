@@ -159,7 +159,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
   }
 
   render() {
-    // console.log("Checking ViewRecommendTbl " + JSON.stringify(this.props.route.params.usrProfile ));
+    // console.log("Checking ViewRecommendTbl " + JSON.stringify(this.props.route.params.usrInfo ));
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>

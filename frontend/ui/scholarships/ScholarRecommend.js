@@ -23,7 +23,7 @@ class ScholarRecommender extends Component {
   }
 
   render() {
-    // console.log("Props from ScholarshipRecommend.js: " + JSON.stringify(this.props.usrProfile));
+    // console.log("Props from ScholarshipRecommend.js: " + JSON.stringify(this.props.usrInfo));
     const { navigation } = this.props;
     return (
       <View style={styles.recommendGrp}>

@@ -18,7 +18,7 @@ export default class CollegeRecommendTbl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usrInfo: this.props.route.params.usrProfile,
+      usrInfo: this.props.route.params.usrInfo,
       isLoading: true,
       collegeArr: [],
       gender: '',
@@ -148,7 +148,7 @@ export default class CollegeRecommendTbl extends React.Component {
   }
 
   render() {
-    // console.log("Checking ViewRecommendTbl " + JSON.stringify(this.props.route.params.usrProfile ));
+    // console.log("Checking ViewRecommendTbl " + JSON.stringify(this.props.route.params.usrInfo ));
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>

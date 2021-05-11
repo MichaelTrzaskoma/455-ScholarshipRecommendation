@@ -14,7 +14,7 @@ export default class ViewAllScholar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usrProf: this.props.route.params.usrProfile,
+      usrInfo: this.props.route.params.usrInfo,
       FlatListItems: [
         { key: "Academic Major" },
         { key: "ACT Score" },
@@ -49,7 +49,7 @@ export default class ViewAllScholar extends React.Component {
   };
 
   render() {
-    // console.log("View All scholar " + JSON.stringify(this.state.usrProf));
+    // console.log("View All scholar " + JSON.stringify(this.state.usrInfo));
     return (
       <View style={styles.container}>
         <FlatList
@@ -65,7 +65,7 @@ export default class ViewAllScholar extends React.Component {
                 this.props.navigation.navigate('ViewScholarSubCate', {
                   title: (item.key + " List"),
                   itemKey: item.key,
-                  usrInfo: this.state.usrProf
+                  usrInfo: this.state.usrInfo
                 });
               }}
             > {item.key} </Text>

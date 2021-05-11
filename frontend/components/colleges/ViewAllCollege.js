@@ -15,7 +15,7 @@ export default class ViewAllScholar extends React.Component {
     super(props);
 
     this.state = {
-      usrProf: this.props.route.params.usrInfo,
+      usrInfo: this.props.route.params.usrInfo,
       FlatListItems: [
         { key: "Alabama" },
         { key: "Alaska" },

@@ -37,7 +37,7 @@ class CollegeRecommender extends React.Component {
 							onPress={() => navigation.navigate("ViewCollegeDetail",
 								{
 									title: "College Detail",
-									usrProf: this.props.userProfile,
+									usrInfo: this.props.usrInfo,
 								})
 							}
 						>
