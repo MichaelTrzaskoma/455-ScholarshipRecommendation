@@ -18,7 +18,7 @@ class ScholarRecommender extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      usrInfo: this.props.usrProfile,
+      usrInfo: this.props.usrInfo,
     };
   }
 
@@ -35,7 +35,7 @@ class ScholarRecommender extends Component {
               onPress={() => navigation.navigate("ViewRecommendTbl_3",
                 {
                   title: "Scholarship Detail",
-                  usrInfo: this.props.usrProfile,
+                  usrInfo: this.props.usrInfo,
                 })
               }>
               <FontAwesome

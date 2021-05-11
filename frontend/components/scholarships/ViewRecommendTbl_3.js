@@ -18,7 +18,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usrInfo: this.props.route.params.usrProfile,
+      usrInfo: this.props.route.params.usrInfo,
       isLoading: true,
       scholarArr: [],
       gender: '',
@@ -103,7 +103,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
   getRecommend_scholarship() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      let URL = "http://b9d79f8fdd3c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid+ "/recommends/scholarship";  "/recommends/scholarship"
+      let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid+ "/recommends/scholarship";  "/recommends/scholarship"
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
       const scholarArr = [];
 
