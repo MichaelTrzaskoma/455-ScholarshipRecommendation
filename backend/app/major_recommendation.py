@@ -29,7 +29,7 @@ def updtMajorSurvey(
     list1.extend(catWorkEnv(workEnv))
     list1.extend(subj)
 
-    binary = setBin(db, list1)
+    binary = setMajorBin(db, list1)
     #binary method here 
     user_Ref.update(
         {'_id':email},
@@ -114,7 +114,7 @@ def catWorkEnv(workEnv):
         return[]
 
 
-def setBin(db, list):
+def setMajorBin(db, list):
     binaryInitial = [0] * 22   # Changed to 22 to match major binary length
     indexes = catMajorIndex(db, list)
     for i in range(len(indexes)):
