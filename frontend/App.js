@@ -25,7 +25,7 @@ import ViewScholarSubCate from "./components/scholarships/ViewScholarSubCate";
 import ViewScholarTbl from "./components/scholarships/ViewScholarTbl";
 import ViewScholarDetail from "./components/scholarships/ViewScholarDetail";
 import ViewRecommendTbl_3 from "./components/scholarships/ViewRecommendTbl_3";
-import ViewRecommendTbl from "./components/scholarships/ViewRecommendTbl";
+// import ViewRecommendTbl from "./components/scholarships/ViewRecommendTbl";
 import ScholarRecommend from "./ui/scholarships/ScholarRecommend";
 
 // College
@@ -155,8 +155,8 @@ export default class App extends Component {
       if (!inputEmail == "" && !inputPassword == "") {
         // //  &&  String(inputEmail).includes("@")
 
-        //let URL = "http://6bff156668d9.ngrok.io/api/v1.2/managements/users/" + inputEmail;
-        let URL = "http://2d071003be2e.ngrok.io/api/v1.2/managements/users/" + inputEmail;
+        let URL = "http://6bff156668d9.ngrok.io/api/v1.2/managements/users/" + inputEmail;
+        // let URL = "http://2d071003be2e.ngrok.io/api/v1.2/managements/users/" + inputEmail;
 
         
         // fetch(URL, {
@@ -514,7 +514,7 @@ export default class App extends Component {
               initialParams={{ usrInfo: this.state.usrProfile }}
             />
 
-            <Stack.Screen
+            {/* <Stack.Screen
               name={"ViewRecommendTbl"}
               component={ViewRecommendTbl}
               options={({ route }) => ({
@@ -529,7 +529,7 @@ export default class App extends Component {
                 },
               })}
               initialParams={{ usrInfo: this.state.usrProfile }}
-            />
+            /> */}
 
             <Stack.Screen
               name={"ViewRecommendTbl_3"}
