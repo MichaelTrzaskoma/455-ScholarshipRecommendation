@@ -49,7 +49,8 @@ export function parse_UTCTimeStamp(timer){
   // parse utc timestamp
   // INPUT: timer (utc time stamp)
   // OUTPUT: returns a parsed time stamp in MM/DD/YYYY
-  fields = String(timer).split(" ");
+  const fields = String(timer).split(" ");
+  // const dater = parseMonth(fields[2]) + "/" + fields[1] + "/" + fields[3]
   return (parseMonth(fields[2]) + "/" + fields[1] + "/" + fields[3]);
 }
 

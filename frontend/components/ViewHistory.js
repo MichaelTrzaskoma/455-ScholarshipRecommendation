@@ -31,7 +31,7 @@ class ViewHistoryClass extends React.Component {
       opt_title_visible: false,
       opt_deadline_visible: false,
       opt_score_visible: false,
-      opt_amount_visible: false,
+      opt_amount_visible: false
     };
   }
 
@@ -44,62 +44,41 @@ class ViewHistoryClass extends React.Component {
   _openScoreMenu = () => { this.setState({ opt_score_visible: true }) };
   _closeScoreMenu = () => { this.setState({ opt_score_visible: false }) };
 
-  _openAmountMenu = () => { this.setState({ opt_amount_visible: true }) };
-  _closeAmountMenu = () => { this.setState({ opt_amount_visible: false }) };
 
   sortTitleHandler_a2z() {
-    this.state.scholarArr.sort(dynamicSort("key"));
+    this.state.historyArr.sort(dynamicSort("key"));
     // console.log(this.state.scholarArr);
     this._closeTitleMenu();
   }
 
   sortTitleHandler_z2a() {
-    this.state.scholarArr.sort(dynamicSort("-key"));
+    this.state.historyArr.sort(dynamicSort("-key"));
     // console.log(this.state.scholarArr);
     this._closeTitleMenu();
   }
 
   sortDeadlineHandler_a2z() {
-    this.state.scholarArr.sort(dynamicSort("deadline"));
+    this.state.historyArr.sort(dynamicSort("timer"));
     // console.log(this.state.scholarArr);
     this._closeDeadlineMenu();
   }
 
   sortDeadlineHandler_z2a() {
-    this.state.scholarArr.sort(dynamicSort("-deadline"));
+    this.state.historyArr.sort(dynamicSort("-timer"));
     // console.log(this.state.scholarArr);
     this._closeDeadlineMenu();
   }
 
   sortScoreHandler_a2z() {
-    this.state.scholarArr.sort(dynamicSort("score"));
+    this.state.historyArr.sort(dynamicSort("type"));
     // console.log(this.state.scholarArr);
     this._closeScoreMenu();
   }
 
   sortScoreHandler_z2a() {
-    this.state.scholarArr.sort(dynamicSort("-score"));
+    this.state.historyArr.sort(dynamicSort("-type"));
     // console.log(this.state.scholarArr);
     this._closeScoreMenu();
-  }
-
-  sortAmountHandler_a2z() {
-    this.setState({
-      scholarArr: mergeSort_a2z(this.state.scholarArr),
-    });
-    // this.state.scholarArr.sort(sortAmount("amount"));
-    // console.log(this.state.scholarArr);
-    this._closeAmountMenu();
-  }
-
-  sortAmountHandler_z2a() {
-    // mergeSort_z2a
-    this.setState({
-      scholarArr: mergeSort_z2a(this.state.scholarArr),
-    });
-    // this.state.scholarArr.sort(sortAmount("-amount"));
-    // console.log(this.state.scholarArr);
-    this._closeAmountMenu();
   }
 
 
@@ -139,10 +118,12 @@ class ViewHistoryClass extends React.Component {
     }
   }
 
-  UNSAFE_componentWillMount() {
+
+  componentDidMount() {
     // console.log("User profile from ViewHistory: " + JSON.stringify(this.props));
     this.getHistory();
   }
+
 
   parseICON(types) {
     // parse ICONS for the bookmarks and recent view listing components
@@ -175,12 +156,25 @@ class ViewHistoryClass extends React.Component {
     }
   }
 
+
+  parseSortICON(types) {
+    const r = String(types);
+    if (r === "A - Z") {
+      return (
+        <FontAwesome name="sort-alpha-asc" size={16} color="black">  A - Z</FontAwesome>
+      );
+    } else {
+      return (<FontAwesome name="sort-alpha-desc" size={16} color="black">  Z - A</FontAwesome>);
+    }
+  }
+
+
   getHistory() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
       let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recent/all/15";
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
-      
+
       const historyArr = [];
 
       fetch(URL, {
@@ -216,9 +210,11 @@ class ViewHistoryClass extends React.Component {
 
   };
 
+
   FlatListItemSeparator = () => {
     return <View style={styles.itemSeparater} />;
   }
+
 
   render() {
     const { navigation } = this.props;
@@ -245,6 +241,8 @@ class ViewHistoryClass extends React.Component {
                 contentContainerStyle={
                   styles.scrollArea2_contentContainerStyle
                 }>
+
+
                 <Menu
                   visible={this.state.opt_title_visible}
                   onDismiss={this._closeTitleMenu}
@@ -270,13 +268,15 @@ class ViewHistoryClass extends React.Component {
                     onPress={() => {
                       this.sortTitleHandler_a2z();
                     }}
-                    title="A - Z"
+                    title={this.parseSortICON("A - Z")}
                   />
                   <Menu.Item
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
                       this.sortTitleHandler_z2a();
-                    }} title="Z - A" />
+                    }}
+                    title={this.parseSortICON("Z - A")}
+                  />
                 </Menu>
 
 
@@ -291,7 +291,7 @@ class ViewHistoryClass extends React.Component {
                         <FontAwesome
                           name="sort-alpha-asc"
                           style={styles.icon18}></FontAwesome>
-                        <Text style={styles.deadline}>Time</Text>
+                        <Text style={styles.deadline}>Type</Text>
                         <FontAwesome
                           name="sort-down"
                           style={styles.icon19}></FontAwesome>
@@ -301,15 +301,17 @@ class ViewHistoryClass extends React.Component {
                   <Menu.Item
                     style={{ marginTop: 0, width: 15 }}
                     onPress={() => {
-                      this.sortDeadlineHandler_a2z();
+                      this.sortScoreHandler_a2z();
                     }}
-                    title="A - Z"
+                    title={this.parseSortICON("A - Z")}
                   />
                   <Menu.Item
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
-                      this.sortDeadlineHandler_z2a();
-                    }} title="Z - A" />
+                      this.sortScoreHandler_z2a();
+                    }}
+                    title={this.parseSortICON("Z - A")}
+                  />
                 </Menu>
 
 
@@ -324,7 +326,7 @@ class ViewHistoryClass extends React.Component {
                         <FontAwesome
                           name="sort-alpha-asc"
                           style={styles.icon20}></FontAwesome>
-                        <Text style={styles.score}>Type</Text>
+                        <Text style={styles.score}>Date</Text>
                         <FontAwesome
                           name="sort-down"
                           style={styles.icon21}></FontAwesome>
@@ -333,47 +335,17 @@ class ViewHistoryClass extends React.Component {
                   <Menu.Item
                     style={{ marginTop: 0, width: 15 }}
                     onPress={() => {
-                      this.sortScoreHandler_a2z();
+                      this.sortDeadlineHandler_a2z();
                     }}
-                    title="A - Z"
+                    title={this.parseSortICON("A - Z")}
                   />
                   <Menu.Item
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
-                      this.sortScoreHandler_z2a();
-                    }} title="Z - A" />
-                </Menu>
-
-
-                <Menu
-                  visible={this.state.opt_amount_visible}
-                  onDismiss={this._closeAmountMenu}
-                  anchor={
-                    <TouchableOpacity
-                      onPress={this._openAmountMenu}
-                      style={styles.group3}>
-                      <View style={styles.icon22Row}>
-                        <FontAwesome
-                          name="sort-alpha-asc"
-                          style={styles.icon22}></FontAwesome>
-                        <Text style={styles.amount2}>Amount</Text>
-                        <FontAwesome
-                          name="sort-down"
-                          style={styles.icon23}></FontAwesome>
-                      </View>
-                    </TouchableOpacity>}>
-                  <Menu.Item
-                    style={{ marginTop: 0, width: 15 }}
-                    onPress={() => {
-                      this.sortAmountHandler_a2z();
+                      this.sortDeadlineHandler_z2a();
                     }}
-                    title="A - Z"
+                    title={this.parseSortICON("Z - A")}
                   />
-                  <Menu.Item
-                    style={{ marginTop: 0, width: 15, }}
-                    onPress={() => {
-                      this.sortAmountHandler_z2a();
-                    }} title="Z - A" />
                 </Menu>
 
 
@@ -487,7 +459,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   group: {
-    width: 105,
+    width: 85,
     height: 27,
     borderRadius: 10,
     backgroundColor: 'rgba(255,255,255,1)',
@@ -519,10 +491,10 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginLeft: 8,
     marginTop: 2,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
   },
   group2: {
-    width: 90,
+    width: 85,
     height: 27,
     borderRadius: 10,
     backgroundColor: 'rgba(255,255,255,1)',
@@ -554,42 +526,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginLeft: 8,
     marginTop: 2,
-    backgroundColor: 'white',
-  },
-  group3: {
-    width: 100,
-    height: 27,
-    borderRadius: 10,
-    backgroundColor: 'rgba(255,255,255,1)',
-    overflow: 'hidden',
-    flexDirection: 'row',
-    marginLeft: 9,
-    marginTop: 6,
-  },
-  icon22: {
-    color: 'rgba(128,128,128,1)',
-    fontSize: 15,
-    marginTop: 4,
-  },
-  amount2: {
-    color: '#121212',
-    marginLeft: 7,
-    marginTop: 2,
-  },
-  icon23: {
-    color: 'rgba(128,128,128,1)',
-    fontSize: 20,
-    marginLeft: 5,
-    marginTop: -2,
-  },
-  icon22Row: {
-    height: 23,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 8,
-    marginLeft: 8,
-    marginTop: 2,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
   },
   group0: {
     width: 80,

@@ -153,62 +153,62 @@ export default class App extends Component {
   signIn = async (inputEmail, inputPassword) => {
     try {
       if (!inputEmail == "" && !inputPassword == "") {
-        //  &&  String(inputEmail).includes("@")
-        const unique_id = getDeviceID();
-        // console.log("UUID: " + unique_id);
+        // //  &&  String(inputEmail).includes("@")
+        // const unique_id = getDeviceID();
+        // // console.log("UUID: " + unique_id);
 
-        // let URL = "http://35f9419b9dde.ngrok.io/api/v1.2/managements/users/" + inputEmail;
+        // // let URL = "http://35f9419b9dde.ngrok.io/api/v1.2/managements/users/" + inputEmail;
 
-        //let URL = "http://6bff156668d9.ngrok.io/api/v1.2/managements/users/" + inputEmail;
-        let URL = "http://2d071003be2e.ngrok.io/api/v1.2/managements/users/" + inputEmail;
+        // let URL = "http://6bff156668d9.ngrok.io/api/v1.2/managements/users/" + inputEmail;
+        // // let URL = "http://2d071003be2e.ngrok.io/api/v1.2/managements/users/" + inputEmail;
         
-        fetch(URL, {
-          method: "POST",
-          headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-          },
+        // fetch(URL, {
+        //   method: "POST",
+        //   headers: {
+        //     "Accept": "application/json",
+        //     "Content-Type": "application/json",
+        //   },
 
-          body: JSON.stringify({
-            "paswrd": inputPassword,
-            "unique_id": unique_id,
-          }),
+        //   body: JSON.stringify({
+        //     "paswrd": inputPassword,
+        //     "unique_id": unique_id,
+        //   }),
 
-        })
-          .then((response) => response.json())
-          .then((json) => {
+        // })
+        //   .then((response) => response.json())
+        //   .then((json) => {
 
-            if (json.mesg === "authorized") {
+        //     if (json.mesg === "authorized") {
 
-              // storeData("signIn", "Yes");
-              // storeData("JWT", json.token);
-              // storeData("uuid", unique_id);
-              // storeData("email", inputEmail);
+        //       // storeData("signIn", "Yes");
+        //       // storeData("JWT", json.token);
+        //       // storeData("uuid", unique_id);
+        //       // storeData("email", inputEmail);
 
-              console.log(JSON.stringify(json));
-              this.setState({
-                usrProfile: {
-                  email: inputEmail,
-                  signedIn: true,
-                  jwt: json.token,
-                  uuid: unique_id,
-                },
-              });
+        //       console.log(JSON.stringify(json));
+        //       this.setState({
+        //         usrProfile: {
+        //           email: inputEmail,
+        //           signedIn: true,
+        //           jwt: json.token,
+        //           uuid: unique_id,
+        //         },
+        //       });
 
-            } else {
-              alert(json.mesg);
-            }
-          })
+        //     } else {
+        //       alert(json.mesg);
+        //     }
+        //   })
 
         // for test env only
-        // this.setState({
-        //   usrProfile: {
-        //     email: inputEmail,
-        //     signedIn: true,
-        //     jwt: "sfwefgwgewg",
-        //     uuid: unique_id,
-        //   },
-        // });
+        this.setState({
+          usrProfile: {
+            email: "hchen98x@gmail.com",
+            signedIn: true,
+            jwt: "sfwefgwgewg",
+            uuid: "regreg",
+          },
+        });
 
       } else {
         alert("Please input your email or password!");

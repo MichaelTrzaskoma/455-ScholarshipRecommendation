@@ -23,7 +23,7 @@ export default function ViewBookTbl(props) {
 }
 
 class ViewBookTblClass extends React.Component {
-// export default class ViewBookTbl extends React.Component {
+  // export default class ViewBookTbl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,7 +33,6 @@ class ViewBookTblClass extends React.Component {
       opt_title_visible: false,
       opt_deadline_visible: false,
       opt_score_visible: false,
-      opt_amount_visible: false,
       modalVisible: false,
       currentBookmarkKey: "",
     };
@@ -48,8 +47,6 @@ class ViewBookTblClass extends React.Component {
   _openScoreMenu = () => { this.setState({ opt_score_visible: true }) };
   _closeScoreMenu = () => { this.setState({ opt_score_visible: false }) };
 
-  _openAmountMenu = () => { this.setState({ opt_amount_visible: true }) };
-  _closeAmountMenu = () => { this.setState({ opt_amount_visible: false }) };
 
   sortTitleHandler_a2z() {
     this.state.bookArr.sort(dynamicSort("key"));
@@ -64,13 +61,13 @@ class ViewBookTblClass extends React.Component {
   }
 
   sortDeadlineHandler_a2z() {
-    this.state.bookArr.sort(dynamicSort("time"));
+    this.state.bookArr.sort(dynamicSort("timer"));
     // console.log(this.state.scholarArr);
     this._closeDeadlineMenu();
   }
 
   sortDeadlineHandler_z2a() {
-    this.state.bookArr.sort(dynamicSort("-time"));
+    this.state.bookArr.sort(dynamicSort("-timer"));
     // console.log(this.state.scholarArr);
     this._closeDeadlineMenu();
   }
@@ -87,24 +84,6 @@ class ViewBookTblClass extends React.Component {
     this._closeScoreMenu();
   }
 
-  sortAmountHandler_a2z() {
-    this.setState({
-      bookArr: mergeSort_a2z(this.state.bookArr),
-    });
-    // this.state.scholarArr.sort(sortAmount("amount"));
-    // console.log(this.state.scholarArr);
-    this._closeAmountMenu();
-  }
-
-  sortAmountHandler_z2a() {
-    // mergeSort_z2a
-    this.setState({
-      bookArr: mergeSort_z2a(this.state.bookArr),
-    });
-    // this.state.scholarArr.sort(sortAmount("-amount"));
-    // console.log(this.state.scholarArr);
-    this._closeAmountMenu();
-  }
 
   handleBookmarkOpen(key) {
     this.setModalVisible(true)
@@ -174,12 +153,10 @@ class ViewBookTblClass extends React.Component {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
       // console.log("User profile from ViewBookmarksTbl: " + JSON.stringify(this.props.route.params.usrInfo));
-      // let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+      let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
-      let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email +"/bookmarks/all/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid;  
-
-
-      // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
+      // let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email +"/bookmarks/all/"+ this.state.usrInfo.jwt +"/"+ this.state.usrInfo.uuid;
+      
       const bookArr = [];
 
       fetch(URL, {
@@ -191,14 +168,14 @@ class ViewBookTblClass extends React.Component {
       })
         .then((response) => response.json())
         .then((json) => {
-          // console.log(JSON.stringify(json));
+          console.log(JSON.stringify(json));
           json.forEach((res) => {
 
             // append the API data to local var
             bookArr.push({
               key: res.title,
               type: res.type,
-              timer: parse_UTCTimeStamp(res.timeAddded)
+              timer: parse_UTCTimeStamp(res.timeAdded)
             });
           });
 
@@ -215,7 +192,7 @@ class ViewBookTblClass extends React.Component {
       alert("An error occurred: " + error);
     }
 
-  };
+  }
 
   typeNavigator(itemKey, itemType) {
     // navigate the user to respective detail page
@@ -288,6 +265,17 @@ class ViewBookTblClass extends React.Component {
     }
   }
 
+  parseSortICON(types) {
+    const r = String(types);
+    if (r === "A - Z") {
+      return (
+          <FontAwesome name="sort-alpha-asc" size={16} color="black">  A - Z</FontAwesome>
+        );
+    } else {
+      return (<FontAwesome name="sort-alpha-desc" size={16} color="black">  Z - A</FontAwesome>);
+    }
+  }
+
   render() {
     // console.log("Checking Bookmark " + JSON.stringify(this.state.usrInfo));
     const { modalVisible } = this.state;
@@ -347,6 +335,7 @@ class ViewBookTblClass extends React.Component {
                 contentContainerStyle={
                   styles.scrollArea2_contentContainerStyle
                 }>
+
                 <Menu
                   visible={this.state.opt_title_visible}
                   onDismiss={this._closeTitleMenu}
@@ -372,13 +361,15 @@ class ViewBookTblClass extends React.Component {
                     onPress={() => {
                       this.sortTitleHandler_a2z();
                     }}
-                    title="A - Z"
+                    title={this.parseSortICON("A - Z")}
                   />
                   <Menu.Item
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
                       this.sortTitleHandler_z2a();
-                    }} title="Z - A" />
+                    }} 
+                    title={this.parseSortICON("Z - A")}
+                    />
                 </Menu>
 
 
@@ -393,7 +384,7 @@ class ViewBookTblClass extends React.Component {
                         <FontAwesome
                           name="sort-alpha-asc"
                           style={styles.icon18}></FontAwesome>
-                        <Text style={styles.deadline}>Time</Text>
+                        <Text style={styles.deadline}>Type</Text>
                         <FontAwesome
                           name="sort-down"
                           style={styles.icon19}></FontAwesome>
@@ -403,15 +394,17 @@ class ViewBookTblClass extends React.Component {
                   <Menu.Item
                     style={{ marginTop: 0, width: 15 }}
                     onPress={() => {
-                      this.sortDeadlineHandler_a2z();
+                      this.sortScoreHandler_a2z();
                     }}
-                    title="A - Z"
+                    title={this.parseSortICON("A - Z")}
                   />
                   <Menu.Item
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
-                      this.sortDeadlineHandler_z2a();
-                    }} title="Z - A" />
+                      this.sortScoreHandler_z2a();
+                    }} 
+                    title={this.parseSortICON("Z - A")}
+                    />
                 </Menu>
 
 
@@ -426,7 +419,7 @@ class ViewBookTblClass extends React.Component {
                         <FontAwesome
                           name="sort-alpha-asc"
                           style={styles.icon20}></FontAwesome>
-                        <Text style={styles.score}>Type</Text>
+                        <Text style={styles.score}>Date</Text>
                         <FontAwesome
                           name="sort-down"
                           style={styles.icon21}></FontAwesome>
@@ -435,47 +428,17 @@ class ViewBookTblClass extends React.Component {
                   <Menu.Item
                     style={{ marginTop: 0, width: 15 }}
                     onPress={() => {
-                      this.sortScoreHandler_a2z();
+                      this.sortDeadlineHandler_a2z();
                     }}
-                    title="A - Z"
+                    title={this.parseSortICON("A - Z")}
                   />
                   <Menu.Item
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
-                      this.sortScoreHandler_z2a();
-                    }} title="Z - A" />
-                </Menu>
-
-
-                <Menu
-                  visible={this.state.opt_amount_visible}
-                  onDismiss={this._closeAmountMenu}
-                  anchor={
-                    <TouchableOpacity
-                      onPress={this._openAmountMenu}
-                      style={styles.group3}>
-                      <View style={styles.icon22Row}>
-                        <FontAwesome
-                          name="sort-alpha-asc"
-                          style={styles.icon22}></FontAwesome>
-                        <Text style={styles.amount2}>Amount</Text>
-                        <FontAwesome
-                          name="sort-down"
-                          style={styles.icon23}></FontAwesome>
-                      </View>
-                    </TouchableOpacity>}>
-                  <Menu.Item
-                    style={{ marginTop: 0, width: 15 }}
-                    onPress={() => {
-                      this.sortAmountHandler_a2z();
-                    }}
-                    title="A - Z"
-                  />
-                  <Menu.Item
-                    style={{ marginTop: 0, width: 15, }}
-                    onPress={() => {
-                      this.sortAmountHandler_z2a();
-                    }} title="Z - A" />
+                      this.sortDeadlineHandler_z2a();
+                    }} 
+                    title={this.parseSortICON("Z - A")}
+                    />
                 </Menu>
 
 
@@ -590,7 +553,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   group: {
-    width: 105,
+    width: 85,
     height: 27,
     borderRadius: 10,
     backgroundColor: 'rgba(255,255,255,1)',
@@ -622,10 +585,10 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginLeft: 8,
     marginTop: 2,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
   },
   group2: {
-    width: 90,
+    width: 85,
     height: 27,
     borderRadius: 10,
     backgroundColor: 'rgba(255,255,255,1)',
@@ -657,42 +620,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginLeft: 8,
     marginTop: 2,
-    backgroundColor: 'white',
-  },
-  group3: {
-    width: 100,
-    height: 27,
-    borderRadius: 10,
-    backgroundColor: 'rgba(255,255,255,1)',
-    overflow: 'hidden',
-    flexDirection: 'row',
-    marginLeft: 9,
-    marginTop: 6,
-  },
-  icon22: {
-    color: 'rgba(128,128,128,1)',
-    fontSize: 15,
-    marginTop: 4,
-  },
-  amount2: {
-    color: '#121212',
-    marginLeft: 7,
-    marginTop: 2,
-  },
-  icon23: {
-    color: 'rgba(128,128,128,1)',
-    fontSize: 20,
-    marginLeft: 5,
-    marginTop: -2,
-  },
-  icon22Row: {
-    height: 23,
-    flexDirection: 'row',
-    flex: 1,
-    marginRight: 8,
-    marginLeft: 8,
-    marginTop: 2,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
   },
   group0: {
     width: 80,
