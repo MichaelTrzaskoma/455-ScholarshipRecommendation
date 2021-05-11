@@ -25,7 +25,7 @@ def updtCollegeSurvey(
         {'$set':
             {
            'survey_college':{
-                "states": state,
+                "regions": state,
                 "major": major,
                 "sat_score": sat,
                 "act_score": act,
@@ -55,7 +55,7 @@ def binaryCollege(major):
         if major[i] == 'Biology':
             indList = [31, 66, 95, 106, 115, 164]
 
-        if major[i] == 'Business Management':
+        if major[i] == 'Business':
             indList = [10, 61, 82, 83, 146, 183]
 
         if major[i] == 'Chemistry':
@@ -201,7 +201,7 @@ def collegeFilter(userEmail):
     userCursor = user_Ref.find(
         {"_id": userEmail}, {"_id": 0})
     userProf = userCursor[0]
-    userStates = userProf.get('survey_college').get('states') 
+    userStates = userProf.get('survey_college').get('regions') 
     userMajor = userProf.get('survey_college').get('major')
     userBin = userProf.get('survey_college').get('binary')
     userSat = userProf.get('survey_college').get('sat_score')
