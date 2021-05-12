@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity, } from "react-native";
 import { FontAwesome, Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import * as WebBrowser from 'expo-web-browser';
 
 export default class ViewCollegeDetail extends React.Component {
   constructor(props) {
@@ -339,6 +340,11 @@ export default class ViewCollegeDetail extends React.Component {
         });
       });
   }
+
+  _handleOpenWithWebBrowser = () => {
+    let link = this.state.collegeObj2_2.applyLink;
+    WebBrowser.openBrowserAsync(link);
+  };
 
   UNSAFE_componentWillMount() {
     // console.log("User profile from ViewCollegeDetail: " + JSON.stringify(this.props.route.params));
