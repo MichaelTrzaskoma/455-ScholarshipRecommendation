@@ -1058,10 +1058,6 @@ const items = [
 		// these are the children or 'sub items'
 		children: [
 			{
-				name: 'No Preference',
-				id: 1193,
-			},
-			{
 				name: 'Alabama',
 				id: 1194,
 			},
@@ -1578,6 +1574,7 @@ class InputScreen extends React.Component {
 		if (this.state.gender.localeCompare(noInput) != 0
 			&& this.state.dob.localeCompare(noInput) != 0
 			&& this.state.gpa.localeCompare(noInput) != 0
+			&& this.state.selectedResidences.length != 0
 			&& this.gpaErrorHandling(this.state.gpa)
 			&& this.satErrorHandling(this.state.sat_score)) {
 			this.upload2sever();
