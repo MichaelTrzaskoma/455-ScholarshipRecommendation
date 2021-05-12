@@ -8,6 +8,7 @@ import {
   StatusBar
 } from 'react-native';
 import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
+import { useIsFocused } from '@react-navigation/native';
 
 import ScholarCategory from "../../ui/scholarships/ScholarCategory";
 import ScholarRecommend from '../../ui/scholarships/ScholarRecommend';
@@ -15,7 +16,15 @@ import ScholarRecent from "../../ui/scholarships/ScholarRecent";
 import { getDeviceID } from "../../functions/deviceUniqueID";
 // import { storeData, getData } from "../../functions/secureStorage";
 
-export default class ScholarshipScreen extends React.Component {
+
+export default function ScholarshipScreen(props) {
+  const isFocused = useIsFocused();
+
+  return <ScholarshipScreenClass {...props} isFocused={isFocused} />;
+
+}
+
+class ScholarshipScreenClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +36,7 @@ export default class ScholarshipScreen extends React.Component {
 
   render() {
     // console.log("User profile from ScholarshipScreen: "+ JSON.stringify(this.props.usrInfo));
-
+    // console.log("Is focused? " + this.props.isFocused);
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor="#007FF9" barStyle="light-content" />
@@ -40,8 +49,8 @@ export default class ScholarshipScreen extends React.Component {
 
             {/* Scholarship Recommend: passing down state.userProfile as prop */}
             <ScholarRecommend usrInfo={this.state.usrInfo} nav={this.state.nav} />
-
-            <ScholarRecent usrInfo={this.state.usrInfo} nav={this.state.nav} />
+            {/* {this.props.isFocused ? <ScholarRecent usrInfo={this.state.usrInfo} nav={this.state.nav} isFocused={this.props.isFocused} /> : <ScholarRecent usrInfo={this.state.usrInfo} nav={this.state.nav} isFocused={this.props.isFocused} />} */}
+            <ScholarRecent usrInfo={this.state.usrInfo} nav={this.state.nav} isFocused={this.props.isFocused}/>
 
           </View>
         </View>

@@ -143,7 +143,7 @@ export default class App extends Component {
     this.state = {
       usrProfile: {
         signedIn: false,
-        email: "hchen98x@gmail.com",
+        email: "",
         jwt: "",
         uuid: "",
       },
@@ -160,49 +160,49 @@ export default class App extends Component {
         let URL = "http://6bff156668d9.ngrok.io/api/v1.2/managements/users/" + inputEmail;
         // let URL = "http://2d071003be2e.ngrok.io/api/v1.2/managements/users/" + inputEmail;
 
-        // const unique_id = getDeviceID();
-        // fetch(URL, {
-        //   method: "POST",
-        //   headers: {
-        //     "Accept": "application/json",
-        //     "Content-Type": "application/json",
-        //   },
+        const unique_id = getDeviceID();
+        fetch(URL, {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
 
-        //   body: JSON.stringify({
-        //     "paswrd": inputPassword,
-        //     "unique_id": unique_id,
-        //   }),
+          body: JSON.stringify({
+            "paswrd": inputPassword,
+            "unique_id": unique_id,
+          }),
 
-        // })
-        //   .then((response) => response.json())
-        //   .then((json) => {
+        })
+          .then((response) => response.json())
+          .then((json) => {
 
-        //     if (json.mesg === "authorized") {
+            if (json.mesg === "authorized") {
 
-        //       console.log(JSON.stringify(json));
-        //       this.setState({
-        //         usrProfile: {
-        //           email: inputEmail,
-        //           signedIn: true,
-        //           jwt: json.token,
-        //           uuid: unique_id,
-        //         },
-        //       });
+              console.log(JSON.stringify(json));
+              this.setState({
+                usrProfile: {
+                  email: inputEmail,
+                  signedIn: true,
+                  jwt: json.token,
+                  uuid: unique_id,
+                },
+              });
 
-        //     } else {
-        //       alert(json.mesg);
-        //     }
-        //   })
+            } else {
+              alert(json.mesg);
+            }
+          })
 
         // for test env only
-        this.setState({
-          usrProfile: {
-            email: "hchen98x@gmail.com",
-            signedIn: true,
-            jwt: "sfwefgwgewg",
-            uuid: "regreg",
-          },
-        });
+        // this.setState({
+        //   usrProfile: {
+        //     email: "hchen98x@gmail.com",
+        //     signedIn: true,
+        //     jwt: "sfwefgwgewg",
+        //     uuid: "regreg",
+        //   },
+        // });
 
       } else {
         alert("Please input your email or password!");
@@ -215,14 +215,10 @@ export default class App extends Component {
     }
   };
 
+  
 
   render() {
-
-    // console.log(this.state.usrProfile);
-    // print the device unique ID
-    // console.log(getDeviceID())
-    // console.log("Auth val: " + JSON.stringify(this.state.usrProfile.signedIn));
-    // console.log("Auth val: " + this.state.usrProfile.signedIn);
+    console.log("Sign val: " + this.state.usrProfile.signedIn);
 
     if (this.state.usrProfile.signedIn) {
       // console.log("signedIn: " + (getData("signIn")));

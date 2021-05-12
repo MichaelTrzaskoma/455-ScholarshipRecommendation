@@ -76,8 +76,16 @@ class ScholarRecentClassd extends Component {
     this.getRecentViewed();
   }
 
+  // componentWillMount(){
+  //   this.getRecentViewed();
+  // }
+
   render() {
     const { navigation } = this.props;
+    
+    if (this.props.isFocused){
+      this.getRecentViewed();
+    }
 
     if (this.state.isHistory) {
       return (
@@ -91,7 +99,16 @@ class ScholarRecentClassd extends Component {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => (
-                  <TouchableOpacity style={styles.rvBtn1}>
+                  <TouchableOpacity 
+                  style={styles.rvBtn1}
+                  onPress={() => this.props.navigation.navigate("ViewScholarDetail",
+                      {
+                        title: item.title,
+                        itemKey: item.title,
+                        usrInfo: this.props.usrInfo,
+                      })
+                    }
+                  >
                     <MaterialCommunityIcons
                       name="table-of-contents"
                       style={styles.rvIcon1}></MaterialCommunityIcons>

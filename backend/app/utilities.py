@@ -394,3 +394,12 @@ def checkBookmarkStatus(clientRef, email, docType, title):
         return True
     else:
         return False
+    
+
+def checkSurveyProfile(client_ref, surveyType, email):
+    r = client_ref.count_documents({"_id": email, surveyType: {'$exists': True}})
+
+    if r == 0:
+        return False
+    else:
+        return True

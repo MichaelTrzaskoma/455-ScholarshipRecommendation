@@ -12,7 +12,17 @@ import MajorCategory from "../../ui/majors/MajorCategory";
 import MajorRecommend from "../../ui/majors/MajorRecommend";
 import MajorRecent from "../../ui/majors/MajorRecent";
 
-class MajorScreen extends React.Component {
+import { useIsFocused } from '@react-navigation/native';
+
+
+export default function MajorScreen(props) {
+  const isFocused = useIsFocused();
+
+  return <MajorScreenClass {...props} isFocused={isFocused} />;
+
+}
+
+class MajorScreenClass extends React.Component {
   // console.log("Major props check " + JSON.stringify(props.usrInfo));
 
   constructor(props) {
@@ -38,7 +48,7 @@ class MajorScreen extends React.Component {
             <MajorRecommend usrInfo={this.props.usrInfo} />
 
             {/* Recent View ScrollView */}
-            <MajorRecent usrInfo={this.props.usrInfo} />
+            <MajorRecent usrInfo={this.props.usrInfo} isFocused={this.props.isFocused} />
 
           </View>
         </View>
@@ -536,5 +546,3 @@ const styles = StyleSheet.create({
     width: '100%',
   }
 });
-
-export default MajorScreen;

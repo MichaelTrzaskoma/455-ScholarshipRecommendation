@@ -164,14 +164,14 @@ export default class ViewRecommendTbl_3 extends React.Component {
       // error handler
       alert("An error occurred: " + error);
     } 
-    if(this.state.scholarArr.length === 0)
-    {
-      alert("Attention user, you have no recommendation results, please edit your survey to receive results");
-    }
-    else if(this.state.scholarArr.length<5)
-    {
-      alert("Attention User, please modify your survey to receive more results");
-    }
+    // if(this.state.scholarArr.length === 0)
+    // {
+    //   alert("Attention user, you have no recommendation results, please edit your survey to receive results");
+    // }
+    // else if(this.state.scholarArr.length<5)
+    // {
+    //   alert("Attention User, please modify your survey to receive more results");
+    // }
     // console.log(this.state.scholarArr);
 
   };
@@ -192,7 +192,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
       return (<FontAwesome name="sort-alpha-desc" size={16} color="black">  Z - A</FontAwesome>);
     }
   }
-
+ 
   render() {
     console.log("Checking ViewRecommendTbl " + JSON.stringify(this.props.route.params.usrInfo ));
     if (this.state.isLoading) {

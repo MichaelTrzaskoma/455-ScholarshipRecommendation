@@ -13,6 +13,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Menu, Provider } from 'react-native-paper';
 import { parseMonth, parseAmount, parseSimilarScore, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../../functions/utilities";
 import { FlatList } from 'react-native-gesture-handler';
+// import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default class MajorRecommendTbl extends React.Component {
   constructor(props) {
@@ -63,37 +64,6 @@ export default class MajorRecommendTbl extends React.Component {
     this.state.majorArr.sort(dynamicSort("-val"));
     // console.log(this.state.majorArr);
     this._closeDeadlineMenu();
-  }
-
-  sortScoreHandler_a2z() {
-    this.state.majorArr.sort(dynamicSort("score"));
-    // console.log(this.state.majorArr);
-    this._closeScoreMenu();
-  }
-
-  sortScoreHandler_z2a() {
-    this.state.majorArr.sort(dynamicSort("-score"));
-    // console.log(this.state.majorArr);
-    this._closeScoreMenu();
-  }
-
-  sortAmountHandler_a2z() {
-    this.setState({
-      majorArr: mergeSort_a2z(this.state.majorArr),
-    });
-    // this.state.majorArr.sort(sortAmount("amount"));
-    // console.log(this.state.majorArr);
-    this._closeAmountMenu();
-  }
-
-  sortAmountHandler_z2a() {
-    // mergeSort_z2a
-    this.setState({
-      majorArr: mergeSort_z2a(this.state.majorArr),
-    });
-    // this.state.majorArr.sort(sortAmount("-amount"));
-    // console.log(this.state.majorArr);
-    this._closeAmountMenu();
   }
 
   componentDidMount() {
@@ -154,6 +124,17 @@ export default class MajorRecommendTbl extends React.Component {
     return <View style={styles.ItemSeparator} />;
   }
 
+  parseSortICON(types) {
+    const r = String(types);
+    if (r === "A - Z") {
+      return (
+          <FontAwesome name="sort-alpha-asc" size={16} color="black">  A - Z</FontAwesome>
+        );
+    } else {
+      return (<FontAwesome name="sort-alpha-desc" size={16} color="black">  Z - A</FontAwesome>);
+    }
+  }
+
   render() {
     // console.log("Checking ViewRecommendTbl " + JSON.stringify(this.props.route.params.usrInfo ));
     if (this.state.isLoading) {
@@ -204,13 +185,14 @@ export default class MajorRecommendTbl extends React.Component {
                     onPress={() => {
                       this.sortTitleHandler_a2z();
                     }}
-                    title="A - Z"
+                    title={this.parseSortICON("A - Z")}
                   />
                   <Menu.Item
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
                       this.sortTitleHandler_z2a();
-                    }} title="Z - A" />
+                    }} 
+                    title={this.parseSortICON("Z - A")} />
                 </Menu>
 
 
@@ -225,7 +207,7 @@ export default class MajorRecommendTbl extends React.Component {
                         <FontAwesome
                           name="sort-alpha-asc"
                           style={styles.icon18}></FontAwesome>
-                        <Text style={styles.deadline}>Deadline</Text>
+                        <Text style={styles.deadline}>Score</Text>
                         <FontAwesome
                           name="sort-down"
                           style={styles.icon19}></FontAwesome>
@@ -237,77 +219,15 @@ export default class MajorRecommendTbl extends React.Component {
                     onPress={() => {
                       this.sortDeadlineHandler_a2z();
                     }}
-                    title="A - Z"
+                    title={this.parseSortICON("A - Z")}
                   />
                   <Menu.Item
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
                       this.sortDeadlineHandler_z2a();
-                    }} title="Z - A" />
-                </Menu>
-
-
-                <Menu
-                  visible={this.state.opt_score_visible}
-                  onDismiss={this._closeScoreMenu}
-                  anchor={
-                    <TouchableOpacity
-                      onPress={this._openScoreMenu}
-                      style={styles.group2}>
-                      <View style={styles.icon20Row}>
-                        <FontAwesome
-                          name="sort-alpha-asc"
-                          style={styles.icon20}></FontAwesome>
-                        <Text style={styles.score}>Score</Text>
-                        <FontAwesome
-                          name="sort-down"
-                          style={styles.icon21}></FontAwesome>
-                      </View>
-                    </TouchableOpacity>}>
-                  <Menu.Item
-                    style={{ marginTop: 0, width: 15 }}
-                    onPress={() => {
-                      this.sortScoreHandler_a2z();
-                    }}
-                    title="A - Z"
-                  />
-                  <Menu.Item
-                    style={{ marginTop: 0, width: 15, }}
-                    onPress={() => {
-                      this.sortScoreHandler_z2a();
-                    }} title="Z - A" />
-                </Menu>
-
-
-                <Menu
-                  visible={this.state.opt_amount_visible}
-                  onDismiss={this._closeAmountMenu}
-                  anchor={
-                    <TouchableOpacity
-                      onPress={this._openAmountMenu}
-                      style={styles.group3}>
-                      <View style={styles.icon22Row}>
-                        <FontAwesome
-                          name="sort-alpha-asc"
-                          style={styles.icon22}></FontAwesome>
-                        <Text style={styles.amount2}>Amount</Text>
-                        <FontAwesome
-                          name="sort-down"
-                          style={styles.icon23}></FontAwesome>
-                      </View>
-                    </TouchableOpacity>}>
-                  <Menu.Item
-                    style={{ marginTop: 0, width: 15 }}
-                    onPress={() => {
-                      this.sortAmountHandler_a2z();
-                    }}
-                    title="A - Z"
-                  />
-                  <Menu.Item
-                    style={{ marginTop: 0, width: 15, }}
-                    onPress={() => {
-                      this.sortAmountHandler_z2a();
-                    }} title="Z - A" />
+                    }} 
+                    title={this.parseSortICON("Z - A")}
+                    />
                 </Menu>
 
 
@@ -424,7 +344,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   group: {
-    width: 105,
+    width: 95,
     height: 27,
     borderRadius: 10,
     backgroundColor: 'rgba(255,255,255,1)',
@@ -456,7 +376,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginLeft: 8,
     marginTop: 2,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
   },
   group2: {
     width: 90,

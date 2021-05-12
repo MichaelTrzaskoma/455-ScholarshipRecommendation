@@ -289,7 +289,7 @@ def auth(email):
                             user_Ref, email, existing_device['unique_id'], new_jwt, income_data['unique_id'], secret_code, timer)
 
                         return make_response(jsonify({"mesg": "authorized", "token": str(new_jwt)}), 202)
-
+ 
                 # no matched device uuid found or doesn't ever have device info
                 # this is new login with a new device
 
@@ -545,110 +545,110 @@ def view_college_single(college_name, email, token, id):
 
             result = {
                 # about
-                "tag_1": trimmer_na(r['about'][0]) if check_nest1(r, "about") and len(r['about'][0]) > 3 else "None",
-                "tag_2": trimmer_na(r['about'][1]) if check_nest1(r, "about") and len(r['about'][1]) > 3 else "None",
+                "tag_1": trimmer_na(r['about'][0]) if check_nest1(r, "about") and len(r['about'][0]) > 3 else "Unavailable",
+                "tag_2": trimmer_na(r['about'][1]) if check_nest1(r, "about") and len(r['about'][1]) > 3 else "Unavailable",
 
                 # University location
-                "city": trimmer_na(r["location_tags"][0]) if check_nest1(r, "location_tags") and len(r['location_tags'][0]) > 3 else "None",
-                "regsion": trimmer_na(r["location_tags"][1]) if check_nest1(r, "location_tags") and len(r['location_tags'][1]) > 3 else "None",
+                "city": trimmer_na(r["location_tags"][0]) if check_nest1(r, "location_tags") and len(r['location_tags'][0]) > 3 else "Unavailable",
+                "regsion": trimmer_na(r["location_tags"][1]) if check_nest1(r, "location_tags") and len(r['location_tags'][1]) > 3 else "Unavailable",
 
                 # class ratio
-                "class_ratio_2TO19": trimmer_na(r['academic']['class_size_ratio']['2-19_students']) if check_nest3(r, "academic", "class_size_ratio", "2-19_students") else "None",
-                "class_ratio_20TO39": trimmer_na(r['academic']['class_size_ratio']['20-39']) if check_nest3(r, "academic", "class_size_ratio", "20-39") else "None",
-                "class_ratio_40TO99": trimmer_na(r['academic']['class_size_ratio']['40-99']) if check_nest3(r, "academic", "class_size_ratio", "40-99") else "None",
-                "class_ratio_100UP": trimmer_na(r['academic']['class_size_ratio']['100+']) if check_nest3(r, "academic", "class_size_ratio", "100+") else "None",
+                "class_ratio_2TO19": trimmer_na(r['academic']['class_size_ratio']['2-19_students']) if check_nest3(r, "academic", "class_size_ratio", "2-19_students") else "Unavailable",
+                "class_ratio_20TO39": trimmer_na(r['academic']['class_size_ratio']['20-39']) if check_nest3(r, "academic", "class_size_ratio", "20-39") else "Unavailable",
+                "class_ratio_40TO99": trimmer_na(r['academic']['class_size_ratio']['40-99']) if check_nest3(r, "academic", "class_size_ratio", "40-99") else "Unavailable",
+                "class_ratio_100UP": trimmer_na(r['academic']['class_size_ratio']['100+']) if check_nest3(r, "academic", "class_size_ratio", "100+") else "Unavailable",
 
                 # faculty info
-                "faculty_ratio": trimmer_na(r['academic']['faculty']['ratio']) if check_nest3(r, "academic", "faculty", "ratio") else "None",
-                "faculty_female": trimmer_na(r['academic']['faculty']['female']) if check_nest3(r, "academic", "faculty", "female") else "None",
-                "faculty_male": trimmer_na(r['academic']['faculty']['male']) if check_nest3(r, "academic", "faculty", "male") else "None",
+                "faculty_ratio": trimmer_na(r['academic']['faculty']['ratio']) if check_nest3(r, "academic", "faculty", "ratio") else "Unavailable",
+                "faculty_female": trimmer_na(r['academic']['faculty']['female']) if check_nest3(r, "academic", "faculty", "female") else "Unavailable",
+                "faculty_male": trimmer_na(r['academic']['faculty']['male']) if check_nest3(r, "academic", "faculty", "male") else "Unavailable",
 
-                "graduation_rate": trimmer_na(r['academic']['graduation_rate']) if check_nest2(r, "academic", "graduation_rate") else "None",
-                "address": r['address'] if check_nest1(r, "address") else "None",
-                "acceptance_rate": trimmer_na(r['admission']['acceptance']['rate']) if check_nest3(r, "admission", "acceptance", "rate") else "None",
+                "graduation_rate": trimmer_na(r['academic']['graduation_rate']) if check_nest2(r, "academic", "graduation_rate") else "Unavailable",
+                "address": r['address'] if check_nest1(r, "address") else "Unavailable",
+                "acceptance_rate": trimmer_na(r['admission']['acceptance']['rate']) if check_nest3(r, "admission", "acceptance", "rate") else "Unavailable",
 
                 # ACT info
-                "act_accept_score_range": trimmer_na(r['admission']['act']['accept_score_range']) if check_nest3(r, "admission", "act", "accept_score_range") else "None",
-                "act_eng_score_range": trimmer_na(r['admission']['act']['eng_score']) if check_nest3(r, "admission", "act", "eng_score") else "None",
-                "act_math_score_range": trimmer_na(r['admission']['act']['math_score']) if check_nest3(r, "admission", "act", "math_score") else "None",
-                "act_write_score_range": trimmer_na(r['admission']['act']['write_score']) if check_nest3(r, "admission", "act", "write_score") else "None",
+                "act_accept_score_range": trimmer_na(r['admission']['act']['accept_score_range']) if check_nest3(r, "admission", "act", "accept_score_range") else "Unavailable",
+                "act_eng_score_range": trimmer_na(r['admission']['act']['eng_score']) if check_nest3(r, "admission", "act", "eng_score") else "Unavailable",
+                "act_math_score_range": trimmer_na(r['admission']['act']['math_score']) if check_nest3(r, "admission", "act", "math_score") else "Unavailable",
+                "act_write_score_range": trimmer_na(r['admission']['act']['write_score']) if check_nest3(r, "admission", "act", "write_score") else "Unavailable",
 
                 # application
-                "coalition_app": trimmer_na(r['admission']['application']['accept_coalition_app']) if check_nest3(r, "admission", "application", "accept_coalition_app") else "None",
-                "comm_app": trimmer_na(r['admission']['application']['comm_app']) if check_nest3(r, "admission", "application", "comm_app") else "None",
-                "application_website": trimmer_na(r['admission']['application']['website']) if check_nest3(r, "admission", "application", "website") else "None",
-                "application_deadline": trimmer_na(r['admission']['deadline']['date']) if check_nest3(r, "admission", "deadline", "date") else "None",
+                "coalition_app": trimmer_na(r['admission']['application']['accept_coalition_app']) if check_nest3(r, "admission", "application", "accept_coalition_app") else "Unavailable",
+                "comm_app": trimmer_na(r['admission']['application']['comm_app']) if check_nest3(r, "admission", "application", "comm_app") else "Unavailable",
+                "application_website": trimmer_na(r['admission']['application']['website']) if check_nest3(r, "admission", "application", "website") else "Unavailable",
+                "application_deadline": trimmer_na(r['admission']['deadline']['date']) if check_nest3(r, "admission", "deadline", "date") else "Unavailable",
 
                 # high school
-                "highSchool_gpa": trimmer_na(r['admission']['requirements']['highscho_gpa']) if check_nest3(r, "admission", "requirements", "highscho_gpa") else "None",
-                "highSchool_rank": trimmer_na(r['admission']['requirements']['highscho_rank']) if check_nest3(r, "admission", "requirements", "highscho_rank") else "None",
-                "highSchool_transcripts": trimmer_na(r['admission']['requirements']['highscho_transcript']) if check_nest3(r, "admission", "requirements", "highscho_transcript") else "None",
-                "recommendationLetter": trimmer_na(r['admission']['requirements']['recommendation']) if check_nest3(r, "admission", "requirements", "recommendation") else "None",
-                "sat_or_act": trimmer_na(r['admission']['requirements']['sat_or_act']) if check_nest3(r, "admission", "requirements", "sat_or_act") else "None",
-                "uni_precourse": trimmer_na(r['admission']['requirements']['uni_precourse']) if check_nest3(r, "admission", "requirements", "uni_precourse") else "None",
+                "highSchool_gpa": trimmer_na(r['admission']['requirements']['highscho_gpa']) if check_nest3(r, "admission", "requirements", "highscho_gpa") else "Unavailable",
+                "highSchool_rank": trimmer_na(r['admission']['requirements']['highscho_rank']) if check_nest3(r, "admission", "requirements", "highscho_rank") else "Unavailable",
+                "highSchool_transcripts": trimmer_na(r['admission']['requirements']['highscho_transcript']) if check_nest3(r, "admission", "requirements", "highscho_transcript") else "Unavailable",
+                "recommendationLetter": trimmer_na(r['admission']['requirements']['recommendation']) if check_nest3(r, "admission", "requirements", "recommendation") else "Unavailable",
+                "sat_or_act": trimmer_na(r['admission']['requirements']['sat_or_act']) if check_nest3(r, "admission", "requirements", "sat_or_act") else "Unavailable",
+                "uni_precourse": trimmer_na(r['admission']['requirements']['uni_precourse']) if check_nest3(r, "admission", "requirements", "uni_precourse") else "Unavailable",
 
                 # SAT info
-                "sat_accept_score_range": trimmer_na(r['admission']['sat']['accept_score_range']) if check_nest3(r, "admission", "sat", "accept_score_range") else "None",
-                "sat_math_score_range": trimmer_na(r['admission']['sat']['math_score']) if check_nest3(r, "admission", "sat", "math_score") else "None",
-                "sat_read_score_range": trimmer_na(r['admission']['sat']['reading_score']) if check_nest3(r, "admission", "sat", "reading_score") else "None",
+                "sat_accept_score_range": trimmer_na(r['admission']['sat']['accept_score_range']) if check_nest3(r, "admission", "sat", "accept_score_range") else "Unavailable",
+                "sat_math_score_range": trimmer_na(r['admission']['sat']['math_score']) if check_nest3(r, "admission", "sat", "math_score") else "Unavailable",
+                "sat_read_score_range": trimmer_na(r['admission']['sat']['reading_score']) if check_nest3(r, "admission", "sat", "reading_score") else "Unavailable",
 
                 # after uni
-                "earning_after_uni": trimmer_na(r['after_uni']['earning']['2yr']) if check_nest3(r, "after_uni", "earning", "2yr") else "None",
-                "employ_after_uni": trimmer_na(r['after_uni']['earning']['2yr']) if check_nest3(r, "after_uni", "employment", "2yr") else "None",
+                "earning_after_uni": trimmer_na(r['after_uni']['earning']['2yr']) if check_nest3(r, "after_uni", "earning", "2yr") else "Unavailable",
+                "employ_after_uni": trimmer_na(r['after_uni']['earning']['2yr']) if check_nest3(r, "after_uni", "employment", "2yr") else "Unavailable",
 
                 # graudation
-                "graudation_rate": trimmer_na(r['after_uni']['graudation_rate']) if check_nest2(r, "after_uni", "graudation_rate") else "None",
+                "graudation_rate": trimmer_na(r['after_uni']['graudation_rate']) if check_nest2(r, "after_uni", "graudation_rate") else "Unavailable",
 
                 # athletics info
-                "athleticsC": trimmer_na(r['athletics']['conference']) if check_nest2(r, "athletics", "conference") else "None",
-                "athleticsD": trimmer_na(r['athletics']['division']) if check_nest2(r, "athletics", "division") else "None",
+                "athleticsC": trimmer_na(r['athletics']['conference']) if check_nest2(r, "athletics", "conference") else "Unavailable",
+                "athleticsD": trimmer_na(r['athletics']['division']) if check_nest2(r, "athletics", "division") else "Unavailable",
 
                 # clubs
-                "music": trimmer_na(arr2str(r['campus_life']['club']['music'])) if check_nest3(r, "campus_life", "club", "music") else "None",
-                "club": trimmer_na(arr2str(r['campus_life']['club']['offered'])) if check_nest3(r, "campus_life", "club", "offered") else "None",
-                "sport_female": trimmer_na(arr2str(r['campus_life']['sport']['female'])) if check_nest3(r, "campus_life", "sport", "female") else "None",
-                "sport_male": trimmer_na(arr2str(r['campus_life']['sport']['male'])) if check_nest3(r, "campus_life", "sport", "male") else "None",
+                "music": trimmer_na(arr2str(r['campus_life']['club']['music'])) if check_nest3(r, "campus_life", "club", "music") else "Unavailable",
+                "club": trimmer_na(arr2str(r['campus_life']['club']['offered'])) if check_nest3(r, "campus_life", "club", "offered") else "Unavailable",
+                "sport_female": trimmer_na(arr2str(r['campus_life']['sport']['female'])) if check_nest3(r, "campus_life", "sport", "female") else "Unavailable",
+                "sport_male": trimmer_na(arr2str(r['campus_life']['sport']['male'])) if check_nest3(r, "campus_life", "sport", "male") else "Unavailable",
 
                 # tuitions
-                "avg_housing": trimmer_price(r['cost']['tuition']['avg_housing']) if check_nest3(r, "cost", "tuition", "avg_housing") else "None",
-                "avg_meal_plan": trimmer_price(r['cost']['tuition']['avg_meal_plan']) if check_nest3(r, "cost", "tuition", "avg_meal_plan") else "None",
-                "book_cost": trimmer_price(r['cost']['tuition']['book']) if check_nest3(r, "cost", "tuition", "book") else "None",
-                "tuition_in_state": trimmer_price(r['cost']['tuition']['in_state']) if check_nest3(r, "cost", "tuition", "in_state") else "None",
-                "tuition_out_state": trimmer_price(r['cost']['tuition']['out_state']) if check_nest3(r, "cost", "tuition", "out_state") else "None",
+                "avg_housing": trimmer_price(r['cost']['tuition']['avg_housing']) if check_nest3(r, "cost", "tuition", "avg_housing") else "Unavailable",
+                "avg_meal_plan": trimmer_price(r['cost']['tuition']['avg_meal_plan']) if check_nest3(r, "cost", "tuition", "avg_meal_plan") else "Unavailable",
+                "book_cost": trimmer_price(r['cost']['tuition']['book']) if check_nest3(r, "cost", "tuition", "book") else "Unavailable",
+                "tuition_in_state": trimmer_price(r['cost']['tuition']['in_state']) if check_nest3(r, "cost", "tuition", "in_state") else "Unavailable",
+                "tuition_out_state": trimmer_price(r['cost']['tuition']['out_state']) if check_nest3(r, "cost", "tuition", "out_state") else "Unavailable",
 
                 # description
-                "description": trimmer_nextline(r['description']) if check_nest1(r, "description") else "None",
+                "description": trimmer_nextline(r['description']) if check_nest1(r, "description") else "Unavailable",
 
                 # student info
-                "student_age_18TO19": trimmer_na(r['major']['age']['18-19']) if check_nest3(r, "major", "age", "18-19") else "None",
-                "student_age_20TO21": trimmer_na(r['major']['age']['20-21']) if check_nest3(r, "major", "age", "20-21") else "None",
-                "student_age_22TO24": trimmer_na(r['major']['age']['22-24']) if check_nest3(r, "major", "age", "22-24") else "None",
-                "student_age_25UP": trimmer_na(r['major']['age']['Over_25']) if check_nest3(r, "major", "age", "Over_25") else "None",
-                "student_age_Under_18": trimmer_na(r['major']['age']['Under_18']) if check_nest3(r, "major", "age", "Under_18") else "None",
+                "student_age_18TO19": trimmer_na(r['major']['age']['18-19']) if check_nest3(r, "major", "age", "18-19") else "Unavailable",
+                "student_age_20TO21": trimmer_na(r['major']['age']['20-21']) if check_nest3(r, "major", "age", "20-21") else "Unavailable",
+                "student_age_22TO24": trimmer_na(r['major']['age']['22-24']) if check_nest3(r, "major", "age", "22-24") else "Unavailable",
+                "student_age_25UP": trimmer_na(r['major']['age']['Over_25']) if check_nest3(r, "major", "age", "Over_25") else "Unavailable",
+                "student_age_Under_18": trimmer_na(r['major']['age']['Under_18']) if check_nest3(r, "major", "age", "Under_18") else "Unavailable",
 
                 # major
-                "popular_majors": trimmer_na(arr2str(r['academic']['popular_major'])) if check_nest2(r, "academic", "popular_major") else "None",
+                "popular_majors": trimmer_na(arr2str(r['academic']['popular_major'])) if check_nest2(r, "academic", "popular_major") else "Unavailable",
  
                 # gender ratio
-                "female_undergrads_ratio": trimmer_na(r['major']['gender_ratio']['female_undergrads']) if check_nest3(r, "major", "gender_ratio", "female_undergrads") else "None",
-                "male_undergrads_ratio": trimmer_na(r['major']['gender_ratio']['male_undergrads']) if check_nest3(r, "major", "gender_ratio", "male_undergrads") else "None",
+                "female_undergrads_ratio": trimmer_na(r['major']['gender_ratio']['female_undergrads']) if check_nest3(r, "major", "gender_ratio", "female_undergrads") else "Unavailable",
+                "male_undergrads_ratio": trimmer_na(r['major']['gender_ratio']['male_undergrads']) if check_nest3(r, "major", "gender_ratio", "male_undergrads") else "Unavailable",
 
-                "racial_aa": trimmer_na(r['major']['racial_diversity']['African_American']) if check_nest3(r, "major", "racial_diversity", "African_American") else "None",
-                "racial_asian": trimmer_na(r['major']['racial_diversity']['Asian']) if check_nest3(r, "major", "racial_diversity", "Asian") else "None",
-                "racial_hispanic": trimmer_na(r['major']['racial_diversity']['Hispanic']) if check_nest3(r, "major", "racial_diversity", "Hispanic") else "None",
-                "racial_international": trimmer_na(r['major']['racial_diversity']['International_(Non-Citizen)']) if check_nest3(r, "major", "racial_diversity", "International_(Non-Citizen)") else "None",
-                "racial_multiracial": trimmer_na(r['major']['racial_diversity']['Multiracial']) if check_nest3(r, "major", "racial_diversity", "Multiracial") else "None",
-                "racial_na": trimmer_na(r['major']['racial_diversity']['Native_American']) if check_nest3(r, "major", "racial_diversity", "Native_American") else "None",
-                "racial_pi": trimmer_na(r['major']['racial_diversity']['Pacific_Islander']) if check_nest3(r, "major", "racial_diversity", "Pacific_Islander") else "None",
-                "racial_white": trimmer_na(r['major']['racial_diversity']['White']) if check_nest3(r, "major", "racial_diversity", "White") else "None",
+                "racial_aa": trimmer_na(r['major']['racial_diversity']['African_American']) if check_nest3(r, "major", "racial_diversity", "African_American") else "Unavailable",
+                "racial_asian": trimmer_na(r['major']['racial_diversity']['Asian']) if check_nest3(r, "major", "racial_diversity", "Asian") else "Unavailable",
+                "racial_hispanic": trimmer_na(r['major']['racial_diversity']['Hispanic']) if check_nest3(r, "major", "racial_diversity", "Hispanic") else "Unavailable",
+                "racial_international": trimmer_na(r['major']['racial_diversity']['International_(Non-Citizen)']) if check_nest3(r, "major", "racial_diversity", "International_(Non-Citizen)") else "Unavailable",
+                "racial_multiracial": trimmer_na(r['major']['racial_diversity']['Multiracial']) if check_nest3(r, "major", "racial_diversity", "Multiracial") else "Unavailable",
+                "racial_na": trimmer_na(r['major']['racial_diversity']['Native_American']) if check_nest3(r, "major", "racial_diversity", "Native_American") else "Unavailable",
+                "racial_pi": trimmer_na(r['major']['racial_diversity']['Pacific_Islander']) if check_nest3(r, "major", "racial_diversity", "Pacific_Islander") else "Unavailable",
+                "racial_white": trimmer_na(r['major']['racial_diversity']['White']) if check_nest3(r, "major", "racial_diversity", "White") else "Unavailable",
 
                 # student residence
-                "residence_in_state": trimmer_na(r['major']['residence']['In-State']) if check_nest3(r, "major", "residence", "In-State") else "None",
-                "residence_international": trimmer_na(r['major']['residence']['International']) if check_nest3(r, "major", "racial_diversity", "International") else "None",
-                "residence_out_state": trimmer_na(r['major']['residence']['Out-of-State']) if check_nest3(r, "major", "racial_diversity", "Out-of-State") else "None",
-                "uni_name": trimmer_na(r['name']) if check_nest1(r, "name") else "None",
-                "ranking": parseCollegeRanking(r['ranking']) if len(r['ranking']) > 0 else "None",
-                "offical_site": trimmer_na(r['site']) if len(r['site']) > 0 else "None",
+                "residence_in_state": trimmer_na(r['major']['residence']['In-State']) if check_nest3(r, "major", "residence", "In-State") else "Unavailable",
+                "residence_international": trimmer_na(r['major']['residence']['International']) if check_nest3(r, "major", "racial_diversity", "International") else "Unavailable",
+                "residence_out_state": trimmer_na(r['major']['residence']['Out-of-State']) if check_nest3(r, "major", "racial_diversity", "Out-of-State") else "Unavailable",
+                "uni_name": trimmer_na(r['name']) if check_nest1(r, "name") else "Unavailable",
+                "ranking": parseCollegeRanking(r['ranking']) if len(r['ranking']) > 0 else "Unavailable",
+                "offical_site": trimmer_na(r['site']) if len(r['site']) > 0 else "Unavailable",
                 "isBooked": checkBookmarkStatus(user_Ref, email, "college", college_name)
             }
 
@@ -1187,7 +1187,13 @@ def getRecommend_scholarship(email, token, id):
     #      religion=["Buddhist"])
 
     if request.method == "GET":
-        result = recommend_scholarship(user_Ref, scholar_ref, email)
+        r = checkSurveyProfile(user_Ref, "survey_scholarship", email)
+        result = []
+
+        if r:
+            result = recommend_scholarship(user_Ref, scholar_ref, email)
+
+        result.append({"existing": r})
         return make_response(jsonify(result), 202)
     else:
         return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
@@ -1200,7 +1206,13 @@ def getRecommend_college(email, token, id):
     # OUTPUT: scholarship title, amount, and deadline
 
     if request.method == "GET":
-        result = collegeFilter(user_Ref, college_ref, email)
+        r = checkSurveyProfile(user_Ref, "survey_college", email)
+        result = []
+
+        if r:
+            result = collegeFilter(user_Ref, college_ref, email)
+
+        result.append({"existing": r})
         # print(result)
         return make_response(jsonify(result), 202)
     else:
@@ -1217,7 +1229,13 @@ def getRecommend_major(email, token, id):
     #      religion=["Buddhist"])
 
     if request.method == "GET":
-        result = filter_majors(db, user_Ref, email)
+        r = checkSurveyProfile(user_Ref, "survey_major", email)
+        result = []
+
+        if r:
+            result = filter_majors(db, user_Ref, email)
+            
+        result.append({"existing": r})
         return make_response(jsonify(result), 202)
     else:
         return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)

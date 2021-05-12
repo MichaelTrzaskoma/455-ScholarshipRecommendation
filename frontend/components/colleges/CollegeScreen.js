@@ -11,7 +11,17 @@ import CollegeCategory from "../../ui/colleges/CollegeCategory";
 import CollegeRecommend from "../../ui/colleges/CollegeRecommend";
 import CollegeRecent from "../../ui/colleges/CollegeRecent";
 
-export default class CollegeScreen extends React.Component {
+import { useIsFocused } from '@react-navigation/native';
+
+
+export default function CollegeScreen(props) {
+  const isFocused = useIsFocused();
+
+  return <CollegeScreenClass {...props} isFocused={isFocused} />;
+
+}
+
+class CollegeScreenClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,7 +47,7 @@ export default class CollegeScreen extends React.Component {
             <CollegeRecommend usrInfo={this.state.usrInfo} />
 
             {/* Recent View ScrollView */}
-            <CollegeRecent usrInfo={this.state.usrInfo} />
+            <CollegeRecent usrInfo={this.state.usrInfo} isFocused={this.props.isFocused}/>
 
           </View>
         </View>
