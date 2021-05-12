@@ -7,7 +7,9 @@ import {
   TouchableOpacity,
   Alert,
   StatusBar,
-  ActivityIndicator
+  ActivityIndicator,
+  Modal, 
+  Pressable,
 } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Menu, Provider } from 'react-native-paper';
@@ -26,6 +28,8 @@ export default class ViewRecommendTbl_3 extends React.Component {
       opt_deadline_visible: false,
       opt_score_visible: false,
       opt_amount_visible: false,
+      currentBookmarkKey: "",
+      modalVisible: false,
     };
   }
 
@@ -106,6 +110,64 @@ export default class ViewRecommendTbl_3 extends React.Component {
     this.getRecommend_scholarship();
   }
 
+  handleBookmarkOpen(key) {
+    this.setModalVisible(true)
+    this.setState({ currentBookmarkKey: key });
+  }
+
+  setModalVisible = (visible) => {
+    this.setState({ modalVisible: visible });
+  }
+
+  setCurrentBookmarkkey = (itemKey) => {
+    this.setState({ currentBookmarkKey: itemKey });
+  }
+
+  handleBookmark() {
+
+    this.setState({ modalVisible: false });
+    // console.log(this.state.currentBookmarkKey)
+
+    // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+
+    fetch(URL, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "title": this.state.currentBookmarkKey,
+        "unique_id": this.state.usrInfo.uuid, 
+        "type": "college",
+        "jwt": this.state.usrInfo.jwt,
+      }),
+    })
+      .then((response) => {
+        if (response.status == 202) {
+
+          alert("Bookmarked!");
+
+        } else if (response.status == 208) {
+
+          alert("Already bookmarked!");
+
+        } else {
+          
+          alert("Bookmark failed!");
+          
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    // console.log("Bookmark Key: " + this.state.currentBookmarkKey);
+    //alert("This College has been bookmarked!");
+
+  }
+
 
   getRecommend_scholarship() {
     try {
@@ -138,8 +200,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
               const subFields = fields[1].split(",");
               deadline = parseMonth(fields[0]) + "/" + subFields[0] + "/" + fields[2];
             }
-
-            // append the API data to local var
+           
             scholarArr.push({
               key: res.Name,
               // amount: parseInt(parseAmount(res.Amount)),
@@ -152,11 +213,21 @@ export default class ViewRecommendTbl_3 extends React.Component {
           
         }
 
+
           // set the local var to state var
-          this.setState({
-            scholarArr,
-            isLoading: false,
-          });
+          // if(scholarArr.length != 0 && scholarArr.length >=5)
+            this.setState({
+              scholarArr,
+              isLoading: false,
+            });
+          // else if(scholarArr.length === 0)
+          // {
+          //   alert("Attention user, you have no recommendation results, please submit a survey to receive results");  
+          // }
+          // else
+          // {
+          //   alert("Attention User, please modify your survey to receive more results");
+          // }
 
         })
 
@@ -164,15 +235,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
       // error handler
       alert("An error occurred: " + error);
     } 
-    if(this.state.scholarArr.length === 0)
-    {
-      alert("Attention user, you have no recommendation results, please edit your survey to receive results");
-    }
-    else if(this.state.scholarArr.length<5)
-    {
-      alert("Attention User, please modify your survey to receive more results");
-    }
-    // console.log(this.state.scholarArr);
+    
 
   };
 
@@ -194,12 +257,14 @@ export default class ViewRecommendTbl_3 extends React.Component {
   }
 
   render() {
-    console.log("Checking ViewRecommendTbl " + JSON.stringify(this.props.route.params.usrInfo ));
+    const { modalVisible } = this.state;
+    // console.log("Checking ViewRecommendTbl " + JSON.stringify(this.props.route.params.usrInfo ));
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
+        
       );
     }
 
@@ -207,6 +272,38 @@ export default class ViewRecommendTbl_3 extends React.Component {
       <Provider>
         <StatusBar backgroundColor="#007FF9" barStyle="light-content" />
         <View style={styles.container}>
+
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            alert("Modal has been closed.");
+            this.setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>{this.state.currentBookmarkKey}</Text>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => this.handleBookmark()}
+              >
+                <Text style={styles.textStyle}>Bookmark</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.button, styles.buttonClose2]}
+                onPress={() => this.setModalVisible(false)}
+              >
+                <Text style={styles.textStyle}> Close   </Text>
+              </Pressable>
+            </View>
+            <View>
+
+            </View>
+          </View>
+        </Modal>
+
           <View style={styles.scrollArea2Stack}>
 
             <View style={styles.scrollArea2}>
@@ -371,6 +468,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
 
                   <TouchableOpacity
                     style={styles.itemN2}
+                    onLongPress={() => { this.handleBookmarkOpen(item) }}
                     onPress={() => {
                       this.props.navigation.navigate("ViewScholarDetail", {
                         title: item.key,
@@ -1193,5 +1291,50 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  buttonClose2: {
+    backgroundColor: "#c42e23",
+    marginTop: 20,
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
   },
 });

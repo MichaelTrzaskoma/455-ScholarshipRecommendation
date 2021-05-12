@@ -7,7 +7,9 @@ import {
   TouchableOpacity,
   Alert,
   StatusBar,
-  ActivityIndicator
+  ActivityIndicator,
+  Modal, 
+  Pressable,
 } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Menu, Provider } from 'react-native-paper';
@@ -31,7 +33,10 @@ class ViewHistoryClass extends React.Component {
       opt_title_visible: false,
       opt_deadline_visible: false,
       opt_score_visible: false,
-      opt_amount_visible: false
+      opt_amount_visible: false,
+      currentBookmarkKey: "",
+      modalVisible: false,
+      currentType: "",
     };
   }
 
@@ -168,6 +173,65 @@ class ViewHistoryClass extends React.Component {
     }
   }
 
+  handleBookmarkOpen(key, type) {
+    this.setModalVisible(true)
+    this.setState({ currentBookmarkKey: key });
+    this.setState({ currentType: type });
+  }
+
+  setModalVisible = (visible) => {
+    this.setState({ modalVisible: visible });
+  }
+
+  setCurrentBookmarkkey = (itemKey) => {
+    this.setState({ currentBookmarkKey: itemKey });
+  }
+
+  handleBookmark() {
+
+    this.setState({ modalVisible: false });
+    // console.log(this.state.currentBookmarkKey)
+
+    // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/" +this.state.currentType+ "/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+
+    fetch(URL, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "title": this.state.currentBookmarkKey,
+        "unique_id": this.state.usrInfo.uuid, 
+        "type": "college",
+        "jwt": this.state.usrInfo.jwt,
+      }),
+    })
+      .then((response) => {
+        if (response.status == 202) {
+
+          alert("Bookmarked!");
+
+        } else if (response.status == 208) {
+
+          alert("Already bookmarked!");
+
+        } else {
+          
+          alert("Bookmark failed!");
+          
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    // console.log("Bookmark Key: " + this.state.currentBookmarkKey);
+    //alert("This College has been bookmarked!");
+
+  }
+
 
   getHistory() {
     try {
@@ -217,6 +281,7 @@ class ViewHistoryClass extends React.Component {
 
 
   render() {
+    const { modalVisible } = this.state;
     const { navigation } = this.props;
 
     if (this.state.isLoading) {
@@ -231,6 +296,38 @@ class ViewHistoryClass extends React.Component {
       <Provider>
         <StatusBar backgroundColor="#007FF9" barStyle="light-content" />
         <View style={styles.container}>
+
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            alert("Modal has been closed.");
+            this.setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>{this.state.currentBookmarkKey}</Text>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => this.handleBookmark()}
+              >
+                <Text style={styles.textStyle}>Bookmark</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.button, styles.buttonClose2]}
+                onPress={() => this.setModalVisible(false)}
+              >
+                <Text style={styles.textStyle}> Close   </Text>
+              </Pressable>
+            </View>
+            <View>
+
+            </View>
+          </View>
+        </Modal>
+
           <View style={styles.scrollArea2Stack}>
 
             {/* sorting options here */}
@@ -363,6 +460,7 @@ class ViewHistoryClass extends React.Component {
 
                   <TouchableOpacity
                     style={styles.itemN2}
+                    onLongPress={() => { this.handleBookmarkOpen(item.key, item.type) }}
                     onPress={() => {
                       this.typeNavigator(item.key, item.type)
                     }}
