@@ -113,6 +113,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
       let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid+ "/recommends/scholarship";  
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
       const scholarArr = [];
+      let arr_len = 0;
 
       fetch(URL, {
         method: "GET",
@@ -124,6 +125,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
         .then((response) => response.json())
         .then((json) => {
           
+          if (json.length > 0){
           json.forEach((res) => {
 
             // parse the deadline
@@ -146,6 +148,9 @@ export default class ViewRecommendTbl_3 extends React.Component {
               score: parseSimilarScore(res.Val),
             });
           });
+        } else {
+          
+        }
 
           // set the local var to state var
           this.setState({
@@ -167,7 +172,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
     {
       alert("Attention User, please modify your survey to receive more results");
     }
-    console.log(this.state.scholarArr);
+    // console.log(this.state.scholarArr);
 
   };
 
@@ -189,7 +194,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
   }
 
   render() {
-    // console.log("Checking ViewRecommendTbl " + JSON.stringify(this.props.route.params.usrInfo ));
+    console.log("Checking ViewRecommendTbl " + JSON.stringify(this.props.route.params.usrInfo ));
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>
@@ -370,6 +375,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
                       this.props.navigation.navigate("ViewScholarDetail", {
                         title: item.key,
                         itemKey: item.key,
+                        usrInfo: this.props.route.params.usrInfo,
                       });
                     }}
                   >

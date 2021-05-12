@@ -103,7 +103,8 @@ export default class MajorRecommendTbl extends React.Component {
   getRecommend_major() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      let URL = "http://b9d79f8fdd3c.ngrok.io//api/v1.2/users/id/"+ this.state.usrInfo.email + "/"+this.state.usrInfo.jwt + "/"+this.state.usrInfo.uuid+ "/recommends/college";   
+      // /api/v1.2/users/id/<email>/<token>/<id>/recommends/major
+      let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/"+this.state.usrInfo.jwt + "/"+this.state.usrInfo.uuid+ "/recommends/major";   
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
       const majorArr = [];
     console.log("College Recommend URL: " + URL);
@@ -138,14 +139,14 @@ export default class MajorRecommendTbl extends React.Component {
       // error handler
       alert("An error occurred: " + error);
     }
-    if(this.state.majorArr.length === 0)
-    {
-      alert("Attention user, you have no recommendation results, please edit your survey to receive results");
-    }
-    else if(this.state.majorArr.length<5)
-    {
-      alert("Attention User, please modify your survey to receive more results");
-    }
+    // if(this.state.majorArr.length === 0)
+    // {
+    //   alert("Attention user, you have no recommendation results, please edit your survey to receive results");
+    // }
+    // else if(this.state.majorArr.length<5)
+    // {
+    //   alert("Attention User, please modify your survey to receive more results");
+    // }
 
   };
 
@@ -325,7 +326,9 @@ export default class MajorRecommendTbl extends React.Component {
                     style={styles.itemN2}
                     onPress={() => {
                       this.props.navigation.navigate("ViewMajorSubCate", {
+                        title: item.category,
                         itemKey: item.category,
+                        usrInfo: this.props.route.params.usrInfo,
                       });
                     }}
                   >

@@ -313,7 +313,7 @@ def recommend_scholarship(user_Ref, scholar_ref, userId):
     # For filtereing after a query is done, returns a list of id's that we can loop through to pull info of those scholarships
     # Input -> Query generator object, string user id, filtering float number
     # Output -> List of strings, these are id's that can be used to pull information
-    filterVal = 0.20  # Need to do more testing for best value
+    filterVal = 0.10  # Need to do more testing for best value
     userCursor = user_Ref.find(
         {"_id": userId}, {"_id": 0})
     userProf = userCursor[0]

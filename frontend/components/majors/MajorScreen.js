@@ -10,11 +10,8 @@ import {
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import MajorCategory from "../../ui/majors/MajorCategory";
 import MajorRecommend from "../../ui/majors/MajorRecommend";
-<<<<<<< HEAD
 import MajorRecent from "../../ui/majors/MajorRecent";
-=======
-import MajorRecommendTbl from "../majors/MajorRecommendTbl";
->>>>>>> eded6c3d5a370020f4635a900116516514b63543
+// import MajorRecommendTbl from "../majors/MajorRecommendTbl";
 
 class MajorScreen extends React.Component {
   // console.log("Major props check " + JSON.stringify(props.usrInfo));

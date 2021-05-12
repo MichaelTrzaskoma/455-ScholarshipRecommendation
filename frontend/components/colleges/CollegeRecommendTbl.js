@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Menu, Provider } from 'react-native-paper';
-import { parseMonth, parseAmount, parseSimilarScore, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../../functions/utilities";
+import { parseSimilarScore, dynamicSort, mergeSort_a2z, mergeSort_z2a } from "../../functions/utilities";
 import { FlatList } from 'react-native-gesture-handler';
 
 export default class CollegeRecommendTbl extends React.Component {
@@ -103,7 +103,7 @@ export default class CollegeRecommendTbl extends React.Component {
   getRecommend_college() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      let URL = "http://b9d79f8fdd3c.ngrok.io//api/v1.2/users/id/"+ this.state.usrInfo.email + "/"+this.state.usrInfo.jwt + "/"+this.state.usrInfo.uuid+ "/recommends/college";   
+      let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/"+this.state.usrInfo.jwt + "/"+this.state.usrInfo.uuid+ "/recommends/college";   
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
       const collegeArr = [];
     console.log("College Recommend URL: " + URL);
@@ -138,14 +138,14 @@ export default class CollegeRecommendTbl extends React.Component {
       // error handler
       alert("An error occurred: " + error);
     }
-    if(this.state.collegeArr.length === 0)
-    {
-      alert("Attention user, you have no recommendation results, please edit your survey to receive results");
-    }
-    else if(this.state.collegeArr.length<5)
-    {
-      alert("Attention User, please modify your survey to receive more results");
-    }
+    // if(this.state.collegeArr.length === 0)
+    // {
+    //   alert("Attention user, you have no recommendation results, please edit your survey to receive results");
+    // }
+    // else if(this.state.collegeArr.length<5)
+    // {
+    //   alert("Attention User, please modify your survey to receive more results");
+    // }
 
   };
 
@@ -324,9 +324,10 @@ export default class CollegeRecommendTbl extends React.Component {
                   <TouchableOpacity
                     style={styles.itemN2}
                     onPress={() => {
-                      this.props.navigation.navigate("ViewScholarDetail", {
+                      this.props.navigation.navigate("ViewCollegeDetail", {
                         title: item.key,
                         itemKey: item.key,
+                        usrInfo: this.props.route.params.usrInfo,
                       });
                     }}
                   >
@@ -349,13 +350,7 @@ export default class CollegeRecommendTbl extends React.Component {
                                 style={styles.icon3}></MaterialCommunityIcons>
                             </View>
                           </View>
-                          {/* <View style={styles.rect6}>
-                            <Text style={styles.text3}>{parseAmount(item.amount)}</Text>
-                          </View> */}
                         </View>
-                        {/* <View style={styles.rect7}>
-                          <Text style={styles.text4}>{item.deadline}</Text>
-                        </View> */}
                       </View>
                     </View>
                   </TouchableOpacity>

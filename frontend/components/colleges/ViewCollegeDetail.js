@@ -210,7 +210,9 @@ export default class ViewCollegeDetail extends React.Component {
   }
 
   getDetail = () => {
-    // console.log("The Key: " + this.props.route.params.itemKey);
+
+    
+    console.log("The Key: " + this.props.route.params.itemKey);
     // console.log("User profile from ViewCollegeDetail: " + JSON.stringify(this.props.route.params));
     
     let URL =

@@ -24,7 +24,7 @@ class CollegeRecommender extends React.Component {
 
 	render() {
 		const { navigation } = this.props;
-		console.log("USr object from collegeRecommend:  "+ JSON.stringify(this.props.usrInfo));
+		// console.log("USr object from collegeRecommend:  "+ JSON.stringify(this.props.usrInfo));
 		// console.log("CollegeRecommend " + navigation);
 		// console.log("College Recommend Btn: " + JSON.stringify(this.props));
 		return (

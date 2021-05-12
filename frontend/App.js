@@ -160,7 +160,7 @@ export default class App extends Component {
         let URL = "http://6bff156668d9.ngrok.io/api/v1.2/managements/users/" + inputEmail;
         // let URL = "http://2d071003be2e.ngrok.io/api/v1.2/managements/users/" + inputEmail;
 
-        
+        // const unique_id = getDeviceID();
         // fetch(URL, {
         //   method: "POST",
         //   headers: {
@@ -178,11 +178,6 @@ export default class App extends Component {
         //   .then((json) => {
 
         //     if (json.mesg === "authorized") {
-
-        //       // storeData("signIn", "Yes");
-        //       // storeData("JWT", json.token);
-        //       // storeData("uuid", unique_id);
-        //       // storeData("email", inputEmail);
 
         //       console.log(JSON.stringify(json));
         //       this.setState({
@@ -327,7 +322,7 @@ export default class App extends Component {
 
               <Stack.Screen
               name={"MajorRecommendTbl"}
-              component={CollegeRecommendTbl}
+              component={MajorRecommendTbl}
               options={{
                 title: "Major Recommendation",
                 headerStyle: {

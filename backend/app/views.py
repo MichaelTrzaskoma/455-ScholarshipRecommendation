@@ -421,14 +421,16 @@ def view_scholarship_single(scholarship_title, email, token, id):
 
         result = scholarDb.scholarships.find_one({"name": scholarship_title}, {
             "name": 1, "amount": 1, "deadline": 1, "awards available": 1, "direct Link": 1, "description": 1, "contact Info": 1})
-
-        scholarship["name"] = result.get("name")
-        scholarship["amount"] = result.get("amount")
-        scholarship["deadline"] = result.get("deadline")
-        scholarship["awards_available"] = result.get("awards available")
-        scholarship["direct_link"] = result.get("direct Link")
-        scholarship["description"] = result.get("description")
-        scholarship["contact_info"] = result.get("contact Info")
+        
+        for item in result:
+            print(item)
+        scholarship["name"] = result["name"]
+        scholarship["amount"] = result["amount"]
+        scholarship["deadline"] = result["deadline"]
+        scholarship["awards_available"] = result["awards available"]
+        scholarship["direct_link"] = result["direct Link"]
+        scholarship["description"] = result["description"]
+        scholarship["contact_info"] = result["contact Info"]
         scholarship["isBooked"] = checkBookmarkStatus(user_Ref, email, "scholarship", scholarship_title)
 
         addRecentDoc(email, scholarship_title, "scholarship")
@@ -1199,7 +1201,7 @@ def getRecommend_college(email, token, id):
 
     if request.method == "GET":
         result = collegeFilter(user_Ref, college_ref, email)
-        print(result)
+        # print(result)
         return make_response(jsonify(result), 202)
     else:
         return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)

@@ -183,7 +183,7 @@ class ViewBookTblClass extends React.Component {
       })
         .then((response) => response.json())
         .then((json) => {
-          console.log(JSON.stringify(json));
+          // console.log(JSON.stringify(json));
           json.forEach((res) => {
 
             // append the API data to local var

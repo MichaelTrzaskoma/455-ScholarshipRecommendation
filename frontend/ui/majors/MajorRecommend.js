@@ -8,6 +8,7 @@ import {
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { render } from "react-dom";
+// import MajorRecommendTbl from "../../components/majors/MajorRecommendTbl"
 
 
 export default function MajorRecommend(props) {

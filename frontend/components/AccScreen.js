@@ -7,7 +7,7 @@ import TabViewSurvey from './TabViewSurvey';
 // import AddCollege from "../ui/AddCollege";
 import MultiSurveyBtn from "../ui/MultiSurveyBtn";
 import HistoryBtn from "../ui/HistoryBtn";
-import { deleteSecureStorage } from "../functions/secureStorage";
+import { deleteSecureStorage, logout } from "../functions/secureStorage";
 import { useNavigation } from "@react-navigation/native";
 
 export default function AccScreen({ usrInfo }) {
@@ -56,7 +56,7 @@ export default function AccScreen({ usrInfo }) {
 							name="chevron-small-right"
 							style={styles.rightArrowIcon4}></Entypo>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.signoutBtn} onPress={() => { deleteSecureStorage("signIn") }}>
+					<TouchableOpacity style={styles.signoutBtn} onPress={() => { logout() }}>
 						<View style={styles.signOutIconRow}>
 							<FontAwesome
 								name="sign-out"
