@@ -30,7 +30,7 @@ export default class ViewMajorDetail extends React.Component {
 
     // console.log("College Detail page: " + JSON.stringify(this.props));
     //Insert API Call here
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/major/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/major/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
     // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/hchen98x@gmail.com/bookmarks/major/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recent/all/5"; 
 
     fetch(URL, {
@@ -68,7 +68,7 @@ export default class ViewMajorDetail extends React.Component {
     // this.setState({ modalVisible: false });
     // console.log(this.state.currentBookmarkKey)
 
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+    let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "DELETE",
@@ -116,7 +116,7 @@ export default class ViewMajorDetail extends React.Component {
   getDetail = () => {
     // console.log("The Key: " + this.props.route.params.itemKey);
     // /api/v1.2/resources/majors/view/titles/<major_name>/<email>/<token>/<id>
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/resources/majors/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+    let URL = "http://820293c0661c.ngrok.io/api/v1.2/resources/majors/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
     console.log("MAJOR URL: "+URL);
     // console.log("URL: " + URL);
     // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/resources/majors/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;

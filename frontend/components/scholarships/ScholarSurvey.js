@@ -1526,7 +1526,7 @@ class InputScreen extends React.Component {
 
 		// console.log("Email from InputScreen2: " + this.props)
 
-		let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt+"/"+this.state.usrInfo.uuid+"/"+"surveys/scholarship";
+		let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt+"/"+this.state.usrInfo.uuid+"/"+"surveys/scholarship";
 		// console.log("URL"+ URL);
 		fetch(URL, {
 			method: localMethod,
@@ -1604,7 +1604,7 @@ class InputScreen extends React.Component {
 	getExistingData = () => {
 		//insert correct URL for user's profile
 
-		let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt+"/"+this.state.usrInfo.uuid+"/"+"surveys/scholarship";
+		let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email +"/"+ this.state.usrInfo.jwt+"/"+this.state.usrInfo.uuid+"/"+"surveys/scholarship";
 
 		fetch(URL, {
 			method: 'GET',

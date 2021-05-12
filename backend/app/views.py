@@ -1192,8 +1192,9 @@ def getRecommend_scholarship(email, token, id):
 
         if r:
             result = recommend_scholarship(user_Ref, scholar_ref, email)
+        else:
+            result.append({"Name": 0, "Val": 0, "Deadline": 0, "Amount": 0})
 
-        result.append({"existing": r})
         return make_response(jsonify(result), 202)
     else:
         return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)
@@ -1211,8 +1212,8 @@ def getRecommend_college(email, token, id):
 
         if r:
             result = collegeFilter(user_Ref, college_ref, email)
-
-        result.append({"existing": r})
+        else:
+            result.append({"Name": 0, "Val": 0, "Deadline": 0, "Amount": 0})
         # print(result)
         return make_response(jsonify(result), 202)
     else:
@@ -1234,8 +1235,9 @@ def getRecommend_major(email, token, id):
 
         if r:
             result = filter_majors(db, user_Ref, email)
-            
-        result.append({"existing": r})
+        else:
+            result.append({"Name": 0, "Val": 0, "Deadline": 0, "Amount": 0})
+        # result.append({"existing": r})
         return make_response(jsonify(result), 202)
     else:
         return make_response(jsonify({"mesg": "Method is not allowed!"}), 405)

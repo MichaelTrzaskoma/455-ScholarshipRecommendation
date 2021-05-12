@@ -79,7 +79,7 @@ export default class ViewScholarTbl extends React.Component {
   getDoc = () => {
     const scholarArr = [];
 
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
+    let URL = "http://820293c0661c.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
 
     //  let URL = "http://2d071003be2e.ngrok.io/api/v1.2/resources/scholarships/view/categories/sub/" + this.props.route.params.itemKey;
 
@@ -147,7 +147,7 @@ export default class ViewScholarTbl extends React.Component {
 
     //Insert API Call here
 
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/scholarship/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+    let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/scholarship/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
     // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
 

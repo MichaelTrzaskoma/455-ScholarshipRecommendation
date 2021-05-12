@@ -7,11 +7,16 @@ import {
 	TouchableOpacity,
 	Text,
 } from 'react-native';
-// import BeautyWebView from 'react-native-beauty-webview';
+import BeautyWebView from 'react-native-beauty-webview';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import * as WebBrowser from 'expo-web-browser';
+// import { set } from 'react-native-reanimated';
+// import * as WebBrowser from 'expo-web-browser';
 
 export default function LoginScreen(props) {
+
+	const [signUpClicked, setSignUpClicked] = useState(false);
+	const [forgotPaswrdClicked, setForgotPaswrdClicked] = useState(false);
+
 	// sign up
 	const [visible, setVisible] = useState(false);
 
@@ -33,10 +38,36 @@ export default function LoginScreen(props) {
 	const [inputEmail, setEmail] = useState('');
 	const [inputPassword, setPassword] = useState('');
 
-	const _handleOpenWithWebBrowser = (link) => {
+	
+
+	const openForGotPassword = (link) => {
 		// let link = state.scholarshipObj.applyLink;
-		WebBrowser.openBrowserAsync(link);
+		if (forgotPaswrdClicked) {
+			WebBrowser.openBrowserAsync(link);
+		}
+
+		setForgotPaswrdClicked(false);
 	  };
+
+	const openSignUp = (link) => {
+		// let link = state.scholarshipObj.applyLink;
+		if (signUpClicked) {
+			WebBrowser.openBrowserAsync(link);
+		}
+
+		setSignUpClicked(false);
+		
+	  };
+
+	const isClicked = (type) => {
+		if (type === "signup"){
+			setSignUpClicked(true);
+			openSignUp("http://820293c0661c.ngrok.io/api/v1.2/managements/users/signup");
+		} else {
+			setForgotPaswrdClicked(true);
+			openForGotPassword("http://820293c0661c.ngrok.io/api/v1.2/managements/users/forgotpassword");
+		}
+	}
 	
 
 	return (
@@ -79,32 +110,32 @@ export default function LoginScreen(props) {
 						<Text style={styles.logInBtn_Txt}>Log In</Text>
 					</TouchableOpacity>
 					
-					{/* <BeautyWebView
+					<BeautyWebView
 						// Reguired for open and close
 						visible={visible2}
 						// Reguired for closing the modal
 						onPressClose={() => setVisible2(false)}
 						// use tunnel network here to local test env
-						url={'http://6bff156668d9.ngrok.io/api/v1.2/managements/users/forgotpassword'}
-					/> */}
-					{/* <TouchableOpacity style={styles.forgotPasswrdBtn} onPress={forgotPaswrdBtnHandler}> */}
-					<TouchableOpacity style={styles.forgotPasswrdBtn} onPress={_handleOpenWithWebBrowser("http://6bff156668d9.ngrok.io/api/v1.2/managements/users/forgotpassword")}>
+						url={'http://820293c0661c.ngrok.io/api/v1.2/managements/users/forgotpassword'}
+					/>
+					<TouchableOpacity style={styles.forgotPasswrdBtn} onPress={forgotPaswrdBtnHandler}>
+					{/* <TouchableOpacity style={styles.forgotPasswrdBtn} onPress={isClicked("forgot")}> */}
 						<Text style={styles.forgotPasswrd_txt}>Forgot Password?</Text>
 					</TouchableOpacity>
 					<View style={styles.footer_divider_grp}>
 						<Text style={styles.footer_divider_txt}>──────── OR ────────</Text>
 					</View>
 					<View style={styles.footer_container}>
-						{/* <BeautyWebView
+						<BeautyWebView
 							// Reguired for open and close
 							visible={visible}
 							// Reguired for closing the modal
 							onPressClose={() => setVisible(false)}
 							// use tunnel network here to local test env
-							url={'http://6bff156668d9.ngrok.io/api/v1.2/managements/users/signup'}
-						/> */}
-						{/* <TouchableOpacity style={styles.signupBtn} onPress={signUpBtnHandler}> */}
-						<TouchableOpacity style={styles.signupBtn} onPress={_handleOpenWithWebBrowser("http://6bff156668d9.ngrok.io/api/v1.2/managements/users/signup")}>
+							url={'http://820293c0661c.ngrok.io/api/v1.2/managements/users/signup'}
+						/>
+						<TouchableOpacity style={styles.signupBtn} onPress={signUpBtnHandler}>
+						{/* <TouchableOpacity style={styles.signupBtn} onPress={(isClicked("signup"))}> */}
 							<Text style={styles.foot_txt}>Don't have an account? <Text style={styles.signUp_txt}>Sign Up</Text></Text>
 						</TouchableOpacity>
 					</View>

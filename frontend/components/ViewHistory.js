@@ -236,7 +236,7 @@ class ViewHistoryClass extends React.Component {
   getHistory() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recent/all/15";
+      let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recent/all/15";
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
 
       const historyArr = [];

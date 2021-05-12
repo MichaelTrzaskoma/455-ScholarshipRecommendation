@@ -8,7 +8,7 @@ import {
   Alert,
   StatusBar,
   ActivityIndicator,
-  Modal, 
+  Modal,
   Pressable,
 } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -129,7 +129,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
     // console.log(this.state.currentBookmarkKey)
 
     // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
-    let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/scholarship/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/scholarship/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "POST",
@@ -139,7 +139,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
       },
       body: JSON.stringify({
         "title": this.state.currentBookmarkKey,
-        "unique_id": this.state.usrInfo.uuid, 
+        "unique_id": this.state.usrInfo.uuid,
         "type": "college",
         "jwt": this.state.usrInfo.jwt,
       }),
@@ -154,9 +154,9 @@ export default class ViewRecommendTbl_3 extends React.Component {
           alert("Already bookmarked!");
 
         } else {
-          
+
           alert("Bookmark failed!");
-          
+
         }
       })
       .catch((error) => {
@@ -172,7 +172,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
   getRecommend_scholarship() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/"+ this.state.usrInfo.jwt + "/"+ this.state.usrInfo.uuid+ "/recommends/scholarship";  
+      let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recommends/scholarship";
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
       const scholarArr = [];
       let arr_len = 0;
@@ -186,40 +186,50 @@ export default class ViewRecommendTbl_3 extends React.Component {
       })
         .then((response) => response.json())
         .then((json) => {
-          
-          if (json.length > 0){
-          json.forEach((res) => {
+          // console.log("JSON: " + json)
+          if (json.length > 1) {
+            json.forEach((res) => {
 
-            // parse the deadline
-            let deadline = "";
+              // if (!"existing" in res) {
+              // parse the deadline
+              let deadline = "";
 
-            if (res.Deadline == "Deadline Varies") {
-              deadline = "Varies";
-            } else {
-              const fields = res.Deadline.split(" ");
-              const subFields = fields[1].split(",");
-              deadline = parseMonth(fields[0]) + "/" + subFields[0] + "/" + fields[2];
-            }
-           
-            scholarArr.push({
-              key: res.Name,
-              // amount: parseInt(parseAmount(res.Amount)),
-              amount: parseInt(res.Amount),
-              deadline: deadline,
-              score: parseSimilarScore(res.Val),
+              if (res.Deadline == "Deadline Varies") {
+                deadline = "Varies";
+              } else {
+                const fields = res.Deadline.split(" ");
+                const subFields = fields[1].split(",");
+                deadline = parseMonth(fields[0]) + "/" + subFields[0] + "/" + fields[2];
+              }
+
+              scholarArr.push({
+                key: res.Name,
+                // amount: parseInt(parseAmount(res.Amount)),
+                amount: parseInt(res.Amount),
+                deadline: deadline,
+                score: parseSimilarScore(res.Val),
+              });
+              // }
             });
-          });
-        } else {
-          
-        }
+          } else {
+            alert("Attention user, you have no recommendation results, please submit a survey to receive results");
+          }
 
 
           // set the local var to state var
           // if(scholarArr.length != 0 && scholarArr.length >=5)
-            this.setState({
-              scholarArr,
-              isLoading: false,
-            });
+
+
+          // if (this.state.isLoading){
+          //   alert("Attention user, you have no recommendation results, please submit a survey to receive results");
+          // }
+
+          // console.log("IsLoading: " + this.state.isLoading);
+
+          this.setState({
+            scholarArr,
+            isLoading: false,
+          });
           // else if(scholarArr.length === 0)
           // {
           //   alert("Attention user, you have no recommendation results, please submit a survey to receive results");  
@@ -234,7 +244,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
     } catch (error) {
       // error handler
       alert("An error occurred: " + error);
-    } 
+    }
 
     // if(this.state.scholarArr.length === 0)
     // {
@@ -259,13 +269,13 @@ export default class ViewRecommendTbl_3 extends React.Component {
     const r = String(types);
     if (r === "A - Z") {
       return (
-          <FontAwesome name="sort-alpha-asc" size={16} color="black">  A - Z</FontAwesome>
-        );
+        <FontAwesome name="sort-alpha-asc" size={16} color="black">  A - Z</FontAwesome>
+      );
     } else {
       return (<FontAwesome name="sort-alpha-desc" size={16} color="black">  Z - A</FontAwesome>);
     }
   }
- 
+
   render() {
     const { modalVisible } = this.state;
     // console.log("Checking ViewRecommendTbl " + JSON.stringify(this.props.route.params.usrInfo ));
@@ -274,7 +284,7 @@ export default class ViewRecommendTbl_3 extends React.Component {
         <View style={styles.preloader}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
-        
+
       );
     }
 
@@ -283,36 +293,36 @@ export default class ViewRecommendTbl_3 extends React.Component {
         <StatusBar backgroundColor="#007FF9" barStyle="light-content" />
         <View style={styles.container}>
 
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            alert("Modal has been closed.");
-            this.setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>{this.state.currentBookmarkKey}</Text>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => this.handleBookmark()}
-              >
-                <Text style={styles.textStyle}>Bookmark</Text>
-              </Pressable>
-              <Pressable
-                style={[styles.button, styles.buttonClose2]}
-                onPress={() => this.setModalVisible(false)}
-              >
-                <Text style={styles.textStyle}> Close   </Text>
-              </Pressable>
-            </View>
-            <View>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              alert("Modal has been closed.");
+              this.setModalVisible(!modalVisible);
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text style={styles.modalText}>{this.state.currentBookmarkKey}</Text>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => this.handleBookmark()}
+                >
+                  <Text style={styles.textStyle}>Bookmark</Text>
+                </Pressable>
+                <Pressable
+                  style={[styles.button, styles.buttonClose2]}
+                  onPress={() => this.setModalVisible(false)}
+                >
+                  <Text style={styles.textStyle}> Close   </Text>
+                </Pressable>
+              </View>
+              <View>
 
+              </View>
             </View>
-          </View>
-        </Modal>
+          </Modal>
 
           <View style={styles.scrollArea2Stack}>
 
@@ -356,9 +366,9 @@ export default class ViewRecommendTbl_3 extends React.Component {
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
                       this.sortTitleHandler_z2a();
-                    }} 
+                    }}
                     title={this.parseSortICON("Z - A")}
-                    />
+                  />
                 </Menu>
 
 
@@ -391,9 +401,9 @@ export default class ViewRecommendTbl_3 extends React.Component {
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
                       this.sortDeadlineHandler_z2a();
-                    }} 
+                    }}
                     title={this.parseSortICON("Z - A")}
-                    />
+                  />
                 </Menu>
 
 
@@ -425,9 +435,9 @@ export default class ViewRecommendTbl_3 extends React.Component {
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
                       this.sortScoreHandler_z2a();
-                    }} 
+                    }}
                     title={this.parseSortICON("Z - A")}
-                    />
+                  />
                 </Menu>
 
 
@@ -459,9 +469,9 @@ export default class ViewRecommendTbl_3 extends React.Component {
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
                       this.sortAmountHandler_z2a();
-                    }} 
+                    }}
                     title={this.parseSortICON("Z - A")}
-                     />
+                  />
                 </Menu>
 
 

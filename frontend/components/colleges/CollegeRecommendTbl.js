@@ -8,7 +8,7 @@ import {
   Alert,
   StatusBar,
   ActivityIndicator,
-  Modal, 
+  Modal,
   Pressable,
 } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -70,7 +70,7 @@ export default class CollegeRecommendTbl extends React.Component {
   }
 
 
- 
+
 
   componentDidMount() {
     this.getRecommend_college();
@@ -95,7 +95,7 @@ export default class CollegeRecommendTbl extends React.Component {
     // console.log(this.state.currentBookmarkKey)
 
     // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
-    let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/college/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "POST",
@@ -105,7 +105,7 @@ export default class CollegeRecommendTbl extends React.Component {
       },
       body: JSON.stringify({
         "title": this.state.currentBookmarkKey,
-        "unique_id": this.state.usrInfo.uuid, 
+        "unique_id": this.state.usrInfo.uuid,
         "type": "college",
         "jwt": this.state.usrInfo.jwt,
       }),
@@ -120,9 +120,9 @@ export default class CollegeRecommendTbl extends React.Component {
           alert("Already bookmarked!");
 
         } else {
-          
+
           alert("Bookmark failed!");
-          
+
         }
       })
       .catch((error) => {
@@ -137,10 +137,10 @@ export default class CollegeRecommendTbl extends React.Component {
   getRecommend_college() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/"+this.state.usrInfo.jwt + "/"+this.state.usrInfo.uuid+ "/recommends/college";   
+      let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recommends/college";
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
       const collegeArr = [];
-    console.log("College Recommend URL: " + URL);
+      console.log("College Recommend URL: " + URL);
       fetch(URL, {
         method: "GET",
         headers: {
@@ -150,15 +150,21 @@ export default class CollegeRecommendTbl extends React.Component {
       })
         .then((response) => response.json())
         .then((json) => {
-          json.forEach((res) => {
 
-            // append the API data to local var
-            collegeArr.push({
-              key: res.Name,
-              // amount: parseInt(parseAmount(res.Amount)),
-              val: parseSimilarScore(res.Val),
+          if (json.length > 1) {
+            json.forEach((res) => {
+
+              // append the API data to local var
+              collegeArr.push({
+                key: res.Name,
+                // amount: parseInt(parseAmount(res.Amount)),
+                val: parseSimilarScore(res.Val),
+              });
             });
-          });
+
+          } else {
+            alert("Attention user, you have no recommendation results, please submit a survey to receive results");
+          }
 
           // set the local var to state var
           this.setState({
@@ -191,8 +197,8 @@ export default class CollegeRecommendTbl extends React.Component {
     const r = String(types);
     if (r === "A - Z") {
       return (
-          <FontAwesome name="sort-alpha-asc" size={16} color="black">  A - Z</FontAwesome>
-        );
+        <FontAwesome name="sort-alpha-asc" size={16} color="black">  A - Z</FontAwesome>
+      );
     } else {
       return (<FontAwesome name="sort-alpha-desc" size={16} color="black">  Z - A</FontAwesome>);
     }
@@ -214,36 +220,36 @@ export default class CollegeRecommendTbl extends React.Component {
         <StatusBar backgroundColor="#007FF9" barStyle="light-content" />
         <View style={styles.container}>
 
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            alert("Modal has been closed.");
-            this.setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>{this.state.currentBookmarkKey}</Text>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => this.handleBookmark()}
-              >
-                <Text style={styles.textStyle}>Bookmark</Text>
-              </Pressable>
-              <Pressable
-                style={[styles.button, styles.buttonClose2]}
-                onPress={() => this.setModalVisible(false)}
-              >
-                <Text style={styles.textStyle}> Close   </Text>
-              </Pressable>
-            </View>
-            <View>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              alert("Modal has been closed.");
+              this.setModalVisible(!modalVisible);
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text style={styles.modalText}>{this.state.currentBookmarkKey}</Text>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => this.handleBookmark()}
+                >
+                  <Text style={styles.textStyle}>Bookmark</Text>
+                </Pressable>
+                <Pressable
+                  style={[styles.button, styles.buttonClose2]}
+                  onPress={() => this.setModalVisible(false)}
+                >
+                  <Text style={styles.textStyle}> Close   </Text>
+                </Pressable>
+              </View>
+              <View>
 
+              </View>
             </View>
-          </View>
-        </Modal>
+          </Modal>
           <View style={styles.scrollArea2Stack}>
 
             <View style={styles.scrollArea2}>
@@ -286,7 +292,7 @@ export default class CollegeRecommendTbl extends React.Component {
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
                       this.sortTitleHandler_z2a();
-                    }} 
+                    }}
                     title={this.parseSortICON("Z - A")} />
                 </Menu>
 
@@ -320,7 +326,7 @@ export default class CollegeRecommendTbl extends React.Component {
                     style={{ marginTop: 0, width: 15, }}
                     onPress={() => {
                       this.sortDeadlineHandler_z2a();
-                    }} 
+                    }}
                     title={this.parseSortICON("Z - A")} />
                 </Menu>
 

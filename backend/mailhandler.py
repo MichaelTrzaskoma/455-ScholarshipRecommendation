@@ -12,7 +12,7 @@ def sendWelcomeEmail(email, activationCode):
               "career.</p>"\
               "<p>In order to login and get started you'll have to activate your account. You can do this by clicking "\
               "the link below.</p>"\
-              "<p>http://http://6bff156668d9.ngrok.io/activate?code=" + activationCode + "</p>"\
+              "<p>http://http://820293c0661c.ngrok.io/activate?code=" + activationCode + "</p>"\
               "<p>We hope that our app will be able to satisfy all your university needs!</p>"\
               "<p>Good Luck!</p>"\
               "<p>The Scholar Seek Team</p>"
@@ -33,7 +33,7 @@ def sendResetPasswordEmail(email, resetCode):
     message = "<h1>Reset Password!</h1>"\
               "<p>Don't worry, sometimes we forget our passwords too!</p>"\
               "<p>Click the link below and we'll get you started on resetting your password</p>"\
-              "<p>http://http://6bff156668d9.ngrok.io/resetpassword?code=" + resetCode + "</p>"
+              "<p>http://http://820293c0661c.ngrok.io/resetpassword?code=" + resetCode + "</p>"
 
 
     msg = Message("Reset Scholar Seek Password",

@@ -157,7 +157,7 @@ export default class App extends Component {
       if (!inputEmail == "" && !inputPassword == "") {
         // //  &&  String(inputEmail).includes("@")
 
-        let URL = "http://6bff156668d9.ngrok.io/api/v1.2/managements/users/" + inputEmail;
+        let URL = "http://820293c0661c.ngrok.io/api/v1.2/managements/users/" + inputEmail;
         // let URL = "http://2d071003be2e.ngrok.io/api/v1.2/managements/users/" + inputEmail;
 
         const unique_id = getDeviceID();
@@ -177,7 +177,7 @@ export default class App extends Component {
           .then((response) => response.json())
           .then((json) => {
 
-            if (json.mesg === "authorized") {
+            if (json.mesg == "authorized") {
 
               console.log(JSON.stringify(json));
               this.setState({
@@ -188,6 +188,8 @@ export default class App extends Component {
                   uuid: unique_id,
                 },
               });
+
+              // this.forceUpdate();
 
             } else {
               alert(json.mesg);
@@ -214,8 +216,6 @@ export default class App extends Component {
       // console.log(type(value));
     }
   };
-
-  
 
   render() {
     console.log("Sign val: " + this.state.usrProfile.signedIn);

@@ -30,7 +30,7 @@ class MajorRecentClass extends Component {
 
   getRecentViewed = () => {
     // /api/v1.2/users/id/<email>/<token>/<id>/recent/<type>/<doc_num>
-    let URL = "http://6bff156668d9.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recent/major/5"
+    let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recent/major/5"
     try {
 
       let recentArr = [];
