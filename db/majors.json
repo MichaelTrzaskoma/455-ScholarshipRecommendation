@@ -27,10 +27,32 @@
     "Actuary",
     "Anti-Money Laundering Officer"
   ],
-  "desc": "placeholder",
+  "desc": "Accounting majors learn how to create, maintain and audit a detailed and accurate system that displays the finances of a business or organization. They also study the theory behind accounting and learn how to analyze the financial position of a firm or organization.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Business"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170404b"
@@ -60,10 +82,32 @@
     "Veterinarian (For Livestock)",
     "Horticulturist"
   ],
-  "desc": "placeholder",
+  "desc": "Agriculture majors study raising plant crops and livestock,learning the essentials of farming and ranching, everything from planting, cultivation, fertilization, harvesting, processing, and fruit and vegetable distribution to the most effective ways to raise, breed, and market livestock.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1
+  ],
+  "category": "Science, Technology, & Math"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170404c"
@@ -95,10 +139,32 @@
     "Training And Development Manager",
     "Sociologist"
   ],
-  "desc": "placeholder",
+  "desc": "Anthropology majors study humans and chimps, analyzing how groups live with each other, and how culture cultivates over time. Analyzing the differences of different cultures and seeing how they came to be.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Humanities"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170404d"
@@ -128,10 +194,32 @@
     "Artist",
     "Fashion Designer"
   ],
-  "desc": "placeholder",
+  "desc": "Art majors focus on the concepts of creation and interpretation of works and performances. Utilizing the learning skills of auditory, kinesthetic, and visual, to express ideas in various forms.\n",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Arts"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170404e"
@@ -161,10 +249,32 @@
     "Health Communications Specialist",
     "Wildlife Biologist"
   ],
-  "desc": "placeholder",
+  "desc": "Biology majors study life, studying the structure of life, the growth, the origin, evolution, and the various organisms across the world. They learn how living things function and interact amongst each other and their environment.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Science, Technology, & Math"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170404f"
@@ -193,10 +303,32 @@
     "Human Resources Assistant",
     "Staff Accountant"
   ],
-  "desc": "placeholder",
+  "desc": "Business management majors study business organisations, gaining knowledge of how businesses work financially internally, how they work with markets,  and how they interact with customers. Analyzing strategies and policies that make businesses successful.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Business"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704050"
@@ -226,10 +358,32 @@
     "Analytical Chemist",
     "Quality Control Chemist"
   ],
-  "desc": "placeholder",
+  "desc": "Chemistry majors have a focus on the composition and behavior of matter. Utilizing math and theory as well as experimentation to study how matter interacts under specific environmental conditions down to an atomic level.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Science, Technology, & Math"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704051"
@@ -259,10 +413,32 @@
     "Media Planner",
     "Social Media Manager"
   ],
-  "desc": "placeholder",
+  "desc": "Communications majors learn how to effectively communicate a variety of information throughout different areas, from business, to politics, to journalism. Understanding the differences of information and the most effective way to portray them through the various mediums for communication.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Humanities"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704052"
@@ -292,10 +468,32 @@
     "System Analyst",
     "Full-Stack Developer "
   ],
-  "desc": "placeholder",
+  "desc": "Computer Science majors not only focus on working with computers and utilizing various programming languages, but also enhance their problem solving skills. Learning how to solve problems effectively and efficiently utilizing algorithms.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Science, Technology, & Math"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704053"
@@ -325,10 +523,32 @@
     "Fashion Designer",
     "Barber"
   ],
-  "desc": "placeholder",
+  "desc": "Cosmetology majors learn the theory and practice on how to make individuals look and feel their best through a variety of skills such as haircutting, pedicures, and skin care treatment. Learning the key aspects needed safe, healthy, and effective cosmetic work. ",
   "binary": [
-    "placeholder"
-  ]
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Trades & Personal Services"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704054"
@@ -359,10 +579,32 @@
     "Criminal Investigator",
     "DEA Agent"
   ],
-  "desc": "placeholder",
+  "desc": "Criminal Justice majors gain the understanding of the core elements of the justice system: the courts, policing, and corrections. Learning the reasoning and psychology behind criminal behavior to better understand how to preserve society’s safety.",
   "binary": [
-    "placeholder"
-  ]
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Protective Services"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704055"
@@ -392,10 +634,32 @@
     "Food Writer",
     "Food Stylist"
   ],
-  "desc": "placeholder",
+  "desc": "Culinary Arts majors develop the skills needed to excel in the professional food industry, learning the do’s and don’ts within a kitchen, as well as the theory of food recipes. They learn the key aspects of hospitality, and key aspects of the variety of food industries within the culinary field.",
   "binary": [
-    "placeholder"
-  ]
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Trades & Personal Services"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704056"
@@ -425,10 +689,32 @@
     "Dental Therapist",
     "Health Improvement Practitioner"
   ],
-  "desc": "placeholder",
+  "desc": "Dental majors learn the ins and outs of dental anatomy, understanding how the human mouth and jaw work. Learning how to clean and preserve a healthy oral cavity, as well as the safe methodologies behind it. ",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Health Professions"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704057"
@@ -458,10 +744,32 @@
     "Fashion Designer",
     "User Experience Designer"
   ],
-  "desc": "placeholder",
+  "desc": "Design majors learn the science and art of making things aesthetically pleasing to the eye. Understanding how the human mind works when viewing aspects of art, improving their creative skills to apply thought to art when considering the observer. ",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Arts"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704058"
@@ -491,10 +799,32 @@
     "Credit Analyst",
     "Policy Analyst"
   ],
-  "desc": "placeholder",
+  "desc": "Economics majors learn how to develop critical thinking, examining resources and efficiently allocating them, as well as evaluating the decisions made on resource allocation during certain situations. Understanding the techniques to research, policymaking, and quantitative analysis dealing with resources of countries as well as companies.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Humanities"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704059"
@@ -524,10 +854,32 @@
     "Teacher",
     "Recreation and Student Life"
   ],
-  "desc": "placeholder",
+  "desc": "Education majors learn the theory of how to make an impact on others inside and outside of a classroom, exploring the best methodologies that people learn from. Evaluating the effectiveness of lesson plans, and being able to adapt to new criteria needed to aid students.",
   "binary": [
-    "placeholder"
-  ]
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Education"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170405a"
@@ -558,10 +910,32 @@
     "Biomedical Engineer",
     "Chemical Engineer"
   ],
-  "desc": "placeholder",
+  "desc": "Engineering majors understand how to utilize mathematics and scientific principles to solve problems. Learning the design and experimentation process of problem solving as well as the considerations of safety and ethics when designing solutions.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Science, Technology, & Math"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170405b"
@@ -591,10 +965,32 @@
     "Highschool Teacher",
     "Editor"
   ],
-  "desc": "placeholder",
+  "desc": "English majors develop critical reading and writing skills, examining literature through history and see the key elements that culture has within one’s writing. Developing effective writing tools to have their literature be effective as possible for the reader.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Humanities"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170405c"
@@ -625,10 +1021,32 @@
     "Marine Biologist",
     "Enviornmental Chemist"
   ],
-  "desc": "placeholder",
+  "desc": "Environmental Science majors learn how physical and biological processes impact the environment around them. Evaluating how humans have impacted nature as well as solutions to the problems that have been caused due to humans.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    1
+  ],
+  "category": "Science, Technology, & Math"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170405d"
@@ -658,10 +1076,32 @@
     "Location Manager",
     "Production Designer"
   ],
-  "desc": "placeholder",
+  "desc": "Film majors develop skills to work with peers and individually to produce their ideas to a script to then a screen. Learning the process of film production and understanding the importance of sound, lighting, and editing when developing a film. ",
   "binary": [
-    "placeholder"
-  ]
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "category": "Arts"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170405e"
@@ -694,10 +1134,32 @@
     "Budget Analyst",
     "Commerical Real Estate Agent"
   ],
-  "desc": "placeholder",
+  "desc": "Finance majors learn how to do financial planning, investing, and budgeting within a business environment. Learning how to manage finances and aid in making businesses profitable through problem solving financial issues.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Business"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170405f"
@@ -727,10 +1189,32 @@
     "Dietitian",
     "Catering Manager "
   ],
-  "desc": "placeholder",
+  "desc": "Food and Nutrition majors research how nutrients impact the human body, understanding the necessities for a healthy quality of life for people. Learning how certain diets impact human health, learning the biology and chemistry aspects of nutrients within food. ",
   "binary": [
-    "placeholder"
-  ]
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Health Professions"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704060"
@@ -757,10 +1241,32 @@
     "Subtitle/Voiceover Translator",
     "Event Manager "
   ],
-  "desc": "placeholder",
+  "desc": "Foreign language majors study the literature, culture, and media of people who utilize a specific language. Understanding the verbal and nonverbal aspects of a language equips students with a holistic understanding of the culture surrounding a language to be effective in international work.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Humanities"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704061"
@@ -790,10 +1296,32 @@
     "Mental Health Counsler",
     "Patient Care Advocate"
   ],
-  "desc": "placeholder",
+  "desc": "Health majors work in all aspects in the human health field, learning the biology of the human body as well as the chemical compositions within a body. Learning how the human body works, and ways to answer health related problems of the human body.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Health Professions"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704062"
@@ -824,10 +1352,32 @@
     "Healthcare Executive",
     "Physician Assistant"
   ],
-  "desc": "placeholder",
+  "desc": "Health Care majors learn the inner workings of the health department such as hospitals, and specialized medical facilities. Learning how to effectively manage a health care environment as well as manage working in a team of medical professionals.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Health Professions"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704063"
@@ -857,10 +1407,32 @@
     "Archivist",
     "Diplomant"
   ],
-  "desc": "placeholder",
+  "desc": "History majors study the views and interpretations of the past, such as documents, landmarks, and other forms of evidence. Learning theories of the past and evaluating the truth of what has once happened within history. ",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Humanities"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704064"
@@ -891,10 +1463,32 @@
     "Information Technology Consultant",
     "Information Security Analyst"
   ],
-  "desc": "placeholder",
+  "desc": "Information Technology majors study a mix of computer science, business, and communications, learning how computers support industries around the world. Seeing how technology is a foundation for growth and stability within the business world, and how to maintain properly functioning technology within businesses.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0
+  ],
+  "category": "Science, Technology, & Math"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704065"
@@ -924,10 +1518,32 @@
     "Political Analyst. Lobbyist",
     "Communication Specialist"
   ],
-  "desc": "placeholder",
+  "desc": "International Relations majors study the way the world works politically, economically, and culturally on a global scope. Understanding the key factors that influence foreign decision making and affairs as well as develop critical thinking in solving global conflicts.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Humanities"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704066"
@@ -958,10 +1574,32 @@
     "Real Estate Agent",
     "Legal Administrator"
   ],
-  "desc": "placeholder",
+  "desc": "Legal Studies majors learn how law impacts the day to day life of common people as well as large corporations. Utilizing past cases, as well as studying the literature of law to familiarize themselves with how the country maintains order. ",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Humanities"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704067"
@@ -991,10 +1629,32 @@
     "Operations Research Analyst",
     "Mathematician"
   ],
-  "desc": "placeholder",
+  "desc": "Math majors utilize thought and logistics, as well as calculations to solve problems within a variety of fields. From utilizing fundamental maths such as algebra and geometry to using number theory for critical thinking, evaluation, modeling, and solving problems.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Science, Technology, & Math"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704068"
@@ -1025,10 +1685,32 @@
     "Sound Engineer",
     "Music Teacher"
   ],
-  "desc": "placeholder",
+  "desc": "Music majors study a variety of fields within the music area, from instrumental music to vocal performance, learning the important aspects of developing music. Learning from individual instruments to compositions of a group of instruments, learning the theory of sound.",
   "binary": [
-    "placeholder"
-  ]
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Arts"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704069"
@@ -1058,10 +1740,32 @@
     "Hospice Nurse",
     "Nutritionist Nurse"
   ],
-  "desc": "placeholder",
+  "desc": "Nursing majors study various fields such as chemistry, psychology, and anatomy to be equipped with the tools necessary to help patients of all ages. Understanding the inner workings of medical areas to effectively maintain and manage such medical environments. ",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Health Professions"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170406a"
@@ -1092,10 +1796,32 @@
     "Journalist",
     "Paralegal"
   ],
-  "desc": "placeholder",
+  "desc": "Philosophy majors study the great philosophers of history, examining questions that truly have no correct answer. Developing critical thinking skills, engaging in moral and ethical discussions. ",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Humanities"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170406b"
@@ -1125,10 +1851,32 @@
     "Photographer",
     "Press Photographer"
   ],
-  "desc": "placeholder",
+  "desc": "Photography majors focus on the principles and techniques of displaying information, ideas, and emotions through photographs. Analyzing what distinguishes an effective and ineffective photograph, improving on skills to portray ideas as effectively as possibly through photography.",
   "binary": [
-    "placeholder"
-  ]
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "category": "Arts"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170406c"
@@ -1158,10 +1906,32 @@
     "Recreational Therapist",
     "Massage Therapist"
   ],
-  "desc": "placeholder",
+  "desc": "Physical Therapist majors study the human body, understanding how the physical body works as a whole. Learning methodologies to ease human pain as well as to regain physical movement and strength.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Health Professions"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170406d"
@@ -1192,10 +1962,32 @@
     "Meteorologist",
     "Nanotechnologist"
   ],
-  "desc": "placeholder",
+  "desc": "Physics majors study how the world is constructed as well as how the world works as a whole. Studying how matter and energy change under various conditions, through lab settings as well as real life environments.\n",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Science, Technology, & Math"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170406e"
@@ -1226,10 +2018,32 @@
     "Political Campaign Staff",
     "Political Consultant"
   ],
-  "desc": "placeholder",
+  "desc": "Political sciences majors are exposed to the theory and thought process of the governmental environment. Studying the methodology when making political decisions and adapting critical thinking within a political setting.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0
+  ],
+  "category": "Humanities"
 },{
   "_id": {
     "$oid": "608d986f88f4fb127170406f"
@@ -1259,10 +2073,32 @@
     "House Security Officer",
     "Protective Services Worker"
   ],
-  "desc": "placeholder",
+  "desc": "Protective services majors focus on the principles and techniques of providing protection to clients throughout various environments and situations. Understanding the mindset of preserving protection while having critical thinking skills under pressure and short time.",
   "binary": [
-    "placeholder"
-  ]
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Protective Services"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704070"
@@ -1292,10 +2128,32 @@
     "Child Care Worker",
     "Laboratory Assistant"
   ],
-  "desc": "placeholder",
+  "desc": "Psychology majors study the human mind, examining how human behavior and their thought processes under conditions of social interaction or isolation. Learning the structure of the human brain and the key structure to understand why people act the way they do.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Humanities"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704071"
@@ -1325,10 +2183,32 @@
     "Disease Prevention Specialist",
     "Public Health Planner"
   ],
-  "desc": "placeholder",
+  "desc": "Public Health majors learn the skills on how to tackle health issues within communities such as vaccination, drug overdoses, and foodborne diseases. Through developing critical thinking and analyzing situations within a community, one will have the tools to problem solve such issues.",
   "binary": [
-    "placeholder"
-  ]
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "category": "Health Professions"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704072"
@@ -1359,10 +2239,32 @@
     "Policy Advisor",
     "Lobbyist"
   ],
-  "desc": "placeholder",
+  "desc": "Public Policy majors are trained to have critical thinking skills within policy creation to resolve issues that society face. Through evaluation of previous policies and understanding the impacts that a policy has to be able to be effective policy creators.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "category": "Humanities"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704073"
@@ -1393,10 +2295,32 @@
     "Chaplain",
     "Archivist"
   ],
-  "desc": "placeholder",
+  "desc": "Religious Studies majors learn the implications of faith, and how faith is perceived and it’s impacts globally. Understanding the variety of religions around the world, viewing the holistic scope of global theology.",
   "binary": [
-    "placeholder"
-  ]
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0
+  ],
+  "category": "Humanities"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704074"
@@ -1428,10 +2352,32 @@
     "Librarians",
     "Urban and Regional Planners"
   ],
-  "desc": "placeholder",
+  "desc": "Social Services majors study the methodology of how social welfare systems help, protect, and support those in need, whether it’s public or private assistance. Understanding effective ways to distribute such support among people and provide the most effective kind of services to them.",
   "binary": [
-    "placeholder"
-  ]
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0
+  ],
+  "category": "Humanities"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704075"
@@ -1461,10 +2407,32 @@
     "Contract Negotiation Manager",
     "Marketing Consultant"
   ],
-  "desc": "placeholder",
+  "desc": "Sports Management majors are exposed to the factors considered when planning, organizing, managing, and budgeting sports or other physical activities. Learning what makes a sports activity ran the most effectively, as well as how to run sports teams.",
   "binary": [
-    "placeholder"
-  ]
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "category": "Business"
 },{
   "_id": {
     "$oid": "608d986f88f4fb1271704076"
@@ -1494,8 +2462,30 @@
     "Animal Technicion",
     "Veterinary Nurse"
   ],
-  "desc": "placeholder",
+  "desc": "Veterinary majors are equipped with the tools to manage the health of animals and animal populations through being able to accurately diagnose and treat health problems that animals face, as well as psychology problems that animals may face under new environments.",
   "binary": [
-    "placeholder"
-  ]
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "category": "Health Professions"
 }]

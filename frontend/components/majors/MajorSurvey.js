@@ -329,7 +329,7 @@ export default class MajorSurvey extends React.Component {
 	// console.log("CurrentExisting: "+currentExisting);
 	// console.log("Current Method: "+ this.state.currentMethod);
 	// console.log("Local Method: "+ localMethod);
-    let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major";
+    let URL = "<Host IP>/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major";
     fetch(URL, {
       method: localMethod,
       // method: "DELETE",
@@ -439,7 +439,7 @@ export default class MajorSurvey extends React.Component {
 
   getExistingData = () => {
     //insert correct URL for user's profile
-    let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major";
+    let URL = "<Host IP>/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/surveys/major";
 
 
     fetch(URL, {

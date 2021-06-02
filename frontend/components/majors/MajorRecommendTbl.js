@@ -93,7 +93,7 @@ export default class MajorRecommendTbl extends React.Component {
     // console.log(this.state.currentBookmarkKey)
 
     // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
-    let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/major/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+    let URL = "<Host IP>/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/major/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "POST",
@@ -136,7 +136,7 @@ export default class MajorRecommendTbl extends React.Component {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
       // /api/v1.2/users/id/<email>/<token>/<id>/recommends/major
-      let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recommends/major";
+      let URL = "<Host IP>/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recommends/major";
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
       const majorArr = [];
       // console.log("College Recommend URL: " + URL);

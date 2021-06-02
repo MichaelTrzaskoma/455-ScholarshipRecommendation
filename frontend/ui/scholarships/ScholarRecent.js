@@ -30,7 +30,7 @@ class ScholarRecentClassd extends Component {
 
   getRecentViewed = () => {
     // /api/v1.2/users/id/<email>/<token>/<id>/recent/<type>/<doc_num>
-    let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recent/scholarship/5"
+    let URL = "<Host IP>/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recent/scholarship/5"
     try {
 
       let recentArr = [];

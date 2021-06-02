@@ -29,11 +29,18 @@
 ---
 <b>College: </b>New York Institute of Technology<br>
 <b>Course:</b> CSCI 455 - M01/ Spring 2021<br>
+<b>Project Page:</b> <a href="https://michaeltrzaskoma.github.io/455-ScholarshipRecommendation/">here</a><br>
 <b>Mentor:</b> <a href="https://www.nyit.edu/bio/wli20">Dr. Li</a><br>
 <b>Team Lead:</b> <a href="https://github.com/MichaelTrzaskoma">Micheal Trzaskoma</a><br>
 <b>Team Member:</b> <a href="https://hchen98.github.io/">Hui (Henry) Chen</a>, <a href="https://github.com/byjungy93">Jungi Park</a>, <a href="https://github.com/MichaelTrzaskoma">Micheal Trzaskoma</a>, <a href="https://github.com/THeKhanMann">Zakaria Khan</a>, and <a href="https://github.com/Greg-Salvesen2">Gregory Salvesen</a>
 
 ---
+
+## Demo
+* Final Report <a href="https://github.com/MichaelTrzaskoma/455-ScholarshipRecommendation/tree/main/reports/CSCI455 - Final Report.pdf">here</a>
+* Bi-weekly Report <a href="https://github.com/MichaelTrzaskoma/455-ScholarshipRecommendation/tree/main/reports/Bi-weekly Reports/">here</a>
+* Presentation <a href="https://youtu.be/Gh4rA_zF8fA">here</a>
+* Mobile App Demo <a href="https://youtu.be/oLgsxxLviUM">here</a>
 
 ## Introduction
 This Scholar Seek project is a continuation of a project from CSCI426 (<a href="https://github.com/hchen98/csci426-project">Information Retrieval</a>). The continuation of this project will include the implementation of more robust features and an enhanced database, which will distinguish this project from its previous state. The new planned features will also expand the scope of the app. The project, in its state from CSCI426, serves as a scholarship recommendation service, using a user’s profile information to match them as best as possible with scholarships from scholarships.com. With the features planned for development in CSCI426, the app will also serve to help prospective college students find the higher education institution that best suits them and it will even help them explore potential majors. Our Scholar Seek will help students who are financially struggling find the best scholarship, explore potential majors, and find the college best suited for them by using their profile information to recommend likely candidates.
@@ -47,8 +54,9 @@ This Scholar Seek project is a continuation of a project from CSCI426 (<a href="
     * scholarships - detailed scholarships
     * subcatList - a list of scholarship sub-category
     * auth - user profile data
-    * college - college data from niche.com
+    * colleges - college data from niche.com
     * client_profile - user's profile db
+    * majors - categorized major listing db
 
 ## Get Started
 

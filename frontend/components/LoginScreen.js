@@ -62,10 +62,10 @@ export default function LoginScreen(props) {
 	const isClicked = (type) => {
 		if (type === "signup"){
 			setSignUpClicked(true);
-			openSignUp("http://820293c0661c.ngrok.io/api/v1.2/managements/users/signup");
+			openSignUp("<Host IP>/api/v1.2/managements/users/signup");
 		} else {
 			setForgotPaswrdClicked(true);
-			openForGotPassword("http://820293c0661c.ngrok.io/api/v1.2/managements/users/forgotpassword");
+			openForGotPassword("<Host IP>/api/v1.2/managements/users/forgotpassword");
 		}
 	}
 	
@@ -116,7 +116,7 @@ export default function LoginScreen(props) {
 						// Reguired for closing the modal
 						onPressClose={() => setVisible2(false)}
 						// use tunnel network here to local test env
-						url={'http://820293c0661c.ngrok.io/api/v1.2/managements/users/forgotpassword'}
+						url={'<Host IP>/api/v1.2/managements/users/forgotpassword'}
 					/>
 					<TouchableOpacity style={styles.forgotPasswrdBtn} onPress={forgotPaswrdBtnHandler}>
 					{/* <TouchableOpacity style={styles.forgotPasswrdBtn} onPress={isClicked("forgot")}> */}
@@ -132,7 +132,7 @@ export default function LoginScreen(props) {
 							// Reguired for closing the modal
 							onPressClose={() => setVisible(false)}
 							// use tunnel network here to local test env
-							url={'http://820293c0661c.ngrok.io/api/v1.2/managements/users/signup'}
+							url={'<Host IP>/api/v1.2/managements/users/signup'}
 						/>
 						<TouchableOpacity style={styles.signupBtn} onPress={signUpBtnHandler}>
 						{/* <TouchableOpacity style={styles.signupBtn} onPress={(isClicked("signup"))}> */}

@@ -157,8 +157,8 @@ export default class App extends Component {
       if (!inputEmail == "" && !inputPassword == "") {
         // //  &&  String(inputEmail).includes("@")
 
-        let URL = "http://820293c0661c.ngrok.io/api/v1.2/managements/users/" + inputEmail;
-        // let URL = "http://2d071003be2e.ngrok.io/api/v1.2/managements/users/" + inputEmail;
+        let URL = "<Host IP>/api/v1.2/managements/users/" + inputEmail;
+        // let URL = "<Host IP>/api/v1.2/managements/users/" + inputEmail;
 
         const unique_id = getDeviceID();
         fetch(URL, {

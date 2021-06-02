@@ -193,7 +193,7 @@ class ViewHistoryClass extends React.Component {
     // console.log(this.state.currentBookmarkKey)
 
     // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
-    let URL = "http://2d071003be2e.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/" +this.state.currentType+ "/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "<Host IP>/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/" +this.state.currentType+ "/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "POST",
@@ -236,7 +236,7 @@ class ViewHistoryClass extends React.Component {
   getHistory() {
     try {
       // console.log("Email from scholarshipRecommendTBL.js: " + this.state.usrInfo.email);
-      let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recent/all/15";
+      let URL = "<Host IP>/api/v1.2/users/id/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid + "/recent/all/15";
       // http://localhost:5000/api/v1.2/users/id/hchen60@nyit.edu/recommends/scholarship
 
       const historyArr = [];

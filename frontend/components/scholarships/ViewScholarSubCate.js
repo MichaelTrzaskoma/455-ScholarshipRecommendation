@@ -28,9 +28,9 @@ export default class ViewScholarSubCate extends React.Component {
   getDoc = () => {
 
     // console.log(this.state.subCate);
-    let URL = "http://820293c0661c.ngrok.io/api/v1.2/resources/scholarships/view/categories/" + this.state.subCate;
+    let URL = "<Host IP>/api/v1.2/resources/scholarships/view/categories/" + this.state.subCate;
 
-    // let URL = "http://2d071003be2e.ngrok.io/api/v1.2/resources/scholarships/view/categories/" + this.state.subCate;
+    // let URL = "<Host IP>/api/v1.2/resources/scholarships/view/categories/" + this.state.subCate;
 
     fetch(URL, {
       method: "GET",

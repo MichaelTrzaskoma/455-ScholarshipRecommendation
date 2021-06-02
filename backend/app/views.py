@@ -20,7 +20,7 @@ db = MongoClient(app.config["DB_IP"], app.config["DB_PORT"],
 scholarDb = db.test
 scholar_ref = db.test.scholarships
 college_ref = db.test.colleges
-major_ref = db.test.majorsFinal
+major_ref = db.test.majors
 user_Ref = db.test.client_profile
 
 ACTIVE_CODE_LENGTH = 64

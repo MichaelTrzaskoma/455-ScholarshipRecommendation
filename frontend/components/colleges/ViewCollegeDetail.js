@@ -122,7 +122,7 @@ export default class ViewCollegeDetail extends React.Component {
     // console.log("College Detail page: " + this.props.route.params.usrInfo);
     //Insert API Call here
 
-    let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
+    let URL = "<Host IP>/api/v1.2/users/id/"+ this.state.usrInfo.email + "/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
     // let URL = "http://3efdd482435b.ngrok.io/api/v1.2/users/id/hchen98x@gmail.com/bookmarks/college/"+ this.state.usrInfo.jwt+ "/"+ this.state.usrInfo.uuid;
 
 
@@ -165,7 +165,7 @@ export default class ViewCollegeDetail extends React.Component {
     // this.setState({ modalVisible: false });
     // console.log(this.state.currentBookmarkKey)
 
-    let URL = "http://820293c0661c.ngrok.io/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
+    let URL = "<Host IP>/api/v1.2/users/id/" + this.state.usrInfo.email + "/bookmarks/all/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid;
 
     fetch(URL, {
       method: "DELETE",
@@ -217,7 +217,7 @@ export default class ViewCollegeDetail extends React.Component {
     // console.log("User profile from ViewCollegeDetail: " + JSON.stringify(this.props.route.params));
     
     let URL =
-      "http://820293c0661c.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
+      "<Host IP>/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
 
       // "http://3efdd482435b.ngrok.io/api/v1.2/resources/colleges/view/titles/" + this.props.route.params.itemKey + "/" + this.state.usrInfo.email + "/" + this.state.usrInfo.jwt + "/" + this.state.usrInfo.uuid; 
     console.log("College Detail URL: "+URL);
