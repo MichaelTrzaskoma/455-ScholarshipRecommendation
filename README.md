@@ -39,7 +39,7 @@
 ## Demo
 * Final Report <a href="https://github.com/MichaelTrzaskoma/455-ScholarshipRecommendation/tree/main/reports/CSCI455 - Final Report.pdf">here</a>
 * Bi-weekly Report <a href="https://github.com/MichaelTrzaskoma/455-ScholarshipRecommendation/tree/main/reports/Bi-weekly Reports/">here</a>
-* Presentation <a href="https://youtu.be/Gh4rA_zF8fA">here</a>
+* Presentation <a href="https://youtu.be/ql1jPPn6fJ8">here</a>
 * Mobile App Demo <a href="https://youtu.be/oLgsxxLviUM">here</a>
 
 ## Introduction
